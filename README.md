@@ -1,91 +1,58 @@
 # Kibana (kibana)
-Kibana is an open-source data visualization and exploration tool used for log and time-series analytics, application monitoring, and operational intelligence use cases. It provides powerful and easy-to-use features such as histograms, line graphs, pie charts, heat maps, and built-in geospatial support.
+Kibana is an open-source data visualization and exploration tool used for log and time-series analytics, application monitoring, and operational intelligence. Kibana provides histograms, line graphs, pie charts, heat maps, geospatial visualizations, dashboards, alerting, and management of saved objects across spaces, exposing a comprehensive REST API for programmatic configuration and automation.
 
-**URL:** [Visit APIs.json URL](https://www.elastic.co/kibana)
+**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/kibana/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Index
+- **Position:** Consuming
+- **Access:** 3rd-Party
 
 ## Tags:
 
- - analytics, visualization, logging, monitoring, dashboards, elastic stack, observability
+ - Alerting, Analytics, Dashboards, Elastic Stack, Logging, Monitoring, Observability, Visualization
 
 ## Timestamps
 
-- **Created:** 2024-01-15 
-- **Modified:** 2024-01-15 
+- **Created:** 2024-01-15
+- **Modified:** 2026-04-28
 
 ## APIs
 
 ### Kibana API
-RESTful API for managing Kibana spaces, saved objects, dashboards, and configuration
+The Kibana REST API enables programmatic management of Kibana resources including spaces, saved objects, dashboards, data views, connectors, rules, and configuration. The API is stateless and uses standard HTTP verbs (GET, POST, PUT, DELETE) returning JSON responses, making it well suited for automation, CI/CD pipelines, and integrating Kibana with external systems.
 
 **Human URL:** [https://www.elastic.co/guide/en/kibana/current/api.html](https://www.elastic.co/guide/en/kibana/current/api.html)
 
+**Base URL:** https://localhost:5601/api
 
 #### Tags:
 
- - dashboards, saved objects, spaces, management
+ - Configuration, Dashboards, Management, Saved Objects, Spaces
 
 #### Properties
 
-- [X-documentation](https://www.elastic.co/guide/en/kibana/current/api.html)
-- [X-openapi](https://www.elastic.co/guide/en/kibana/current/api.html)
-- [X-authentication](https://www.elastic.co/guide/en/kibana/current/api-authentication.html)
-
-### Kibana Alerting API
-API for managing alerts, rules, and connectors in Kibana
-
-**Human URL:** [https://www.elastic.co/guide/en/kibana/current/alerting-apis.html](https://www.elastic.co/guide/en/kibana/current/alerting-apis.html)
-
-
-#### Tags:
-
- - alerts, rules, notifications, monitoring
-
-#### Properties
-
-- [X-documentation](https://www.elastic.co/guide/en/kibana/current/alerting-apis.html)
-
-### Kibana Saved Objects API
-API for managing saved objects including visualizations, dashboards, and index patterns
-
-**Human URL:** [https://www.elastic.co/guide/en/kibana/current/saved-objects-api.html](https://www.elastic.co/guide/en/kibana/current/saved-objects-api.html)
-
-
-#### Tags:
-
- - saved objects, visualizations, dashboards, export, import
-
-#### Properties
-
-- [X-documentation](https://www.elastic.co/guide/en/kibana/current/saved-objects-api.html)
-
-### Kibana Spaces API
-API for managing Kibana Spaces for organizing dashboards and other saved objects
-
-**Human URL:** [https://www.elastic.co/guide/en/kibana/current/spaces-api.html](https://www.elastic.co/guide/en/kibana/current/spaces-api.html)
-
-
-#### Tags:
-
- - spaces, organization, multi-tenancy
-
-#### Properties
-
-- [X-documentation](https://www.elastic.co/guide/en/kibana/current/spaces-api.html)
+- [Documentation](https://www.elastic.co/guide/en/kibana/current/api.html)
+- [OpenAPI](openapi/kibana-openapi-original.yml)
+- [Authentication](https://www.elastic.co/guide/en/kibana/current/api-authentication.html)
 
 ## Common Properties
 
-- [X-website](https://www.elastic.co/kibana)
-- [X-documentation](https://www.elastic.co/guide/en/kibana/current/index.html)
-- [X-downloads](https://www.elastic.co/downloads/kibana)
-- [X-github](https://github.com/elastic/kibana)
-- [X-blog](https://www.elastic.co/blog/category/kibana)
-- [X-pricing](https://www.elastic.co/pricing)
-- [X-support](https://www.elastic.co/support)
-- [X-terms-of-service](https://www.elastic.co/legal/terms-of-service)
-- [X-privacy-policy](https://www.elastic.co/legal/privacy-statement)
+- [Website](https://www.elastic.co/kibana)
+- [Documentation](https://www.elastic.co/guide/en/kibana/current/index.html)
+- [APIDocumentation](https://www.elastic.co/guide/en/kibana/current/api.html)
+- [Downloads](https://www.elastic.co/downloads/kibana)
+- [GitHub](https://github.com/elastic/kibana)
+- [Blog](https://www.elastic.co/blog/category/kibana)
+- [Pricing](https://www.elastic.co/pricing)
+- [Support](https://www.elastic.co/support)
+- [Forum](https://discuss.elastic.co/c/kibana)
+- [TermsOfService](https://www.elastic.co/legal/terms-of-service)
+- [PrivacyPolicy](https://www.elastic.co/legal/privacy-statement)
 
 ## Maintainers
 
-**FN:** Elastic
+**FN:** Kin Lane
 
-**Email:** info@elastic.co
+**Email:** kin@apievangelist.com
