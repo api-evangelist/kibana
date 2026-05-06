@@ -1,0 +1,2873 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs
+  description: 'The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects. The
+    API calls are stateless. Each request that you make happens in isolation from other calls and must include all of the
+    necessary information for Kibana to fulfill the request. API requests return JSON output, which is a format that is machine-readable
+    and works well for automation. To interact with Kibana APIs, use the following operations: - GET: Fetches the information.
+    - PATCH: Applies partial modifications to the existing information. - POST: Adds new information. - PUT: Updates the ex'
+  tags:
+  - Kibana
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: kibana
+    baseUri: https://localhost:5601
+    description: Kibana APIs HTTP API.
+    authentication:
+      type: apikey
+      in: header
+      name: Authorization
+      value: '{{KIBANA_TOKEN}}'
+    resources:
+    - name: api-actions-connector-types
+      path: /api/actions/connector_types
+      operations:
+      - name: get-actions-connector-types
+        method: GET
+        description: Get connector types
+        inputParameters:
+        - name: feature_id
+          in: query
+          type: string
+          description: A filter to limit the retrieved connector types to those that support a specific feature (such as alerting
+            or cases).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-actions-connector-oauth-callback
+      path: /api/actions/connector/_oauth_callback
+      operations:
+      - name: get-actions-connector-oauth-callback
+        method: GET
+        description: Handle OAuth callback
+        inputParameters:
+        - name: code
+          in: query
+          type: string
+          description: The authorization code returned by the OAuth provider.
+        - name: state
+          in: query
+          type: string
+          description: The state parameter for CSRF protection.
+        - name: error
+          in: query
+          type: string
+          description: Error code if the authorization failed.
+        - name: error_description
+          in: query
+          type: string
+          description: Human-readable error description.
+        - name: session_state
+          in: query
+          type: string
+          description: Session state from the OAuth provider (e.g., Microsoft).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-actions-connector-oauth-callback-script
+      path: /api/actions/connector/_oauth_callback_script
+      operations:
+      - name: get-actions-connector-oauth-callback-script
+        method: GET
+        description: '**Spaces method and path for this operation:** <div><span class="operation-verb get">get</span>&nbsp;<span
+          class="operation-path">/s/{space_id}/api/actions/connector/_oauth_callback_script</span></div> Refer to [Spaces](https://www.elastic.'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-actions-connector-id
+      path: /api/actions/connector/{id}
+      operations:
+      - name: delete-actions-connector-id
+        method: DELETE
+        description: Delete a connector
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: An identifier for the connector.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-actions-connector-id
+        method: GET
+        description: Get connector information
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: An identifier for the connector.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post-actions-connector-id
+        method: POST
+        description: Create a connector
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: An identifier for the connector.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: put-actions-connector-id
+        method: PUT
+        description: Update a connector
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: An identifier for the connector.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-actions-connector-id-execute
+      path: /api/actions/connector/{id}/_execute
+      operations:
+      - name: post-actions-connector-id-execute
+        method: POST
+        description: Run a connector
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: An identifier for the connector.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-actions-connectors
+      path: /api/actions/connectors
+      operations:
+      - name: get-actions-connectors
+        method: GET
+        description: Get all connectors
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-a2a-agentid
+      path: /api/agent_builder/a2a/{agentId}
+      operations:
+      - name: post-agent-builder-a2a-agentid
+        method: POST
+        description: Send A2A task
+        inputParameters:
+        - name: agentId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the agent to send the A2A task to.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-a2a-agentid-json
+      path: /api/agent_builder/a2a/{agentId}.json
+      operations:
+      - name: get-agent-builder-a2a-agentid-json
+        method: GET
+        description: Get A2A agent card
+        inputParameters:
+        - name: agentId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the agent to get A2A metadata for.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-agents
+      path: /api/agent_builder/agents
+      operations:
+      - name: get-agent-builder-agents
+        method: GET
+        description: List agents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post-agent-builder-agents
+        method: POST
+        description: Create an agent
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-agents-agent-id-consumption
+      path: /api/agent_builder/agents/{agent_id}/consumption
+      operations:
+      - name: post-agent-builder-agents-agent-id-consumption
+        method: POST
+        description: Get agent consumption data
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: agent_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the agent.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-agents-id
+      path: /api/agent_builder/agents/{id}
+      operations:
+      - name: delete-agent-builder-agents-id
+        method: DELETE
+        description: Delete an agent
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the agent to delete.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-agent-builder-agents-id
+        method: GET
+        description: Get an agent by ID
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the agent to retrieve.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: put-agent-builder-agents-id
+        method: PUT
+        description: Update an agent
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the agent to update.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-conversations
+      path: /api/agent_builder/conversations
+      operations:
+      - name: get-agent-builder-conversations
+        method: GET
+        description: List conversations
+        inputParameters:
+        - name: agent_id
+          in: query
+          type: string
+          description: Optional agent ID to filter conversations by a specific agent.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-conversations-conversation-id
+      path: /api/agent_builder/conversations/{conversation_id}
+      operations:
+      - name: delete-agent-builder-conversations-conversation-
+        method: DELETE
+        description: Delete conversation by ID
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: conversation_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the conversation to delete.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-agent-builder-conversations-conversation-id
+        method: GET
+        description: Get conversation by ID
+        inputParameters:
+        - name: conversation_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the conversation to retrieve.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-conversations-conversation-id-
+      path: /api/agent_builder/conversations/{conversation_id}/attachments
+      operations:
+      - name: get-agent-builder-conversations-conversation-id-
+        method: GET
+        description: List conversation attachments
+        inputParameters:
+        - name: conversation_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the conversation.
+        - name: include_deleted
+          in: query
+          type: boolean
+          description: Whether to include deleted attachments in the list.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post-agent-builder-conversations-conversation-id
+        method: POST
+        description: Create conversation attachment
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: conversation_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the conversation.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-conversations-conversation-id-
+      path: /api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}
+      operations:
+      - name: delete-agent-builder-conversations-conversation-
+        method: DELETE
+        description: Delete conversation attachment
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: conversation_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the conversation.
+        - name: attachment_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the attachment to delete.
+        - name: permanent
+          in: query
+          type: boolean
+          description: If true, permanently removes the attachment (only for unreferenced attachments).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch-agent-builder-conversations-conversation-i
+        method: PATCH
+        description: Rename attachment
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: conversation_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the conversation.
+        - name: attachment_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the attachment to rename.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: put-agent-builder-conversations-conversation-id-
+        method: PUT
+        description: Update conversation attachment
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: conversation_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the conversation.
+        - name: attachment_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the attachment to update.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-conversations-conversation-id-
+      path: /api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}/_restore
+      operations:
+      - name: post-agent-builder-conversations-conversation-id
+        method: POST
+        description: Restore deleted attachment
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: conversation_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the conversation.
+        - name: attachment_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the attachment to restore.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-conversations-conversation-id-
+      path: /api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}/origin
+      operations:
+      - name: put-agent-builder-conversations-conversation-id-
+        method: PUT
+        description: Update attachment origin
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: conversation_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the conversation.
+        - name: attachment_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the attachment to update.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-conversations-conversation-id-
+      path: /api/agent_builder/conversations/{conversation_id}/attachments/stale
+      operations:
+      - name: get-agent-builder-conversations-conversation-id-
+        method: GET
+        description: Check attachment staleness
+        inputParameters:
+        - name: conversation_id
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the conversation.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-converse
+      path: /api/agent_builder/converse
+      operations:
+      - name: post-agent-builder-converse
+        method: POST
+        description: Send chat message
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-converse-async
+      path: /api/agent_builder/converse/async
+      operations:
+      - name: post-agent-builder-converse-async
+        method: POST
+        description: Send chat message (streaming)
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-mcp
+      path: /api/agent_builder/mcp
+      operations:
+      - name: post-agent-builder-mcp
+        method: POST
+        description: MCP server
+        inputParameters:
+        - name: namespace
+          in: query
+          type: string
+          description: Comma-separated list of namespaces to filter tools. Only tools matching the specified namespaces will
+            be returned.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-plugins
+      path: /api/agent_builder/plugins
+      operations:
+      - name: get-agent-builder-plugins
+        method: GET
+        description: List plugins
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-plugins-pluginid
+      path: /api/agent_builder/plugins/{pluginId}
+      operations:
+      - name: delete-agent-builder-plugins-pluginid
+        method: DELETE
+        description: Delete a plugin
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: pluginId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the plugin.
+        - name: force
+          in: query
+          type: boolean
+          description: If true, removes the plugin skills from agents that use them and then deletes the plugin. If false
+            and any agent uses the plugin skills, the request returns 409
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-agent-builder-plugins-pluginid
+        method: GET
+        description: Get a plugin by id
+        inputParameters:
+        - name: pluginId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the plugin.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-plugins-install
+      path: /api/agent_builder/plugins/install
+      operations:
+      - name: post-agent-builder-plugins-install
+        method: POST
+        description: Install a plugin
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-skills
+      path: /api/agent_builder/skills
+      operations:
+      - name: get-agent-builder-skills
+        method: GET
+        description: List skills
+        inputParameters:
+        - name: include_plugins
+          in: query
+          type: boolean
+          description: Set to true to include skills from plugins.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post-agent-builder-skills
+        method: POST
+        description: Create a skill
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-skills-skillid
+      path: /api/agent_builder/skills/{skillId}
+      operations:
+      - name: delete-agent-builder-skills-skillid
+        method: DELETE
+        description: Delete a skill
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: skillId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the skill.
+        - name: force
+          in: query
+          type: boolean
+          description: If true, removes the skill from agents that use it and then deletes it. If false and any agent uses
+            the skill, the request returns 409 Conflict with the list of
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-agent-builder-skills-skillid
+        method: GET
+        description: Get a skill by id
+        inputParameters:
+        - name: skillId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the skill.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: put-agent-builder-skills-skillid
+        method: PUT
+        description: Update a skill
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: skillId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the skill.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-tools
+      path: /api/agent_builder/tools
+      operations:
+      - name: get-agent-builder-tools
+        method: GET
+        description: List tools
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post-agent-builder-tools
+        method: POST
+        description: Create a tool
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-tools-execute
+      path: /api/agent_builder/tools/_execute
+      operations:
+      - name: post-agent-builder-tools-execute
+        method: POST
+        description: Run a tool
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent-builder-tools-toolid
+      path: /api/agent_builder/tools/{toolId}
+      operations:
+      - name: delete-agent-builder-tools-toolid
+        method: DELETE
+        description: Delete a tool
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: toolId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the tool to delete.
+        - name: force
+          in: query
+          type: boolean
+          description: If true, removes the tool from agents that use it and then deletes it. If false and any agent uses
+            the tool, the request returns 409 Conflict with the list of a
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-agent-builder-tools-toolid
+        method: GET
+        description: Get a tool by id
+        inputParameters:
+        - name: toolId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the tool to retrieve.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: put-agent-builder-tools-toolid
+        method: PUT
+        description: Update a tool
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: toolId
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the tool to update.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-alerting-health
+      path: /api/alerting/_health
+      operations:
+      - name: getalertinghealth
+        method: GET
+        description: Get the alerting framework health
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-alerting-rule-types
+      path: /api/alerting/rule_types
+      operations:
+      - name: getruletypes
+        method: GET
+        description: Get the rule types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-alerting-rule-id
+      path: /api/alerting/rule/{id}
+      operations:
+      - name: delete-alerting-rule-id
+        method: DELETE
+        description: Delete a rule
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: The identifier for the rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-alerting-rule-id
+        method: GET
+        description: Get rule details
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: The identifier for the rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post-alerting-rule-id
+        method: POST
+        description: Create a rule
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: The identifier for the rule. If it is omitted, an ID is randomly generated.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: put-alerting-rule-id
+        method: PUT
+        description: Update a rule
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: The identifier for the rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-alerting-rule-id-disable
+      path: /api/alerting/rule/{id}/_disable
+      operations:
+      - name: post-alerting-rule-id-disable
+        method: POST
+        description: Disable a rule
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: The identifier for the rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-alerting-rule-id-enable
+      path: /api/alerting/rule/{id}/_enable
+      operations:
+      - name: post-alerting-rule-id-enable
+        method: POST
+        description: Enable a rule
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: The identifier for the rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-alerting-rule-id-mute-all
+      path: /api/alerting/rule/{id}/_mute_all
+      operations:
+      - name: post-alerting-rule-id-mute-all
+        method: POST
+        description: Mute all alerts
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: The identifier for the rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-alerting-rule-id-unmute-all
+      path: /api/alerting/rule/{id}/_unmute_all
+      operations:
+      - name: post-alerting-rule-id-unmute-all
+        method: POST
+        description: Unmute all alerts
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: The identifier for the rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-alerting-rule-id-update-api-key
+      path: /api/alerting/rule/{id}/_update_api_key
+      operations:
+      - name: post-alerting-rule-id-update-api-key
+        method: POST
+        description: Update the API key for a rule
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: The identifier for the rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-alerting-rule-id-snooze-schedule
+      path: /api/alerting/rule/{id}/snooze_schedule
+      operations:
+      - name: post-alerting-rule-id-snooze-schedule
+        method: POST
+        description: Schedule a snooze for the rule
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Identifier of the rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-alerting-rule-rule-id-alert-alert-id-mute
+      path: /api/alerting/rule/{rule_id}/alert/{alert_id}/_mute
+      operations:
+      - name: post-alerting-rule-rule-id-alert-alert-id-mute
+        method: POST
+        description: Mute an alert
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: rule_id
+          in: path
+          type: string
+          required: true
+          description: The identifier for the rule.
+        - name: alert_id
+          in: path
+          type: string
+          required: true
+          description: The identifier for the alert.
+        - name: validate_alerts_existence
+          in: query
+          type: boolean
+          description: Whether to validate the existence of the alert.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-alerting-rule-rule-id-alert-alert-id-unmute
+      path: /api/alerting/rule/{rule_id}/alert/{alert_id}/_unmute
+      operations:
+      - name: post-alerting-rule-rule-id-alert-alert-id-unmute
+        method: POST
+        description: Unmute an alert
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          required: true
+          description: A required header to protect against CSRF attacks
+        - name: rule_id
+          in: path
+          type: string
+          required: true
+          description: The identifier for the rule.
+        - name: alert_id
+          in: path
+          type: string
+          required: true
+          description: The identifier for the alert.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: kibana-rest
+    description: REST adapter for Kibana APIs.
+    resources:
+    - path: /api/actions/connector_types
+      name: get-actions-connector-types
+      operations:
+      - method: GET
+        name: get-actions-connector-types
+        description: Get connector types
+        call: kibana.get-actions-connector-types
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/actions/connector/_oauth_callback
+      name: get-actions-connector-oauth-callback
+      operations:
+      - method: GET
+        name: get-actions-connector-oauth-callback
+        description: Handle OAuth callback
+        call: kibana.get-actions-connector-oauth-callback
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/actions/connector/_oauth_callback_script
+      name: get-actions-connector-oauth-callback-script
+      operations:
+      - method: GET
+        name: get-actions-connector-oauth-callback-script
+        description: '**Spaces method and path for this operation:** <div><span class="operation-verb get">get</span>&nbsp;<span
+          class="operation-path">/s/{space_id}/api/actions/connector/_oauth_callback_script</span></div> Refer to [Spaces](https://www.elastic.'
+        call: kibana.get-actions-connector-oauth-callback-script
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/actions/connector/{id}
+      name: delete-actions-connector-id
+      operations:
+      - method: DELETE
+        name: delete-actions-connector-id
+        description: Delete a connector
+        call: kibana.delete-actions-connector-id
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/actions/connector/{id}
+      name: get-actions-connector-id
+      operations:
+      - method: GET
+        name: get-actions-connector-id
+        description: Get connector information
+        call: kibana.get-actions-connector-id
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/actions/connector/{id}
+      name: post-actions-connector-id
+      operations:
+      - method: POST
+        name: post-actions-connector-id
+        description: Create a connector
+        call: kibana.post-actions-connector-id
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/actions/connector/{id}
+      name: put-actions-connector-id
+      operations:
+      - method: PUT
+        name: put-actions-connector-id
+        description: Update a connector
+        call: kibana.put-actions-connector-id
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/actions/connector/{id}/_execute
+      name: post-actions-connector-id-execute
+      operations:
+      - method: POST
+        name: post-actions-connector-id-execute
+        description: Run a connector
+        call: kibana.post-actions-connector-id-execute
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/actions/connectors
+      name: get-actions-connectors
+      operations:
+      - method: GET
+        name: get-actions-connectors
+        description: Get all connectors
+        call: kibana.get-actions-connectors
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/a2a/{agentId}
+      name: post-agent-builder-a2a-agentid
+      operations:
+      - method: POST
+        name: post-agent-builder-a2a-agentid
+        description: Send A2A task
+        call: kibana.post-agent-builder-a2a-agentid
+        with:
+          agentId: rest.agentId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/a2a/{agentId}.json
+      name: get-agent-builder-a2a-agentid-json
+      operations:
+      - method: GET
+        name: get-agent-builder-a2a-agentid-json
+        description: Get A2A agent card
+        call: kibana.get-agent-builder-a2a-agentid-json
+        with:
+          agentId: rest.agentId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/agents
+      name: get-agent-builder-agents
+      operations:
+      - method: GET
+        name: get-agent-builder-agents
+        description: List agents
+        call: kibana.get-agent-builder-agents
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/agents
+      name: post-agent-builder-agents
+      operations:
+      - method: POST
+        name: post-agent-builder-agents
+        description: Create an agent
+        call: kibana.post-agent-builder-agents
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/agents/{agent_id}/consumption
+      name: post-agent-builder-agents-agent-id-consumption
+      operations:
+      - method: POST
+        name: post-agent-builder-agents-agent-id-consumption
+        description: Get agent consumption data
+        call: kibana.post-agent-builder-agents-agent-id-consumption
+        with:
+          agent_id: rest.agent_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/agents/{id}
+      name: delete-agent-builder-agents-id
+      operations:
+      - method: DELETE
+        name: delete-agent-builder-agents-id
+        description: Delete an agent
+        call: kibana.delete-agent-builder-agents-id
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/agents/{id}
+      name: get-agent-builder-agents-id
+      operations:
+      - method: GET
+        name: get-agent-builder-agents-id
+        description: Get an agent by ID
+        call: kibana.get-agent-builder-agents-id
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/agents/{id}
+      name: put-agent-builder-agents-id
+      operations:
+      - method: PUT
+        name: put-agent-builder-agents-id
+        description: Update an agent
+        call: kibana.put-agent-builder-agents-id
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/conversations
+      name: get-agent-builder-conversations
+      operations:
+      - method: GET
+        name: get-agent-builder-conversations
+        description: List conversations
+        call: kibana.get-agent-builder-conversations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/conversations/{conversation_id}
+      name: delete-agent-builder-conversations-conversation
+      operations:
+      - method: DELETE
+        name: delete-agent-builder-conversations-conversation-
+        description: Delete conversation by ID
+        call: kibana.delete-agent-builder-conversations-conversation-
+        with:
+          conversation_id: rest.conversation_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/conversations/{conversation_id}
+      name: get-agent-builder-conversations-conversation-id
+      operations:
+      - method: GET
+        name: get-agent-builder-conversations-conversation-id
+        description: Get conversation by ID
+        call: kibana.get-agent-builder-conversations-conversation-id
+        with:
+          conversation_id: rest.conversation_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/conversations/{conversation_id}/attachments
+      name: get-agent-builder-conversations-conversation-id
+      operations:
+      - method: GET
+        name: get-agent-builder-conversations-conversation-id-
+        description: List conversation attachments
+        call: kibana.get-agent-builder-conversations-conversation-id-
+        with:
+          conversation_id: rest.conversation_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/conversations/{conversation_id}/attachments
+      name: post-agent-builder-conversations-conversation-id
+      operations:
+      - method: POST
+        name: post-agent-builder-conversations-conversation-id
+        description: Create conversation attachment
+        call: kibana.post-agent-builder-conversations-conversation-id
+        with:
+          conversation_id: rest.conversation_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}
+      name: delete-agent-builder-conversations-conversation
+      operations:
+      - method: DELETE
+        name: delete-agent-builder-conversations-conversation-
+        description: Delete conversation attachment
+        call: kibana.delete-agent-builder-conversations-conversation-
+        with:
+          conversation_id: rest.conversation_id
+          attachment_id: rest.attachment_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}
+      name: patch-agent-builder-conversations-conversation-i
+      operations:
+      - method: PATCH
+        name: patch-agent-builder-conversations-conversation-i
+        description: Rename attachment
+        call: kibana.patch-agent-builder-conversations-conversation-i
+        with:
+          conversation_id: rest.conversation_id
+          attachment_id: rest.attachment_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}
+      name: put-agent-builder-conversations-conversation-id
+      operations:
+      - method: PUT
+        name: put-agent-builder-conversations-conversation-id-
+        description: Update conversation attachment
+        call: kibana.put-agent-builder-conversations-conversation-id-
+        with:
+          conversation_id: rest.conversation_id
+          attachment_id: rest.attachment_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}/_restore
+      name: post-agent-builder-conversations-conversation-id
+      operations:
+      - method: POST
+        name: post-agent-builder-conversations-conversation-id
+        description: Restore deleted attachment
+        call: kibana.post-agent-builder-conversations-conversation-id
+        with:
+          conversation_id: rest.conversation_id
+          attachment_id: rest.attachment_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}/origin
+      name: put-agent-builder-conversations-conversation-id
+      operations:
+      - method: PUT
+        name: put-agent-builder-conversations-conversation-id-
+        description: Update attachment origin
+        call: kibana.put-agent-builder-conversations-conversation-id-
+        with:
+          conversation_id: rest.conversation_id
+          attachment_id: rest.attachment_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/conversations/{conversation_id}/attachments/stale
+      name: get-agent-builder-conversations-conversation-id
+      operations:
+      - method: GET
+        name: get-agent-builder-conversations-conversation-id-
+        description: Check attachment staleness
+        call: kibana.get-agent-builder-conversations-conversation-id-
+        with:
+          conversation_id: rest.conversation_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/converse
+      name: post-agent-builder-converse
+      operations:
+      - method: POST
+        name: post-agent-builder-converse
+        description: Send chat message
+        call: kibana.post-agent-builder-converse
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/converse/async
+      name: post-agent-builder-converse-async
+      operations:
+      - method: POST
+        name: post-agent-builder-converse-async
+        description: Send chat message (streaming)
+        call: kibana.post-agent-builder-converse-async
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/mcp
+      name: post-agent-builder-mcp
+      operations:
+      - method: POST
+        name: post-agent-builder-mcp
+        description: MCP server
+        call: kibana.post-agent-builder-mcp
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/plugins
+      name: get-agent-builder-plugins
+      operations:
+      - method: GET
+        name: get-agent-builder-plugins
+        description: List plugins
+        call: kibana.get-agent-builder-plugins
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/plugins/{pluginId}
+      name: delete-agent-builder-plugins-pluginid
+      operations:
+      - method: DELETE
+        name: delete-agent-builder-plugins-pluginid
+        description: Delete a plugin
+        call: kibana.delete-agent-builder-plugins-pluginid
+        with:
+          pluginId: rest.pluginId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/plugins/{pluginId}
+      name: get-agent-builder-plugins-pluginid
+      operations:
+      - method: GET
+        name: get-agent-builder-plugins-pluginid
+        description: Get a plugin by id
+        call: kibana.get-agent-builder-plugins-pluginid
+        with:
+          pluginId: rest.pluginId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/plugins/install
+      name: post-agent-builder-plugins-install
+      operations:
+      - method: POST
+        name: post-agent-builder-plugins-install
+        description: Install a plugin
+        call: kibana.post-agent-builder-plugins-install
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/skills
+      name: get-agent-builder-skills
+      operations:
+      - method: GET
+        name: get-agent-builder-skills
+        description: List skills
+        call: kibana.get-agent-builder-skills
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/skills
+      name: post-agent-builder-skills
+      operations:
+      - method: POST
+        name: post-agent-builder-skills
+        description: Create a skill
+        call: kibana.post-agent-builder-skills
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/skills/{skillId}
+      name: delete-agent-builder-skills-skillid
+      operations:
+      - method: DELETE
+        name: delete-agent-builder-skills-skillid
+        description: Delete a skill
+        call: kibana.delete-agent-builder-skills-skillid
+        with:
+          skillId: rest.skillId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/skills/{skillId}
+      name: get-agent-builder-skills-skillid
+      operations:
+      - method: GET
+        name: get-agent-builder-skills-skillid
+        description: Get a skill by id
+        call: kibana.get-agent-builder-skills-skillid
+        with:
+          skillId: rest.skillId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/skills/{skillId}
+      name: put-agent-builder-skills-skillid
+      operations:
+      - method: PUT
+        name: put-agent-builder-skills-skillid
+        description: Update a skill
+        call: kibana.put-agent-builder-skills-skillid
+        with:
+          skillId: rest.skillId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/tools
+      name: get-agent-builder-tools
+      operations:
+      - method: GET
+        name: get-agent-builder-tools
+        description: List tools
+        call: kibana.get-agent-builder-tools
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/tools
+      name: post-agent-builder-tools
+      operations:
+      - method: POST
+        name: post-agent-builder-tools
+        description: Create a tool
+        call: kibana.post-agent-builder-tools
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/tools/_execute
+      name: post-agent-builder-tools-execute
+      operations:
+      - method: POST
+        name: post-agent-builder-tools-execute
+        description: Run a tool
+        call: kibana.post-agent-builder-tools-execute
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/tools/{toolId}
+      name: delete-agent-builder-tools-toolid
+      operations:
+      - method: DELETE
+        name: delete-agent-builder-tools-toolid
+        description: Delete a tool
+        call: kibana.delete-agent-builder-tools-toolid
+        with:
+          toolId: rest.toolId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/tools/{toolId}
+      name: get-agent-builder-tools-toolid
+      operations:
+      - method: GET
+        name: get-agent-builder-tools-toolid
+        description: Get a tool by id
+        call: kibana.get-agent-builder-tools-toolid
+        with:
+          toolId: rest.toolId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/agent_builder/tools/{toolId}
+      name: put-agent-builder-tools-toolid
+      operations:
+      - method: PUT
+        name: put-agent-builder-tools-toolid
+        description: Update a tool
+        call: kibana.put-agent-builder-tools-toolid
+        with:
+          toolId: rest.toolId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/alerting/_health
+      name: getalertinghealth
+      operations:
+      - method: GET
+        name: getalertinghealth
+        description: Get the alerting framework health
+        call: kibana.getalertinghealth
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/alerting/rule_types
+      name: getruletypes
+      operations:
+      - method: GET
+        name: getruletypes
+        description: Get the rule types
+        call: kibana.getruletypes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/alerting/rule/{id}
+      name: delete-alerting-rule-id
+      operations:
+      - method: DELETE
+        name: delete-alerting-rule-id
+        description: Delete a rule
+        call: kibana.delete-alerting-rule-id
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/alerting/rule/{id}
+      name: get-alerting-rule-id
+      operations:
+      - method: GET
+        name: get-alerting-rule-id
+        description: Get rule details
+        call: kibana.get-alerting-rule-id
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/alerting/rule/{id}
+      name: post-alerting-rule-id
+      operations:
+      - method: POST
+        name: post-alerting-rule-id
+        description: Create a rule
+        call: kibana.post-alerting-rule-id
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/alerting/rule/{id}
+      name: put-alerting-rule-id
+      operations:
+      - method: PUT
+        name: put-alerting-rule-id
+        description: Update a rule
+        call: kibana.put-alerting-rule-id
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/alerting/rule/{id}/_disable
+      name: post-alerting-rule-id-disable
+      operations:
+      - method: POST
+        name: post-alerting-rule-id-disable
+        description: Disable a rule
+        call: kibana.post-alerting-rule-id-disable
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/alerting/rule/{id}/_enable
+      name: post-alerting-rule-id-enable
+      operations:
+      - method: POST
+        name: post-alerting-rule-id-enable
+        description: Enable a rule
+        call: kibana.post-alerting-rule-id-enable
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/alerting/rule/{id}/_mute_all
+      name: post-alerting-rule-id-mute-all
+      operations:
+      - method: POST
+        name: post-alerting-rule-id-mute-all
+        description: Mute all alerts
+        call: kibana.post-alerting-rule-id-mute-all
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/alerting/rule/{id}/_unmute_all
+      name: post-alerting-rule-id-unmute-all
+      operations:
+      - method: POST
+        name: post-alerting-rule-id-unmute-all
+        description: Unmute all alerts
+        call: kibana.post-alerting-rule-id-unmute-all
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/alerting/rule/{id}/_update_api_key
+      name: post-alerting-rule-id-update-api-key
+      operations:
+      - method: POST
+        name: post-alerting-rule-id-update-api-key
+        description: Update the API key for a rule
+        call: kibana.post-alerting-rule-id-update-api-key
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/alerting/rule/{id}/snooze_schedule
+      name: post-alerting-rule-id-snooze-schedule
+      operations:
+      - method: POST
+        name: post-alerting-rule-id-snooze-schedule
+        description: Schedule a snooze for the rule
+        call: kibana.post-alerting-rule-id-snooze-schedule
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/alerting/rule/{rule_id}/alert/{alert_id}/_mute
+      name: post-alerting-rule-rule-id-alert-alert-id-mute
+      operations:
+      - method: POST
+        name: post-alerting-rule-rule-id-alert-alert-id-mute
+        description: Mute an alert
+        call: kibana.post-alerting-rule-rule-id-alert-alert-id-mute
+        with:
+          rule_id: rest.rule_id
+          alert_id: rest.alert_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/alerting/rule/{rule_id}/alert/{alert_id}/_unmute
+      name: post-alerting-rule-rule-id-alert-alert-id-unmute
+      operations:
+      - method: POST
+        name: post-alerting-rule-rule-id-alert-alert-id-unmute
+        description: Unmute an alert
+        call: kibana.post-alerting-rule-rule-id-alert-alert-id-unmute
+        with:
+          rule_id: rest.rule_id
+          alert_id: rest.alert_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: kibana-mcp
+    transport: http
+    description: MCP adapter for Kibana APIs for AI agent use.
+    tools:
+    - name: get-actions-connector-types
+      description: Get connector types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-actions-connector-types
+      with:
+        feature_id: tools.feature_id
+      inputParameters:
+      - name: feature_id
+        type: string
+        description: A filter to limit the retrieved connector types to those that support a specific feature (such as alerting
+          or cases).
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-actions-connector-oauth-callback
+      description: Handle OAuth callback
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-actions-connector-oauth-callback
+      with:
+        code: tools.code
+        state: tools.state
+        error: tools.error
+        error_description: tools.error_description
+        session_state: tools.session_state
+      inputParameters:
+      - name: code
+        type: string
+        description: The authorization code returned by the OAuth provider.
+      - name: state
+        type: string
+        description: The state parameter for CSRF protection.
+      - name: error
+        type: string
+        description: Error code if the authorization failed.
+      - name: error_description
+        type: string
+        description: Human-readable error description.
+      - name: session_state
+        type: string
+        description: Session state from the OAuth provider (e.g., Microsoft).
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-actions-connector-oauth-callback-script
+      description: '**Spaces method and path for this operation:** <div><span class="operation-verb get">get</span>&nbsp;<span
+        class="operation-path">/s/{space_id}/api/actions/connector/_oauth_callback_script</span></div> Refer to [Spaces](https://www.elastic.'
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-actions-connector-oauth-callback-script
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-actions-connector-id
+      description: Delete a connector
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana.delete-actions-connector-id
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: An identifier for the connector.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-actions-connector-id
+      description: Get connector information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-actions-connector-id
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: An identifier for the connector.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-actions-connector-id
+      description: Create a connector
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-actions-connector-id
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: An identifier for the connector.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: put-actions-connector-id
+      description: Update a connector
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana.put-actions-connector-id
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: An identifier for the connector.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-actions-connector-id-execute
+      description: Run a connector
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-actions-connector-id-execute
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: An identifier for the connector.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-actions-connectors
+      description: Get all connectors
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-actions-connectors
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-agent-builder-a2a-agentid
+      description: Send A2A task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-agent-builder-a2a-agentid
+      with:
+        agentId: tools.agentId
+      inputParameters:
+      - name: agentId
+        type: string
+        description: The unique identifier of the agent to send the A2A task to.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-builder-a2a-agentid-json
+      description: Get A2A agent card
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-agent-builder-a2a-agentid-json
+      with:
+        agentId: tools.agentId
+      inputParameters:
+      - name: agentId
+        type: string
+        description: The unique identifier of the agent to get A2A metadata for.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-builder-agents
+      description: List agents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-agent-builder-agents
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-agent-builder-agents
+      description: Create an agent
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-agent-builder-agents
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-agent-builder-agents-agent-id-consumption
+      description: Get agent consumption data
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-agent-builder-agents-agent-id-consumption
+      with:
+        agent_id: tools.agent_id
+      inputParameters:
+      - name: agent_id
+        type: string
+        description: The unique identifier of the agent.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-agent-builder-agents-id
+      description: Delete an agent
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana.delete-agent-builder-agents-id
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: The unique identifier of the agent to delete.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-builder-agents-id
+      description: Get an agent by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-agent-builder-agents-id
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: The unique identifier of the agent to retrieve.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: put-agent-builder-agents-id
+      description: Update an agent
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana.put-agent-builder-agents-id
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: The unique identifier of the agent to update.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-builder-conversations
+      description: List conversations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-agent-builder-conversations
+      with:
+        agent_id: tools.agent_id
+      inputParameters:
+      - name: agent_id
+        type: string
+        description: Optional agent ID to filter conversations by a specific agent.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-agent-builder-conversations-conversation-
+      description: Delete conversation by ID
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana.delete-agent-builder-conversations-conversation-
+      with:
+        conversation_id: tools.conversation_id
+      inputParameters:
+      - name: conversation_id
+        type: string
+        description: The unique identifier of the conversation to delete.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-builder-conversations-conversation-id
+      description: Get conversation by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-agent-builder-conversations-conversation-id
+      with:
+        conversation_id: tools.conversation_id
+      inputParameters:
+      - name: conversation_id
+        type: string
+        description: The unique identifier of the conversation to retrieve.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-builder-conversations-conversation-id-
+      description: List conversation attachments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-agent-builder-conversations-conversation-id-
+      with:
+        conversation_id: tools.conversation_id
+        include_deleted: tools.include_deleted
+      inputParameters:
+      - name: conversation_id
+        type: string
+        description: The unique identifier of the conversation.
+        required: true
+      - name: include_deleted
+        type: boolean
+        description: Whether to include deleted attachments in the list.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-agent-builder-conversations-conversation-id
+      description: Create conversation attachment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-agent-builder-conversations-conversation-id
+      with:
+        conversation_id: tools.conversation_id
+      inputParameters:
+      - name: conversation_id
+        type: string
+        description: The unique identifier of the conversation.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-agent-builder-conversations-conversation-
+      description: Delete conversation attachment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana.delete-agent-builder-conversations-conversation-
+      with:
+        conversation_id: tools.conversation_id
+        attachment_id: tools.attachment_id
+        permanent: tools.permanent
+      inputParameters:
+      - name: conversation_id
+        type: string
+        description: The unique identifier of the conversation.
+        required: true
+      - name: attachment_id
+        type: string
+        description: The unique identifier of the attachment to delete.
+        required: true
+      - name: permanent
+        type: boolean
+        description: If true, permanently removes the attachment (only for unreferenced attachments).
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: patch-agent-builder-conversations-conversation-i
+      description: Rename attachment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.patch-agent-builder-conversations-conversation-i
+      with:
+        conversation_id: tools.conversation_id
+        attachment_id: tools.attachment_id
+      inputParameters:
+      - name: conversation_id
+        type: string
+        description: The unique identifier of the conversation.
+        required: true
+      - name: attachment_id
+        type: string
+        description: The unique identifier of the attachment to rename.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: put-agent-builder-conversations-conversation-id-
+      description: Update conversation attachment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana.put-agent-builder-conversations-conversation-id-
+      with:
+        conversation_id: tools.conversation_id
+        attachment_id: tools.attachment_id
+      inputParameters:
+      - name: conversation_id
+        type: string
+        description: The unique identifier of the conversation.
+        required: true
+      - name: attachment_id
+        type: string
+        description: The unique identifier of the attachment to update.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-agent-builder-conversations-conversation-id
+      description: Restore deleted attachment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-agent-builder-conversations-conversation-id
+      with:
+        conversation_id: tools.conversation_id
+        attachment_id: tools.attachment_id
+      inputParameters:
+      - name: conversation_id
+        type: string
+        description: The unique identifier of the conversation.
+        required: true
+      - name: attachment_id
+        type: string
+        description: The unique identifier of the attachment to restore.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: put-agent-builder-conversations-conversation-id-
+      description: Update attachment origin
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana.put-agent-builder-conversations-conversation-id-
+      with:
+        conversation_id: tools.conversation_id
+        attachment_id: tools.attachment_id
+      inputParameters:
+      - name: conversation_id
+        type: string
+        description: The unique identifier of the conversation.
+        required: true
+      - name: attachment_id
+        type: string
+        description: The unique identifier of the attachment to update.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-builder-conversations-conversation-id-
+      description: Check attachment staleness
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-agent-builder-conversations-conversation-id-
+      with:
+        conversation_id: tools.conversation_id
+      inputParameters:
+      - name: conversation_id
+        type: string
+        description: The unique identifier of the conversation.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-agent-builder-converse
+      description: Send chat message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-agent-builder-converse
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-agent-builder-converse-async
+      description: Send chat message (streaming)
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-agent-builder-converse-async
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-agent-builder-mcp
+      description: MCP server
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-agent-builder-mcp
+      with:
+        namespace: tools.namespace
+      inputParameters:
+      - name: namespace
+        type: string
+        description: Comma-separated list of namespaces to filter tools. Only tools matching the specified namespaces will
+          be returned.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-builder-plugins
+      description: List plugins
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-agent-builder-plugins
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-agent-builder-plugins-pluginid
+      description: Delete a plugin
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana.delete-agent-builder-plugins-pluginid
+      with:
+        pluginId: tools.pluginId
+        force: tools.force
+      inputParameters:
+      - name: pluginId
+        type: string
+        description: The unique identifier of the plugin.
+        required: true
+      - name: force
+        type: boolean
+        description: If true, removes the plugin skills from agents that use them and then deletes the plugin. If false and
+          any agent uses the plugin skills, the request returns 409
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-builder-plugins-pluginid
+      description: Get a plugin by id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-agent-builder-plugins-pluginid
+      with:
+        pluginId: tools.pluginId
+      inputParameters:
+      - name: pluginId
+        type: string
+        description: The unique identifier of the plugin.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-agent-builder-plugins-install
+      description: Install a plugin
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-agent-builder-plugins-install
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-builder-skills
+      description: List skills
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-agent-builder-skills
+      with:
+        include_plugins: tools.include_plugins
+      inputParameters:
+      - name: include_plugins
+        type: boolean
+        description: Set to true to include skills from plugins.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-agent-builder-skills
+      description: Create a skill
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-agent-builder-skills
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-agent-builder-skills-skillid
+      description: Delete a skill
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana.delete-agent-builder-skills-skillid
+      with:
+        skillId: tools.skillId
+        force: tools.force
+      inputParameters:
+      - name: skillId
+        type: string
+        description: The unique identifier of the skill.
+        required: true
+      - name: force
+        type: boolean
+        description: If true, removes the skill from agents that use it and then deletes it. If false and any agent uses the
+          skill, the request returns 409 Conflict with the list of
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-builder-skills-skillid
+      description: Get a skill by id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-agent-builder-skills-skillid
+      with:
+        skillId: tools.skillId
+      inputParameters:
+      - name: skillId
+        type: string
+        description: The unique identifier of the skill.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: put-agent-builder-skills-skillid
+      description: Update a skill
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana.put-agent-builder-skills-skillid
+      with:
+        skillId: tools.skillId
+      inputParameters:
+      - name: skillId
+        type: string
+        description: The unique identifier of the skill.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-builder-tools
+      description: List tools
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-agent-builder-tools
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-agent-builder-tools
+      description: Create a tool
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-agent-builder-tools
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-agent-builder-tools-execute
+      description: Run a tool
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-agent-builder-tools-execute
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-agent-builder-tools-toolid
+      description: Delete a tool
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana.delete-agent-builder-tools-toolid
+      with:
+        toolId: tools.toolId
+        force: tools.force
+      inputParameters:
+      - name: toolId
+        type: string
+        description: The unique identifier of the tool to delete.
+        required: true
+      - name: force
+        type: boolean
+        description: If true, removes the tool from agents that use it and then deletes it. If false and any agent uses the
+          tool, the request returns 409 Conflict with the list of a
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-builder-tools-toolid
+      description: Get a tool by id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-agent-builder-tools-toolid
+      with:
+        toolId: tools.toolId
+      inputParameters:
+      - name: toolId
+        type: string
+        description: The unique identifier of the tool to retrieve.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: put-agent-builder-tools-toolid
+      description: Update a tool
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana.put-agent-builder-tools-toolid
+      with:
+        toolId: tools.toolId
+      inputParameters:
+      - name: toolId
+        type: string
+        description: The unique identifier of the tool to update.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getalertinghealth
+      description: Get the alerting framework health
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.getalertinghealth
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getruletypes
+      description: Get the rule types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.getruletypes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-alerting-rule-id
+      description: Delete a rule
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana.delete-alerting-rule-id
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: The identifier for the rule.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-alerting-rule-id
+      description: Get rule details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana.get-alerting-rule-id
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: The identifier for the rule.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-alerting-rule-id
+      description: Create a rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-alerting-rule-id
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: The identifier for the rule. If it is omitted, an ID is randomly generated.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: put-alerting-rule-id
+      description: Update a rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana.put-alerting-rule-id
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: The identifier for the rule.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-alerting-rule-id-disable
+      description: Disable a rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-alerting-rule-id-disable
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: The identifier for the rule.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-alerting-rule-id-enable
+      description: Enable a rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-alerting-rule-id-enable
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: The identifier for the rule.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-alerting-rule-id-mute-all
+      description: Mute all alerts
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-alerting-rule-id-mute-all
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: The identifier for the rule.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-alerting-rule-id-unmute-all
+      description: Unmute all alerts
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-alerting-rule-id-unmute-all
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: The identifier for the rule.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-alerting-rule-id-update-api-key
+      description: Update the API key for a rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-alerting-rule-id-update-api-key
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: The identifier for the rule.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-alerting-rule-id-snooze-schedule
+      description: Schedule a snooze for the rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-alerting-rule-id-snooze-schedule
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: Identifier of the rule.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-alerting-rule-rule-id-alert-alert-id-mute
+      description: Mute an alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-alerting-rule-rule-id-alert-alert-id-mute
+      with:
+        rule_id: tools.rule_id
+        alert_id: tools.alert_id
+        validate_alerts_existence: tools.validate_alerts_existence
+      inputParameters:
+      - name: rule_id
+        type: string
+        description: The identifier for the rule.
+        required: true
+      - name: alert_id
+        type: string
+        description: The identifier for the alert.
+        required: true
+      - name: validate_alerts_existence
+        type: boolean
+        description: Whether to validate the existence of the alert.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-alerting-rule-rule-id-alert-alert-id-unmute
+      description: Unmute an alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana.post-alerting-rule-rule-id-alert-alert-id-unmute
+      with:
+        rule_id: tools.rule_id
+        alert_id: tools.alert_id
+      inputParameters:
+      - name: rule_id
+        type: string
+        description: The identifier for the rule.
+        required: true
+      - name: alert_id
+        type: string
+        description: The identifier for the alert.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    KIBANA_TOKEN: KIBANA_TOKEN
