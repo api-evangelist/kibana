@@ -71,6 +71,10 @@ common:
     url: https://www.elastic.co/legal/terms-of-service
   - type: PrivacyPolicy
     url: https://www.elastic.co/legal/privacy-statement
+  - type: Integrations
+    url: https://www.elastic.co/integrations
+integrations:
+  - name: Become a partner
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
