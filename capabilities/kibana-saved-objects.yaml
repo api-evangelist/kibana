@@ -1,0 +1,985 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — saved objects
+  description: 'Kibana APIs — saved objects. 16 operations. Lead operation: Rotate a key for encrypted saved objects. Self-contained
+    Naftiko capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - saved objects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-saved-objects
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — saved objects business capability. Self-contained, no shared references.
+    resources:
+    - name: api-encrypted_saved_objects-_rotate_key
+      path: /api/encrypted_saved_objects/_rotate_key
+      operations:
+      - name: rotateencryptionkey
+        method: POST
+        description: Rotate a key for encrypted saved objects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: batch_size
+          in: query
+          type: number
+          description: Specifies a maximum number of saved objects that Kibana can process in a single batch. Bulk key rotation
+            is an iterative process since Kibana may not be able to
+        - name: type
+          in: query
+          type: string
+          description: Limits encryption key rotation only to the saved objects with the specified type. By default, Kibana
+            tries to rotate the encryption key for all saved object typ
+    - name: api-saved_objects-_bulk_create
+      path: /api/saved_objects/_bulk_create
+      operations:
+      - name: postsavedobjectsbulkcreate
+        method: POST
+        description: Create saved objects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: overwrite
+          in: query
+          type: boolean
+          description: Overwrite existing saved objects that match the same type and ID.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-saved_objects-_bulk_delete
+      path: /api/saved_objects/_bulk_delete
+      operations:
+      - name: postsavedobjectsbulkdelete
+        method: POST
+        description: Delete saved objects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: force
+          in: query
+          type: boolean
+          description: When true, force deletion of multi-namespace objects from all namespaces.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-saved_objects-_bulk_get
+      path: /api/saved_objects/_bulk_get
+      operations:
+      - name: postsavedobjectsbulkget
+        method: POST
+        description: Get saved objects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-saved_objects-_bulk_resolve
+      path: /api/saved_objects/_bulk_resolve
+      operations:
+      - name: postsavedobjectsbulkresolve
+        method: POST
+        description: Resolve saved objects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-saved_objects-_bulk_update
+      path: /api/saved_objects/_bulk_update
+      operations:
+      - name: putsavedobjectsbulkupdate
+        method: PUT
+        description: Update saved objects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-saved_objects-_export
+      path: /api/saved_objects/_export
+      operations:
+      - name: postsavedobjectsexport
+        method: POST
+        description: Export saved objects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-saved_objects-_find
+      path: /api/saved_objects/_find
+      operations:
+      - name: getsavedobjectsfind
+        method: GET
+        description: Search for saved objects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: per_page
+          in: query
+          type: number
+          description: The number of items per page.
+        - name: page
+          in: query
+          type: number
+          description: The page index to return.
+        - name: type
+          in: query
+          type: array
+          description: The saved object type or types to search for. Use multiple `type` values to search across types.
+          required: true
+        - name: search
+          in: query
+          type: string
+          description: A text search string.
+        - name: default_search_operator
+          in: query
+          type: string
+          description: The boolean operator to use when combining multiple values.
+        - name: search_fields
+          in: query
+          type: array
+          description: The fields to search on.
+        - name: sort_field
+          in: query
+          type: string
+          description: The field to sort on.
+        - name: has_reference
+          in: query
+          type: string
+          description: Return only saved objects that have a reference to the specified saved object(s).
+        - name: has_reference_operator
+          in: query
+          type: string
+          description: The boolean operator to use when combining multiple values.
+        - name: has_no_reference
+          in: query
+          type: string
+          description: Return only saved objects that do not have a reference to the specified saved object(s).
+        - name: has_no_reference_operator
+          in: query
+          type: string
+          description: The boolean operator to use when combining multiple values.
+        - name: fields
+          in: query
+          type: array
+          description: The fields to return for each saved object.
+        - name: filter
+          in: query
+          type: string
+          description: A KQL filter to apply to the search.
+        - name: aggs
+          in: query
+          type: string
+          description: Aggregations as a JSON string.
+        - name: namespaces
+          in: query
+          type: array
+          description: The namespaces (spaces) to search in.
+    - name: api-saved_objects-_import
+      path: /api/saved_objects/_import
+      operations:
+      - name: postsavedobjectsimport
+        method: POST
+        description: Import saved objects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: overwrite
+          in: query
+          type: boolean
+          description: 'Overwrites saved objects when they already exist. When used, potential conflict errors are automatically
+            resolved by overwriting the destination object. NOTE: T'
+        - name: createNewCopies
+          in: query
+          type: boolean
+          description: 'Creates copies of saved objects, regenerates each object ID, and resets the origin. When used, potential
+            conflict errors are avoided. NOTE: This option cannot b'
+        - name: compatibilityMode
+          in: query
+          type: boolean
+          description: Applies various adjustments to the saved objects that are being imported to maintain compatibility
+            between different Kibana versions. Use this option only if yo
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-saved_objects-_resolve_import_errors
+      path: /api/saved_objects/_resolve_import_errors
+      operations:
+      - name: postsavedobjectsresolveimporterrors
+        method: POST
+        description: Resolve import errors
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: createNewCopies
+          in: query
+          type: boolean
+          description: Creates copies of saved objects, regenerates each object ID, and resets the origin.
+        - name: compatibilityMode
+          in: query
+          type: boolean
+          description: Applies adjustments to maintain compatibility between different Kibana versions.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-saved_objects-resolve-type-id
+      path: /api/saved_objects/resolve/{type}/{id}
+      operations:
+      - name: getsavedobjectsresolvetypeid
+        method: GET
+        description: Resolve a saved object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: type
+          in: path
+          type: string
+          description: The saved object type.
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The saved object identifier.
+          required: true
+    - name: api-saved_objects-type
+      path: /api/saved_objects/{type}
+      operations:
+      - name: postsavedobjectstype
+        method: POST
+        description: Create a saved object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: type
+          in: path
+          type: string
+          description: The saved object type.
+          required: true
+        - name: overwrite
+          in: query
+          type: boolean
+          description: Overwrite an existing saved object.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-saved_objects-type-id
+      path: /api/saved_objects/{type}/{id}
+      operations:
+      - name: deletesavedobjectstypeid
+        method: DELETE
+        description: Delete a saved object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: type
+          in: path
+          type: string
+          description: The saved object type.
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The saved object identifier.
+          required: true
+        - name: force
+          in: query
+          type: boolean
+          description: When true, force deletion of multi-namespace objects from all namespaces.
+      - name: getsavedobjectstypeid
+        method: GET
+        description: Get a saved object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: type
+          in: path
+          type: string
+          description: The saved object type.
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The saved object identifier.
+          required: true
+      - name: postsavedobjectstypeid
+        method: POST
+        description: Create a saved object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: type
+          in: path
+          type: string
+          description: The saved object type.
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The saved object identifier.
+          required: true
+        - name: overwrite
+          in: query
+          type: boolean
+          description: Overwrite an existing saved object.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: putsavedobjectstypeid
+        method: PUT
+        description: Update a saved object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: type
+          in: path
+          type: string
+          description: The saved object type.
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The saved object identifier.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-saved-objects-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — saved objects. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/encrypted-saved-objects/rotate-key
+      name: api-encrypted-saved-objects-rotate-key
+      description: REST surface for api-encrypted_saved_objects-_rotate_key.
+      operations:
+      - method: POST
+        name: rotateencryptionkey
+        description: Rotate a key for encrypted saved objects
+        call: kibana-saved-objects.rotateencryptionkey
+        with:
+          batch_size: rest.batch_size
+          type: rest.type
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/saved-objects/bulk-create
+      name: api-saved-objects-bulk-create
+      description: REST surface for api-saved_objects-_bulk_create.
+      operations:
+      - method: POST
+        name: postsavedobjectsbulkcreate
+        description: Create saved objects
+        call: kibana-saved-objects.postsavedobjectsbulkcreate
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          overwrite: rest.overwrite
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/saved-objects/bulk-delete
+      name: api-saved-objects-bulk-delete
+      description: REST surface for api-saved_objects-_bulk_delete.
+      operations:
+      - method: POST
+        name: postsavedobjectsbulkdelete
+        description: Delete saved objects
+        call: kibana-saved-objects.postsavedobjectsbulkdelete
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          force: rest.force
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/saved-objects/bulk-get
+      name: api-saved-objects-bulk-get
+      description: REST surface for api-saved_objects-_bulk_get.
+      operations:
+      - method: POST
+        name: postsavedobjectsbulkget
+        description: Get saved objects
+        call: kibana-saved-objects.postsavedobjectsbulkget
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/saved-objects/bulk-resolve
+      name: api-saved-objects-bulk-resolve
+      description: REST surface for api-saved_objects-_bulk_resolve.
+      operations:
+      - method: POST
+        name: postsavedobjectsbulkresolve
+        description: Resolve saved objects
+        call: kibana-saved-objects.postsavedobjectsbulkresolve
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/saved-objects/bulk-update
+      name: api-saved-objects-bulk-update
+      description: REST surface for api-saved_objects-_bulk_update.
+      operations:
+      - method: PUT
+        name: putsavedobjectsbulkupdate
+        description: Update saved objects
+        call: kibana-saved-objects.putsavedobjectsbulkupdate
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/saved-objects/export
+      name: api-saved-objects-export
+      description: REST surface for api-saved_objects-_export.
+      operations:
+      - method: POST
+        name: postsavedobjectsexport
+        description: Export saved objects
+        call: kibana-saved-objects.postsavedobjectsexport
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/saved-objects/find
+      name: api-saved-objects-find
+      description: REST surface for api-saved_objects-_find.
+      operations:
+      - method: GET
+        name: getsavedobjectsfind
+        description: Search for saved objects
+        call: kibana-saved-objects.getsavedobjectsfind
+        with:
+          per_page: rest.per_page
+          page: rest.page
+          type: rest.type
+          search: rest.search
+          default_search_operator: rest.default_search_operator
+          search_fields: rest.search_fields
+          sort_field: rest.sort_field
+          has_reference: rest.has_reference
+          has_reference_operator: rest.has_reference_operator
+          has_no_reference: rest.has_no_reference
+          has_no_reference_operator: rest.has_no_reference_operator
+          fields: rest.fields
+          filter: rest.filter
+          aggs: rest.aggs
+          namespaces: rest.namespaces
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/saved-objects/import
+      name: api-saved-objects-import
+      description: REST surface for api-saved_objects-_import.
+      operations:
+      - method: POST
+        name: postsavedobjectsimport
+        description: Import saved objects
+        call: kibana-saved-objects.postsavedobjectsimport
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          overwrite: rest.overwrite
+          createNewCopies: rest.createNewCopies
+          compatibilityMode: rest.compatibilityMode
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/saved-objects/resolve-import-errors
+      name: api-saved-objects-resolve-import-errors
+      description: REST surface for api-saved_objects-_resolve_import_errors.
+      operations:
+      - method: POST
+        name: postsavedobjectsresolveimporterrors
+        description: Resolve import errors
+        call: kibana-saved-objects.postsavedobjectsresolveimporterrors
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          createNewCopies: rest.createNewCopies
+          compatibilityMode: rest.compatibilityMode
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/saved-objects/resolve/{type}/{id}
+      name: api-saved-objects-resolve-type-id
+      description: REST surface for api-saved_objects-resolve-type-id.
+      operations:
+      - method: GET
+        name: getsavedobjectsresolvetypeid
+        description: Resolve a saved object
+        call: kibana-saved-objects.getsavedobjectsresolvetypeid
+        with:
+          type: rest.type
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/saved-objects/{type}
+      name: api-saved-objects-type
+      description: REST surface for api-saved_objects-type.
+      operations:
+      - method: POST
+        name: postsavedobjectstype
+        description: Create a saved object
+        call: kibana-saved-objects.postsavedobjectstype
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          type: rest.type
+          overwrite: rest.overwrite
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/saved-objects/{type}/{id}
+      name: api-saved-objects-type-id
+      description: REST surface for api-saved_objects-type-id.
+      operations:
+      - method: DELETE
+        name: deletesavedobjectstypeid
+        description: Delete a saved object
+        call: kibana-saved-objects.deletesavedobjectstypeid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          type: rest.type
+          id: rest.id
+          force: rest.force
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getsavedobjectstypeid
+        description: Get a saved object
+        call: kibana-saved-objects.getsavedobjectstypeid
+        with:
+          type: rest.type
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postsavedobjectstypeid
+        description: Create a saved object
+        call: kibana-saved-objects.postsavedobjectstypeid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          type: rest.type
+          id: rest.id
+          overwrite: rest.overwrite
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putsavedobjectstypeid
+        description: Update a saved object
+        call: kibana-saved-objects.putsavedobjectstypeid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          type: rest.type
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-saved-objects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — saved objects. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: rotate-key-encrypted-saved-objects
+      description: Rotate a key for encrypted saved objects
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-saved-objects.rotateencryptionkey
+      with:
+        batch_size: tools.batch_size
+        type: tools.type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-saved-objects
+      description: Create saved objects
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-saved-objects.postsavedobjectsbulkcreate
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        overwrite: tools.overwrite
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-saved-objects
+      description: Delete saved objects
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-saved-objects.postsavedobjectsbulkdelete
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        force: tools.force
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-saved-objects
+      description: Get saved objects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-saved-objects.postsavedobjectsbulkget
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: resolve-saved-objects
+      description: Resolve saved objects
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-saved-objects.postsavedobjectsbulkresolve
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-saved-objects
+      description: Update saved objects
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-saved-objects.putsavedobjectsbulkupdate
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-saved-objects
+      description: Export saved objects
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-saved-objects.postsavedobjectsexport
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-saved-objects
+      description: Search for saved objects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-saved-objects.getsavedobjectsfind
+      with:
+        per_page: tools.per_page
+        page: tools.page
+        type: tools.type
+        search: tools.search
+        default_search_operator: tools.default_search_operator
+        search_fields: tools.search_fields
+        sort_field: tools.sort_field
+        has_reference: tools.has_reference
+        has_reference_operator: tools.has_reference_operator
+        has_no_reference: tools.has_no_reference
+        has_no_reference_operator: tools.has_no_reference_operator
+        fields: tools.fields
+        filter: tools.filter
+        aggs: tools.aggs
+        namespaces: tools.namespaces
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: import-saved-objects
+      description: Import saved objects
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-saved-objects.postsavedobjectsimport
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        overwrite: tools.overwrite
+        createNewCopies: tools.createNewCopies
+        compatibilityMode: tools.compatibilityMode
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: resolve-import-errors
+      description: Resolve import errors
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-saved-objects.postsavedobjectsresolveimporterrors
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        createNewCopies: tools.createNewCopies
+        compatibilityMode: tools.compatibilityMode
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: resolve-saved-object
+      description: Resolve a saved object
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-saved-objects.getsavedobjectsresolvetypeid
+      with:
+        type: tools.type
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-saved-object
+      description: Create a saved object
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-saved-objects.postsavedobjectstype
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        type: tools.type
+        overwrite: tools.overwrite
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-saved-object
+      description: Delete a saved object
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-saved-objects.deletesavedobjectstypeid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        type: tools.type
+        id: tools.id
+        force: tools.force
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-saved-object
+      description: Get a saved object
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-saved-objects.getsavedobjectstypeid
+      with:
+        type: tools.type
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-saved-object-2
+      description: Create a saved object
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-saved-objects.postsavedobjectstypeid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        type: tools.type
+        id: tools.id
+        overwrite: tools.overwrite
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-saved-object
+      description: Update a saved object
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-saved-objects.putsavedobjectstypeid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        type: tools.type
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,107 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — uptime
+  description: 'Kibana APIs — uptime. 2 operations. Lead operation: Get uptime settings. Self-contained Naftiko capability
+    covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - uptime
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-uptime
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — uptime business capability. Self-contained, no shared references.
+    resources:
+    - name: api-uptime-settings
+      path: /api/uptime/settings
+      operations:
+      - name: getuptimesettings
+        method: GET
+        description: Get uptime settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putuptimesettings
+        method: PUT
+        description: Update uptime settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-uptime-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — uptime. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/api/uptime/settings
+      name: api-uptime-settings
+      description: REST surface for api-uptime-settings.
+      operations:
+      - method: GET
+        name: getuptimesettings
+        description: Get uptime settings
+        call: kibana-uptime.getuptimesettings
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putuptimesettings
+        description: Update uptime settings
+        call: kibana-uptime.putuptimesettings
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-uptime-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — uptime. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-uptime-settings
+      description: Get uptime settings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-uptime.getuptimesettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-uptime-settings
+      description: Update uptime settings
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-uptime.putuptimesettings
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

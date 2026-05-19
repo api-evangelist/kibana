@@ -1,0 +1,150 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — Fleet agentless policies
+  description: 'Kibana APIs — Fleet agentless policies. 2 operations. Lead operation: Create an agentless policy. Self-contained
+    Naftiko capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - Fleet agentless policies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-fleet-agentless-policies
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — Fleet agentless policies business capability. Self-contained, no shared references.
+    resources:
+    - name: api-fleet-agentless_policies
+      path: /api/fleet/agentless_policies
+      operations:
+      - name: postfleetagentlesspolicies
+        method: POST
+        description: Create an agentless policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: format
+          in: query
+          type: string
+          description: The format of the response package policy.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-fleet-agentless_policies-policyId
+      path: /api/fleet/agentless_policies/{policyId}
+      operations:
+      - name: deletefleetagentlesspoliciespolicyid
+        method: DELETE
+        description: Delete an agentless policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: policyId
+          in: path
+          type: string
+          description: The ID of the policy to delete.
+          required: true
+        - name: force
+          in: query
+          type: boolean
+          description: Force delete the policy even if the policy is managed.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-fleet-agentless-policies-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — Fleet agentless policies. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/fleet/agentless-policies
+      name: api-fleet-agentless-policies
+      description: REST surface for api-fleet-agentless_policies.
+      operations:
+      - method: POST
+        name: postfleetagentlesspolicies
+        description: Create an agentless policy
+        call: kibana-fleet-agentless-policies.postfleetagentlesspolicies
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/fleet/agentless-policies/{policyid}
+      name: api-fleet-agentless-policies-policyid
+      description: REST surface for api-fleet-agentless_policies-policyId.
+      operations:
+      - method: DELETE
+        name: deletefleetagentlesspoliciespolicyid
+        description: Delete an agentless policy
+        call: kibana-fleet-agentless-policies.deletefleetagentlesspoliciespolicyid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          policyId: rest.policyId
+          force: rest.force
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-fleet-agentless-policies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — Fleet agentless policies. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: create-agentless-policy
+      description: Create an agentless policy
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-fleet-agentless-policies.postfleetagentlesspolicies
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-agentless-policy
+      description: Delete an agentless policy
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-fleet-agentless-policies.deletefleetagentlesspoliciespolicyid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        policyId: tools.policyId
+        force: tools.force
+      outputParameters:
+      - type: object
+        mapping: $.

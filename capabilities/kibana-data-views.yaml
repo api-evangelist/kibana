@@ -1,0 +1,575 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — data views
+  description: 'Kibana APIs — data views. 15 operations. Lead operation: Get all data views. Self-contained Naftiko capability
+    covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - data views
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-data-views
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — data views business capability. Self-contained, no shared references.
+    resources:
+    - name: api-data_views
+      path: /api/data_views
+      operations:
+      - name: getalldataviewsdefault
+        method: GET
+        description: Get all data views
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-data_views-data_view
+      path: /api/data_views/data_view
+      operations:
+      - name: createdataviewdefaultw
+        method: POST
+        description: Create a data view
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-data_views-data_view-viewId
+      path: /api/data_views/data_view/{viewId}
+      operations:
+      - name: deletedataviewdefault
+        method: DELETE
+        description: Delete a data view
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getdataviewdefault
+        method: GET
+        description: Get a data view
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatedataviewdefault
+        method: POST
+        description: Update a data view
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-data_views-data_view-viewId-fields
+      path: /api/data_views/data_view/{viewId}/fields
+      operations:
+      - name: updatefieldsmetadatadefault
+        method: POST
+        description: Update field metadata
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-data_views-data_view-viewId-runtime_field
+      path: /api/data_views/data_view/{viewId}/runtime_field
+      operations:
+      - name: createruntimefielddefault
+        method: POST
+        description: Create a runtime field
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: createupdateruntimefielddefault
+        method: PUT
+        description: Create or update a runtime field
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: viewId
+          in: path
+          type: string
+          description: The ID of the data view fields you want to update.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-data_views-data_view-viewId-runtime_field-fieldName
+      path: /api/data_views/data_view/{viewId}/runtime_field/{fieldName}
+      operations:
+      - name: deleteruntimefielddefault
+        method: DELETE
+        description: Delete a runtime field
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getruntimefielddefault
+        method: GET
+        description: Get a runtime field
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateruntimefielddefault
+        method: POST
+        description: Update a runtime field
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-data_views-default
+      path: /api/data_views/default
+      operations:
+      - name: getdefaultdataviewdefault
+        method: GET
+        description: Get the default data view
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: setdefaultdatailviewdefault
+        method: POST
+        description: Set the default data view
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-data_views-swap_references
+      path: /api/data_views/swap_references
+      operations:
+      - name: swapdataviewsdefault
+        method: POST
+        description: Swap saved object references
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-data_views-swap_references-_preview
+      path: /api/data_views/swap_references/_preview
+      operations:
+      - name: previewswapdataviewsdefault
+        method: POST
+        description: Preview swap references
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-data-views-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — data views. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/data-views
+      name: api-data-views
+      description: REST surface for api-data_views.
+      operations:
+      - method: GET
+        name: getalldataviewsdefault
+        description: Get all data views
+        call: kibana-data-views.getalldataviewsdefault
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/data-views/data-view
+      name: api-data-views-data-view
+      description: REST surface for api-data_views-data_view.
+      operations:
+      - method: POST
+        name: createdataviewdefaultw
+        description: Create a data view
+        call: kibana-data-views.createdataviewdefaultw
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/data-views/data-view/{viewid}
+      name: api-data-views-data-view-viewid
+      description: REST surface for api-data_views-data_view-viewId.
+      operations:
+      - method: DELETE
+        name: deletedataviewdefault
+        description: Delete a data view
+        call: kibana-data-views.deletedataviewdefault
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getdataviewdefault
+        description: Get a data view
+        call: kibana-data-views.getdataviewdefault
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updatedataviewdefault
+        description: Update a data view
+        call: kibana-data-views.updatedataviewdefault
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/data-views/data-view/{viewid}/fields
+      name: api-data-views-data-view-viewid-fields
+      description: REST surface for api-data_views-data_view-viewId-fields.
+      operations:
+      - method: POST
+        name: updatefieldsmetadatadefault
+        description: Update field metadata
+        call: kibana-data-views.updatefieldsmetadatadefault
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/data-views/data-view/{viewid}/runtime-field
+      name: api-data-views-data-view-viewid-runtime-field
+      description: REST surface for api-data_views-data_view-viewId-runtime_field.
+      operations:
+      - method: POST
+        name: createruntimefielddefault
+        description: Create a runtime field
+        call: kibana-data-views.createruntimefielddefault
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: createupdateruntimefielddefault
+        description: Create or update a runtime field
+        call: kibana-data-views.createupdateruntimefielddefault
+        with:
+          viewId: rest.viewId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/data-views/data-view/{viewid}/runtime-field/{fieldname}
+      name: api-data-views-data-view-viewid-runtime-field-fieldname
+      description: REST surface for api-data_views-data_view-viewId-runtime_field-fieldName.
+      operations:
+      - method: DELETE
+        name: deleteruntimefielddefault
+        description: Delete a runtime field
+        call: kibana-data-views.deleteruntimefielddefault
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getruntimefielddefault
+        description: Get a runtime field
+        call: kibana-data-views.getruntimefielddefault
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updateruntimefielddefault
+        description: Update a runtime field
+        call: kibana-data-views.updateruntimefielddefault
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/data-views/default
+      name: api-data-views-default
+      description: REST surface for api-data_views-default.
+      operations:
+      - method: GET
+        name: getdefaultdataviewdefault
+        description: Get the default data view
+        call: kibana-data-views.getdefaultdataviewdefault
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: setdefaultdatailviewdefault
+        description: Set the default data view
+        call: kibana-data-views.setdefaultdatailviewdefault
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/data-views/swap-references
+      name: api-data-views-swap-references
+      description: REST surface for api-data_views-swap_references.
+      operations:
+      - method: POST
+        name: swapdataviewsdefault
+        description: Swap saved object references
+        call: kibana-data-views.swapdataviewsdefault
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/data-views/swap-references/preview
+      name: api-data-views-swap-references-preview
+      description: REST surface for api-data_views-swap_references-_preview.
+      operations:
+      - method: POST
+        name: previewswapdataviewsdefault
+        description: Preview swap references
+        call: kibana-data-views.previewswapdataviewsdefault
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-data-views-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — data views. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-all-data-views
+      description: Get all data views
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-data-views.getalldataviewsdefault
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-data-view
+      description: Create a data view
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-data-views.createdataviewdefaultw
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-data-view
+      description: Delete a data view
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-data-views.deletedataviewdefault
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-data-view
+      description: Get a data view
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-data-views.getdataviewdefault
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-data-view
+      description: Update a data view
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-data-views.updatedataviewdefault
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-field-metadata
+      description: Update field metadata
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-data-views.updatefieldsmetadatadefault
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-runtime-field
+      description: Create a runtime field
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-data-views.createruntimefielddefault
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-runtime-field
+      description: Create or update a runtime field
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-data-views.createupdateruntimefielddefault
+      with:
+        viewId: tools.viewId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-runtime-field
+      description: Delete a runtime field
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-data-views.deleteruntimefielddefault
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-runtime-field
+      description: Get a runtime field
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-data-views.getruntimefielddefault
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-runtime-field
+      description: Update a runtime field
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-data-views.updateruntimefielddefault
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-default-data-view
+      description: Get the default data view
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-data-views.getdefaultdataviewdefault
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: set-default-data-view
+      description: Set the default data view
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-data-views.setdefaultdatailviewdefault
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: swap-saved-object-references
+      description: Swap saved object references
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-data-views.swapdataviewsdefault
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: preview-swap-references
+      description: Preview swap references
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-data-views.previewswapdataviewsdefault
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

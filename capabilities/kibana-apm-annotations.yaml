@@ -1,0 +1,149 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — APM annotations
+  description: 'Kibana APIs — APM annotations. 2 operations. Lead operation: Create a service annotation. Self-contained Naftiko
+    capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - APM annotations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-apm-annotations
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — APM annotations business capability. Self-contained, no shared references.
+    resources:
+    - name: api-apm-services-serviceName-annotation
+      path: /api/apm/services/{serviceName}/annotation
+      operations:
+      - name: createannotation
+        method: POST
+        description: Create a service annotation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: serviceName
+          in: path
+          type: string
+          description: The name of the service
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-apm-services-serviceName-annotation-search
+      path: /api/apm/services/{serviceName}/annotation/search
+      operations:
+      - name: getannotation
+        method: GET
+        description: Search for annotations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: serviceName
+          in: path
+          type: string
+          description: The name of the service
+          required: true
+        - name: environment
+          in: query
+          type: string
+          description: The environment to filter annotations by
+        - name: start
+          in: query
+          type: string
+          description: The start date for the search
+        - name: end
+          in: query
+          type: string
+          description: The end date for the search
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-apm-annotations-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — APM annotations. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/apm/services/{servicename}/annotation
+      name: api-apm-services-servicename-annotation
+      description: REST surface for api-apm-services-serviceName-annotation.
+      operations:
+      - method: POST
+        name: createannotation
+        description: Create a service annotation
+        call: kibana-apm-annotations.createannotation
+        with:
+          serviceName: rest.serviceName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/apm/services/{servicename}/annotation/search
+      name: api-apm-services-servicename-annotation-search
+      description: REST surface for api-apm-services-serviceName-annotation-search.
+      operations:
+      - method: GET
+        name: getannotation
+        description: Search for annotations
+        call: kibana-apm-annotations.getannotation
+        with:
+          serviceName: rest.serviceName
+          environment: rest.environment
+          start: rest.start
+          end: rest.end
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-apm-annotations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — APM annotations. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: create-service-annotation
+      description: Create a service annotation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-apm-annotations.createannotation
+      with:
+        serviceName: tools.serviceName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-annotations
+      description: Search for annotations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-apm-annotations.getannotation
+      with:
+        serviceName: tools.serviceName
+        environment: tools.environment
+        start: tools.start
+        end: tools.end
+      outputParameters:
+      - type: object
+        mapping: $.

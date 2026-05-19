@@ -1,0 +1,782 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — Security entity store
+  description: 'Kibana APIs — Security entity store. 14 operations. Lead operation: Update the Entity Store. Self-contained
+    Naftiko capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - Security entity store
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-security-entity-store
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — Security entity store business capability. Self-contained, no shared references.
+    resources:
+    - name: api-security-entity_store
+      path: /api/security/entity_store
+      operations:
+      - name: putsecurityentitystore
+        method: PUT
+        description: Update the Entity Store
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-security-entity_store-entities
+      path: /api/security/entity_store/entities
+      operations:
+      - name: getsecurityentitystoreentities
+        method: GET
+        description: List entities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filter
+          in: query
+          type: string
+          description: A Kibana Query Language (KQL) filter for the search-after mode.
+        - name: size
+          in: query
+          type: integer
+          description: Number of entities to return in search-after mode.
+        - name: searchAfter
+          in: query
+          type: string
+          description: JSON-encoded search_after value for cursor-based pagination.
+        - name: source
+          in: query
+          type: array
+          description: Fields to include in the response source.
+        - name: fields
+          in: query
+          type: array
+          description: Fields to include in the response.
+        - name: sort_field
+          in: query
+          type: string
+          description: Field to sort results by in page mode.
+        - name: sort_order
+          in: query
+          type: string
+          description: Sort order in page mode.
+        - name: page
+          in: query
+          type: integer
+          description: Page number to return (1-indexed) in page mode.
+        - name: per_page
+          in: query
+          type: integer
+          description: Number of entities per page in page mode.
+        - name: filterQuery
+          in: query
+          type: string
+          description: An Elasticsearch query string to filter entities in page mode.
+        - name: entity_types
+          in: query
+          type: array
+          description: Entity types to include in the results.
+    - name: api-security-entity_store-entities
+      path: /api/security/entity_store/entities/
+      operations:
+      - name: deletesecurityentitystoreentities
+        method: DELETE
+        description: Delete an entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-security-entity_store-entities-bulk
+      path: /api/security/entity_store/entities/bulk
+      operations:
+      - name: putsecurityentitystoreentitiesbulk
+        method: PUT
+        description: Bulk update entities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: force
+          in: query
+          type: string
+          description: When true, allows updating protected fields.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-security-entity_store-entities-entityType
+      path: /api/security/entity_store/entities/{entityType}
+      operations:
+      - name: postsecurityentitystoreentitiesentitytype
+        method: POST
+        description: Create an entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: entityType
+          in: path
+          type: string
+          description: The entity type to create.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: putsecurityentitystoreentitiesentitytype
+        method: PUT
+        description: Update an entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: entityType
+          in: path
+          type: string
+          description: The entity type to update.
+          required: true
+        - name: force
+          in: query
+          type: string
+          description: When true, allows updating protected fields.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-security-entity_store-install
+      path: /api/security/entity_store/install
+      operations:
+      - name: postsecurityentitystoreinstall
+        method: POST
+        description: Install the Entity Store
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-security-entity_store-resolution-group
+      path: /api/security/entity_store/resolution/group
+      operations:
+      - name: getsecurityentitystoreresolutiongroup
+        method: GET
+        description: Get resolution group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: entity_id
+          in: query
+          type: string
+          description: The entity identifier to look up the resolution group for.
+          required: true
+    - name: api-security-entity_store-resolution-link
+      path: /api/security/entity_store/resolution/link
+      operations:
+      - name: postsecurityentitystoreresolutionlink
+        method: POST
+        description: Link entities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-security-entity_store-resolution-unlink
+      path: /api/security/entity_store/resolution/unlink
+      operations:
+      - name: postsecurityentitystoreresolutionunlink
+        method: POST
+        description: Unlink entities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-security-entity_store-start
+      path: /api/security/entity_store/start
+      operations:
+      - name: putsecurityentitystorestart
+        method: PUT
+        description: Start Entity Store engines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-security-entity_store-status
+      path: /api/security/entity_store/status
+      operations:
+      - name: getsecurityentitystorestatus
+        method: GET
+        description: Get Entity Store status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: include_components
+          in: query
+          type: string
+          description: If true, returns a detailed status of each engine including all its components.
+    - name: api-security-entity_store-stop
+      path: /api/security/entity_store/stop
+      operations:
+      - name: putsecurityentitystorestop
+        method: PUT
+        description: Stop Entity Store engines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-security-entity_store-uninstall
+      path: /api/security/entity_store/uninstall
+      operations:
+      - name: postsecurityentitystoreuninstall
+        method: POST
+        description: Uninstall the Entity Store
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-security-entity-store-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — Security entity store. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/security/entity-store
+      name: api-security-entity-store
+      description: REST surface for api-security-entity_store.
+      operations:
+      - method: PUT
+        name: putsecurityentitystore
+        description: Update the Entity Store
+        call: kibana-security-entity-store.putsecurityentitystore
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security/entity-store/entities
+      name: api-security-entity-store-entities
+      description: REST surface for api-security-entity_store-entities.
+      operations:
+      - method: GET
+        name: getsecurityentitystoreentities
+        description: List entities
+        call: kibana-security-entity-store.getsecurityentitystoreentities
+        with:
+          filter: rest.filter
+          size: rest.size
+          searchAfter: rest.searchAfter
+          source: rest.source
+          fields: rest.fields
+          sort_field: rest.sort_field
+          sort_order: rest.sort_order
+          page: rest.page
+          per_page: rest.per_page
+          filterQuery: rest.filterQuery
+          entity_types: rest.entity_types
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security/entity-store/entities
+      name: api-security-entity-store-entities
+      description: REST surface for api-security-entity_store-entities.
+      operations:
+      - method: DELETE
+        name: deletesecurityentitystoreentities
+        description: Delete an entity
+        call: kibana-security-entity-store.deletesecurityentitystoreentities
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security/entity-store/entities/bulk
+      name: api-security-entity-store-entities-bulk
+      description: REST surface for api-security-entity_store-entities-bulk.
+      operations:
+      - method: PUT
+        name: putsecurityentitystoreentitiesbulk
+        description: Bulk update entities
+        call: kibana-security-entity-store.putsecurityentitystoreentitiesbulk
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          force: rest.force
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security/entity-store/entities/{entitytype}
+      name: api-security-entity-store-entities-entitytype
+      description: REST surface for api-security-entity_store-entities-entityType.
+      operations:
+      - method: POST
+        name: postsecurityentitystoreentitiesentitytype
+        description: Create an entity
+        call: kibana-security-entity-store.postsecurityentitystoreentitiesentitytype
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          entityType: rest.entityType
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putsecurityentitystoreentitiesentitytype
+        description: Update an entity
+        call: kibana-security-entity-store.putsecurityentitystoreentitiesentitytype
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          entityType: rest.entityType
+          force: rest.force
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security/entity-store/install
+      name: api-security-entity-store-install
+      description: REST surface for api-security-entity_store-install.
+      operations:
+      - method: POST
+        name: postsecurityentitystoreinstall
+        description: Install the Entity Store
+        call: kibana-security-entity-store.postsecurityentitystoreinstall
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security/entity-store/resolution/group
+      name: api-security-entity-store-resolution-group
+      description: REST surface for api-security-entity_store-resolution-group.
+      operations:
+      - method: GET
+        name: getsecurityentitystoreresolutiongroup
+        description: Get resolution group
+        call: kibana-security-entity-store.getsecurityentitystoreresolutiongroup
+        with:
+          entity_id: rest.entity_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security/entity-store/resolution/link
+      name: api-security-entity-store-resolution-link
+      description: REST surface for api-security-entity_store-resolution-link.
+      operations:
+      - method: POST
+        name: postsecurityentitystoreresolutionlink
+        description: Link entities
+        call: kibana-security-entity-store.postsecurityentitystoreresolutionlink
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security/entity-store/resolution/unlink
+      name: api-security-entity-store-resolution-unlink
+      description: REST surface for api-security-entity_store-resolution-unlink.
+      operations:
+      - method: POST
+        name: postsecurityentitystoreresolutionunlink
+        description: Unlink entities
+        call: kibana-security-entity-store.postsecurityentitystoreresolutionunlink
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security/entity-store/start
+      name: api-security-entity-store-start
+      description: REST surface for api-security-entity_store-start.
+      operations:
+      - method: PUT
+        name: putsecurityentitystorestart
+        description: Start Entity Store engines
+        call: kibana-security-entity-store.putsecurityentitystorestart
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security/entity-store/status
+      name: api-security-entity-store-status
+      description: REST surface for api-security-entity_store-status.
+      operations:
+      - method: GET
+        name: getsecurityentitystorestatus
+        description: Get Entity Store status
+        call: kibana-security-entity-store.getsecurityentitystorestatus
+        with:
+          include_components: rest.include_components
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security/entity-store/stop
+      name: api-security-entity-store-stop
+      description: REST surface for api-security-entity_store-stop.
+      operations:
+      - method: PUT
+        name: putsecurityentitystorestop
+        description: Stop Entity Store engines
+        call: kibana-security-entity-store.putsecurityentitystorestop
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security/entity-store/uninstall
+      name: api-security-entity-store-uninstall
+      description: REST surface for api-security-entity_store-uninstall.
+      operations:
+      - method: POST
+        name: postsecurityentitystoreuninstall
+        description: Uninstall the Entity Store
+        call: kibana-security-entity-store.postsecurityentitystoreuninstall
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-security-entity-store-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — Security entity store. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: update-entity-store
+      description: Update the Entity Store
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-store.putsecurityentitystore
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-entities
+      description: List entities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-store.getsecurityentitystoreentities
+      with:
+        filter: tools.filter
+        size: tools.size
+        searchAfter: tools.searchAfter
+        source: tools.source
+        fields: tools.fields
+        sort_field: tools.sort_field
+        sort_order: tools.sort_order
+        page: tools.page
+        per_page: tools.per_page
+        filterQuery: tools.filterQuery
+        entity_types: tools.entity_types
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-entity
+      description: Delete an entity
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-entity-store.deletesecurityentitystoreentities
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-update-entities
+      description: Bulk update entities
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-store.putsecurityentitystoreentitiesbulk
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        force: tools.force
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-entity
+      description: Create an entity
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-store.postsecurityentitystoreentitiesentitytype
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        entityType: tools.entityType
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-entity
+      description: Update an entity
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-store.putsecurityentitystoreentitiesentitytype
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        entityType: tools.entityType
+        force: tools.force
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: install-entity-store
+      description: Install the Entity Store
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-store.postsecurityentitystoreinstall
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-resolution-group
+      description: Get resolution group
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-store.getsecurityentitystoreresolutiongroup
+      with:
+        entity_id: tools.entity_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: link-entities
+      description: Link entities
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-store.postsecurityentitystoreresolutionlink
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: unlink-entities
+      description: Unlink entities
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-store.postsecurityentitystoreresolutionunlink
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: start-entity-store-engines
+      description: Start Entity Store engines
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-store.putsecurityentitystorestart
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-entity-store-status
+      description: Get Entity Store status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-store.getsecurityentitystorestatus
+      with:
+        include_components: tools.include_components
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: stop-entity-store-engines
+      description: Stop Entity Store engines
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-store.putsecurityentitystorestop
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: uninstall-entity-store
+      description: Uninstall the Entity Store
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-store.postsecurityentitystoreuninstall
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

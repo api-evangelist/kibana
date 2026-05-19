@@ -1,0 +1,277 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — roles
+  description: 'Kibana APIs — roles. 5 operations. Lead operation: Get all roles. Self-contained Naftiko capability covering
+    one Kibana business surface.'
+  tags:
+  - Kibana
+  - roles
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-roles
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — roles business capability. Self-contained, no shared references.
+    resources:
+    - name: api-security-role
+      path: /api/security/role
+      operations:
+      - name: getsecurityrole
+        method: GET
+        description: Get all roles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: replaceDeprecatedPrivileges
+          in: query
+          type: boolean
+          description: If `true` and the response contains any privileges that are associated with deprecated features, they
+            are omitted in favor of details about the appropriate repl
+    - name: api-security-role-name
+      path: /api/security/role/{name}
+      operations:
+      - name: deletesecurityrolename
+        method: DELETE
+        description: Delete a role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: name
+          in: path
+          type: string
+          description: The role name.
+          required: true
+      - name: getsecurityrolename
+        method: GET
+        description: Get a role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: The role name.
+          required: true
+        - name: replaceDeprecatedPrivileges
+          in: query
+          type: boolean
+          description: If `true` and the response contains any privileges that are associated with deprecated features, they
+            are omitted in favor of details about the appropriate repl
+      - name: putsecurityrolename
+        method: PUT
+        description: Create or update a role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: name
+          in: path
+          type: string
+          description: The role name.
+          required: true
+        - name: createOnly
+          in: query
+          type: boolean
+          description: When true, a role is not overwritten if it already exists.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-security-roles
+      path: /api/security/roles
+      operations:
+      - name: postsecurityroles
+        method: POST
+        description: Create or update roles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-roles-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — roles. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/api/security/role
+      name: api-security-role
+      description: REST surface for api-security-role.
+      operations:
+      - method: GET
+        name: getsecurityrole
+        description: Get all roles
+        call: kibana-roles.getsecurityrole
+        with:
+          replaceDeprecatedPrivileges: rest.replaceDeprecatedPrivileges
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security/role/{name}
+      name: api-security-role-name
+      description: REST surface for api-security-role-name.
+      operations:
+      - method: DELETE
+        name: deletesecurityrolename
+        description: Delete a role
+        call: kibana-roles.deletesecurityrolename
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getsecurityrolename
+        description: Get a role
+        call: kibana-roles.getsecurityrolename
+        with:
+          name: rest.name
+          replaceDeprecatedPrivileges: rest.replaceDeprecatedPrivileges
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putsecurityrolename
+        description: Create or update a role
+        call: kibana-roles.putsecurityrolename
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          name: rest.name
+          createOnly: rest.createOnly
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security/roles
+      name: api-security-roles
+      description: REST surface for api-security-roles.
+      operations:
+      - method: POST
+        name: postsecurityroles
+        description: Create or update roles
+        call: kibana-roles.postsecurityroles
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-roles-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — roles. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-all-roles
+      description: Get all roles
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-roles.getsecurityrole
+      with:
+        replaceDeprecatedPrivileges: tools.replaceDeprecatedPrivileges
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-role
+      description: Delete a role
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-roles.deletesecurityrolename
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-role
+      description: Get a role
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-roles.getsecurityrolename
+      with:
+        name: tools.name
+        replaceDeprecatedPrivileges: tools.replaceDeprecatedPrivileges
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-role
+      description: Create or update a role
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-roles.putsecurityrolename
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        name: tools.name
+        createOnly: tools.createOnly
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-roles
+      description: Create or update roles
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-roles.postsecurityroles
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

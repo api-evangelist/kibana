@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — task manager
+  description: 'Kibana APIs — task manager. 1 operations. Lead operation: Get the task manager health. Self-contained Naftiko
+    capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - task manager
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-task-manager
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — task manager business capability. Self-contained, no shared references.
+    resources:
+    - name: api-task_manager-_health
+      path: /api/task_manager/_health
+      operations:
+      - name: taskmanagerhealth
+        method: GET
+        description: Get the task manager health
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-task-manager-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — task manager. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/task-manager/health
+      name: api-task-manager-health
+      description: REST surface for api-task_manager-_health.
+      operations:
+      - method: GET
+        name: taskmanagerhealth
+        description: Get the task manager health
+        call: kibana-task-manager.taskmanagerhealth
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-task-manager-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — task manager. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-task-manager-health
+      description: Get the task manager health
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-task-manager.taskmanagerhealth
+      outputParameters:
+      - type: object
+        mapping: $.

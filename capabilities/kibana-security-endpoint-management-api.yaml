@@ -1,0 +1,1076 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — Security Endpoint Management API
+  description: 'Kibana APIs — Security Endpoint Management API. 23 operations. Lead operation: Get response actions. Self-contained
+    Naftiko capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - Security Endpoint Management API
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-security-endpoint-management-api
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — Security Endpoint Management API business capability. Self-contained, no shared references.
+    resources:
+    - name: api-endpoint-action
+      path: /api/endpoint/action
+      operations:
+      - name: endpointgetactionslist
+        method: GET
+        description: Get response actions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: string
+        - name: pageSize
+          in: query
+          type: string
+        - name: commands
+          in: query
+          type: string
+        - name: agentIds
+          in: query
+          type: string
+        - name: userIds
+          in: query
+          type: string
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: agentTypes
+          in: query
+          type: string
+        - name: withOutputs
+          in: query
+          type: string
+        - name: types
+          in: query
+          type: string
+    - name: api-endpoint-action-cancel
+      path: /api/endpoint/action/cancel
+      operations:
+      - name: cancelaction
+        method: POST
+        description: Cancel a response action
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-endpoint-action-execute
+      path: /api/endpoint/action/execute
+      operations:
+      - name: endpointexecuteaction
+        method: POST
+        description: Run a command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-endpoint-action-get_file
+      path: /api/endpoint/action/get_file
+      operations:
+      - name: endpointgetfileaction
+        method: POST
+        description: Get a file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-endpoint-action-isolate
+      path: /api/endpoint/action/isolate
+      operations:
+      - name: endpointisolateaction
+        method: POST
+        description: Isolate an endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-endpoint-action-kill_process
+      path: /api/endpoint/action/kill_process
+      operations:
+      - name: endpointkillprocessaction
+        method: POST
+        description: Terminate a process
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-endpoint-action-memory_dump
+      path: /api/endpoint/action/memory_dump
+      operations:
+      - name: endpointgeneratememorydump
+        method: POST
+        description: Generate a memory dump from the host machine
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-endpoint-action-running_procs
+      path: /api/endpoint/action/running_procs
+      operations:
+      - name: endpointgetprocessesaction
+        method: POST
+        description: Get running processes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-endpoint-action-runscript
+      path: /api/endpoint/action/runscript
+      operations:
+      - name: runscriptaction
+        method: POST
+        description: Run a script
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-endpoint-action-scan
+      path: /api/endpoint/action/scan
+      operations:
+      - name: endpointscanaction
+        method: POST
+        description: Scan a file or directory
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-endpoint-action-state
+      path: /api/endpoint/action/state
+      operations:
+      - name: endpointgetactionsstate
+        method: GET
+        description: Get actions state
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-endpoint-action-suspend_process
+      path: /api/endpoint/action/suspend_process
+      operations:
+      - name: endpointsuspendprocessaction
+        method: POST
+        description: Suspend a process
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-endpoint-action-unisolate
+      path: /api/endpoint/action/unisolate
+      operations:
+      - name: endpointunisolateaction
+        method: POST
+        description: Release an isolated endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-endpoint-action-upload
+      path: /api/endpoint/action/upload
+      operations:
+      - name: endpointuploadaction
+        method: POST
+        description: Upload a file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-endpoint-action-action_id
+      path: /api/endpoint/action/{action_id}
+      operations:
+      - name: endpointgetactionsdetails
+        method: GET
+        description: Get action details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: action_id
+          in: path
+          type: string
+          required: true
+    - name: api-endpoint-action-action_id-file-file_id
+      path: /api/endpoint/action/{action_id}/file/{file_id}
+      operations:
+      - name: endpointfileinfo
+        method: GET
+        description: Get file information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: action_id
+          in: path
+          type: string
+          description: The ID of the response action that generated the file.
+          required: true
+        - name: file_id
+          in: path
+          type: string
+          description: 'The file identifier is constructed in one of two ways:'
+          required: true
+    - name: api-endpoint-action-action_id-file-file_id-download
+      path: /api/endpoint/action/{action_id}/file/{file_id}/download
+      operations:
+      - name: endpointfiledownload
+        method: GET
+        description: Download a file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: action_id
+          in: path
+          type: string
+          description: The ID of the response action that generated the file.
+          required: true
+        - name: file_id
+          in: path
+          type: string
+          description: 'The file identifier is constructed in one of two ways:'
+          required: true
+    - name: api-endpoint-action_status
+      path: /api/endpoint/action_status
+      operations:
+      - name: endpointgetactionsstatus
+        method: GET
+        description: Get response actions status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: agent_ids
+          in: query
+          type: string
+          description: A list of agent IDs to get the action status for.
+          required: true
+    - name: api-endpoint-metadata
+      path: /api/endpoint/metadata
+      operations:
+      - name: getendpointmetadatalist
+        method: GET
+        description: Get a metadata list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: string
+        - name: pageSize
+          in: query
+          type: string
+        - name: kuery
+          in: query
+          type: string
+        - name: hostStatuses
+          in: query
+          type: string
+          required: true
+        - name: sortField
+          in: query
+          type: string
+        - name: sortDirection
+          in: query
+          type: string
+    - name: api-endpoint-metadata-id
+      path: /api/endpoint/metadata/{id}
+      operations:
+      - name: getendpointmetadata
+        method: GET
+        description: Get metadata
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The agent ID of the endpoint.
+          required: true
+    - name: api-endpoint-policy_response
+      path: /api/endpoint/policy_response
+      operations:
+      - name: getpolicyresponse
+        method: GET
+        description: Get a policy response
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: agentId
+          in: query
+          type: string
+          description: The agent ID to retrieve the policy response for.
+          required: true
+    - name: api-endpoint-protection_updates_note-package_policy_id
+      path: /api/endpoint/protection_updates_note/{package_policy_id}
+      operations:
+      - name: getprotectionupdatesnote
+        method: GET
+        description: Get a protection updates note
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: package_policy_id
+          in: path
+          type: string
+          description: The package policy ID to retrieve the protection updates note for.
+          required: true
+      - name: createupdateprotectionupdatesnote
+        method: POST
+        description: Create or update a protection updates note
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: package_policy_id
+          in: path
+          type: string
+          description: The package policy ID to create or update the protection updates note for.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-security-endpoint-management-api-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — Security Endpoint Management API. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/endpoint/action
+      name: api-endpoint-action
+      description: REST surface for api-endpoint-action.
+      operations:
+      - method: GET
+        name: endpointgetactionslist
+        description: Get response actions
+        call: kibana-security-endpoint-management-api.endpointgetactionslist
+        with:
+          page: rest.page
+          pageSize: rest.pageSize
+          commands: rest.commands
+          agentIds: rest.agentIds
+          userIds: rest.userIds
+          startDate: rest.startDate
+          endDate: rest.endDate
+          agentTypes: rest.agentTypes
+          withOutputs: rest.withOutputs
+          types: rest.types
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/cancel
+      name: api-endpoint-action-cancel
+      description: REST surface for api-endpoint-action-cancel.
+      operations:
+      - method: POST
+        name: cancelaction
+        description: Cancel a response action
+        call: kibana-security-endpoint-management-api.cancelaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/execute
+      name: api-endpoint-action-execute
+      description: REST surface for api-endpoint-action-execute.
+      operations:
+      - method: POST
+        name: endpointexecuteaction
+        description: Run a command
+        call: kibana-security-endpoint-management-api.endpointexecuteaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/get-file
+      name: api-endpoint-action-get-file
+      description: REST surface for api-endpoint-action-get_file.
+      operations:
+      - method: POST
+        name: endpointgetfileaction
+        description: Get a file
+        call: kibana-security-endpoint-management-api.endpointgetfileaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/isolate
+      name: api-endpoint-action-isolate
+      description: REST surface for api-endpoint-action-isolate.
+      operations:
+      - method: POST
+        name: endpointisolateaction
+        description: Isolate an endpoint
+        call: kibana-security-endpoint-management-api.endpointisolateaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/kill-process
+      name: api-endpoint-action-kill-process
+      description: REST surface for api-endpoint-action-kill_process.
+      operations:
+      - method: POST
+        name: endpointkillprocessaction
+        description: Terminate a process
+        call: kibana-security-endpoint-management-api.endpointkillprocessaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/memory-dump
+      name: api-endpoint-action-memory-dump
+      description: REST surface for api-endpoint-action-memory_dump.
+      operations:
+      - method: POST
+        name: endpointgeneratememorydump
+        description: Generate a memory dump from the host machine
+        call: kibana-security-endpoint-management-api.endpointgeneratememorydump
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/running-procs
+      name: api-endpoint-action-running-procs
+      description: REST surface for api-endpoint-action-running_procs.
+      operations:
+      - method: POST
+        name: endpointgetprocessesaction
+        description: Get running processes
+        call: kibana-security-endpoint-management-api.endpointgetprocessesaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/runscript
+      name: api-endpoint-action-runscript
+      description: REST surface for api-endpoint-action-runscript.
+      operations:
+      - method: POST
+        name: runscriptaction
+        description: Run a script
+        call: kibana-security-endpoint-management-api.runscriptaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/scan
+      name: api-endpoint-action-scan
+      description: REST surface for api-endpoint-action-scan.
+      operations:
+      - method: POST
+        name: endpointscanaction
+        description: Scan a file or directory
+        call: kibana-security-endpoint-management-api.endpointscanaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/state
+      name: api-endpoint-action-state
+      description: REST surface for api-endpoint-action-state.
+      operations:
+      - method: GET
+        name: endpointgetactionsstate
+        description: Get actions state
+        call: kibana-security-endpoint-management-api.endpointgetactionsstate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/suspend-process
+      name: api-endpoint-action-suspend-process
+      description: REST surface for api-endpoint-action-suspend_process.
+      operations:
+      - method: POST
+        name: endpointsuspendprocessaction
+        description: Suspend a process
+        call: kibana-security-endpoint-management-api.endpointsuspendprocessaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/unisolate
+      name: api-endpoint-action-unisolate
+      description: REST surface for api-endpoint-action-unisolate.
+      operations:
+      - method: POST
+        name: endpointunisolateaction
+        description: Release an isolated endpoint
+        call: kibana-security-endpoint-management-api.endpointunisolateaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/upload
+      name: api-endpoint-action-upload
+      description: REST surface for api-endpoint-action-upload.
+      operations:
+      - method: POST
+        name: endpointuploadaction
+        description: Upload a file
+        call: kibana-security-endpoint-management-api.endpointuploadaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/{action-id}
+      name: api-endpoint-action-action-id
+      description: REST surface for api-endpoint-action-action_id.
+      operations:
+      - method: GET
+        name: endpointgetactionsdetails
+        description: Get action details
+        call: kibana-security-endpoint-management-api.endpointgetactionsdetails
+        with:
+          action_id: rest.action_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/{action-id}/file/{file-id}
+      name: api-endpoint-action-action-id-file-file-id
+      description: REST surface for api-endpoint-action-action_id-file-file_id.
+      operations:
+      - method: GET
+        name: endpointfileinfo
+        description: Get file information
+        call: kibana-security-endpoint-management-api.endpointfileinfo
+        with:
+          action_id: rest.action_id
+          file_id: rest.file_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action/{action-id}/file/{file-id}/download
+      name: api-endpoint-action-action-id-file-file-id-download
+      description: REST surface for api-endpoint-action-action_id-file-file_id-download.
+      operations:
+      - method: GET
+        name: endpointfiledownload
+        description: Download a file
+        call: kibana-security-endpoint-management-api.endpointfiledownload
+        with:
+          action_id: rest.action_id
+          file_id: rest.file_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/action-status
+      name: api-endpoint-action-status
+      description: REST surface for api-endpoint-action_status.
+      operations:
+      - method: GET
+        name: endpointgetactionsstatus
+        description: Get response actions status
+        call: kibana-security-endpoint-management-api.endpointgetactionsstatus
+        with:
+          agent_ids: rest.agent_ids
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/metadata
+      name: api-endpoint-metadata
+      description: REST surface for api-endpoint-metadata.
+      operations:
+      - method: GET
+        name: getendpointmetadatalist
+        description: Get a metadata list
+        call: kibana-security-endpoint-management-api.getendpointmetadatalist
+        with:
+          page: rest.page
+          pageSize: rest.pageSize
+          kuery: rest.kuery
+          hostStatuses: rest.hostStatuses
+          sortField: rest.sortField
+          sortDirection: rest.sortDirection
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/metadata/{id}
+      name: api-endpoint-metadata-id
+      description: REST surface for api-endpoint-metadata-id.
+      operations:
+      - method: GET
+        name: getendpointmetadata
+        description: Get metadata
+        call: kibana-security-endpoint-management-api.getendpointmetadata
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/policy-response
+      name: api-endpoint-policy-response
+      description: REST surface for api-endpoint-policy_response.
+      operations:
+      - method: GET
+        name: getpolicyresponse
+        description: Get a policy response
+        call: kibana-security-endpoint-management-api.getpolicyresponse
+        with:
+          agentId: rest.agentId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint/protection-updates-note/{package-policy-id}
+      name: api-endpoint-protection-updates-note-package-policy-id
+      description: REST surface for api-endpoint-protection_updates_note-package_policy_id.
+      operations:
+      - method: GET
+        name: getprotectionupdatesnote
+        description: Get a protection updates note
+        call: kibana-security-endpoint-management-api.getprotectionupdatesnote
+        with:
+          package_policy_id: rest.package_policy_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createupdateprotectionupdatesnote
+        description: Create or update a protection updates note
+        call: kibana-security-endpoint-management-api.createupdateprotectionupdatesnote
+        with:
+          package_policy_id: rest.package_policy_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-security-endpoint-management-api-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — Security Endpoint Management API. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-response-actions
+      description: Get response actions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-endpoint-management-api.endpointgetactionslist
+      with:
+        page: tools.page
+        pageSize: tools.pageSize
+        commands: tools.commands
+        agentIds: tools.agentIds
+        userIds: tools.userIds
+        startDate: tools.startDate
+        endDate: tools.endDate
+        agentTypes: tools.agentTypes
+        withOutputs: tools.withOutputs
+        types: tools.types
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cancel-response-action
+      description: Cancel a response action
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-endpoint-management-api.cancelaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: run-command
+      description: Run a command
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-endpoint-management-api.endpointexecuteaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-file
+      description: Get a file
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-security-endpoint-management-api.endpointgetfileaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: isolate-endpoint
+      description: Isolate an endpoint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-endpoint-management-api.endpointisolateaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: terminate-process
+      description: Terminate a process
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-endpoint-management-api.endpointkillprocessaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: generate-memory-dump-host-machine
+      description: Generate a memory dump from the host machine
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-endpoint-management-api.endpointgeneratememorydump
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-running-processes
+      description: Get running processes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-security-endpoint-management-api.endpointgetprocessesaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: run-script
+      description: Run a script
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-endpoint-management-api.runscriptaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: scan-file-directory
+      description: Scan a file or directory
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-endpoint-management-api.endpointscanaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-actions-state
+      description: Get actions state
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-endpoint-management-api.endpointgetactionsstate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: suspend-process
+      description: Suspend a process
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-endpoint-management-api.endpointsuspendprocessaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: release-isolated-endpoint
+      description: Release an isolated endpoint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-endpoint-management-api.endpointunisolateaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upload-file
+      description: Upload a file
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-endpoint-management-api.endpointuploadaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-action-details
+      description: Get action details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-endpoint-management-api.endpointgetactionsdetails
+      with:
+        action_id: tools.action_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-file-information
+      description: Get file information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-endpoint-management-api.endpointfileinfo
+      with:
+        action_id: tools.action_id
+        file_id: tools.file_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-file
+      description: Download a file
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-endpoint-management-api.endpointfiledownload
+      with:
+        action_id: tools.action_id
+        file_id: tools.file_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-response-actions-status
+      description: Get response actions status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-endpoint-management-api.endpointgetactionsstatus
+      with:
+        agent_ids: tools.agent_ids
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metadata-list
+      description: Get a metadata list
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-endpoint-management-api.getendpointmetadatalist
+      with:
+        page: tools.page
+        pageSize: tools.pageSize
+        kuery: tools.kuery
+        hostStatuses: tools.hostStatuses
+        sortField: tools.sortField
+        sortDirection: tools.sortDirection
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metadata
+      description: Get metadata
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-endpoint-management-api.getendpointmetadata
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-policy-response
+      description: Get a policy response
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-endpoint-management-api.getpolicyresponse
+      with:
+        agentId: tools.agentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-protection-updates-note
+      description: Get a protection updates note
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-endpoint-management-api.getprotectionupdatesnote
+      with:
+        package_policy_id: tools.package_policy_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-protection-updates-note
+      description: Create or update a protection updates note
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-endpoint-management-api.createupdateprotectionupdatesnote
+      with:
+        package_policy_id: tools.package_policy_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

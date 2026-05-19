@@ -1,0 +1,331 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — Fleet outputs
+  description: 'Kibana APIs — Fleet outputs. 7 operations. Lead operation: Generate a Logstash API key. Self-contained Naftiko
+    capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - Fleet outputs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-fleet-outputs
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — Fleet outputs business capability. Self-contained, no shared references.
+    resources:
+    - name: api-fleet-logstash_api_keys
+      path: /api/fleet/logstash_api_keys
+      operations:
+      - name: postfleetlogstashapikeys
+        method: POST
+        description: Generate a Logstash API key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+    - name: api-fleet-outputs
+      path: /api/fleet/outputs
+      operations:
+      - name: getfleetoutputs
+        method: GET
+        description: Get outputs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postfleetoutputs
+        method: POST
+        description: Create output
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-fleet-outputs-outputId
+      path: /api/fleet/outputs/{outputId}
+      operations:
+      - name: deletefleetoutputsoutputid
+        method: DELETE
+        description: Delete output
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: outputId
+          in: path
+          type: string
+          description: The ID of the output
+          required: true
+      - name: getfleetoutputsoutputid
+        method: GET
+        description: Get output
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: outputId
+          in: path
+          type: string
+          description: The ID of the output
+          required: true
+      - name: putfleetoutputsoutputid
+        method: PUT
+        description: Update output
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: outputId
+          in: path
+          type: string
+          description: The ID of the output
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-fleet-outputs-outputId-health
+      path: /api/fleet/outputs/{outputId}/health
+      operations:
+      - name: getfleetoutputsoutputidhealth
+        method: GET
+        description: Get the latest output health
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: outputId
+          in: path
+          type: string
+          description: The ID of the output
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-fleet-outputs-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — Fleet outputs. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/fleet/logstash-api-keys
+      name: api-fleet-logstash-api-keys
+      description: REST surface for api-fleet-logstash_api_keys.
+      operations:
+      - method: POST
+        name: postfleetlogstashapikeys
+        description: Generate a Logstash API key
+        call: kibana-fleet-outputs.postfleetlogstashapikeys
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/fleet/outputs
+      name: api-fleet-outputs
+      description: REST surface for api-fleet-outputs.
+      operations:
+      - method: GET
+        name: getfleetoutputs
+        description: Get outputs
+        call: kibana-fleet-outputs.getfleetoutputs
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postfleetoutputs
+        description: Create output
+        call: kibana-fleet-outputs.postfleetoutputs
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/fleet/outputs/{outputid}
+      name: api-fleet-outputs-outputid
+      description: REST surface for api-fleet-outputs-outputId.
+      operations:
+      - method: DELETE
+        name: deletefleetoutputsoutputid
+        description: Delete output
+        call: kibana-fleet-outputs.deletefleetoutputsoutputid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          outputId: rest.outputId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getfleetoutputsoutputid
+        description: Get output
+        call: kibana-fleet-outputs.getfleetoutputsoutputid
+        with:
+          outputId: rest.outputId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putfleetoutputsoutputid
+        description: Update output
+        call: kibana-fleet-outputs.putfleetoutputsoutputid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          outputId: rest.outputId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/fleet/outputs/{outputid}/health
+      name: api-fleet-outputs-outputid-health
+      description: REST surface for api-fleet-outputs-outputId-health.
+      operations:
+      - method: GET
+        name: getfleetoutputsoutputidhealth
+        description: Get the latest output health
+        call: kibana-fleet-outputs.getfleetoutputsoutputidhealth
+        with:
+          outputId: rest.outputId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-fleet-outputs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — Fleet outputs. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: generate-logstash-api-key
+      description: Generate a Logstash API key
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-fleet-outputs.postfleetlogstashapikeys
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-outputs
+      description: Get outputs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-fleet-outputs.getfleetoutputs
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-output
+      description: Create output
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-fleet-outputs.postfleetoutputs
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-output
+      description: Delete output
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-fleet-outputs.deletefleetoutputsoutputid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        outputId: tools.outputId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-output
+      description: Get output
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-fleet-outputs.getfleetoutputsoutputid
+      with:
+        outputId: tools.outputId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-output
+      description: Update output
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-fleet-outputs.putfleetoutputsoutputid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        outputId: tools.outputId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-latest-output-health
+      description: Get the latest output health
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-fleet-outputs.getfleetoutputsoutputidhealth
+      with:
+        outputId: tools.outputId
+      outputParameters:
+      - type: object
+        mapping: $.

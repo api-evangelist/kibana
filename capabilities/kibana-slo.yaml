@@ -1,0 +1,594 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — slo
+  description: 'Kibana APIs — slo. 13 operations. Lead operation: Get a paginated list of SLOs. Self-contained Naftiko capability
+    covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - slo
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-slo
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — slo business capability. Self-contained, no shared references.
+    resources:
+    - name: s-spaceId-api-observability-slos
+      path: /s/{spaceId}/api/observability/slos
+      operations:
+      - name: findslosop
+        method: GET
+        description: Get a paginated list of SLOs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kqlQuery
+          in: query
+          type: string
+          description: A valid kql query to filter the SLO with
+        - name: size
+          in: query
+          type: integer
+          description: The page size to use for cursor-based pagination, must be greater or equal than 1
+        - name: searchAfter
+          in: query
+          type: array
+          description: The cursor to use for fetching the results from, when using a cursor-base pagination.
+        - name: page
+          in: query
+          type: integer
+          description: The page to use for pagination, must be greater or equal than 1
+        - name: perPage
+          in: query
+          type: integer
+          description: Number of SLOs returned by page
+        - name: sortBy
+          in: query
+          type: string
+          description: Sort by field
+        - name: sortDirection
+          in: query
+          type: string
+          description: Sort order
+        - name: hideStale
+          in: query
+          type: boolean
+          description: Hide stale SLOs from the list as defined by stale SLO threshold in SLO settings
+      - name: createsloop
+        method: POST
+        description: Create an SLO
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: s-spaceId-api-observability-slos-_bulk_delete
+      path: /s/{spaceId}/api/observability/slos/_bulk_delete
+      operations:
+      - name: bulkdeleteop
+        method: POST
+        description: Bulk delete SLO definitions and their associated summary and rollup data.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: s-spaceId-api-observability-slos-_bulk_delete-taskId
+      path: /s/{spaceId}/api/observability/slos/_bulk_delete/{taskId}
+      operations:
+      - name: bulkdeletestatusop
+        method: GET
+        description: Retrieve the status of the bulk deletion
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taskId
+          in: path
+          type: string
+          description: The task id of the bulk delete operation
+          required: true
+    - name: s-spaceId-api-observability-slos-_bulk_purge_rollup
+      path: /s/{spaceId}/api/observability/slos/_bulk_purge_rollup
+      operations:
+      - name: deleterollupdataop
+        method: POST
+        description: Batch delete rollup and summary data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: s-spaceId-api-observability-slos-_delete_instances
+      path: /s/{spaceId}/api/observability/slos/_delete_instances
+      operations:
+      - name: deletesloinstancesop
+        method: POST
+        description: Batch delete rollup and summary data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: s-spaceId-api-observability-slos-sloId
+      path: /s/{spaceId}/api/observability/slos/{sloId}
+      operations:
+      - name: deletesloop
+        method: DELETE
+        description: Delete an SLO
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getsloop
+        method: GET
+        description: Get an SLO
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: instanceId
+          in: query
+          type: string
+          description: the specific instanceId used by the summary calculation
+      - name: updatesloop
+        method: PUT
+        description: Update an SLO
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: s-spaceId-api-observability-slos-sloId-_reset
+      path: /s/{spaceId}/api/observability/slos/{sloId}/_reset
+      operations:
+      - name: resetsloop
+        method: POST
+        description: Reset an SLO
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: s-spaceId-api-observability-slos-sloId-disable
+      path: /s/{spaceId}/api/observability/slos/{sloId}/disable
+      operations:
+      - name: disablesloop
+        method: POST
+        description: Disable an SLO
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: s-spaceId-api-observability-slos-sloId-enable
+      path: /s/{spaceId}/api/observability/slos/{sloId}/enable
+      operations:
+      - name: enablesloop
+        method: POST
+        description: Enable an SLO
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: s-spaceId-internal-observability-slos-_definitions
+      path: /s/{spaceId}/internal/observability/slos/_definitions
+      operations:
+      - name: getdefinitionsop
+        method: GET
+        description: Get the SLO definitions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: includeOutdatedOnly
+          in: query
+          type: boolean
+          description: Indicates if the API returns only outdated SLO or all SLO definitions
+        - name: includeHealth
+          in: query
+          type: boolean
+          description: Indicates if the API returns SLO health data with definitions
+        - name: tags
+          in: query
+          type: string
+          description: Filters the SLOs by tag
+        - name: search
+          in: query
+          type: string
+          description: Filters the SLOs by name
+        - name: page
+          in: query
+          type: number
+          description: The page to use for pagination, must be greater or equal than 1
+        - name: perPage
+          in: query
+          type: integer
+          description: Number of SLOs returned by page
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-slo-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — slo. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/s/{spaceid}/api/observability/slos
+      name: s-spaceid-api-observability-slos
+      description: REST surface for s-spaceId-api-observability-slos.
+      operations:
+      - method: GET
+        name: findslosop
+        description: Get a paginated list of SLOs
+        call: kibana-slo.findslosop
+        with:
+          kqlQuery: rest.kqlQuery
+          size: rest.size
+          searchAfter: rest.searchAfter
+          page: rest.page
+          perPage: rest.perPage
+          sortBy: rest.sortBy
+          sortDirection: rest.sortDirection
+          hideStale: rest.hideStale
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createsloop
+        description: Create an SLO
+        call: kibana-slo.createsloop
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/s/{spaceid}/api/observability/slos/bulk-delete
+      name: s-spaceid-api-observability-slos-bulk-delete
+      description: REST surface for s-spaceId-api-observability-slos-_bulk_delete.
+      operations:
+      - method: POST
+        name: bulkdeleteop
+        description: Bulk delete SLO definitions and their associated summary and rollup data.
+        call: kibana-slo.bulkdeleteop
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/s/{spaceid}/api/observability/slos/bulk-delete/{taskid}
+      name: s-spaceid-api-observability-slos-bulk-delete-taskid
+      description: REST surface for s-spaceId-api-observability-slos-_bulk_delete-taskId.
+      operations:
+      - method: GET
+        name: bulkdeletestatusop
+        description: Retrieve the status of the bulk deletion
+        call: kibana-slo.bulkdeletestatusop
+        with:
+          taskId: rest.taskId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/s/{spaceid}/api/observability/slos/bulk-purge-rollup
+      name: s-spaceid-api-observability-slos-bulk-purge-rollup
+      description: REST surface for s-spaceId-api-observability-slos-_bulk_purge_rollup.
+      operations:
+      - method: POST
+        name: deleterollupdataop
+        description: Batch delete rollup and summary data
+        call: kibana-slo.deleterollupdataop
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/s/{spaceid}/api/observability/slos/delete-instances
+      name: s-spaceid-api-observability-slos-delete-instances
+      description: REST surface for s-spaceId-api-observability-slos-_delete_instances.
+      operations:
+      - method: POST
+        name: deletesloinstancesop
+        description: Batch delete rollup and summary data
+        call: kibana-slo.deletesloinstancesop
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/s/{spaceid}/api/observability/slos/{sloid}
+      name: s-spaceid-api-observability-slos-sloid
+      description: REST surface for s-spaceId-api-observability-slos-sloId.
+      operations:
+      - method: DELETE
+        name: deletesloop
+        description: Delete an SLO
+        call: kibana-slo.deletesloop
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getsloop
+        description: Get an SLO
+        call: kibana-slo.getsloop
+        with:
+          instanceId: rest.instanceId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatesloop
+        description: Update an SLO
+        call: kibana-slo.updatesloop
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/s/{spaceid}/api/observability/slos/{sloid}/reset
+      name: s-spaceid-api-observability-slos-sloid-reset
+      description: REST surface for s-spaceId-api-observability-slos-sloId-_reset.
+      operations:
+      - method: POST
+        name: resetsloop
+        description: Reset an SLO
+        call: kibana-slo.resetsloop
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/s/{spaceid}/api/observability/slos/{sloid}/disable
+      name: s-spaceid-api-observability-slos-sloid-disable
+      description: REST surface for s-spaceId-api-observability-slos-sloId-disable.
+      operations:
+      - method: POST
+        name: disablesloop
+        description: Disable an SLO
+        call: kibana-slo.disablesloop
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/s/{spaceid}/api/observability/slos/{sloid}/enable
+      name: s-spaceid-api-observability-slos-sloid-enable
+      description: REST surface for s-spaceId-api-observability-slos-sloId-enable.
+      operations:
+      - method: POST
+        name: enablesloop
+        description: Enable an SLO
+        call: kibana-slo.enablesloop
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/s/{spaceid}/internal/observability/slos/definitions
+      name: s-spaceid-internal-observability-slos-definitions
+      description: REST surface for s-spaceId-internal-observability-slos-_definitions.
+      operations:
+      - method: GET
+        name: getdefinitionsop
+        description: Get the SLO definitions
+        call: kibana-slo.getdefinitionsop
+        with:
+          includeOutdatedOnly: rest.includeOutdatedOnly
+          includeHealth: rest.includeHealth
+          tags: rest.tags
+          search: rest.search
+          page: rest.page
+          perPage: rest.perPage
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-slo-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — slo. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-paginated-list-slos
+      description: Get a paginated list of SLOs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-slo.findslosop
+      with:
+        kqlQuery: tools.kqlQuery
+        size: tools.size
+        searchAfter: tools.searchAfter
+        page: tools.page
+        perPage: tools.perPage
+        sortBy: tools.sortBy
+        sortDirection: tools.sortDirection
+        hideStale: tools.hideStale
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-slo
+      description: Create an SLO
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-slo.createsloop
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-delete-slo-definitions-and
+      description: Bulk delete SLO definitions and their associated summary and rollup data.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-slo.bulkdeleteop
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-status-bulk-deletion
+      description: Retrieve the status of the bulk deletion
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-slo.bulkdeletestatusop
+      with:
+        taskId: tools.taskId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: batch-delete-rollup-and-summary
+      description: Batch delete rollup and summary data
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-slo.deleterollupdataop
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: batch-delete-rollup-and-summary-2
+      description: Batch delete rollup and summary data
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-slo.deletesloinstancesop
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-slo
+      description: Delete an SLO
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-slo.deletesloop
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-slo
+      description: Get an SLO
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-slo.getsloop
+      with:
+        instanceId: tools.instanceId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-slo
+      description: Update an SLO
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-slo.updatesloop
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: reset-slo
+      description: Reset an SLO
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-slo.resetsloop
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disable-slo
+      description: Disable an SLO
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-slo.disablesloop
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: enable-slo
+      description: Enable an SLO
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-slo.enablesloop
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-slo-definitions
+      description: Get the SLO definitions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-slo.getdefinitionsop
+      with:
+        includeOutdatedOnly: tools.includeOutdatedOnly
+        includeHealth: tools.includeHealth
+        tags: tools.tags
+        search: tools.search
+        page: tools.page
+        perPage: tools.perPage
+      outputParameters:
+      - type: object
+        mapping: $.

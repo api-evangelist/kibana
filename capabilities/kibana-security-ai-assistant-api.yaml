@@ -1,0 +1,1032 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — Security AI Assistant API
+  description: 'Kibana APIs — Security AI Assistant API. 21 operations. Lead operation: Apply a bulk action to anonymization
+    fields. Self-contained Naftiko capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - Security AI Assistant API
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-security-ai-assistant-api
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — Security AI Assistant API business capability. Self-contained, no shared references.
+    resources:
+    - name: api-security_ai_assistant-anonymization_fields-_bulk_action
+      path: /api/security_ai_assistant/anonymization_fields/_bulk_action
+      operations:
+      - name: performanonymizationfieldsbulkaction
+        method: POST
+        description: Apply a bulk action to anonymization fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-security_ai_assistant-anonymization_fields-_find
+      path: /api/security_ai_assistant/anonymization_fields/_find
+      operations:
+      - name: findanonymizationfields
+        method: GET
+        description: Get anonymization fields
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: Fields to return
+        - name: filter
+          in: query
+          type: string
+          description: Search query
+        - name: sort_field
+          in: query
+          type: string
+          description: Field to sort by
+        - name: sort_order
+          in: query
+          type: string
+          description: Sort order
+        - name: page
+          in: query
+          type: integer
+          description: Page number
+        - name: per_page
+          in: query
+          type: integer
+          description: AnonymizationFields per page
+        - name: all_data
+          in: query
+          type: boolean
+          description: If true, additionally fetch all anonymization fields, otherwise fetch only the provided page
+    - name: api-security_ai_assistant-chat-complete
+      path: /api/security_ai_assistant/chat/complete
+      operations:
+      - name: chatcomplete
+        method: POST
+        description: Create a model response
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: content_references_disabled
+          in: query
+          type: boolean
+          description: If true, the response will not include content references.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-security_ai_assistant-current_user-conversations
+      path: /api/security_ai_assistant/current_user/conversations
+      operations:
+      - name: deleteallconversations
+        method: DELETE
+        description: Delete conversations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: createconversation
+        method: POST
+        description: Create a conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-security_ai_assistant-current_user-conversations-_find
+      path: /api/security_ai_assistant/current_user/conversations/_find
+      operations:
+      - name: findconversations
+        method: GET
+        description: Get conversations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A list of fields to include in the response. If omitted, all fields are returned.
+        - name: filter
+          in: query
+          type: string
+          description: A search query to filter the conversations. Can match against titles, messages, or other conversation
+            attributes.
+        - name: sort_field
+          in: query
+          type: string
+          description: The field by which to sort the results. Valid fields are `created_at`, `title`, and `updated_at`.
+        - name: sort_order
+          in: query
+          type: string
+          description: The order in which to sort the results. Can be either `asc` for ascending or `desc` for descending.
+        - name: page
+          in: query
+          type: integer
+          description: The page number of the results to retrieve. Default is 1.
+        - name: per_page
+          in: query
+          type: integer
+          description: The number of conversations to return per page. Default is 20.
+        - name: is_owner
+          in: query
+          type: boolean
+          description: Whether to return conversations that the current user owns. If true, only conversations owned by the
+            user are returned.
+    - name: api-security_ai_assistant-current_user-conversations-id
+      path: /api/security_ai_assistant/current_user/conversations/{id}
+      operations:
+      - name: deleteconversation
+        method: DELETE
+        description: Delete a conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The conversation's `id` value.
+          required: true
+      - name: readconversation
+        method: GET
+        description: Get a conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The conversation's `id` value, a unique identifier for the conversation.
+          required: true
+      - name: updateconversation
+        method: PUT
+        description: Update a conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The conversation's `id` value.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-security_ai_assistant-knowledge_base
+      path: /api/security_ai_assistant/knowledge_base
+      operations:
+      - name: getknowledgebase
+        method: GET
+        description: Read a KnowledgeBase
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postknowledgebase
+        method: POST
+        description: Create a KnowledgeBase
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: modelId
+          in: query
+          type: string
+          description: ELSER modelId to use when setting up the Knowledge Base. If not provided, a default model will be used.
+        - name: ignoreSecurityLabs
+          in: query
+          type: boolean
+          description: Indicates whether we should or should not install Security Labs docs when setting up the Knowledge
+            Base. Defaults to `false`.
+    - name: api-security_ai_assistant-knowledge_base-entries
+      path: /api/security_ai_assistant/knowledge_base/entries
+      operations:
+      - name: createknowledgebaseentry
+        method: POST
+        description: Create a Knowledge Base Entry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-security_ai_assistant-knowledge_base-entries-_bulk_action
+      path: /api/security_ai_assistant/knowledge_base/entries/_bulk_action
+      operations:
+      - name: performknowledgebaseentrybulkaction
+        method: POST
+        description: Applies a bulk action to multiple Knowledge Base Entries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-security_ai_assistant-knowledge_base-entries-_find
+      path: /api/security_ai_assistant/knowledge_base/entries/_find
+      operations:
+      - name: findknowledgebaseentries
+        method: GET
+        description: Finds Knowledge Base Entries that match the given query.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A list of fields to include in the response. If not provided, all fields will be included.
+        - name: filter
+          in: query
+          type: string
+          description: Search query to filter Knowledge Base Entries by specific criteria.
+        - name: sort_field
+          in: query
+          type: string
+          description: Field to sort the Knowledge Base Entries by.
+        - name: sort_order
+          in: query
+          type: string
+          description: Sort order for the results, either asc or desc.
+        - name: page
+          in: query
+          type: integer
+          description: Page number for paginated results. Defaults to 1.
+        - name: per_page
+          in: query
+          type: integer
+          description: Number of Knowledge Base Entries to return per page. Defaults to 20.
+    - name: api-security_ai_assistant-knowledge_base-entries-id
+      path: /api/security_ai_assistant/knowledge_base/entries/{id}
+      operations:
+      - name: deleteknowledgebaseentry
+        method: DELETE
+        description: Deletes a single Knowledge Base Entry using the `id` field
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The unique identifier (`id`) of the Knowledge Base Entry to delete.
+          required: true
+      - name: readknowledgebaseentry
+        method: GET
+        description: Read a Knowledge Base Entry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The unique identifier (`id`) of the Knowledge Base Entry to retrieve.
+          required: true
+      - name: updateknowledgebaseentry
+        method: PUT
+        description: Update a Knowledge Base Entry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The unique identifier (`id`) of the Knowledge Base Entry to update.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-security_ai_assistant-knowledge_base-resource
+      path: /api/security_ai_assistant/knowledge_base/{resource}
+      operations:
+      - name: readknowledgebase
+        method: GET
+        description: Read a KnowledgeBase for a resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resource
+          in: path
+          type: string
+          description: The KnowledgeBase `resource` value.
+          required: true
+      - name: createknowledgebase
+        method: POST
+        description: Create a KnowledgeBase for a resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resource
+          in: path
+          type: string
+          description: The KnowledgeBase `resource` value.
+          required: true
+        - name: modelId
+          in: query
+          type: string
+          description: ELSER modelId to use when setting up the Knowledge Base. If not provided, a default model will be used.
+        - name: ignoreSecurityLabs
+          in: query
+          type: boolean
+          description: Indicates whether we should or should not install Security Labs docs when setting up the Knowledge
+            Base. Defaults to `false`.
+    - name: api-security_ai_assistant-prompts-_bulk_action
+      path: /api/security_ai_assistant/prompts/_bulk_action
+      operations:
+      - name: performpromptsbulkaction
+        method: POST
+        description: Apply a bulk action to prompts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-security_ai_assistant-prompts-_find
+      path: /api/security_ai_assistant/prompts/_find
+      operations:
+      - name: findprompts
+        method: GET
+        description: Get prompts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: List of specific fields to include in each returned prompt.
+        - name: filter
+          in: query
+          type: string
+          description: Search query string to filter prompts by matching fields.
+        - name: sort_field
+          in: query
+          type: string
+          description: Field to sort prompts by.
+        - name: sort_order
+          in: query
+          type: string
+          description: Sort order, either asc or desc.
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination.
+        - name: per_page
+          in: query
+          type: integer
+          description: Number of prompts per page.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-security-ai-assistant-api-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — Security AI Assistant API. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/security-ai-assistant/anonymization-fields/bulk-action
+      name: api-security-ai-assistant-anonymization-fields-bulk-action
+      description: REST surface for api-security_ai_assistant-anonymization_fields-_bulk_action.
+      operations:
+      - method: POST
+        name: performanonymizationfieldsbulkaction
+        description: Apply a bulk action to anonymization fields
+        call: kibana-security-ai-assistant-api.performanonymizationfieldsbulkaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security-ai-assistant/anonymization-fields/find
+      name: api-security-ai-assistant-anonymization-fields-find
+      description: REST surface for api-security_ai_assistant-anonymization_fields-_find.
+      operations:
+      - method: GET
+        name: findanonymizationfields
+        description: Get anonymization fields
+        call: kibana-security-ai-assistant-api.findanonymizationfields
+        with:
+          fields: rest.fields
+          filter: rest.filter
+          sort_field: rest.sort_field
+          sort_order: rest.sort_order
+          page: rest.page
+          per_page: rest.per_page
+          all_data: rest.all_data
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security-ai-assistant/chat/complete
+      name: api-security-ai-assistant-chat-complete
+      description: REST surface for api-security_ai_assistant-chat-complete.
+      operations:
+      - method: POST
+        name: chatcomplete
+        description: Create a model response
+        call: kibana-security-ai-assistant-api.chatcomplete
+        with:
+          content_references_disabled: rest.content_references_disabled
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security-ai-assistant/current-user/conversations
+      name: api-security-ai-assistant-current-user-conversations
+      description: REST surface for api-security_ai_assistant-current_user-conversations.
+      operations:
+      - method: DELETE
+        name: deleteallconversations
+        description: Delete conversations
+        call: kibana-security-ai-assistant-api.deleteallconversations
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createconversation
+        description: Create a conversation
+        call: kibana-security-ai-assistant-api.createconversation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security-ai-assistant/current-user/conversations/find
+      name: api-security-ai-assistant-current-user-conversations-find
+      description: REST surface for api-security_ai_assistant-current_user-conversations-_find.
+      operations:
+      - method: GET
+        name: findconversations
+        description: Get conversations
+        call: kibana-security-ai-assistant-api.findconversations
+        with:
+          fields: rest.fields
+          filter: rest.filter
+          sort_field: rest.sort_field
+          sort_order: rest.sort_order
+          page: rest.page
+          per_page: rest.per_page
+          is_owner: rest.is_owner
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security-ai-assistant/current-user/conversations/{id}
+      name: api-security-ai-assistant-current-user-conversations-id
+      description: REST surface for api-security_ai_assistant-current_user-conversations-id.
+      operations:
+      - method: DELETE
+        name: deleteconversation
+        description: Delete a conversation
+        call: kibana-security-ai-assistant-api.deleteconversation
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: readconversation
+        description: Get a conversation
+        call: kibana-security-ai-assistant-api.readconversation
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateconversation
+        description: Update a conversation
+        call: kibana-security-ai-assistant-api.updateconversation
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security-ai-assistant/knowledge-base
+      name: api-security-ai-assistant-knowledge-base
+      description: REST surface for api-security_ai_assistant-knowledge_base.
+      operations:
+      - method: GET
+        name: getknowledgebase
+        description: Read a KnowledgeBase
+        call: kibana-security-ai-assistant-api.getknowledgebase
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postknowledgebase
+        description: Create a KnowledgeBase
+        call: kibana-security-ai-assistant-api.postknowledgebase
+        with:
+          modelId: rest.modelId
+          ignoreSecurityLabs: rest.ignoreSecurityLabs
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security-ai-assistant/knowledge-base/entries
+      name: api-security-ai-assistant-knowledge-base-entries
+      description: REST surface for api-security_ai_assistant-knowledge_base-entries.
+      operations:
+      - method: POST
+        name: createknowledgebaseentry
+        description: Create a Knowledge Base Entry
+        call: kibana-security-ai-assistant-api.createknowledgebaseentry
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security-ai-assistant/knowledge-base/entries/bulk-action
+      name: api-security-ai-assistant-knowledge-base-entries-bulk-action
+      description: REST surface for api-security_ai_assistant-knowledge_base-entries-_bulk_action.
+      operations:
+      - method: POST
+        name: performknowledgebaseentrybulkaction
+        description: Applies a bulk action to multiple Knowledge Base Entries
+        call: kibana-security-ai-assistant-api.performknowledgebaseentrybulkaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security-ai-assistant/knowledge-base/entries/find
+      name: api-security-ai-assistant-knowledge-base-entries-find
+      description: REST surface for api-security_ai_assistant-knowledge_base-entries-_find.
+      operations:
+      - method: GET
+        name: findknowledgebaseentries
+        description: Finds Knowledge Base Entries that match the given query.
+        call: kibana-security-ai-assistant-api.findknowledgebaseentries
+        with:
+          fields: rest.fields
+          filter: rest.filter
+          sort_field: rest.sort_field
+          sort_order: rest.sort_order
+          page: rest.page
+          per_page: rest.per_page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security-ai-assistant/knowledge-base/entries/{id}
+      name: api-security-ai-assistant-knowledge-base-entries-id
+      description: REST surface for api-security_ai_assistant-knowledge_base-entries-id.
+      operations:
+      - method: DELETE
+        name: deleteknowledgebaseentry
+        description: Deletes a single Knowledge Base Entry using the `id` field
+        call: kibana-security-ai-assistant-api.deleteknowledgebaseentry
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: readknowledgebaseentry
+        description: Read a Knowledge Base Entry
+        call: kibana-security-ai-assistant-api.readknowledgebaseentry
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateknowledgebaseentry
+        description: Update a Knowledge Base Entry
+        call: kibana-security-ai-assistant-api.updateknowledgebaseentry
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security-ai-assistant/knowledge-base/{resource}
+      name: api-security-ai-assistant-knowledge-base-resource
+      description: REST surface for api-security_ai_assistant-knowledge_base-resource.
+      operations:
+      - method: GET
+        name: readknowledgebase
+        description: Read a KnowledgeBase for a resource
+        call: kibana-security-ai-assistant-api.readknowledgebase
+        with:
+          resource: rest.resource
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createknowledgebase
+        description: Create a KnowledgeBase for a resource
+        call: kibana-security-ai-assistant-api.createknowledgebase
+        with:
+          resource: rest.resource
+          modelId: rest.modelId
+          ignoreSecurityLabs: rest.ignoreSecurityLabs
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security-ai-assistant/prompts/bulk-action
+      name: api-security-ai-assistant-prompts-bulk-action
+      description: REST surface for api-security_ai_assistant-prompts-_bulk_action.
+      operations:
+      - method: POST
+        name: performpromptsbulkaction
+        description: Apply a bulk action to prompts
+        call: kibana-security-ai-assistant-api.performpromptsbulkaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/security-ai-assistant/prompts/find
+      name: api-security-ai-assistant-prompts-find
+      description: REST surface for api-security_ai_assistant-prompts-_find.
+      operations:
+      - method: GET
+        name: findprompts
+        description: Get prompts
+        call: kibana-security-ai-assistant-api.findprompts
+        with:
+          fields: rest.fields
+          filter: rest.filter
+          sort_field: rest.sort_field
+          sort_order: rest.sort_order
+          page: rest.page
+          per_page: rest.per_page
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-security-ai-assistant-api-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — Security AI Assistant API. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apply-bulk-action-anonymization-fields
+      description: Apply a bulk action to anonymization fields
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-ai-assistant-api.performanonymizationfieldsbulkaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-anonymization-fields
+      description: Get anonymization fields
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-ai-assistant-api.findanonymizationfields
+      with:
+        fields: tools.fields
+        filter: tools.filter
+        sort_field: tools.sort_field
+        sort_order: tools.sort_order
+        page: tools.page
+        per_page: tools.per_page
+        all_data: tools.all_data
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-model-response
+      description: Create a model response
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-ai-assistant-api.chatcomplete
+      with:
+        content_references_disabled: tools.content_references_disabled
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-conversations
+      description: Delete conversations
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-ai-assistant-api.deleteallconversations
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-conversation
+      description: Create a conversation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-ai-assistant-api.createconversation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-conversations
+      description: Get conversations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-ai-assistant-api.findconversations
+      with:
+        fields: tools.fields
+        filter: tools.filter
+        sort_field: tools.sort_field
+        sort_order: tools.sort_order
+        page: tools.page
+        per_page: tools.per_page
+        is_owner: tools.is_owner
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-conversation
+      description: Delete a conversation
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-ai-assistant-api.deleteconversation
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-conversation
+      description: Get a conversation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-ai-assistant-api.readconversation
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-conversation
+      description: Update a conversation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-ai-assistant-api.updateconversation
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: read-knowledgebase
+      description: Read a KnowledgeBase
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-ai-assistant-api.getknowledgebase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-knowledgebase
+      description: Create a KnowledgeBase
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-ai-assistant-api.postknowledgebase
+      with:
+        modelId: tools.modelId
+        ignoreSecurityLabs: tools.ignoreSecurityLabs
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-knowledge-base-entry
+      description: Create a Knowledge Base Entry
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-ai-assistant-api.createknowledgebaseentry
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: applies-bulk-action-multiple-knowledge
+      description: Applies a bulk action to multiple Knowledge Base Entries
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-ai-assistant-api.performknowledgebaseentrybulkaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finds-knowledge-base-entries-that
+      description: Finds Knowledge Base Entries that match the given query.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-ai-assistant-api.findknowledgebaseentries
+      with:
+        fields: tools.fields
+        filter: tools.filter
+        sort_field: tools.sort_field
+        sort_order: tools.sort_order
+        page: tools.page
+        per_page: tools.per_page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletes-single-knowledge-base-entry
+      description: Deletes a single Knowledge Base Entry using the `id` field
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-ai-assistant-api.deleteknowledgebaseentry
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: read-knowledge-base-entry
+      description: Read a Knowledge Base Entry
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-ai-assistant-api.readknowledgebaseentry
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-knowledge-base-entry
+      description: Update a Knowledge Base Entry
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-ai-assistant-api.updateknowledgebaseentry
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: read-knowledgebase-resource
+      description: Read a KnowledgeBase for a resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-ai-assistant-api.readknowledgebase
+      with:
+        resource: tools.resource
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-knowledgebase-resource
+      description: Create a KnowledgeBase for a resource
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-ai-assistant-api.createknowledgebase
+      with:
+        resource: tools.resource
+        modelId: tools.modelId
+        ignoreSecurityLabs: tools.ignoreSecurityLabs
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apply-bulk-action-prompts
+      description: Apply a bulk action to prompts
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-ai-assistant-api.performpromptsbulkaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-prompts
+      description: Get prompts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-ai-assistant-api.findprompts
+      with:
+        fields: tools.fields
+        filter: tools.filter
+        sort_field: tools.sort_field
+        sort_order: tools.sort_order
+        page: tools.page
+        per_page: tools.per_page
+      outputParameters:
+      - type: object
+        mapping: $.

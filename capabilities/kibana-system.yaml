@@ -1,0 +1,119 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — system
+  description: 'Kibana APIs — system. 2 operations. Lead operation: Get features. Self-contained Naftiko capability covering
+    one Kibana business surface.'
+  tags:
+  - Kibana
+  - system
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-system
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — system business capability. Self-contained, no shared references.
+    resources:
+    - name: api-features
+      path: /api/features
+      operations:
+      - name: getfeatures
+        method: GET
+        description: Get features
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-status
+      path: /api/status
+      operations:
+      - name: getstatus
+        method: GET
+        description: Get Kibana's current status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: v7format
+          in: query
+          type: boolean
+          description: Set to "true" to get the response in v7 format.
+        - name: v8format
+          in: query
+          type: boolean
+          description: Set to "true" to get the response in v8 format.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-system-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — system. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/api/features
+      name: api-features
+      description: REST surface for api-features.
+      operations:
+      - method: GET
+        name: getfeatures
+        description: Get features
+        call: kibana-system.getfeatures
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/status
+      name: api-status
+      description: REST surface for api-status.
+      operations:
+      - method: GET
+        name: getstatus
+        description: Get Kibana's current status
+        call: kibana-system.getstatus
+        with:
+          v7format: rest.v7format
+          v8format: rest.v8format
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-system-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — system. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-features
+      description: Get features
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-system.getfeatures
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-kibana-s-current-status
+      description: Get Kibana's current status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-system.getstatus
+      with:
+        v7format: tools.v7format
+        v8format: tools.v8format
+      outputParameters:
+      - type: object
+        mapping: $.

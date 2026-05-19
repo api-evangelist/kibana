@@ -1,0 +1,1756 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — agent builder
+  description: 'Kibana APIs — agent builder. 37 operations. Lead operation: Send A2A task. Self-contained Naftiko capability
+    covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - agent builder
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-agent-builder
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — agent builder business capability. Self-contained, no shared references.
+    resources:
+    - name: api-agent_builder-a2a-agentId
+      path: /api/agent_builder/a2a/{agentId}
+      operations:
+      - name: postagentbuildera2aagentid
+        method: POST
+        description: Send A2A task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: agentId
+          in: path
+          type: string
+          description: The unique identifier of the agent to send the A2A task to.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-agent_builder-a2a-agentId}.json
+      path: /api/agent_builder/a2a/{agentId}.json
+      operations:
+      - name: getagentbuildera2aagentidjson
+        method: GET
+        description: Get A2A agent card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: agentId
+          in: path
+          type: string
+          description: The unique identifier of the agent to get A2A metadata for.
+          required: true
+    - name: api-agent_builder-agents
+      path: /api/agent_builder/agents
+      operations:
+      - name: getagentbuilderagents
+        method: GET
+        description: List agents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postagentbuilderagents
+        method: POST
+        description: Create an agent
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-agent_builder-agents-agent_id-consumption
+      path: /api/agent_builder/agents/{agent_id}/consumption
+      operations:
+      - name: postagentbuilderagentsagentidconsumption
+        method: POST
+        description: Get agent consumption data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: agent_id
+          in: path
+          type: string
+          description: The unique identifier of the agent.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-agent_builder-agents-id
+      path: /api/agent_builder/agents/{id}
+      operations:
+      - name: deleteagentbuilderagentsid
+        method: DELETE
+        description: Delete an agent
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The unique identifier of the agent to delete.
+          required: true
+      - name: getagentbuilderagentsid
+        method: GET
+        description: Get an agent by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The unique identifier of the agent to retrieve.
+          required: true
+      - name: putagentbuilderagentsid
+        method: PUT
+        description: Update an agent
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The unique identifier of the agent to update.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-agent_builder-conversations
+      path: /api/agent_builder/conversations
+      operations:
+      - name: getagentbuilderconversations
+        method: GET
+        description: List conversations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: agent_id
+          in: query
+          type: string
+          description: Optional agent ID to filter conversations by a specific agent.
+    - name: api-agent_builder-conversations-conversation_id
+      path: /api/agent_builder/conversations/{conversation_id}
+      operations:
+      - name: deleteagentbuilderconversationsconversationid
+        method: DELETE
+        description: Delete conversation by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: conversation_id
+          in: path
+          type: string
+          description: The unique identifier of the conversation to delete.
+          required: true
+      - name: getagentbuilderconversationsconversationid
+        method: GET
+        description: Get conversation by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: conversation_id
+          in: path
+          type: string
+          description: The unique identifier of the conversation to retrieve.
+          required: true
+    - name: api-agent_builder-conversations-conversation_id-attachments
+      path: /api/agent_builder/conversations/{conversation_id}/attachments
+      operations:
+      - name: getagentbuilderconversationsconversationidattachments
+        method: GET
+        description: List conversation attachments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: conversation_id
+          in: path
+          type: string
+          description: The unique identifier of the conversation.
+          required: true
+        - name: include_deleted
+          in: query
+          type: boolean
+          description: Whether to include deleted attachments in the list.
+      - name: postagentbuilderconversationsconversationidattachments
+        method: POST
+        description: Create conversation attachment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: conversation_id
+          in: path
+          type: string
+          description: The unique identifier of the conversation.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-agent_builder-conversations-conversation_id-attachments-stale
+      path: /api/agent_builder/conversations/{conversation_id}/attachments/stale
+      operations:
+      - name: getagentbuilderconversationsconversationidattachmentsstale
+        method: GET
+        description: Check attachment staleness
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: conversation_id
+          in: path
+          type: string
+          description: The unique identifier of the conversation.
+          required: true
+    - name: api-agent_builder-conversations-conversation_id-attachments-attachment_id
+      path: /api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}
+      operations:
+      - name: deleteagentbuilderconversationsconversationidattachmentsattachmentid
+        method: DELETE
+        description: Delete conversation attachment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: conversation_id
+          in: path
+          type: string
+          description: The unique identifier of the conversation.
+          required: true
+        - name: attachment_id
+          in: path
+          type: string
+          description: The unique identifier of the attachment to delete.
+          required: true
+        - name: permanent
+          in: query
+          type: boolean
+          description: If true, permanently removes the attachment (only for unreferenced attachments).
+      - name: patchagentbuilderconversationsconversationidattachmentsattachmentid
+        method: PATCH
+        description: Rename attachment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: conversation_id
+          in: path
+          type: string
+          description: The unique identifier of the conversation.
+          required: true
+        - name: attachment_id
+          in: path
+          type: string
+          description: The unique identifier of the attachment to rename.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: putagentbuilderconversationsconversationidattachmentsattachmentid
+        method: PUT
+        description: Update conversation attachment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: conversation_id
+          in: path
+          type: string
+          description: The unique identifier of the conversation.
+          required: true
+        - name: attachment_id
+          in: path
+          type: string
+          description: The unique identifier of the attachment to update.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-agent_builder-conversations-conversation_id-attachments-attachment_id-_resto
+      path: /api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}/_restore
+      operations:
+      - name: postagentbuilderconversationsconversationidattachmentsattachmentidrestore
+        method: POST
+        description: Restore deleted attachment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: conversation_id
+          in: path
+          type: string
+          description: The unique identifier of the conversation.
+          required: true
+        - name: attachment_id
+          in: path
+          type: string
+          description: The unique identifier of the attachment to restore.
+          required: true
+    - name: api-agent_builder-conversations-conversation_id-attachments-attachment_id-origin
+      path: /api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}/origin
+      operations:
+      - name: putagentbuilderconversationsconversationidattachmentsattachmentidorigin
+        method: PUT
+        description: Update attachment origin
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: conversation_id
+          in: path
+          type: string
+          description: The unique identifier of the conversation.
+          required: true
+        - name: attachment_id
+          in: path
+          type: string
+          description: The unique identifier of the attachment to update.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-agent_builder-converse
+      path: /api/agent_builder/converse
+      operations:
+      - name: postagentbuilderconverse
+        method: POST
+        description: Send chat message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-agent_builder-converse-async
+      path: /api/agent_builder/converse/async
+      operations:
+      - name: postagentbuilderconverseasync
+        method: POST
+        description: Send chat message (streaming)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-agent_builder-mcp
+      path: /api/agent_builder/mcp
+      operations:
+      - name: postagentbuildermcp
+        method: POST
+        description: MCP server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace
+          in: query
+          type: string
+          description: Comma-separated list of namespaces to filter tools. Only tools matching the specified namespaces will
+            be returned.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-agent_builder-plugins
+      path: /api/agent_builder/plugins
+      operations:
+      - name: getagentbuilderplugins
+        method: GET
+        description: List plugins
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-agent_builder-plugins-install
+      path: /api/agent_builder/plugins/install
+      operations:
+      - name: postagentbuilderpluginsinstall
+        method: POST
+        description: Install a plugin
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-agent_builder-plugins-pluginId
+      path: /api/agent_builder/plugins/{pluginId}
+      operations:
+      - name: deleteagentbuilderpluginspluginid
+        method: DELETE
+        description: Delete a plugin
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: pluginId
+          in: path
+          type: string
+          description: The unique identifier of the plugin.
+          required: true
+        - name: force
+          in: query
+          type: boolean
+          description: If true, removes the plugin skills from agents that use them and then deletes the plugin. If false
+            and any agent uses the plugin skills, the request returns 409
+      - name: getagentbuilderpluginspluginid
+        method: GET
+        description: Get a plugin by id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pluginId
+          in: path
+          type: string
+          description: The unique identifier of the plugin.
+          required: true
+    - name: api-agent_builder-skills
+      path: /api/agent_builder/skills
+      operations:
+      - name: getagentbuilderskills
+        method: GET
+        description: List skills
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: include_plugins
+          in: query
+          type: boolean
+          description: Set to true to include skills from plugins.
+      - name: postagentbuilderskills
+        method: POST
+        description: Create a skill
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-agent_builder-skills-skillId
+      path: /api/agent_builder/skills/{skillId}
+      operations:
+      - name: deleteagentbuilderskillsskillid
+        method: DELETE
+        description: Delete a skill
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: skillId
+          in: path
+          type: string
+          description: The unique identifier of the skill.
+          required: true
+        - name: force
+          in: query
+          type: boolean
+          description: If true, removes the skill from agents that use it and then deletes it. If false and any agent uses
+            the skill, the request returns 409 Conflict with the list of
+      - name: getagentbuilderskillsskillid
+        method: GET
+        description: Get a skill by id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: skillId
+          in: path
+          type: string
+          description: The unique identifier of the skill.
+          required: true
+      - name: putagentbuilderskillsskillid
+        method: PUT
+        description: Update a skill
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: skillId
+          in: path
+          type: string
+          description: The unique identifier of the skill.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-agent_builder-tools
+      path: /api/agent_builder/tools
+      operations:
+      - name: getagentbuildertools
+        method: GET
+        description: List tools
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postagentbuildertools
+        method: POST
+        description: Create a tool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-agent_builder-tools-_execute
+      path: /api/agent_builder/tools/_execute
+      operations:
+      - name: postagentbuildertoolsexecute
+        method: POST
+        description: Run a tool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-agent_builder-tools-toolId
+      path: /api/agent_builder/tools/{toolId}
+      operations:
+      - name: deleteagentbuildertoolstoolid
+        method: DELETE
+        description: Delete a tool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: toolId
+          in: path
+          type: string
+          description: The unique identifier of the tool to delete.
+          required: true
+        - name: force
+          in: query
+          type: boolean
+          description: If true, removes the tool from agents that use it and then deletes it. If false and any agent uses
+            the tool, the request returns 409 Conflict with the list of a
+      - name: getagentbuildertoolstoolid
+        method: GET
+        description: Get a tool by id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: toolId
+          in: path
+          type: string
+          description: The unique identifier of the tool to retrieve.
+          required: true
+      - name: putagentbuildertoolstoolid
+        method: PUT
+        description: Update a tool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: toolId
+          in: path
+          type: string
+          description: The unique identifier of the tool to update.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-agent-builder-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — agent builder. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/agent-builder/a2a/{agentid}
+      name: api-agent-builder-a2a-agentid
+      description: REST surface for api-agent_builder-a2a-agentId.
+      operations:
+      - method: POST
+        name: postagentbuildera2aagentid
+        description: Send A2A task
+        call: kibana-agent-builder.postagentbuildera2aagentid
+        with:
+          agentId: rest.agentId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/a2a/agentid-json
+      name: api-agent-builder-a2a-agentid-json
+      description: REST surface for api-agent_builder-a2a-agentId}.json.
+      operations:
+      - method: GET
+        name: getagentbuildera2aagentidjson
+        description: Get A2A agent card
+        call: kibana-agent-builder.getagentbuildera2aagentidjson
+        with:
+          agentId: rest.agentId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/agents
+      name: api-agent-builder-agents
+      description: REST surface for api-agent_builder-agents.
+      operations:
+      - method: GET
+        name: getagentbuilderagents
+        description: List agents
+        call: kibana-agent-builder.getagentbuilderagents
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postagentbuilderagents
+        description: Create an agent
+        call: kibana-agent-builder.postagentbuilderagents
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/agents/{agent-id}/consumption
+      name: api-agent-builder-agents-agent-id-consumption
+      description: REST surface for api-agent_builder-agents-agent_id-consumption.
+      operations:
+      - method: POST
+        name: postagentbuilderagentsagentidconsumption
+        description: Get agent consumption data
+        call: kibana-agent-builder.postagentbuilderagentsagentidconsumption
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          agent_id: rest.agent_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/agents/{id}
+      name: api-agent-builder-agents-id
+      description: REST surface for api-agent_builder-agents-id.
+      operations:
+      - method: DELETE
+        name: deleteagentbuilderagentsid
+        description: Delete an agent
+        call: kibana-agent-builder.deleteagentbuilderagentsid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getagentbuilderagentsid
+        description: Get an agent by ID
+        call: kibana-agent-builder.getagentbuilderagentsid
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putagentbuilderagentsid
+        description: Update an agent
+        call: kibana-agent-builder.putagentbuilderagentsid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/conversations
+      name: api-agent-builder-conversations
+      description: REST surface for api-agent_builder-conversations.
+      operations:
+      - method: GET
+        name: getagentbuilderconversations
+        description: List conversations
+        call: kibana-agent-builder.getagentbuilderconversations
+        with:
+          agent_id: rest.agent_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/conversations/{conversation-id}
+      name: api-agent-builder-conversations-conversation-id
+      description: REST surface for api-agent_builder-conversations-conversation_id.
+      operations:
+      - method: DELETE
+        name: deleteagentbuilderconversationsconversationid
+        description: Delete conversation by ID
+        call: kibana-agent-builder.deleteagentbuilderconversationsconversationid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          conversation_id: rest.conversation_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getagentbuilderconversationsconversationid
+        description: Get conversation by ID
+        call: kibana-agent-builder.getagentbuilderconversationsconversationid
+        with:
+          conversation_id: rest.conversation_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/conversations/{conversation-id}/attachments
+      name: api-agent-builder-conversations-conversation-id-attachments
+      description: REST surface for api-agent_builder-conversations-conversation_id-attachments.
+      operations:
+      - method: GET
+        name: getagentbuilderconversationsconversationidattachments
+        description: List conversation attachments
+        call: kibana-agent-builder.getagentbuilderconversationsconversationidattachments
+        with:
+          conversation_id: rest.conversation_id
+          include_deleted: rest.include_deleted
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postagentbuilderconversationsconversationidattachments
+        description: Create conversation attachment
+        call: kibana-agent-builder.postagentbuilderconversationsconversationidattachments
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          conversation_id: rest.conversation_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/conversations/{conversation-id}/attachments/stale
+      name: api-agent-builder-conversations-conversation-id-attachments-stale
+      description: REST surface for api-agent_builder-conversations-conversation_id-attachments-stale.
+      operations:
+      - method: GET
+        name: getagentbuilderconversationsconversationidattachmentsstale
+        description: Check attachment staleness
+        call: kibana-agent-builder.getagentbuilderconversationsconversationidattachmentsstale
+        with:
+          conversation_id: rest.conversation_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/conversations/{conversation-id}/attachments/{attachment-id}
+      name: api-agent-builder-conversations-conversation-id-attachments-attachment-id
+      description: REST surface for api-agent_builder-conversations-conversation_id-attachments-attachment_id.
+      operations:
+      - method: DELETE
+        name: deleteagentbuilderconversationsconversationidattachmentsattachmentid
+        description: Delete conversation attachment
+        call: kibana-agent-builder.deleteagentbuilderconversationsconversationidattachmentsattachmentid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          conversation_id: rest.conversation_id
+          attachment_id: rest.attachment_id
+          permanent: rest.permanent
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchagentbuilderconversationsconversationidattachmentsattachmentid
+        description: Rename attachment
+        call: kibana-agent-builder.patchagentbuilderconversationsconversationidattachmentsattachmentid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          conversation_id: rest.conversation_id
+          attachment_id: rest.attachment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putagentbuilderconversationsconversationidattachmentsattachmentid
+        description: Update conversation attachment
+        call: kibana-agent-builder.putagentbuilderconversationsconversationidattachmentsattachmentid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          conversation_id: rest.conversation_id
+          attachment_id: rest.attachment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/conversations/{conversation-id}/attachments/{attachment-id}/restore
+      name: api-agent-builder-conversations-conversation-id-attachments-attachment-id-resto
+      description: REST surface for api-agent_builder-conversations-conversation_id-attachments-attachment_id-_resto.
+      operations:
+      - method: POST
+        name: postagentbuilderconversationsconversationidattachmentsattachmentidrestore
+        description: Restore deleted attachment
+        call: kibana-agent-builder.postagentbuilderconversationsconversationidattachmentsattachmentidrestore
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          conversation_id: rest.conversation_id
+          attachment_id: rest.attachment_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/conversations/{conversation-id}/attachments/{attachment-id}/origin
+      name: api-agent-builder-conversations-conversation-id-attachments-attachment-id-origin
+      description: REST surface for api-agent_builder-conversations-conversation_id-attachments-attachment_id-origin.
+      operations:
+      - method: PUT
+        name: putagentbuilderconversationsconversationidattachmentsattachmentidorigin
+        description: Update attachment origin
+        call: kibana-agent-builder.putagentbuilderconversationsconversationidattachmentsattachmentidorigin
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          conversation_id: rest.conversation_id
+          attachment_id: rest.attachment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/converse
+      name: api-agent-builder-converse
+      description: REST surface for api-agent_builder-converse.
+      operations:
+      - method: POST
+        name: postagentbuilderconverse
+        description: Send chat message
+        call: kibana-agent-builder.postagentbuilderconverse
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/converse/async
+      name: api-agent-builder-converse-async
+      description: REST surface for api-agent_builder-converse-async.
+      operations:
+      - method: POST
+        name: postagentbuilderconverseasync
+        description: Send chat message (streaming)
+        call: kibana-agent-builder.postagentbuilderconverseasync
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/mcp
+      name: api-agent-builder-mcp
+      description: REST surface for api-agent_builder-mcp.
+      operations:
+      - method: POST
+        name: postagentbuildermcp
+        description: MCP server
+        call: kibana-agent-builder.postagentbuildermcp
+        with:
+          namespace: rest.namespace
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/plugins
+      name: api-agent-builder-plugins
+      description: REST surface for api-agent_builder-plugins.
+      operations:
+      - method: GET
+        name: getagentbuilderplugins
+        description: List plugins
+        call: kibana-agent-builder.getagentbuilderplugins
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/plugins/install
+      name: api-agent-builder-plugins-install
+      description: REST surface for api-agent_builder-plugins-install.
+      operations:
+      - method: POST
+        name: postagentbuilderpluginsinstall
+        description: Install a plugin
+        call: kibana-agent-builder.postagentbuilderpluginsinstall
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/plugins/{pluginid}
+      name: api-agent-builder-plugins-pluginid
+      description: REST surface for api-agent_builder-plugins-pluginId.
+      operations:
+      - method: DELETE
+        name: deleteagentbuilderpluginspluginid
+        description: Delete a plugin
+        call: kibana-agent-builder.deleteagentbuilderpluginspluginid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          pluginId: rest.pluginId
+          force: rest.force
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getagentbuilderpluginspluginid
+        description: Get a plugin by id
+        call: kibana-agent-builder.getagentbuilderpluginspluginid
+        with:
+          pluginId: rest.pluginId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/skills
+      name: api-agent-builder-skills
+      description: REST surface for api-agent_builder-skills.
+      operations:
+      - method: GET
+        name: getagentbuilderskills
+        description: List skills
+        call: kibana-agent-builder.getagentbuilderskills
+        with:
+          include_plugins: rest.include_plugins
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postagentbuilderskills
+        description: Create a skill
+        call: kibana-agent-builder.postagentbuilderskills
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/skills/{skillid}
+      name: api-agent-builder-skills-skillid
+      description: REST surface for api-agent_builder-skills-skillId.
+      operations:
+      - method: DELETE
+        name: deleteagentbuilderskillsskillid
+        description: Delete a skill
+        call: kibana-agent-builder.deleteagentbuilderskillsskillid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          skillId: rest.skillId
+          force: rest.force
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getagentbuilderskillsskillid
+        description: Get a skill by id
+        call: kibana-agent-builder.getagentbuilderskillsskillid
+        with:
+          skillId: rest.skillId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putagentbuilderskillsskillid
+        description: Update a skill
+        call: kibana-agent-builder.putagentbuilderskillsskillid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          skillId: rest.skillId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/tools
+      name: api-agent-builder-tools
+      description: REST surface for api-agent_builder-tools.
+      operations:
+      - method: GET
+        name: getagentbuildertools
+        description: List tools
+        call: kibana-agent-builder.getagentbuildertools
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postagentbuildertools
+        description: Create a tool
+        call: kibana-agent-builder.postagentbuildertools
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/tools/execute
+      name: api-agent-builder-tools-execute
+      description: REST surface for api-agent_builder-tools-_execute.
+      operations:
+      - method: POST
+        name: postagentbuildertoolsexecute
+        description: Run a tool
+        call: kibana-agent-builder.postagentbuildertoolsexecute
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/agent-builder/tools/{toolid}
+      name: api-agent-builder-tools-toolid
+      description: REST surface for api-agent_builder-tools-toolId.
+      operations:
+      - method: DELETE
+        name: deleteagentbuildertoolstoolid
+        description: Delete a tool
+        call: kibana-agent-builder.deleteagentbuildertoolstoolid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          toolId: rest.toolId
+          force: rest.force
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getagentbuildertoolstoolid
+        description: Get a tool by id
+        call: kibana-agent-builder.getagentbuildertoolstoolid
+        with:
+          toolId: rest.toolId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putagentbuildertoolstoolid
+        description: Update a tool
+        call: kibana-agent-builder.putagentbuildertoolstoolid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          toolId: rest.toolId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-agent-builder-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — agent builder. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: send-a2a-task
+      description: Send A2A task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-agent-builder.postagentbuildera2aagentid
+      with:
+        agentId: tools.agentId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-a2a-agent-card
+      description: Get A2A agent card
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.getagentbuildera2aagentidjson
+      with:
+        agentId: tools.agentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-agents
+      description: List agents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.getagentbuilderagents
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-agent
+      description: Create an agent
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-agent-builder.postagentbuilderagents
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-consumption-data
+      description: Get agent consumption data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-agent-builder.postagentbuilderagentsagentidconsumption
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        agent_id: tools.agent_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-agent
+      description: Delete an agent
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-agent-builder.deleteagentbuilderagentsid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-id
+      description: Get an agent by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.getagentbuilderagentsid
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-agent
+      description: Update an agent
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.putagentbuilderagentsid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-conversations
+      description: List conversations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.getagentbuilderconversations
+      with:
+        agent_id: tools.agent_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-conversation-id
+      description: Delete conversation by ID
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-agent-builder.deleteagentbuilderconversationsconversationid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        conversation_id: tools.conversation_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-conversation-id
+      description: Get conversation by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.getagentbuilderconversationsconversationid
+      with:
+        conversation_id: tools.conversation_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-conversation-attachments
+      description: List conversation attachments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.getagentbuilderconversationsconversationidattachments
+      with:
+        conversation_id: tools.conversation_id
+        include_deleted: tools.include_deleted
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-conversation-attachment
+      description: Create conversation attachment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-agent-builder.postagentbuilderconversationsconversationidattachments
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        conversation_id: tools.conversation_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: check-attachment-staleness
+      description: Check attachment staleness
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.getagentbuilderconversationsconversationidattachmentsstale
+      with:
+        conversation_id: tools.conversation_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-conversation-attachment
+      description: Delete conversation attachment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-agent-builder.deleteagentbuilderconversationsconversationidattachmentsattachmentid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        conversation_id: tools.conversation_id
+        attachment_id: tools.attachment_id
+        permanent: tools.permanent
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: rename-attachment
+      description: Rename attachment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.patchagentbuilderconversationsconversationidattachmentsattachmentid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        conversation_id: tools.conversation_id
+        attachment_id: tools.attachment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-conversation-attachment
+      description: Update conversation attachment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.putagentbuilderconversationsconversationidattachmentsattachmentid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        conversation_id: tools.conversation_id
+        attachment_id: tools.attachment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: restore-deleted-attachment
+      description: Restore deleted attachment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-agent-builder.postagentbuilderconversationsconversationidattachmentsattachmentidrestore
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        conversation_id: tools.conversation_id
+        attachment_id: tools.attachment_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-attachment-origin
+      description: Update attachment origin
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.putagentbuilderconversationsconversationidattachmentsattachmentidorigin
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        conversation_id: tools.conversation_id
+        attachment_id: tools.attachment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: send-chat-message
+      description: Send chat message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-agent-builder.postagentbuilderconverse
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: send-chat-message-streaming
+      description: Send chat message (streaming)
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-agent-builder.postagentbuilderconverseasync
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mcp-server
+      description: MCP server
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-agent-builder.postagentbuildermcp
+      with:
+        namespace: tools.namespace
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-plugins
+      description: List plugins
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.getagentbuilderplugins
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: install-plugin
+      description: Install a plugin
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-agent-builder.postagentbuilderpluginsinstall
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-plugin
+      description: Delete a plugin
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-agent-builder.deleteagentbuilderpluginspluginid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        pluginId: tools.pluginId
+        force: tools.force
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-plugin-id
+      description: Get a plugin by id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.getagentbuilderpluginspluginid
+      with:
+        pluginId: tools.pluginId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-skills
+      description: List skills
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.getagentbuilderskills
+      with:
+        include_plugins: tools.include_plugins
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-skill
+      description: Create a skill
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-agent-builder.postagentbuilderskills
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-skill
+      description: Delete a skill
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-agent-builder.deleteagentbuilderskillsskillid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        skillId: tools.skillId
+        force: tools.force
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-skill-id
+      description: Get a skill by id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.getagentbuilderskillsskillid
+      with:
+        skillId: tools.skillId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-skill
+      description: Update a skill
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.putagentbuilderskillsskillid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        skillId: tools.skillId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-tools
+      description: List tools
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.getagentbuildertools
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-tool
+      description: Create a tool
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-agent-builder.postagentbuildertools
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: run-tool
+      description: Run a tool
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-agent-builder.postagentbuildertoolsexecute
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-tool
+      description: Delete a tool
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-agent-builder.deleteagentbuildertoolstoolid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        toolId: tools.toolId
+        force: tools.force
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-tool-id
+      description: Get a tool by id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.getagentbuildertoolstoolid
+      with:
+        toolId: tools.toolId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-tool
+      description: Update a tool
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-agent-builder.putagentbuildertoolstoolid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        toolId: tools.toolId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

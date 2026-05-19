@@ -1,0 +1,524 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — Fleet package policies
+  description: 'Kibana APIs — Fleet package policies. 9 operations. Lead operation: Get package policies. Self-contained Naftiko
+    capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - Fleet package policies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-fleet-package-policies
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — Fleet package policies business capability. Self-contained, no shared references.
+    resources:
+    - name: api-fleet-package_policies
+      path: /api/fleet/package_policies
+      operations:
+      - name: getfleetpackagepolicies
+        method: GET
+        description: Get package policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: number
+          description: Page number
+        - name: perPage
+          in: query
+          type: number
+          description: Number of results per page
+        - name: sortField
+          in: query
+          type: string
+          description: Field to sort results by
+        - name: sortOrder
+          in: query
+          type: string
+          description: Sort order, ascending or descending
+        - name: showUpgradeable
+          in: query
+          type: boolean
+          description: When true, only show policies with available upgrades
+        - name: kuery
+          in: query
+          type: string
+          description: A KQL query string to filter results
+        - name: format
+          in: query
+          type: string
+          description: 'Format for the response: simplified or legacy'
+        - name: withAgentCount
+          in: query
+          type: boolean
+          description: When true, include the agent count per package policy
+      - name: postfleetpackagepolicies
+        method: POST
+        description: Create a package policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: format
+          in: query
+          type: string
+          description: 'Format for the response: simplified or legacy'
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-fleet-package_policies-_bulk_get
+      path: /api/fleet/package_policies/_bulk_get
+      operations:
+      - name: postfleetpackagepoliciesbulkget
+        method: POST
+        description: Bulk get package policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: format
+          in: query
+          type: string
+          description: 'Format for the response: simplified or legacy'
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-fleet-package_policies-delete
+      path: /api/fleet/package_policies/delete
+      operations:
+      - name: postfleetpackagepoliciesdelete
+        method: POST
+        description: Bulk delete package policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-fleet-package_policies-upgrade
+      path: /api/fleet/package_policies/upgrade
+      operations:
+      - name: postfleetpackagepoliciesupgrade
+        method: POST
+        description: Upgrade a package policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-fleet-package_policies-upgrade-dryrun
+      path: /api/fleet/package_policies/upgrade/dryrun
+      operations:
+      - name: postfleetpackagepoliciesupgradedryrun
+        method: POST
+        description: Dry run a package policy upgrade
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-fleet-package_policies-packagePolicyId
+      path: /api/fleet/package_policies/{packagePolicyId}
+      operations:
+      - name: deletefleetpackagepoliciespackagepolicyid
+        method: DELETE
+        description: Delete a package policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: packagePolicyId
+          in: path
+          type: string
+          description: The ID of the package policy
+          required: true
+        - name: force
+          in: query
+          type: boolean
+          description: When true, delete the package policy even if it is managed
+      - name: getfleetpackagepoliciespackagepolicyid
+        method: GET
+        description: Get a package policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: packagePolicyId
+          in: path
+          type: string
+          description: The ID of the package policy
+          required: true
+        - name: format
+          in: query
+          type: string
+          description: 'Format for the response: simplified or legacy'
+      - name: putfleetpackagepoliciespackagepolicyid
+        method: PUT
+        description: Update a package policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: packagePolicyId
+          in: path
+          type: string
+          description: The ID of the package policy
+          required: true
+        - name: format
+          in: query
+          type: string
+          description: 'Format for the response: simplified or legacy'
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-fleet-package-policies-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — Fleet package policies. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/fleet/package-policies
+      name: api-fleet-package-policies
+      description: REST surface for api-fleet-package_policies.
+      operations:
+      - method: GET
+        name: getfleetpackagepolicies
+        description: Get package policies
+        call: kibana-fleet-package-policies.getfleetpackagepolicies
+        with:
+          page: rest.page
+          perPage: rest.perPage
+          sortField: rest.sortField
+          sortOrder: rest.sortOrder
+          showUpgradeable: rest.showUpgradeable
+          kuery: rest.kuery
+          format: rest.format
+          withAgentCount: rest.withAgentCount
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postfleetpackagepolicies
+        description: Create a package policy
+        call: kibana-fleet-package-policies.postfleetpackagepolicies
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/fleet/package-policies/bulk-get
+      name: api-fleet-package-policies-bulk-get
+      description: REST surface for api-fleet-package_policies-_bulk_get.
+      operations:
+      - method: POST
+        name: postfleetpackagepoliciesbulkget
+        description: Bulk get package policies
+        call: kibana-fleet-package-policies.postfleetpackagepoliciesbulkget
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/fleet/package-policies/delete
+      name: api-fleet-package-policies-delete
+      description: REST surface for api-fleet-package_policies-delete.
+      operations:
+      - method: POST
+        name: postfleetpackagepoliciesdelete
+        description: Bulk delete package policies
+        call: kibana-fleet-package-policies.postfleetpackagepoliciesdelete
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/fleet/package-policies/upgrade
+      name: api-fleet-package-policies-upgrade
+      description: REST surface for api-fleet-package_policies-upgrade.
+      operations:
+      - method: POST
+        name: postfleetpackagepoliciesupgrade
+        description: Upgrade a package policy
+        call: kibana-fleet-package-policies.postfleetpackagepoliciesupgrade
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/fleet/package-policies/upgrade/dryrun
+      name: api-fleet-package-policies-upgrade-dryrun
+      description: REST surface for api-fleet-package_policies-upgrade-dryrun.
+      operations:
+      - method: POST
+        name: postfleetpackagepoliciesupgradedryrun
+        description: Dry run a package policy upgrade
+        call: kibana-fleet-package-policies.postfleetpackagepoliciesupgradedryrun
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/fleet/package-policies/{packagepolicyid}
+      name: api-fleet-package-policies-packagepolicyid
+      description: REST surface for api-fleet-package_policies-packagePolicyId.
+      operations:
+      - method: DELETE
+        name: deletefleetpackagepoliciespackagepolicyid
+        description: Delete a package policy
+        call: kibana-fleet-package-policies.deletefleetpackagepoliciespackagepolicyid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          packagePolicyId: rest.packagePolicyId
+          force: rest.force
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getfleetpackagepoliciespackagepolicyid
+        description: Get a package policy
+        call: kibana-fleet-package-policies.getfleetpackagepoliciespackagepolicyid
+        with:
+          packagePolicyId: rest.packagePolicyId
+          format: rest.format
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putfleetpackagepoliciespackagepolicyid
+        description: Update a package policy
+        call: kibana-fleet-package-policies.putfleetpackagepoliciespackagepolicyid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          packagePolicyId: rest.packagePolicyId
+          format: rest.format
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-fleet-package-policies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — Fleet package policies. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-package-policies
+      description: Get package policies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-fleet-package-policies.getfleetpackagepolicies
+      with:
+        page: tools.page
+        perPage: tools.perPage
+        sortField: tools.sortField
+        sortOrder: tools.sortOrder
+        showUpgradeable: tools.showUpgradeable
+        kuery: tools.kuery
+        format: tools.format
+        withAgentCount: tools.withAgentCount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-package-policy
+      description: Create a package policy
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-fleet-package-policies.postfleetpackagepolicies
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-get-package-policies
+      description: Bulk get package policies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-fleet-package-policies.postfleetpackagepoliciesbulkget
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-delete-package-policies
+      description: Bulk delete package policies
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-fleet-package-policies.postfleetpackagepoliciesdelete
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upgrade-package-policy
+      description: Upgrade a package policy
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-fleet-package-policies.postfleetpackagepoliciesupgrade
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dry-run-package-policy-upgrade
+      description: Dry run a package policy upgrade
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-fleet-package-policies.postfleetpackagepoliciesupgradedryrun
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-package-policy
+      description: Delete a package policy
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-fleet-package-policies.deletefleetpackagepoliciespackagepolicyid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        packagePolicyId: tools.packagePolicyId
+        force: tools.force
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-package-policy
+      description: Get a package policy
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-fleet-package-policies.getfleetpackagepoliciespackagepolicyid
+      with:
+        packagePolicyId: tools.packagePolicyId
+        format: tools.format
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-package-policy
+      description: Update a package policy
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-fleet-package-policies.putfleetpackagepoliciespackagepolicyid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        packagePolicyId: tools.packagePolicyId
+        format: tools.format
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

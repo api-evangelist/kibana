@@ -1,0 +1,812 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — Security Lists API
+  description: 'Kibana APIs — Security Lists API. 18 operations. Lead operation: Delete a value list. Self-contained Naftiko
+    capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - Security Lists API
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-security-lists-api
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — Security Lists API business capability. Self-contained, no shared references.
+    resources:
+    - name: api-lists
+      path: /api/lists
+      operations:
+      - name: deletelist
+        method: DELETE
+        description: Delete a value list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: Value list identifier to delete, including all of its list items.
+          required: true
+        - name: deleteReferences
+          in: query
+          type: boolean
+          description: Determines whether exception items referencing this value list should be deleted.
+        - name: ignoreReferences
+          in: query
+          type: boolean
+          description: Determines whether to delete value list without performing any additional checks of where this list
+            may be utilized.
+      - name: readlist
+        method: GET
+        description: Get value list details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: Value list identifier (`id`) returned when the list was created.
+          required: true
+      - name: patchlist
+        method: PATCH
+        description: Patch a value list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: createlist
+        method: POST
+        description: Create a value list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updatelist
+        method: PUT
+        description: Update a value list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-lists-_find
+      path: /api/lists/_find
+      operations:
+      - name: findlists
+        method: GET
+        description: Get value lists
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          description: The page number to return.
+        - name: per_page
+          in: query
+          type: integer
+          description: The number of value lists to return per page.
+        - name: sort_field
+          in: query
+          type: string
+          description: Determines which field is used to sort the results.
+        - name: sort_order
+          in: query
+          type: string
+          description: Determines the sort order, which can be `desc` or `asc`
+        - name: cursor
+          in: query
+          type: string
+          description: Returns the lists that come after the last lists returned in the previous call (use the `cursor` value
+            returned in the previous call). This parameter uses the `
+        - name: filter
+          in: query
+          type: string
+          description: Filters the returned results according to the value of the specified field,
+    - name: api-lists-index
+      path: /api/lists/index
+      operations:
+      - name: deletelistindex
+        method: DELETE
+        description: Delete value list data streams
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: readlistindex
+        method: GET
+        description: Get status of value list data streams
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createlistindex
+        method: POST
+        description: Create list data streams
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-lists-items
+      path: /api/lists/items
+      operations:
+      - name: deletelistitem
+        method: DELETE
+        description: Delete a value list item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: Value list item's identifier. Required if `list_id` and `value` are not specified.
+        - name: list_id
+          in: query
+          type: string
+          description: Value list's identifier. Required if `id` is not specified.
+        - name: value
+          in: query
+          type: string
+          description: The value used to evaluate exceptions. Required if `id` is not specified.
+        - name: refresh
+          in: query
+          type: string
+          description: Determines when changes made by the request are made visible to search.
+      - name: readlistitem
+        method: GET
+        description: Get a value list item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: Value list item identifier. Required if `list_id` and `value` are not specified.
+        - name: list_id
+          in: query
+          type: string
+          description: Value list item list's `id` identfier. Required if `id` is not specified.
+        - name: value
+          in: query
+          type: string
+          description: The value used to evaluate exceptions. Required if `id` is not specified.
+      - name: patchlistitem
+        method: PATCH
+        description: Patch a value list item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: createlistitem
+        method: POST
+        description: Create a value list item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updatelistitem
+        method: PUT
+        description: Update a value list item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-lists-items-_export
+      path: /api/lists/items/_export
+      operations:
+      - name: exportlistitems
+        method: POST
+        description: Export value list items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: list_id
+          in: query
+          type: string
+          description: Value list's `id` to export.
+          required: true
+    - name: api-lists-items-_find
+      path: /api/lists/items/_find
+      operations:
+      - name: findlistitems
+        method: GET
+        description: Get value list items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: list_id
+          in: query
+          type: string
+          description: Parent value list's `id` to page through items for.
+          required: true
+        - name: page
+          in: query
+          type: integer
+          description: The page number to return.
+        - name: per_page
+          in: query
+          type: integer
+          description: The number of list items to return per page.
+        - name: sort_field
+          in: query
+          type: string
+          description: Determines which field is used to sort the results.
+        - name: sort_order
+          in: query
+          type: string
+          description: Determines the sort order, which can be `desc` or `asc`
+        - name: cursor
+          in: query
+          type: string
+          description: Opaque cursor returned in a previous response; pass it to continue listing from the next page. Omit
+            on the first request.
+        - name: filter
+          in: query
+          type: string
+          description: Filters the returned results according to the value of the specified field,
+    - name: api-lists-items-_import
+      path: /api/lists/items/_import
+      operations:
+      - name: importlistitems
+        method: POST
+        description: Import value list items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: list_id
+          in: query
+          type: string
+          description: List's id.
+        - name: type
+          in: query
+          type: string
+          description: Type of the importing list.
+        - name: refresh
+          in: query
+          type: string
+          description: Determines when changes made by the request are made visible to search.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-lists-privileges
+      path: /api/lists/privileges
+      operations:
+      - name: readlistprivileges
+        method: GET
+        description: Get value list privileges
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-security-lists-api-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — Security Lists API. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/lists
+      name: api-lists
+      description: REST surface for api-lists.
+      operations:
+      - method: DELETE
+        name: deletelist
+        description: Delete a value list
+        call: kibana-security-lists-api.deletelist
+        with:
+          id: rest.id
+          deleteReferences: rest.deleteReferences
+          ignoreReferences: rest.ignoreReferences
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: readlist
+        description: Get value list details
+        call: kibana-security-lists-api.readlist
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchlist
+        description: Patch a value list
+        call: kibana-security-lists-api.patchlist
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createlist
+        description: Create a value list
+        call: kibana-security-lists-api.createlist
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatelist
+        description: Update a value list
+        call: kibana-security-lists-api.updatelist
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/lists/find
+      name: api-lists-find
+      description: REST surface for api-lists-_find.
+      operations:
+      - method: GET
+        name: findlists
+        description: Get value lists
+        call: kibana-security-lists-api.findlists
+        with:
+          page: rest.page
+          per_page: rest.per_page
+          sort_field: rest.sort_field
+          sort_order: rest.sort_order
+          cursor: rest.cursor
+          filter: rest.filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/lists/index
+      name: api-lists-index
+      description: REST surface for api-lists-index.
+      operations:
+      - method: DELETE
+        name: deletelistindex
+        description: Delete value list data streams
+        call: kibana-security-lists-api.deletelistindex
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: readlistindex
+        description: Get status of value list data streams
+        call: kibana-security-lists-api.readlistindex
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createlistindex
+        description: Create list data streams
+        call: kibana-security-lists-api.createlistindex
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/lists/items
+      name: api-lists-items
+      description: REST surface for api-lists-items.
+      operations:
+      - method: DELETE
+        name: deletelistitem
+        description: Delete a value list item
+        call: kibana-security-lists-api.deletelistitem
+        with:
+          id: rest.id
+          list_id: rest.list_id
+          value: rest.value
+          refresh: rest.refresh
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: readlistitem
+        description: Get a value list item
+        call: kibana-security-lists-api.readlistitem
+        with:
+          id: rest.id
+          list_id: rest.list_id
+          value: rest.value
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchlistitem
+        description: Patch a value list item
+        call: kibana-security-lists-api.patchlistitem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createlistitem
+        description: Create a value list item
+        call: kibana-security-lists-api.createlistitem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatelistitem
+        description: Update a value list item
+        call: kibana-security-lists-api.updatelistitem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/lists/items/export
+      name: api-lists-items-export
+      description: REST surface for api-lists-items-_export.
+      operations:
+      - method: POST
+        name: exportlistitems
+        description: Export value list items
+        call: kibana-security-lists-api.exportlistitems
+        with:
+          list_id: rest.list_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/lists/items/find
+      name: api-lists-items-find
+      description: REST surface for api-lists-items-_find.
+      operations:
+      - method: GET
+        name: findlistitems
+        description: Get value list items
+        call: kibana-security-lists-api.findlistitems
+        with:
+          list_id: rest.list_id
+          page: rest.page
+          per_page: rest.per_page
+          sort_field: rest.sort_field
+          sort_order: rest.sort_order
+          cursor: rest.cursor
+          filter: rest.filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/lists/items/import
+      name: api-lists-items-import
+      description: REST surface for api-lists-items-_import.
+      operations:
+      - method: POST
+        name: importlistitems
+        description: Import value list items
+        call: kibana-security-lists-api.importlistitems
+        with:
+          list_id: rest.list_id
+          type: rest.type
+          refresh: rest.refresh
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/lists/privileges
+      name: api-lists-privileges
+      description: REST surface for api-lists-privileges.
+      operations:
+      - method: GET
+        name: readlistprivileges
+        description: Get value list privileges
+        call: kibana-security-lists-api.readlistprivileges
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-security-lists-api-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — Security Lists API. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: delete-value-list
+      description: Delete a value list
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-lists-api.deletelist
+      with:
+        id: tools.id
+        deleteReferences: tools.deleteReferences
+        ignoreReferences: tools.ignoreReferences
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-value-list-details
+      description: Get value list details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-lists-api.readlist
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: patch-value-list
+      description: Patch a value list
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-lists-api.patchlist
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-value-list
+      description: Create a value list
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-lists-api.createlist
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-value-list
+      description: Update a value list
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-lists-api.updatelist
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-value-lists
+      description: Get value lists
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-lists-api.findlists
+      with:
+        page: tools.page
+        per_page: tools.per_page
+        sort_field: tools.sort_field
+        sort_order: tools.sort_order
+        cursor: tools.cursor
+        filter: tools.filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-value-list-data-streams
+      description: Delete value list data streams
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-lists-api.deletelistindex
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-status-value-list-data
+      description: Get status of value list data streams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-lists-api.readlistindex
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-list-data-streams
+      description: Create list data streams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-security-lists-api.createlistindex
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-value-list-item
+      description: Delete a value list item
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-lists-api.deletelistitem
+      with:
+        id: tools.id
+        list_id: tools.list_id
+        value: tools.value
+        refresh: tools.refresh
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-value-list-item
+      description: Get a value list item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-lists-api.readlistitem
+      with:
+        id: tools.id
+        list_id: tools.list_id
+        value: tools.value
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: patch-value-list-item
+      description: Patch a value list item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-lists-api.patchlistitem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-value-list-item
+      description: Create a value list item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-security-lists-api.createlistitem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-value-list-item
+      description: Update a value list item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-lists-api.updatelistitem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-value-list-items
+      description: Export value list items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-security-lists-api.exportlistitems
+      with:
+        list_id: tools.list_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-value-list-items
+      description: Get value list items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-lists-api.findlistitems
+      with:
+        list_id: tools.list_id
+        page: tools.page
+        per_page: tools.per_page
+        sort_field: tools.sort_field
+        sort_order: tools.sort_order
+        cursor: tools.cursor
+        filter: tools.filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: import-value-list-items
+      description: Import value list items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-security-lists-api.importlistitems
+      with:
+        list_id: tools.list_id
+        type: tools.type
+        refresh: tools.refresh
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-value-list-privileges
+      description: Get value list privileges
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-lists-api.readlistprivileges
+      outputParameters:
+      - type: object
+        mapping: $.

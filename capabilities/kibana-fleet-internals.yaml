@@ -1,0 +1,246 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — Fleet internals
+  description: 'Kibana APIs — Fleet internals. 5 operations. Lead operation: Check permissions. Self-contained Naftiko capability
+    covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - Fleet internals
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-fleet-internals
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — Fleet internals business capability. Self-contained, no shared references.
+    resources:
+    - name: api-fleet-check-permissions
+      path: /api/fleet/check-permissions
+      operations:
+      - name: getfleetcheckpermissions
+        method: GET
+        description: Check permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fleetServerSetup
+          in: query
+          type: boolean
+          description: When true, check Fleet Server setup privileges in addition to standard Fleet privileges
+    - name: api-fleet-health_check
+      path: /api/fleet/health_check
+      operations:
+      - name: postfleethealthcheck
+        method: POST
+        description: Check Fleet Server health
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-fleet-settings
+      path: /api/fleet/settings
+      operations:
+      - name: getfleetsettings
+        method: GET
+        description: Get settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: putfleetsettings
+        method: PUT
+        description: Update settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-fleet-setup
+      path: /api/fleet/setup
+      operations:
+      - name: postfleetsetup
+        method: POST
+        description: Initiate Fleet setup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-fleet-internals-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — Fleet internals. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/fleet/check-permissions
+      name: api-fleet-check-permissions
+      description: REST surface for api-fleet-check-permissions.
+      operations:
+      - method: GET
+        name: getfleetcheckpermissions
+        description: Check permissions
+        call: kibana-fleet-internals.getfleetcheckpermissions
+        with:
+          fleetServerSetup: rest.fleetServerSetup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/fleet/health-check
+      name: api-fleet-health-check
+      description: REST surface for api-fleet-health_check.
+      operations:
+      - method: POST
+        name: postfleethealthcheck
+        description: Check Fleet Server health
+        call: kibana-fleet-internals.postfleethealthcheck
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/fleet/settings
+      name: api-fleet-settings
+      description: REST surface for api-fleet-settings.
+      operations:
+      - method: GET
+        name: getfleetsettings
+        description: Get settings
+        call: kibana-fleet-internals.getfleetsettings
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putfleetsettings
+        description: Update settings
+        call: kibana-fleet-internals.putfleetsettings
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/fleet/setup
+      name: api-fleet-setup
+      description: REST surface for api-fleet-setup.
+      operations:
+      - method: POST
+        name: postfleetsetup
+        description: Initiate Fleet setup
+        call: kibana-fleet-internals.postfleetsetup
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-fleet-internals-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — Fleet internals. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: check-permissions
+      description: Check permissions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-fleet-internals.getfleetcheckpermissions
+      with:
+        fleetServerSetup: tools.fleetServerSetup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: check-fleet-server-health
+      description: Check Fleet Server health
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-fleet-internals.postfleethealthcheck
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-settings
+      description: Get settings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-fleet-internals.getfleetsettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-settings
+      description: Update settings
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-fleet-internals.putfleetsettings
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: initiate-fleet-setup
+      description: Initiate Fleet setup
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-fleet-internals.postfleetsetup
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+      outputParameters:
+      - type: object
+        mapping: $.

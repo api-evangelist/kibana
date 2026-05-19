@@ -1,0 +1,294 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — Security Endpoint Exceptions API
+  description: 'Kibana APIs — Security Endpoint Exceptions API. 6 operations. Lead operation: Create an Elastic Endpoint rule
+    exception list. Self-contained Naftiko capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - Security Endpoint Exceptions API
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-security-endpoint-exceptions-api
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — Security Endpoint Exceptions API business capability. Self-contained, no shared references.
+    resources:
+    - name: api-endpoint_list
+      path: /api/endpoint_list
+      operations:
+      - name: createendpointlist
+        method: POST
+        description: Create an Elastic Endpoint rule exception list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-endpoint_list-items
+      path: /api/endpoint_list/items
+      operations:
+      - name: deleteendpointlistitem
+        method: DELETE
+        description: Delete an Elastic Endpoint exception list item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: Either `id` or `item_id` must be specified
+        - name: item_id
+          in: query
+          type: string
+          description: Either `id` or `item_id` must be specified
+      - name: readendpointlistitem
+        method: GET
+        description: Get an Elastic Endpoint rule exception list item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: Either `id` or `item_id` must be specified
+        - name: item_id
+          in: query
+          type: string
+          description: Either `id` or `item_id` must be specified
+      - name: createendpointlistitem
+        method: POST
+        description: Create an Elastic Endpoint rule exception list item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updateendpointlistitem
+        method: PUT
+        description: Update an Elastic Endpoint rule exception list item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-endpoint_list-items-_find
+      path: /api/endpoint_list/items/_find
+      operations:
+      - name: findendpointlistitems
+        method: GET
+        description: Get Elastic Endpoint exception list items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filter
+          in: query
+          type: string
+          description: Filters the returned results according to the value of the specified field,
+        - name: page
+          in: query
+          type: integer
+          description: The page number to return
+        - name: per_page
+          in: query
+          type: integer
+          description: The number of exception list items to return per page
+        - name: sort_field
+          in: query
+          type: string
+          description: Determines which field is used to sort the results
+        - name: sort_order
+          in: query
+          type: string
+          description: Determines the sort order, which can be `desc` or `asc`
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-security-endpoint-exceptions-api-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — Security Endpoint Exceptions API. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/endpoint-list
+      name: api-endpoint-list
+      description: REST surface for api-endpoint_list.
+      operations:
+      - method: POST
+        name: createendpointlist
+        description: Create an Elastic Endpoint rule exception list
+        call: kibana-security-endpoint-exceptions-api.createendpointlist
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint-list/items
+      name: api-endpoint-list-items
+      description: REST surface for api-endpoint_list-items.
+      operations:
+      - method: DELETE
+        name: deleteendpointlistitem
+        description: Delete an Elastic Endpoint exception list item
+        call: kibana-security-endpoint-exceptions-api.deleteendpointlistitem
+        with:
+          id: rest.id
+          item_id: rest.item_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: readendpointlistitem
+        description: Get an Elastic Endpoint rule exception list item
+        call: kibana-security-endpoint-exceptions-api.readendpointlistitem
+        with:
+          id: rest.id
+          item_id: rest.item_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createendpointlistitem
+        description: Create an Elastic Endpoint rule exception list item
+        call: kibana-security-endpoint-exceptions-api.createendpointlistitem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateendpointlistitem
+        description: Update an Elastic Endpoint rule exception list item
+        call: kibana-security-endpoint-exceptions-api.updateendpointlistitem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/endpoint-list/items/find
+      name: api-endpoint-list-items-find
+      description: REST surface for api-endpoint_list-items-_find.
+      operations:
+      - method: GET
+        name: findendpointlistitems
+        description: Get Elastic Endpoint exception list items
+        call: kibana-security-endpoint-exceptions-api.findendpointlistitems
+        with:
+          filter: rest.filter
+          page: rest.page
+          per_page: rest.per_page
+          sort_field: rest.sort_field
+          sort_order: rest.sort_order
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-security-endpoint-exceptions-api-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — Security Endpoint Exceptions API. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: create-elastic-endpoint-rule-exception
+      description: Create an Elastic Endpoint rule exception list
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-endpoint-exceptions-api.createendpointlist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-elastic-endpoint-exception-list
+      description: Delete an Elastic Endpoint exception list item
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-endpoint-exceptions-api.deleteendpointlistitem
+      with:
+        id: tools.id
+        item_id: tools.item_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-elastic-endpoint-rule-exception
+      description: Get an Elastic Endpoint rule exception list item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-endpoint-exceptions-api.readendpointlistitem
+      with:
+        id: tools.id
+        item_id: tools.item_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-elastic-endpoint-rule-exception-2
+      description: Create an Elastic Endpoint rule exception list item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-security-endpoint-exceptions-api.createendpointlistitem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-elastic-endpoint-rule-exception
+      description: Update an Elastic Endpoint rule exception list item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-endpoint-exceptions-api.updateendpointlistitem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-elastic-endpoint-exception-list
+      description: Get Elastic Endpoint exception list items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-endpoint-exceptions-api.findendpointlistitems
+      with:
+        filter: tools.filter
+        page: tools.page
+        per_page: tools.per_page
+        sort_field: tools.sort_field
+        sort_order: tools.sort_order
+      outputParameters:
+      - type: object
+        mapping: $.

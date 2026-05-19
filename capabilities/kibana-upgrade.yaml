@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — upgrade
+  description: 'Kibana APIs — upgrade. 1 operations. Lead operation: Get the upgrade readiness status. Self-contained Naftiko
+    capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - upgrade
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-upgrade
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — upgrade business capability. Self-contained, no shared references.
+    resources:
+    - name: api-upgrade_assistant-status
+      path: /api/upgrade_assistant/status
+      operations:
+      - name: getupgradestatus
+        method: GET
+        description: Get the upgrade readiness status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-upgrade-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — upgrade. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/upgrade-assistant/status
+      name: api-upgrade-assistant-status
+      description: REST surface for api-upgrade_assistant-status.
+      operations:
+      - method: GET
+        name: getupgradestatus
+        description: Get the upgrade readiness status
+        call: kibana-upgrade.getupgradestatus
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-upgrade-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — upgrade. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-upgrade-readiness-status
+      description: Get the upgrade readiness status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-upgrade.getupgradestatus
+      outputParameters:
+      - type: object
+        mapping: $.

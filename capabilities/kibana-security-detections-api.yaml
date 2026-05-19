@@ -1,0 +1,1083 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — Security Detections API
+  description: 'Kibana APIs — Security Detections API. 25 operations. Lead operation: Delete an alerts index. Self-contained
+    Naftiko capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - Security Detections API
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-security-detections-api
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — Security Detections API business capability. Self-contained, no shared references.
+    resources:
+    - name: api-detection_engine-index
+      path: /api/detection_engine/index
+      operations:
+      - name: deletealertsindex
+        method: DELETE
+        description: Delete an alerts index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: readalertsindex
+        method: GET
+        description: Reads the alert index name if it exists
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createalertsindex
+        method: POST
+        description: Create an alerts index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-detection_engine-privileges
+      path: /api/detection_engine/privileges
+      operations:
+      - name: readprivileges
+        method: GET
+        description: Returns user privileges for the Kibana space
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-detection_engine-rules
+      path: /api/detection_engine/rules
+      operations:
+      - name: deleterule
+        method: DELETE
+        description: Delete a detection rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: The rule's `id` value.
+        - name: rule_id
+          in: query
+          type: string
+          description: The rule's `rule_id` value.
+      - name: readrule
+        method: GET
+        description: Retrieve a detection rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: The rule's `id` value.
+        - name: rule_id
+          in: query
+          type: string
+          description: The rule's `rule_id` value.
+      - name: patchrule
+        method: PATCH
+        description: Patch a detection rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: createrule
+        method: POST
+        description: Create a detection rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updaterule
+        method: PUT
+        description: Update a detection rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-detection_engine-rules-_bulk_action
+      path: /api/detection_engine/rules/_bulk_action
+      operations:
+      - name: performrulesbulkaction
+        method: POST
+        description: Apply a bulk action to detection rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: dry_run
+          in: query
+          type: boolean
+          description: Enables dry run mode for the request call.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-detection_engine-rules-_export
+      path: /api/detection_engine/rules/_export
+      operations:
+      - name: exportrules
+        method: POST
+        description: Export detection rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: exclude_export_details
+          in: query
+          type: boolean
+          description: Determines whether a summary of the exported rules is returned.
+        - name: file_name
+          in: query
+          type: string
+          description: File name for saving the exported rules.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-detection_engine-rules-_find
+      path: /api/detection_engine/rules/_find
+      operations:
+      - name: findrules
+        method: GET
+        description: List all detection rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: List of `alert.attributes` field names to return for each rule (for example `name`, `enabled`).
+        - name: filter
+          in: query
+          type: string
+          description: Search query
+        - name: sort_field
+          in: query
+          type: string
+          description: Field to sort by
+        - name: sort_order
+          in: query
+          type: string
+          description: Sort order
+        - name: page
+          in: query
+          type: integer
+          description: Page number
+        - name: per_page
+          in: query
+          type: integer
+          description: Rules per page
+        - name: gaps_range_start
+          in: query
+          type: string
+          description: Gaps range start
+        - name: gaps_range_end
+          in: query
+          type: string
+          description: Gaps range end
+        - name: gap_fill_statuses
+          in: query
+          type: array
+          description: Gap fill statuses
+        - name: gap_auto_fill_scheduler_id
+          in: query
+          type: string
+          description: Gap auto fill scheduler ID used to determine gap fill status for rules
+    - name: api-detection_engine-rules-_import
+      path: /api/detection_engine/rules/_import
+      operations:
+      - name: importrules
+        method: POST
+        description: Import detection rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: overwrite
+          in: query
+          type: boolean
+          description: Determines whether existing rules with the same `rule_id` are overwritten.
+        - name: overwrite_exceptions
+          in: query
+          type: boolean
+          description: Determines whether existing exception lists with the same `list_id` are overwritten. Both the exception
+            list container and its items are overwritten.
+        - name: overwrite_action_connectors
+          in: query
+          type: boolean
+          description: Determines whether existing actions with the same `kibana.alert.rule.actions.id` are overwritten.
+        - name: as_new_list
+          in: query
+          type: boolean
+          description: Generates a new list ID for each imported exception list.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-detection_engine-rules-prepackaged
+      path: /api/detection_engine/rules/prepackaged
+      operations:
+      - name: installprebuiltrulesandtimelines
+        method: PUT
+        description: Install prebuilt detection rules and Timelines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-detection_engine-rules-prepackaged-_status
+      path: /api/detection_engine/rules/prepackaged/_status
+      operations:
+      - name: readprebuiltrulesandtimelinesstatus
+        method: GET
+        description: Retrieve the status of prebuilt detection rules and Timelines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-detection_engine-rules-preview
+      path: /api/detection_engine/rules/preview
+      operations:
+      - name: rulepreview
+        method: POST
+        description: Preview rule alerts generated on specified time range
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: enable_logged_requests
+          in: query
+          type: boolean
+          description: Enables logging and returning in response ES queries, performed during rule execution
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-detection_engine-signals-assignees
+      path: /api/detection_engine/signals/assignees
+      operations:
+      - name: setalertassignees
+        method: POST
+        description: Assign and unassign users from detection alerts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-detection_engine-signals-finalize_migration
+      path: /api/detection_engine/signals/finalize_migration
+      operations:
+      - name: finalizealertsmigration
+        method: POST
+        description: Finalize detection alert migrations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-detection_engine-signals-migration
+      path: /api/detection_engine/signals/migration
+      operations:
+      - name: alertsmigrationcleanup
+        method: DELETE
+        description: Clean up detection alert migrations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: createalertsmigration
+        method: POST
+        description: Initiate a detection alert migration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-detection_engine-signals-migration_status
+      path: /api/detection_engine/signals/migration_status
+      operations:
+      - name: readalertsmigrationstatus
+        method: GET
+        description: Retrieve the status of detection alert migrations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: from
+          in: query
+          type: string
+          description: Maximum age of qualifying detection alerts
+          required: true
+    - name: api-detection_engine-signals-search
+      path: /api/detection_engine/signals/search
+      operations:
+      - name: searchalerts
+        method: POST
+        description: Find and/or aggregate detection alerts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-detection_engine-signals-status
+      path: /api/detection_engine/signals/status
+      operations:
+      - name: setalertsstatus
+        method: POST
+        description: Set a detection alert status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-detection_engine-signals-tags
+      path: /api/detection_engine/signals/tags
+      operations:
+      - name: setalerttags
+        method: POST
+        description: Add and remove detection alert tags
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-detection_engine-tags
+      path: /api/detection_engine/tags
+      operations:
+      - name: readtags
+        method: GET
+        description: List all detection rule tags
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-security-detections-api-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — Security Detections API. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/detection-engine/index
+      name: api-detection-engine-index
+      description: REST surface for api-detection_engine-index.
+      operations:
+      - method: DELETE
+        name: deletealertsindex
+        description: Delete an alerts index
+        call: kibana-security-detections-api.deletealertsindex
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: readalertsindex
+        description: Reads the alert index name if it exists
+        call: kibana-security-detections-api.readalertsindex
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createalertsindex
+        description: Create an alerts index
+        call: kibana-security-detections-api.createalertsindex
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/privileges
+      name: api-detection-engine-privileges
+      description: REST surface for api-detection_engine-privileges.
+      operations:
+      - method: GET
+        name: readprivileges
+        description: Returns user privileges for the Kibana space
+        call: kibana-security-detections-api.readprivileges
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/rules
+      name: api-detection-engine-rules
+      description: REST surface for api-detection_engine-rules.
+      operations:
+      - method: DELETE
+        name: deleterule
+        description: Delete a detection rule
+        call: kibana-security-detections-api.deleterule
+        with:
+          id: rest.id
+          rule_id: rest.rule_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: readrule
+        description: Retrieve a detection rule
+        call: kibana-security-detections-api.readrule
+        with:
+          id: rest.id
+          rule_id: rest.rule_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchrule
+        description: Patch a detection rule
+        call: kibana-security-detections-api.patchrule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrule
+        description: Create a detection rule
+        call: kibana-security-detections-api.createrule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updaterule
+        description: Update a detection rule
+        call: kibana-security-detections-api.updaterule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/rules/bulk-action
+      name: api-detection-engine-rules-bulk-action
+      description: REST surface for api-detection_engine-rules-_bulk_action.
+      operations:
+      - method: POST
+        name: performrulesbulkaction
+        description: Apply a bulk action to detection rules
+        call: kibana-security-detections-api.performrulesbulkaction
+        with:
+          dry_run: rest.dry_run
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/rules/export
+      name: api-detection-engine-rules-export
+      description: REST surface for api-detection_engine-rules-_export.
+      operations:
+      - method: POST
+        name: exportrules
+        description: Export detection rules
+        call: kibana-security-detections-api.exportrules
+        with:
+          exclude_export_details: rest.exclude_export_details
+          file_name: rest.file_name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/rules/find
+      name: api-detection-engine-rules-find
+      description: REST surface for api-detection_engine-rules-_find.
+      operations:
+      - method: GET
+        name: findrules
+        description: List all detection rules
+        call: kibana-security-detections-api.findrules
+        with:
+          fields: rest.fields
+          filter: rest.filter
+          sort_field: rest.sort_field
+          sort_order: rest.sort_order
+          page: rest.page
+          per_page: rest.per_page
+          gaps_range_start: rest.gaps_range_start
+          gaps_range_end: rest.gaps_range_end
+          gap_fill_statuses: rest.gap_fill_statuses
+          gap_auto_fill_scheduler_id: rest.gap_auto_fill_scheduler_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/rules/import
+      name: api-detection-engine-rules-import
+      description: REST surface for api-detection_engine-rules-_import.
+      operations:
+      - method: POST
+        name: importrules
+        description: Import detection rules
+        call: kibana-security-detections-api.importrules
+        with:
+          overwrite: rest.overwrite
+          overwrite_exceptions: rest.overwrite_exceptions
+          overwrite_action_connectors: rest.overwrite_action_connectors
+          as_new_list: rest.as_new_list
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/rules/prepackaged
+      name: api-detection-engine-rules-prepackaged
+      description: REST surface for api-detection_engine-rules-prepackaged.
+      operations:
+      - method: PUT
+        name: installprebuiltrulesandtimelines
+        description: Install prebuilt detection rules and Timelines
+        call: kibana-security-detections-api.installprebuiltrulesandtimelines
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/rules/prepackaged/status
+      name: api-detection-engine-rules-prepackaged-status
+      description: REST surface for api-detection_engine-rules-prepackaged-_status.
+      operations:
+      - method: GET
+        name: readprebuiltrulesandtimelinesstatus
+        description: Retrieve the status of prebuilt detection rules and Timelines
+        call: kibana-security-detections-api.readprebuiltrulesandtimelinesstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/rules/preview
+      name: api-detection-engine-rules-preview
+      description: REST surface for api-detection_engine-rules-preview.
+      operations:
+      - method: POST
+        name: rulepreview
+        description: Preview rule alerts generated on specified time range
+        call: kibana-security-detections-api.rulepreview
+        with:
+          enable_logged_requests: rest.enable_logged_requests
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/signals/assignees
+      name: api-detection-engine-signals-assignees
+      description: REST surface for api-detection_engine-signals-assignees.
+      operations:
+      - method: POST
+        name: setalertassignees
+        description: Assign and unassign users from detection alerts
+        call: kibana-security-detections-api.setalertassignees
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/signals/finalize-migration
+      name: api-detection-engine-signals-finalize-migration
+      description: REST surface for api-detection_engine-signals-finalize_migration.
+      operations:
+      - method: POST
+        name: finalizealertsmigration
+        description: Finalize detection alert migrations
+        call: kibana-security-detections-api.finalizealertsmigration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/signals/migration
+      name: api-detection-engine-signals-migration
+      description: REST surface for api-detection_engine-signals-migration.
+      operations:
+      - method: DELETE
+        name: alertsmigrationcleanup
+        description: Clean up detection alert migrations
+        call: kibana-security-detections-api.alertsmigrationcleanup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createalertsmigration
+        description: Initiate a detection alert migration
+        call: kibana-security-detections-api.createalertsmigration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/signals/migration-status
+      name: api-detection-engine-signals-migration-status
+      description: REST surface for api-detection_engine-signals-migration_status.
+      operations:
+      - method: GET
+        name: readalertsmigrationstatus
+        description: Retrieve the status of detection alert migrations
+        call: kibana-security-detections-api.readalertsmigrationstatus
+        with:
+          from: rest.from
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/signals/search
+      name: api-detection-engine-signals-search
+      description: REST surface for api-detection_engine-signals-search.
+      operations:
+      - method: POST
+        name: searchalerts
+        description: Find and/or aggregate detection alerts
+        call: kibana-security-detections-api.searchalerts
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/signals/status
+      name: api-detection-engine-signals-status
+      description: REST surface for api-detection_engine-signals-status.
+      operations:
+      - method: POST
+        name: setalertsstatus
+        description: Set a detection alert status
+        call: kibana-security-detections-api.setalertsstatus
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/signals/tags
+      name: api-detection-engine-signals-tags
+      description: REST surface for api-detection_engine-signals-tags.
+      operations:
+      - method: POST
+        name: setalerttags
+        description: Add and remove detection alert tags
+        call: kibana-security-detections-api.setalerttags
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/detection-engine/tags
+      name: api-detection-engine-tags
+      description: REST surface for api-detection_engine-tags.
+      operations:
+      - method: GET
+        name: readtags
+        description: List all detection rule tags
+        call: kibana-security-detections-api.readtags
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-security-detections-api-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — Security Detections API. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: delete-alerts-index
+      description: Delete an alerts index
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-detections-api.deletealertsindex
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: reads-alert-index-name-if
+      description: Reads the alert index name if it exists
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-detections-api.readalertsindex
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-alerts-index
+      description: Create an alerts index
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-detections-api.createalertsindex
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-user-privileges-kibana-space
+      description: Returns user privileges for the Kibana space
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-detections-api.readprivileges
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-detection-rule
+      description: Delete a detection rule
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-detections-api.deleterule
+      with:
+        id: tools.id
+        rule_id: tools.rule_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detection-rule
+      description: Retrieve a detection rule
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-detections-api.readrule
+      with:
+        id: tools.id
+        rule_id: tools.rule_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: patch-detection-rule
+      description: Patch a detection rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-detections-api.patchrule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-detection-rule
+      description: Create a detection rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-detections-api.createrule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-detection-rule
+      description: Update a detection rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-detections-api.updaterule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apply-bulk-action-detection-rules
+      description: Apply a bulk action to detection rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-detections-api.performrulesbulkaction
+      with:
+        dry_run: tools.dry_run
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-detection-rules
+      description: Export detection rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-detections-api.exportrules
+      with:
+        exclude_export_details: tools.exclude_export_details
+        file_name: tools.file_name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-detection-rules
+      description: List all detection rules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-detections-api.findrules
+      with:
+        fields: tools.fields
+        filter: tools.filter
+        sort_field: tools.sort_field
+        sort_order: tools.sort_order
+        page: tools.page
+        per_page: tools.per_page
+        gaps_range_start: tools.gaps_range_start
+        gaps_range_end: tools.gaps_range_end
+        gap_fill_statuses: tools.gap_fill_statuses
+        gap_auto_fill_scheduler_id: tools.gap_auto_fill_scheduler_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: import-detection-rules
+      description: Import detection rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-detections-api.importrules
+      with:
+        overwrite: tools.overwrite
+        overwrite_exceptions: tools.overwrite_exceptions
+        overwrite_action_connectors: tools.overwrite_action_connectors
+        as_new_list: tools.as_new_list
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: install-prebuilt-detection-rules-and
+      description: Install prebuilt detection rules and Timelines
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-detections-api.installprebuiltrulesandtimelines
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-status-prebuilt-detection-rules
+      description: Retrieve the status of prebuilt detection rules and Timelines
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-detections-api.readprebuiltrulesandtimelinesstatus
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: preview-rule-alerts-generated-specified
+      description: Preview rule alerts generated on specified time range
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-detections-api.rulepreview
+      with:
+        enable_logged_requests: tools.enable_logged_requests
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: assign-and-unassign-users-detection
+      description: Assign and unassign users from detection alerts
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-detections-api.setalertassignees
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finalize-detection-alert-migrations
+      description: Finalize detection alert migrations
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-detections-api.finalizealertsmigration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: clean-up-detection-alert-migrations
+      description: Clean up detection alert migrations
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-detections-api.alertsmigrationcleanup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: initiate-detection-alert-migration
+      description: Initiate a detection alert migration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-detections-api.createalertsmigration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-status-detection-alert-migrations
+      description: Retrieve the status of detection alert migrations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-detections-api.readalertsmigrationstatus
+      with:
+        from: tools.from
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: find-and-aggregate-detection-alerts
+      description: Find and/or aggregate detection alerts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-security-detections-api.searchalerts
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: set-detection-alert-status
+      description: Set a detection alert status
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-detections-api.setalertsstatus
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-and-remove-detection-alert
+      description: Add and remove detection alert tags
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-detections-api.setalerttags
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-detection-rule-tags
+      description: List all detection rule tags
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-detections-api.readtags
+      outputParameters:
+      - type: object
+        mapping: $.

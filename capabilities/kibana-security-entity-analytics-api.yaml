@@ -1,0 +1,1803 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — Security Entity Analytics API
+  description: 'Kibana APIs — Security Entity Analytics API. 42 operations. Lead operation: Delete an asset criticality record.
+    Self-contained Naftiko capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - Security Entity Analytics API
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-security-entity-analytics-api
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — Security Entity Analytics API business capability. Self-contained, no shared references.
+    resources:
+    - name: api-asset_criticality
+      path: /api/asset_criticality
+      operations:
+      - name: deleteassetcriticalityrecord
+        method: DELETE
+        description: Delete an asset criticality record
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id_value
+          in: query
+          type: string
+          description: The ID value of the asset.
+          required: true
+        - name: id_field
+          in: query
+          type: string
+          description: The field representing the ID.
+          required: true
+        - name: refresh
+          in: query
+          type: string
+          description: If 'wait_for' the request will wait for the index refresh.
+      - name: getassetcriticalityrecord
+        method: GET
+        description: Get an asset criticality record
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id_value
+          in: query
+          type: string
+          description: The ID value of the asset.
+          required: true
+        - name: id_field
+          in: query
+          type: string
+          description: The field representing the ID.
+          required: true
+      - name: createassetcriticalityrecord
+        method: POST
+        description: Upsert an asset criticality record
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-asset_criticality-bulk
+      path: /api/asset_criticality/bulk
+      operations:
+      - name: bulkupsertassetcriticalityrecords
+        method: POST
+        description: Bulk upsert asset criticality records
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-asset_criticality-list
+      path: /api/asset_criticality/list
+      operations:
+      - name: findassetcriticalityrecords
+        method: GET
+        description: List asset criticality records
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sort_field
+          in: query
+          type: string
+          description: The field to sort by.
+        - name: sort_direction
+          in: query
+          type: string
+          description: The order to sort by.
+        - name: page
+          in: query
+          type: integer
+          description: The page number to return.
+        - name: per_page
+          in: query
+          type: integer
+          description: The number of records to return per page.
+        - name: kuery
+          in: query
+          type: string
+          description: The kuery to filter by.
+    - name: api-entity_analytics-monitoring-engine-delete
+      path: /api/entity_analytics/monitoring/engine/delete
+      operations:
+      - name: deletemonitoringengine
+        method: DELETE
+        description: Delete the Privilege Monitoring Engine
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: data
+          in: query
+          type: boolean
+          description: Whether to delete all the privileged user data
+    - name: api-entity_analytics-monitoring-engine-disable
+      path: /api/entity_analytics/monitoring/engine/disable
+      operations:
+      - name: disablemonitoringengine
+        method: POST
+        description: Disable the Privilege Monitoring Engine
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-entity_analytics-monitoring-engine-init
+      path: /api/entity_analytics/monitoring/engine/init
+      operations:
+      - name: initmonitoringengine
+        method: POST
+        description: Initialize the Privilege Monitoring Engine
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-entity_analytics-monitoring-engine-schedule_now
+      path: /api/entity_analytics/monitoring/engine/schedule_now
+      operations:
+      - name: schedulemonitoringengine
+        method: POST
+        description: Schedule the Privilege Monitoring Engine
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-entity_analytics-monitoring-privileges-health
+      path: /api/entity_analytics/monitoring/privileges/health
+      operations:
+      - name: privmonhealth
+        method: GET
+        description: Health check on Privilege Monitoring
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-entity_analytics-monitoring-privileges-privileges
+      path: /api/entity_analytics/monitoring/privileges/privileges
+      operations:
+      - name: privmonprivileges
+        method: GET
+        description: Run a privileges check on Privilege Monitoring
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-entity_analytics-monitoring-users
+      path: /api/entity_analytics/monitoring/users
+      operations:
+      - name: createprivmonuser
+        method: POST
+        description: Create a new monitored user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-entity_analytics-monitoring-users-_csv
+      path: /api/entity_analytics/monitoring/users/_csv
+      operations:
+      - name: privmonbulkuploaduserscsv
+        method: POST
+        description: Upsert multiple monitored users via CSV upload
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-entity_analytics-monitoring-users-list
+      path: /api/entity_analytics/monitoring/users/list
+      operations:
+      - name: listprivmonusers
+        method: GET
+        description: List all monitored users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kql
+          in: query
+          type: string
+          description: KQL query to filter the list of monitored users
+    - name: api-entity_analytics-monitoring-users-id
+      path: /api/entity_analytics/monitoring/users/{id}
+      operations:
+      - name: deleteprivmonuser
+        method: DELETE
+        description: Delete a monitored user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The document ID of the monitored user to delete
+          required: true
+      - name: updateprivmonuser
+        method: PUT
+        description: Update a monitored user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The document ID of the monitored user to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-entity_analytics-privileged_user_monitoring-pad-install
+      path: /api/entity_analytics/privileged_user_monitoring/pad/install
+      operations:
+      - name: installprivilegedaccessdetectionpackage
+        method: POST
+        description: Installs the privileged access detection package for the Entity Analytics privileged user monitoring
+          experience
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-entity_analytics-privileged_user_monitoring-pad-status
+      path: /api/entity_analytics/privileged_user_monitoring/pad/status
+      operations:
+      - name: getprivilegedaccessdetectionpackagestatus
+        method: GET
+        description: Gets the status of the privileged access detection package for the Entity Analytics privileged user monitoring
+          experience
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-entity_analytics-watchlists
+      path: /api/entity_analytics/watchlists
+      operations:
+      - name: createwatchlist
+        method: POST
+        description: Create a new watchlist
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-entity_analytics-watchlists-list
+      path: /api/entity_analytics/watchlists/list
+      operations:
+      - name: listwatchlists
+        method: GET
+        description: List all watchlists
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-entity_analytics-watchlists-id
+      path: /api/entity_analytics/watchlists/{id}
+      operations:
+      - name: getwatchlist
+        method: GET
+        description: Get a watchlist by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Unique ID of the watchlist
+          required: true
+      - name: updatewatchlist
+        method: PUT
+        description: Update an existing watchlist
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The ID of the watchlist to update
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-entity_analytics-watchlists-watchlist_id-csv_upload
+      path: /api/entity_analytics/watchlists/{watchlist_id}/csv_upload
+      operations:
+      - name: uploadwatchlistcsv
+        method: POST
+        description: Upload a CSV file to add entities to a watchlist
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: watchlist_id
+          in: path
+          type: string
+          description: The ID of the watchlist to add entities to
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-entity_analytics-watchlists-watchlist_id-entities-assign
+      path: /api/entity_analytics/watchlists/{watchlist_id}/entities/assign
+      operations:
+      - name: assignwatchlistentities
+        method: POST
+        description: Manually assign entities to a watchlist
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: watchlist_id
+          in: path
+          type: string
+          description: The ID of the watchlist to add entities to
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-entity_analytics-watchlists-watchlist_id-entities-unassign
+      path: /api/entity_analytics/watchlists/{watchlist_id}/entities/unassign
+      operations:
+      - name: unassignwatchlistentities
+        method: POST
+        description: Manually unassign entities from a watchlist
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: watchlist_id
+          in: path
+          type: string
+          description: The ID of the watchlist to remove entities from
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-entity_store-enable
+      path: /api/entity_store/enable
+      operations:
+      - name: initentitystore
+        method: POST
+        description: Initialize the Entity Store
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-entity_store-engines
+      path: /api/entity_store/engines
+      operations:
+      - name: deleteentityengines
+        method: DELETE
+        description: Delete Entity Engines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: entityTypes
+          in: query
+          type: array
+          description: The entity type of the engine ('user', 'host', 'service', 'generic').
+        - name: delete_data
+          in: query
+          type: boolean
+          description: Control flag to also delete the entity data.
+      - name: listentityengines
+        method: GET
+        description: List the Entity Engines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-entity_store-engines-apply_dataview_indices
+      path: /api/entity_store/engines/apply_dataview_indices
+      operations:
+      - name: applyentityenginedataviewindices
+        method: POST
+        description: Apply DataView indices to all installed engines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-entity_store-engines-entityType
+      path: /api/entity_store/engines/{entityType}
+      operations:
+      - name: deleteentityengine
+        method: DELETE
+        description: Delete the Entity Engine
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: entityType
+          in: path
+          type: string
+          description: The entity type of the engine (either 'user' or 'host').
+          required: true
+        - name: delete_data
+          in: query
+          type: boolean
+          description: Control flag to also delete the entity data.
+        - name: data
+          in: query
+          type: boolean
+          description: Control flag to also delete the entity data.
+      - name: getentityengine
+        method: GET
+        description: Get an Entity Engine
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: entityType
+          in: path
+          type: string
+          description: The entity type of the engine.
+          required: true
+    - name: api-entity_store-engines-entityType-init
+      path: /api/entity_store/engines/{entityType}/init
+      operations:
+      - name: initentityengine
+        method: POST
+        description: Initialize an Entity Engine
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: entityType
+          in: path
+          type: string
+          description: The entity type of the engine.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-entity_store-engines-entityType-start
+      path: /api/entity_store/engines/{entityType}/start
+      operations:
+      - name: startentityengine
+        method: POST
+        description: Start an Entity Engine
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: entityType
+          in: path
+          type: string
+          description: The entity type of the engine to start.
+          required: true
+    - name: api-entity_store-engines-entityType-stop
+      path: /api/entity_store/engines/{entityType}/stop
+      operations:
+      - name: stopentityengine
+        method: POST
+        description: Stop an Entity Engine
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: entityType
+          in: path
+          type: string
+          description: The entity type of the engine to stop.
+          required: true
+    - name: api-entity_store-entities-bulk
+      path: /api/entity_store/entities/bulk
+      operations:
+      - name: upsertentitiesbulk
+        method: PUT
+        description: Upsert many entities in Entity Store
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: force
+          in: query
+          type: boolean
+          description: When true, allows updating protected fields.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-entity_store-entities-list
+      path: /api/entity_store/entities/list
+      operations:
+      - name: listentities
+        method: GET
+        description: List Entity Store Entities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sort_field
+          in: query
+          type: string
+          description: Field to sort results by.
+        - name: sort_order
+          in: query
+          type: string
+          description: Sort order.
+        - name: page
+          in: query
+          type: integer
+          description: Page number to return (1-indexed).
+        - name: per_page
+          in: query
+          type: integer
+          description: Number of entities per page.
+        - name: filterQuery
+          in: query
+          type: string
+          description: An ES query to filter by.
+        - name: entity_types
+          in: query
+          type: array
+          description: Entity types to include in the results.
+          required: true
+    - name: api-entity_store-entities-entityType
+      path: /api/entity_store/entities/{entityType}
+      operations:
+      - name: deletesingleentity
+        method: DELETE
+        description: Delete an entity in Entity Store
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: entityType
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: upsertentity
+        method: PUT
+        description: Upsert an entity in Entity Store
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: entityType
+          in: path
+          type: string
+          required: true
+        - name: force
+          in: query
+          type: boolean
+          description: When true, allows updating protected fields.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-entity_store-status
+      path: /api/entity_store/status
+      operations:
+      - name: getentitystorestatus
+        method: GET
+        description: Get the status of the Entity Store
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: include_components
+          in: query
+          type: boolean
+          description: If true, returns a detailed status of each engine including all its components.
+    - name: api-risk_score-engine-dangerously_delete_data
+      path: /api/risk_score/engine/dangerously_delete_data
+      operations:
+      - name: cleanupriskengine
+        method: DELETE
+        description: Cleanup the Risk Engine
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-risk_score-engine-saved_object-configure
+      path: /api/risk_score/engine/saved_object/configure
+      operations:
+      - name: configureriskenginesavedobject
+        method: PATCH
+        description: Configure the Risk Engine Saved Object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-risk_score-engine-schedule_now
+      path: /api/risk_score/engine/schedule_now
+      operations:
+      - name: scheduleriskenginenow
+        method: POST
+        description: Run the risk scoring engine
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-security-entity-analytics-api-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — Security Entity Analytics API. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/asset-criticality
+      name: api-asset-criticality
+      description: REST surface for api-asset_criticality.
+      operations:
+      - method: DELETE
+        name: deleteassetcriticalityrecord
+        description: Delete an asset criticality record
+        call: kibana-security-entity-analytics-api.deleteassetcriticalityrecord
+        with:
+          id_value: rest.id_value
+          id_field: rest.id_field
+          refresh: rest.refresh
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getassetcriticalityrecord
+        description: Get an asset criticality record
+        call: kibana-security-entity-analytics-api.getassetcriticalityrecord
+        with:
+          id_value: rest.id_value
+          id_field: rest.id_field
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createassetcriticalityrecord
+        description: Upsert an asset criticality record
+        call: kibana-security-entity-analytics-api.createassetcriticalityrecord
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/asset-criticality/bulk
+      name: api-asset-criticality-bulk
+      description: REST surface for api-asset_criticality-bulk.
+      operations:
+      - method: POST
+        name: bulkupsertassetcriticalityrecords
+        description: Bulk upsert asset criticality records
+        call: kibana-security-entity-analytics-api.bulkupsertassetcriticalityrecords
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/asset-criticality/list
+      name: api-asset-criticality-list
+      description: REST surface for api-asset_criticality-list.
+      operations:
+      - method: GET
+        name: findassetcriticalityrecords
+        description: List asset criticality records
+        call: kibana-security-entity-analytics-api.findassetcriticalityrecords
+        with:
+          sort_field: rest.sort_field
+          sort_direction: rest.sort_direction
+          page: rest.page
+          per_page: rest.per_page
+          kuery: rest.kuery
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/monitoring/engine/delete
+      name: api-entity-analytics-monitoring-engine-delete
+      description: REST surface for api-entity_analytics-monitoring-engine-delete.
+      operations:
+      - method: DELETE
+        name: deletemonitoringengine
+        description: Delete the Privilege Monitoring Engine
+        call: kibana-security-entity-analytics-api.deletemonitoringengine
+        with:
+          data: rest.data
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/monitoring/engine/disable
+      name: api-entity-analytics-monitoring-engine-disable
+      description: REST surface for api-entity_analytics-monitoring-engine-disable.
+      operations:
+      - method: POST
+        name: disablemonitoringengine
+        description: Disable the Privilege Monitoring Engine
+        call: kibana-security-entity-analytics-api.disablemonitoringengine
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/monitoring/engine/init
+      name: api-entity-analytics-monitoring-engine-init
+      description: REST surface for api-entity_analytics-monitoring-engine-init.
+      operations:
+      - method: POST
+        name: initmonitoringengine
+        description: Initialize the Privilege Monitoring Engine
+        call: kibana-security-entity-analytics-api.initmonitoringengine
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/monitoring/engine/schedule-now
+      name: api-entity-analytics-monitoring-engine-schedule-now
+      description: REST surface for api-entity_analytics-monitoring-engine-schedule_now.
+      operations:
+      - method: POST
+        name: schedulemonitoringengine
+        description: Schedule the Privilege Monitoring Engine
+        call: kibana-security-entity-analytics-api.schedulemonitoringengine
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/monitoring/privileges/health
+      name: api-entity-analytics-monitoring-privileges-health
+      description: REST surface for api-entity_analytics-monitoring-privileges-health.
+      operations:
+      - method: GET
+        name: privmonhealth
+        description: Health check on Privilege Monitoring
+        call: kibana-security-entity-analytics-api.privmonhealth
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/monitoring/privileges/privileges
+      name: api-entity-analytics-monitoring-privileges-privileges
+      description: REST surface for api-entity_analytics-monitoring-privileges-privileges.
+      operations:
+      - method: GET
+        name: privmonprivileges
+        description: Run a privileges check on Privilege Monitoring
+        call: kibana-security-entity-analytics-api.privmonprivileges
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/monitoring/users
+      name: api-entity-analytics-monitoring-users
+      description: REST surface for api-entity_analytics-monitoring-users.
+      operations:
+      - method: POST
+        name: createprivmonuser
+        description: Create a new monitored user
+        call: kibana-security-entity-analytics-api.createprivmonuser
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/monitoring/users/csv
+      name: api-entity-analytics-monitoring-users-csv
+      description: REST surface for api-entity_analytics-monitoring-users-_csv.
+      operations:
+      - method: POST
+        name: privmonbulkuploaduserscsv
+        description: Upsert multiple monitored users via CSV upload
+        call: kibana-security-entity-analytics-api.privmonbulkuploaduserscsv
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/monitoring/users/list
+      name: api-entity-analytics-monitoring-users-list
+      description: REST surface for api-entity_analytics-monitoring-users-list.
+      operations:
+      - method: GET
+        name: listprivmonusers
+        description: List all monitored users
+        call: kibana-security-entity-analytics-api.listprivmonusers
+        with:
+          kql: rest.kql
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/monitoring/users/{id}
+      name: api-entity-analytics-monitoring-users-id
+      description: REST surface for api-entity_analytics-monitoring-users-id.
+      operations:
+      - method: DELETE
+        name: deleteprivmonuser
+        description: Delete a monitored user
+        call: kibana-security-entity-analytics-api.deleteprivmonuser
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateprivmonuser
+        description: Update a monitored user
+        call: kibana-security-entity-analytics-api.updateprivmonuser
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/privileged-user-monitoring/pad/install
+      name: api-entity-analytics-privileged-user-monitoring-pad-install
+      description: REST surface for api-entity_analytics-privileged_user_monitoring-pad-install.
+      operations:
+      - method: POST
+        name: installprivilegedaccessdetectionpackage
+        description: Installs the privileged access detection package for the Entity Analytics privileged user monitoring
+          experience
+        call: kibana-security-entity-analytics-api.installprivilegedaccessdetectionpackage
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/privileged-user-monitoring/pad/status
+      name: api-entity-analytics-privileged-user-monitoring-pad-status
+      description: REST surface for api-entity_analytics-privileged_user_monitoring-pad-status.
+      operations:
+      - method: GET
+        name: getprivilegedaccessdetectionpackagestatus
+        description: Gets the status of the privileged access detection package for the Entity Analytics privileged user monitoring
+          experience
+        call: kibana-security-entity-analytics-api.getprivilegedaccessdetectionpackagestatus
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/watchlists
+      name: api-entity-analytics-watchlists
+      description: REST surface for api-entity_analytics-watchlists.
+      operations:
+      - method: POST
+        name: createwatchlist
+        description: Create a new watchlist
+        call: kibana-security-entity-analytics-api.createwatchlist
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/watchlists/list
+      name: api-entity-analytics-watchlists-list
+      description: REST surface for api-entity_analytics-watchlists-list.
+      operations:
+      - method: GET
+        name: listwatchlists
+        description: List all watchlists
+        call: kibana-security-entity-analytics-api.listwatchlists
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/watchlists/{id}
+      name: api-entity-analytics-watchlists-id
+      description: REST surface for api-entity_analytics-watchlists-id.
+      operations:
+      - method: GET
+        name: getwatchlist
+        description: Get a watchlist by ID
+        call: kibana-security-entity-analytics-api.getwatchlist
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatewatchlist
+        description: Update an existing watchlist
+        call: kibana-security-entity-analytics-api.updatewatchlist
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/watchlists/{watchlist-id}/csv-upload
+      name: api-entity-analytics-watchlists-watchlist-id-csv-upload
+      description: REST surface for api-entity_analytics-watchlists-watchlist_id-csv_upload.
+      operations:
+      - method: POST
+        name: uploadwatchlistcsv
+        description: Upload a CSV file to add entities to a watchlist
+        call: kibana-security-entity-analytics-api.uploadwatchlistcsv
+        with:
+          watchlist_id: rest.watchlist_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/watchlists/{watchlist-id}/entities/assign
+      name: api-entity-analytics-watchlists-watchlist-id-entities-assign
+      description: REST surface for api-entity_analytics-watchlists-watchlist_id-entities-assign.
+      operations:
+      - method: POST
+        name: assignwatchlistentities
+        description: Manually assign entities to a watchlist
+        call: kibana-security-entity-analytics-api.assignwatchlistentities
+        with:
+          watchlist_id: rest.watchlist_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-analytics/watchlists/{watchlist-id}/entities/unassign
+      name: api-entity-analytics-watchlists-watchlist-id-entities-unassign
+      description: REST surface for api-entity_analytics-watchlists-watchlist_id-entities-unassign.
+      operations:
+      - method: POST
+        name: unassignwatchlistentities
+        description: Manually unassign entities from a watchlist
+        call: kibana-security-entity-analytics-api.unassignwatchlistentities
+        with:
+          watchlist_id: rest.watchlist_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-store/enable
+      name: api-entity-store-enable
+      description: REST surface for api-entity_store-enable.
+      operations:
+      - method: POST
+        name: initentitystore
+        description: Initialize the Entity Store
+        call: kibana-security-entity-analytics-api.initentitystore
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-store/engines
+      name: api-entity-store-engines
+      description: REST surface for api-entity_store-engines.
+      operations:
+      - method: DELETE
+        name: deleteentityengines
+        description: Delete Entity Engines
+        call: kibana-security-entity-analytics-api.deleteentityengines
+        with:
+          entityTypes: rest.entityTypes
+          delete_data: rest.delete_data
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listentityengines
+        description: List the Entity Engines
+        call: kibana-security-entity-analytics-api.listentityengines
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-store/engines/apply-dataview-indices
+      name: api-entity-store-engines-apply-dataview-indices
+      description: REST surface for api-entity_store-engines-apply_dataview_indices.
+      operations:
+      - method: POST
+        name: applyentityenginedataviewindices
+        description: Apply DataView indices to all installed engines
+        call: kibana-security-entity-analytics-api.applyentityenginedataviewindices
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-store/engines/{entitytype}
+      name: api-entity-store-engines-entitytype
+      description: REST surface for api-entity_store-engines-entityType.
+      operations:
+      - method: DELETE
+        name: deleteentityengine
+        description: Delete the Entity Engine
+        call: kibana-security-entity-analytics-api.deleteentityengine
+        with:
+          entityType: rest.entityType
+          delete_data: rest.delete_data
+          data: rest.data
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getentityengine
+        description: Get an Entity Engine
+        call: kibana-security-entity-analytics-api.getentityengine
+        with:
+          entityType: rest.entityType
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-store/engines/{entitytype}/init
+      name: api-entity-store-engines-entitytype-init
+      description: REST surface for api-entity_store-engines-entityType-init.
+      operations:
+      - method: POST
+        name: initentityengine
+        description: Initialize an Entity Engine
+        call: kibana-security-entity-analytics-api.initentityengine
+        with:
+          entityType: rest.entityType
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-store/engines/{entitytype}/start
+      name: api-entity-store-engines-entitytype-start
+      description: REST surface for api-entity_store-engines-entityType-start.
+      operations:
+      - method: POST
+        name: startentityengine
+        description: Start an Entity Engine
+        call: kibana-security-entity-analytics-api.startentityengine
+        with:
+          entityType: rest.entityType
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-store/engines/{entitytype}/stop
+      name: api-entity-store-engines-entitytype-stop
+      description: REST surface for api-entity_store-engines-entityType-stop.
+      operations:
+      - method: POST
+        name: stopentityengine
+        description: Stop an Entity Engine
+        call: kibana-security-entity-analytics-api.stopentityengine
+        with:
+          entityType: rest.entityType
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-store/entities/bulk
+      name: api-entity-store-entities-bulk
+      description: REST surface for api-entity_store-entities-bulk.
+      operations:
+      - method: PUT
+        name: upsertentitiesbulk
+        description: Upsert many entities in Entity Store
+        call: kibana-security-entity-analytics-api.upsertentitiesbulk
+        with:
+          force: rest.force
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-store/entities/list
+      name: api-entity-store-entities-list
+      description: REST surface for api-entity_store-entities-list.
+      operations:
+      - method: GET
+        name: listentities
+        description: List Entity Store Entities
+        call: kibana-security-entity-analytics-api.listentities
+        with:
+          sort_field: rest.sort_field
+          sort_order: rest.sort_order
+          page: rest.page
+          per_page: rest.per_page
+          filterQuery: rest.filterQuery
+          entity_types: rest.entity_types
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-store/entities/{entitytype}
+      name: api-entity-store-entities-entitytype
+      description: REST surface for api-entity_store-entities-entityType.
+      operations:
+      - method: DELETE
+        name: deletesingleentity
+        description: Delete an entity in Entity Store
+        call: kibana-security-entity-analytics-api.deletesingleentity
+        with:
+          entityType: rest.entityType
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: upsertentity
+        description: Upsert an entity in Entity Store
+        call: kibana-security-entity-analytics-api.upsertentity
+        with:
+          entityType: rest.entityType
+          force: rest.force
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/entity-store/status
+      name: api-entity-store-status
+      description: REST surface for api-entity_store-status.
+      operations:
+      - method: GET
+        name: getentitystorestatus
+        description: Get the status of the Entity Store
+        call: kibana-security-entity-analytics-api.getentitystorestatus
+        with:
+          include_components: rest.include_components
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/risk-score/engine/dangerously-delete-data
+      name: api-risk-score-engine-dangerously-delete-data
+      description: REST surface for api-risk_score-engine-dangerously_delete_data.
+      operations:
+      - method: DELETE
+        name: cleanupriskengine
+        description: Cleanup the Risk Engine
+        call: kibana-security-entity-analytics-api.cleanupriskengine
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/risk-score/engine/saved-object/configure
+      name: api-risk-score-engine-saved-object-configure
+      description: REST surface for api-risk_score-engine-saved_object-configure.
+      operations:
+      - method: PATCH
+        name: configureriskenginesavedobject
+        description: Configure the Risk Engine Saved Object
+        call: kibana-security-entity-analytics-api.configureriskenginesavedobject
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/risk-score/engine/schedule-now
+      name: api-risk-score-engine-schedule-now
+      description: REST surface for api-risk_score-engine-schedule_now.
+      operations:
+      - method: POST
+        name: scheduleriskenginenow
+        description: Run the risk scoring engine
+        call: kibana-security-entity-analytics-api.scheduleriskenginenow
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-security-entity-analytics-api-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — Security Entity Analytics API. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: delete-asset-criticality-record
+      description: Delete an asset criticality record
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-entity-analytics-api.deleteassetcriticalityrecord
+      with:
+        id_value: tools.id_value
+        id_field: tools.id_field
+        refresh: tools.refresh
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-asset-criticality-record
+      description: Get an asset criticality record
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.getassetcriticalityrecord
+      with:
+        id_value: tools.id_value
+        id_field: tools.id_field
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upsert-asset-criticality-record
+      description: Upsert an asset criticality record
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.createassetcriticalityrecord
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bulk-upsert-asset-criticality-records
+      description: Bulk upsert asset criticality records
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.bulkupsertassetcriticalityrecords
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-asset-criticality-records
+      description: List asset criticality records
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.findassetcriticalityrecords
+      with:
+        sort_field: tools.sort_field
+        sort_direction: tools.sort_direction
+        page: tools.page
+        per_page: tools.per_page
+        kuery: tools.kuery
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-privilege-monitoring-engine
+      description: Delete the Privilege Monitoring Engine
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-entity-analytics-api.deletemonitoringengine
+      with:
+        data: tools.data
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disable-privilege-monitoring-engine
+      description: Disable the Privilege Monitoring Engine
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.disablemonitoringengine
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: initialize-privilege-monitoring-engine
+      description: Initialize the Privilege Monitoring Engine
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.initmonitoringengine
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: schedule-privilege-monitoring-engine
+      description: Schedule the Privilege Monitoring Engine
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.schedulemonitoringengine
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: health-check-privilege-monitoring
+      description: Health check on Privilege Monitoring
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.privmonhealth
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: run-privileges-check-privilege-monitoring
+      description: Run a privileges check on Privilege Monitoring
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.privmonprivileges
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-monitored-user
+      description: Create a new monitored user
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.createprivmonuser
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upsert-multiple-monitored-users-csv
+      description: Upsert multiple monitored users via CSV upload
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.privmonbulkuploaduserscsv
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-monitored-users
+      description: List all monitored users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.listprivmonusers
+      with:
+        kql: tools.kql
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-monitored-user
+      description: Delete a monitored user
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-entity-analytics-api.deleteprivmonuser
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-monitored-user
+      description: Update a monitored user
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.updateprivmonuser
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: installs-privileged-access-detection-package
+      description: Installs the privileged access detection package for the Entity Analytics privileged user monitoring experience
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.installprivilegedaccessdetectionpackage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gets-status-privileged-access-detection
+      description: Gets the status of the privileged access detection package for the Entity Analytics privileged user monitoring
+        experience
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.getprivilegedaccessdetectionpackagestatus
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-watchlist
+      description: Create a new watchlist
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.createwatchlist
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-watchlists
+      description: List all watchlists
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.listwatchlists
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-watchlist-id
+      description: Get a watchlist by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.getwatchlist
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-existing-watchlist
+      description: Update an existing watchlist
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.updatewatchlist
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upload-csv-file-add-entities
+      description: Upload a CSV file to add entities to a watchlist
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.uploadwatchlistcsv
+      with:
+        watchlist_id: tools.watchlist_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: manually-assign-entities-watchlist
+      description: Manually assign entities to a watchlist
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.assignwatchlistentities
+      with:
+        watchlist_id: tools.watchlist_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: manually-unassign-entities-watchlist
+      description: Manually unassign entities from a watchlist
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.unassignwatchlistentities
+      with:
+        watchlist_id: tools.watchlist_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: initialize-entity-store
+      description: Initialize the Entity Store
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.initentitystore
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-entity-engines
+      description: Delete Entity Engines
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-entity-analytics-api.deleteentityengines
+      with:
+        entityTypes: tools.entityTypes
+        delete_data: tools.delete_data
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-entity-engines
+      description: List the Entity Engines
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.listentityengines
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apply-dataview-indices-all-installed
+      description: Apply DataView indices to all installed engines
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.applyentityenginedataviewindices
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-entity-engine
+      description: Delete the Entity Engine
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-entity-analytics-api.deleteentityengine
+      with:
+        entityType: tools.entityType
+        delete_data: tools.delete_data
+        data: tools.data
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-entity-engine
+      description: Get an Entity Engine
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.getentityengine
+      with:
+        entityType: tools.entityType
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: initialize-entity-engine
+      description: Initialize an Entity Engine
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.initentityengine
+      with:
+        entityType: tools.entityType
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: start-entity-engine
+      description: Start an Entity Engine
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.startentityengine
+      with:
+        entityType: tools.entityType
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: stop-entity-engine
+      description: Stop an Entity Engine
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.stopentityengine
+      with:
+        entityType: tools.entityType
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upsert-many-entities-entity-store
+      description: Upsert many entities in Entity Store
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.upsertentitiesbulk
+      with:
+        force: tools.force
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-entity-store-entities
+      description: List Entity Store Entities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.listentities
+      with:
+        sort_field: tools.sort_field
+        sort_order: tools.sort_order
+        page: tools.page
+        per_page: tools.per_page
+        filterQuery: tools.filterQuery
+        entity_types: tools.entity_types
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-entity-entity-store
+      description: Delete an entity in Entity Store
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-entity-analytics-api.deletesingleentity
+      with:
+        entityType: tools.entityType
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upsert-entity-entity-store
+      description: Upsert an entity in Entity Store
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.upsertentity
+      with:
+        entityType: tools.entityType
+        force: tools.force
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-status-entity-store
+      description: Get the status of the Entity Store
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.getentitystorestatus
+      with:
+        include_components: tools.include_components
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cleanup-risk-engine
+      description: Cleanup the Risk Engine
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-entity-analytics-api.cleanupriskengine
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: configure-risk-engine-saved-object
+      description: Configure the Risk Engine Saved Object
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-entity-analytics-api.configureriskenginesavedobject
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: run-risk-scoring-engine
+      description: Run the risk scoring engine
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-entity-analytics-api.scheduleriskenginenow
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

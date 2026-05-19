@@ -1,0 +1,1093 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — alerting
+  description: 'Kibana APIs — alerting. 20 operations. Lead operation: Get the alerting framework health. Self-contained Naftiko
+    capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - alerting
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-alerting
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — alerting business capability. Self-contained, no shared references.
+    resources:
+    - name: api-alerting-_health
+      path: /api/alerting/_health
+      operations:
+      - name: getalertinghealth
+        method: GET
+        description: Get the alerting framework health
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-alerting-rule-id
+      path: /api/alerting/rule/{id}
+      operations:
+      - name: deletealertingruleid
+        method: DELETE
+        description: Delete a rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The identifier for the rule.
+          required: true
+      - name: getalertingruleid
+        method: GET
+        description: Get rule details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The identifier for the rule.
+          required: true
+      - name: postalertingruleid
+        method: POST
+        description: Create a rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The identifier for the rule. If it is omitted, an ID is randomly generated.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: putalertingruleid
+        method: PUT
+        description: Update a rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The identifier for the rule.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-alerting-rule-id-_disable
+      path: /api/alerting/rule/{id}/_disable
+      operations:
+      - name: postalertingruleiddisable
+        method: POST
+        description: Disable a rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The identifier for the rule.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-alerting-rule-id-_enable
+      path: /api/alerting/rule/{id}/_enable
+      operations:
+      - name: postalertingruleidenable
+        method: POST
+        description: Enable a rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The identifier for the rule.
+          required: true
+    - name: api-alerting-rule-id-_mute_all
+      path: /api/alerting/rule/{id}/_mute_all
+      operations:
+      - name: postalertingruleidmuteall
+        method: POST
+        description: Mute all alerts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The identifier for the rule.
+          required: true
+    - name: api-alerting-rule-id-_unmute_all
+      path: /api/alerting/rule/{id}/_unmute_all
+      operations:
+      - name: postalertingruleidunmuteall
+        method: POST
+        description: Unmute all alerts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The identifier for the rule.
+          required: true
+    - name: api-alerting-rule-id-_update_api_key
+      path: /api/alerting/rule/{id}/_update_api_key
+      operations:
+      - name: postalertingruleidupdateapikey
+        method: POST
+        description: Update the API key for a rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The identifier for the rule.
+          required: true
+    - name: api-alerting-rule-id-snooze_schedule
+      path: /api/alerting/rule/{id}/snooze_schedule
+      operations:
+      - name: postalertingruleidsnoozeschedule
+        method: POST
+        description: Schedule a snooze for the rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: Identifier of the rule.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-alerting-rule-ruleId-snooze_schedule-scheduleId
+      path: /api/alerting/rule/{ruleId}/snooze_schedule/{scheduleId}
+      operations:
+      - name: deletealertingruleruleidsnoozeschedulescheduleid
+        method: DELETE
+        description: Delete a snooze schedule for a rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: ruleId
+          in: path
+          type: string
+          description: The identifier for the rule.
+          required: true
+        - name: scheduleId
+          in: path
+          type: string
+          description: The identifier for the snooze schedule.
+          required: true
+    - name: api-alerting-rule-rule_id-alert-alert_id-_mute
+      path: /api/alerting/rule/{rule_id}/alert/{alert_id}/_mute
+      operations:
+      - name: postalertingruleruleidalertalertidmute
+        method: POST
+        description: Mute an alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: rule_id
+          in: path
+          type: string
+          description: The identifier for the rule.
+          required: true
+        - name: alert_id
+          in: path
+          type: string
+          description: The identifier for the alert.
+          required: true
+        - name: validate_alerts_existence
+          in: query
+          type: boolean
+          description: Whether to validate the existence of the alert.
+    - name: api-alerting-rule-rule_id-alert-alert_id-_unmute
+      path: /api/alerting/rule/{rule_id}/alert/{alert_id}/_unmute
+      operations:
+      - name: postalertingruleruleidalertalertidunmute
+        method: POST
+        description: Unmute an alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: rule_id
+          in: path
+          type: string
+          description: The identifier for the rule.
+          required: true
+        - name: alert_id
+          in: path
+          type: string
+          description: The identifier for the alert.
+          required: true
+    - name: api-alerting-rule_types
+      path: /api/alerting/rule_types
+      operations:
+      - name: getruletypes
+        method: GET
+        description: Get the rule types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-alerting-rules-_find
+      path: /api/alerting/rules/_find
+      operations:
+      - name: getalertingrulesfind
+        method: GET
+        description: Get information about rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: per_page
+          in: query
+          type: number
+          description: The number of rules to return per page.
+        - name: page
+          in: query
+          type: number
+          description: The page number to return.
+        - name: search
+          in: query
+          type: string
+          description: An Elasticsearch simple_query_string query that filters the objects in the response.
+        - name: default_search_operator
+          in: query
+          type: string
+          description: The default operator to use for the simple_query_string.
+        - name: search_fields
+          in: query
+          type: array
+          description: The fields to perform the simple_query_string parsed query against.
+        - name: sort_field
+          in: query
+          type: string
+          description: Determines which field is used to sort the results. The field must exist in the `attributes` key of
+            the response.
+        - name: sort_order
+          in: query
+          type: string
+          description: Determines the sort order.
+        - name: has_reference
+          in: query
+          type: object
+          description: Filters the rules that have a relation with the reference objects with a specific type and identifier.
+        - name: fields
+          in: query
+          type: array
+          description: The fields to return in the `attributes` key of the response.
+        - name: filter
+          in: query
+          type: string
+          description: 'A KQL string that you filter with an attribute from your saved object. It should look like `savedObjectType.attributes.title:
+            "myTitle"`. However, if you used a'
+        - name: filter_consumers
+          in: query
+          type: array
+    - name: api-alerting-rules-backfill-_find
+      path: /api/alerting/rules/backfill/_find
+      operations:
+      - name: postalertingrulesbackfillfind
+        method: POST
+        description: Find backfills for rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: end
+          in: query
+          type: string
+          description: The end date for filtering backfills.
+        - name: page
+          in: query
+          type: number
+          description: The page number to return.
+        - name: per_page
+          in: query
+          type: number
+          description: The number of backfills to return per page.
+        - name: rule_ids
+          in: query
+          type: string
+          description: A comma-separated list of rule identifiers.
+        - name: initiator
+          in: query
+          type: string
+          description: The initiator of the backfill, either `user` for manual backfills or `system` for automatic gap fills.
+        - name: start
+          in: query
+          type: string
+          description: The start date for filtering backfills.
+        - name: sort_field
+          in: query
+          type: string
+          description: The field to sort backfills by.
+        - name: sort_order
+          in: query
+          type: string
+          description: The sort order.
+    - name: api-alerting-rules-backfill-_schedule
+      path: /api/alerting/rules/backfill/_schedule
+      operations:
+      - name: postalertingrulesbackfillschedule
+        method: POST
+        description: Schedule a backfill for rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-alerting-rules-backfill-id
+      path: /api/alerting/rules/backfill/{id}
+      operations:
+      - name: deletealertingrulesbackfillid
+        method: DELETE
+        description: Delete a backfill by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: id
+          in: path
+          type: string
+          description: The identifier for the backfill.
+          required: true
+      - name: getalertingrulesbackfillid
+        method: GET
+        description: Get a backfill by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: The identifier for the backfill.
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-alerting-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — alerting. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/alerting/health
+      name: api-alerting-health
+      description: REST surface for api-alerting-_health.
+      operations:
+      - method: GET
+        name: getalertinghealth
+        description: Get the alerting framework health
+        call: kibana-alerting.getalertinghealth
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/alerting/rule/{id}
+      name: api-alerting-rule-id
+      description: REST surface for api-alerting-rule-id.
+      operations:
+      - method: DELETE
+        name: deletealertingruleid
+        description: Delete a rule
+        call: kibana-alerting.deletealertingruleid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getalertingruleid
+        description: Get rule details
+        call: kibana-alerting.getalertingruleid
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postalertingruleid
+        description: Create a rule
+        call: kibana-alerting.postalertingruleid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putalertingruleid
+        description: Update a rule
+        call: kibana-alerting.putalertingruleid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/alerting/rule/{id}/disable
+      name: api-alerting-rule-id-disable
+      description: REST surface for api-alerting-rule-id-_disable.
+      operations:
+      - method: POST
+        name: postalertingruleiddisable
+        description: Disable a rule
+        call: kibana-alerting.postalertingruleiddisable
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/alerting/rule/{id}/enable
+      name: api-alerting-rule-id-enable
+      description: REST surface for api-alerting-rule-id-_enable.
+      operations:
+      - method: POST
+        name: postalertingruleidenable
+        description: Enable a rule
+        call: kibana-alerting.postalertingruleidenable
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/alerting/rule/{id}/mute-all
+      name: api-alerting-rule-id-mute-all
+      description: REST surface for api-alerting-rule-id-_mute_all.
+      operations:
+      - method: POST
+        name: postalertingruleidmuteall
+        description: Mute all alerts
+        call: kibana-alerting.postalertingruleidmuteall
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/alerting/rule/{id}/unmute-all
+      name: api-alerting-rule-id-unmute-all
+      description: REST surface for api-alerting-rule-id-_unmute_all.
+      operations:
+      - method: POST
+        name: postalertingruleidunmuteall
+        description: Unmute all alerts
+        call: kibana-alerting.postalertingruleidunmuteall
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/alerting/rule/{id}/update-api-key
+      name: api-alerting-rule-id-update-api-key
+      description: REST surface for api-alerting-rule-id-_update_api_key.
+      operations:
+      - method: POST
+        name: postalertingruleidupdateapikey
+        description: Update the API key for a rule
+        call: kibana-alerting.postalertingruleidupdateapikey
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/alerting/rule/{id}/snooze-schedule
+      name: api-alerting-rule-id-snooze-schedule
+      description: REST surface for api-alerting-rule-id-snooze_schedule.
+      operations:
+      - method: POST
+        name: postalertingruleidsnoozeschedule
+        description: Schedule a snooze for the rule
+        call: kibana-alerting.postalertingruleidsnoozeschedule
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/alerting/rule/{ruleid}/snooze-schedule/{scheduleid}
+      name: api-alerting-rule-ruleid-snooze-schedule-scheduleid
+      description: REST surface for api-alerting-rule-ruleId-snooze_schedule-scheduleId.
+      operations:
+      - method: DELETE
+        name: deletealertingruleruleidsnoozeschedulescheduleid
+        description: Delete a snooze schedule for a rule
+        call: kibana-alerting.deletealertingruleruleidsnoozeschedulescheduleid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          ruleId: rest.ruleId
+          scheduleId: rest.scheduleId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/alerting/rule/{rule-id}/alert/{alert-id}/mute
+      name: api-alerting-rule-rule-id-alert-alert-id-mute
+      description: REST surface for api-alerting-rule-rule_id-alert-alert_id-_mute.
+      operations:
+      - method: POST
+        name: postalertingruleruleidalertalertidmute
+        description: Mute an alert
+        call: kibana-alerting.postalertingruleruleidalertalertidmute
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          rule_id: rest.rule_id
+          alert_id: rest.alert_id
+          validate_alerts_existence: rest.validate_alerts_existence
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/alerting/rule/{rule-id}/alert/{alert-id}/unmute
+      name: api-alerting-rule-rule-id-alert-alert-id-unmute
+      description: REST surface for api-alerting-rule-rule_id-alert-alert_id-_unmute.
+      operations:
+      - method: POST
+        name: postalertingruleruleidalertalertidunmute
+        description: Unmute an alert
+        call: kibana-alerting.postalertingruleruleidalertalertidunmute
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          rule_id: rest.rule_id
+          alert_id: rest.alert_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/alerting/rule-types
+      name: api-alerting-rule-types
+      description: REST surface for api-alerting-rule_types.
+      operations:
+      - method: GET
+        name: getruletypes
+        description: Get the rule types
+        call: kibana-alerting.getruletypes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/alerting/rules/find
+      name: api-alerting-rules-find
+      description: REST surface for api-alerting-rules-_find.
+      operations:
+      - method: GET
+        name: getalertingrulesfind
+        description: Get information about rules
+        call: kibana-alerting.getalertingrulesfind
+        with:
+          per_page: rest.per_page
+          page: rest.page
+          search: rest.search
+          default_search_operator: rest.default_search_operator
+          search_fields: rest.search_fields
+          sort_field: rest.sort_field
+          sort_order: rest.sort_order
+          has_reference: rest.has_reference
+          fields: rest.fields
+          filter: rest.filter
+          filter_consumers: rest.filter_consumers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/alerting/rules/backfill/find
+      name: api-alerting-rules-backfill-find
+      description: REST surface for api-alerting-rules-backfill-_find.
+      operations:
+      - method: POST
+        name: postalertingrulesbackfillfind
+        description: Find backfills for rules
+        call: kibana-alerting.postalertingrulesbackfillfind
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          end: rest.end
+          page: rest.page
+          per_page: rest.per_page
+          rule_ids: rest.rule_ids
+          initiator: rest.initiator
+          start: rest.start
+          sort_field: rest.sort_field
+          sort_order: rest.sort_order
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/alerting/rules/backfill/schedule
+      name: api-alerting-rules-backfill-schedule
+      description: REST surface for api-alerting-rules-backfill-_schedule.
+      operations:
+      - method: POST
+        name: postalertingrulesbackfillschedule
+        description: Schedule a backfill for rules
+        call: kibana-alerting.postalertingrulesbackfillschedule
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/alerting/rules/backfill/{id}
+      name: api-alerting-rules-backfill-id
+      description: REST surface for api-alerting-rules-backfill-id.
+      operations:
+      - method: DELETE
+        name: deletealertingrulesbackfillid
+        description: Delete a backfill by ID
+        call: kibana-alerting.deletealertingrulesbackfillid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getalertingrulesbackfillid
+        description: Get a backfill by ID
+        call: kibana-alerting.getalertingrulesbackfillid
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-alerting-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — alerting. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-alerting-framework-health
+      description: Get the alerting framework health
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-alerting.getalertinghealth
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-rule
+      description: Delete a rule
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-alerting.deletealertingruleid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-rule-details
+      description: Get rule details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-alerting.getalertingruleid
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-rule
+      description: Create a rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-alerting.postalertingruleid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-rule
+      description: Update a rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-alerting.putalertingruleid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disable-rule
+      description: Disable a rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-alerting.postalertingruleiddisable
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: enable-rule
+      description: Enable a rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-alerting.postalertingruleidenable
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mute-all-alerts
+      description: Mute all alerts
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-alerting.postalertingruleidmuteall
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: unmute-all-alerts
+      description: Unmute all alerts
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-alerting.postalertingruleidunmuteall
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-api-key-rule
+      description: Update the API key for a rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-alerting.postalertingruleidupdateapikey
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: schedule-snooze-rule
+      description: Schedule a snooze for the rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-alerting.postalertingruleidsnoozeschedule
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-snooze-schedule-rule
+      description: Delete a snooze schedule for a rule
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-alerting.deletealertingruleruleidsnoozeschedulescheduleid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        ruleId: tools.ruleId
+        scheduleId: tools.scheduleId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mute-alert
+      description: Mute an alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-alerting.postalertingruleruleidalertalertidmute
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        rule_id: tools.rule_id
+        alert_id: tools.alert_id
+        validate_alerts_existence: tools.validate_alerts_existence
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: unmute-alert
+      description: Unmute an alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-alerting.postalertingruleruleidalertalertidunmute
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        rule_id: tools.rule_id
+        alert_id: tools.alert_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-rule-types
+      description: Get the rule types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-alerting.getruletypes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-information-about-rules
+      description: Get information about rules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-alerting.getalertingrulesfind
+      with:
+        per_page: tools.per_page
+        page: tools.page
+        search: tools.search
+        default_search_operator: tools.default_search_operator
+        search_fields: tools.search_fields
+        sort_field: tools.sort_field
+        sort_order: tools.sort_order
+        has_reference: tools.has_reference
+        fields: tools.fields
+        filter: tools.filter
+        filter_consumers: tools.filter_consumers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: find-backfills-rules
+      description: Find backfills for rules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-alerting.postalertingrulesbackfillfind
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        end: tools.end
+        page: tools.page
+        per_page: tools.per_page
+        rule_ids: tools.rule_ids
+        initiator: tools.initiator
+        start: tools.start
+        sort_field: tools.sort_field
+        sort_order: tools.sort_order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: schedule-backfill-rules
+      description: Schedule a backfill for rules
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-alerting.postalertingrulesbackfillschedule
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-backfill-id
+      description: Delete a backfill by ID
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-alerting.deletealertingrulesbackfillid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-backfill-id
+      description: Get a backfill by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-alerting.getalertingrulesbackfillid
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

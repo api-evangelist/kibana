@@ -1,0 +1,782 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — cases
+  description: 'Kibana APIs — cases. 22 operations. Lead operation: Delete cases. Self-contained Naftiko capability covering
+    one Kibana business surface.'
+  tags:
+  - Kibana
+  - cases
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-cases
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — cases business capability. Self-contained, no shared references.
+    resources:
+    - name: api-cases
+      path: /api/cases
+      operations:
+      - name: deletecasedefaultspace
+        method: DELETE
+        description: Delete cases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecasedefaultspace
+        method: PATCH
+        description: Update cases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: createcasedefaultspace
+        method: POST
+        description: Create a case
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-cases-_find
+      path: /api/cases/_find
+      operations:
+      - name: findcasesdefaultspace
+        method: GET
+        description: Search cases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-cases-alerts-alertId
+      path: /api/cases/alerts/{alertId}
+      operations:
+      - name: getcasesbyalertdefaultspace
+        method: GET
+        description: Get cases for an alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-cases-configure
+      path: /api/cases/configure
+      operations:
+      - name: getcaseconfigurationdefaultspace
+        method: GET
+        description: Get case settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: setcaseconfigurationdefaultspace
+        method: POST
+        description: Add case settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-cases-configure-connectors-_find
+      path: /api/cases/configure/connectors/_find
+      operations:
+      - name: findcaseconnectorsdefaultspace
+        method: GET
+        description: Get case connectors
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-cases-configure-configurationId
+      path: /api/cases/configure/{configurationId}
+      operations:
+      - name: updatecaseconfigurationdefaultspace
+        method: PATCH
+        description: Update case settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-cases-reporters
+      path: /api/cases/reporters
+      operations:
+      - name: getcasereportersdefaultspace
+        method: GET
+        description: Get case creators
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-cases-tags
+      path: /api/cases/tags
+      operations:
+      - name: getcasetagsdefaultspace
+        method: GET
+        description: Get case tags
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-cases-caseId
+      path: /api/cases/{caseId}
+      operations:
+      - name: getcasedefaultspace
+        method: GET
+        description: Get case information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-cases-caseId-alerts
+      path: /api/cases/{caseId}/alerts
+      operations:
+      - name: getcasealertsdefaultspace
+        method: GET
+        description: Get all alerts for a case
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-cases-caseId-comments
+      path: /api/cases/{caseId}/comments
+      operations:
+      - name: deletecasecommentsdefaultspace
+        method: DELETE
+        description: Delete all case comments and alerts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecasecommentdefaultspace
+        method: PATCH
+        description: Update a case comment or alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: addcasecommentdefaultspace
+        method: POST
+        description: Add a case comment or alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-cases-caseId-comments-_find
+      path: /api/cases/{caseId}/comments/_find
+      operations:
+      - name: findcasecommentsdefaultspace
+        method: GET
+        description: Find case comments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-cases-caseId-comments-commentId
+      path: /api/cases/{caseId}/comments/{commentId}
+      operations:
+      - name: deletecasecommentdefaultspace
+        method: DELETE
+        description: Delete a case comment or alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getcasecommentdefaultspace
+        method: GET
+        description: Get a case comment or alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-cases-caseId-connector-connectorId-_push
+      path: /api/cases/{caseId}/connector/{connectorId}/_push
+      operations:
+      - name: pushcasedefaultspace
+        method: POST
+        description: Push a case to an external service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-cases-caseId-files
+      path: /api/cases/{caseId}/files
+      operations:
+      - name: addcasefiledefaultspace
+        method: POST
+        description: Attach a file to a case
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-cases-caseId-user_actions-_find
+      path: /api/cases/{caseId}/user_actions/_find
+      operations:
+      - name: findcaseactivitydefaultspace
+        method: GET
+        description: Find case activity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-cases-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — cases. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/api/cases
+      name: api-cases
+      description: REST surface for api-cases.
+      operations:
+      - method: DELETE
+        name: deletecasedefaultspace
+        description: Delete cases
+        call: kibana-cases.deletecasedefaultspace
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecasedefaultspace
+        description: Update cases
+        call: kibana-cases.updatecasedefaultspace
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcasedefaultspace
+        description: Create a case
+        call: kibana-cases.createcasedefaultspace
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/cases/find
+      name: api-cases-find
+      description: REST surface for api-cases-_find.
+      operations:
+      - method: GET
+        name: findcasesdefaultspace
+        description: Search cases
+        call: kibana-cases.findcasesdefaultspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/cases/alerts/{alertid}
+      name: api-cases-alerts-alertid
+      description: REST surface for api-cases-alerts-alertId.
+      operations:
+      - method: GET
+        name: getcasesbyalertdefaultspace
+        description: Get cases for an alert
+        call: kibana-cases.getcasesbyalertdefaultspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/cases/configure
+      name: api-cases-configure
+      description: REST surface for api-cases-configure.
+      operations:
+      - method: GET
+        name: getcaseconfigurationdefaultspace
+        description: Get case settings
+        call: kibana-cases.getcaseconfigurationdefaultspace
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: setcaseconfigurationdefaultspace
+        description: Add case settings
+        call: kibana-cases.setcaseconfigurationdefaultspace
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/cases/configure/connectors/find
+      name: api-cases-configure-connectors-find
+      description: REST surface for api-cases-configure-connectors-_find.
+      operations:
+      - method: GET
+        name: findcaseconnectorsdefaultspace
+        description: Get case connectors
+        call: kibana-cases.findcaseconnectorsdefaultspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/cases/configure/{configurationid}
+      name: api-cases-configure-configurationid
+      description: REST surface for api-cases-configure-configurationId.
+      operations:
+      - method: PATCH
+        name: updatecaseconfigurationdefaultspace
+        description: Update case settings
+        call: kibana-cases.updatecaseconfigurationdefaultspace
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/cases/reporters
+      name: api-cases-reporters
+      description: REST surface for api-cases-reporters.
+      operations:
+      - method: GET
+        name: getcasereportersdefaultspace
+        description: Get case creators
+        call: kibana-cases.getcasereportersdefaultspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/cases/tags
+      name: api-cases-tags
+      description: REST surface for api-cases-tags.
+      operations:
+      - method: GET
+        name: getcasetagsdefaultspace
+        description: Get case tags
+        call: kibana-cases.getcasetagsdefaultspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/cases/{caseid}
+      name: api-cases-caseid
+      description: REST surface for api-cases-caseId.
+      operations:
+      - method: GET
+        name: getcasedefaultspace
+        description: Get case information
+        call: kibana-cases.getcasedefaultspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/cases/{caseid}/alerts
+      name: api-cases-caseid-alerts
+      description: REST surface for api-cases-caseId-alerts.
+      operations:
+      - method: GET
+        name: getcasealertsdefaultspace
+        description: Get all alerts for a case
+        call: kibana-cases.getcasealertsdefaultspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/cases/{caseid}/comments
+      name: api-cases-caseid-comments
+      description: REST surface for api-cases-caseId-comments.
+      operations:
+      - method: DELETE
+        name: deletecasecommentsdefaultspace
+        description: Delete all case comments and alerts
+        call: kibana-cases.deletecasecommentsdefaultspace
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecasecommentdefaultspace
+        description: Update a case comment or alert
+        call: kibana-cases.updatecasecommentdefaultspace
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addcasecommentdefaultspace
+        description: Add a case comment or alert
+        call: kibana-cases.addcasecommentdefaultspace
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/cases/{caseid}/comments/find
+      name: api-cases-caseid-comments-find
+      description: REST surface for api-cases-caseId-comments-_find.
+      operations:
+      - method: GET
+        name: findcasecommentsdefaultspace
+        description: Find case comments
+        call: kibana-cases.findcasecommentsdefaultspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/cases/{caseid}/comments/{commentid}
+      name: api-cases-caseid-comments-commentid
+      description: REST surface for api-cases-caseId-comments-commentId.
+      operations:
+      - method: DELETE
+        name: deletecasecommentdefaultspace
+        description: Delete a case comment or alert
+        call: kibana-cases.deletecasecommentdefaultspace
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getcasecommentdefaultspace
+        description: Get a case comment or alert
+        call: kibana-cases.getcasecommentdefaultspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/cases/{caseid}/connector/{connectorid}/push
+      name: api-cases-caseid-connector-connectorid-push
+      description: REST surface for api-cases-caseId-connector-connectorId-_push.
+      operations:
+      - method: POST
+        name: pushcasedefaultspace
+        description: Push a case to an external service
+        call: kibana-cases.pushcasedefaultspace
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/cases/{caseid}/files
+      name: api-cases-caseid-files
+      description: REST surface for api-cases-caseId-files.
+      operations:
+      - method: POST
+        name: addcasefiledefaultspace
+        description: Attach a file to a case
+        call: kibana-cases.addcasefiledefaultspace
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/cases/{caseid}/user-actions/find
+      name: api-cases-caseid-user-actions-find
+      description: REST surface for api-cases-caseId-user_actions-_find.
+      operations:
+      - method: GET
+        name: findcaseactivitydefaultspace
+        description: Find case activity
+        call: kibana-cases.findcaseactivitydefaultspace
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-cases-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — cases. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: delete-cases
+      description: Delete cases
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-cases.deletecasedefaultspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-cases
+      description: Update cases
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-cases.updatecasedefaultspace
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-case
+      description: Create a case
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-cases.createcasedefaultspace
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-cases
+      description: Search cases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-cases.findcasesdefaultspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-cases-alert
+      description: Get cases for an alert
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-cases.getcasesbyalertdefaultspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-case-settings
+      description: Get case settings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-cases.getcaseconfigurationdefaultspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-case-settings
+      description: Add case settings
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-cases.setcaseconfigurationdefaultspace
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-case-connectors
+      description: Get case connectors
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-cases.findcaseconnectorsdefaultspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-case-settings
+      description: Update case settings
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-cases.updatecaseconfigurationdefaultspace
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-case-creators
+      description: Get case creators
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-cases.getcasereportersdefaultspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-case-tags
+      description: Get case tags
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-cases.getcasetagsdefaultspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-case-information
+      description: Get case information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-cases.getcasedefaultspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-alerts-case
+      description: Get all alerts for a case
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-cases.getcasealertsdefaultspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-all-case-comments-and
+      description: Delete all case comments and alerts
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-cases.deletecasecommentsdefaultspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-case-comment-alert
+      description: Update a case comment or alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-cases.updatecasecommentdefaultspace
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-case-comment-alert
+      description: Add a case comment or alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-cases.addcasecommentdefaultspace
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: find-case-comments
+      description: Find case comments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-cases.findcasecommentsdefaultspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-case-comment-alert
+      description: Delete a case comment or alert
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-cases.deletecasecommentdefaultspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-case-comment-alert
+      description: Get a case comment or alert
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-cases.getcasecommentdefaultspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: push-case-external-service
+      description: Push a case to an external service
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-cases.pushcasedefaultspace
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: attach-file-case
+      description: Attach a file to a case
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-cases.addcasefiledefaultspace
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: find-case-activity
+      description: Find case activity
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-cases.findcaseactivitydefaultspace
+      outputParameters:
+      - type: object
+        mapping: $.

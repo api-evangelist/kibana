@@ -1,0 +1,830 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — Security Timeline API
+  description: 'Kibana APIs — Security Timeline API. 17 operations. Lead operation: Delete one or more notes. Self-contained
+    Naftiko capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - Security Timeline API
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-security-timeline-api
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — Security Timeline API business capability. Self-contained, no shared references.
+    resources:
+    - name: api-note
+      path: /api/note
+      operations:
+      - name: deletenote
+        method: DELETE
+        description: Delete one or more notes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: getnotes
+        method: GET
+        description: Get notes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: documentIds
+          in: query
+          type: string
+          description: 'Event document `_id` values to match against each note''s `eventId`. When this parameter is present,
+            the response is all matching notes (up to the server''s hard '
+        - name: savedObjectIds
+          in: query
+          type: string
+          description: 'Timeline `savedObjectId` value(s). Returns notes that reference those timelines. When present, list-mode
+            pagination parameters are not used; up to the server''s '
+        - name: page
+          in: query
+          type: string
+          description: Page number for list mode (when `documentIds` and `savedObjectIds` are omitted). Passed as a string;
+            default 1.
+        - name: perPage
+          in: query
+          type: string
+          description: Page size for list mode (when `documentIds` and `savedObjectIds` are omitted). Passed as a string;
+            default 10.
+        - name: search
+          in: query
+          type: string
+          description: Search string for saved-objects find (list mode only).
+        - name: sortField
+          in: query
+          type: string
+          description: Field to sort by for saved-objects find (list mode only).
+        - name: sortOrder
+          in: query
+          type: string
+          description: Sort order (`asc` or `desc`) for saved-objects find (list mode only).
+        - name: filter
+          in: query
+          type: string
+          description: Kuery filter string combined with other list-mode filters (for example `createdByFilter` or `associatedFilter`).
+            Typed as a string for API compatibility; interp
+        - name: createdByFilter
+          in: query
+          type: string
+          description: Kibana user profile **UID** (UUID). The server resolves the user's display identifiers and returns
+            notes whose `createdBy` matches any of them (list mode only).
+        - name: associatedFilter
+          in: query
+          type: string
+          description: Restricts notes by how they relate to a Timeline and/or an event document (list mode only). Some values
+            apply extra filtering after the query. Ignored when `doc
+      - name: persistnoteroute
+        method: PATCH
+        description: Add or update a note
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-pinned_event
+      path: /api/pinned_event
+      operations:
+      - name: persistpinnedeventroute
+        method: PATCH
+        description: Pin/unpin an event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-timeline
+      path: /api/timeline
+      operations:
+      - name: deletetimelines
+        method: DELETE
+        description: Delete Timelines or Timeline templates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: gettimeline
+        method: GET
+        description: Get Timeline or Timeline template details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: template_timeline_id
+          in: query
+          type: string
+          description: The `savedObjectId` of the Timeline template to retrieve.
+        - name: id
+          in: query
+          type: string
+          description: The `savedObjectId` of the Timeline to retrieve.
+      - name: patchtimeline
+        method: PATCH
+        description: Update a Timeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: createtimelines
+        method: POST
+        description: Create a Timeline or Timeline template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-timeline-_copy
+      path: /api/timeline/_copy
+      operations:
+      - name: copytimeline
+        method: POST
+        description: Copies timeline or timeline template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-timeline-_draft
+      path: /api/timeline/_draft
+      operations:
+      - name: getdrafttimelines
+        method: GET
+        description: Get draft Timeline or Timeline template details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: timelineType
+          in: query
+          type: string
+          description: Which draft to load (`default` investigation timeline or `template` timeline template).
+          required: true
+      - name: cleandrafttimelines
+        method: POST
+        description: Create a clean draft Timeline or Timeline template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-timeline-_export
+      path: /api/timeline/_export
+      operations:
+      - name: exporttimelines
+        method: POST
+        description: Export Timelines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: file_name
+          in: query
+          type: string
+          description: The name of the file to export
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-timeline-_favorite
+      path: /api/timeline/_favorite
+      operations:
+      - name: persistfavoriteroute
+        method: PATCH
+        description: Favorite a Timeline or Timeline template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-timeline-_import
+      path: /api/timeline/_import
+      operations:
+      - name: importtimelines
+        method: POST
+        description: Import Timelines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-timeline-_prepackaged
+      path: /api/timeline/_prepackaged
+      operations:
+      - name: installprepackedtimelines
+        method: POST
+        description: Install prepackaged Timelines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-timeline-resolve
+      path: /api/timeline/resolve
+      operations:
+      - name: resolvetimeline
+        method: GET
+        description: Resolve a Timeline or Timeline template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: template_timeline_id
+          in: query
+          type: string
+          description: The ID of the template timeline to resolve
+        - name: id
+          in: query
+          type: string
+          description: The ID of the timeline to resolve
+    - name: api-timelines
+      path: /api/timelines
+      operations:
+      - name: gettimelines
+        method: GET
+        description: Get Timelines or Timeline templates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: only_user_favorite
+          in: query
+          type: string
+          description: If `true`, only Timelines that the current user has marked as favorite are returned.
+        - name: timeline_type
+          in: query
+          type: string
+          description: Restrict results to `default` investigation timelines or `template` timeline templates.
+        - name: sort_field
+          in: query
+          type: string
+          description: Field used to sort the list (`title`, `description`, `updated`, or `created`).
+        - name: sort_order
+          in: query
+          type: string
+          description: Whether to sort the results `ascending` or `descending`
+        - name: page_size
+          in: query
+          type: string
+          description: How many results should returned at once
+        - name: page_index
+          in: query
+          type: string
+          description: How many pages should be skipped
+        - name: search
+          in: query
+          type: string
+          description: Allows to search for timelines by their title
+        - name: status
+          in: query
+          type: string
+          description: Filter by timeline lifecycle state (`active`, `draft`, or `immutable`).
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-security-timeline-api-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — Security Timeline API. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/note
+      name: api-note
+      description: REST surface for api-note.
+      operations:
+      - method: DELETE
+        name: deletenote
+        description: Delete one or more notes
+        call: kibana-security-timeline-api.deletenote
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getnotes
+        description: Get notes
+        call: kibana-security-timeline-api.getnotes
+        with:
+          documentIds: rest.documentIds
+          savedObjectIds: rest.savedObjectIds
+          page: rest.page
+          perPage: rest.perPage
+          search: rest.search
+          sortField: rest.sortField
+          sortOrder: rest.sortOrder
+          filter: rest.filter
+          createdByFilter: rest.createdByFilter
+          associatedFilter: rest.associatedFilter
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: persistnoteroute
+        description: Add or update a note
+        call: kibana-security-timeline-api.persistnoteroute
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/pinned-event
+      name: api-pinned-event
+      description: REST surface for api-pinned_event.
+      operations:
+      - method: PATCH
+        name: persistpinnedeventroute
+        description: Pin/unpin an event
+        call: kibana-security-timeline-api.persistpinnedeventroute
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/timeline
+      name: api-timeline
+      description: REST surface for api-timeline.
+      operations:
+      - method: DELETE
+        name: deletetimelines
+        description: Delete Timelines or Timeline templates
+        call: kibana-security-timeline-api.deletetimelines
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: gettimeline
+        description: Get Timeline or Timeline template details
+        call: kibana-security-timeline-api.gettimeline
+        with:
+          template_timeline_id: rest.template_timeline_id
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchtimeline
+        description: Update a Timeline
+        call: kibana-security-timeline-api.patchtimeline
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createtimelines
+        description: Create a Timeline or Timeline template
+        call: kibana-security-timeline-api.createtimelines
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/timeline/copy
+      name: api-timeline-copy
+      description: REST surface for api-timeline-_copy.
+      operations:
+      - method: POST
+        name: copytimeline
+        description: Copies timeline or timeline template
+        call: kibana-security-timeline-api.copytimeline
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/timeline/draft
+      name: api-timeline-draft
+      description: REST surface for api-timeline-_draft.
+      operations:
+      - method: GET
+        name: getdrafttimelines
+        description: Get draft Timeline or Timeline template details
+        call: kibana-security-timeline-api.getdrafttimelines
+        with:
+          timelineType: rest.timelineType
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: cleandrafttimelines
+        description: Create a clean draft Timeline or Timeline template
+        call: kibana-security-timeline-api.cleandrafttimelines
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/timeline/export
+      name: api-timeline-export
+      description: REST surface for api-timeline-_export.
+      operations:
+      - method: POST
+        name: exporttimelines
+        description: Export Timelines
+        call: kibana-security-timeline-api.exporttimelines
+        with:
+          file_name: rest.file_name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/timeline/favorite
+      name: api-timeline-favorite
+      description: REST surface for api-timeline-_favorite.
+      operations:
+      - method: PATCH
+        name: persistfavoriteroute
+        description: Favorite a Timeline or Timeline template
+        call: kibana-security-timeline-api.persistfavoriteroute
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/timeline/import
+      name: api-timeline-import
+      description: REST surface for api-timeline-_import.
+      operations:
+      - method: POST
+        name: importtimelines
+        description: Import Timelines
+        call: kibana-security-timeline-api.importtimelines
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/timeline/prepackaged
+      name: api-timeline-prepackaged
+      description: REST surface for api-timeline-_prepackaged.
+      operations:
+      - method: POST
+        name: installprepackedtimelines
+        description: Install prepackaged Timelines
+        call: kibana-security-timeline-api.installprepackedtimelines
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/timeline/resolve
+      name: api-timeline-resolve
+      description: REST surface for api-timeline-resolve.
+      operations:
+      - method: GET
+        name: resolvetimeline
+        description: Resolve a Timeline or Timeline template
+        call: kibana-security-timeline-api.resolvetimeline
+        with:
+          template_timeline_id: rest.template_timeline_id
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/timelines
+      name: api-timelines
+      description: REST surface for api-timelines.
+      operations:
+      - method: GET
+        name: gettimelines
+        description: Get Timelines or Timeline templates
+        call: kibana-security-timeline-api.gettimelines
+        with:
+          only_user_favorite: rest.only_user_favorite
+          timeline_type: rest.timeline_type
+          sort_field: rest.sort_field
+          sort_order: rest.sort_order
+          page_size: rest.page_size
+          page_index: rest.page_index
+          search: rest.search
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-security-timeline-api-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — Security Timeline API. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: delete-one-more-notes
+      description: Delete one or more notes
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-timeline-api.deletenote
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-notes
+      description: Get notes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-timeline-api.getnotes
+      with:
+        documentIds: tools.documentIds
+        savedObjectIds: tools.savedObjectIds
+        page: tools.page
+        perPage: tools.perPage
+        search: tools.search
+        sortField: tools.sortField
+        sortOrder: tools.sortOrder
+        filter: tools.filter
+        createdByFilter: tools.createdByFilter
+        associatedFilter: tools.associatedFilter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-update-note
+      description: Add or update a note
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-timeline-api.persistnoteroute
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: pin-unpin-event
+      description: Pin/unpin an event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-timeline-api.persistpinnedeventroute
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-timelines-timeline-templates
+      description: Delete Timelines or Timeline templates
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-timeline-api.deletetimelines
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-timeline-timeline-template-details
+      description: Get Timeline or Timeline template details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-timeline-api.gettimeline
+      with:
+        template_timeline_id: tools.template_timeline_id
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-timeline
+      description: Update a Timeline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-timeline-api.patchtimeline
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-timeline-timeline-template
+      description: Create a Timeline or Timeline template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-timeline-api.createtimelines
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: copies-timeline-timeline-template
+      description: Copies timeline or timeline template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-timeline-api.copytimeline
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-draft-timeline-timeline-template
+      description: Get draft Timeline or Timeline template details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-timeline-api.getdrafttimelines
+      with:
+        timelineType: tools.timelineType
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-clean-draft-timeline-timeline
+      description: Create a clean draft Timeline or Timeline template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-timeline-api.cleandrafttimelines
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-timelines
+      description: Export Timelines
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-timeline-api.exporttimelines
+      with:
+        file_name: tools.file_name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: favorite-timeline-timeline-template
+      description: Favorite a Timeline or Timeline template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-timeline-api.persistfavoriteroute
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: import-timelines
+      description: Import Timelines
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-timeline-api.importtimelines
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: install-prepackaged-timelines
+      description: Install prepackaged Timelines
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-timeline-api.installprepackedtimelines
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: resolve-timeline-timeline-template
+      description: Resolve a Timeline or Timeline template
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-timeline-api.resolvetimeline
+      with:
+        template_timeline_id: tools.template_timeline_id
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-timelines-timeline-templates
+      description: Get Timelines or Timeline templates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-timeline-api.gettimelines
+      with:
+        only_user_favorite: tools.only_user_favorite
+        timeline_type: tools.timeline_type
+        sort_field: tools.sort_field
+        sort_order: tools.sort_order
+        page_size: tools.page_size
+        page_index: tools.page_index
+        search: tools.search
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.

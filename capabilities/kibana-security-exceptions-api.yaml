@@ -1,0 +1,866 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — Security Exceptions API
+  description: 'Kibana APIs — Security Exceptions API. 16 operations. Lead operation: Create rule exception items. Self-contained
+    Naftiko capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - Security Exceptions API
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-security-exceptions-api
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — Security Exceptions API business capability. Self-contained, no shared references.
+    resources:
+    - name: api-detection_engine-rules-id-exceptions
+      path: /api/detection_engine/rules/{id}/exceptions
+      operations:
+      - name: createruleexceptionlistitems
+        method: POST
+        description: Create rule exception items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Detection rule's identifier
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-exception_lists
+      path: /api/exception_lists
+      operations:
+      - name: deleteexceptionlist
+        method: DELETE
+        description: Delete an exception list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: Exception list's identifier. Either `id` or `list_id` must be specified.
+        - name: list_id
+          in: query
+          type: string
+          description: Human readable exception list string identifier, e.g. `trusted-linux-processes`. Either `id` or `list_id`
+            must be specified.
+        - name: namespace_type
+          in: query
+          type: string
+          description: '`single` deletes the list in the current Kibana space; `agnostic` deletes a global list. Must match
+            the'
+      - name: readexceptionlist
+        method: GET
+        description: Get exception list details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: Exception list's identifier. Either `id` or `list_id` must be specified.
+        - name: list_id
+          in: query
+          type: string
+          description: Human readable exception list string identifier, e.g. `trusted-linux-processes`. Either `id` or `list_id`
+            must be specified.
+        - name: namespace_type
+          in: query
+          type: string
+          description: When `single`, the list is resolved in the current Kibana space. When `agnostic`, the list is a global
+      - name: createexceptionlist
+        method: POST
+        description: Create an exception list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updateexceptionlist
+        method: PUT
+        description: Update an exception list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-exception_lists-_duplicate
+      path: /api/exception_lists/_duplicate
+      operations:
+      - name: duplicateexceptionlist
+        method: POST
+        description: Duplicate an exception list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: list_id
+          in: query
+          type: string
+          description: The `list_id` of the existing exception list to copy (source list).
+          required: true
+        - name: namespace_type
+          in: query
+          type: string
+          description: Scope in which the source list is defined (`single` = current space, `agnostic` = all spaces).
+          required: true
+        - name: include_expired_exceptions
+          in: query
+          type: string
+          description: Determines whether to include expired exceptions in the duplicated list. Expiration date defined by
+            `expire_time`.
+          required: true
+    - name: api-exception_lists-_export
+      path: /api/exception_lists/_export
+      operations:
+      - name: exportexceptionlist
+        method: POST
+        description: Export an exception list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: Exception list's internal `id` (UUID) returned on create; use with `list_id` and `namespace_type` for
+            an unambiguous target.
+          required: true
+        - name: list_id
+          in: query
+          type: string
+          description: Human-readable `list_id` of the exception list to export, as shown in the UI and API responses.
+          required: true
+        - name: namespace_type
+          in: query
+          type: string
+          description: '`single` exports a list in the current Kibana space; `agnostic` exports a global (space-agnostic)
+            list.'
+          required: true
+        - name: include_expired_exceptions
+          in: query
+          type: string
+          description: Determines whether to include expired exceptions in the exported list. Expiration date defined by `expire_time`.
+          required: true
+    - name: api-exception_lists-_find
+      path: /api/exception_lists/_find
+      operations:
+      - name: findexceptionlists
+        method: GET
+        description: Get exception lists
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filter
+          in: query
+          type: string
+          description: Filters the returned results according to the value of the specified field.
+        - name: namespace_type
+          in: query
+          type: array
+          description: Determines whether the returned containers are Kibana associated with a Kibana space
+        - name: page
+          in: query
+          type: integer
+          description: The page number to return
+        - name: per_page
+          in: query
+          type: integer
+          description: The number of exception lists to return per page
+        - name: sort_field
+          in: query
+          type: string
+          description: Determines which field is used to sort the results.
+        - name: sort_order
+          in: query
+          type: string
+          description: Determines the sort order, which can be `desc` or `asc`.
+    - name: api-exception_lists-_import
+      path: /api/exception_lists/_import
+      operations:
+      - name: importexceptionlist
+        method: POST
+        description: Import an exception list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: overwrite
+          in: query
+          type: boolean
+          description: Determines whether existing exception lists with the same `list_id` are overwritten.
+        - name: as_new_list
+          in: query
+          type: boolean
+          description: Determines whether the list being imported will have a new `list_id` generated.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-exception_lists-items
+      path: /api/exception_lists/items
+      operations:
+      - name: deleteexceptionlistitem
+        method: DELETE
+        description: Delete an exception list item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: Exception item's identifier. Either `id` or `item_id` must be specified
+        - name: item_id
+          in: query
+          type: string
+          description: Human readable exception item string identifier, e.g. `trusted-linux-processes`. Either `id` or `item_id`
+            must be specified
+        - name: namespace_type
+          in: query
+          type: string
+          description: '`single` deletes the item in the current Kibana space; `agnostic` deletes an item in a space-agnostic
+            list. Must match the list that owns the item.'
+      - name: readexceptionlistitem
+        method: GET
+        description: Get an exception list item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: Exception list item's identifier. Either `id` or `item_id` must be specified.
+        - name: item_id
+          in: query
+          type: string
+          description: Human readable exception item string identifier, e.g. `trusted-linux-processes`. Either `id` or `item_id`
+            must be specified.
+        - name: namespace_type
+          in: query
+          type: string
+          description: '`single` fetches the item in the current space; `agnostic` fetches a global (space-agnostic) item.
+            Must'
+      - name: createexceptionlistitem
+        method: POST
+        description: Create an exception list item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updateexceptionlistitem
+        method: PUT
+        description: Update an exception list item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-exception_lists-items-_find
+      path: /api/exception_lists/items/_find
+      operations:
+      - name: findexceptionlistitems
+        method: GET
+        description: Get exception list items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: list_id
+          in: query
+          type: array
+          description: The `list_id`s of the items to fetch.
+          required: true
+        - name: filter
+          in: query
+          type: array
+          description: Filters the returned results according to the value of the specified field,
+        - name: namespace_type
+          in: query
+          type: array
+          description: Determines whether the returned containers are Kibana associated with a Kibana space
+        - name: search
+          in: query
+          type: string
+          description: Free-text search term applied to exception list item fields (for example a hostname or file path fragment).
+        - name: page
+          in: query
+          type: integer
+          description: The page number to return
+        - name: per_page
+          in: query
+          type: integer
+          description: The number of exception list items to return per page
+        - name: sort_field
+          in: query
+          type: string
+          description: Determines which field is used to sort the results.
+        - name: sort_order
+          in: query
+          type: string
+          description: Determines the sort order, which can be `desc` or `asc`.
+    - name: api-exception_lists-summary
+      path: /api/exception_lists/summary
+      operations:
+      - name: readexceptionlistsummary
+        method: GET
+        description: Get an exception list summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: Exception list's identifier generated upon creation.
+        - name: list_id
+          in: query
+          type: string
+          description: Exception list's human readable identifier.
+        - name: namespace_type
+          in: query
+          type: string
+          description: '`single` returns summary for a list in the current space; `agnostic` for a space-agnostic list. Must'
+        - name: filter
+          in: query
+          type: string
+          description: Search filter clause
+    - name: api-exceptions-shared
+      path: /api/exceptions/shared
+      operations:
+      - name: createsharedexceptionlist
+        method: POST
+        description: Create a shared exception list
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-security-exceptions-api-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — Security Exceptions API. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/detection-engine/rules/{id}/exceptions
+      name: api-detection-engine-rules-id-exceptions
+      description: REST surface for api-detection_engine-rules-id-exceptions.
+      operations:
+      - method: POST
+        name: createruleexceptionlistitems
+        description: Create rule exception items
+        call: kibana-security-exceptions-api.createruleexceptionlistitems
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/exception-lists
+      name: api-exception-lists
+      description: REST surface for api-exception_lists.
+      operations:
+      - method: DELETE
+        name: deleteexceptionlist
+        description: Delete an exception list
+        call: kibana-security-exceptions-api.deleteexceptionlist
+        with:
+          id: rest.id
+          list_id: rest.list_id
+          namespace_type: rest.namespace_type
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: readexceptionlist
+        description: Get exception list details
+        call: kibana-security-exceptions-api.readexceptionlist
+        with:
+          id: rest.id
+          list_id: rest.list_id
+          namespace_type: rest.namespace_type
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createexceptionlist
+        description: Create an exception list
+        call: kibana-security-exceptions-api.createexceptionlist
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateexceptionlist
+        description: Update an exception list
+        call: kibana-security-exceptions-api.updateexceptionlist
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/exception-lists/duplicate
+      name: api-exception-lists-duplicate
+      description: REST surface for api-exception_lists-_duplicate.
+      operations:
+      - method: POST
+        name: duplicateexceptionlist
+        description: Duplicate an exception list
+        call: kibana-security-exceptions-api.duplicateexceptionlist
+        with:
+          list_id: rest.list_id
+          namespace_type: rest.namespace_type
+          include_expired_exceptions: rest.include_expired_exceptions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/exception-lists/export
+      name: api-exception-lists-export
+      description: REST surface for api-exception_lists-_export.
+      operations:
+      - method: POST
+        name: exportexceptionlist
+        description: Export an exception list
+        call: kibana-security-exceptions-api.exportexceptionlist
+        with:
+          id: rest.id
+          list_id: rest.list_id
+          namespace_type: rest.namespace_type
+          include_expired_exceptions: rest.include_expired_exceptions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/exception-lists/find
+      name: api-exception-lists-find
+      description: REST surface for api-exception_lists-_find.
+      operations:
+      - method: GET
+        name: findexceptionlists
+        description: Get exception lists
+        call: kibana-security-exceptions-api.findexceptionlists
+        with:
+          filter: rest.filter
+          namespace_type: rest.namespace_type
+          page: rest.page
+          per_page: rest.per_page
+          sort_field: rest.sort_field
+          sort_order: rest.sort_order
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/exception-lists/import
+      name: api-exception-lists-import
+      description: REST surface for api-exception_lists-_import.
+      operations:
+      - method: POST
+        name: importexceptionlist
+        description: Import an exception list
+        call: kibana-security-exceptions-api.importexceptionlist
+        with:
+          overwrite: rest.overwrite
+          as_new_list: rest.as_new_list
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/exception-lists/items
+      name: api-exception-lists-items
+      description: REST surface for api-exception_lists-items.
+      operations:
+      - method: DELETE
+        name: deleteexceptionlistitem
+        description: Delete an exception list item
+        call: kibana-security-exceptions-api.deleteexceptionlistitem
+        with:
+          id: rest.id
+          item_id: rest.item_id
+          namespace_type: rest.namespace_type
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: readexceptionlistitem
+        description: Get an exception list item
+        call: kibana-security-exceptions-api.readexceptionlistitem
+        with:
+          id: rest.id
+          item_id: rest.item_id
+          namespace_type: rest.namespace_type
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createexceptionlistitem
+        description: Create an exception list item
+        call: kibana-security-exceptions-api.createexceptionlistitem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateexceptionlistitem
+        description: Update an exception list item
+        call: kibana-security-exceptions-api.updateexceptionlistitem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/exception-lists/items/find
+      name: api-exception-lists-items-find
+      description: REST surface for api-exception_lists-items-_find.
+      operations:
+      - method: GET
+        name: findexceptionlistitems
+        description: Get exception list items
+        call: kibana-security-exceptions-api.findexceptionlistitems
+        with:
+          list_id: rest.list_id
+          filter: rest.filter
+          namespace_type: rest.namespace_type
+          search: rest.search
+          page: rest.page
+          per_page: rest.per_page
+          sort_field: rest.sort_field
+          sort_order: rest.sort_order
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/exception-lists/summary
+      name: api-exception-lists-summary
+      description: REST surface for api-exception_lists-summary.
+      operations:
+      - method: GET
+        name: readexceptionlistsummary
+        description: Get an exception list summary
+        call: kibana-security-exceptions-api.readexceptionlistsummary
+        with:
+          id: rest.id
+          list_id: rest.list_id
+          namespace_type: rest.namespace_type
+          filter: rest.filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/exceptions/shared
+      name: api-exceptions-shared
+      description: REST surface for api-exceptions-shared.
+      operations:
+      - method: POST
+        name: createsharedexceptionlist
+        description: Create a shared exception list
+        call: kibana-security-exceptions-api.createsharedexceptionlist
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-security-exceptions-api-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — Security Exceptions API. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: create-rule-exception-items
+      description: Create rule exception items
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-exceptions-api.createruleexceptionlistitems
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-exception-list
+      description: Delete an exception list
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-exceptions-api.deleteexceptionlist
+      with:
+        id: tools.id
+        list_id: tools.list_id
+        namespace_type: tools.namespace_type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-exception-list-details
+      description: Get exception list details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-exceptions-api.readexceptionlist
+      with:
+        id: tools.id
+        list_id: tools.list_id
+        namespace_type: tools.namespace_type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-exception-list
+      description: Create an exception list
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-exceptions-api.createexceptionlist
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-exception-list
+      description: Update an exception list
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-exceptions-api.updateexceptionlist
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: duplicate-exception-list
+      description: Duplicate an exception list
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-exceptions-api.duplicateexceptionlist
+      with:
+        list_id: tools.list_id
+        namespace_type: tools.namespace_type
+        include_expired_exceptions: tools.include_expired_exceptions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-exception-list
+      description: Export an exception list
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-exceptions-api.exportexceptionlist
+      with:
+        id: tools.id
+        list_id: tools.list_id
+        namespace_type: tools.namespace_type
+        include_expired_exceptions: tools.include_expired_exceptions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-exception-lists
+      description: Get exception lists
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-exceptions-api.findexceptionlists
+      with:
+        filter: tools.filter
+        namespace_type: tools.namespace_type
+        page: tools.page
+        per_page: tools.per_page
+        sort_field: tools.sort_field
+        sort_order: tools.sort_order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: import-exception-list
+      description: Import an exception list
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-exceptions-api.importexceptionlist
+      with:
+        overwrite: tools.overwrite
+        as_new_list: tools.as_new_list
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-exception-list-item
+      description: Delete an exception list item
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-security-exceptions-api.deleteexceptionlistitem
+      with:
+        id: tools.id
+        item_id: tools.item_id
+        namespace_type: tools.namespace_type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-exception-list-item
+      description: Get an exception list item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-exceptions-api.readexceptionlistitem
+      with:
+        id: tools.id
+        item_id: tools.item_id
+        namespace_type: tools.namespace_type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-exception-list-item
+      description: Create an exception list item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-security-exceptions-api.createexceptionlistitem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-exception-list-item
+      description: Update an exception list item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-security-exceptions-api.updateexceptionlistitem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-exception-list-items
+      description: Get exception list items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-exceptions-api.findexceptionlistitems
+      with:
+        list_id: tools.list_id
+        filter: tools.filter
+        namespace_type: tools.namespace_type
+        search: tools.search
+        page: tools.page
+        per_page: tools.per_page
+        sort_field: tools.sort_field
+        sort_order: tools.sort_order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-exception-list-summary
+      description: Get an exception list summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-security-exceptions-api.readexceptionlistsummary
+      with:
+        id: tools.id
+        list_id: tools.list_id
+        namespace_type: tools.namespace_type
+        filter: tools.filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-shared-exception-list
+      description: Create a shared exception list
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-security-exceptions-api.createsharedexceptionlist
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

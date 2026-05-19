@@ -1,0 +1,247 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — Fleet Server hosts
+  description: 'Kibana APIs — Fleet Server hosts. 5 operations. Lead operation: Get Fleet Server hosts. Self-contained Naftiko
+    capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - Fleet Server hosts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-fleet-server-hosts
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — Fleet Server hosts business capability. Self-contained, no shared references.
+    resources:
+    - name: api-fleet-fleet_server_hosts
+      path: /api/fleet/fleet_server_hosts
+      operations:
+      - name: getfleetfleetserverhosts
+        method: GET
+        description: Get Fleet Server hosts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: postfleetfleetserverhosts
+        method: POST
+        description: Create a Fleet Server host
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-fleet-fleet_server_hosts-itemId
+      path: /api/fleet/fleet_server_hosts/{itemId}
+      operations:
+      - name: deletefleetfleetserverhostsitemid
+        method: DELETE
+        description: Delete a Fleet Server host
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: itemId
+          in: path
+          type: string
+          description: The ID of the Fleet Server host
+          required: true
+      - name: getfleetfleetserverhostsitemid
+        method: GET
+        description: Get a Fleet Server host
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: itemId
+          in: path
+          type: string
+          description: The ID of the Fleet Server host
+          required: true
+      - name: putfleetfleetserverhostsitemid
+        method: PUT
+        description: Update a Fleet Server host
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: itemId
+          in: path
+          type: string
+          description: The ID of the Fleet Server host
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-fleet-server-hosts-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — Fleet Server hosts. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/fleet/fleet-server-hosts
+      name: api-fleet-fleet-server-hosts
+      description: REST surface for api-fleet-fleet_server_hosts.
+      operations:
+      - method: GET
+        name: getfleetfleetserverhosts
+        description: Get Fleet Server hosts
+        call: kibana-fleet-server-hosts.getfleetfleetserverhosts
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postfleetfleetserverhosts
+        description: Create a Fleet Server host
+        call: kibana-fleet-server-hosts.postfleetfleetserverhosts
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/fleet/fleet-server-hosts/{itemid}
+      name: api-fleet-fleet-server-hosts-itemid
+      description: REST surface for api-fleet-fleet_server_hosts-itemId.
+      operations:
+      - method: DELETE
+        name: deletefleetfleetserverhostsitemid
+        description: Delete a Fleet Server host
+        call: kibana-fleet-server-hosts.deletefleetfleetserverhostsitemid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getfleetfleetserverhostsitemid
+        description: Get a Fleet Server host
+        call: kibana-fleet-server-hosts.getfleetfleetserverhostsitemid
+        with:
+          itemId: rest.itemId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putfleetfleetserverhostsitemid
+        description: Update a Fleet Server host
+        call: kibana-fleet-server-hosts.putfleetfleetserverhostsitemid
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          itemId: rest.itemId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-fleet-server-hosts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — Fleet Server hosts. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-fleet-server-hosts
+      description: Get Fleet Server hosts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-fleet-server-hosts.getfleetfleetserverhosts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-fleet-server-host
+      description: Create a Fleet Server host
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kibana-fleet-server-hosts.postfleetfleetserverhosts
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-fleet-server-host
+      description: Delete a Fleet Server host
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-fleet-server-hosts.deletefleetfleetserverhostsitemid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-fleet-server-host
+      description: Get a Fleet Server host
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-fleet-server-hosts.getfleetfleetserverhostsitemid
+      with:
+        itemId: tools.itemId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-fleet-server-host
+      description: Update a Fleet Server host
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-fleet-server-hosts.putfleetfleetserverhostsitemid
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        itemId: tools.itemId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

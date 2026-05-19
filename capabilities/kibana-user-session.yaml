@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — user session
+  description: 'Kibana APIs — user session. 1 operations. Lead operation: Invalidate user sessions. Self-contained Naftiko
+    capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - user session
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-user-session
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — user session business capability. Self-contained, no shared references.
+    resources:
+    - name: api-security-session-_invalidate
+      path: /api/security/session/_invalidate
+      operations:
+      - name: postsecuritysessioninvalidate
+        method: POST
+        description: Invalidate user sessions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: kbn-xsrf
+          in: header
+          type: string
+          description: A required header to protect against CSRF attacks
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-user-session-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — user session. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/security/session/invalidate
+      name: api-security-session-invalidate
+      description: REST surface for api-security-session-_invalidate.
+      operations:
+      - method: POST
+        name: postsecuritysessioninvalidate
+        description: Invalidate user sessions
+        call: kibana-user-session.postsecuritysessioninvalidate
+        with:
+          kbn-xsrf: rest.kbn-xsrf
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-user-session-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — user session. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: invalidate-user-sessions
+      description: Invalidate user sessions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-user-session.postsecuritysessioninvalidate
+      with:
+        kbn-xsrf: tools.kbn-xsrf
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

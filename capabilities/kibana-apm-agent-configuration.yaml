@@ -1,0 +1,320 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kibana APIs — APM agent configuration
+  description: 'Kibana APIs — APM agent configuration. 7 operations. Lead operation: Delete agent configuration. Self-contained
+    Naftiko capability covering one Kibana business surface.'
+  tags:
+  - Kibana
+  - APM agent configuration
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KIBANA_API_KEY: KIBANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kibana-apm-agent-configuration
+    baseUri: https://{kibana_url}
+    description: Kibana APIs — APM agent configuration business capability. Self-contained, no shared references.
+    resources:
+    - name: api-apm-settings-agent-configuration
+      path: /api/apm/settings/agent-configuration
+      operations:
+      - name: deleteagentconfiguration
+        method: DELETE
+        description: Delete agent configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: getagentconfigurations
+        method: GET
+        description: Get a list of agent configurations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createupdateagentconfiguration
+        method: PUT
+        description: Create or update agent configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: overwrite
+          in: query
+          type: boolean
+          description: If the config exists ?overwrite=true is required
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-apm-settings-agent-configuration-agent_name
+      path: /api/apm/settings/agent-configuration/agent_name
+      operations:
+      - name: getagentnameforservice
+        method: GET
+        description: Get agent name for service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: serviceName
+          in: query
+          type: string
+          description: The name of the service
+          required: true
+    - name: api-apm-settings-agent-configuration-environments
+      path: /api/apm/settings/agent-configuration/environments
+      operations:
+      - name: getenvironmentsforservice
+        method: GET
+        description: Get environments for service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: serviceName
+          in: query
+          type: string
+          description: The name of the service. If omitted, environments across all services are returned.
+    - name: api-apm-settings-agent-configuration-search
+      path: /api/apm/settings/agent-configuration/search
+      operations:
+      - name: searchsingleconfiguration
+        method: POST
+        description: Lookup single agent configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-apm-settings-agent-configuration-view
+      path: /api/apm/settings/agent-configuration/view
+      operations:
+      - name: getsingleagentconfiguration
+        method: GET
+        description: Get single agent configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          description: Service name
+        - name: environment
+          in: query
+          type: string
+          description: Service environment
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.KIBANA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: kibana-apm-agent-configuration-rest
+    port: 8080
+    description: REST adapter for Kibana APIs — APM agent configuration. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/apm/settings/agent-configuration
+      name: api-apm-settings-agent-configuration
+      description: REST surface for api-apm-settings-agent-configuration.
+      operations:
+      - method: DELETE
+        name: deleteagentconfiguration
+        description: Delete agent configuration
+        call: kibana-apm-agent-configuration.deleteagentconfiguration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getagentconfigurations
+        description: Get a list of agent configurations
+        call: kibana-apm-agent-configuration.getagentconfigurations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: createupdateagentconfiguration
+        description: Create or update agent configuration
+        call: kibana-apm-agent-configuration.createupdateagentconfiguration
+        with:
+          overwrite: rest.overwrite
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/apm/settings/agent-configuration/agent-name
+      name: api-apm-settings-agent-configuration-agent-name
+      description: REST surface for api-apm-settings-agent-configuration-agent_name.
+      operations:
+      - method: GET
+        name: getagentnameforservice
+        description: Get agent name for service
+        call: kibana-apm-agent-configuration.getagentnameforservice
+        with:
+          serviceName: rest.serviceName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/apm/settings/agent-configuration/environments
+      name: api-apm-settings-agent-configuration-environments
+      description: REST surface for api-apm-settings-agent-configuration-environments.
+      operations:
+      - method: GET
+        name: getenvironmentsforservice
+        description: Get environments for service
+        call: kibana-apm-agent-configuration.getenvironmentsforservice
+        with:
+          serviceName: rest.serviceName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/apm/settings/agent-configuration/search
+      name: api-apm-settings-agent-configuration-search
+      description: REST surface for api-apm-settings-agent-configuration-search.
+      operations:
+      - method: POST
+        name: searchsingleconfiguration
+        description: Lookup single agent configuration
+        call: kibana-apm-agent-configuration.searchsingleconfiguration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/apm/settings/agent-configuration/view
+      name: api-apm-settings-agent-configuration-view
+      description: REST surface for api-apm-settings-agent-configuration-view.
+      operations:
+      - method: GET
+        name: getsingleagentconfiguration
+        description: Get single agent configuration
+        call: kibana-apm-agent-configuration.getsingleagentconfiguration
+        with:
+          name: rest.name
+          environment: rest.environment
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kibana-apm-agent-configuration-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kibana APIs — APM agent configuration. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: delete-agent-configuration
+      description: Delete agent configuration
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kibana-apm-agent-configuration.deleteagentconfiguration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-list-agent-configurations
+      description: Get a list of agent configurations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-apm-agent-configuration.getagentconfigurations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-agent-configuration
+      description: Create or update agent configuration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kibana-apm-agent-configuration.createupdateagentconfiguration
+      with:
+        overwrite: tools.overwrite
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agent-name-service
+      description: Get agent name for service
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-apm-agent-configuration.getagentnameforservice
+      with:
+        serviceName: tools.serviceName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-environments-service
+      description: Get environments for service
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-apm-agent-configuration.getenvironmentsforservice
+      with:
+        serviceName: tools.serviceName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: lookup-single-agent-configuration
+      description: Lookup single agent configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kibana-apm-agent-configuration.searchsingleconfiguration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-agent-configuration
+      description: Get single agent configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kibana-apm-agent-configuration.getsingleagentconfiguration
+      with:
+        name: tools.name
+        environment: tools.environment
+      outputParameters:
+      - type: object
+        mapping: $.
