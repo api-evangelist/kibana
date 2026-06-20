@@ -5,7 +5,7 @@ description: Kibana is an open-source data visualization and exploration tool us
   dashboards, alerting, and management of saved objects across spaces, exposing a comprehensive REST API for programmatic
   configuration and automation.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Alerting
 - Analytics
