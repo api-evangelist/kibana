@@ -41,121 +41,121 @@ apis:
     url: openapi/kibana-openapi-original.yml
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-general.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-apm-agent-configuration.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-apm-agent-keys.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-apm-annotations.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-apm-server-schema.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-apm-sourcemaps.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-data-streams.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-elastic-agent-actions.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-elastic-agent-binary-download-sources.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-elastic-agent-policies.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-elastic-agent-status.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-elastic-agents.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-elastic-package-manager-epm.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-fleet-server-hosts.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-fleet-agentless-policies.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-fleet-cloud-connectors.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-fleet-enrollment-api-keys.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-fleet-internals.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-fleet-outputs.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-fleet-package-policies.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-fleet-proxies.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-fleet-remote-synced-integrations.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-fleet-service-tokens.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-fleet-uninstall-tokens.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-message-signing-service.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-security-ai-assistant-api.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-security-attack-discovery-api.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-security-detections-api.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-security-endpoint-exceptions-api.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-security-endpoint-management-api.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-security-entity-analytics-api.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-security-exceptions-api.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-security-lists-api.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-security-osquery-api.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-security-timeline-api.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-security-entity-store.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-agent-builder.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-alerting.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-cases.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-connectors.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-data-views.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-logstash.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-maintenance-window.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-ml.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-observability-ai-assistant.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-roles.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-saved-objects.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-short-url.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-slo.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-spaces.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-streams.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-synthetics.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-system.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-task-manager.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-upgrade.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-uptime.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-user-session.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/kibana-workflows.yaml
 common:
 - type: Website
@@ -174,7 +174,7 @@ common:
   url: https://www.elastic.co/pricing
 - type: Support
   url: https://www.elastic.co/support
-- type: Forum
+- type: Forums
   url: https://discuss.elastic.co/c/kibana
 - type: TermsOfService
   url: https://www.elastic.co/legal/terms-of-service
