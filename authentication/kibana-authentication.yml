@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/kibana-openapi-original.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'These APIs use key-based authentication. You must create an API key and use
+    the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`'
+  sources:
+  - openapi/kibana-openapi-original.yml
+- name: basicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/kibana-openapi-original.yml

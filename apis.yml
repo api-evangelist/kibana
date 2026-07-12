@@ -158,6 +158,12 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/kibana-workflows.yaml
 common:
+- type: TrustCenter
+  url: security/kibana-trust-center.yml
+- type: DomainSecurity
+  url: security/kibana-domain-security.yml
+- type: Authentication
+  url: authentication/kibana-authentication.yml
 - type: Website
   url: https://www.elastic.co/kibana
 - type: Documentation
