@@ -158,6 +158,8 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/kibana-workflows.yaml
 common:
+- type: AgenticAccess
+  url: agentic-access/kibana-agentic-access.yml
 - type: TrustCenter
   url: security/kibana-trust-center.yml
 - type: DomainSecurity
