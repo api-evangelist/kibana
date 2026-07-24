@@ -1,0 +1,367 @@
+openapi: 3.0.3
+info:
+  contact:
+    name: Kibana Team
+  description: 'The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
+
+    The API calls are stateless.
+
+    Each request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the
+
+    request.
+
+    API requests return JSON output, which is a format that is machine-readable and works well for automation.
+
+
+    To interact with Kibana APIs, use the following operations:
+
+
+    - GET: Fetches the information.
+
+    - PATCH: Applies partial modifications to the existing information.
+
+    - POST: Adds new information.
+
+    - PUT: Updates the existing information.
+
+    - DELETE: Removes the information.
+
+
+    You can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.
+
+    For example:
+
+
+    ```
+
+    GET kbn:/api/data_views
+
+    ```
+
+
+    For more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).
+
+
+    NOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.
+
+
+    ## Documentation source and versions
+
+
+    This documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.
+
+    It is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+
+    This documentation contains work-in-progress information for future Elastic Stack releases.
+
+    '
+  title: Kibana APIs Actions ml API
+  version: ''
+  x-doc-license:
+    name: Attribution-NonCommercial-NoDerivatives 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-nd/4.0/
+  x-feedbackLink:
+    label: Feedback
+    url: https://github.com/elastic/docs-content/issues/new?assignees=&labels=feedback%2Ccommunity&projects=&template=api-feedback.yaml&title=%5BFeedback%5D%3A+
+servers:
+- url: https://{kibana_url}
+  variables:
+    kibana_url:
+      default: localhost:5601
+security:
+- apiKeyAuth: []
+- basicAuth: []
+tags:
+- description: 'Enables you to synchronize machine learning saved objects.
+
+    '
+  name: ml
+  x-displayName: Machine learning
+paths:
+  /api/ml/saved_objects/sync:
+    get:
+      description: '**Spaces method and path for this operation:**
+
+
+        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/ml/saved_objects/sync</span></div>
+
+
+        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+
+
+        Synchronizes Kibana saved objects for machine learning jobs and trained models in the default space. You must have `all` privileges for the **Machine Learning** feature in the **Analytics** section of the Kibana feature privileges. This API runs automatically when you start Kibana and periodically thereafter.
+
+        '
+      operationId: mlSync
+      parameters:
+      - $ref: '#/components/parameters/Machine_learning_APIs_simulateParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                syncExample:
+                  $ref: '#/components/examples/Machine_learning_APIs_mlSyncExample'
+              schema:
+                $ref: '#/components/schemas/Machine_learning_APIs_mlSync200Response'
+          description: Indicates a successful call
+        '401':
+          content:
+            application/json:
+              examples:
+                syncExample:
+                  $ref: '#/components/examples/Machine_learning_APIs_mlSync401Example'
+              schema:
+                $ref: '#/components/schemas/Machine_learning_APIs_mlSync4xxResponse'
+          description: Authorization information is missing or invalid.
+      summary: Sync saved objects in the default space
+      tags:
+      - ml
+      x-metaTags:
+      - content: Kibana
+        name: product_name
+  /api/ml/saved_objects/update_jobs_spaces:
+    post:
+      description: '**Spaces method and path for this operation:**
+
+
+        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/ml/saved_objects/update_jobs_spaces</span></div>
+
+
+        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+
+
+        Update a list of jobs to add and/or remove them from given spaces.'
+      operationId: mlUpdateJobsSpaces
+      requestBody:
+        content:
+          application/json:
+            examples:
+              updateADJobSpacesRequest:
+                value:
+                  jobIds:
+                  - test-job
+                  jobType: anomaly-detector
+                  spacesToAdd:
+                  - default
+                  spacesToRemove:
+                  - '*'
+              updateDFAJobSpacesRequest:
+                value:
+                  jobIds:
+                  - test-job
+                  jobType: data-frame-analytics
+                  spacesToAdd:
+                  - default
+                  spacesToRemove:
+                  - '*'
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                successADResponse:
+                  value:
+                    test-job:
+                      success: true
+                      type: anomaly-detector
+                successDFAResponse:
+                  value:
+                    test-job:
+                      success: true
+                      type: data-frame-analytics
+          description: Indicates a successful call
+      summary: Update jobs spaces
+      tags:
+      - ml
+      x-metaTags:
+      - content: Kibana
+        name: product_name
+  /api/ml/saved_objects/update_trained_models_spaces:
+    post:
+      description: '**Spaces method and path for this operation:**
+
+
+        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/ml/saved_objects/update_trained_models_spaces</span></div>
+
+
+        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+
+
+        Update a list of trained models to add and/or remove them from given spaces.'
+      operationId: mlUpdateTrainedModelsSpaces
+      requestBody:
+        content:
+          application/json:
+            examples:
+              updateTrainedModelsSpacesRequest:
+                value:
+                  modelIds:
+                  - test-model
+                  spacesToAdd:
+                  - default
+                  spacesToRemove:
+                  - '*'
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                successTMResponse:
+                  value:
+                    test-model:
+                      success: true
+                      type: trained-model"
+          description: Indicates a successful call
+      summary: Update trained models spaces
+      tags:
+      - ml
+      x-metaTags:
+      - content: Kibana
+        name: product_name
+components:
+  schemas:
+    Machine_learning_APIs_mlSyncResponseSuccess:
+      description: The success or failure of the synchronization.
+      type: boolean
+    Machine_learning_APIs_mlSync200Response:
+      properties:
+        datafeedsAdded:
+          additionalProperties:
+            $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseDatafeeds'
+          description: If a saved object for an anomaly detection job is missing a datafeed identifier, it is added when you run the sync machine learning saved objects API.
+          type: object
+        datafeedsRemoved:
+          additionalProperties:
+            $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseDatafeeds'
+          description: If a saved object for an anomaly detection job references a datafeed that no longer exists, it is deleted when you run the sync machine learning saved objects API.
+          type: object
+        savedObjectsCreated:
+          $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSavedObjectsCreated'
+        savedObjectsDeleted:
+          $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSavedObjectsDeleted'
+      title: Successful sync API response
+      type: object
+    Machine_learning_APIs_mlSync4xxResponse:
+      properties:
+        error:
+          example: Unauthorized
+          type: string
+        message:
+          type: string
+        statusCode:
+          example: 401
+          type: integer
+      title: Unsuccessful sync API response
+      type: object
+    Machine_learning_APIs_mlSyncResponseTrainedModels:
+      description: The sync machine learning saved objects API response contains this object when there are trained models affected by the synchronization. There is an object for each relevant trained model, which contains the synchronization status.
+      properties:
+        success:
+          $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSuccess'
+      title: Sync API response for trained models
+      type: object
+    Machine_learning_APIs_mlSyncResponseDataFrameAnalytics:
+      description: The sync machine learning saved objects API response contains this object when there are data frame analytics jobs affected by the synchronization. There is an object for each relevant job, which contains the synchronization status.
+      properties:
+        success:
+          $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSuccess'
+      title: Sync API response for data frame analytics jobs
+      type: object
+    Machine_learning_APIs_mlSyncResponseDatafeeds:
+      description: The sync machine learning saved objects API response contains this object when there are datafeeds affected by the synchronization. There is an object for each relevant datafeed, which contains the synchronization status.
+      properties:
+        success:
+          $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSuccess'
+      title: Sync API response for datafeeds
+      type: object
+    Machine_learning_APIs_mlSyncResponseSavedObjectsCreated:
+      description: If saved objects are missing for machine learning jobs or trained models, they are created when you run the sync machine learning saved objects API.
+      properties:
+        anomaly-detector:
+          additionalProperties:
+            $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseAnomalyDetectors'
+          description: If saved objects are missing for anomaly detection jobs, they are created.
+          type: object
+        data-frame-analytics:
+          additionalProperties:
+            $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseDataFrameAnalytics'
+          description: If saved objects are missing for data frame analytics jobs, they are created.
+          type: object
+        trained-model:
+          additionalProperties:
+            $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseTrainedModels'
+          description: If saved objects are missing for trained models, they are created.
+          type: object
+      title: Sync API response for created saved objects
+      type: object
+    Machine_learning_APIs_mlSyncResponseAnomalyDetectors:
+      description: The sync machine learning saved objects API response contains this object when there are anomaly detection jobs affected by the synchronization. There is an object for each relevant job, which contains the synchronization status.
+      properties:
+        success:
+          $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSuccess'
+      title: Sync API response for anomaly detection jobs
+      type: object
+    Machine_learning_APIs_mlSyncResponseSavedObjectsDeleted:
+      description: If saved objects exist for machine learning jobs or trained models that no longer exist, they are deleted when you run the sync machine learning saved objects API.
+      properties:
+        anomaly-detector:
+          additionalProperties:
+            $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseAnomalyDetectors'
+          description: If there are saved objects exist for nonexistent anomaly detection jobs, they are deleted.
+          type: object
+        data-frame-analytics:
+          additionalProperties:
+            $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseDataFrameAnalytics'
+          description: If there are saved objects exist for nonexistent data frame analytics jobs, they are deleted.
+          type: object
+        trained-model:
+          additionalProperties:
+            $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseTrainedModels'
+          description: If there are saved objects exist for nonexistent trained models, they are deleted.
+          type: object
+      title: Sync API response for deleted saved objects
+      type: object
+  examples:
+    Machine_learning_APIs_mlSyncExample:
+      summary: Two anomaly detection jobs required synchronization in this example.
+      value:
+        datafeedsAdded: {}
+        datafeedsRemoved: {}
+        savedObjectsCreated:
+          anomaly-detector:
+            myjob1:
+              success: true
+            myjob2:
+              success: true
+        savedObjectsDeleted: {}
+    Machine_learning_APIs_mlSync401Example:
+      summary: Two anomaly detection jobs required synchronization in this example.
+      value:
+        error: Unauthorized
+        message: "[security_exception\n\tRoot causes:\n\t\tsecurity_exception: unable to authenticate user [ml_viewer] for REST request [/_security/_authenticate]]: unable to authenticate user [ml_viewer] for REST request [/_security/_authenticate]"
+        statusCode: 401
+  parameters:
+    Machine_learning_APIs_simulateParam:
+      description: When true, simulates the synchronization by returning only the list of actions that would be performed.
+      example: 'true'
+      in: query
+      name: simulate
+      required: false
+      schema:
+        type: boolean
+  securitySchemes:
+    apiKeyAuth:
+      description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`
+
+        '
+      in: header
+      name: Authorization
+      type: apiKey
+    basicAuth:
+      scheme: basic
+      type: http
+x-topics:
+- title: Kibana spaces
+  content: "Spaces enable you to organize your dashboards and other saved objects into meaningful categories.\nYou can use the default space or create your own spaces.\n\nTo run APIs in non-default spaces, you must add `s/{space_id}/` to the path.\nFor example:\n\n```bash\ncurl -X GET \"http://${KIBANA_URL}/s/marketing/api/data_views\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\"\n```\n\nIf you use the Kibana console to send API requests, it automatically adds the appropriate space identifier.\n\nTo learn more, check out [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces).\n"

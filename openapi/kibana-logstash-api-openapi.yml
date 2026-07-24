@@ -1,0 +1,269 @@
+openapi: 3.0.3
+info:
+  contact:
+    name: Kibana Team
+  description: 'The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
+
+    The API calls are stateless.
+
+    Each request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the
+
+    request.
+
+    API requests return JSON output, which is a format that is machine-readable and works well for automation.
+
+
+    To interact with Kibana APIs, use the following operations:
+
+
+    - GET: Fetches the information.
+
+    - PATCH: Applies partial modifications to the existing information.
+
+    - POST: Adds new information.
+
+    - PUT: Updates the existing information.
+
+    - DELETE: Removes the information.
+
+
+    You can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.
+
+    For example:
+
+
+    ```
+
+    GET kbn:/api/data_views
+
+    ```
+
+
+    For more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).
+
+
+    NOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.
+
+
+    ## Documentation source and versions
+
+
+    This documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.
+
+    It is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+
+    This documentation contains work-in-progress information for future Elastic Stack releases.
+
+    '
+  title: Kibana APIs Actions logstash API
+  version: ''
+  x-doc-license:
+    name: Attribution-NonCommercial-NoDerivatives 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-nd/4.0/
+  x-feedbackLink:
+    label: Feedback
+    url: https://github.com/elastic/docs-content/issues/new?assignees=&labels=feedback%2Ccommunity&projects=&template=api-feedback.yaml&title=%5BFeedback%5D%3A+
+servers:
+- url: https://{kibana_url}
+  variables:
+    kibana_url:
+      default: localhost:5601
+security:
+- apiKeyAuth: []
+- basicAuth: []
+tags:
+- description: 'Programmatically integrate with Logstash configuration management.
+
+    > warn
+
+    > Do not directly access the `.logstash` index. The structure of the `.logstash` index is subject to change, which could cause your integration to break. Instead, use the Logstash configuration management APIs.
+
+    '
+  externalDocs:
+    description: Centralized pipeline management
+    url: https://www.elastic.co/docs/reference/logstash/logstash-centralized-pipeline-management
+  name: logstash
+  x-displayName: Logstash configuration management
+paths:
+  /api/logstash/pipeline/{id}:
+    delete:
+      description: 'Delete a centrally-managed Logstash pipeline.
+
+        If your Elasticsearch cluster is protected with basic authentication, you must have either the `logstash_admin` built-in role or a customized Logstash writer role.
+
+        '
+      externalDocs:
+        description: Secure your connection
+        url: https://www.elastic.co/docs/reference/logstash/secure-connection
+      operationId: delete-logstash-pipeline
+      parameters:
+      - description: An identifier for the pipeline.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Indicates a successful call
+      summary: Delete a Logstash pipeline
+      tags:
+      - logstash
+      x-state: Technical Preview
+      x-metaTags:
+      - content: Kibana
+        name: product_name
+    get:
+      description: 'Get information for a centrally-managed Logstash pipeline.
+
+        To use this API, you must have either the `logstash_admin` built-in role or a customized Logstash reader role.
+
+        '
+      externalDocs:
+        description: Secure your connection
+        url: https://www.elastic.co/docs/reference/logstash/secure-connection
+      operationId: get-logstash-pipeline
+      parameters:
+      - description: An identifier for the pipeline.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                getLogstashPipelineResponseExample1:
+                  value: "{\n  \"id\": \"hello-world\",\n  \"description\": \"Just a simple pipeline\",\n  \"username\": \"elastic\",\n  \"pipeline\": \"input { stdin {} } output { stdout {} }\",\n  \"settings\": {\n    \"queue.type\": \"persistent\"\n  }\n}"
+              schema:
+                type: object
+          description: Indicates a successful call
+      summary: Get a Logstash pipeline
+      tags:
+      - logstash
+      x-state: Technical Preview
+      x-metaTags:
+      - content: Kibana
+        name: product_name
+    put:
+      description: 'Create a centrally-managed Logstash pipeline or update a pipeline.
+
+        To use this API, you must have either the `logstash_admin` built-in role or a customized Logstash writer role.
+
+        '
+      externalDocs:
+        description: Secure your connection
+        url: https://www.elastic.co/docs/reference/logstash/secure-connection
+      operationId: put-logstash-pipeline
+      parameters:
+      - description: 'An identifier for the pipeline. Pipeline ID must begin with a letter or underscore and can contain only letters, underscores, dashes, hyphens, and numbers.
+
+          '
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            examples:
+              putLogstashPipelineRequestExample1:
+                value: "{\n  \"pipeline\": \"input { stdin {} } output { stdout {} }\",\n  \"settings\": {\n    \"queue.type\": \"persisted\"\n  }\n}"
+            schema:
+              type: object
+              properties:
+                description:
+                  description: A description of the pipeline.
+                  type: string
+                pipeline:
+                  description: A definition for the pipeline.
+                  type: string
+                settings:
+                  description: 'Supported settings, represented as object keys, include the following:
+
+
+                    - `pipeline.workers`
+
+                    - `pipeline.batch.size`
+
+                    - `pipeline.batch.delay`
+
+                    - `pipeline.ecs_compatibility`
+
+                    - `pipeline.ordered`
+
+                    - `queue.type`
+
+                    - `queue.max_bytes`
+
+                    - `queue.checkpoint.writes`
+
+                    '
+                  type: object
+              required:
+              - pipeline
+      responses:
+        '204':
+          description: Indicates a successful call
+      summary: Create or update a Logstash pipeline
+      tags:
+      - logstash
+      x-state: Technical Preview
+      x-metaTags:
+      - content: Kibana
+        name: product_name
+  /api/logstash/pipelines:
+    get:
+      description: 'Get a list of all centrally-managed Logstash pipelines.
+
+
+        To use this API, you must have either the `logstash_admin` built-in role or a customized Logstash reader role.
+
+        > info
+
+        > Limit the number of pipelines to 10,000 or fewer. As the number of pipelines nears and surpasses 10,000, you may see performance issues on Kibana.
+
+
+        The `username` property appears in the response when security is enabled and depends on when the pipeline was created or last updated.
+
+        '
+      externalDocs:
+        description: Secure your connection
+        url: https://www.elastic.co/docs/reference/logstash/secure-connection
+      operationId: get-logstash-pipelines
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                getLogstashPipelinesResponseExample1:
+                  value: "{\n  \"pipelines\": [\n    {\n      \"id\": \"hello-world\",\n      \"description\": \"Just a simple pipeline\",\n      \"last_modified\": \"2018-04-14T12:23:29.772Z\",\n      \"username\": \"elastic\" \n    },\n    {\n      \"id\": \"sleepy-pipeline\",\n      \"description\": \"\",\n      \"last_modified\": \"2018-03-24T03:41:30.554Z\"\n    }\n  ]\n}"
+              schema:
+                type: object
+          description: Indicates a successful call
+      summary: Get all Logstash pipelines
+      tags:
+      - logstash
+      x-state: Technical Preview
+      x-metaTags:
+      - content: Kibana
+        name: product_name
+components:
+  securitySchemes:
+    apiKeyAuth:
+      description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`
+
+        '
+      in: header
+      name: Authorization
+      type: apiKey
+    basicAuth:
+      scheme: basic
+      type: http
+x-topics:
+- title: Kibana spaces
+  content: "Spaces enable you to organize your dashboards and other saved objects into meaningful categories.\nYou can use the default space or create your own spaces.\n\nTo run APIs in non-default spaces, you must add `s/{space_id}/` to the path.\nFor example:\n\n```bash\ncurl -X GET \"http://${KIBANA_URL}/s/marketing/api/data_views\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\"\n```\n\nIf you use the Kibana console to send API requests, it automatically adds the appropriate space identifier.\n\nTo learn more, check out [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces).\n"
