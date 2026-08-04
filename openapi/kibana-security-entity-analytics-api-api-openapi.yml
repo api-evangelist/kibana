@@ -57,7 +57,7 @@ info:
 
     '
   title: Kibana APIs Actions Security Entity Analytics API API
-  version: ''
+  version: "1.0"
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
