@@ -1,0 +1,512 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Elastic Agents API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Elastic Agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get incoming agent data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/agent_status/data",
+            "params": [
+              {
+                "name": "agentsIds",
+                "value": "",
+                "type": "query",
+                "description": "Agent IDs to check data for, as an array or comma-separated string"
+              },
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by integration package name"
+              },
+              {
+                "name": "pkgVersion",
+                "value": "",
+                "type": "query",
+                "description": "Filter by integration package version"
+              },
+              {
+                "name": "previewData",
+                "value": "",
+                "type": "query",
+                "description": "When true, return a preview of the ingested data"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agent_status/data</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the data streams that an agent is actively sending data to.<br/><br/>[Required authorization] Route required privileges: fleet-agents-read."
+        },
+        {
+          "info": {
+            "name": "Get agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/agents",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "kuery",
+                "value": "",
+                "type": "query",
+                "description": "A KQL query string to filter results"
+              },
+              {
+                "name": "showAgentless",
+                "value": "",
+                "type": "query",
+                "description": "When true, include agentless agents in the results"
+              },
+              {
+                "name": "showInactive",
+                "value": "",
+                "type": "query",
+                "description": "When true, include inactive agents in the results"
+              },
+              {
+                "name": "withMetrics",
+                "value": "",
+                "type": "query",
+                "description": "When true, include CPU and memory metrics in the response"
+              },
+              {
+                "name": "showUpgradeable",
+                "value": "",
+                "type": "query",
+                "description": "When true, only return agents that are upgradeable"
+              },
+              {
+                "name": "getStatusSummary",
+                "value": "",
+                "type": "query",
+                "description": "When true, return a summary of agent statuses in the response"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order, ascending or descending"
+              },
+              {
+                "name": "searchAfter",
+                "value": "",
+                "type": "query",
+                "description": "JSON-encoded array of sort values for `search_after` pagination"
+              },
+              {
+                "name": "openPit",
+                "value": "",
+                "type": "query",
+                "description": "When true, opens a new point-in-time for pagination"
+              },
+              {
+                "name": "pitId",
+                "value": "",
+                "type": "query",
+                "description": "Point-in-time ID for pagination"
+              },
+              {
+                "name": "pitKeepAlive",
+                "value": "",
+                "type": "query",
+                "description": "Duration to keep the point-in-time alive, for example, `1m`"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nList agents, with optional filtering and pagination.<br/><br/>[Required authorization] Route required privileges: fleet-agents-read."
+        },
+        {
+          "info": {
+            "name": "Get agents by action ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/agents",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve agents associated with specific action IDs.<br/><br/>[Required authorization] Route required privileges: fleet-agents-read."
+        },
+        {
+          "info": {
+            "name": "Get an agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/agents/:agentId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "The agent ID"
+              },
+              {
+                "name": "withMetrics",
+                "value": "",
+                "type": "query",
+                "description": "When true, include CPU and memory metrics in the response"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents/{agentId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet an agent by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agents-read."
+        },
+        {
+          "info": {
+            "name": "Update an agent by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/fleet/agents/:agentId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "The agent ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents/{agentId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an agent by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all."
+        },
+        {
+          "info": {
+            "name": "Delete an agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/fleet/agents/:agentId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "The agent ID"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents/{agentId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete an agent by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all."
+        },
+        {
+          "info": {
+            "name": "Get an agent's effective config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/agents/:agentId/effective_config",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "The agent ID to get effective config of"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents/{agentId}/effective_config</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet an agent's effective config by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agents-read."
+        },
+        {
+          "info": {
+            "name": "Migrate a single agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/agents/:agentId/migrate",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "The agent ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents/{agentId}/migrate</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nMigrate a single agent to another cluster.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all."
+        },
+        {
+          "info": {
+            "name": "Change agent privilege level",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/agents/:agentId/privilege_level_change",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "The agent ID to change privilege level for"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents/{agentId}/privilege_level_change</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nChange the privilege level of a single agent to unprivileged.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all."
+        },
+        {
+          "info": {
+            "name": "Get agent uploads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/agents/:agentId/uploads",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "The agent ID"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents/{agentId}/uploads</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of files uploaded by a specific agent.<br/><br/>[Required authorization] Route required privileges: fleet-agents-read."
+        },
+        {
+          "info": {
+            "name": "Get available agent versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/agents/available_versions"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents/available_versions</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of Elastic Agent versions available for upgrade.<br/><br/>[Required authorization] Route required privileges: fleet-agents-read."
+        },
+        {
+          "info": {
+            "name": "Migrate multiple agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/agents/bulk_migrate",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents/bulk_migrate</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nBulk migrate agents to another cluster.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all."
+        },
+        {
+          "info": {
+            "name": "Bulk change agent privilege level",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/agents/bulk_privilege_level_change",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents/bulk_privilege_level_change</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nChange multiple agents' privilege level to unprivileged.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all."
+        },
+        {
+          "info": {
+            "name": "Delete an uploaded file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/fleet/agents/files/:fileId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the uploaded file"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents/files/{fileId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a file uploaded by an agent.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all."
+        },
+        {
+          "info": {
+            "name": "Get an uploaded file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/agents/files/:fileId/:fileName",
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the uploaded file"
+              },
+              {
+                "name": "fileName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the uploaded file"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents/files/{fileId}/{fileName}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a file uploaded by an agent.<br/><br/>[Required authorization] Route required privileges: fleet-agents-read."
+        },
+        {
+          "info": {
+            "name": "Get agent setup info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/agents/setup"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents/setup</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the current Fleet setup status, including whether Fleet is ready to enroll agents and which requirements or optional features are missing.<br/><br/>[Required authorization] Route required privileges: fleet-agents-rea"
+        },
+        {
+          "info": {
+            "name": "Initiate Fleet setup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/agents/setup",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents/setup</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nInitialize Fleet. This endpoint is used by Elastic Agents to trigger Fleet setup. Safe to call multiple times; subsequent calls are idempotent.<br/><br/>[Required authorization] Route required privileges: fleet-agents-"
+        },
+        {
+          "info": {
+            "name": "Get agent tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/agents/tags",
+            "params": [
+              {
+                "name": "kuery",
+                "value": "",
+                "type": "query",
+                "description": "A KQL query string to filter results"
+              },
+              {
+                "name": "showInactive",
+                "value": "",
+                "type": "query",
+                "description": "When true, include tags from inactive agents"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agents/tags</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all tags used across enrolled agents.<br/><br/>[Required authorization] Route required privileges: fleet-agents-read."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

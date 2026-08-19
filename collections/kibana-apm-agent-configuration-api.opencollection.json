@@ -1,0 +1,207 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions APM agent configuration API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "APM agent configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of agent configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/apm/settings/agent-configuration",
+            "headers": [
+              {
+                "name": "elastic-api-version",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/apm/settings/agent-configuration</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve all agent configurations. You must have `read` privileges for the APM and User Experience feature in Kibana. If agent configuration is not available on the current deployment, the API returns a 404"
+        },
+        {
+          "info": {
+            "name": "Create or update agent configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/apm/settings/agent-configuration",
+            "headers": [
+              {
+                "name": "elastic-api-version",
+                "value": ""
+              },
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query",
+                "description": "If the config exists ?overwrite=true is required"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/apm/settings/agent-configuration</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate or update an agent configuration. You must have `all` privileges for the APM and User Experience feature in Kibana. When updating an existing configuration, the `?overwrite=true` query parameter is r"
+        },
+        {
+          "info": {
+            "name": "Delete agent configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/apm/settings/agent-configuration",
+            "headers": [
+              {
+                "name": "elastic-api-version",
+                "value": ""
+              },
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/apm/settings/agent-configuration</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete an existing agent configuration. You must have `all` privileges for the APM and User Experience feature in Kibana. When successful, the configuration is removed and, if Fleet is enabled, APM pa"
+        },
+        {
+          "info": {
+            "name": "Get agent name for service",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/apm/settings/agent-configuration/agent_name",
+            "headers": [
+              {
+                "name": "elastic-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "serviceName",
+                "value": "node",
+                "type": "query",
+                "description": "The name of the service"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/apm/settings/agent-configuration/agent_name</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve `agentName` for a service."
+        },
+        {
+          "info": {
+            "name": "Get environments for service",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/apm/settings/agent-configuration/environments",
+            "headers": [
+              {
+                "name": "elastic-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "serviceName",
+                "value": "opbeans-node",
+                "type": "query",
+                "description": "The name of the service. If omitted, environments across all services are returned."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/apm/settings/agent-configuration/environments</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve the available environments for a given service, to be used in agent configuration. You must have `read` privileges for the APM and User Experience feature in Kibana. If `serviceName` i"
+        },
+        {
+          "info": {
+            "name": "Lookup single agent configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/apm/settings/agent-configuration/search",
+            "headers": [
+              {
+                "name": "elastic-api-version",
+                "value": ""
+              },
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/apm/settings/agent-configuration/search</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDEPRECATED: This endpoint is intended for internal use by APM agents to fetch their configuration and mark it as applied. Do not use for new integrations. It searches for a single agent configurati"
+        },
+        {
+          "info": {
+            "name": "Get single agent configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/apm/settings/agent-configuration/view",
+            "headers": [
+              {
+                "name": "elastic-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "name",
+                "value": "node",
+                "type": "query",
+                "description": "Service name"
+              },
+              {
+                "name": "environment",
+                "value": "prod",
+                "type": "query",
+                "description": "Service environment"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/apm/settings/agent-configuration/view</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a single agent configuration matching the given service name and environment. You must have `read` privileges for the APM and User Experience feature in Kibana. If no matching configuration is"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

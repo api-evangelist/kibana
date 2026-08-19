@@ -1,0 +1,519 @@
+{
+  "item": [
+    {
+      "id": "9e229ad7-e8d1-43ce-8020-6a98651e7de8",
+      "name": "short url",
+      "description": {
+        "content": "Manage Kibana short URLs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "905e6961-41e7-471f-af87-d36bc23156c7",
+          "name": "Create a short URL",
+          "request": {
+            "name": "Create a short URL",
+            "description": {
+              "content": "Kibana URLs may be long and cumbersome, short URLs are much easier to remember and share.\nShort URLs are created by specifying the locator ID and locator parameters. When a short URL is resolved, the locator ID and locator parameters are used to redirect user to the right Kibana page.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "short_url"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locatorId\": \"<string>\",\n  \"params\": \"<object>\",\n  \"humanReadableSlug\": \"<boolean>\",\n  \"slug\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0285a005-0c6f-4b9b-a3d3-703d35b9f485",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "short_url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locatorId\": \"DASHBOARD_APP_LOCATOR\",\n  \"params\": {\n    \"dashboardId\": \"edf84fe0-e1a0-11e7-b6d5-4dc382ef7f5b\",\n    \"timeRange\": {\n      \"from\": \"now-7d\",\n      \"to\": \"now\"\n    }\n  },\n  \"slug\": \"my-dashboard\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accessCount\": 0,\n  \"accessDate\": 1767225600000,\n  \"createDate\": 1767225600000,\n  \"id\": \"c54b04f5d4b3aa3c\",\n  \"locator\": {\n    \"id\": \"DASHBOARD_APP_LOCATOR\",\n    \"state\": {\n      \"dashboardId\": \"edf84fe0-e1a0-11e7-b6d5-4dc382ef7f5b\",\n      \"timeRange\": {\n        \"from\": \"now-7d\",\n        \"to\": \"now\"\n      }\n    },\n    \"version\": \"9.4.0\"\n  },\n  \"slug\": \"my-dashboard\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e28eb749-7459-44a0-a47e-7f4598dde951",
+          "name": "Resolve a short URL",
+          "request": {
+            "name": "Resolve a short URL",
+            "description": {
+              "content": "Resolve a Kibana short URL by its slug.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "short_url",
+                "_slug",
+                ":slug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) The slug of the short URL."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d48c7fb-7fec-41eb-b2bf-d82d0fe0a538",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "short_url",
+                    "_slug",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) The slug of the short URL."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accessCount\": 12,\n  \"accessDate\": 1767744000000,\n  \"createDate\": 1767225600000,\n  \"id\": \"c54b04f5d4b3aa3c\",\n  \"locator\": {\n    \"id\": \"DASHBOARD_APP_LOCATOR\",\n    \"state\": {\n      \"dashboardId\": \"edf84fe0-e1a0-11e7-b6d5-4dc382ef7f5b\",\n      \"timeRange\": {\n        \"from\": \"now-7d\",\n        \"to\": \"now\"\n      }\n    },\n    \"version\": \"9.4.0\"\n  },\n  \"slug\": \"my-dashboard\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a60fd8d7-1e63-4f19-a8e1-03bdff48be95",
+          "name": "Delete a short URL",
+          "request": {
+            "name": "Delete a short URL",
+            "description": {
+              "content": "Delete a Kibana short URL.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "short_url",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The identifier for the short URL."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e15f3c2a-e278-41f9-9a6d-714d0c7318ae",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "short_url",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The identifier for the short URL."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "beff8f0a-8b63-4b56-b743-6755a8b37bf7",
+          "name": "Get a short URL",
+          "request": {
+            "name": "Get a short URL",
+            "description": {
+              "content": "Get a single Kibana short URL.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "short_url",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The identifier for the short URL."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06a3d2d1-5db2-4afe-b9a7-43df8365b2b5",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "short_url",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The identifier for the short URL."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accessCount\": 12,\n  \"accessDate\": 1767744000000,\n  \"createDate\": 1767225600000,\n  \"id\": \"c54b04f5d4b3aa3c\",\n  \"locator\": {\n    \"id\": \"DASHBOARD_APP_LOCATOR\",\n    \"state\": {\n      \"dashboardId\": \"edf84fe0-e1a0-11e7-b6d5-4dc382ef7f5b\",\n      \"timeRange\": {\n        \"from\": \"now-7d\",\n        \"to\": \"now\"\n      }\n    },\n    \"version\": \"9.4.0\"\n  },\n  \"slug\": \"my-dashboard\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:5601",
+      "key": "kibana_url"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kibana_url}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "255865e4-586e-4677-b2fa-6f47d8c3413c",
+    "name": "Kibana APIs Actions short url API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.\nThe API calls are stateless.\nEach request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the\nrequest.\nAPI requests return JSON output, which is a format that is machine-readable and works well for automation.\n\nTo interact with Kibana APIs, use the following operations:\n\n- GET: Fetches the information.\n- PATCH: Applies partial modifications to the existing information.\n- POST: Adds new information.\n- PUT: Updates the existing information.\n- DELETE: Removes the information.\n\nYou can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.\nFor example:\n\n```\nGET kbn:/api/data_views\n```\n\nFor more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).\n\nNOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.\n\n## Documentation source and versions\n\nThis documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.\nIt is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).\n\nThis documentation contains work-in-progress information for future Elastic Stack releases.\n\n\nContact Support:\n Name: Kibana Team",
+      "type": "text/plain"
+    }
+  }
+}

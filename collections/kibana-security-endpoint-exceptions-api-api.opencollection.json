@@ -1,0 +1,160 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Security Endpoint Exceptions API API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security Endpoint Exceptions API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an Elastic Endpoint rule exception list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/endpoint_list"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint_list</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate the exception list for Elastic Endpoint rule exceptions. When you create the exception list, it will have a `list_id` of `endpoint_list`. If the Elastic Endpoint exception list already exists, your request will retur"
+        },
+        {
+          "info": {
+            "name": "Get an Elastic Endpoint rule exception list item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/endpoint_list/items",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Either `id` or `item_id` must be specified"
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "query",
+                "description": "Either `id` or `item_id` must be specified"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint_list/items</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the details of an Elastic Endpoint exception list item, specified by the `id` or `item_id` field."
+        },
+        {
+          "info": {
+            "name": "Create an Elastic Endpoint rule exception list item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/endpoint_list/items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint_list/items</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate an Elastic Endpoint exception list item, and associate it with the Elastic Endpoint exception list."
+        },
+        {
+          "info": {
+            "name": "Update an Elastic Endpoint rule exception list item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/endpoint_list/items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint_list/items</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an Elastic Endpoint exception list item, specified by the `id` or `item_id` field."
+        },
+        {
+          "info": {
+            "name": "Delete an Elastic Endpoint exception list item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/endpoint_list/items",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Either `id` or `item_id` must be specified"
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "query",
+                "description": "Either `id` or `item_id` must be specified"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint_list/items</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete an Elastic Endpoint exception list item, specified by the `id` or `item_id` field."
+        },
+        {
+          "info": {
+            "name": "Get Elastic Endpoint exception list items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/endpoint_list/items/_find",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned results according to the value of the specified field,\nusing the `<field name>:<field value>` syntax.\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to return"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of exception list items to return per page"
+              },
+              {
+                "name": "sort_field",
+                "value": "",
+                "type": "query",
+                "description": "Determines which field is used to sort the results"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Determines the sort order, which can be `desc` or `asc`"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint_list/items/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all Elastic Endpoint exception list items."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

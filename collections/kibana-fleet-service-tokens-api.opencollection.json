@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Fleet service tokens API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fleet service tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a service token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/service_tokens",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/service_tokens</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a Fleet Server service token. The token is used to enroll Fleet Server instances with Kibana.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

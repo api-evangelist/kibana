@@ -1,0 +1,183 @@
+{
+  "item": [
+    {
+      "id": "c967bc84-c820-44fd-8cf9-d0c5a0cf142d",
+      "name": "observability_ai_assistant",
+      "description": {
+        "content": "Interact with the Observability AI Assistant resources.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "51d4ca0b-059d-4e44-a5ac-9fa18eb1c021",
+          "name": "Generate a chat completion",
+          "request": {
+            "name": "Generate a chat completion",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/observability_ai_assistant/chat/complete</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new chat completion by using the Observability AI Assistant.\n\nThe API returns the model's response based on the current conversation context.\n\nIt also handles any tool requests within the conversation, which may trigger multiple calls to the underlying large language model (LLM).\n\nThis functionality is in technical preview and may be changed or removed in a future release. Elastic will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "observability_ai_assistant",
+                "chat",
+                "complete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messages\": [\n    {\n      \"@timestamp\": \"<string>\",\n      \"message\": {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\",\n        \"data\": \"<string>\",\n        \"event\": \"<string>\",\n        \"function_call\": {\n          \"name\": \"<string>\",\n          \"trigger\": \"<string>\",\n          \"arguments\": \"<string>\"\n        },\n        \"name\": \"<string>\"\n      }\n    },\n    {\n      \"@timestamp\": \"<string>\",\n      \"message\": {\n        \"role\": \"<string>\",\n        \"content\": \"<string>\",\n        \"data\": \"<string>\",\n        \"event\": \"<string>\",\n        \"function_call\": {\n          \"name\": \"<string>\",\n          \"trigger\": \"<string>\",\n          \"arguments\": \"<string>\"\n        },\n        \"name\": \"<string>\"\n      }\n    }\n  ],\n  \"connectorId\": \"<string>\",\n  \"persist\": \"<boolean>\",\n  \"actions\": [\n    {\n      \"description\": \"<string>\",\n      \"name\": \"<string>\",\n      \"parameters\": \"<object>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"name\": \"<string>\",\n      \"parameters\": \"<object>\"\n    }\n  ],\n  \"conversationId\": \"<string>\",\n  \"disableFunctions\": \"<boolean>\",\n  \"instructions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"title\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aa0f4b35-3403-41e1-aefc-594009aa39f5",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "observability_ai_assistant",
+                    "chat",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"connectorId\": \"<connectorId>\",\n  \"disableFunctions\": false,\n  \"messages\": [\n    {\n      \"@timestamp\": \"2025-06-25T23:45:00.000Z\",\n      \"message\": {\n        \"role\": \"user\",\n        \"content\": \"Is my Elasticsearch cluster healthy right now?\"\n      }\n    }\n  ],\n  \"persist\": false,\n  \"actions\": [\n    {\n      \"name\": \"get_cluster_health\",\n      \"description\": \"Fetch the current Elasticsearch cluster-health status and key metrics.\",\n      \"parameters\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"includeShardStats\": {\n            \"type\": \"boolean\",\n            \"default\": false\n          }\n        }\n      }\n    }\n  ],\n  \"instructions\": [\"When the user asks about Elasticsearch cluster health, use the get_cluster_health tool to retrieve cluster health, then summarize the response in plain English.\"]\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"data: {\\\"model\\\":\\\"unknown\\\",\\\"choices\\\":[{\\\"delta\\\":{\\\"content\\\":\\\"\\\",\\\"function_call\\\":{\\\"name\\\":\\\"get_cluster_health\\\",\\\"arguments\\\":\\\"{\\\\\\\"includeShardStats\\\\\\\":true}\\\"}},\\\"finish_reason\\\":null,\\\"index\\\":0}],\\\"created\\\":1750936626911,\\\"id\\\":\\\"9c8eff9b-4fd4-4203-a4ab-2e364688deff\\\",\\\"object\\\":\\\"chat.completion.chunk\\\"}\\n\\ndata: [DONE]\\n\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:5601",
+      "key": "kibana_url"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kibana_url}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dfe0e1f3-fe70-45a3-ae17-beb39579556e",
+    "name": "Kibana APIs Actions observability_ai_assistant API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.\nThe API calls are stateless.\nEach request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the\nrequest.\nAPI requests return JSON output, which is a format that is machine-readable and works well for automation.\n\nTo interact with Kibana APIs, use the following operations:\n\n- GET: Fetches the information.\n- PATCH: Applies partial modifications to the existing information.\n- POST: Adds new information.\n- PUT: Updates the existing information.\n- DELETE: Removes the information.\n\nYou can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.\nFor example:\n\n```\nGET kbn:/api/data_views\n```\n\nFor more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).\n\nNOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.\n\n## Documentation source and versions\n\nThis documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.\nIt is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).\n\nThis documentation contains work-in-progress information for future Elastic Stack releases.\n\n\nContact Support:\n Name: Kibana Team",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions ml API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ml",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sync saved objects in the default space",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/ml/saved_objects/sync",
+            "params": [
+              {
+                "name": "simulate",
+                "value": "true",
+                "type": "query",
+                "description": "When true, simulates the synchronization by returning only the list of actions that would be performed."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/ml/saved_objects/sync</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nSynchronizes Kibana saved objects for machine learning jobs and trained models in the default space. You must have `all` privileges for the **Machine Learning** feature in the **Analytics** section of the Kibana featu"
+        },
+        {
+          "info": {
+            "name": "Update jobs spaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/ml/saved_objects/update_jobs_spaces",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/ml/saved_objects/update_jobs_spaces</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate a list of jobs to add and/or remove them from given spaces."
+        },
+        {
+          "info": {
+            "name": "Update trained models spaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/ml/saved_objects/update_trained_models_spaces",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/ml/saved_objects/update_trained_models_spaces</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate a list of trained models to add and/or remove them from given spaces."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

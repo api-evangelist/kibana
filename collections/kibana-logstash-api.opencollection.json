@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions logstash API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "logstash",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a Logstash pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/logstash/pipeline/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the pipeline."
+              }
+            ]
+          },
+          "docs": "Get information for a centrally-managed Logstash pipeline.\nTo use this API, you must have either the `logstash_admin` built-in role or a customized Logstash reader role.\n"
+        },
+        {
+          "info": {
+            "name": "Create or update a Logstash pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/logstash/pipeline/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the pipeline. Pipeline ID must begin with a letter or underscore and can contain only letters, underscores, dashes, hyphens, and numbers.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a centrally-managed Logstash pipeline or update a pipeline.\nTo use this API, you must have either the `logstash_admin` built-in role or a customized Logstash writer role.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Logstash pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/logstash/pipeline/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the pipeline."
+              }
+            ]
+          },
+          "docs": "Delete a centrally-managed Logstash pipeline.\nIf your Elasticsearch cluster is protected with basic authentication, you must have either the `logstash_admin` built-in role or a customized Logstash writer role.\n"
+        },
+        {
+          "info": {
+            "name": "Get all Logstash pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/logstash/pipelines"
+          },
+          "docs": "Get a list of all centrally-managed Logstash pipelines.\n\nTo use this API, you must have either the `logstash_admin` built-in role or a customized Logstash reader role.\n> info\n> Limit the number of pipelines to 10,000 or fewer. As the number of pipelines nears and surpasses 10,000, you may see performance issues on Kibana.\n\nThe `username` property appears in the response when security is enabled and depends on when the pipeline was created or last updated.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

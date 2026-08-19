@@ -1,0 +1,213 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions maintenance-window API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "maintenance-window",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a maintenance window.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/maintenance_window",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/maintenance_window</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\n[Required authorization] Route required privileges: write-maintenance-window."
+        },
+        {
+          "info": {
+            "name": "Search for a maintenance window.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/maintenance_window/_find",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "The title of the maintenance window."
+              },
+              {
+                "name": "created_by",
+                "value": "",
+                "type": "query",
+                "description": "The user who created the maintenance window."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The status of the maintenance window. It can be \"running\", \"upcoming\", \"finished\", \"archived\", or \"disabled\"."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of maintenance windows to return per page."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/maintenance_window/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\n[Required authorization] Route required privileges: read-maintenance-window."
+        },
+        {
+          "info": {
+            "name": "Get maintenance window details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/maintenance_window/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the maintenance window."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/maintenance_window/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\n[Required authorization] Route required privileges: read-maintenance-window."
+        },
+        {
+          "info": {
+            "name": "Update a maintenance window.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{kibana_url}/api/maintenance_window/:id",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the maintenance window."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb patch\">patch</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/maintenance_window/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\n[Required authorization] Route required privileges: write-maintenance-window."
+        },
+        {
+          "info": {
+            "name": "Delete a maintenance window.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/maintenance_window/:id",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the maintenance window to be deleted."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/maintenance_window/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\n[Required authorization] Route required privileges: write-maintenance-window."
+        },
+        {
+          "info": {
+            "name": "Archive a maintenance window.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/maintenance_window/:id/_archive",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the maintenance window to be archived."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/maintenance_window/{id}/_archive</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\n[Required authorization] Route required privileges: write-maintenance-window."
+        },
+        {
+          "info": {
+            "name": "Unarchive a maintenance window.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/maintenance_window/:id/_unarchive",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the maintenance window to be unarchived."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/maintenance_window/{id}/_unarchive</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\n[Required authorization] Route required privileges: write-maintenance-window."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

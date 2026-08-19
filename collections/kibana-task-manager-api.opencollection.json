@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions task manager API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "task manager",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the task manager health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/task_manager/_health"
+          },
+          "docs": "Get the health status of the Kibana task manager.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

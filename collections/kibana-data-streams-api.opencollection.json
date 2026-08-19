@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Data streams API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data streams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get data streams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/data_streams"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/data_streams</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nList all Fleet-managed data streams with metadata including package, namespace, size, and last activity.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all AND fleet-agent-policies-all AND flee"
+        },
+        {
+          "info": {
+            "name": "Get data streams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/epm/data_streams",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by data stream type"
+              },
+              {
+                "name": "datasetQuery",
+                "value": "",
+                "type": "query",
+                "description": "Filter data streams by dataset name"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order, ascending or descending"
+              },
+              {
+                "name": "uncategorisedOnly",
+                "value": "",
+                "type": "query",
+                "description": "When true, only return data streams that are not associated with a package"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/data_streams</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of data streams created by installed integration packages.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

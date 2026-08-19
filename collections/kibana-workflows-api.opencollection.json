@@ -1,0 +1,738 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions workflows API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/workflows",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search query."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "enabled",
+                "value": "",
+                "type": "query",
+                "description": "Filter by enabled state."
+              },
+              {
+                "name": "createdBy",
+                "value": "",
+                "type": "query",
+                "description": "Filter by creator."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tags."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a paginated list of workflows with optional filtering.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:read OR workflowsManagement:readExecution."
+        },
+        {
+          "info": {
+            "name": "Bulk create workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/workflows",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query",
+                "description": "Whether to overwrite existing workflows."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate multiple workflows in a single request. Optionally overwrite existing workflows.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:create AND workflowsManagement:update."
+        },
+        {
+          "info": {
+            "name": "Bulk delete workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/workflows",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "When true, permanently deletes the workflows (hard delete) instead of soft-deleting them. The workflow IDs become available for reuse."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete multiple workflows by their IDs.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:delete."
+        },
+        {
+          "info": {
+            "name": "Get workflow aggregations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/workflows/aggs",
+            "params": [
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Field or fields to aggregate on."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/aggs</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve distinct values and their counts for the specified workflow fields. Useful for building filters such as lists of tags or creators.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:rea"
+        },
+        {
+          "info": {
+            "name": "Get available connectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/workflows/connectors"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/connectors</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve the Kibana action connectors that can be used in workflow steps, grouped by connector type. Each type includes its configured instances and availability status.<br/><br/>[Required authorization] Route required"
+        },
+        {
+          "info": {
+            "name": "Get a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/workflows/executions/:executionId",
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow execution ID"
+              },
+              {
+                "name": "includeInput",
+                "value": "",
+                "type": "query",
+                "description": "Include execution input data."
+              },
+              {
+                "name": "includeOutput",
+                "value": "",
+                "type": "query",
+                "description": "Include execution output data."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/executions/{executionId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve details of a single workflow execution by its ID.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:readExecution."
+        },
+        {
+          "info": {
+            "name": "Cancel a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/workflows/executions/:executionId/cancel",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow execution ID"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/executions/{executionId}/cancel</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCancel a running workflow execution by its ID.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:cancelExecution."
+        },
+        {
+          "info": {
+            "name": "Get child executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/workflows/executions/:executionId/children",
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow execution ID"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/executions/{executionId}/children</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve child workflow executions spawned by sub-workflow steps within a parent execution.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:readExecution."
+        },
+        {
+          "info": {
+            "name": "Get execution logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/workflows/executions/:executionId/logs",
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow execution ID"
+              },
+              {
+                "name": "stepExecutionId",
+                "value": "",
+                "type": "query",
+                "description": "Filter logs by a specific step execution ID."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of log entries per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by."
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/executions/{executionId}/logs</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve paginated logs for a workflow execution. Optionally filter by a specific step execution.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:readExecution."
+        },
+        {
+          "info": {
+            "name": "Resume a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/workflows/executions/:executionId/resume",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow execution ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/executions/{executionId}/resume</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nResume a paused workflow execution with the provided input.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:execute."
+        },
+        {
+          "info": {
+            "name": "Get a step execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/workflows/executions/:executionId/step/:stepExecutionId",
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow execution ID."
+              },
+              {
+                "name": "stepExecutionId",
+                "value": "",
+                "type": "path",
+                "description": "Step execution ID."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/executions/{executionId}/step/{stepExecutionId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve details of a single step execution within a workflow execution.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:readExecution."
+        },
+        {
+          "info": {
+            "name": "Export workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/workflows/export",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/export</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nExport one or more workflows as JSON with YAML content and metadata.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:read."
+        },
+        {
+          "info": {
+            "name": "Get workflows by IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/workflows/mget",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/mget</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve multiple workflows by their IDs in a single request. Optionally use the `source` parameter to return only specific fields from each workflow document.<br/><br/>[Required authorization] Route required privileges: w"
+        },
+        {
+          "info": {
+            "name": "Get workflow JSON schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/workflows/schema",
+            "params": [
+              {
+                "name": "loose",
+                "value": "",
+                "type": "query",
+                "description": "When true, returns a permissive schema that allows additional properties. When false, returns a strict schema for full validation."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/schema</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve the JSON schema used to validate workflow YAML definitions. The schema includes available step types based on the configured connectors in the current space.<br/><br/>[Required authorization] Route required privil"
+        },
+        {
+          "info": {
+            "name": "Get workflow statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/workflows/stats"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/stats</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve summary statistics about workflows, including total, enabled, and disabled counts; execution history metrics for the last 30 days are included only when the caller has execution read privilege.<br/><br/>[Required a"
+        },
+        {
+          "info": {
+            "name": "Test a workflow step",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/workflows/step/test",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/step/test</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nExecute a single step from a workflow definition in test mode.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:execute AND workflowsManagement:read."
+        },
+        {
+          "info": {
+            "name": "Test a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/workflows/test",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/test</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nExecute a workflow in test mode without requiring it to be saved or enabled. Provide either a workflow ID to test a saved workflow, a YAML definition to test an unsaved draft, or both to test a modified version of an exist"
+        },
+        {
+          "info": {
+            "name": "Create a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/workflows/workflow",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new workflow from a YAML definition. The YAML is validated and parsed before the workflow is saved. An optional custom ID can be provided.<br/><br/>[Required authorization] Route required privileges: workflows"
+        },
+        {
+          "info": {
+            "name": "Get a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/workflows/workflow/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a single workflow by its ID.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:read."
+        },
+        {
+          "info": {
+            "name": "Update a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/workflows/workflow/:id",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nPartially update an existing workflow. You can update individual fields such as name, description, enabled state, tags, or the YAML definition without providing all fields.<br/><br/>[Required authorization] Route re"
+        },
+        {
+          "info": {
+            "name": "Delete a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/workflows/workflow/:id",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "When true, permanently deletes the workflow (hard delete) instead of soft-deleting it. The workflow ID becomes available for reuse."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a single workflow by its ID.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:delete."
+        },
+        {
+          "info": {
+            "name": "Clone a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/workflows/workflow/:id/clone",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{id}/clone</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a copy of an existing workflow.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:create AND workflowsManagement:read."
+        },
+        {
+          "info": {
+            "name": "Run a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/workflows/workflow/:id/run",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{id}/run</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nExecute a workflow by its ID with the provided inputs. The workflow must be enabled and have a valid definition. Returns an execution ID that can be used to monitor progress.<br/><br/>[Required authorization] "
+        },
+        {
+          "info": {
+            "name": "Get workflow executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/workflows/workflow/:workflowId/executions",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by execution status."
+              },
+              {
+                "name": "executionTypes",
+                "value": "",
+                "type": "query",
+                "description": "Filter by execution type."
+              },
+              {
+                "name": "executedBy",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the user who triggered the execution."
+              },
+              {
+                "name": "omitStepRuns",
+                "value": "",
+                "type": "query",
+                "description": "Whether to exclude step-level execution data."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{workflowId}/executions</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a paginated list of executions for a specific workflow.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:readExecution."
+        },
+        {
+          "info": {
+            "name": "Cancel all active workflow executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/workflows/workflow/:workflowId/executions/cancel",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{workflowId}/executions/cancel</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRequest cancellation for all non-terminal executions of the given workflow in the current space.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:cancelExe"
+        },
+        {
+          "info": {
+            "name": "Get workflow step executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/workflows/workflow/:workflowId/executions/steps",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              },
+              {
+                "name": "stepId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by step ID."
+              },
+              {
+                "name": "includeInput",
+                "value": "",
+                "type": "query",
+                "description": "Include step input data."
+              },
+              {
+                "name": "includeOutput",
+                "value": "",
+                "type": "query",
+                "description": "Include step output data."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{workflowId}/executions/steps</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a paginated list of step-level execution records for a specific workflow. Optionally filter by step ID and include input or output data.<br/><br/>[Required authorization] Route requ"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,511 @@
+{
+  "item": [
+    {
+      "id": "221b1704-809d-40e3-a167-2f7cd03f0b88",
+      "name": "APM server schema",
+      "description": {
+        "content": "Create APM fleet server schema.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0618b269-a6b1-4cc3-b71e-19da7a3d17db",
+          "name": "Save APM server schema",
+          "request": {
+            "name": "Save APM server schema",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/apm/fleet/apm_server_schema</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDEPRECATED: This endpoint is intended for internal use by Fleet integrations to push the APM Server configuration schema. Do not use for new integrations. It stores the provided schema object as a Kibana saved object. If Fleet migration is not available on the current deployment, the API returns a 404.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "apm",
+                "fleet",
+                "apm_server_schema"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The version of the API to use",
+                "key": "elastic-api-version",
+                "value": "2023-10-31"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schema\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "96457a89-ec59-4448-b6fa-0a1d9b77133c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apm",
+                    "fleet",
+                    "apm_server_schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The version of the API to use",
+                    "key": "elastic-api-version",
+                    "value": "2023-10-31"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema\": {\n    \"foo\": \"bar\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4b3385a-43f4-434d-894a-5411f0e6aa87",
+              "name": "Bad Request response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apm",
+                    "fleet",
+                    "apm_server_schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The version of the API to use",
+                    "key": "elastic-api-version",
+                    "value": "2023-10-31"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema\": {\n    \"foo\": \"bar\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Not Found\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a2acb14-aebf-47e5-b1e1-b18cdd7fa6ea",
+              "name": "Unauthorized response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apm",
+                    "fleet",
+                    "apm_server_schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The version of the API to use",
+                    "key": "elastic-api-version",
+                    "value": "2023-10-31"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema\": {\n    \"foo\": \"bar\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"string\",\n  \"statusCode\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f9d5b54-2cb3-457b-923f-2179fac567e9",
+              "name": "Forbidden response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apm",
+                    "fleet",
+                    "apm_server_schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The version of the API to use",
+                    "key": "elastic-api-version",
+                    "value": "2023-10-31"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema\": {\n    \"foo\": \"bar\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"string\",\n  \"statusCode\": 403\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6953a010-84e1-4a5b-aee8-6e6b7b86110f",
+              "name": "Not found response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apm",
+                    "fleet",
+                    "apm_server_schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The version of the API to use",
+                    "key": "elastic-api-version",
+                    "value": "2023-10-31"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema\": {\n    \"foo\": \"bar\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Not Found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:5601",
+      "key": "kibana_url"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kibana_url}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2269168b-5da0-48a5-bbf7-201fd571ef66",
+    "name": "Kibana APIs Actions APM server schema API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.\nThe API calls are stateless.\nEach request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the\nrequest.\nAPI requests return JSON output, which is a format that is machine-readable and works well for automation.\n\nTo interact with Kibana APIs, use the following operations:\n\n- GET: Fetches the information.\n- PATCH: Applies partial modifications to the existing information.\n- POST: Adds new information.\n- PUT: Updates the existing information.\n- DELETE: Removes the information.\n\nYou can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.\nFor example:\n\n```\nGET kbn:/api/data_views\n```\n\nFor more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).\n\nNOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.\n\n## Documentation source and versions\n\nThis documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.\nIt is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).\n\nThis documentation contains work-in-progress information for future Elastic Stack releases.\n\n\nContact Support:\n Name: Kibana Team",
+      "type": "text/plain"
+    }
+  }
+}

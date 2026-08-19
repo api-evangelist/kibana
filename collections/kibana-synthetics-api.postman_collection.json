@@ -1,0 +1,2772 @@
+{
+  "item": [
+    {
+      "id": "a479539d-a66f-41c2-b8e5-871150102eb6",
+      "name": "synthetics",
+      "description": {
+        "content": "Synthetics APIs enable you to check the status of your services and applications.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3531988b-7903-4701-aecc-0a04ee82e4ef",
+          "name": "Trigger an on-demand test run for a monitor",
+          "request": {
+            "name": "Trigger an on-demand test run for a monitor",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/monitor/test/{monitorId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nTrigger an immediate test execution for the specified monitor. The response includes the generated `testRunId`. If the test encounters issues in one or more service locations, an `errors` array is also returned with details about the failures.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "monitor",
+                "test",
+                ":monitorId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "monitorId",
+                  "description": "(Required) The ID (config_id) of the monitor to test."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b860b154-9bed-4462-b9f7-2ea108e6fd94",
+              "name": "Test run triggered successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "monitor",
+                    "test",
+                    ":monitorId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "monitorId",
+                      "description": "(Required) The ID (config_id) of the monitor to test."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"testRunId\\\": \\\"2bd506e5-4f9a-4aa6-a019-7988500afba0\\\",\\n  \\\"errors\\\": [\\n    {\\n      \\\"locationId\\\": \\\"us_central_staging\\\",\\n      \\\"error\\\": {\\n        \\\"status\\\": 401,\\n        \\\"reason\\\": \\\"no auth credentials provided\\\",\\n        \\\"failed_monitors\\\": null\\n      }\\n    }\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02c45747-9ea1-4fb9-b4bd-2881af38b8e2",
+              "name": "Monitor not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "monitor",
+                    "test",
+                    ":monitorId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "monitorId",
+                      "description": "(Required) The ID (config_id) of the monitor to test."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3c35b0b-27b7-43ae-b335-a087d6aa3606",
+          "name": "Get monitors",
+          "request": {
+            "name": "Get monitors",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/monitors</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of monitors.\nYou must have `read` privileges for the Synthetics feature in the Observability section of the Kibana feature privileges.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "monitors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Additional filtering criteria."
+                },
+                {
+                  "disabled": false,
+                  "key": "locations",
+                  "value": "<string>",
+                  "description": "The locations to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "monitorTypes",
+                  "value": "<string>",
+                  "description": "The monitor types to filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "The number of items to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "projects",
+                  "value": "<string>",
+                  "description": "The projects to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "A free-text query string."
+                },
+                {
+                  "disabled": false,
+                  "key": "schedules",
+                  "value": "<array>",
+                  "description": "The schedules to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "The field to sort the results by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<array>",
+                  "description": "The status to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Tags to filter monitors."
+                },
+                {
+                  "disabled": false,
+                  "key": "useLogicalAndFor",
+                  "value": "<string>",
+                  "description": "Specifies whether to apply logical AND filtering for specific fields. Accepts either a string with values \"tags\" or \"locations\" or an array containing both.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7e908029-fca4-4131-87f5-1e4b88bdf002",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "monitors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locations",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "monitorTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "projects",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "schedules",
+                      "value": "<array>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<array>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "useLogicalAndFor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"page\\\": 1,\\n    \\\"total\\\": 24,\\n    \\\"monitors\\\": [\\n        {\\n            \\\"type\\\": \\\"icmp\\\",\\n            \\\"enabled\\\": false,\\n            \\\"alert\\\": {\\n                \\\"status\\\": {\\n                    \\\"enabled\\\": true\\n                },\\n                \\\"tls\\\": {\\n                    \\\"enabled\\\": true\\n                }\\n            },\\n            \\\"schedule\\\": {\\n                \\\"number\\\": \\\"3\\\",\\n                \\\"unit\\\": \\\"m\\\"\\n            },\\n            \\\"config_id\\\": \\\"e59142e5-1fe3-4aae-b0b0-19d6345e65a1\\\",\\n            \\\"timeout\\\": \\\"16\\\",\\n            \\\"name\\\": \\\"8.8.8.8:80\\\",\\n            \\\"locations\\\": [\\n                {\\n                    \\\"id\\\": \\\"us_central\\\",\\n                    \\\"label\\\": \\\"North America - US Central\\\",\\n                    \\\"geo\\\": {\\n                        \\\"lat\\\": 41.25,\\n                        \\\"lon\\\": -95.86\\n                    },\\n                    \\\"isServiceManaged\\\": true\\n                }\\n            ],\\n            \\\"namespace\\\": \\\"default\\\",\\n            \\\"origin\\\": \\\"ui\\\",\\n            \\\"id\\\": \\\"e59142e5-1fe3-4aae-b0b0-19d6345e65a1\\\",\\n            \\\"max_attempts\\\": 2,\\n            \\\"wait\\\": \\\"7\\\",\\n            \\\"revision\\\": 3,\\n            \\\"mode\\\": \\\"all\\\",\\n            \\\"ipv4\\\": true,\\n            \\\"ipv6\\\": true,\\n            \\\"created_at\\\": \\\"2023-11-07T09:57:04.152Z\\\",\\n            \\\"updated_at\\\": \\\"2023-12-04T19:19:34.039Z\\\",\\n            \\\"host\\\": \\\"8.8.8.8:80\\\"\\n        }\\n    ],\\n    \\\"absoluteTotal\\\": 24,\\n    \\\"perPage\\\": 10,\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28eb3586-21b7-4ba2-af6a-957051899000",
+          "name": "Create a monitor",
+          "request": {
+            "name": "Create a monitor",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/monitors</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new monitor with the specified attributes. A monitor can be one of the following types: HTTP, TCP, ICMP, or Browser. The required and default fields may vary based on the monitor type.\nYou must have `all` privileges for the Synthetics feature in the Observability section of the Kibana feature privileges.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "monitors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inline_script\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"alert\": \"<object>\",\n  \"enabled\": true,\n  \"labels\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"locations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"namespace\": \"default\",\n  \"params\": \"<string>\",\n  \"private_locations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"retest_on_failure\": true,\n  \"schedule\": \"<number>\",\n  \"service.name\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeout\": 16,\n  \"ignore_https_errors\": false,\n  \"playwright_options\": \"<object>\",\n  \"screenshots\": \"on\",\n  \"synthetics_args\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8bebae5b-be4a-4ffd-afe3-abcd406fd9e4",
+              "name": "A successful response. The response may include a `warnings` array when the monitor configuration has non-critical issues. For example, if a browser monitor specifies a timeout but has no private locations configured, a warning is returned indicating the timeout will have no effect.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "monitors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"http\",\n  \"name\": \"Website Availability\",\n  \"url\": \"https://example.com\",\n  \"tags\": [\"website\", \"availability\"],\n  \"locations\": [\"united_kingdom\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"type\\\": \\\"browser\\\",\\n  \\\"name\\\": \\\"Example journey\\\",\\n  \\\"enabled\\\": true,\\n  \\\"warnings\\\": [\\n    {\\n      \\\"id\\\": \\\"monitor-id\\\",\\n      \\\"message\\\": \\\"For browser monitors, timeout is only supported on private locations. Browser monitor \\\\\\\"Example journey\\\\\\\" specifies a timeout and is running on public locations: \\\\\\\"public-1, public-2\\\\\\\". The timeout will have no effect on these locations.\\\",\\n      \\\"publicLocationIds\\\": [\\\"public-1\\\", \\\"public-2\\\"]\\n    }\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de5dbfb3-fe57-451c-b94e-42b7ae366444",
+              "name": "Bad request. For browser monitors, a 400 error is returned if the timeout is less than 30 seconds.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "monitors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"http\",\n  \"name\": \"Website Availability\",\n  \"url\": \"https://example.com\",\n  \"tags\": [\"website\", \"availability\"],\n  \"locations\": [\"united_kingdom\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"statusCode\\\": 400,\\n  \\\"error\\\": \\\"Bad Request\\\",\\n  \\\"message\\\": \\\"Browser Monitor timeout is invalid\\\",\\n  \\\"attributes\\\": {\\n    \\\"details\\\": \\\"Invalid timeout 20 seconds supplied. Minimum timeout for browser monitors is 30 seconds.\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b418f837-937e-43be-a978-e3501cff44c3",
+          "name": "Delete monitors",
+          "request": {
+            "name": "Delete monitors",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/monitors/_bulk_delete</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete multiple monitors by sending a list of config IDs.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "monitors",
+                "_bulk_delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "022a1651-bb64-4d41-81a6-b53a980620b2",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "monitors",
+                    "_bulk_delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"monitor1-id\",\n    \"monitor2-id\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"[\\n  {\\n    \\\"id\\\": \\\"monitor1-id\\\",\\n    \\\"deleted\\\": true\\n  },\\n  {\\n    \\\"id\\\": \\\"monitor2-id\\\",\\n    \\\"deleted\\\": true\\n  }\\n]\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "811621a0-c7ad-4527-92dc-7e522f76e212",
+          "name": "Delete a monitor",
+          "request": {
+            "name": "Delete a monitor",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/monitors/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a monitor from the Synthetics app.\nYou must have `all` privileges for the Synthetics feature in the Observability section of the Kibana feature privileges.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "monitors",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The identifier for the monitor that you want to delete."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b5732b6-2809-434e-b549-d1b4a082d3d4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "monitors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The identifier for the monitor that you want to delete."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80411f2f-34ab-497c-8eeb-647ea764a435",
+          "name": "Get a monitor",
+          "request": {
+            "name": "Get a monitor",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/monitors/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "monitors",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the monitor."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1bf2184-7162-454d-be6a-8b160ef03cef",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "monitors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the monitor."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"type\\\": \\\"http\\\",\\n    \\\"enabled\\\": true,\\n    \\\"alert\\\": {\\n        \\\"status\\\": {\\n            \\\"enabled\\\": true\\n        },\\n        \\\"tls\\\": {\\n            \\\"enabled\\\": true\\n        }\\n    },\\n    \\\"schedule\\\": {\\n        \\\"number\\\": \\\"3\\\",\\n        \\\"unit\\\": \\\"m\\\"\\n    },\\n    \\\"config_id\\\": \\\"a8188705-d01e-4bb6-87a1-64fa5e4b07ec\\\",\\n    \\\"timeout\\\": \\\"16\\\",\\n    \\\"name\\\": \\\"am i something\\\",\\n    \\\"locations\\\": [\\n        {\\n            \\\"id\\\": \\\"us_central\\\",\\n            \\\"label\\\": \\\"North America - US Central\\\",\\n            \\\"geo\\\": {\\n                \\\"lat\\\": 41.25,\\n                \\\"lon\\\": -95.86\\n            },\\n            \\\"isServiceManaged\\\": true\\n        }\\n    ],\\n    \\\"namespace\\\": \\\"default\\\",\\n    \\\"origin\\\": \\\"ui\\\",\\n    \\\"id\\\": \\\"a8188705-d01e-4bb6-87a1-64fa5e4b07ec\\\",\\n    \\\"max_attempts\\\": 2,\\n    \\\"__ui\\\": {\\n        \\\"is_tls_enabled\\\": false\\n    },\\n    \\\"max_redirects\\\": \\\"0\\\",\\n    \\\"response.include_body\\\": \\\"on_error\\\",\\n    \\\"response.include_headers\\\": true,\\n    \\\"check.request.method\\\": \\\"GET\\\",\\n    \\\"mode\\\": \\\"any\\\",\\n    \\\"response.include_body_max_bytes\\\": \\\"1024\\\",\\n    \\\"ipv4\\\": true,\\n    \\\"ipv6\\\": true,\\n    \\\"ssl.verification_mode\\\": \\\"full\\\",\\n    \\\"ssl.supported_protocols\\\": [\\n        \\\"TLSv1.1\\\",\\n        \\\"TLSv1.2\\\",\\n        \\\"TLSv1.3\\\"\\n    ],\\n    \\\"revision\\\": 13,\\n    \\\"created_at\\\": \\\"2023-11-08T08:45:29.334Z\\\",\\n    \\\"updated_at\\\": \\\"2023-12-18T20:31:44.770Z\\\",\\n    \\\"url\\\": \\\"https://fast.com\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbc1976a-917a-4231-92de-b91f97328269",
+              "name": "If the monitor is not found, the API returns a 404 error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "monitors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the monitor."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "faeb12df-a56c-4eb8-8808-20e073c630d6",
+          "name": "Update a monitor",
+          "request": {
+            "name": "Update a monitor",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/monitors/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate a monitor with the specified attributes. The required and default fields may vary based on the monitor type.\nYou must have `all` privileges for the Synthetics feature in the Observability section of the Kibana feature privileges.\nYou can also partially update a monitor. This will only update the fields that are specified in the request body. All other fields are left unchanged. The specified fields should conform to the monitor type. For example, you can't update the `inline_scipt` field of a HTTP monitor.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "monitors",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The identifier for the monitor that you want to update."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inline_script\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"alert\": \"<object>\",\n  \"enabled\": true,\n  \"labels\": {\n    \"key_0\": \"<string>\"\n  },\n  \"locations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"namespace\": \"default\",\n  \"params\": \"<string>\",\n  \"private_locations\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"retest_on_failure\": true,\n  \"schedule\": \"<number>\",\n  \"service.name\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeout\": 16,\n  \"ignore_https_errors\": false,\n  \"playwright_options\": \"<object>\",\n  \"screenshots\": \"on\",\n  \"synthetics_args\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bccbef83-e34b-4d5c-b854-5fbf12bb278b",
+              "name": "A successful response. The response may include a `warnings` array when the monitor configuration has non-critical issues.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "monitors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The identifier for the monitor that you want to update."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"http\",\n  \"name\": \"Website Availability\",\n  \"url\": \"https://example.com\",\n  \"tags\": [\"website\", \"availability\"],\n  \"locations\": [\"united_kingdom\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"type\\\": \\\"browser\\\",\\n  \\\"name\\\": \\\"Example journey\\\",\\n  \\\"enabled\\\": true,\\n  \\\"warnings\\\": [\\n    {\\n      \\\"id\\\": \\\"monitor-id\\\",\\n      \\\"message\\\": \\\"For browser monitors, timeout is only supported on private locations. Browser monitor \\\\\\\"Example journey\\\\\\\" specifies a timeout and is running on public locations: \\\\\\\"public-1, public-2\\\\\\\". The timeout will have no effect on these locations.\\\",\\n      \\\"publicLocationIds\\\": [\\\"public-1\\\", \\\"public-2\\\"]\\n    }\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d1e8275-56b2-46ed-832d-cbdc99c5c47f",
+              "name": "Bad request. For browser monitors, a 400 error is returned if the timeout is less than 30 seconds.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "monitors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The identifier for the monitor that you want to update."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"http\",\n  \"name\": \"Website Availability\",\n  \"url\": \"https://example.com\",\n  \"tags\": [\"website\", \"availability\"],\n  \"locations\": [\"united_kingdom\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09ceb9fc-4cd5-4054-9526-e70da00c0b99",
+          "name": "Get parameters",
+          "request": {
+            "name": "Get parameters",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/params</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all parameters. You must have `read` privileges for the Synthetics feature in the Observability section of the Kibana feature privileges.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "params"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec7ce1c8-89ac-4c64-9233-7e418aa625f3",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "params"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"[\\n  {\\n    \\\"id\\\": \\\"param1-id\\\",\\n    \\\"key\\\": \\\"param1\\\",\\n    \\\"description\\\": \\\"Description for param1\\\",\\n    \\\"tags\\\": [\\\"tag1\\\", \\\"tag2\\\"],\\n    \\\"namespaces\\\": [\\\"namespace1\\\"]\\n  },\\n  {\\n    \\\"id\\\": \\\"param2-id\\\",\\n    \\\"key\\\": \\\"param2\\\",\\n    \\\"description\\\": \\\"Description for param2\\\",\\n    \\\"tags\\\": [\\\"tag3\\\"],\\n    \\\"namespaces\\\": [\\\"namespace2\\\"]\\n  }\\n]\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b8c4131-58b8-4d80-b58d-b7fa1cf442a5",
+          "name": "Add parameters",
+          "request": {
+            "name": "Add parameters",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/params</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nAdd one or more parameters to the Synthetics app.\nYou must have `all` privileges for the Synthetics feature in the Observability section of the Kibana feature privileges.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "params"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"key\": \"<string>\",\n    \"value\": \"<string>\",\n    \"description\": \"<string>\",\n    \"share_across_spaces\": \"<boolean>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"key\": \"<string>\",\n    \"value\": \"<string>\",\n    \"description\": \"<string>\",\n    \"share_across_spaces\": \"<boolean>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f35ab5c7-6c82-438d-8121-5b7298e0c349",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "params"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"your-key-name\",\n  \"value\": \"your-parameter-value\",\n  \"description\": \"Param to use in browser monitor\",\n  \"tags\": [\"authentication\", \"security\"],\n  \"share_across_spaces\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"id\\\": \\\"unique-parameter-id\\\",\\n  \\\"key\\\": \\\"your-key-name\\\",\\n  \\\"value\\\": \\\"your-param-value\\\",\\n  \\\"description\\\": \\\"Param to use in browser monitor\\\",\\n  \\\"tags\\\": [\\\"authentication\\\", \\\"security\\\"],\\n  \\\"share_across_spaces\\\": true\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0905d1bc-8802-447c-a154-bbfba2e6696d",
+          "name": "Delete parameters",
+          "request": {
+            "name": "Delete parameters",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/params/_bulk_delete</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete parameters from the Synthetics app.\nYou must have `all` privileges for the Synthetics feature in the Observability section of the Kibana feature privileges.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "params",
+                "_bulk_delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fdcc22f6-e2da-4331-a2cb-76fb3c55db7d",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "params",
+                    "_bulk_delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\"param1-id\", \"param2-id\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"[\\n  {\\n    \\\"id\\\": \\\"param1-id\\\",\\n    \\\"deleted\\\": true\\n  }\\n]\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "599de8f3-2cff-456b-8685-3c424fa2ce8b",
+          "name": "Delete a parameter",
+          "request": {
+            "name": "Delete a parameter",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/params/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a parameter from the Synthetics app.\nYou must have `all` privileges for the Synthetics feature in the Observability section of the Kibana feature privileges.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "params",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID for the parameter to delete."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60e70ba8-8b71-40ae-b3c7-63d115f38048",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "params",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID for the parameter to delete."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f678b10d-697d-4169-8f1a-bac07f9eec69",
+          "name": "Get a parameter",
+          "request": {
+            "name": "Get a parameter",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/params/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a parameter from the Synthetics app.\nYou must have `read` privileges for the Synthetics feature in the Observability section of the Kibana feature privileges.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "params",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier for the parameter."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aae1122f-5b5e-44f2-9acb-91d43868f4e2",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "params",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the parameter."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"id\\\": \\\"unique-parameter-id\\\",\\n  \\\"key\\\": \\\"your-api-key\\\",\\n  \\\"description\\\": \\\"Param to use in browser monitor\\\",\\n  \\\"tags\\\": [\\\"authentication\\\", \\\"security\\\"],\\n  \\\"namespaces\\\": [\\\"namespace1\\\", \\\"namespace2\\\"]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5aa8694d-60b9-4dc1-8bf9-dba2056f0fd6",
+          "name": "Update a parameter",
+          "request": {
+            "name": "Update a parameter",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/params/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate a parameter in the Synthetics app.\nYou must have `all` privileges for the Synthetics feature in the Observability section of the Kibana feature privileges.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "params",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier for the parameter."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"key\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"value\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca9493fd-698b-4832-aeab-5c2e8a2716d4",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "params",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier for the parameter."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"updated_param_key\",\n  \"value\": \"updated-param-value\",\n  \"description\": \"Updated Param to be used in browser monitor\",\n  \"tags\": [\"authentication\", \"security\", \"updated\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"id\\\": \\\"param_id1\\\",\\n  \\\"key\\\": \\\"updated_param_key\\\",\\n  \\\"value\\\": \\\"updated-param-value\\\",\\n  \\\"description\\\": \\\"Updated Param to be used in browser monitor\\\",\\n  \\\"tags\\\": [\\\"authentication\\\", \\\"security\\\", \\\"updated\\\"]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06ba5bae-adf5-4480-a5df-9ec5aee954e6",
+          "name": "Get private locations",
+          "request": {
+            "name": "Get private locations",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/private_locations</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of private locations.\nYou must have `read` privileges for the Synthetics and Uptime feature in the Observability section of the Kibana feature privileges.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "private_locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7620ff4-a90b-4347-8db7-2932603fd908",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "private_locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"[\\n    {\\n        \\\"label\\\": \\\"Test private location\\\",\\n        \\\"id\\\": \\\"fleet-server-policy\\\",\\n        \\\"agentPolicyId\\\": \\\"fleet-server-policy\\\",\\n        \\\"isInvalid\\\": false,\\n        \\\"geo\\\": {\\n            \\\"lat\\\": 0,\\n            \\\"lon\\\": 0\\n        },\\n        \\\"namespace\\\": \\\"default\\\"\\n    },\\n    {\\n        \\\"label\\\": \\\"Test private location 2\\\",\\n        \\\"id\\\": \\\"691225b0-6ced-11ee-8f5a-376306ee85ae\\\",\\n        \\\"agentPolicyId\\\": \\\"691225b0-6ced-11ee-8f5a-376306ee85ae\\\",\\n        \\\"isInvalid\\\": false,\\n        \\\"geo\\\": {\\n            \\\"lat\\\": 0,\\n            \\\"lon\\\": 0\\n        },\\n        \\\"namespace\\\": \\\"test\\\"\\n    }\\n]\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5218b85d-ece6-405d-999f-6a763fc594b0",
+          "name": "Create a private location",
+          "request": {
+            "name": "Create a private location",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/private_locations</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nYou must have `all` privileges for the Synthetics and Uptime feature in the Observability section of the Kibana feature privileges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "private_locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agentPolicyId\": \"<string>\",\n  \"label\": \"<string>\",\n  \"geo\": {\n    \"lat\": \"<number>\",\n    \"lon\": \"<number>\"\n  },\n  \"spaces\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d93c9c5-a9bf-4918-84b1-4f0e8845ba5f",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "private_locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"Private Location 1\",\n  \"agentPolicyId\": \"abcd1234\",\n  \"tags\": [\"private\", \"testing\"],\n  \"geo\": {\n    \"lat\": 40.7128,\n    \"lon\": -74.0060\n  }\n  \"spaces\": [\"default\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"id\\\": \\\"abcd1234\\\",\\n  \\\"label\\\": \\\"Private Location 1\\\",\\n  \\\"agentPolicyId\\\": \\\"abcd1234\\\",\\n  \\\"tags\\\": [\\\"private\\\", \\\"testing\\\"],\\n  \\\"geo\\\": {\\n    \\\"lat\\\": 40.7128,\\n    \\\"lon\\\": -74.0060\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5b80809-6d7c-4205-b1f0-4dd2e2060e60",
+              "name": "If the `agentPolicyId` is already used by an existing private location or if the `label` already exists, the API will return a 400 Bad Request response with a corresponding error message.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "private_locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"Private Location 1\",\n  \"agentPolicyId\": \"abcd1234\",\n  \"tags\": [\"private\", \"testing\"],\n  \"geo\": {\n    \"lat\": 40.7128,\n    \"lon\": -74.0060\n  }\n  \"spaces\": [\"default\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6457bbb-a0d9-453c-99ac-5b50d1a56828",
+          "name": "Delete a private location",
+          "request": {
+            "name": "Delete a private location",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/private_locations/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nYou must have `all` privileges for the Synthetics and Uptime feature in the Observability section of the Kibana feature privileges.\nThe API does not return a response body for deletion, but it will return an appropriate status code upon successful deletion.\nA location cannot be deleted if it has associated monitors in use. You must delete all monitors associated with the location before deleting the location.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "private_locations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the private location to be deleted."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f173aae8-07dd-4c44-be79-2a1fd3a05430",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "private_locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the private location to be deleted."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "191d9bde-291a-416e-86d6-c8c8c62357c0",
+          "name": "Get a private location",
+          "request": {
+            "name": "Get a private location",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/private_locations/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nYou must have `read` privileges for the Synthetics and Uptime feature in the Observability section of the Kibana feature privileges.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "private_locations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) A private location identifier or label."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "876bd14a-3e72-4149-8c0d-acb25f989369",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "private_locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) A private location identifier or label."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"label\\\": \\\"Test private location\\\",\\n    \\\"id\\\": \\\"test-private-location-id\\\",\\n    \\\"agentPolicyId\\\": \\\"test-private-location-id\\\",\\n    \\\"isServiceManaged\\\": false,\\n    \\\"isInvalid\\\": false,\\n    \\\"geo\\\": {\\n        \\\"lat\\\": 0,\\n        \\\"lon\\\": 0\\n    },\\n    \\\"namespace\\\": \\\"default\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8ae20b0-3331-4e60-8da2-288e2ded9771",
+          "name": "Update a private location",
+          "request": {
+            "name": "Update a private location",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/synthetics/private_locations/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an existing private location's label.\nYou must have `all` privileges for the Synthetics and Uptime feature in the Observability section of the Kibana feature privileges.\nWhen a private location's label is updated, all monitors using this location will also be updated to maintain data consistency.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "synthetics",
+                "private_locations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the private location to be updated."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "51e60e72-8f91-49b6-9ee1-f40409c4dfbc",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "private_locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the private location to be updated."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"Updated Private Location Name\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"label\\\": \\\"Updated Private Location Name\\\",\\n  \\\"id\\\": \\\"test-private-location-id\\\",\\n  \\\"agentPolicyId\\\": \\\"test-private-location-id\\\",\\n  \\\"isServiceManaged\\\": false,\\n  \\\"isInvalid\\\": false,\\n  \\\"tags\\\": [\\\"private\\\", \\\"testing\\\", \\\"updated\\\"],\\n  \\\"geo\\\": {\\n    \\\"lat\\\": 37.7749,\\n    \\\"lon\\\": -122.4194\\n  },\\n  \\\"spaces\\\": [\\\"*\\\"]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7243cffc-0c86-47a1-aa33-0d5b9562f4be",
+              "name": "If the `label` is shorter than 1 character the API will return a 400 Bad Request response with a corresponding error message.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "private_locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the private location to be updated."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"Updated Private Location Name\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b5f15b50-47d2-44f3-888a-5e83d33351b8",
+              "name": "If the private location with the specified ID does not exist, the API will return a 404 Not Found response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "synthetics",
+                    "private_locations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the private location to be updated."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"Updated Private Location Name\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:5601",
+      "key": "kibana_url"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kibana_url}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "be91524d-f62b-4f78-8e26-8717517b9e55",
+    "name": "Kibana APIs Actions synthetics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.\nThe API calls are stateless.\nEach request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the\nrequest.\nAPI requests return JSON output, which is a format that is machine-readable and works well for automation.\n\nTo interact with Kibana APIs, use the following operations:\n\n- GET: Fetches the information.\n- PATCH: Applies partial modifications to the existing information.\n- POST: Adds new information.\n- PUT: Updates the existing information.\n- DELETE: Removes the information.\n\nYou can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.\nFor example:\n\n```\nGET kbn:/api/data_views\n```\n\nFor more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).\n\nNOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.\n\n## Documentation source and versions\n\nThis documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.\nIt is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).\n\nThis documentation contains work-in-progress information for future Elastic Stack releases.\n\n\nContact Support:\n Name: Kibana Team",
+      "type": "text/plain"
+    }
+  }
+}

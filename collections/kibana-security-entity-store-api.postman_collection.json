@@ -1,0 +1,3304 @@
+{
+  "item": [
+    {
+      "id": "17ea435f-e04b-4963-a9fb-351b2e017086",
+      "name": "Security entity store",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ebb14fb5-365d-4e8c-991e-54f76c635b4b",
+          "name": "Update the Entity Store",
+          "request": {
+            "name": "Update the Entity Store",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security/entity_store</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate the Entity Store log extraction configuration.<br/><br/>[Required authorization] Route required privileges: securitySolution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "entity_store"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"logExtraction\": {\n    \"additionalIndexPatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"delay\": \"<string>\",\n    \"docsLimit\": \"<integer>\",\n    \"fieldHistoryLength\": \"<integer>\",\n    \"frequency\": \"<string>\",\n    \"lookbackPeriod\": \"<string>\",\n    \"maxLogsPerPage\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "826786ac-0ec7-4190-9f94-7fbd05386b47",
+              "name": "Indicates a successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"logExtraction\": {\n    \"fieldHistoryLength\": 15,\n    \"frequency\": \"10m\",\n    \"lookbackPeriod\": \"6h\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34ae2dbf-bcb7-4b62-8451-4648e425c5ee",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"logExtraction\": {\n    \"fieldHistoryLength\": 15,\n    \"frequency\": \"10m\",\n    \"lookbackPeriod\": \"6h\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"[request body]: logExtraction.frequency: must be a valid duration of at least 30 seconds (e.g. 1m, 30s)\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06249f0d-e9cc-4ee4-b336-7950add366e7",
+              "name": "Entity Store not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"logExtraction\": {\n    \"fieldHistoryLength\": 15,\n    \"frequency\": \"10m\",\n    \"lookbackPeriod\": \"6h\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Entity store is not installed\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "954113bd-1d45-42fd-8caa-402f0c36bdc4",
+          "name": "List entities",
+          "request": {
+            "name": "List entities",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security/entity_store/entities</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nList entity records from the Entity Store with paging, sorting, and filtering. Supports two modes: page-based pagination (page/per_page) and cursor-based pagination (searchAfter). The two modes cannot be combined.<br/><br/>[Required authorization] Route required privileges: securitySolution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "entity_store",
+                "entities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "A Kibana Query Language (KQL) filter for the search-after mode."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "Number of entities to return in search-after mode."
+                },
+                {
+                  "disabled": false,
+                  "key": "searchAfter",
+                  "value": "<string>",
+                  "description": "JSON-encoded search_after value for cursor-based pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>",
+                  "description": "Fields to include in the response source."
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>",
+                  "description": "Fields to include in the response source."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Fields to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Fields to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_field",
+                  "value": "<string>",
+                  "description": "Field to sort results by in page mode."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Sort order in page mode."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number to return (1-indexed) in page mode."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "Number of entities per page in page mode."
+                },
+                {
+                  "disabled": false,
+                  "key": "filterQuery",
+                  "value": "<string>",
+                  "description": "An Elasticsearch query string to filter entities in page mode."
+                },
+                {
+                  "disabled": false,
+                  "key": "entity_types",
+                  "value": "<string>",
+                  "description": "Entity types to include in the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "entity_types",
+                  "value": "<string>",
+                  "description": "Entity types to include in the results."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7f07504-6884-4cfc-b4c0-5791ee7e5f5c",
+              "name": "Indicates a successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "searchAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filterQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entity_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entity_types",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 1,\n  \"per_page\": 10,\n  \"records\": [],\n  \"total\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78f533f2-f513-473e-a585-65843c315337",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "searchAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filterQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entity_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entity_types",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid filter: Expected \\\"(\\\", \\\"{\\\", value, whitespace but \\\":\\\" found.\\ninvalid :: query\\n---------^\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac66da6a-2f0c-42bb-86e5-df429d5c52c3",
+          "name": "Delete an entity",
+          "request": {
+            "name": "Delete an entity",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security/entity_store/entities/</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a single entity record from the Entity Store. The entity is immediately removed from the latest index.<br/><br/>[Required authorization] Route required privileges: securitySolution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "entity_store",
+                "entities",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entityId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "50d1cf2b-f44d-4ece-b51c-ddd818b46891",
+              "name": "Indicates the entity was successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "entities",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityId\": \"host:web-server-prod-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deleted\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "694ffb33-5620-46cc-a1b3-f39039bf49ab",
+              "name": "Entity not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "entities",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityId\": \"host:web-server-prod-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Entity ID 'host:web-server-prod-01' not found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7adf841a-852e-4e95-978f-00dd83aa6530",
+          "name": "Create an entity",
+          "request": {
+            "name": "Create an entity",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security/entity_store/entities/{entityType}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new entity record in the Entity Store for the specified entity type.<br/><br/>[Required authorization] Route required privileges: securitySolution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "entity_store",
+                "entities",
+                ":entityType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityType",
+                  "description": "(Required) The entity type to create."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"@timestamp\": \"<dateTime>\",\n  \"asset\": {\n    \"business_unit\": \"<string>\",\n    \"criticality\": \"<string>\",\n    \"environment\": \"<string>\",\n    \"id\": \"<string>\",\n    \"model\": \"<string>\",\n    \"name\": \"<string>\",\n    \"owner\": \"<string>\",\n    \"serial_number\": \"<string>\",\n    \"vendor\": \"<string>\"\n  },\n  \"entity\": {\n    \"attributes\": {\n      \"asset\": \"<boolean>\",\n      \"known_redirects\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"managed\": \"<boolean>\",\n      \"mfa_enabled\": \"<boolean>\",\n      \"oauth_consent_restriction\": \"<string>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"storage_class\": \"<string>\",\n      \"watchlists\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"behaviors\": {\n      \"anomaly_job_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rule_names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"EngineMetadata\": {\n      \"Type\": \"<string>\"\n    },\n    \"id\": \"<string>\",\n    \"lifecycle\": {\n      \"first_seen\": \"<dateTime>\",\n      \"last_activity\": \"<dateTime>\",\n      \"last_seen\": \"<dateTime>\"\n    },\n    \"name\": \"<string>\",\n    \"relationships\": {\n      \"accesses_frequently\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"accesses_infrequently\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"administers\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"communicates_with\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"depends_on\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"owns\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"owns_inferred\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"resolution\": {\n        \"resolved_to\": \"<string>\",\n        \"risk\": {\n          \"calculated_level\": \"<string>\",\n          \"calculated_score\": \"<number>\",\n          \"calculated_score_norm\": \"<number>\"\n        }\n      },\n      \"supervises\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      }\n    },\n    \"risk\": {\n      \"calculated_level\": \"<string>\",\n      \"calculated_score\": \"<number>\",\n      \"calculated_score_norm\": \"<number>\"\n    },\n    \"schema_version\": \"<string>\",\n    \"source\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sub_type\": \"<string>\",\n    \"type\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"event\": {\n    \"ingested\": \"<dateTime>\"\n  },\n  \"labels\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user\": {\n    \"domain\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"email\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"full_name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"hash\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"id\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"name\": \"<string>\",\n    \"risk\": {\n      \"calculated_level\": \"<string>\",\n      \"calculated_score\": \"<number>\",\n      \"calculated_score_norm\": \"<number>\"\n    },\n    \"roles\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff6d012d-be4e-4ac6-843f-3de67710e1f6",
+              "name": "Indicates the entity was successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "entities",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) The entity type to create."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"business_unit\": \"Engineering\",\n    \"criticality\": \"high_impact\",\n    \"environment\": \"production\"\n  },\n  \"entity\": {\n    \"attributes\": {\n      \"asset\": true,\n      \"managed\": true\n    },\n    \"id\": \"host:web-server-prod-01\",\n    \"name\": \"web-server-prod-01\",\n    \"source\": [\n      \"manual\"\n    ],\n    \"type\": \"host\"\n  },\n  \"host\": {\n    \"hostname\": [\n      \"web-server-prod-01.example.com\"\n    ],\n    \"ip\": [\n      \"10.0.1.42\"\n    ],\n    \"name\": \"web-server-prod-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5e47a72-7d5e-4e3f-98f2-29e2ee1db658",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "entities",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) The entity type to create."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"business_unit\": \"Engineering\",\n    \"criticality\": \"high_impact\",\n    \"environment\": \"production\"\n  },\n  \"entity\": {\n    \"attributes\": {\n      \"asset\": true,\n      \"managed\": true\n    },\n    \"id\": \"host:web-server-prod-01\",\n    \"name\": \"web-server-prod-01\",\n    \"source\": [\n      \"manual\"\n    ],\n    \"type\": \"host\"\n  },\n  \"host\": {\n    \"hostname\": [\n      \"web-server-prod-01.example.com\"\n    ],\n    \"ip\": [\n      \"10.0.1.42\"\n    ],\n    \"name\": \"web-server-prod-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Bad request: Supplied ID my-custom-id does not match generated EUID host:web-server-prod-01\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e63410dc-d91e-41d2-8d2c-4f3aca3ead33",
+              "name": "Conflict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "entities",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) The entity type to create."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"business_unit\": \"Engineering\",\n    \"criticality\": \"high_impact\",\n    \"environment\": \"production\"\n  },\n  \"entity\": {\n    \"attributes\": {\n      \"asset\": true,\n      \"managed\": true\n    },\n    \"id\": \"host:web-server-prod-01\",\n    \"name\": \"web-server-prod-01\",\n    \"source\": [\n      \"manual\"\n    ],\n    \"type\": \"host\"\n  },\n  \"host\": {\n    \"hostname\": [\n      \"web-server-prod-01.example.com\"\n    ],\n    \"ip\": [\n      \"10.0.1.42\"\n    ],\n    \"name\": \"web-server-prod-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Conflict\",\n  \"message\": \"Entity ID 'host:web-server-prod-01' already exists\",\n  \"statusCode\": 409\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c0efb75-e02d-41ba-9f9b-457bf5ecd1aa",
+          "name": "Update an entity",
+          "request": {
+            "name": "Update an entity",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security/entity_store/entities/{entityType}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an existing entity record in the Entity Store. By default only certain fields can be updated. Set the `force` query parameter to `true` to update protected fields.<br/><br/>[Required authorization] Route required privileges: securitySolution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "entity_store",
+                "entities",
+                ":entityType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<string>",
+                  "description": "When true, allows updating protected fields."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityType",
+                  "description": "(Required) The entity type to update."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"@timestamp\": \"<dateTime>\",\n  \"asset\": {\n    \"business_unit\": \"<string>\",\n    \"criticality\": \"<string>\",\n    \"environment\": \"<string>\",\n    \"id\": \"<string>\",\n    \"model\": \"<string>\",\n    \"name\": \"<string>\",\n    \"owner\": \"<string>\",\n    \"serial_number\": \"<string>\",\n    \"vendor\": \"<string>\"\n  },\n  \"entity\": {\n    \"attributes\": {\n      \"asset\": \"<boolean>\",\n      \"known_redirects\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"managed\": \"<boolean>\",\n      \"mfa_enabled\": \"<boolean>\",\n      \"oauth_consent_restriction\": \"<string>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"storage_class\": \"<string>\",\n      \"watchlists\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"behaviors\": {\n      \"anomaly_job_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"rule_names\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"EngineMetadata\": {\n      \"Type\": \"<string>\"\n    },\n    \"id\": \"<string>\",\n    \"lifecycle\": {\n      \"first_seen\": \"<dateTime>\",\n      \"last_activity\": \"<dateTime>\",\n      \"last_seen\": \"<dateTime>\"\n    },\n    \"name\": \"<string>\",\n    \"relationships\": {\n      \"accesses_frequently\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"accesses_infrequently\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"administers\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"communicates_with\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"depends_on\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"owns\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"owns_inferred\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"resolution\": {\n        \"resolved_to\": \"<string>\",\n        \"risk\": {\n          \"calculated_level\": \"<string>\",\n          \"calculated_score\": \"<number>\",\n          \"calculated_score_norm\": \"<number>\"\n        }\n      },\n      \"supervises\": {\n        \"ids\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"raw_identifiers\": {\n          \"entity.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"host.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"service.name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"user.name\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      }\n    },\n    \"risk\": {\n      \"calculated_level\": \"<string>\",\n      \"calculated_score\": \"<number>\",\n      \"calculated_score_norm\": \"<number>\"\n    },\n    \"schema_version\": \"<string>\",\n    \"source\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sub_type\": \"<string>\",\n    \"type\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"event\": {\n    \"ingested\": \"<dateTime>\"\n  },\n  \"labels\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user\": {\n    \"domain\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"email\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"full_name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"hash\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"id\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"name\": \"<string>\",\n    \"risk\": {\n      \"calculated_level\": \"<string>\",\n      \"calculated_score\": \"<number>\",\n      \"calculated_score_norm\": \"<number>\"\n    },\n    \"roles\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4918b174-5fb6-42de-96b8-035b007ec535",
+              "name": "Indicates the entity was successfully updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "entities",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) The entity type to update."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity\": {\n    \"attributes\": {\n      \"managed\": true,\n      \"mfa_enabled\": true\n    },\n    \"id\": \"user:jane.doe@example.com\",\n    \"lifecycle\": {\n      \"last_activity\": \"2026-04-10T14:30:00.000Z\"\n    },\n    \"name\": \"jane.doe\",\n    \"type\": \"user\"\n  },\n  \"user\": {\n    \"email\": [\n      \"jane.doe@example.com\"\n    ],\n    \"name\": \"jane.doe\",\n    \"roles\": [\n      \"admin\",\n      \"analyst\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8eb1a8ca-ca19-4982-a45e-9bc0d739faf2",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "entities",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) The entity type to update."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity\": {\n    \"attributes\": {\n      \"managed\": true,\n      \"mfa_enabled\": true\n    },\n    \"id\": \"user:jane.doe@example.com\",\n    \"lifecycle\": {\n      \"last_activity\": \"2026-04-10T14:30:00.000Z\"\n    },\n    \"name\": \"jane.doe\",\n    \"type\": \"user\"\n  },\n  \"user\": {\n    \"email\": [\n      \"jane.doe@example.com\"\n    ],\n    \"name\": \"jane.doe\",\n    \"roles\": [\n      \"admin\",\n      \"analyst\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Bad request: The following attributes are not allowed to be updated without forcing it (?force=true): entity.name, entity.type\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99e48052-1dda-4823-b34e-7116ac2e9fa5",
+              "name": "Entity not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "entities",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) The entity type to update."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity\": {\n    \"attributes\": {\n      \"managed\": true,\n      \"mfa_enabled\": true\n    },\n    \"id\": \"user:jane.doe@example.com\",\n    \"lifecycle\": {\n      \"last_activity\": \"2026-04-10T14:30:00.000Z\"\n    },\n    \"name\": \"jane.doe\",\n    \"type\": \"user\"\n  },\n  \"user\": {\n    \"email\": [\n      \"jane.doe@example.com\"\n    ],\n    \"name\": \"jane.doe\",\n    \"roles\": [\n      \"admin\",\n      \"analyst\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Entity ID 'user:jane.doe@example.com' not found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "feb8d0f5-cfb2-47b9-b5ed-b98088dfd5a3",
+          "name": "Bulk update entities",
+          "request": {
+            "name": "Bulk update entities",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security/entity_store/entities/bulk</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate multiple entity records in the Entity Store in a single request.<br/><br/>[Required authorization] Route required privileges: securitySolution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "entity_store",
+                "entities",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<string>",
+                  "description": "When true, allows updating protected fields."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entities\": [\n    {\n      \"type\": \"<string>\",\n      \"doc\": {\n        \"@timestamp\": \"<dateTime>\",\n        \"asset\": {\n          \"business_unit\": \"<string>\",\n          \"criticality\": \"<string>\",\n          \"environment\": \"<string>\",\n          \"id\": \"<string>\",\n          \"model\": \"<string>\",\n          \"name\": \"<string>\",\n          \"owner\": \"<string>\",\n          \"serial_number\": \"<string>\",\n          \"vendor\": \"<string>\"\n        },\n        \"entity\": {\n          \"attributes\": {\n            \"asset\": \"<boolean>\",\n            \"known_redirects\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"managed\": \"<boolean>\",\n            \"mfa_enabled\": \"<boolean>\",\n            \"oauth_consent_restriction\": \"<string>\",\n            \"permissions\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"storage_class\": \"<string>\",\n            \"watchlists\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"behaviors\": {\n            \"anomaly_job_ids\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"rule_names\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"EngineMetadata\": {\n            \"Type\": \"<string>\"\n          },\n          \"id\": \"<string>\",\n          \"lifecycle\": {\n            \"first_seen\": \"<dateTime>\",\n            \"last_activity\": \"<dateTime>\",\n            \"last_seen\": \"<dateTime>\"\n          },\n          \"name\": \"<string>\",\n          \"relationships\": {\n            \"accesses_frequently\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"accesses_infrequently\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"administers\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"communicates_with\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"depends_on\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"owns\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"owns_inferred\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"resolution\": {\n              \"resolved_to\": \"<string>\",\n              \"risk\": {\n                \"calculated_level\": \"<string>\",\n                \"calculated_score\": \"<number>\",\n                \"calculated_score_norm\": \"<number>\"\n              }\n            },\n            \"supervises\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          },\n          \"risk\": {\n            \"calculated_level\": \"<string>\",\n            \"calculated_score\": \"<number>\",\n            \"calculated_score_norm\": \"<number>\"\n          },\n          \"schema_version\": \"<string>\",\n          \"source\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"sub_type\": \"<string>\",\n          \"type\": \"<string>\",\n          \"url\": \"<string>\"\n        },\n        \"event\": {\n          \"ingested\": \"<dateTime>\"\n        },\n        \"labels\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"user\": {\n          \"domain\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"full_name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"hash\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"risk\": {\n            \"calculated_level\": \"<string>\",\n            \"calculated_score\": \"<number>\",\n            \"calculated_score_norm\": \"<number>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"doc\": {\n        \"@timestamp\": \"<dateTime>\",\n        \"asset\": {\n          \"business_unit\": \"<string>\",\n          \"criticality\": \"<string>\",\n          \"environment\": \"<string>\",\n          \"id\": \"<string>\",\n          \"model\": \"<string>\",\n          \"name\": \"<string>\",\n          \"owner\": \"<string>\",\n          \"serial_number\": \"<string>\",\n          \"vendor\": \"<string>\"\n        },\n        \"entity\": {\n          \"attributes\": {\n            \"asset\": \"<boolean>\",\n            \"known_redirects\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"managed\": \"<boolean>\",\n            \"mfa_enabled\": \"<boolean>\",\n            \"oauth_consent_restriction\": \"<string>\",\n            \"permissions\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"storage_class\": \"<string>\",\n            \"watchlists\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"behaviors\": {\n            \"anomaly_job_ids\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"rule_names\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"EngineMetadata\": {\n            \"Type\": \"<string>\"\n          },\n          \"id\": \"<string>\",\n          \"lifecycle\": {\n            \"first_seen\": \"<dateTime>\",\n            \"last_activity\": \"<dateTime>\",\n            \"last_seen\": \"<dateTime>\"\n          },\n          \"name\": \"<string>\",\n          \"relationships\": {\n            \"accesses_frequently\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"accesses_infrequently\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"administers\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"communicates_with\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"depends_on\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"owns\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"owns_inferred\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"resolution\": {\n              \"resolved_to\": \"<string>\",\n              \"risk\": {\n                \"calculated_level\": \"<string>\",\n                \"calculated_score\": \"<number>\",\n                \"calculated_score_norm\": \"<number>\"\n              }\n            },\n            \"supervises\": {\n              \"ids\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"raw_identifiers\": {\n                \"entity.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"host.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"service.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.email\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.id\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"user.name\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          },\n          \"risk\": {\n            \"calculated_level\": \"<string>\",\n            \"calculated_score\": \"<number>\",\n            \"calculated_score_norm\": \"<number>\"\n          },\n          \"schema_version\": \"<string>\",\n          \"source\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"sub_type\": \"<string>\",\n          \"type\": \"<string>\",\n          \"url\": \"<string>\"\n        },\n        \"event\": {\n          \"ingested\": \"<dateTime>\"\n        },\n        \"labels\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"user\": {\n          \"domain\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"email\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"full_name\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"hash\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"id\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\",\n          \"risk\": {\n            \"calculated_level\": \"<string>\",\n            \"calculated_score\": \"<number>\",\n            \"calculated_score_norm\": \"<number>\"\n          },\n          \"roles\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca472753-8989-452a-a7c7-dddbe2ae2450",
+              "name": "Indicates a successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "entities",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entities\": [\n    {\n      \"doc\": {\n        \"entity\": {\n          \"attributes\": {\n            \"asset\": true\n          },\n          \"id\": \"host:web-server-prod-01\",\n          \"name\": \"web-server-prod-01\",\n          \"type\": \"host\"\n        },\n        \"host\": {\n          \"name\": \"web-server-prod-01\"\n        }\n      },\n      \"type\": \"host\"\n    },\n    {\n      \"doc\": {\n        \"entity\": {\n          \"attributes\": {\n            \"managed\": true\n          },\n          \"id\": \"user:jane.doe@example.com\",\n          \"name\": \"jane.doe\",\n          \"type\": \"user\"\n        },\n        \"user\": {\n          \"name\": \"jane.doe\"\n        }\n      },\n      \"type\": \"user\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"_id\": \"5de9f93a68a72532e736bf5a6184b06300b9cabf\",\n      \"reason\": \"[5de9f93a68a72532e736bf5a6184b06300b9cabf]: document missing\",\n      \"status\": 404,\n      \"type\": \"document_missing_exception\"\n    }\n  ],\n  \"ok\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67f5d2b8-8673-4d0f-98ac-1aa9861bf0e2",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "entities",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entities\": [\n    {\n      \"doc\": {\n        \"entity\": {\n          \"attributes\": {\n            \"asset\": true\n          },\n          \"id\": \"host:web-server-prod-01\",\n          \"name\": \"web-server-prod-01\",\n          \"type\": \"host\"\n        },\n        \"host\": {\n          \"name\": \"web-server-prod-01\"\n        }\n      },\n      \"type\": \"host\"\n    },\n    {\n      \"doc\": {\n        \"entity\": {\n          \"attributes\": {\n            \"managed\": true\n          },\n          \"id\": \"user:jane.doe@example.com\",\n          \"name\": \"jane.doe\",\n          \"type\": \"user\"\n        },\n        \"user\": {\n          \"name\": \"jane.doe\"\n        }\n      },\n      \"type\": \"user\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Bad request: The following attributes are not allowed to be updated without forcing it (?force=true): entity.name, entity.type\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b6f59e2-b7f3-4017-a784-8760f46656e2",
+          "name": "Install the Entity Store",
+          "request": {
+            "name": "Install the Entity Store",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security/entity_store/install</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nInstall the Entity Store and create engines for the specified entity types. A single `logExtraction` configuration is shared across all entity types. Supply it once at install to customize settings; omit it (or send an empty object) to use defaults on first install or preserve the existing configuration on re-install. To change settings after install, use the update endpoint.<br/><br/>[Required authorization] Route required privileges: securitySolution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "entity_store",
+                "install"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entityTypes\": [\n    \"user\",\n    \"host\",\n    \"service\",\n    \"generic\"\n  ],\n  \"historySnapshot\": {\n    \"frequency\": \"24h\"\n  },\n  \"logExtraction\": {\n    \"delay\": \"1m\",\n    \"docsLimit\": 10000,\n    \"fieldHistoryLength\": 10,\n    \"frequency\": \"1m\",\n    \"lookbackPeriod\": \"3h\",\n    \"maxLogsPerPage\": 40000\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "84ecc464-f397-424e-b37f-d28d135f2c8b",
+              "name": "Indicates all requested entity types are already installed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "install"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityTypes\": [\n    \"user\",\n    \"host\",\n    \"service\",\n    \"generic\"\n  ],\n  \"logExtraction\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e21c6909-4bff-44c1-baf7-92f2d7932ff2",
+              "name": "Indicates the Entity Store was successfully installed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "install"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityTypes\": [\n    \"user\",\n    \"host\",\n    \"service\",\n    \"generic\"\n  ],\n  \"logExtraction\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be2652da-de07-404b-b24c-b05c73db97af",
+              "name": "Insufficient privileges.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "install"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityTypes\": [\n    \"user\",\n    \"host\",\n    \"service\",\n    \"generic\"\n  ],\n  \"logExtraction\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"User 'analyst' has insufficient privileges\",\n  \"statusCode\": 403\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "298da0a7-8008-4470-be8b-da605b6a05ca",
+          "name": "Get resolution group",
+          "request": {
+            "name": "Get resolution group",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security/entity_store/resolution/group</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the resolution group for a given entity, returning all linked entities. Requires an enterprise license.<br/><br/>[Required authorization] Route required privileges: securitySolution AND securitySolution-entity-analytics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "entity_store",
+                "resolution",
+                "group"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "entity_id",
+                  "value": "<string>",
+                  "description": "(Required) The entity identifier to look up the resolution group for."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e056573-12b1-4fb6-b460-0fdb29c056cc",
+              "name": "Indicates a successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "resolution",
+                    "group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aliases\": [\n    {\n      \"@timestamp\": \"2026-04-10T08:25:00.000Z\",\n      \"entity\": {\n        \"id\": \"user:jdoe@example.com\",\n        \"name\": \"jdoe\",\n        \"relationships\": {\n          \"resolution\": {\n            \"resolved_to\": \"user:jane.doe@example.com\"\n          }\n        },\n        \"type\": \"user\"\n      },\n      \"user\": {\n        \"name\": \"jdoe\"\n      }\n    }\n  ],\n  \"group_size\": 2,\n  \"target\": {\n    \"@timestamp\": \"2026-04-10T08:30:00.000Z\",\n    \"entity\": {\n      \"id\": \"user:jane.doe@example.com\",\n      \"name\": \"jane.doe\",\n      \"type\": \"user\"\n    },\n    \"user\": {\n      \"email\": [\n        \"jane.doe@example.com\"\n      ],\n      \"name\": \"jane.doe\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73f4e383-f3e0-4797-b557-372e201aec9c",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "resolution",
+                    "group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Resolution search truncated\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f6eee66-a779-42ef-98ce-cb4c8af99552",
+              "name": "Entity not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "resolution",
+                    "group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Entities not found: [user:nonexistent@example.com]\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90b6ff2c-f20b-4b1c-86b2-56a567b0155f",
+          "name": "Link entities",
+          "request": {
+            "name": "Link entities",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security/entity_store/resolution/link</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nLink one or more entities to a target entity, creating a resolution group. Requires an enterprise license.<br/><br/>[Required authorization] Route required privileges: securitySolution AND securitySolution-entity-analytics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "entity_store",
+                "resolution",
+                "link"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"target_id\": \"<string>\",\n  \"entity_ids\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d2b83740-22c3-458e-90b0-911856b6a9cb",
+              "name": "Indicates a successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "resolution",
+                    "link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_ids\": [\n    \"user:jdoe@example.com\",\n    \"user:j.doe@example.com\"\n  ],\n  \"target_id\": \"user:jane.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"linked\": [\n    \"user:jdoe@example.com\",\n    \"user:j.doe@example.com\"\n  ],\n  \"skipped\": [],\n  \"target_id\": \"user:jane.doe@example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ee3e6fc-03b2-47a2-bd84-c1c74e0dcb04",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "resolution",
+                    "link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_ids\": [\n    \"user:jdoe@example.com\",\n    \"user:j.doe@example.com\"\n  ],\n  \"target_id\": \"user:jane.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Cannot link entities of different types\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cb76dfc-9b7c-44ce-a98a-583d11da6843",
+              "name": "Entities not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "resolution",
+                    "link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_ids\": [\n    \"user:jdoe@example.com\",\n    \"user:j.doe@example.com\"\n  ],\n  \"target_id\": \"user:jane.doe@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Entities not found: [user:nonexistent@example.com, user:also-nonexistent@example.com]\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c9de399-baf6-4a9e-80bb-ed0378baac4d",
+          "name": "Unlink entities",
+          "request": {
+            "name": "Unlink entities",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security/entity_store/resolution/unlink</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRemove one or more entities from their resolution group. Requires an enterprise license.<br/><br/>[Required authorization] Route required privileges: securitySolution AND securitySolution-entity-analytics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "entity_store",
+                "resolution",
+                "unlink"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_ids\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6d0cf8a5-a4c7-4bae-a98b-c624c916a2f6",
+              "name": "Indicates a successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "resolution",
+                    "unlink"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_ids\": [\n    \"user:jdoe@example.com\",\n    \"user:j.doe@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"skipped\": [],\n  \"unlinked\": [\n    \"user:jdoe@example.com\",\n    \"user:j.doe@example.com\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30ae76a9-b15f-4759-bd0d-9b5a3383149f",
+              "name": "Entities not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "resolution",
+                    "unlink"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_ids\": [\n    \"user:jdoe@example.com\",\n    \"user:j.doe@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Entities not found: [user:nonexistent@example.com]\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4022bce-72ec-42e5-8ab2-f2e58309c456",
+          "name": "Start Entity Store engines",
+          "request": {
+            "name": "Start Entity Store engines",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security/entity_store/start</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nStart previously stopped entity engines, resuming data processing for the specified entity types.<br/><br/>[Required authorization] Route required privileges: securitySolution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "entity_store",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entityTypes\": [\n    \"user\",\n    \"host\",\n    \"service\",\n    \"generic\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eebfddfe-6d70-498f-94df-428bc1c9a0f1",
+              "name": "Indicates a successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityTypes\": [\n    \"user\",\n    \"host\",\n    \"service\",\n    \"generic\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7cc3dbd3-cace-48a9-9a6a-10ab0de8f37f",
+          "name": "Get Entity Store status",
+          "request": {
+            "name": "Get Entity Store status",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security/entity_store/status</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the overall Entity Store status and per-engine statuses, optionally including component-level health details.<br/><br/>[Required authorization] Route required privileges: securitySolution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "entity_store",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_components",
+                  "value": "<string>",
+                  "description": "If true, returns a detailed status of each engine including all its components."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd62c5ee-4b00-451e-801f-0a439a19aef3",
+              "name": "Indicates a successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_components",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"engines\": [],\n  \"status\": \"not_installed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e90eb80b-8871-46bf-b072-726c5de45855",
+          "name": "Stop Entity Store engines",
+          "request": {
+            "name": "Stop Entity Store engines",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security/entity_store/stop</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nStop running entity engines, pausing data processing for the specified entity types.<br/><br/>[Required authorization] Route required privileges: securitySolution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "entity_store",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entityTypes\": [\n    \"user\",\n    \"host\",\n    \"service\",\n    \"generic\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f6719fd2-47d8-44ec-b9b0-9a921c673f5d",
+              "name": "Indicates a successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityTypes\": [\n    \"user\",\n    \"host\",\n    \"service\",\n    \"generic\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8445b954-fd4c-41e3-8fc9-2881962875c9",
+          "name": "Uninstall the Entity Store",
+          "request": {
+            "name": "Uninstall the Entity Store",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security/entity_store/uninstall</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUninstall the Entity Store, removing engines and associated resources for the specified entity types.<br/><br/>[Required authorization] Route required privileges: securitySolution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "entity_store",
+                "uninstall"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entityTypes\": [\n    \"user\",\n    \"host\",\n    \"service\",\n    \"generic\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0ac4629a-40ce-4e68-9f58-94d647403af6",
+              "name": "Indicates a successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "entity_store",
+                    "uninstall"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityTypes\": [\n    \"user\",\n    \"host\",\n    \"service\",\n    \"generic\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:5601",
+      "key": "kibana_url"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kibana_url}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "57e6c25f-ac78-470d-bfad-24094ee8862d",
+    "name": "Kibana APIs Actions Security entity store API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.\nThe API calls are stateless.\nEach request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the\nrequest.\nAPI requests return JSON output, which is a format that is machine-readable and works well for automation.\n\nTo interact with Kibana APIs, use the following operations:\n\n- GET: Fetches the information.\n- PATCH: Applies partial modifications to the existing information.\n- POST: Adds new information.\n- PUT: Updates the existing information.\n- DELETE: Removes the information.\n\nYou can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.\nFor example:\n\n```\nGET kbn:/api/data_views\n```\n\nFor more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).\n\nNOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.\n\n## Documentation source and versions\n\nThis documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.\nIt is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).\n\nThis documentation contains work-in-progress information for future Elastic Stack releases.\n\n\nContact Support:\n Name: Kibana Team",
+      "type": "text/plain"
+    }
+  }
+}

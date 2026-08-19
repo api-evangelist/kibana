@@ -1,0 +1,2913 @@
+{
+  "item": [
+    {
+      "id": "b6d293ce-da25-4856-a2b0-5b6fb3283899",
+      "name": "data views",
+      "description": {
+        "content": "Data view APIs enable you to manage data views, formerly known as Kibana index patterns.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "921910e8-d358-46dd-a2e3-1e10ed01d41a",
+          "name": "Get all data views",
+          "request": {
+            "name": "Get all data views",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a list of all data views. Use this endpoint to identify available data views in the current Kibana space.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data_views"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c34a3dad-7b42-4568-bdfa-520cccdb6f89",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data_view\": [\n    {\n      \"id\": \"ff959d40-b880-11e8-a6d9-e546fe2bba5f\",\n      \"name\": \"Kibana Sample Data eCommerce\",\n      \"namespaces\": [\n        \"default\"\n      ],\n      \"title\": \"kibana_sample_data_ecommerce\",\n      \"typeMeta\": {}\n    },\n    {\n      \"id\": \"d3d7af60-4c81-11e8-b3d7-01146121b73d\",\n      \"name\": \"Kibana Sample Data Flights\",\n      \"namespaces\": [\n        \"default\"\n      ],\n      \"title\": \"kibana_sample_data_flights\"\n    },\n    {\n      \"id\": \"90943e30-9a47-11e8-b64d-95841ca0b247\",\n      \"name\": \"Kibana Sample Data Logs\",\n      \"namespaces\": [\n        \"default\"\n      ],\n      \"title\": \"kibana_sample_data_logs\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c8d24bb-ec13-486a-ac61-1c896f182165",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"[request body.data_view.title]: expected value of type [string] but got [undefined]\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "338f3ffe-0484-471a-9d34-dafc013f9f0f",
+          "name": "Create a data view",
+          "request": {
+            "name": "Create a data view",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a data view. Data views identify the Elasticsearch data you want to explore and visualize. They can point to one or more data streams, indices, or index aliases, and use optional runtime fields to compute values at query time. Note that data views are not required for ES|QL-based visualizations. To learn more, refer to the [data views documentation](https://www.elastic.co/docs/explore-analyze/find-and-organize/data-views).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data_views",
+                "data_view"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Cross-site request forgery protection",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data_view\": {\n    \"title\": \"<string>\",\n    \"allowNoIndex\": \"<boolean>\",\n    \"fieldAttrs\": {\n      \"key_0\": {\n        \"count\": \"<integer>\",\n        \"customDescription\": \"<string>\",\n        \"customLabel\": \"<string>\"\n      },\n      \"key_1\": {\n        \"count\": \"<integer>\",\n        \"customDescription\": \"<string>\",\n        \"customLabel\": \"<string>\"\n      }\n    },\n    \"fieldFormats\": \"<object>\",\n    \"fields\": \"<object>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"namespaces\": [\n      \"default\",\n      \"default\"\n    ],\n    \"runtimeFieldMap\": {\n      \"key_0\": {\n        \"script\": {\n          \"source\": \"<string>\"\n        },\n        \"type\": \"<string>\"\n      },\n      \"key_1\": {\n        \"script\": {\n          \"source\": \"<string>\"\n        },\n        \"type\": \"<string>\"\n      },\n      \"key_2\": {\n        \"script\": {\n          \"source\": \"<string>\"\n        },\n        \"type\": \"<string>\"\n      }\n    },\n    \"sourceFilters\": [\n      {\n        \"value\": \"<string>\"\n      },\n      {\n        \"value\": \"<string>\"\n      }\n    ],\n    \"timeFieldName\": \"<string>\",\n    \"type\": \"<string>\",\n    \"typeMeta\": {\n      \"aggs\": \"<object>\",\n      \"params\": \"<object>\"\n    },\n    \"version\": \"<string>\"\n  },\n  \"override\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3d40578-6b69-4b00-81a2-aae7388a4c4d",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Cross-site request forgery protection",
+                    "key": "kbn-xsrf",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_view\": {\n    \"name\": \"My Logstash data view\",\n    \"runtimeFieldMap\": {\n      \"runtime_shape_name\": {\n        \"script\": {\n          \"source\": \"emit(doc['shape_name'].value)\"\n        },\n        \"type\": \"keyword\"\n      }\n    },\n    \"title\": \"logstash-*\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data_view\": {\n    \"allowNoIndex\": false,\n    \"fieldAttrs\": {},\n    \"fieldFormats\": {},\n    \"fields\": {\n      \"runtime_shape_name\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"name\": \"runtime_shape_name\",\n        \"readFromDocValues\": false,\n        \"runtimeField\": {\n          \"script\": {\n            \"source\": \"emit(doc['shape_name'].value)\"\n          },\n          \"type\": \"keyword\"\n        },\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      }\n    },\n    \"id\": \"b561acfb-0181-455e-84a3-ce8980b2272f\",\n    \"name\": \"My Logstash data view\",\n    \"namespaces\": [\n      \"default\"\n    ],\n    \"runtimeFieldMap\": {\n      \"runtime_shape_name\": {\n        \"script\": {\n          \"source\": \"emit(doc['shape_name'].value)\"\n        },\n        \"type\": \"keyword\"\n      }\n    },\n    \"sourceFilters\": [],\n    \"title\": \"logstash-*\",\n    \"typeMeta\": {},\n    \"version\": \"WzQ5LDJd\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14d3428b-c6e8-4182-bcda-161ef83f3ef0",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Cross-site request forgery protection",
+                    "key": "kbn-xsrf",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_view\": {\n    \"name\": \"My Logstash data view\",\n    \"runtimeFieldMap\": {\n      \"runtime_shape_name\": {\n        \"script\": {\n          \"source\": \"emit(doc['shape_name'].value)\"\n        },\n        \"type\": \"keyword\"\n      }\n    },\n    \"title\": \"logstash-*\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"[request body.data_view.title]: expected value of type [string] but got [undefined]\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ff6e50a-6eda-485d-84c9-0c599069d434",
+          "name": "Delete a data view",
+          "request": {
+            "name": "Delete a data view",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a data view by its identifier. WARNING: When you delete a data view, it cannot be recovered.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data_views",
+                "data_view",
+                ":viewId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "viewId",
+                  "description": "(Required) An identifier for the data view."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Cross-site request forgery protection",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc549801-bc2f-4857-8adb-5a0835002b8f",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) An identifier for the data view."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Cross-site request forgery protection",
+                    "key": "kbn-xsrf",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "62395518-64f3-4ee7-8ccd-f3d044a4ee21",
+              "name": "Object is not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) An identifier for the data view."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Cross-site request forgery protection",
+                    "key": "kbn-xsrf",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Saved object [index-pattern/caaad6d0-920c-11ed-b36a-874bd1548a00] not found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c16329d6-e820-49f4-960d-499d0dcdd57b",
+          "name": "Get a data view",
+          "request": {
+            "name": "Get a data view",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a single data view by its identifier. Data views identify the Elasticsearch data you want to explore and visualize. They can point to one or more data streams, indices, or index aliases, and use optional runtime fields to compute values at query time. Note that data views are not required for ES|QL-based visualizations. To learn more, refer to the [data views documentation](https://www.elastic.co/docs/explore-analyze/find-and-organize/data-views).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data_views",
+                "data_view",
+                ":viewId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "viewId",
+                  "description": "(Required) An identifier for the data view."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4af85f6-f501-4a36-9f34-fc00cffc8275",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) An identifier for the data view."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data_view\": {\n    \"allowNoIndex\": false,\n    \"fieldAttrs\": {\n      \"products.manufacturer\": {\n        \"count\": 1\n      },\n      \"products.price\": {\n        \"count\": 1\n      },\n      \"products.product_name\": {\n        \"count\": 1\n      },\n      \"total_quantity\": {\n        \"count\": 1\n      }\n    },\n    \"fieldFormats\": {\n      \"products.base_price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.00\"\n        }\n      },\n      \"products.base_unit_price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.00\"\n        }\n      },\n      \"products.min_price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.00\"\n        }\n      },\n      \"products.price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.00\"\n        }\n      },\n      \"products.taxful_price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.00\"\n        }\n      },\n      \"products.taxless_price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.00\"\n        }\n      },\n      \"taxful_total_price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.[00]\"\n        }\n      },\n      \"taxless_total_price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.00\"\n        }\n      }\n    },\n    \"fields\": {\n      \"_id\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"_id\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"_id\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"_index\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"_index\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"_index\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"_score\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"_score\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": false,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"_source\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"_source\"\n        ],\n        \"format\": {\n          \"id\": \"_source\"\n        },\n        \"isMapped\": true,\n        \"name\": \"_source\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": false,\n        \"shortDotsEnable\": false,\n        \"type\": \"_source\"\n      },\n      \"category\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"category\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"category.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"category.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"category\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"currency\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"currency\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"customer_birth_date\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"date\"\n        ],\n        \"format\": {\n          \"id\": \"date\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_birth_date\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"date\"\n      },\n      \"customer_first_name\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_first_name\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"customer_first_name.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_first_name.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"customer_first_name\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"customer_full_name\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_full_name\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"customer_full_name.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_full_name.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"customer_full_name\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"customer_gender\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_gender\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"customer_id\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_id\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"customer_last_name\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_last_name\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"customer_last_name.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_last_name.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"customer_last_name\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"customer_phone\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_phone\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"day_of_week\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"day_of_week\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"day_of_week_i\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"integer\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"day_of_week_i\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"email\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"email\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"event.dataset\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"event.dataset\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"geoip.city_name\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"geoip.city_name\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"geoip.continent_name\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"geoip.continent_name\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"geoip.country_iso_code\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"geoip.country_iso_code\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"geoip.location\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"geo_point\"\n        ],\n        \"format\": {\n          \"id\": \"geo_point\",\n          \"params\": {\n            \"transform\": \"wkt\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"geoip.location\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"geo_point\"\n      },\n      \"geoip.region_name\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"geoip.region_name\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"manufacturer\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"manufacturer\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"manufacturer.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"manufacturer.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"manufacturer\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"order_date\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"date\"\n        ],\n        \"format\": {\n          \"id\": \"date\"\n        },\n        \"isMapped\": true,\n        \"name\": \"order_date\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"date\"\n      },\n      \"order_id\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"order_id\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"products._id\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products._id\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"products._id.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products._id.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"products._id\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"products.base_price\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.00\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"products.base_price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.base_unit_price\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.00\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"products.base_unit_price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.category\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.category\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"products.category.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.category.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"products.category\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"products.created_on\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"date\"\n        ],\n        \"format\": {\n          \"id\": \"date\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.created_on\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"date\"\n      },\n      \"products.discount_amount\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.discount_amount\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.discount_percentage\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.discount_percentage\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.manufacturer\": {\n        \"aggregatable\": false,\n        \"count\": 1,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.manufacturer\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"products.manufacturer.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.manufacturer.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"products.manufacturer\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"products.min_price\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.00\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"products.min_price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.price\": {\n        \"aggregatable\": true,\n        \"count\": 1,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.00\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"products.price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.product_id\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"long\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.product_id\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.product_name\": {\n        \"aggregatable\": false,\n        \"count\": 1,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.product_name\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"products.product_name.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.product_name.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"products.product_name\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"products.quantity\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"integer\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.quantity\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.sku\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.sku\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"products.tax_amount\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.tax_amount\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.taxful_price\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.00\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"products.taxful_price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.taxless_price\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.00\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"products.taxless_price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.unit_discount_amount\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.unit_discount_amount\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"sku\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"sku\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"taxful_total_price\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.[00]\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"taxful_total_price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"taxless_total_price\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.00\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"taxless_total_price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"total_quantity\": {\n        \"aggregatable\": true,\n        \"count\": 1,\n        \"esTypes\": [\n          \"integer\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"total_quantity\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"total_unique_products\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"integer\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"total_unique_products\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"type\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"type\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"user\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"user\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      }\n    },\n    \"id\": \"ff959d40-b880-11e8-a6d9-e546fe2bba5f\",\n    \"name\": \"Kibana Sample Data eCommerce\",\n    \"namespaces\": [\n      \"default\"\n    ],\n    \"runtimeFieldMap\": {},\n    \"sourceFilters\": [],\n    \"timeFieldName\": \"order_date\",\n    \"title\": \"kibana_sample_data_ecommerce\",\n    \"typeMeta\": {},\n    \"version\": \"WzUsMV0=\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e4014f4-afb0-4929-9dd5-86cd86949007",
+              "name": "Object is not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) An identifier for the data view."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Saved object [index-pattern/caaad6d0-920c-11ed-b36a-874bd1548a00] not found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7727032-14db-494b-b371-f2ad59795343",
+          "name": "Update a data view",
+          "request": {
+            "name": "Update a data view",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an existing data view. Only the fields provided in the request body are updated.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data_views",
+                "data_view",
+                ":viewId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "viewId",
+                  "description": "(Required) An identifier for the data view."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Cross-site request forgery protection",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data_view\": {\n    \"allowNoIndex\": \"<boolean>\",\n    \"fieldFormats\": \"<object>\",\n    \"fields\": \"<object>\",\n    \"name\": \"<string>\",\n    \"runtimeFieldMap\": {\n      \"key_0\": {\n        \"script\": {\n          \"source\": \"<string>\"\n        },\n        \"type\": \"<string>\"\n      }\n    },\n    \"sourceFilters\": [\n      {\n        \"value\": \"<string>\"\n      },\n      {\n        \"value\": \"<string>\"\n      }\n    ],\n    \"timeFieldName\": \"<string>\",\n    \"title\": \"<string>\",\n    \"type\": \"<string>\",\n    \"typeMeta\": {\n      \"aggs\": \"<object>\",\n      \"params\": \"<object>\"\n    }\n  },\n  \"refresh_fields\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1059d8a5-1bd0-492c-878f-739eda66d780",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) An identifier for the data view."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Cross-site request forgery protection",
+                    "key": "kbn-xsrf",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_view\": {\n    \"allowNoIndex\": false,\n    \"name\": \"Kibana Sample Data eCommerce\",\n    \"timeFieldName\": \"order_date\",\n    \"title\": \"kibana_sample_data_ecommerce\"\n  },\n  \"refresh_fields\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data_view\": {\n    \"allowNoIndex\": false,\n    \"fieldAttrs\": {\n      \"products.manufacturer\": {\n        \"count\": 1\n      },\n      \"products.price\": {\n        \"count\": 1\n      },\n      \"products.product_name\": {\n        \"count\": 1\n      },\n      \"total_quantity\": {\n        \"count\": 1\n      }\n    },\n    \"fieldFormats\": {\n      \"products.base_price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.00\"\n        }\n      },\n      \"products.base_unit_price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.00\"\n        }\n      },\n      \"products.min_price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.00\"\n        }\n      },\n      \"products.price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.00\"\n        }\n      },\n      \"products.taxful_price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.00\"\n        }\n      },\n      \"products.taxless_price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.00\"\n        }\n      },\n      \"taxful_total_price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.[00]\"\n        }\n      },\n      \"taxless_total_price\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.00\"\n        }\n      }\n    },\n    \"fields\": {\n      \"_id\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"_id\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"_id\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"_index\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"_index\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"_index\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"_score\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"_score\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": false,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"_source\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"_source\"\n        ],\n        \"format\": {\n          \"id\": \"_source\"\n        },\n        \"isMapped\": true,\n        \"name\": \"_source\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": false,\n        \"shortDotsEnable\": false,\n        \"type\": \"_source\"\n      },\n      \"category\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"category\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"category.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"category.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"category\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"currency\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"currency\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"customer_birth_date\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"date\"\n        ],\n        \"format\": {\n          \"id\": \"date\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_birth_date\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"date\"\n      },\n      \"customer_first_name\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_first_name\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"customer_first_name.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_first_name.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"customer_first_name\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"customer_full_name\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_full_name\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"customer_full_name.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_full_name.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"customer_full_name\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"customer_gender\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_gender\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"customer_id\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_id\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"customer_last_name\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_last_name\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"customer_last_name.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_last_name.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"customer_last_name\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"customer_phone\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"customer_phone\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"day_of_week\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"day_of_week\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"day_of_week_i\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"integer\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"day_of_week_i\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"email\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"email\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"event.dataset\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"event.dataset\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"geoip.city_name\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"geoip.city_name\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"geoip.continent_name\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"geoip.continent_name\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"geoip.country_iso_code\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"geoip.country_iso_code\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"geoip.location\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"geo_point\"\n        ],\n        \"format\": {\n          \"id\": \"geo_point\",\n          \"params\": {\n            \"transform\": \"wkt\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"geoip.location\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"geo_point\"\n      },\n      \"geoip.region_name\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"geoip.region_name\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"manufacturer\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"manufacturer\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"manufacturer.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"manufacturer.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"manufacturer\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"order_date\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"date\"\n        ],\n        \"format\": {\n          \"id\": \"date\"\n        },\n        \"isMapped\": true,\n        \"name\": \"order_date\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"date\"\n      },\n      \"order_id\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"order_id\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"products._id\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products._id\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"products._id.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products._id.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"products._id\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"products.base_price\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.00\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"products.base_price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.base_unit_price\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.00\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"products.base_unit_price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.category\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.category\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"products.category.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.category.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"products.category\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"products.created_on\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"date\"\n        ],\n        \"format\": {\n          \"id\": \"date\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.created_on\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"date\"\n      },\n      \"products.discount_amount\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.discount_amount\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.discount_percentage\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.discount_percentage\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.manufacturer\": {\n        \"aggregatable\": false,\n        \"count\": 1,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.manufacturer\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"products.manufacturer.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.manufacturer.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"products.manufacturer\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"products.min_price\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.00\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"products.min_price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.price\": {\n        \"aggregatable\": true,\n        \"count\": 1,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.00\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"products.price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.product_id\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"long\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.product_id\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.product_name\": {\n        \"aggregatable\": false,\n        \"count\": 1,\n        \"esTypes\": [\n          \"text\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.product_name\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"products.product_name.keyword\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.product_name.keyword\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"subType\": {\n          \"multi\": {\n            \"parent\": \"products.product_name\"\n          }\n        },\n        \"type\": \"string\"\n      },\n      \"products.quantity\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"integer\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.quantity\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.sku\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.sku\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"products.tax_amount\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.tax_amount\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.taxful_price\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.00\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"products.taxful_price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.taxless_price\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.00\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"products.taxless_price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"products.unit_discount_amount\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"products.unit_discount_amount\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"sku\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"sku\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"taxful_total_price\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.[00]\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"taxful_total_price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"taxless_total_price\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"half_float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.00\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"taxless_total_price\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"total_quantity\": {\n        \"aggregatable\": true,\n        \"count\": 1,\n        \"esTypes\": [\n          \"integer\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"total_quantity\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"total_unique_products\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"integer\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"total_unique_products\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"type\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"type\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"user\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"user\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      }\n    },\n    \"id\": \"ff959d40-b880-11e8-a6d9-e546fe2bba5f\",\n    \"name\": \"Kibana Sample Data eCommerce\",\n    \"namespaces\": [\n      \"default\"\n    ],\n    \"runtimeFieldMap\": {},\n    \"sourceFilters\": [],\n    \"timeFieldName\": \"order_date\",\n    \"title\": \"kibana_sample_data_ecommerce\",\n    \"typeMeta\": {},\n    \"version\": \"WzUsMV0=\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e2daad8-e32f-4e5f-acec-ea614278737c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) An identifier for the data view."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Cross-site request forgery protection",
+                    "key": "kbn-xsrf",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_view\": {\n    \"allowNoIndex\": false,\n    \"name\": \"Kibana Sample Data eCommerce\",\n    \"timeFieldName\": \"order_date\",\n    \"title\": \"kibana_sample_data_ecommerce\"\n  },\n  \"refresh_fields\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"[request body.data_view.title]: expected value of type [string] but got [undefined]\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "092f9e87-c25a-4efb-9ac5-4e896a8c8caa",
+          "name": "Update field metadata",
+          "request": {
+            "name": "Update field metadata",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}/fields</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate field metadata for a data view. Use this endpoint to set custom labels, custom descriptions, and format overrides for individual fields.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data_views",
+                "data_view",
+                ":viewId",
+                "fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "viewId",
+                  "description": "(Required) An identifier for the data view."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Cross-site request forgery protection",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0e711844-827a-4bfd-966e-bfac375baaa5",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId",
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) An identifier for the data view."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Cross-site request forgery protection",
+                    "key": "kbn-xsrf",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": {\n    \"field1\": {\n      \"count\": 123,\n      \"customLabel\": \"Field 1 label\"\n    },\n    \"field2\": {\n      \"customDescription\": \"Field 2 description\",\n      \"customLabel\": \"Field 2 label\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"acknowledged\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d980a5bc-0dcf-4f4d-8d03-d66b735b7171",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId",
+                    "fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) An identifier for the data view."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Cross-site request forgery protection",
+                    "key": "kbn-xsrf",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": {\n    \"field1\": {\n      \"count\": 123,\n      \"customLabel\": \"Field 1 label\"\n    },\n    \"field2\": {\n      \"customDescription\": \"Field 2 description\",\n      \"customLabel\": \"Field 2 label\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"[request body.data_view.title]: expected value of type [string] but got [undefined]\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55919f16-a305-4976-b91e-b607785feb37",
+          "name": "Create a runtime field",
+          "request": {
+            "name": "Create a runtime field",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}/runtime_field</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a runtime field for a data view. Runtime fields are computed at query time using a [Painless script](https://www.elastic.co/docs/explore-analyze/scripting/modules-scripting-painless) and do not require reindexing. If no `script` is provided, the runtime field returns the corresponding value from the document `_source`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data_views",
+                "data_view",
+                ":viewId",
+                "runtime_field"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "viewId",
+                  "description": "(Required) An identifier for the data view."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Cross-site request forgery protection",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"runtimeField\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "13a1cd5c-a822-4dc8-82ad-756f79568f74",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId",
+                    "runtime_field"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) An identifier for the data view."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Cross-site request forgery protection",
+                    "key": "kbn-xsrf",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"runtimeFoo\",\n  \"runtimeField\": {\n    \"script\": {\n      \"source\": \"emit(doc[\\\"foo\\\"].value)\"\n    },\n    \"type\": \"long\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data_view\": {\n    \"...\": null\n  },\n  \"fields\": [\n    \"...\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9751d08-8f3d-4703-a164-9de18a28d676",
+          "name": "Create or update a runtime field",
+          "request": {
+            "name": "Create or update a runtime field",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}/runtime_field</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate or update a runtime field for a data view. If the runtime field already exists, it is replaced with the new definition.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data_views",
+                "data_view",
+                ":viewId",
+                "runtime_field"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "viewId",
+                  "description": "(Required) The ID of the data view fields you want to update.\n"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Cross-site request forgery protection",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"runtimeField\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cfa3b90b-d19f-4365-bd66-6edb995c5435",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId",
+                    "runtime_field"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The ID of the data view fields you want to update.\n"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Cross-site request forgery protection",
+                    "key": "kbn-xsrf",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"runtimeFoo\",\n  \"runtimeField\": {\n    \"script\": {\n      \"source\": \"emit(doc[\\\"foo\\\"].value)\"\n    },\n    \"type\": \"long\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data_view\": {\n    \"...\": null\n  },\n  \"fields\": [\n    \"...\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e76c6bf4-2d35-4882-a177-931c558d450f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId",
+                    "runtime_field"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The ID of the data view fields you want to update.\n"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Cross-site request forgery protection",
+                    "key": "kbn-xsrf",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"runtimeFoo\",\n  \"runtimeField\": {\n    \"script\": {\n      \"source\": \"emit(doc[\\\"foo\\\"].value)\"\n    },\n    \"type\": \"long\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"[request body.data_view.title]: expected value of type [string] but got [undefined]\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6fc1d421-fef0-4717-af9d-6080344f301d",
+          "name": "Delete a runtime field",
+          "request": {
+            "name": "Delete a runtime field",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}/runtime_field/{fieldName}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a runtime field from a data view.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data_views",
+                "data_view",
+                ":viewId",
+                "runtime_field",
+                ":fieldName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fieldName",
+                  "description": "(Required) The name of the runtime field."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "viewId",
+                  "description": "(Required) An identifier for the data view."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d395bbac-773a-4dda-853f-4eb4ca4a2bd7",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId",
+                    "runtime_field",
+                    ":fieldName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fieldName",
+                      "description": "(Required) The name of the runtime field."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) An identifier for the data view."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a65c7fdf-5b93-4790-ac3e-79145c7b35c7",
+              "name": "Object is not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId",
+                    "runtime_field",
+                    ":fieldName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fieldName",
+                      "description": "(Required) The name of the runtime field."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) An identifier for the data view."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Saved object [index-pattern/caaad6d0-920c-11ed-b36a-874bd1548a00] not found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "984768fe-cd2d-472c-971c-e43b948e5cd1",
+          "name": "Get a runtime field",
+          "request": {
+            "name": "Get a runtime field",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}/runtime_field/{fieldName}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a single runtime field by name from a data view.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data_views",
+                "data_view",
+                ":viewId",
+                "runtime_field",
+                ":fieldName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fieldName",
+                  "description": "(Required) The name of the runtime field."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "viewId",
+                  "description": "(Required) An identifier for the data view."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cdc5bb4c-5cf2-4112-b5b8-c9cd0ffd2c55",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId",
+                    "runtime_field",
+                    ":fieldName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fieldName",
+                      "description": "(Required) The name of the runtime field."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) An identifier for the data view."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data_view\": {\n    \"allowNoIndex\": false,\n    \"fieldAttrs\": {},\n    \"fieldFormats\": {\n      \"AvgTicketPrice\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"$0,0.[00]\"\n        }\n      },\n      \"hour_of_day\": {\n        \"id\": \"number\",\n        \"params\": {\n          \"pattern\": \"00\"\n        }\n      }\n    },\n    \"fields\": {\n      \"_id\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"_id\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"_id\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"_index\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"_index\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"_index\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"_score\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"_score\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": false,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"_source\": {\n        \"aggregatable\": false,\n        \"count\": 0,\n        \"esTypes\": [\n          \"_source\"\n        ],\n        \"format\": {\n          \"id\": \"_source\"\n        },\n        \"isMapped\": true,\n        \"name\": \"_source\",\n        \"readFromDocValues\": false,\n        \"scripted\": false,\n        \"searchable\": false,\n        \"shortDotsEnable\": false,\n        \"type\": \"_source\"\n      },\n      \"AvgTicketPrice\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"float\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"$0,0.[00]\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"AvgTicketPrice\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"Cancelled\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"boolean\"\n        ],\n        \"format\": {\n          \"id\": \"boolean\"\n        },\n        \"isMapped\": true,\n        \"name\": \"Cancelled\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"boolean\"\n      },\n      \"Carrier\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"Carrier\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"dayOfWeek\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"integer\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"dayOfWeek\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"Dest\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"Dest\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"DestAirportID\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"DestAirportID\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"DestCityName\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"DestCityName\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"DestCountry\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"DestCountry\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"DestLocation\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"geo_point\"\n        ],\n        \"format\": {\n          \"id\": \"geo_point\",\n          \"params\": {\n            \"transform\": \"wkt\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"DestLocation\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"geo_point\"\n      },\n      \"DestRegion\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"DestRegion\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"DestWeather\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"DestWeather\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"DistanceKilometers\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"float\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"DistanceKilometers\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"DistanceMiles\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"float\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"DistanceMiles\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"FlightDelay\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"boolean\"\n        ],\n        \"format\": {\n          \"id\": \"boolean\"\n        },\n        \"isMapped\": true,\n        \"name\": \"FlightDelay\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"boolean\"\n      },\n      \"FlightDelayMin\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"integer\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"FlightDelayMin\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"FlightDelayType\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"FlightDelayType\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"FlightNum\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"FlightNum\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"FlightTimeHour\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"FlightTimeHour\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"FlightTimeMin\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"float\"\n        ],\n        \"format\": {\n          \"id\": \"number\"\n        },\n        \"isMapped\": true,\n        \"name\": \"FlightTimeMin\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"hour_of_day\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"long\"\n        ],\n        \"format\": {\n          \"id\": \"number\",\n          \"params\": {\n            \"pattern\": \"00\"\n          }\n        },\n        \"name\": \"hour_of_day\",\n        \"readFromDocValues\": false,\n        \"runtimeField\": {\n          \"script\": {\n            \"source\": \"emit(doc['timestamp'].value.getHour());\"\n          },\n          \"type\": \"long\"\n        },\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"number\"\n      },\n      \"Origin\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"Origin\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"OriginAirportID\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"OriginAirportID\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"OriginCityName\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"OriginCityName\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"OriginCountry\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"OriginCountry\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"OriginLocation\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"geo_point\"\n        ],\n        \"format\": {\n          \"id\": \"geo_point\",\n          \"params\": {\n            \"transform\": \"wkt\"\n          }\n        },\n        \"isMapped\": true,\n        \"name\": \"OriginLocation\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"geo_point\"\n      },\n      \"OriginRegion\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"OriginRegion\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"OriginWeather\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"keyword\"\n        ],\n        \"format\": {\n          \"id\": \"string\"\n        },\n        \"isMapped\": true,\n        \"name\": \"OriginWeather\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"string\"\n      },\n      \"timestamp\": {\n        \"aggregatable\": true,\n        \"count\": 0,\n        \"esTypes\": [\n          \"date\"\n        ],\n        \"format\": {\n          \"id\": \"date\"\n        },\n        \"isMapped\": true,\n        \"name\": \"timestamp\",\n        \"readFromDocValues\": true,\n        \"scripted\": false,\n        \"searchable\": true,\n        \"shortDotsEnable\": false,\n        \"type\": \"date\"\n      }\n    },\n    \"id\": \"d3d7af60-4c81-11e8-b3d7-01146121b73d\",\n    \"name\": \"Kibana Sample Data Flights\",\n    \"runtimeFieldMap\": {\n      \"hour_of_day\": {\n        \"script\": {\n          \"source\": \"emit(doc['timestamp'].value.getHour());\"\n        },\n        \"type\": \"long\"\n      }\n    },\n    \"sourceFilters\": [],\n    \"timeFieldName\": \"timestamp\",\n    \"title\": \"kibana_sample_data_flights\",\n    \"version\": \"WzM2LDJd\"\n  },\n  \"fields\": [\n    {\n      \"aggregatable\": true,\n      \"count\": 0,\n      \"esTypes\": [\n        \"long\"\n      ],\n      \"name\": \"hour_of_day\",\n      \"readFromDocValues\": false,\n      \"runtimeField\": {\n        \"script\": {\n          \"source\": \"emit(doc['timestamp'].value.getHour());\"\n        },\n        \"type\": \"long\"\n      },\n      \"scripted\": false,\n      \"searchable\": true,\n      \"shortDotsEnable\": false,\n      \"type\": \"number\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "390624f2-4c1b-45c4-b715-756b75caf564",
+              "name": "Object is not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId",
+                    "runtime_field",
+                    ":fieldName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fieldName",
+                      "description": "(Required) The name of the runtime field."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) An identifier for the data view."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Saved object [index-pattern/caaad6d0-920c-11ed-b36a-874bd1548a00] not found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "120275e0-6142-4de2-8f6a-5ee3d7b38658",
+          "name": "Update a runtime field",
+          "request": {
+            "name": "Update a runtime field",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}/runtime_field/{fieldName}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an existing runtime field in a data view. Only the fields provided in the request body are updated.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data_views",
+                "data_view",
+                ":viewId",
+                "runtime_field",
+                ":fieldName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fieldName",
+                  "description": "(Required) The name of the runtime field."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "viewId",
+                  "description": "(Required) An identifier for the data view."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"runtimeField\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1b775197-3b9d-406e-b5f4-7e4a2cd7692e",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId",
+                    "runtime_field",
+                    ":fieldName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fieldName",
+                      "description": "(Required) The name of the runtime field."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) An identifier for the data view."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"runtimeField\": {\n    \"script\": {\n      \"source\": \"emit(doc[\\\"bar\\\"].value)\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4f1282e0-9f41-458c-a8eb-a160f5cd070a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "data_view",
+                    ":viewId",
+                    "runtime_field",
+                    ":fieldName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fieldName",
+                      "description": "(Required) The name of the runtime field."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) An identifier for the data view."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"runtimeField\": {\n    \"script\": {\n      \"source\": \"emit(doc[\\\"bar\\\"].value)\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"[request body.data_view.title]: expected value of type [string] but got [undefined]\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9e1dc14-c935-4a22-9932-af1317c805e5",
+          "name": "Get the default data view",
+          "request": {
+            "name": "Get the default data view",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/default</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve the identifier of the default data view for the current Kibana space.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data_views",
+                "default"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7fe21a40-7de3-4efa-9df2-2e6200a1377b",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data_view_id\": \"ff959d40-b880-11e8-a6d9-e546fe2bba5f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88f0e5ca-c6b4-446d-927a-07538c55e0cc",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"[request body.data_view.title]: expected value of type [string] but got [undefined]\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "535876f0-7dff-4922-aea1-f7e761ff46df",
+          "name": "Set the default data view",
+          "request": {
+            "name": "Set the default data view",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/default</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nSet the default data view for the current Kibana space. The default data view is used as a fallback when no specific data view is selected.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data_views",
+                "default"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Cross-site request forgery protection",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data_view_id\": \"<string>\",\n  \"force\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "066b8cbc-064b-4ab3-9146-634cf85f4add",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Cross-site request forgery protection",
+                    "key": "kbn-xsrf",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_view_id\": \"ff959d40-b880-11e8-a6d9-e546fe2bba5f\",\n  \"force\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"acknowledged\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67cf2302-0b2f-4c87-ab74-3aef3d89d3d3",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Cross-site request forgery protection",
+                    "key": "kbn-xsrf",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_view_id\": \"ff959d40-b880-11e8-a6d9-e546fe2bba5f\",\n  \"force\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"[request body.data_view.title]: expected value of type [string] but got [undefined]\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7cb87a21-4d89-4373-9e20-e33785ec7cbb",
+          "name": "Swap saved object references",
+          "request": {
+            "name": "Swap saved object references",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/swap_references</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nSwap saved object references from one data view to another. Use this endpoint to update dashboards, visualizations, and other saved objects that reference a data view. WARNING: Misuse can break large numbers of saved objects! Use the [`_preview`](https://www.elastic.co/docs/api/doc/kibana/operation/operation-previewswapdataviewsdefault) endpoint to see which saved objects would be affected before making changes.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data_views",
+                "swap_references"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Cross-site request forgery protection",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fromId\": \"<string>\",\n  \"toId\": \"<string>\",\n  \"delete\": \"<boolean>\",\n  \"forId\": \"<string>\",\n  \"forType\": \"<string>\",\n  \"fromType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2aed1132-7fd6-49dd-8e09-131c0d3c7930",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "swap_references"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Cross-site request forgery protection",
+                    "key": "kbn-xsrf",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delete\": true,\n  \"fromId\": \"abcd-efg\",\n  \"toId\": \"xyz-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deleteStatus\": {\n    \"deletePerformed\": true,\n    \"remainingRefs\": 0\n  },\n  \"result\": [\n    {\n      \"id\": \"123\",\n      \"type\": \"visualization\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "386284c3-9841-4529-b950-ea9858d9354d",
+          "name": "Preview swap references",
+          "request": {
+            "name": "Preview swap references",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/swap_references/_preview</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nPreview the effect of swapping saved object references from one data view to another. Returns the list of affected saved objects without making any changes.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "data_views",
+                "swap_references",
+                "_preview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Cross-site request forgery protection",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fromId\": \"<string>\",\n  \"toId\": \"<string>\",\n  \"delete\": \"<boolean>\",\n  \"forId\": \"<string>\",\n  \"forType\": \"<string>\",\n  \"fromType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "af91a668-0b9c-47ee-8927-36b4e0d792a4",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "data_views",
+                    "swap_references",
+                    "_preview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Cross-site request forgery protection",
+                    "key": "kbn-xsrf",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fromId\": \"abcd-efg\",\n  \"toId\": \"xyz-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"id\": \"8963ca30-bca7-11e8-aa00-0123456789ab\",\n      \"type\": \"visualization\"\n    },\n    {\n      \"id\": \"edf84fe0-e1a0-11e7-b6d5-4dc382ef7f5b\",\n      \"type\": \"dashboard\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:5601",
+      "key": "kibana_url"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kibana_url}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "184d59cf-0035-4f1c-bf41-86f20b55d343",
+    "name": "Kibana APIs Actions data views API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.\nThe API calls are stateless.\nEach request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the\nrequest.\nAPI requests return JSON output, which is a format that is machine-readable and works well for automation.\n\nTo interact with Kibana APIs, use the following operations:\n\n- GET: Fetches the information.\n- PATCH: Applies partial modifications to the existing information.\n- POST: Adds new information.\n- PUT: Updates the existing information.\n- DELETE: Removes the information.\n\nYou can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.\nFor example:\n\n```\nGET kbn:/api/data_views\n```\n\nFor more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).\n\nNOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.\n\n## Documentation source and versions\n\nThis documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.\nIt is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).\n\nThis documentation contains work-in-progress information for future Elastic Stack releases.\n\n\nContact Support:\n Name: Kibana Team",
+      "type": "text/plain"
+    }
+  }
+}

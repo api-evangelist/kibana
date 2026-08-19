@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Fleet Server hosts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fleet Server hosts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Fleet Server hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/fleet_server_hosts"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/fleet_server_hosts</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nList all Fleet Server hosts.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all OR fleet-settings-read."
+        },
+        {
+          "info": {
+            "name": "Create a Fleet Server host",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/fleet_server_hosts",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/fleet_server_hosts</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new Fleet Server host.<br/><br/>[Required authorization] Route required privileges: fleet-settings-all."
+        },
+        {
+          "info": {
+            "name": "Get a Fleet Server host",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/fleet_server_hosts/:itemId",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Fleet Server host"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/fleet_server_hosts/{itemId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a Fleet Server host by ID.<br/><br/>[Required authorization] Route required privileges: fleet-settings-read."
+        },
+        {
+          "info": {
+            "name": "Update a Fleet Server host",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/fleet/fleet_server_hosts/:itemId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Fleet Server host"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/fleet_server_hosts/{itemId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate a Fleet Server host by ID.<br/><br/>[Required authorization] Route required privileges: fleet-settings-all."
+        },
+        {
+          "info": {
+            "name": "Delete a Fleet Server host",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/fleet/fleet_server_hosts/:itemId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Fleet Server host"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/fleet_server_hosts/{itemId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a Fleet Server host by ID.<br/><br/>[Required authorization] Route required privileges: fleet-settings-all."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

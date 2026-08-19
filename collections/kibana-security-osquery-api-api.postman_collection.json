@@ -1,0 +1,2723 @@
+{
+  "item": [
+    {
+      "id": "d6668bae-1bd3-4e77-bc20-712603c2183f",
+      "name": "Security Osquery API",
+      "description": {
+        "content": "Run live queries, manage packs and saved queries.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "298d4710-47b7-424f-b5e6-f8d6c1f09f50",
+          "name": "Get unified query history",
+          "request": {
+            "name": "Get unified query history",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/history</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a unified, time-sorted history of live, rule-triggered, and scheduled osquery executions. The response uses cursor-based pagination.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "20",
+                  "description": "The number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "nextPage",
+                  "value": "<string>",
+                  "description": "A base64-encoded cursor for pagination. Use the value from the previous response to fetch the next page."
+                },
+                {
+                  "disabled": false,
+                  "key": "kuery",
+                  "value": "<string>",
+                  "description": "A search string to filter history entries by pack name, query text, or query ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "userIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of user IDs to filter live query history."
+                },
+                {
+                  "disabled": false,
+                  "key": "sourceFilters",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source types to include. Valid values are `live`, `rule`, and `scheduled`."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<string>",
+                  "description": "The start of the time range filter (ISO 8601)."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<string>",
+                  "description": "The end of the time range filter (ISO 8601)."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9ef46f47-a70b-4cbe-85f1-a2953ca0ff6e",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "nextPage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "kuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userIds",
+                      "value": "elastic,admin"
+                    },
+                    {
+                      "key": "sourceFilters",
+                      "value": "live,scheduled"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2024-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2024-12-31T23:59:59Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"actionId\": \"609c4c66-ba3d-43fa-afdd-53e244577aa0\",\n      \"agentCount\": 5,\n      \"errorCount\": 0,\n      \"id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n      \"queryName\": \"uptime_query\",\n      \"queryText\": \"select * from uptime;\",\n      \"source\": \"Live\",\n      \"sourceType\": \"live\",\n      \"successCount\": 5,\n      \"timestamp\": \"2024-07-26T09:59:32.220Z\",\n      \"totalRows\": 42,\n      \"userId\": \"elastic\"\n    },\n    {\n      \"agentCount\": 10,\n      \"errorCount\": 1,\n      \"executionCount\": 3,\n      \"id\": \"pack_my_pack_uptime_3\",\n      \"packId\": \"42ba9c50-0cc5-11ed-aa1d-2b27890bc90d\",\n      \"packName\": \"My Pack\",\n      \"plannedTime\": \"2024-07-26T09:00:00.000Z\",\n      \"queryName\": \"uptime\",\n      \"queryText\": \"select * from uptime;\",\n      \"scheduleId\": \"pack_my_pack_uptime\",\n      \"source\": \"Scheduled\",\n      \"sourceType\": \"scheduled\",\n      \"successCount\": 9,\n      \"timestamp\": \"2024-07-26T09:00:00.000Z\",\n      \"totalRows\": 100\n    }\n  ],\n  \"hasMore\": true,\n  \"nextPage\": \"eyJhY3Rpb25TZWFyY2hBZnRlciI6WzE3...\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a21e9e9-29f5-4cfd-9d54-f3b35ba946fb",
+          "name": "Get live queries",
+          "request": {
+            "name": "Get live queries",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/live_queries</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all live queries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "live_queries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "kuery",
+                  "value": "<string>",
+                  "description": "A KQL search string to filter live queries."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page number to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "createdAt",
+                  "description": "The field to sort results by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8919bc3c-9363-455a-af9e-c34ddf259698",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "live_queries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "kuery",
+                      "value": "agent.id: 16d7caf5-efd2-4212-9b62-73dafc91fa13"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"items\": [\n      {\n        \"_source\": {\n          \"@timestamp\": \"2023-10-31T00:00:00Z\",\n          \"action_id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n          \"agents\": [\n            \"16d7caf5-efd2-4212-9b62-73dafc91fa13\"\n          ],\n          \"expiration\": \"2023-10-31T00:00:00Z\",\n          \"queries\": [\n            {\n              \"action_id\": \"609c4c66-ba3d-43fa-afdd-53e244577aa0\",\n              \"agents\": [\n                \"16d7caf5-efd2-4212-9b62-73dafc91fa13\"\n              ],\n              \"ecs_mapping\": {\n                \"host.uptime\": {\n                  \"field\": \"total_seconds\"\n                }\n              },\n              \"query\": \"select * from uptime;\",\n              \"saved_query_id\": \"42ba9c50-0cc5-11ed-aa1d-2b27890bc90d\"\n            }\n          ],\n          \"result_counts\": {\n            \"error_agents\": 0,\n            \"responded_agents\": 1,\n            \"successful_agents\": 1,\n            \"total_rows\": 42\n          },\n          \"user_id\": \"elastic\"\n        }\n      }\n    ],\n    \"total\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "883c2e6e-dd05-4cb8-a7a1-68d71ef1ccdc",
+          "name": "Create a live query",
+          "request": {
+            "name": "Create a live query",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/live_queries</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate and run a live query.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "live_queries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agent_all\": \"<boolean>\",\n  \"agent_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"agent_platforms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"agent_policy_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"alert_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"case_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ecs_mapping\": {\n    \"key_0\": {\n      \"field\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"key_1\": {\n      \"field\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"event_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"metadata\": \"<object>\",\n  \"pack_id\": \"<string>\",\n  \"queries\": [\n    {\n      \"ecs_mapping\": {\n        \"key_0\": {\n          \"field\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"id\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"query\": \"<string>\",\n      \"removed\": \"<boolean>\",\n      \"snapshot\": \"<boolean>\",\n      \"version\": \"<string>\"\n    },\n    {\n      \"ecs_mapping\": {\n        \"key_0\": {\n          \"field\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"id\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"query\": \"<string>\",\n      \"removed\": \"<boolean>\",\n      \"snapshot\": \"<boolean>\",\n      \"version\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"saved_query_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "21c87fa2-7d68-4fa3-90f7-8aec6fd11cd5",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "live_queries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent_all\": true,\n  \"ecs_mapping\": {\n    \"host.uptime\": {\n      \"field\": \"total_seconds\"\n    }\n  },\n  \"query\": \"select * from uptime;\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"@timestamp\": \"2022-07-26T09:59:32.220Z\",\n    \"action_id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n    \"agent_all\": true,\n    \"agent_ids\": [],\n    \"agent_platforms\": [],\n    \"agent_policy_ids\": [],\n    \"agents\": [\n      \"16d7caf5-efd2-4212-9b62-73dafc91fa13\"\n    ],\n    \"expiration\": \"2022-07-26T10:04:32.220Z\",\n    \"input_type\": \"osquery\",\n    \"metadata\": {\n      \"execution_context\": {\n        \"name\": \"osquery\",\n        \"url\": \"/app/osquery/live_queries/new\"\n      }\n    },\n    \"queries\": [\n      {\n        \"action_id\": \"609c4c66-ba3d-43fa-afdd-53e244577aa0\",\n        \"agents\": [\n          \"16d7caf5-efd2-4212-9b62-73dafc91fa13\"\n        ],\n        \"ecs_mapping\": {\n          \"host.uptime\": {\n            \"field\": \"total_seconds\"\n          }\n        },\n        \"query\": \"select * from uptime;\",\n        \"timeout\": 120\n      }\n    ],\n    \"type\": \"INPUT_ACTION\",\n    \"user_id\": \"elastic\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f6ebe7b-2ebd-49a4-bb19-5012374b4244",
+          "name": "Get live query details",
+          "request": {
+            "name": "Get live query details",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/live_queries/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the details of a live query using the query ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "live_queries",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the live query."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc9dae29-e3b6-4d35-8a5f-3aced9e0b62e",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "live_queries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the live query."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"@timestamp\": \"2022-07-26T09:59:32.220Z\",\n    \"action_id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n    \"agents\": [\n      \"16d7caf5-efd2-4212-9b62-73dafc91fa13\"\n    ],\n    \"expiration\": \"2022-07-26T10:04:32.220Z\",\n    \"queries\": [\n      {\n        \"action_id\": \"609c4c66-ba3d-43fa-afdd-53e244577aa0\",\n        \"agents\": [\n          \"16d7caf5-efd2-4212-9b62-73dafc91fa13\"\n        ],\n        \"docs\": 0,\n        \"ecs_mapping\": {\n          \"host.uptime\": {\n            \"field\": \"total_seconds\"\n          }\n        },\n        \"failed\": 1,\n        \"pending\": 0,\n        \"query\": \"select * from uptime;\",\n        \"responded\": 1,\n        \"saved_query_id\": \"42ba9c50-0cc5-11ed-aa1d-2b27890bc90d\",\n        \"status\": \"completed\",\n        \"successful\": 0\n      }\n    ],\n    \"status\": \"completed\",\n    \"user_id\": \"elastic\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7ee321d-05d7-41dc-9df8-045cc2c9605c",
+          "name": "Get live query results",
+          "request": {
+            "name": "Get live query results",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/live_queries/{id}/results/{actionId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the results of a live query using the query action ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "live_queries",
+                ":id",
+                "results",
+                ":actionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "kuery",
+                  "value": "<string>",
+                  "description": "A KQL search string to filter results."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page number to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "createdAt",
+                  "description": "The field to sort results by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the live query."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "actionId",
+                  "description": "(Required) The ID of the query action."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5910765a-f06c-45b2-b6fe-84f8d55198e4",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "live_queries",
+                    ":id",
+                    "results",
+                    ":actionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "kuery",
+                      "value": "agent.id: 16d7caf5-efd2-4212-9b62-73dafc91fa13"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the live query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionId",
+                      "description": "(Required) The ID of the query action."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"edges\": [\n      {\n        \"_id\": \"doc1\",\n        \"_source\": {}\n      },\n      {\n        \"_id\": \"doc2\",\n        \"_source\": {}\n      }\n    ],\n    \"total\": 2\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb614460-fb8b-4621-8e53-c03285872aa9",
+          "name": "Get packs",
+          "request": {
+            "name": "Get packs",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/packs</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all query packs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "packs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page number to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "createdAt",
+                  "description": "The field to sort results by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c267a91d-6e07-4724-bbb3-356fa760b06f",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "packs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"created_at\": \"2023-10-31T00:00:00Z\",\n      \"created_by\": \"elastic\",\n      \"created_by_profile_uid\": \"u_mGBROF_q5bmFCATbLXAcCwKa0k8JvONAwSruelyKA5E_0\",\n      \"description\": \"My pack description\",\n      \"enabled\": true,\n      \"name\": \"My Pack\",\n      \"policy_ids\": [],\n      \"queries\": [\n        {\n          \"ecs_mapping\": [\n            {\n              \"key\": \"host.uptime\",\n              \"value\": {\n                \"field\": \"total_seconds\"\n              }\n            }\n          ],\n          \"interval\": 3600,\n          \"query\": \"select * from uptime;\"\n        }\n      ],\n      \"read_only\": false,\n      \"saved_object_id\": \"42ba9c50-0cc5-11ed-aa1d-2b27890bc90d\",\n      \"updated_at\": \"2023-10-31T00:00:00Z\",\n      \"updated_by\": \"elastic\",\n      \"updated_by_profile_uid\": \"u_mGBROF_q5bmFCATbLXAcCwKa0k8JvONAwSruelyKA5E_0\"\n    }\n  ],\n  \"page\": 1,\n  \"per_page\": 10,\n  \"total\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0fc9b3a2-1094-4f3a-9445-eb4098fac072",
+          "name": "Create a pack",
+          "request": {
+            "name": "Create a pack",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/packs</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a query pack.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "packs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"policy_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"queries\": {\n    \"key_0\": {\n      \"ecs_mapping\": {\n        \"key_0\": {\n          \"field\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_1\": {\n          \"field\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"id\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"query\": \"<string>\",\n      \"removed\": \"<boolean>\",\n      \"saved_query_id\": \"<string>\",\n      \"snapshot\": \"<boolean>\",\n      \"version\": \"<string>\"\n    },\n    \"key_1\": {\n      \"ecs_mapping\": {\n        \"key_0\": {\n          \"field\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_1\": {\n          \"field\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_2\": {\n          \"field\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_3\": {\n          \"field\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"key_4\": {\n          \"field\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"id\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"query\": \"<string>\",\n      \"removed\": \"<boolean>\",\n      \"saved_query_id\": \"<string>\",\n      \"snapshot\": \"<boolean>\",\n      \"version\": \"<string>\"\n    },\n    \"key_2\": {\n      \"ecs_mapping\": {\n        \"key_0\": {\n          \"field\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"id\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"query\": \"<string>\",\n      \"removed\": \"<boolean>\",\n      \"saved_query_id\": \"<string>\",\n      \"snapshot\": \"<boolean>\",\n      \"version\": \"<string>\"\n    }\n  },\n  \"shards\": {\n    \"key_0\": \"<number>\",\n    \"key_1\": \"<number>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "757e130e-efe9-4a29-9c62-26fe95f7f3cb",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "packs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"My pack\",\n  \"enabled\": true,\n  \"name\": \"my_pack\",\n  \"policy_ids\": [\n    \"my_policy_id\",\n    \"fleet-server-policy\"\n  ],\n  \"queries\": {\n    \"my_query\": {\n      \"ecs_mapping\": {\n        \"client.port\": {\n          \"field\": \"port\"\n        },\n        \"tags\": {\n          \"value\": [\n            \"tag1\",\n            \"tag2\"\n          ]\n        }\n      },\n      \"interval\": 60,\n      \"query\": \"SELECT * FROM listening_ports;\",\n      \"timeout\": 120\n    }\n  },\n  \"shards\": {\n    \"fleet-server-policy\": 58,\n    \"my_policy_id\": 35\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"saved_object_id\": \"string\",\n    \"name\": \"my_pack\",\n    \"created_at\": \"2017-04-21T06:59:15.220Z\",\n    \"created_by\": \"string\",\n    \"created_by_profile_uid\": \"string\",\n    \"description\": \"Pack description\",\n    \"enabled\": true,\n    \"policy_ids\": [\n      \"policyId1\",\n      \"policyId2\"\n    ],\n    \"queries\": {\n      \"key_0\": {\n        \"ecs_mapping\": {\n          \"host.uptime\": {\n            \"field\": \"total_seconds\"\n          }\n        },\n        \"id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n        \"platform\": \"linux,darwin\",\n        \"query\": \"select * from uptime;\",\n        \"removed\": false,\n        \"saved_query_id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n        \"snapshot\": true,\n        \"version\": \"1.0.0\"\n      }\n    },\n    \"shards\": [\n      {\n        \"key\": \"string\",\n        \"value\": 2796.1707363905853\n      },\n      {\n        \"key\": \"string\",\n        \"value\": 2309.680034288506\n      }\n    ],\n    \"updated_at\": \"1982-05-03T08:26:11.650Z\",\n    \"updated_by\": \"string\",\n    \"updated_by_profile_uid\": \"string\",\n    \"version\": 2998\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4503eb10-4d1e-456e-af99-78076d92e81d",
+          "name": "Delete a pack",
+          "request": {
+            "name": "Delete a pack",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/packs/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a query pack using the pack ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "packs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The pack ID."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "88159eca-0058-4231-888e-171fe471704d",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "packs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The pack ID."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b609ff5-f67a-4553-bcda-6ff5734c897d",
+          "name": "Get pack details",
+          "request": {
+            "name": "Get pack details",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/packs/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the details of a query pack using the pack ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "packs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The pack ID."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f52688df-6418-4f84-a97e-d64c09d5fbd3",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "packs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The pack ID."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"saved_object_id\": \"string\",\n    \"name\": \"my_pack\",\n    \"created_at\": \"1969-08-04T11:51:52.109Z\",\n    \"created_by\": \"string\",\n    \"created_by_profile_uid\": \"string\",\n    \"description\": \"Pack description\",\n    \"enabled\": true,\n    \"namespaces\": [\n      \"string\",\n      \"string\"\n    ],\n    \"policy_ids\": [\n      \"policyId1\",\n      \"policyId2\"\n    ],\n    \"queries\": {\n      \"key_0\": {\n        \"ecs_mapping\": {\n          \"host.uptime\": {\n            \"field\": \"total_seconds\"\n          }\n        },\n        \"id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n        \"platform\": \"linux,darwin\",\n        \"query\": \"select * from uptime;\",\n        \"removed\": false,\n        \"saved_query_id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n        \"snapshot\": true,\n        \"version\": \"1.0.0\"\n      },\n      \"key_1\": {\n        \"ecs_mapping\": {\n          \"host.uptime\": {\n            \"field\": \"total_seconds\"\n          }\n        },\n        \"id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n        \"platform\": \"linux,darwin\",\n        \"query\": \"select * from uptime;\",\n        \"removed\": false,\n        \"saved_query_id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n        \"snapshot\": true,\n        \"version\": \"1.0.0\"\n      },\n      \"key_2\": {\n        \"ecs_mapping\": {\n          \"host.uptime\": {\n            \"field\": \"total_seconds\"\n          }\n        },\n        \"id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n        \"platform\": \"linux,darwin\",\n        \"query\": \"select * from uptime;\",\n        \"removed\": false,\n        \"saved_query_id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n        \"snapshot\": true,\n        \"version\": \"1.0.0\"\n      }\n    },\n    \"read_only\": false,\n    \"shards\": {\n      \"policy_id\": 50\n    },\n    \"type\": \"string\",\n    \"updated_at\": \"2022-06-27T08:14:16.155Z\",\n    \"updated_by\": \"string\",\n    \"updated_by_profile_uid\": \"string\",\n    \"version\": 4901\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3a5d2e9-17dc-4acb-b30c-4997b30dab45",
+          "name": "Update a pack",
+          "request": {
+            "name": "Update a pack",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/packs/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate a query pack using the pack ID.\n> info\n> You cannot update a prebuilt pack.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "packs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The pack ID."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"policy_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"queries\": {\n    \"key_0\": {\n      \"ecs_mapping\": {\n        \"key_0\": {\n          \"field\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"id\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"query\": \"<string>\",\n      \"removed\": \"<boolean>\",\n      \"saved_query_id\": \"<string>\",\n      \"snapshot\": \"<boolean>\",\n      \"version\": \"<string>\"\n    },\n    \"key_1\": {\n      \"ecs_mapping\": {\n        \"key_0\": {\n          \"field\": \"<string>\",\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"id\": \"<string>\",\n      \"platform\": \"<string>\",\n      \"query\": \"<string>\",\n      \"removed\": \"<boolean>\",\n      \"saved_query_id\": \"<string>\",\n      \"snapshot\": \"<boolean>\",\n      \"version\": \"<string>\"\n    }\n  },\n  \"shards\": {\n    \"key_0\": \"<number>\",\n    \"key_1\": \"<number>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9ee393de-9028-4bd9-8d57-441cecf65fb6",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "packs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The pack ID."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"updated_my_pack_name\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"1955-05-05T14:22:13.042Z\",\n    \"created_by\": \"string\",\n    \"created_by_profile_uid\": \"string\",\n    \"description\": \"Pack description\",\n    \"enabled\": true,\n    \"name\": \"my_pack\",\n    \"policy_ids\": [\n      \"policyId1\",\n      \"policyId2\"\n    ],\n    \"queries\": {\n      \"key_0\": {\n        \"ecs_mapping\": {\n          \"host.uptime\": {\n            \"field\": \"total_seconds\"\n          }\n        },\n        \"id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n        \"platform\": \"linux,darwin\",\n        \"query\": \"select * from uptime;\",\n        \"removed\": false,\n        \"saved_query_id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n        \"snapshot\": true,\n        \"version\": \"1.0.0\"\n      },\n      \"key_1\": {\n        \"ecs_mapping\": {\n          \"host.uptime\": {\n            \"field\": \"total_seconds\"\n          }\n        },\n        \"id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n        \"platform\": \"linux,darwin\",\n        \"query\": \"select * from uptime;\",\n        \"removed\": false,\n        \"saved_query_id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n        \"snapshot\": true,\n        \"version\": \"1.0.0\"\n      },\n      \"key_2\": {\n        \"ecs_mapping\": {\n          \"host.uptime\": {\n            \"field\": \"total_seconds\"\n          }\n        },\n        \"id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n        \"platform\": \"linux,darwin\",\n        \"query\": \"select * from uptime;\",\n        \"removed\": false,\n        \"saved_query_id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n        \"snapshot\": true,\n        \"version\": \"1.0.0\"\n      }\n    },\n    \"saved_object_id\": \"string\",\n    \"shards\": {\n      \"policy_id\": 50\n    },\n    \"updated_at\": \"2012-06-13T01:08:43.608Z\",\n    \"updated_by\": \"string\",\n    \"updated_by_profile_uid\": \"string\",\n    \"version\": 6620\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c4ff199-ae34-427b-bf5c-0b520b724b19",
+          "name": "Copy a pack",
+          "request": {
+            "name": "Copy a pack",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/packs/{id}/copy</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a copy of a query pack with a unique name by appending a `_copy` suffix. If the name already exists, a numeric suffix is added (e.g., `_copy_2`). The copied pack is always created with `enabled` set to `false`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "packs",
+                ":id",
+                "copy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the pack to copy."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "afabb828-9146-408c-bfc1-ece9664fa7bf",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "packs",
+                    ":id",
+                    "copy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the pack to copy."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2025-02-26T13:37:30.452Z\",\n    \"created_by\": \"elastic\",\n    \"description\": \"My pack\",\n    \"enabled\": false,\n    \"name\": \"my_pack_copy\",\n    \"policy_ids\": [],\n    \"queries\": [\n      {\n        \"ecs_mapping\": [\n          {\n            \"key\": \"client.port\",\n            \"value\": {\n              \"field\": \"port\"\n            }\n          }\n        ],\n        \"id\": \"ports\",\n        \"interval\": 60,\n        \"query\": \"SELECT * FROM listening_ports;\",\n        \"removed\": false,\n        \"snapshot\": true,\n        \"timeout\": 120\n      }\n    ],\n    \"saved_object_id\": \"1c266590-381f-428c-878f-c80c1334f856\",\n    \"shards\": [],\n    \"updated_at\": \"2025-02-26T13:37:30.452Z\",\n    \"updated_by\": \"elastic\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2061ca73-7222-4925-9b48-8331fef6ff60",
+          "name": "Get saved queries",
+          "request": {
+            "name": "Get saved queries",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/saved_queries</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all saved queries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "saved_queries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page number to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "createdAt",
+                  "description": "The field to sort results by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "The sort order."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca79c014-8397-4dc9-8977-24bac3aa10f0",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "saved_queries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 7410,\n  \"per_page\": 6846,\n  \"total\": 22,\n  \"data\": [\n    {\n      \"saved_object_id\": \"string\",\n      \"id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n      \"created_at\": \"2011-03-29T05:35:40.691Z\",\n      \"created_by\": \"string\",\n      \"created_by_profile_uid\": \"string\",\n      \"description\": \"Saved query description\",\n      \"ecs_mapping\": {\n        \"host.uptime\": {\n          \"field\": \"total_seconds\"\n        }\n      },\n      \"interval\": 7824,\n      \"platform\": \"linux,darwin\",\n      \"prebuilt\": false,\n      \"query\": \"select * from uptime;\",\n      \"removed\": false,\n      \"snapshot\": true,\n      \"timeout\": 1580,\n      \"updated_at\": \"1959-05-20T23:00:11.664Z\",\n      \"updated_by\": \"string\",\n      \"updated_by_profile_uid\": \"string\",\n      \"version\": 2516\n    },\n    {\n      \"saved_object_id\": \"string\",\n      \"id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n      \"created_at\": \"1999-12-09T00:33:07.990Z\",\n      \"created_by\": \"string\",\n      \"created_by_profile_uid\": \"string\",\n      \"description\": \"Saved query description\",\n      \"ecs_mapping\": {\n        \"host.uptime\": {\n          \"field\": \"total_seconds\"\n        }\n      },\n      \"interval\": 5107,\n      \"platform\": \"linux,darwin\",\n      \"prebuilt\": true,\n      \"query\": \"select * from uptime;\",\n      \"removed\": false,\n      \"snapshot\": true,\n      \"timeout\": 8094,\n      \"updated_at\": \"1949-01-29T15:38:52.006Z\",\n      \"updated_by\": \"string\",\n      \"updated_by_profile_uid\": \"string\",\n      \"version\": 9020\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1b830fc-5002-4146-a2ec-a1e5b537e40a",
+          "name": "Create a saved query",
+          "request": {
+            "name": "Create a saved query",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/saved_queries</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate and save a query for later use.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "saved_queries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"ecs_mapping\": {\n    \"key_0\": {\n      \"field\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"interval\": \"<string>\",\n  \"platform\": \"<string>\",\n  \"query\": \"<string>\",\n  \"removed\": \"<boolean>\",\n  \"snapshot\": \"<boolean>\",\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "47993097-19ca-4ba2-ab70-24892ebe27a6",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "saved_queries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Saved query description\",\n  \"ecs_mapping\": {\n    \"host.uptime\": {\n      \"field\": \"total_seconds\"\n    }\n  },\n  \"interval\": \"60\",\n  \"platform\": \"linux,darwin\",\n  \"query\": \"select * from uptime;\",\n  \"timeout\": 120,\n  \"version\": \"2.8.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"saved_object_id\": \"string\",\n    \"id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n    \"created_at\": \"1999-12-01T09:43:49.500Z\",\n    \"created_by\": \"string\",\n    \"created_by_profile_uid\": \"string\",\n    \"description\": \"Saved query description\",\n    \"ecs_mapping\": {\n      \"host.uptime\": {\n        \"field\": \"total_seconds\"\n      }\n    },\n    \"interval\": 9381,\n    \"platform\": \"linux,darwin\",\n    \"prebuilt\": true,\n    \"query\": \"select * from uptime;\",\n    \"removed\": false,\n    \"snapshot\": true,\n    \"timeout\": 3125,\n    \"updated_at\": \"1962-04-29T12:59:59.312Z\",\n    \"updated_by\": \"string\",\n    \"updated_by_profile_uid\": \"string\",\n    \"version\": 9097\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c45c342-4d4b-46a2-85e9-67824bae1f30",
+          "name": "Delete a saved query",
+          "request": {
+            "name": "Delete a saved query",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/saved_queries/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a saved query using the query ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "saved_queries",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The saved query ID."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a361d8d-4e6d-40ec-839f-06b1ea625dec",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "saved_queries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The saved query ID."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b86c3a0-99a1-4c40-be23-5f573f06a895",
+          "name": "Get saved query details",
+          "request": {
+            "name": "Get saved query details",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/saved_queries/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the details of a saved query using the query ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "saved_queries",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The saved query ID."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ae41b08-2843-4093-bc4c-24dff8051821",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "saved_queries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The saved query ID."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"saved_object_id\": \"string\",\n    \"id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n    \"created_at\": \"1962-10-29T23:55:36.166Z\",\n    \"created_by\": \"string\",\n    \"created_by_profile_uid\": \"string\",\n    \"description\": \"Saved query description\",\n    \"ecs_mapping\": {\n      \"host.uptime\": {\n        \"field\": \"total_seconds\"\n      }\n    },\n    \"interval\": 3375,\n    \"platform\": \"linux,darwin\",\n    \"prebuilt\": false,\n    \"query\": \"select * from uptime;\",\n    \"removed\": false,\n    \"snapshot\": true,\n    \"timeout\": 6778,\n    \"updated_at\": \"2007-03-01T19:08:09.992Z\",\n    \"updated_by\": \"string\",\n    \"updated_by_profile_uid\": \"string\",\n    \"version\": 1440\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06489379-f59d-4240-af0f-458437fb2323",
+          "name": "Update a saved query",
+          "request": {
+            "name": "Update a saved query",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/saved_queries/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate a saved query using the query ID.\n> info\n> You cannot update a prebuilt saved query.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "saved_queries",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The saved query ID."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"ecs_mapping\": {\n    \"key_0\": {\n      \"field\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"interval\": \"<string>\",\n  \"platform\": \"<string>\",\n  \"query\": \"<string>\",\n  \"removed\": \"<boolean>\",\n  \"snapshot\": \"<boolean>\",\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "406fa988-ede3-4b5b-81a1-2de36e18af9e",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "saved_queries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The saved query ID."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"saved_object_id\": \"string\",\n    \"id\": \"3c42c847-eb30-4452-80e0-728584042334\",\n    \"created_at\": \"2016-12-19T02:51:37.973Z\",\n    \"created_by\": \"string\",\n    \"created_by_profile_uid\": \"string\",\n    \"description\": \"Saved query description\",\n    \"ecs_mapping\": {\n      \"host.uptime\": {\n        \"field\": \"total_seconds\"\n      }\n    },\n    \"interval\": 6252,\n    \"platform\": \"linux,darwin\",\n    \"prebuilt\": true,\n    \"query\": \"select * from uptime;\",\n    \"removed\": false,\n    \"snapshot\": true,\n    \"timeout\": 6875,\n    \"updated_at\": \"1973-07-30T11:11:59.859Z\",\n    \"updated_by\": \"string\",\n    \"updated_by_profile_uid\": \"string\",\n    \"version\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d250c5d-c2a4-4d0f-bf95-b6e0d2a4abad",
+          "name": "Copy a saved query",
+          "request": {
+            "name": "Copy a saved query",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/saved_queries/{id}/copy</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a copy of a saved query with a unique name by appending a `_copy` suffix. If the name already exists, a numeric suffix is added (e.g., `_copy_2`).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "saved_queries",
+                ":id",
+                "copy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the saved query to copy."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68eeea0d-2dd5-4a4b-b855-cb25d5ad28eb",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "saved_queries",
+                    ":id",
+                    "copy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the saved query to copy."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"created_at\": \"2025-02-26T13:37:30.452Z\",\n    \"created_by\": \"elastic\",\n    \"description\": \"Saved query description\",\n    \"ecs_mapping\": {\n      \"host.uptime\": {\n        \"field\": \"total_seconds\"\n      }\n    },\n    \"id\": \"my_saved_query_copy\",\n    \"interval\": \"60\",\n    \"platform\": \"linux,darwin\",\n    \"query\": \"select * from uptime;\",\n    \"removed\": false,\n    \"saved_object_id\": \"42ba1280-2172-11ee-8523-5765fca79a3c\",\n    \"snapshot\": true,\n    \"timeout\": 120,\n    \"updated_at\": \"2025-02-26T13:37:30.452Z\",\n    \"updated_by\": \"elastic\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41edf877-b385-4680-9aa3-88e4754cd7ed",
+          "name": "Get scheduled action results",
+          "request": {
+            "name": "Get scheduled action results",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/scheduled_results/{scheduleId}/{executionCount}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet paginated per-agent action results for a specific scheduled query execution, with success/failure aggregation and execution metadata (pack name, query name/text, timestamp).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "scheduled_results",
+                ":scheduleId",
+                ":executionCount"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "kuery",
+                  "value": "<string>",
+                  "description": "The kuery to filter the results by."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page number to return. The default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. The default is 20."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "createdAt",
+                  "description": "The field that is used to sort the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "Specifies the sort order."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scheduleId",
+                  "description": "(Required) The schedule ID of the scheduled query."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "executionCount",
+                  "description": "(Required) The execution count for this scheduled query run."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c244f9b-d725-4746-9b50-0c53458861a5",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "scheduled_results",
+                    ":scheduleId",
+                    ":executionCount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "kuery",
+                      "value": "agent.id: 16d7caf5-efd2-4212-9b62-73dafc91fa13"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scheduleId",
+                      "description": "(Required) The schedule ID of the scheduled query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "executionCount",
+                      "description": "(Required) The execution count for this scheduled query run."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aggregations\": {\n    \"failed\": 1,\n    \"pending\": 0,\n    \"successful\": 9,\n    \"totalResponded\": 10,\n    \"totalRowCount\": 42\n  },\n  \"currentPage\": 0,\n  \"edges\": [\n    {\n      \"_id\": \"result-001\",\n      \"fields\": {\n        \"agent_id\": \"16d7caf5-efd2-4212-9b62-73dafc91fa13\",\n        \"rows_count\": 5,\n        \"status\": \"success\"\n      }\n    }\n  ],\n  \"metadata\": {\n    \"executionCount\": 3,\n    \"packId\": \"42ba9c50-0cc5-11ed-aa1d-2b27890bc90d\",\n    \"packName\": \"My Pack\",\n    \"queryName\": \"uptime\",\n    \"queryText\": \"select * from uptime;\",\n    \"scheduleId\": \"pack_my_pack_uptime\",\n    \"timestamp\": \"2024-07-26T09:00:00.000Z\"\n  },\n  \"pageSize\": 20,\n  \"total\": 10,\n  \"totalPages\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6133e9ea-2941-4f5a-85a2-9071720b96b6",
+          "name": "Get scheduled query results",
+          "request": {
+            "name": "Get scheduled query results",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/osquery/scheduled_results/{scheduleId}/{executionCount}/results</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet paginated query result rows (the actual osquery output data) for a specific scheduled query execution.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "osquery",
+                "scheduled_results",
+                ":scheduleId",
+                ":executionCount",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "kuery",
+                  "value": "<string>",
+                  "description": "The kuery to filter the results by."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page number to return. The default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. The default is 20."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "createdAt",
+                  "description": "The field that is used to sort the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "Specifies the sort order."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<string>",
+                  "description": "The start date filter (ISO 8601) to narrow down results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scheduleId",
+                  "description": "(Required) The schedule ID of the scheduled query."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "executionCount",
+                  "description": "(Required) The execution count for this scheduled query run."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1cb68d14-16cb-4138-b728-c5d7ea57250c",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "osquery",
+                    "scheduled_results",
+                    ":scheduleId",
+                    ":executionCount",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "kuery",
+                      "value": "agent.id: 16d7caf5-efd2-4212-9b62-73dafc91fa13"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2024-01-01T00:00:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scheduleId",
+                      "description": "(Required) The schedule ID of the scheduled query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "executionCount",
+                      "description": "(Required) The execution count for this scheduled query run."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"edges\": [\n      {\n        \"_id\": \"row-001\",\n        \"fields\": {\n          \"host.uptime\": [\n            \"12345\"\n          ]\n        }\n      },\n      {\n        \"_id\": \"row-002\",\n        \"fields\": {\n          \"host.uptime\": [\n            \"67890\"\n          ]\n        }\n      }\n    ],\n    \"total\": 2\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:5601",
+      "key": "kibana_url"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kibana_url}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3adb4eb7-6472-41fb-b964-076a0a005c00",
+    "name": "Kibana APIs Actions Security Osquery API API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.\nThe API calls are stateless.\nEach request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the\nrequest.\nAPI requests return JSON output, which is a format that is machine-readable and works well for automation.\n\nTo interact with Kibana APIs, use the following operations:\n\n- GET: Fetches the information.\n- PATCH: Applies partial modifications to the existing information.\n- POST: Adds new information.\n- PUT: Updates the existing information.\n- DELETE: Removes the information.\n\nYou can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.\nFor example:\n\n```\nGET kbn:/api/data_views\n```\n\nFor more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).\n\nNOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.\n\n## Documentation source and versions\n\nThis documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.\nIt is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).\n\nThis documentation contains work-in-progress information for future Elastic Stack releases.\n\n\nContact Support:\n Name: Kibana Team",
+      "type": "text/plain"
+    }
+  }
+}

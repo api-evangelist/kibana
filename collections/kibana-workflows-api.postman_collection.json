@@ -1,0 +1,3704 @@
+{
+  "item": [
+    {
+      "id": "ab6d9f3c-76ea-4e22-8212-cee93484f386",
+      "name": "workflows",
+      "description": {
+        "content": "Workflows enable you to automate multi-step processes directly in Kibana. Define sequences of steps in YAML to transform data insights into automated actions and outcomes, without needing external automation tools.\n\nUse the workflows APIs to create, manage, and run workflows programmatically. You can also search, export, import, and monitor workflow executions.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9f38ceb4-b802-460a-b4c6-7876977b4689",
+          "name": "Bulk delete workflows",
+          "request": {
+            "name": "Bulk delete workflows",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete multiple workflows by their IDs.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:delete.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "false",
+                  "description": "When true, permanently deletes the workflows (hard delete) instead of soft-deleting them. The workflow IDs become available for reuse."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a914f5b4-b1a8-4834-93a0-ceb55479c42c",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"workflow-c3d4e5f6-a7b8-9012-cdef-234567890123\",\n    \"workflow-d4e5f6a7-b8c9-0123-defa-345678901234\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deleted\": 2,\n  \"failures\": [],\n  \"total\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc527f67-ceb8-47ca-85ad-02cf0aac03e4",
+          "name": "Get workflows",
+          "request": {
+            "name": "Get workflows",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a paginated list of workflows with optional filtering.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:read OR workflowsManagement:readExecution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Free-text search query."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>",
+                  "description": "Number of results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>",
+                  "description": "Page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "enabled",
+                  "value": "<boolean>",
+                  "description": "Filter by enabled state."
+                },
+                {
+                  "disabled": false,
+                  "key": "enabled",
+                  "value": "<boolean>",
+                  "description": "Filter by enabled state."
+                },
+                {
+                  "disabled": false,
+                  "key": "createdBy",
+                  "value": "<string>",
+                  "description": "Filter by creator."
+                },
+                {
+                  "disabled": false,
+                  "key": "createdBy",
+                  "value": "<string>",
+                  "description": "Filter by creator."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter by tags."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter by tags."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26f28094-8f97-446b-b548-1926dd09aa03",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "enabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "enabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "createdBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createdBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 1,\n  \"results\": [\n    {\n      \"createdAt\": \"2025-11-20T10:30:00.000Z\",\n      \"definition\": {\n        \"description\": \"This is a workflow example\",\n        \"enabled\": true,\n        \"inputs\": [\n          {\n            \"default\": \"hello world\",\n            \"name\": \"message\",\n            \"type\": \"string\"\n          }\n        ],\n        \"name\": \"Example definition\",\n        \"steps\": [\n          {\n            \"name\": \"hello_world_step\",\n            \"type\": \"console\",\n            \"with\": {\n              \"message\": \"{{ inputs.message }}\"\n            }\n          }\n        ],\n        \"triggers\": [\n          {\n            \"type\": \"manual\"\n          }\n        ]\n      },\n      \"description\": \"This is a workflow example\",\n      \"enabled\": true,\n      \"history\": [\n        {\n          \"duration\": 5000,\n          \"finishedAt\": \"2025-11-20T12:00:05.000Z\",\n          \"id\": \"exec-001\",\n          \"startedAt\": \"2025-11-20T12:00:00.000Z\",\n          \"status\": \"completed\",\n          \"workflowId\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n          \"workflowName\": \"Example definition\"\n        }\n      ],\n      \"id\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"name\": \"Example definition\",\n      \"tags\": [\n        \"example\"\n      ],\n      \"valid\": true\n    }\n  ],\n  \"size\": 20,\n  \"total\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b15c0e1-67d1-4158-8bb0-f74c142a72a7",
+          "name": "Bulk create workflows",
+          "request": {
+            "name": "Bulk create workflows",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate multiple workflows in a single request. Optionally overwrite existing workflows.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:create AND workflowsManagement:update.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "overwrite",
+                  "value": "false",
+                  "description": "Whether to overwrite existing workflows."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"workflows\": [\n    {\n      \"yaml\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"yaml\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "523cc73c-13ea-4b9d-82c7-60c00f05f054",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "overwrite",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workflows\": [\n    {\n      \"yaml\": \"name: Example definition\\nenabled: true\\ndescription: This is a workflow example\\ntriggers:\\n  - type: manual\\ninputs:\\n  - name: message\\n    type: string\\n    default: \\\"hello world\\\"\\nsteps:\\n  - name: hello_world_step\\n    type: console\\n    with:\\n      message: \\\"{{ inputs.message }}\\\"\\n\"\n    },\n    {\n      \"id\": \"workflow-b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n      \"yaml\": \"name: Second workflow\\nenabled: false\\ndescription: Another workflow\\ntriggers:\\n  - type: manual\\nsteps:\\n  - name: log_step\\n    type: console\\n    with:\\n      message: \\\"Hello from second workflow\\\"\\n\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created\": [\n    {\n      \"id\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"name\": \"Example definition\"\n    },\n    {\n      \"id\": \"workflow-b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n      \"name\": \"Second workflow\"\n    }\n  ],\n  \"failures\": [],\n  \"total\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7676ef7-49d8-4fd6-b701-93d9f8956d7b",
+          "name": "Get workflow aggregations",
+          "request": {
+            "name": "Get workflow aggregations",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/aggs</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve distinct values and their counts for the specified workflow fields. Useful for building filters such as lists of tags or creators.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "aggs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "(Required) Field or fields to aggregate on."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "(Required) Field or fields to aggregate on."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "273471c6-348c-4182-9021-ca1ab16e8d1a",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "aggs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdBy\": [\n    {\n      \"doc_count\": 2,\n      \"key\": \"elastic\"\n    }\n  ],\n  \"tags\": [\n    {\n      \"doc_count\": 1,\n      \"key\": \"reporting\"\n    },\n    {\n      \"doc_count\": 1,\n      \"key\": \"security\"\n    },\n    {\n      \"doc_count\": 1,\n      \"key\": \"triage\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bfb90ace-d43c-4171-8b98-6984aab959fc",
+          "name": "Get available connectors",
+          "request": {
+            "name": "Get available connectors",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/connectors</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve the Kibana action connectors that can be used in workflow steps, grouped by connector type. Each type includes its configured instances and availability status.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "connectors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "daee1ccc-f700-4597-96da-181ce751d90d",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "connectors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connectorTypes\": {\n    \".email\": {\n      \"actionTypeId\": \".email\",\n      \"displayName\": \"Email\",\n      \"enabled\": true,\n      \"enabledInConfig\": true,\n      \"enabledInLicense\": true,\n      \"instances\": [],\n      \"minimumLicenseRequired\": \"gold\",\n      \"subActions\": [\n        {\n          \"displayName\": \"Send\",\n          \"name\": \"send\"\n        }\n      ]\n    },\n    \".slack_api\": {\n      \"actionTypeId\": \".slack_api\",\n      \"displayName\": \"Slack\",\n      \"enabled\": true,\n      \"enabledInConfig\": true,\n      \"enabledInLicense\": true,\n      \"instances\": [\n        {\n          \"id\": \"slack-connector-1\",\n          \"isDeprecated\": false,\n          \"isPreconfigured\": false,\n          \"name\": \"Team Notifications\"\n        }\n      ],\n      \"minimumLicenseRequired\": \"gold\",\n      \"subActions\": [\n        {\n          \"displayName\": \"Post Message\",\n          \"name\": \"postMessage\"\n        }\n      ]\n    }\n  },\n  \"totalConnectors\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25026c22-e26f-42aa-8e26-973fbdaee71b",
+          "name": "Get a workflow execution",
+          "request": {
+            "name": "Get a workflow execution",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/executions/{executionId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve details of a single workflow execution by its ID.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:readExecution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "executions",
+                ":executionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeInput",
+                  "value": "false",
+                  "description": "Include execution input data."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeOutput",
+                  "value": "false",
+                  "description": "Include execution output data."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "executionId",
+                  "description": "(Required) Workflow execution ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "450594ce-ef54-47af-8e7a-3dc375ea2384",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "executions",
+                    ":executionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeInput",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeOutput",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "executionId",
+                      "description": "(Required) Workflow execution ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"duration\": 3000,\n  \"executedBy\": \"elastic\",\n  \"finishedAt\": \"2025-11-20T12:00:03.000Z\",\n  \"id\": \"exec-a1b2c3d4-e5f6-7890\",\n  \"input\": {\n    \"message\": \"hello world\"\n  },\n  \"isTestRun\": false,\n  \"output\": \"hello world\",\n  \"spaceId\": \"default\",\n  \"startedAt\": \"2025-11-20T12:00:00.000Z\",\n  \"status\": \"completed\",\n  \"stepExecutions\": [\n    {\n      \"executionTimeMs\": 1000,\n      \"finishedAt\": \"2025-11-20T12:00:02.000Z\",\n      \"globalExecutionIndex\": 0,\n      \"id\": \"step-exec-001\",\n      \"isTestRun\": false,\n      \"scopeStack\": [],\n      \"spaceId\": \"default\",\n      \"startedAt\": \"2025-11-20T12:00:01.000Z\",\n      \"status\": \"completed\",\n      \"stepExecutionIndex\": 0,\n      \"stepId\": \"hello_world_step\",\n      \"stepType\": \"console\",\n      \"topologicalIndex\": 0,\n      \"workflowId\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"workflowRunId\": \"exec-a1b2c3d4-e5f6-7890\"\n    }\n  ],\n  \"triggeredBy\": \"manual\",\n  \"workflowDefinition\": {\n    \"description\": \"This is a workflow example\",\n    \"enabled\": true,\n    \"inputs\": [\n      {\n        \"default\": \"hello world\",\n        \"name\": \"message\",\n        \"type\": \"string\"\n      }\n    ],\n    \"name\": \"Example definition\",\n    \"steps\": [\n      {\n        \"name\": \"hello_world_step\",\n        \"type\": \"console\",\n        \"with\": {\n          \"message\": \"{{ inputs.message }}\"\n        }\n      }\n    ],\n    \"triggers\": [\n      {\n        \"type\": \"manual\"\n      }\n    ]\n  },\n  \"workflowId\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n  \"yaml\": \"name: Example definition\\nenabled: true\\ndescription: This is a workflow example\\ntriggers:\\n  - type: manual\\ninputs:\\n  - name: message\\n    type: string\\n    default: \\\"hello world\\\"\\nsteps:\\n  - name: hello_world_step\\n    type: console\\n    with:\\n      message: \\\"{{ inputs.message }}\\\"\\n\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ea0b778-ad6e-487a-af0c-f63e0381afb5",
+          "name": "Cancel a workflow execution",
+          "request": {
+            "name": "Cancel a workflow execution",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/executions/{executionId}/cancel</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCancel a running workflow execution by its ID.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:cancelExecution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "executions",
+                ":executionId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "executionId",
+                  "description": "(Required) Workflow execution ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd5a9ad6-a2a2-4cdf-af98-2c8b894f1f9d",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "executions",
+                    ":executionId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "executionId",
+                      "description": "(Required) Workflow execution ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93c46f1d-2324-4da8-9ab2-e0f6d875aa00",
+          "name": "Get child executions",
+          "request": {
+            "name": "Get child executions",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/executions/{executionId}/children</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve child workflow executions spawned by sub-workflow steps within a parent execution.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:readExecution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "executions",
+                ":executionId",
+                "children"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "executionId",
+                  "description": "(Required) Workflow execution ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9cd376f3-efd8-4fdb-b677-7c172b3ba5d4",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "executions",
+                    ":executionId",
+                    "children"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "executionId",
+                      "description": "(Required) Workflow execution ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"executionId\": \"child-exec-001\",\n    \"parentStepExecutionId\": \"step-exec-003\",\n    \"status\": \"completed\",\n    \"stepExecutions\": [\n      {\n        \"executionTimeMs\": 1000,\n        \"finishedAt\": \"2025-11-20T12:00:07.000Z\",\n        \"globalExecutionIndex\": 0,\n        \"id\": \"child-step-001\",\n        \"isTestRun\": false,\n        \"scopeStack\": [],\n        \"startedAt\": \"2025-11-20T12:00:06.000Z\",\n        \"status\": \"completed\",\n        \"stepExecutionIndex\": 0,\n        \"stepId\": \"hello_world_step\",\n        \"stepType\": \"console\",\n        \"topologicalIndex\": 0,\n        \"workflowId\": \"workflow-e5f6a7b8-c9d0-1234-efab-456789012345\",\n        \"workflowRunId\": \"child-exec-001\"\n      }\n    ],\n    \"workflowId\": \"workflow-e5f6a7b8-c9d0-1234-efab-456789012345\",\n    \"workflowName\": \"Child Workflow\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e29bacd-f140-41e0-92ce-121de408429c",
+          "name": "Get execution logs",
+          "request": {
+            "name": "Get execution logs",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/executions/{executionId}/logs</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve paginated logs for a workflow execution. Optionally filter by a specific step execution.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:readExecution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "executions",
+                ":executionId",
+                "logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "stepExecutionId",
+                  "value": "<string>",
+                  "description": "Filter logs by a specific step execution ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100",
+                  "description": "Number of log entries per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "Field to sort by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "Sort order."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "executionId",
+                  "description": "(Required) Workflow execution ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c86b2db4-ff45-4f17-9216-52f42bce0505",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "executions",
+                    ":executionId",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "stepExecutionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "executionId",
+                      "description": "(Required) Workflow execution ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"logs\": [\n    {\n      \"additionalData\": {\n        \"executionId\": \"exec-a1b2c3d4-e5f6-7890\",\n        \"workflowId\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n      },\n      \"connectorType\": \"console\",\n      \"duration\": 150,\n      \"id\": \"log-001\",\n      \"level\": \"info\",\n      \"message\": \"Workflow execution started\",\n      \"stepId\": \"hello_world_step\",\n      \"stepName\": \"Hello World\",\n      \"timestamp\": \"2025-11-20T12:00:01.000Z\"\n    },\n    {\n      \"additionalData\": {\n        \"executionId\": \"exec-a1b2c3d4-e5f6-7890\",\n        \"workflowId\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n      },\n      \"connectorType\": \"console\",\n      \"duration\": 200,\n      \"id\": \"log-002\",\n      \"level\": \"info\",\n      \"message\": \"Step completed successfully\",\n      \"stepId\": \"hello_world_step\",\n      \"stepName\": \"Hello World\",\n      \"timestamp\": \"2025-11-20T12:00:02.000Z\"\n    }\n  ],\n  \"page\": 1,\n  \"size\": 100,\n  \"total\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a41bbc7-63b4-4e97-b0a0-bff7d9d7cfd8",
+          "name": "Resume a workflow execution",
+          "request": {
+            "name": "Resume a workflow execution",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/executions/{executionId}/resume</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nResume a paused workflow execution with the provided input.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:execute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "executions",
+                ":executionId",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "executionId",
+                  "description": "(Required) Workflow execution ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5811e25a-d5dc-4b21-9fb4-0da65361dddd",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "executions",
+                    ":executionId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "executionId",
+                      "description": "(Required) Workflow execution ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": {\n    \"approved\": true,\n    \"comment\": \"Approved by analyst\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"executionId\": \"exec-a1b2c3d4-e5f6-7890\",\n  \"message\": \"Workflow resume scheduled\",\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc487684-4091-4d8a-9c88-9657416b8a6e",
+          "name": "Get a step execution",
+          "request": {
+            "name": "Get a step execution",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/executions/{executionId}/step/{stepExecutionId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve details of a single step execution within a workflow execution.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:readExecution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "executions",
+                ":executionId",
+                "step",
+                ":stepExecutionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "executionId",
+                  "description": "(Required) Workflow execution ID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stepExecutionId",
+                  "description": "(Required) Step execution ID."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca387f60-a677-4b9b-9d17-1435b7a09ebd",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "executions",
+                    ":executionId",
+                    "step",
+                    ":stepExecutionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "executionId",
+                      "description": "(Required) Workflow execution ID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stepExecutionId",
+                      "description": "(Required) Step execution ID."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": null,\n  \"executionTimeMs\": 1000,\n  \"finishedAt\": \"2025-11-20T12:00:02.000Z\",\n  \"globalExecutionIndex\": 0,\n  \"id\": \"step-exec-001\",\n  \"input\": {\n    \"message\": \"hello world\"\n  },\n  \"isTestRun\": false,\n  \"output\": \"hello world\",\n  \"scopeStack\": [],\n  \"spaceId\": \"default\",\n  \"startedAt\": \"2025-11-20T12:00:01.000Z\",\n  \"state\": null,\n  \"status\": \"completed\",\n  \"stepExecutionIndex\": 0,\n  \"stepId\": \"hello_world_step\",\n  \"stepType\": \"console\",\n  \"topologicalIndex\": 0,\n  \"workflowId\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n  \"workflowRunId\": \"exec-a1b2c3d4-e5f6-7890\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a337ad9-3804-4bf9-b0e0-d87758a035b9",
+          "name": "Export workflows",
+          "request": {
+            "name": "Export workflows",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/export</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nExport one or more workflows as JSON with YAML content and metadata.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1b875712-75ed-4f3c-b956-43a6191ca2b7",
+              "name": "JSON containing exported workflow YAML entries and manifest metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"workflow-b2c3d4e5-f6a7-8901-bcde-f12345678901\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entries\": [\n    {\n      \"id\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"yaml\": \"name: My Workflow\\nsteps:\\n  - type: http.request\\n    with:\\n      url: https://example.com\"\n    },\n    {\n      \"id\": \"workflow-b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n      \"yaml\": \"name: Another Workflow\\nsteps:\\n  - type: http.request\\n    with:\\n      url: https://example.com\"\n    }\n  ],\n  \"manifest\": {\n    \"exportedAt\": \"2026-03-26T12:00:00.000Z\",\n    \"exportedCount\": 2,\n    \"version\": \"1\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9963a266-95f0-4b67-8ddf-97bf00a34f3a",
+          "name": "Get workflows by IDs",
+          "request": {
+            "name": "Get workflows by IDs",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/mget</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve multiple workflows by their IDs in a single request. Optionally use the `source` parameter to return only specific fields from each workflow document.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "mget"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\"\n  ],\n  \"source\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "75cb1500-03aa-4019-a8c9-3720fdb5dfb4",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "mget"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"workflow-b2c3d4e5-f6a7-8901-bcde-f12345678901\"\n  ],\n  \"source\": [\n    \"name\",\n    \"enabled\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"enabled\": true,\n    \"id\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"name\": \"Example definition\"\n  },\n  {\n    \"enabled\": false,\n    \"id\": \"workflow-b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n    \"name\": \"Second workflow\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5eb94931-554b-45c3-93c9-d08d7e82166a",
+          "name": "Get workflow JSON schema",
+          "request": {
+            "name": "Get workflow JSON schema",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/schema</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve the JSON schema used to validate workflow YAML definitions. The schema includes available step types based on the configured connectors in the current space.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "schema"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "loose",
+                  "value": "<boolean>",
+                  "description": "(Required) When true, returns a permissive schema that allows additional properties. When false, returns a strict schema for full validation."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ecd62dc-e443-4276-85e0-f5bc6c022fc4",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "loose",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"description\": {\n      \"type\": \"string\"\n    },\n    \"enabled\": {\n      \"default\": true,\n      \"type\": \"boolean\"\n    },\n    \"name\": {\n      \"minLength\": 1,\n      \"type\": \"string\"\n    },\n    \"tags\": {\n      \"items\": {\n        \"type\": \"string\"\n      },\n      \"type\": \"array\"\n    },\n    \"version\": {\n      \"const\": \"1\",\n      \"default\": \"1\",\n      \"description\": \"The version of the workflow schema\",\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\n    \"name\",\n    \"triggers\",\n    \"steps\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4cfe609d-9ac6-4bb4-8378-abfe51435880",
+          "name": "Get workflow statistics",
+          "request": {
+            "name": "Get workflow statistics",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/stats</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve summary statistics about workflows, including total, enabled, and disabled counts; execution history metrics for the last 30 days are included only when the caller has execution read privilege.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:read OR workflowsManagement:readExecution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c361ae5-95e7-4add-b531-bf149eb3dbd0",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"executions\": [\n    {\n      \"cancelled\": 1,\n      \"completed\": 45,\n      \"date\": \"2025-11-20\",\n      \"failed\": 2,\n      \"timestamp\": \"2025-11-20T00:00:00.000Z\"\n    },\n    {\n      \"cancelled\": 0,\n      \"completed\": 50,\n      \"date\": \"2025-11-21\",\n      \"failed\": 0,\n      \"timestamp\": \"2025-11-21T00:00:00.000Z\"\n    }\n  ],\n  \"workflows\": {\n    \"disabled\": 3,\n    \"enabled\": 12\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2cb10b8f-2108-4bd6-bd26-301bb6e650f8",
+          "name": "Test a workflow step",
+          "request": {
+            "name": "Test a workflow step",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/step/test</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nExecute a single step from a workflow definition in test mode.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:execute AND workflowsManagement:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "step",
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stepId\": \"<string>\",\n  \"contextOverride\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"workflowYaml\": \"<string>\",\n  \"executionContext\": {\n    \"key_0\": {}\n  },\n  \"workflowId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "23ef260e-118b-4fa1-9a64-2c8069c0d0c6",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "step",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contextOverride\": {\n    \"inputs\": {\n      \"message\": \"override message\"\n    }\n  },\n  \"stepId\": \"hello_world_step\",\n  \"workflowId\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n  \"workflowYaml\": \"name: Example definition\\nenabled: true\\ndescription: This is a workflow example\\ntriggers:\\n  - type: manual\\ninputs:\\n  - name: message\\n    type: string\\n    default: \\\"hello world\\\"\\nsteps:\\n  - name: hello_world_step\\n    type: console\\n    with:\\n      message: \\\"{{ inputs.message }}\\\"\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflowExecutionId\": \"step-test-exec-a1b2c3d4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45cf1044-a424-4a45-a710-4ffc2b5ba3cb",
+          "name": "Test a workflow",
+          "request": {
+            "name": "Test a workflow",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/test</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nExecute a workflow in test mode without requiring it to be saved or enabled. Provide either a workflow ID to test a saved workflow, a YAML definition to test an unsaved draft, or both to test a modified version of an existing workflow.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:execute AND workflowsManagement:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inputs\": {\n    \"key_0\": {}\n  },\n  \"workflowId\": \"<string>\",\n  \"workflowYaml\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "066e7dad-7bbb-407f-9678-39a88743bae3",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputs\": {\n    \"message\": \"test message\"\n  },\n  \"workflowId\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflowExecutionId\": \"test-exec-a1b2c3d4-e5f6\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46f6ae13-9440-468c-9231-6b2b4ba7bf1e",
+          "name": "Create a workflow",
+          "request": {
+            "name": "Create a workflow",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new workflow from a YAML definition. The YAML is validated and parsed before the workflow is saved. An optional custom ID can be provided.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:create.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "workflow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"yaml\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f3d8897a-7a23-4377-93f1-9c18a4219c67",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "workflow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"yaml\": \"name: Example definition\\nenabled: true\\ndescription: This is a workflow example\\ntriggers:\\n  - type: manual\\ninputs:\\n  - name: message\\n    type: string\\n    default: \\\"hello world\\\"\\nsteps:\\n  - name: hello_world_step\\n    type: console\\n    with:\\n      message: \\\"{{ inputs.message }}\\\"\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"2025-11-20T10:30:00.000Z\",\n  \"createdBy\": \"elastic\",\n  \"definition\": {\n    \"description\": \"This is a workflow example\",\n    \"enabled\": true,\n    \"inputs\": [\n      {\n        \"default\": \"hello world\",\n        \"name\": \"message\",\n        \"type\": \"string\"\n      }\n    ],\n    \"name\": \"Example definition\",\n    \"steps\": [\n      {\n        \"name\": \"hello_world_step\",\n        \"type\": \"console\",\n        \"with\": {\n          \"message\": \"{{ inputs.message }}\"\n        }\n      }\n    ],\n    \"triggers\": [\n      {\n        \"type\": \"manual\"\n      }\n    ]\n  },\n  \"description\": \"This is a workflow example\",\n  \"enabled\": true,\n  \"id\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n  \"lastUpdatedAt\": \"2025-11-20T10:30:00.000Z\",\n  \"lastUpdatedBy\": \"elastic\",\n  \"name\": \"Example definition\",\n  \"valid\": true,\n  \"yaml\": \"name: Example definition\\nenabled: true\\ndescription: This is a workflow example\\ntriggers:\\n  - type: manual\\ninputs:\\n  - name: message\\n    type: string\\n    default: \\\"hello world\\\"\\nsteps:\\n  - name: hello_world_step\\n    type: console\\n    with:\\n      message: \\\"{{ inputs.message }}\\\"\\n\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc4bbb46-e028-4e3c-9063-91c0a7c28937",
+          "name": "Delete a workflow",
+          "request": {
+            "name": "Delete a workflow",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a single workflow by its ID.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:delete.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "workflow",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "false",
+                  "description": "When true, permanently deletes the workflow (hard delete) instead of soft-deleting it. The workflow ID becomes available for reuse."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Workflow ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "882005ec-bc85-4a67-a21a-f38ed9754e91",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "workflow",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Workflow ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bdb6ed1-2d68-4b85-9f25-c3d337a93a21",
+          "name": "Get a workflow",
+          "request": {
+            "name": "Get a workflow",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a single workflow by its ID.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "workflow",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Workflow ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd631be9-1f05-4a21-85fc-fa4ebb511450",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "workflow",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Workflow ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"2025-11-20T10:30:00.000Z\",\n  \"createdBy\": \"elastic\",\n  \"definition\": {\n    \"description\": \"This is a workflow example\",\n    \"enabled\": true,\n    \"inputs\": [\n      {\n        \"default\": \"hello world\",\n        \"name\": \"message\",\n        \"type\": \"string\"\n      }\n    ],\n    \"name\": \"Example definition\",\n    \"steps\": [\n      {\n        \"name\": \"hello_world_step\",\n        \"type\": \"console\",\n        \"with\": {\n          \"message\": \"{{ inputs.message }}\"\n        }\n      }\n    ],\n    \"triggers\": [\n      {\n        \"type\": \"manual\"\n      }\n    ]\n  },\n  \"description\": \"This is a workflow example\",\n  \"enabled\": true,\n  \"id\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n  \"lastUpdatedAt\": \"2025-11-21T14:00:00.000Z\",\n  \"lastUpdatedBy\": \"elastic\",\n  \"name\": \"Example definition\",\n  \"valid\": true,\n  \"yaml\": \"name: Example definition\\nenabled: true\\ndescription: This is a workflow example\\ntriggers:\\n  - type: manual\\ninputs:\\n  - name: message\\n    type: string\\n    default: \\\"hello world\\\"\\nsteps:\\n  - name: hello_world_step\\n    type: console\\n    with:\\n      message: \\\"{{ inputs.message }}\\\"\\n\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d26aaacf-dbdd-47a7-b4c7-fe684155bf89",
+          "name": "Update a workflow",
+          "request": {
+            "name": "Update a workflow",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nPartially update an existing workflow. You can update individual fields such as name, description, enabled state, tags, or the YAML definition without providing all fields.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:update.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "workflow",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Workflow ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"yaml\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4b9b5714-a2c9-4b2b-8f18-760a2ad5d770",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "workflow",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Workflow ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": true,\n  \"tags\": [\n    \"production\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabled\": false,\n  \"id\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n  \"lastUpdatedAt\": \"2026-03-23T13:38:59.568Z\",\n  \"lastUpdatedBy\": \"elastic\",\n  \"valid\": true,\n  \"validationErrors\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8afb1d6c-d09b-4a94-a027-19819fb4f53d",
+          "name": "Clone a workflow",
+          "request": {
+            "name": "Clone a workflow",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{id}/clone</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a copy of an existing workflow.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:create AND workflowsManagement:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "workflow",
+                ":id",
+                "clone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Workflow ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed3255a6-8349-4777-9c76-974c7e18dbe7",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "workflow",
+                    ":id",
+                    "clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Workflow ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"2025-11-22T11:00:00.000Z\",\n  \"createdBy\": \"elastic\",\n  \"definition\": {\n    \"description\": \"This is a workflow example\",\n    \"enabled\": false,\n    \"inputs\": [\n      {\n        \"default\": \"hello world\",\n        \"name\": \"message\",\n        \"type\": \"string\"\n      }\n    ],\n    \"name\": \"Example definition (copy)\",\n    \"steps\": [\n      {\n        \"name\": \"hello_world_step\",\n        \"type\": \"console\",\n        \"with\": {\n          \"message\": \"{{ inputs.message }}\"\n        }\n      }\n    ],\n    \"triggers\": [\n      {\n        \"type\": \"manual\"\n      }\n    ]\n  },\n  \"description\": \"This is a workflow example\",\n  \"enabled\": false,\n  \"id\": \"workflow-b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n  \"lastUpdatedAt\": \"2025-11-22T11:00:00.000Z\",\n  \"lastUpdatedBy\": \"elastic\",\n  \"name\": \"Example definition (copy)\",\n  \"valid\": true,\n  \"yaml\": \"name: Example definition (copy)\\nenabled: false\\ndescription: This is a workflow example\\ntriggers:\\n  - type: manual\\ninputs:\\n  - name: message\\n    type: string\\n    default: \\\"hello world\\\"\\nsteps:\\n  - name: hello_world_step\\n    type: console\\n    with:\\n      message: \\\"{{ inputs.message }}\\\"\\n\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b99a60e7-2822-4697-90af-f647efbb7fd3",
+          "name": "Run a workflow",
+          "request": {
+            "name": "Run a workflow",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{id}/run</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nExecute a workflow by its ID with the provided inputs. The workflow must be enabled and have a valid definition. Returns an execution ID that can be used to monitor progress.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:execute AND workflowsManagement:read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "workflow",
+                ":id",
+                "run"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Workflow ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inputs\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  },\n  \"metadata\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3224e971-a6c6-4979-81e1-6e282420f0b6",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "workflow",
+                    ":id",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Workflow ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputs\": {\n    \"message\": \"hello from the API\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflowExecutionId\": \"exec-a1b2c3d4-e5f6-7890\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14901bc3-5b98-4f06-9b6b-c46bbb94ca97",
+          "name": "Get workflow executions",
+          "request": {
+            "name": "Get workflow executions",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{workflowId}/executions</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a paginated list of executions for a specific workflow.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:readExecution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "workflow",
+                ":workflowId",
+                "executions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>",
+                  "description": "Filter by execution status."
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>",
+                  "description": "Filter by execution status."
+                },
+                {
+                  "disabled": false,
+                  "key": "executionTypes",
+                  "value": "<string>",
+                  "description": "Filter by execution type."
+                },
+                {
+                  "disabled": false,
+                  "key": "executionTypes",
+                  "value": "<string>",
+                  "description": "Filter by execution type."
+                },
+                {
+                  "disabled": false,
+                  "key": "executedBy",
+                  "value": "<string>",
+                  "description": "Filter by the user who triggered the execution."
+                },
+                {
+                  "disabled": false,
+                  "key": "executedBy",
+                  "value": "<string>",
+                  "description": "Filter by the user who triggered the execution."
+                },
+                {
+                  "disabled": false,
+                  "key": "omitStepRuns",
+                  "value": "<boolean>",
+                  "description": "Whether to exclude step-level execution data."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>",
+                  "description": "Page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>",
+                  "description": "Number of results per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) Workflow ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "893813e8-60ac-43e5-bb8f-2ecef9c45f2a",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "workflow",
+                    ":workflowId",
+                    "executions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "executionTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "executionTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "executedBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "executedBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "omitStepRuns",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) Workflow ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 1,\n  \"results\": [\n    {\n      \"duration\": 3000,\n      \"error\": null,\n      \"executedBy\": \"elastic\",\n      \"finishedAt\": \"2025-11-20T12:00:03.000Z\",\n      \"id\": \"exec-001\",\n      \"isTestRun\": false,\n      \"spaceId\": \"default\",\n      \"startedAt\": \"2025-11-20T12:00:00.000Z\",\n      \"status\": \"completed\",\n      \"triggeredBy\": \"manual\",\n      \"workflowId\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n    },\n    {\n      \"duration\": 2000,\n      \"error\": {\n        \"message\": \"Step 'hello_world_step' failed\"\n      },\n      \"executedBy\": \"elastic\",\n      \"finishedAt\": \"2025-11-20T13:00:02.000Z\",\n      \"id\": \"exec-002\",\n      \"isTestRun\": false,\n      \"spaceId\": \"default\",\n      \"startedAt\": \"2025-11-20T13:00:00.000Z\",\n      \"status\": \"failed\",\n      \"triggeredBy\": \"manual\",\n      \"workflowId\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n    }\n  ],\n  \"size\": 20,\n  \"total\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a05ccd3-88d6-474d-a851-f639cc3fa405",
+          "name": "Cancel all active workflow executions",
+          "request": {
+            "name": "Cancel all active workflow executions",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{workflowId}/executions/cancel</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRequest cancellation for all non-terminal executions of the given workflow in the current space.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:cancelExecution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "workflow",
+                ":workflowId",
+                "executions",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) Workflow ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb9a4897-8847-4b19-afec-31074d95fcaa",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "workflow",
+                    ":workflowId",
+                    "executions",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) Workflow ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39d0aa0d-a3c5-46d1-8332-d25ca8698796",
+          "name": "Get workflow step executions",
+          "request": {
+            "name": "Get workflow step executions",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/workflows/workflow/{workflowId}/executions/steps</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a paginated list of step-level execution records for a specific workflow. Optionally filter by step ID and include input or output data.<br/><br/>[Required authorization] Route required privileges: workflowsManagement:readExecution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "workflows",
+                "workflow",
+                ":workflowId",
+                "executions",
+                "steps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "stepId",
+                  "value": "<string>",
+                  "description": "Filter by step ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeInput",
+                  "value": "<boolean>",
+                  "description": "Include step input data."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeOutput",
+                  "value": "<boolean>",
+                  "description": "Include step output data."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>",
+                  "description": "Page number for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>",
+                  "description": "Number of results per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) Workflow ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7a6d1df-91d5-4553-b981-64fdcd3c7f98",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "workflows",
+                    "workflow",
+                    ":workflowId",
+                    "executions",
+                    "steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "stepId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeInput",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeOutput",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) Workflow ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"executionTimeMs\": 1000,\n      \"finishedAt\": \"2025-11-20T12:00:02.000Z\",\n      \"globalExecutionIndex\": 0,\n      \"id\": \"step-exec-001\",\n      \"input\": {\n        \"message\": \"hello world\"\n      },\n      \"isTestRun\": false,\n      \"scopeStack\": [],\n      \"spaceId\": \"default\",\n      \"startedAt\": \"2025-11-20T12:00:01.000Z\",\n      \"status\": \"completed\",\n      \"stepExecutionIndex\": 0,\n      \"stepId\": \"hello_world_step\",\n      \"stepType\": \"console\",\n      \"topologicalIndex\": 0,\n      \"workflowId\": \"workflow-a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"workflowRunId\": \"exec-001\"\n    }\n  ],\n  \"total\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:5601",
+      "key": "kibana_url"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kibana_url}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "326e5bbb-0d8b-4125-875f-7d14711cd1e1",
+    "name": "Kibana APIs Actions workflows API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.\nThe API calls are stateless.\nEach request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the\nrequest.\nAPI requests return JSON output, which is a format that is machine-readable and works well for automation.\n\nTo interact with Kibana APIs, use the following operations:\n\n- GET: Fetches the information.\n- PATCH: Applies partial modifications to the existing information.\n- POST: Adds new information.\n- PUT: Updates the existing information.\n- DELETE: Removes the information.\n\nYou can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.\nFor example:\n\n```\nGET kbn:/api/data_views\n```\n\nFor more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).\n\nNOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.\n\n## Documentation source and versions\n\nThis documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.\nIt is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).\n\nThis documentation contains work-in-progress information for future Elastic Stack releases.\n\n\nContact Support:\n Name: Kibana Team",
+      "type": "text/plain"
+    }
+  }
+}

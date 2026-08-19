@@ -1,0 +1,503 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions slo API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "slo",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a paginated list of SLOs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/s/:spaceId/api/observability/slos",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the space. If `/s/` and the identifier are omitted from the path, the default space is used."
+              },
+              {
+                "name": "kqlQuery",
+                "value": "slo.name:latency* and slo.tags : \"prod\"",
+                "type": "query",
+                "description": "A valid kql query to filter the SLO with"
+              },
+              {
+                "name": "size",
+                "value": "1",
+                "type": "query",
+                "description": "The page size to use for cursor-based pagination, must be greater or equal than 1"
+              },
+              {
+                "name": "searchAfter",
+                "value": "",
+                "type": "query",
+                "description": "The cursor to use for fetching the results from, when using a cursor-base pagination."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "The page to use for pagination, must be greater or equal than 1"
+              },
+              {
+                "name": "perPage",
+                "value": "25",
+                "type": "query",
+                "description": "Number of SLOs returned by page"
+              },
+              {
+                "name": "sortBy",
+                "value": "status",
+                "type": "query",
+                "description": "Sort by field"
+              },
+              {
+                "name": "sortDirection",
+                "value": "asc",
+                "type": "query",
+                "description": "Sort order"
+              },
+              {
+                "name": "hideStale",
+                "value": "",
+                "type": "query",
+                "description": "Hide stale SLOs from the list as defined by stale SLO threshold in SLO settings"
+              }
+            ]
+          },
+          "docs": "You must have the `read` privileges for the **SLOs** feature in the **Observability** section of the Kibana feature privileges.\n"
+        },
+        {
+          "info": {
+            "name": "Create an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/s/:spaceId/api/observability/slos",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the space. If `/s/` and the identifier are omitted from the path, the default space is used."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You must have `all` privileges for the **SLOs** feature in the **Observability** section of the Kibana feature privileges.\n"
+        },
+        {
+          "info": {
+            "name": "Bulk delete SLO definitions and their associated summary and rollup data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/s/:spaceId/api/observability/slos/_bulk_delete",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the space. If `/s/` and the identifier are omitted from the path, the default space is used."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk delete SLO definitions and their associated summary and rollup data.  This endpoint initiates a bulk deletion operation for SLOs, which may take some time to complete.  The status of the operation can be checked using the `GET /api/slo/_bulk_delete/{taskId}` endpoint.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve the status of the bulk deletion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/s/:spaceId/api/observability/slos/_bulk_delete/:taskId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the space. If `/s/` and the identifier are omitted from the path, the default space is used."
+              },
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The task id of the bulk delete operation"
+              }
+            ]
+          },
+          "docs": "Retrieve the status of the bulk deletion operation for SLOs.  This endpoint returns the status of the bulk deletion operation, including whether it is completed and the results of the operation.\n"
+        },
+        {
+          "info": {
+            "name": "Batch delete rollup and summary data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/s/:spaceId/api/observability/slos/_bulk_purge_rollup",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the space. If `/s/` and the identifier are omitted from the path, the default space is used."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The deletion occurs for the specified list of `sloId`. You must have `all` privileges for the **SLOs** feature in the **Observability** section of the Kibana feature privileges.\n"
+        },
+        {
+          "info": {
+            "name": "Batch delete rollup and summary data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/s/:spaceId/api/observability/slos/_delete_instances",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the space. If `/s/` and the identifier are omitted from the path, the default space is used."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The deletion occurs for the specified list of `sloId` and `instanceId`. You must have `all` privileges for the **SLOs** feature in the **Observability** section of the Kibana feature privileges.\n"
+        },
+        {
+          "info": {
+            "name": "Get an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/s/:spaceId/api/observability/slos/:sloId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the space. If `/s/` and the identifier are omitted from the path, the default space is used."
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the slo."
+              },
+              {
+                "name": "instanceId",
+                "value": "host-abcde",
+                "type": "query",
+                "description": "the specific instanceId used by the summary calculation"
+              }
+            ]
+          },
+          "docs": "You must have the `read` privileges for the **SLOs** feature in the **Observability** section of the Kibana feature privileges.\n"
+        },
+        {
+          "info": {
+            "name": "Update an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/s/:spaceId/api/observability/slos/:sloId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the space. If `/s/` and the identifier are omitted from the path, the default space is used."
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the slo."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You must have the `write` privileges for the **SLOs** feature in the **Observability** section of the Kibana feature privileges.\n"
+        },
+        {
+          "info": {
+            "name": "Delete an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/s/:spaceId/api/observability/slos/:sloId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the space. If `/s/` and the identifier are omitted from the path, the default space is used."
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the slo."
+              }
+            ]
+          },
+          "docs": "You must have the `write` privileges for the **SLOs** feature in the **Observability** section of the Kibana feature privileges.\n"
+        },
+        {
+          "info": {
+            "name": "Reset an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/s/:spaceId/api/observability/slos/:sloId/_reset",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the space. If `/s/` and the identifier are omitted from the path, the default space is used."
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the slo."
+              }
+            ]
+          },
+          "docs": "You must have the `write` privileges for the **SLOs** feature in the **Observability** section of the Kibana feature privileges.\n"
+        },
+        {
+          "info": {
+            "name": "Disable an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/s/:spaceId/api/observability/slos/:sloId/disable",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the space. If `/s/` and the identifier are omitted from the path, the default space is used."
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the slo."
+              }
+            ]
+          },
+          "docs": "You must have the `write` privileges for the **SLOs** feature in the **Observability** section of the Kibana feature privileges.\n"
+        },
+        {
+          "info": {
+            "name": "Enable an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/s/:spaceId/api/observability/slos/:sloId/enable",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the space. If `/s/` and the identifier are omitted from the path, the default space is used."
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the slo."
+              }
+            ]
+          },
+          "docs": "You must have the `write` privileges for the **SLOs** feature in the **Observability** section of the Kibana feature privileges.\n"
+        },
+        {
+          "info": {
+            "name": "Get the SLO definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/s/:spaceId/internal/observability/slos/_definitions",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "spaceId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the space. If `/s/` and the identifier are omitted from the path, the default space is used."
+              },
+              {
+                "name": "includeOutdatedOnly",
+                "value": "",
+                "type": "query",
+                "description": "Indicates if the API returns only outdated SLO or all SLO definitions"
+              },
+              {
+                "name": "includeHealth",
+                "value": "true",
+                "type": "query",
+                "description": "Indicates if the API returns SLO health data with definitions"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filters the SLOs by tag"
+              },
+              {
+                "name": "search",
+                "value": "my service availability",
+                "type": "query",
+                "description": "Filters the SLOs by name"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "The page to use for pagination, must be greater or equal than 1"
+              },
+              {
+                "name": "perPage",
+                "value": "100",
+                "type": "query",
+                "description": "Number of SLOs returned by page"
+              }
+            ]
+          },
+          "docs": "You must have the `read` privileges for the **SLOs** feature in the **Observability** section of the Kibana feature privileges.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

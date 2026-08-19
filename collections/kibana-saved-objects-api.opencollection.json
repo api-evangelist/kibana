@@ -1,0 +1,587 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions saved objects API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "saved objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Rotate a key for encrypted saved objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/encrypted_saved_objects/_rotate_key",
+            "params": [
+              {
+                "name": "batch_size",
+                "value": "",
+                "type": "query",
+                "description": "Specifies a maximum number of saved objects that Kibana can process in a single batch. Bulk key rotation is an iterative process since Kibana may not be able to fetch and process all required saved objects in one go and splits processing into consequent batches. By default, the batch size is 10000, which is also a maximum allowed value.\n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Limits encryption key rotation only to the saved objects with the specified type. By default, Kibana tries to rotate the encryption key for all saved object types that may contain encrypted attributes.\n"
+              }
+            ]
+          },
+          "docs": "Superuser role required.\n\nIf a saved object cannot be decrypted using the primary encryption key, then Kibana will attempt to decrypt it using the specified decryption-only keys. In most of the cases this overhead is negligible, but if you're dealing with a large number of saved objects and experiencing performance issues, you may want to rotate the encryption key.\n\nThis functionality is in technical preview and may be changed or removed in a future release. Elastic will work to fix any issues, "
+        },
+        {
+          "info": {
+            "name": "Create saved objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/saved_objects/_bulk_create",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query",
+                "description": "Overwrite existing saved objects that match the same type and ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/saved_objects/_bulk_create</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nWARNING: This API is deprecated. This is a legacy Saved Objects API and may be removed in a future version of Kibana.\n\nCreates multiple Kibana saved objects in a single request.\n\nFor transferring or backing up "
+        },
+        {
+          "info": {
+            "name": "Delete saved objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/saved_objects/_bulk_delete",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "When true, force deletion of multi-namespace objects from all namespaces."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/saved_objects/_bulk_delete</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nWARNING: This API is deprecated. This is a legacy Saved Objects API and may be removed in a future version of Kibana.\n\nDeletes multiple Kibana saved objects in a single request.\n\nThere is currently no complete "
+        },
+        {
+          "info": {
+            "name": "Get saved objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/saved_objects/_bulk_get",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/saved_objects/_bulk_get</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nWARNING: This API is deprecated. This is a legacy Saved Objects API and may be removed in a future version of Kibana.\n\nRetrieves multiple Kibana saved objects by type and ID in a single request.\n\nFor transferring "
+        },
+        {
+          "info": {
+            "name": "Resolve saved objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/saved_objects/_bulk_resolve",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/saved_objects/_bulk_resolve</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nWARNING: This API is deprecated. This is a legacy Saved Objects API and may be removed in a future version of Kibana.\n\nRetrieve multiple Kibana saved objects by ID, using any legacy URL aliases if they exist.\n"
+        },
+        {
+          "info": {
+            "name": "Update saved objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/saved_objects/_bulk_update",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/saved_objects/_bulk_update</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nWARNING: This API is deprecated. This is a legacy Saved Objects API and may be removed in a future version of Kibana.\n\nUpdates multiple Kibana saved objects in a single request.\n\nFor transferring or backing up sa"
+        },
+        {
+          "info": {
+            "name": "Export saved objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/saved_objects/_export",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/saved_objects/_export</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve sets of saved objects that you want to import into Kibana. You must include `type` or `objects` in the request body. The output of exporting saved objects must be treated as opaque. Tampering with exported "
+        },
+        {
+          "info": {
+            "name": "Search for saved objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/saved_objects/_find",
+            "params": [
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page index to return."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The saved object type or types to search for. Use multiple `type` values to search across types."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A text search string."
+              },
+              {
+                "name": "default_search_operator",
+                "value": "",
+                "type": "query",
+                "description": "The boolean operator to use when combining multiple values."
+              },
+              {
+                "name": "search_fields",
+                "value": "",
+                "type": "query",
+                "description": "The fields to search on."
+              },
+              {
+                "name": "sort_field",
+                "value": "",
+                "type": "query",
+                "description": "The field to sort on."
+              },
+              {
+                "name": "has_reference",
+                "value": "",
+                "type": "query",
+                "description": "Return only saved objects that have a reference to the specified saved object(s)."
+              },
+              {
+                "name": "has_reference_operator",
+                "value": "",
+                "type": "query",
+                "description": "The boolean operator to use when combining multiple values."
+              },
+              {
+                "name": "has_no_reference",
+                "value": "",
+                "type": "query",
+                "description": "Return only saved objects that do not have a reference to the specified saved object(s)."
+              },
+              {
+                "name": "has_no_reference_operator",
+                "value": "",
+                "type": "query",
+                "description": "The boolean operator to use when combining multiple values."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "The fields to return for each saved object."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A KQL filter to apply to the search."
+              },
+              {
+                "name": "aggs",
+                "value": "",
+                "type": "query",
+                "description": "Aggregations as a JSON string."
+              },
+              {
+                "name": "namespaces",
+                "value": "",
+                "type": "query",
+                "description": "The namespaces (spaces) to search in."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/saved_objects/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nWARNING: This API is deprecated. This is a legacy Saved Objects API and may be removed in a future version of Kibana.\n\nSearches for Kibana saved objects.\n\nFor transferring or backing up saved objects, prefer the export "
+        },
+        {
+          "info": {
+            "name": "Import saved objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/saved_objects/_import",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query",
+                "description": "Overwrites saved objects when they already exist. When used, potential conflict errors are automatically resolved by overwriting the destination object. NOTE: This option cannot be used with the `createNewCopies` option."
+              },
+              {
+                "name": "createNewCopies",
+                "value": "",
+                "type": "query",
+                "description": "Creates copies of saved objects, regenerates each object ID, and resets the origin. When used, potential conflict errors are avoided. NOTE: This option cannot be used with the `overwrite` and `compatibilityMode` options."
+              },
+              {
+                "name": "compatibilityMode",
+                "value": "",
+                "type": "query",
+                "description": "Applies various adjustments to the saved objects that are being imported to maintain compatibility between different Kibana versions. Use this option only if you encounter issues with imported saved objects. NOTE: This option cannot be used with the `createNewCopies` option."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/saved_objects/_import</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate sets of Kibana saved objects from a file created by the export API. Saved objects can only be imported into the same version, a newer minor on the same major, or the next major. Tampering with exported data r"
+        },
+        {
+          "info": {
+            "name": "Resolve import errors",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/saved_objects/_resolve_import_errors",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "createNewCopies",
+                "value": "",
+                "type": "query",
+                "description": "Creates copies of saved objects, regenerates each object ID, and resets the origin."
+              },
+              {
+                "name": "compatibilityMode",
+                "value": "",
+                "type": "query",
+                "description": "Applies adjustments to maintain compatibility between different Kibana versions."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "retries",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/saved_objects/_resolve_import_errors</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nTo resolve errors from the import objects API, you can retry certain saved objects, overwrite specific saved objects, and change references to different saved objects"
+        },
+        {
+          "info": {
+            "name": "Create a saved object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/saved_objects/:type",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "The saved object type."
+              },
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query",
+                "description": "Overwrite an existing saved object."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/saved_objects/{type}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nWARNING: This API is deprecated. This is a legacy Saved Objects API and may be removed in a future version of Kibana.\n\nCreates a Kibana saved object; if an ID is provided it is used, otherwise Kibana generates one.\n\n"
+        },
+        {
+          "info": {
+            "name": "Get a saved object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/saved_objects/:type/:id",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "The saved object type."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The saved object identifier."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/saved_objects/{type}/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nWARNING: This API is deprecated. This is a legacy Saved Objects API and may be removed in a future version of Kibana.\n\nRetrieves a single Kibana saved object by type and ID.\n\nFor transferring or backing up saved o"
+        },
+        {
+          "info": {
+            "name": "Create a saved object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/saved_objects/:type/:id",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "The saved object type."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The saved object identifier."
+              },
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query",
+                "description": "Overwrite an existing saved object."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/saved_objects/{type}/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nWARNING: This API is deprecated. This is a legacy Saved Objects API and may be removed in a future version of Kibana.\n\nCreates a Kibana saved object; if an ID is provided it is used, otherwise Kibana generates o"
+        },
+        {
+          "info": {
+            "name": "Update a saved object",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/saved_objects/:type/:id",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "The saved object type."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The saved object identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/saved_objects/{type}/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nWARNING: This API is deprecated. This is a legacy Saved Objects API and may be removed in a future version of Kibana.\n\nUpdates a single Kibana saved object by type and ID.\n\nFor transferring or backing up saved obj"
+        },
+        {
+          "info": {
+            "name": "Delete a saved object",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/saved_objects/:type/:id",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "The saved object type."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The saved object identifier."
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "When true, force deletion of multi-namespace objects from all namespaces."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/saved_objects/{type}/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nWARNING: This API is deprecated. This is a legacy Saved Objects API and may be removed in a future version of Kibana.\n\nDeletes a single Kibana saved object by type and ID.\n\nThere is currently no complete rep"
+        },
+        {
+          "info": {
+            "name": "Resolve a saved object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/saved_objects/resolve/:type/:id",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "The saved object type."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The saved object identifier."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/saved_objects/resolve/{type}/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nWARNING: This API is deprecated. This is a legacy Saved Objects API and may be removed in a future version of Kibana.\n\nRetrieve a single Kibana saved object by ID, using any legacy URL alias if it exists.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

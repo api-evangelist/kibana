@@ -1,0 +1,417 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Security Timeline API API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security Timeline API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/note",
+            "params": [
+              {
+                "name": "documentIds",
+                "value": "",
+                "type": "query",
+                "description": "Event document `_id` values to match against each note's `eventId`. When this parameter is present, the response is all matching notes (up to the server's hard limit), not a paged list using `page`/`perPage`.\n"
+              },
+              {
+                "name": "savedObjectIds",
+                "value": "",
+                "type": "query",
+                "description": "Timeline `savedObjectId` value(s). Returns notes that reference those timelines. When present, list-mode pagination parameters are not used; up to the server's hard limit of notes may be returned.\n"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page number for list mode (when `documentIds` and `savedObjectIds` are omitted). Passed as a string; default 1.\n"
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "Page size for list mode (when `documentIds` and `savedObjectIds` are omitted). Passed as a string; default 10.\n"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search string for saved-objects find (list mode only)."
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by for saved-objects find (list mode only)."
+              },
+              {
+                "name": "sortOrder",
+                "value": "desc",
+                "type": "query",
+                "description": "Sort order (`asc` or `desc`) for saved-objects find (list mode only)."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Kuery filter string combined with other list-mode filters (for example `createdByFilter` or `associatedFilter`). Typed as a string for API compatibility; interpreted by the saved-objects layer (list mode only).\n"
+              },
+              {
+                "name": "createdByFilter",
+                "value": "f1c2d3e4-5b6a-7890-abcd-ef1234567890",
+                "type": "query",
+                "description": "Kibana user profile **UID** (UUID). The server resolves the user's display identifiers and returns notes whose `createdBy` matches any of them (list mode only).\n"
+              },
+              {
+                "name": "associatedFilter",
+                "value": "",
+                "type": "query",
+                "description": "Restricts notes by how they relate to a Timeline and/or an event document (list mode only). Some values apply extra filtering after the query. Ignored when `documentIds` or `savedObjectIds` is used.\n"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/note</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nReturns Security Timeline notes as saved objects.\n\n**Query modes (mutually exclusive branches on the server):**\n\n1. **`documentIds` is set** — Returns notes whose `eventId` matches the given Elasticsearch document `_id` (single string"
+        },
+        {
+          "info": {
+            "name": "Add or update a note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{kibana_url}/api/note",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb patch\">patch</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/note</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreates a new note or updates an existing one.\n\n**Create:** Send `note` and omit `noteId` to create a new saved object.\n\n**Update:** Send `note` with the changed fields and set `noteId` to the note's saved object ID. Optionally in"
+        },
+        {
+          "info": {
+            "name": "Delete one or more notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/note",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/note</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDeletes notes by saved object ID. Send either `noteId` (single ID) or `noteIds` (array of IDs) in the JSON body.\n\nThe response has HTTP 200 with an empty body on success.\n\nRequires the **Timeline and Notes** write privilege (`no"
+        },
+        {
+          "info": {
+            "name": "Pin/unpin an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{kibana_url}/api/pinned_event",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb patch\">patch</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/pinned_event</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nPin/unpin an event to/from an existing Timeline."
+        },
+        {
+          "info": {
+            "name": "Get Timeline or Timeline template details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/timeline",
+            "params": [
+              {
+                "name": "template_timeline_id",
+                "value": "",
+                "type": "query",
+                "description": "The `savedObjectId` of the Timeline template to retrieve."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The `savedObjectId` of the Timeline to retrieve."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/timeline</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the details of an existing saved Timeline or Timeline template."
+        },
+        {
+          "info": {
+            "name": "Create a Timeline or Timeline template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/timeline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/timeline</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new Timeline or Timeline template."
+        },
+        {
+          "info": {
+            "name": "Update a Timeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{kibana_url}/api/timeline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb patch\">patch</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/timeline</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an existing Timeline. You can update the title, description, date range, pinned events, pinned queries, and/or pinned saved queries of an existing Timeline."
+        },
+        {
+          "info": {
+            "name": "Delete Timelines or Timeline templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/timeline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/timeline</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete one or more Timelines or Timeline templates."
+        },
+        {
+          "info": {
+            "name": "Copies timeline or timeline template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/timeline/_copy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/timeline/_copy</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCopies and returns a timeline or timeline template.\n"
+        },
+        {
+          "info": {
+            "name": "Get draft Timeline or Timeline template details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/timeline/_draft",
+            "params": [
+              {
+                "name": "timelineType",
+                "value": "",
+                "type": "query",
+                "description": "Which draft to load (`default` investigation timeline or `template` timeline template)."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/timeline/_draft</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the details of the draft Timeline  or Timeline template for the current user. If the user doesn't have a draft Timeline, an empty Timeline is returned."
+        },
+        {
+          "info": {
+            "name": "Create a clean draft Timeline or Timeline template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/timeline/_draft",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/timeline/_draft</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a clean draft Timeline or Timeline template for the current user.\n> info\n> If the user already has a draft Timeline, the existing draft Timeline is cleared and returned.\n"
+        },
+        {
+          "info": {
+            "name": "Export Timelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/timeline/_export",
+            "params": [
+              {
+                "name": "file_name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the file to export"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/timeline/_export</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nExport Timelines as an NDJSON file."
+        },
+        {
+          "info": {
+            "name": "Favorite a Timeline or Timeline template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{kibana_url}/api/timeline/_favorite",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb patch\">patch</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/timeline/_favorite</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nFavorite a Timeline or Timeline template for the current user."
+        },
+        {
+          "info": {
+            "name": "Import Timelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/timeline/_import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/timeline/_import</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nImport Timelines."
+        },
+        {
+          "info": {
+            "name": "Install prepackaged Timelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/timeline/_prepackaged",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/timeline/_prepackaged</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nInstall or update prepackaged Timelines."
+        },
+        {
+          "info": {
+            "name": "Resolve a Timeline or Timeline template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/timeline/resolve",
+            "params": [
+              {
+                "name": "template_timeline_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the template timeline to resolve"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the timeline to resolve"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/timeline/resolve</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nResolve a Timeline or Timeline template, surfacing outcomes such as `exactMatch`, `aliasMatch`, or `conflict` when object IDs have been remapped during upgrades or imports. Provide **either** `id` for default Timelines or "
+        },
+        {
+          "info": {
+            "name": "Get Timelines or Timeline templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/timelines",
+            "params": [
+              {
+                "name": "only_user_favorite",
+                "value": "",
+                "type": "query",
+                "description": "If `true`, only Timelines that the current user has marked as favorite are returned."
+              },
+              {
+                "name": "timeline_type",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to `default` investigation timelines or `template` timeline templates."
+              },
+              {
+                "name": "sort_field",
+                "value": "",
+                "type": "query",
+                "description": "Field used to sort the list (`title`, `description`, `updated`, or `created`)."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Whether to sort the results `ascending` or `descending`"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "How many results should returned at once"
+              },
+              {
+                "name": "page_index",
+                "value": "",
+                "type": "query",
+                "description": "How many pages should be skipped"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Allows to search for timelines by their title"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by timeline lifecycle state (`active`, `draft`, or `immutable`)."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/timelines</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all saved Timelines or Timeline templates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

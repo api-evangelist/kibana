@@ -1,0 +1,4411 @@
+{
+  "item": [
+    {
+      "id": "c7f8ae17-5714-47ee-9923-f850e5aa2350",
+      "name": "Security AI Assistant API",
+      "description": {
+        "content": "Manage and interact with Security Assistant resources.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d064bbba-3f91-4fdc-a9f2-3f5689ee6fc2",
+          "name": "Apply a bulk action to anonymization fields",
+          "request": {
+            "name": "Apply a bulk action to anonymization fields",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/anonymization_fields/_bulk_action</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nApply a bulk action to multiple anonymization fields. The bulk action is applied to all anonymization fields that match the filter or to the list of anonymization fields by their IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "anonymization_fields",
+                "_bulk_action"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"create\": [\n    {\n      \"field\": \"<string>\",\n      \"allowed\": \"<boolean>\",\n      \"anonymized\": \"<boolean>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"allowed\": \"<boolean>\",\n      \"anonymized\": \"<boolean>\"\n    }\n  ],\n  \"delete\": {\n    \"ids\": [\n      \"<string>\"\n    ],\n    \"query\": \"<string>\"\n  },\n  \"update\": [\n    {\n      \"id\": \"<string>\",\n      \"allowed\": \"<boolean>\",\n      \"anonymized\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"allowed\": \"<boolean>\",\n      \"anonymized\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7fb189e0-36e5-46ae-8bfc-f7ba2a0ad6a6",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "anonymization_fields",
+                    "_bulk_action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"create\": [\n    {\n      \"allowed\": true,\n      \"anonymized\": false,\n      \"field\": \"host.name\"\n    },\n    {\n      \"allowed\": false,\n      \"anonymized\": true,\n      \"field\": \"user.name\"\n    }\n  ],\n  \"delete\": {\n    \"ids\": [\n      \"field5\",\n      \"field6\"\n    ],\n    \"query\": \"field: host.name\"\n  },\n  \"update\": [\n    {\n      \"allowed\": true,\n      \"anonymized\": false,\n      \"id\": \"field8\"\n    },\n    {\n      \"allowed\": false,\n      \"anonymized\": true,\n      \"id\": \"field9\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"anonymization_fields_count\": 4,\n  \"attributes\": {\n    \"results\": {\n      \"created\": [\n        {\n          \"allowed\": false,\n          \"anonymized\": true,\n          \"createdAt\": \"2023-10-31T12:00:00Z\",\n          \"createdBy\": \"user1\",\n          \"field\": \"host.name\",\n          \"id\": \"field2\",\n          \"namespace\": \"default\",\n          \"timestamp\": \"2023-10-31T12:00:00Z\",\n          \"updatedAt\": \"2023-10-31T12:00:00Z\",\n          \"updatedBy\": \"user1\"\n        }\n      ],\n      \"deleted\": [\n        \"field3\"\n      ],\n      \"skipped\": [\n        {\n          \"id\": \"field4\",\n          \"name\": \"user.name\",\n          \"skip_reason\": \"ANONYMIZATION_FIELD_NOT_MODIFIED\"\n        }\n      ],\n      \"updated\": [\n        {\n          \"allowed\": true,\n          \"anonymized\": false,\n          \"createdAt\": \"2023-10-31T12:00:00Z\",\n          \"createdBy\": \"user1\",\n          \"field\": \"url.domain\",\n          \"id\": \"field8\",\n          \"namespace\": \"default\",\n          \"timestamp\": \"2023-10-31T12:00:00Z\",\n          \"updatedAt\": \"2023-10-31T12:00:00Z\",\n          \"updatedBy\": \"user1\"\n        }\n      ]\n    },\n    \"summary\": {\n      \"failed\": 0,\n      \"skipped\": 1,\n      \"succeeded\": 3,\n      \"total\": 4\n    }\n  },\n  \"message\": \"Bulk action completed successfully\",\n  \"status_code\": 200,\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78ebfe96-ef7e-404c-8651-cd6b784fcea0",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "anonymization_fields",
+                    "_bulk_action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"create\": [\n    {\n      \"allowed\": true,\n      \"anonymized\": false,\n      \"field\": \"host.name\"\n    },\n    {\n      \"allowed\": false,\n      \"anonymized\": true,\n      \"field\": \"user.name\"\n    }\n  ],\n  \"delete\": {\n    \"ids\": [\n      \"field5\",\n      \"field6\"\n    ],\n    \"query\": \"field: host.name\"\n  },\n  \"update\": [\n    {\n      \"allowed\": true,\n      \"anonymized\": false,\n      \"id\": \"field8\"\n    },\n    {\n      \"allowed\": false,\n      \"anonymized\": true,\n      \"id\": \"field9\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request body\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80d132ad-5f0b-47eb-b97d-65fb7197c29e",
+          "name": "Get anonymization fields",
+          "request": {
+            "name": "Get anonymization fields",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/anonymization_fields/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all anonymization fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "anonymization_fields",
+                "_find"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Search query"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_field",
+                  "value": "<string>",
+                  "description": "Field to sort by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Sort order"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "AnonymizationFields per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "all_data",
+                  "value": "<boolean>",
+                  "description": "If true, additionally fetch all anonymization fields, otherwise fetch only the provided page"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10abd29a-66dc-4bb4-8e4e-db4c0677ecc7",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "anonymization_fields",
+                    "_find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "field"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "anonymized"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "allowed"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "field: \"user.name\""
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "all_data",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aggregations\": {\n    \"field_status\": {\n      \"buckets\": {\n        \"allowed\": {\n          \"doc_count\": 1\n        },\n        \"anonymized\": {\n          \"doc_count\": 1\n        },\n        \"denied\": {\n          \"doc_count\": 1\n        }\n      }\n    }\n  },\n  \"all\": [\n    {\n      \"allowed\": true,\n      \"anonymized\": true,\n      \"createdAt\": \"2023-10-31T12:00:00Z\",\n      \"createdBy\": \"user1\",\n      \"field\": \"user.name\",\n      \"id\": \"1\",\n      \"namespace\": \"default\",\n      \"timestamp\": \"2023-10-31T12:00:00Z\",\n      \"updatedAt\": \"2023-10-31T12:00:00Z\",\n      \"updatedBy\": \"user1\"\n    }\n  ],\n  \"data\": [\n    {\n      \"allowed\": true,\n      \"anonymized\": true,\n      \"createdAt\": \"2023-10-31T12:00:00Z\",\n      \"createdBy\": \"user1\",\n      \"field\": \"user.name\",\n      \"id\": \"1\",\n      \"namespace\": \"default\",\n      \"timestamp\": \"2023-10-31T12:00:00Z\",\n      \"updatedAt\": \"2023-10-31T12:00:00Z\",\n      \"updatedBy\": \"user1\"\n    }\n  ],\n  \"page\": 1,\n  \"perPage\": 20,\n  \"total\": 100\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "350c6692-4f78-4148-b1fc-af5564541592",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "anonymization_fields",
+                    "_find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "field"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "anonymized"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "allowed"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "field: \"user.name\""
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "all_data",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request parameters\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e48c707-0de7-4984-bc78-c8e933d1b8a1",
+          "name": "Create a model response",
+          "request": {
+            "name": "Create a model response",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/chat/complete</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a model response for the given chat conversation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "chat",
+                "complete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "content_references_disabled",
+                  "value": "false",
+                  "description": "If true, the response will not include content references."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"data\": {\n        \"key_0\": 7684.308110318978,\n        \"key_1\": true,\n        \"key_2\": 9604\n      },\n      \"fields_to_anonymize\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": \"<string>\",\n      \"data\": {\n        \"key_0\": 3743,\n        \"key_1\": 3903.988136126134\n      },\n      \"fields_to_anonymize\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"persist\": \"<boolean>\",\n  \"connectorId\": \"<string>\",\n  \"conversationId\": \"<nonempty>\",\n  \"isStream\": \"<boolean>\",\n  \"langSmithApiKey\": \"<string>\",\n  \"langSmithProject\": \"<string>\",\n  \"model\": \"<string>\",\n  \"promptId\": \"<string>\",\n  \"responseLanguage\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "db3356e1-10b9-4a7d-b32f-79f4b1f79e82",
+              "name": "Indicates a successful model response call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "chat",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "content_references_disabled",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"connectorId\": \"conn-001\",\n  \"conversationId\": \"abc123\",\n  \"isStream\": true,\n  \"langSmithApiKey\": \"<LANGSMITH_API_KEY>\",\n  \"langSmithProject\": \"security_ai_project\",\n  \"messages\": [\n    {\n      \"content\": \"What are some common phishing techniques?\",\n      \"data\": {\n        \"user_id\": \"user_789\"\n      },\n      \"fields_to_anonymize\": [\n        \"user.name\",\n        \"source.ip\"\n      ],\n      \"role\": \"user\"\n    }\n  ],\n  \"model\": \"gpt-4\",\n  \"persist\": true,\n  \"promptId\": \"prompt_456\",\n  \"responseLanguage\": \"en\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "(streaming binary response)",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cbc8085d-d983-4646-a696-289c4f603f78",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "chat",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "content_references_disabled",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"connectorId\": \"conn-001\",\n  \"conversationId\": \"abc123\",\n  \"isStream\": true,\n  \"langSmithApiKey\": \"<LANGSMITH_API_KEY>\",\n  \"langSmithProject\": \"security_ai_project\",\n  \"messages\": [\n    {\n      \"content\": \"What are some common phishing techniques?\",\n      \"data\": {\n        \"user_id\": \"user_789\"\n      },\n      \"fields_to_anonymize\": [\n        \"user.name\",\n        \"source.ip\"\n      ],\n      \"role\": \"user\"\n    }\n  ],\n  \"model\": \"gpt-4\",\n  \"persist\": true,\n  \"promptId\": \"prompt_456\",\n  \"responseLanguage\": \"en\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request payload.\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5607f529-bd0b-4c3a-bd54-f4502915bb65",
+          "name": "Delete conversations",
+          "request": {
+            "name": "Delete conversations",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/current_user/conversations</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nThis endpoint allows users to permanently delete all conversations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "current_user",
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"excludedIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "66380f78-3940-406d-916f-54baa95b7af9",
+              "name": "Indicates a successful call. The conversations were deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "current_user",
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"excludedIds\": [\n    \"abc123\",\n    \"def456\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"failures\": [],\n  \"success\": true,\n  \"totalDeleted\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8300636-2ade-48dc-8461-7e9ed87655dc",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "current_user",
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"excludedIds\": [\n    \"abc123\",\n    \"def456\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid conversation ID\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b1f2001-ba5a-4188-a558-e3d8b58f36e8",
+          "name": "Create a conversation",
+          "request": {
+            "name": "Create a conversation",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/current_user/conversations</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new Security AI Assistant conversation. This endpoint allows the user to initiate a conversation with the Security AI Assistant by providing the required parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "current_user",
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"apiConfig\": {\n    \"connectorId\": \"<string>\",\n    \"actionTypeId\": \"<string>\",\n    \"defaultSystemPromptId\": \"<string>\",\n    \"model\": \"<string>\",\n    \"provider\": \"<string>\"\n  },\n  \"category\": \"<string>\",\n  \"excludeFromLastConversationStorage\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"messages\": [\n    {\n      \"timestamp\": \"<nonempty>\",\n      \"content\": \"<string>\",\n      \"role\": \"<string>\",\n      \"id\": \"<nonempty>\",\n      \"isError\": \"<boolean>\",\n      \"metadata\": {\n        \"contentReferences\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"interruptResumeValue\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"interruptValue\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"reader\": {\n        \"key_0\": \"string\"\n      },\n      \"refusal\": \"<string>\",\n      \"traceData\": {\n        \"traceId\": \"<string>\",\n        \"transactionId\": \"<string>\"\n      },\n      \"user\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    },\n    {\n      \"timestamp\": \"<nonempty>\",\n      \"content\": \"<string>\",\n      \"role\": \"<string>\",\n      \"id\": \"<nonempty>\",\n      \"isError\": \"<boolean>\",\n      \"metadata\": {\n        \"contentReferences\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"interruptResumeValue\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"interruptValue\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"reader\": {\n        \"key_0\": \"string\",\n        \"key_1\": false\n      },\n      \"refusal\": \"<string>\",\n      \"traceData\": {\n        \"traceId\": \"<string>\",\n        \"transactionId\": \"<string>\"\n      },\n      \"user\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    }\n  ],\n  \"replacements\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fa7113ff-f119-41ee-bbb9-f0d00e035812",
+              "name": "Indicates a successful call. The conversation was created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "current_user",
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiConfig\": {\n    \"actionTypeId\": \"67890\",\n    \"connectorId\": \"12345\"\n  },\n  \"category\": \"assistant\",\n  \"excludeFromLastConversationStorage\": false,\n  \"messages\": [\n    {\n      \"content\": \"Hello, how can I assist you today?\",\n      \"role\": \"system\",\n      \"timestamp\": \"2023-10-31T12:00:00Z\"\n    }\n  ],\n  \"replacements\": {},\n  \"title\": \"Security Discussion\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiConfig\": {\n    \"actionTypeId\": \"67890\",\n    \"connectorId\": \"12345\"\n  },\n  \"category\": \"assistant\",\n  \"createdAt\": \"2023-10-31T12:01:00Z\",\n  \"createdBy\": {\n    \"id\": \"user1\",\n    \"name\": \"John Doe\"\n  },\n  \"excludeFromLastConversationStorage\": false,\n  \"id\": \"abc123\",\n  \"messages\": [\n    {\n      \"content\": \"Hello, how can I assist you today?\",\n      \"role\": \"system\",\n      \"timestamp\": \"2023-10-31T12:00:00Z\"\n    }\n  ],\n  \"namespace\": \"default\",\n  \"replacements\": {},\n  \"title\": \"Security Discussion\",\n  \"updatedAt\": \"2023-10-31T12:01:00Z\",\n  \"users\": [\n    {\n      \"id\": \"user1\",\n      \"name\": \"John Doe\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5ede63a-b1bd-447c-baf7-bccea441a7a5",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "current_user",
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiConfig\": {\n    \"actionTypeId\": \"67890\",\n    \"connectorId\": \"12345\"\n  },\n  \"category\": \"assistant\",\n  \"excludeFromLastConversationStorage\": false,\n  \"messages\": [\n    {\n      \"content\": \"Hello, how can I assist you today?\",\n      \"role\": \"system\",\n      \"timestamp\": \"2023-10-31T12:00:00Z\"\n    }\n  ],\n  \"replacements\": {},\n  \"title\": \"Security Discussion\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Missing required parameter: title\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3033a8b9-f3d6-46b7-8a8b-7a1afeb431df",
+          "name": "Get conversations",
+          "request": {
+            "name": "Get conversations",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/current_user/conversations/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all conversations for the current user. This endpoint allows users to search, filter, sort, and paginate through their conversations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "current_user",
+                "conversations",
+                "_find"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "A list of fields to include in the response. If omitted, all fields are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "A list of fields to include in the response. If omitted, all fields are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "A search query to filter the conversations. Can match against titles, messages, or other conversation attributes."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_field",
+                  "value": "<string>",
+                  "description": "The field by which to sort the results. Valid fields are `created_at`, `title`, and `updated_at`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "The order in which to sort the results. Can be either `asc` for ascending or `desc` for descending."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number of the results to retrieve. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "The number of conversations to return per page. Default is 20."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_owner",
+                  "value": "false",
+                  "description": "Whether to return conversations that the current user owns. If true, only conversations owned by the user are returned."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9fc4bf32-fe2f-4406-91df-34ba54ee751d",
+              "name": "Successful response, returns a paginated list of conversations matching the specified criteria.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "current_user",
+                    "conversations",
+                    "_find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "title"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "Security Issue"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "is_owner",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"category\": \"assistant\",\n      \"createdAt\": \"2023-10-31T12:00:00Z\",\n      \"createdBy\": {\n        \"id\": \"user1\",\n        \"name\": \"John Doe\"\n      },\n      \"excludeFromLastConversationStorage\": false,\n      \"id\": \"conv-abc123\",\n      \"messages\": [],\n      \"namespace\": \"default\",\n      \"replacements\": {},\n      \"title\": \"Security Discussion\",\n      \"updatedAt\": \"2023-10-31T12:05:00Z\",\n      \"users\": [\n        {\n          \"id\": \"user1\",\n          \"name\": \"John Doe\"\n        }\n      ]\n    }\n  ],\n  \"page\": 1,\n  \"perPage\": 20,\n  \"total\": 5\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16349b99-1b33-43c2-8bfc-96539232dfd2",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "current_user",
+                    "conversations",
+                    "_find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "title"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "Security Issue"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "is_owner",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid filter parameter.\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23d5ed5e-baf3-4ac9-91ca-1f36f7fef335",
+          "name": "Delete a conversation",
+          "request": {
+            "name": "Delete a conversation",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/current_user/conversations/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete an existing conversation using the conversation ID. This endpoint allows users to permanently delete a conversation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "current_user",
+                "conversations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<nonempty>",
+                  "key": "id",
+                  "description": "(Required) The conversation's `id` value."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0cc398a-ecee-4413-9653-36fc2ac3778d",
+              "name": "Indicates a successful call. The conversation was deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "current_user",
+                    "conversations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The conversation's `id` value."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiConfig\": {\n    \"actionTypeId\": \"67890\",\n    \"connectorId\": \"12345\"\n  },\n  \"category\": \"assistant\",\n  \"createdAt\": \"2023-10-31T12:01:00Z\",\n  \"createdBy\": {\n    \"id\": \"user1\",\n    \"name\": \"John Doe\"\n  },\n  \"excludeFromLastConversationStorage\": false,\n  \"id\": \"abc123\",\n  \"messages\": [\n    {\n      \"content\": \"The conversation has been deleted.\",\n      \"role\": \"system\",\n      \"timestamp\": \"2023-10-31T12:35:00Z\"\n    }\n  ],\n  \"namespace\": \"default\",\n  \"replacements\": {},\n  \"title\": \"Deleted Security Discussion\",\n  \"updatedAt\": \"2023-10-31T12:01:00Z\",\n  \"users\": [\n    {\n      \"id\": \"user1\",\n      \"name\": \"John Doe\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "220ae955-6cac-4918-80ab-250e30ec65b0",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "current_user",
+                    "conversations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The conversation's `id` value."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid conversation ID\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46e5c4a6-ad9b-456c-9d5a-265459102e22",
+          "name": "Get a conversation",
+          "request": {
+            "name": "Get a conversation",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/current_user/conversations/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the details of an existing conversation using the conversation ID. This allows users to fetch the specific conversation data by its unique ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "current_user",
+                "conversations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<nonempty>",
+                  "key": "id",
+                  "description": "(Required) The conversation's `id` value, a unique identifier for the conversation."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "09a27539-03a3-4574-91e0-f27814b6c9d3",
+              "name": "Indicates a successful call. The conversation details are returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "current_user",
+                    "conversations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The conversation's `id` value, a unique identifier for the conversation."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiConfig\": {\n    \"actionTypeId\": \"67890\",\n    \"connectorId\": \"12345\"\n  },\n  \"category\": \"assistant\",\n  \"createdAt\": \"2023-10-31T12:01:00Z\",\n  \"createdBy\": {\n    \"id\": \"user1\",\n    \"name\": \"John Doe\"\n  },\n  \"excludeFromLastConversationStorage\": false,\n  \"id\": \"abc123\",\n  \"messages\": [\n    {\n      \"content\": \"Hello, how can I assist you today?\",\n      \"role\": \"system\",\n      \"timestamp\": \"2023-10-31T12:00:00Z\"\n    }\n  ],\n  \"namespace\": \"default\",\n  \"replacements\": {},\n  \"title\": \"Security Discussion\",\n  \"updatedAt\": \"2023-10-31T12:01:00Z\",\n  \"users\": [\n    {\n      \"id\": \"user1\",\n      \"name\": \"John Doe\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cd8bdc1-4666-4b84-8552-aeffcf3c3900",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "current_user",
+                    "conversations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The conversation's `id` value, a unique identifier for the conversation."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid conversation ID\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9dc956d-e55c-4762-a1ed-9d5bcbd83bbf",
+          "name": "Update a conversation",
+          "request": {
+            "name": "Update a conversation",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/current_user/conversations/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an existing conversation using the conversation ID. This endpoint allows users to modify the details of an existing conversation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "current_user",
+                "conversations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<nonempty>",
+                  "key": "id",
+                  "description": "(Required) The conversation's `id` value."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<nonempty>\",\n  \"apiConfig\": {\n    \"connectorId\": \"<string>\",\n    \"actionTypeId\": \"<string>\",\n    \"defaultSystemPromptId\": \"<string>\",\n    \"model\": \"<string>\",\n    \"provider\": \"<string>\"\n  },\n  \"category\": \"<string>\",\n  \"excludeFromLastConversationStorage\": \"<boolean>\",\n  \"messages\": [\n    {\n      \"timestamp\": \"<nonempty>\",\n      \"content\": \"<string>\",\n      \"role\": \"<string>\",\n      \"id\": \"<nonempty>\",\n      \"isError\": \"<boolean>\",\n      \"metadata\": {\n        \"contentReferences\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"interruptResumeValue\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"interruptValue\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"reader\": {\n        \"key_0\": 7074\n      },\n      \"refusal\": \"<string>\",\n      \"traceData\": {\n        \"traceId\": \"<string>\",\n        \"transactionId\": \"<string>\"\n      },\n      \"user\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    },\n    {\n      \"timestamp\": \"<nonempty>\",\n      \"content\": \"<string>\",\n      \"role\": \"<string>\",\n      \"id\": \"<nonempty>\",\n      \"isError\": \"<boolean>\",\n      \"metadata\": {\n        \"contentReferences\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"interruptResumeValue\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"interruptValue\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"reader\": {\n        \"key_0\": 7770,\n        \"key_1\": 6095.587648441739\n      },\n      \"refusal\": \"<string>\",\n      \"traceData\": {\n        \"traceId\": \"<string>\",\n        \"transactionId\": \"<string>\"\n      },\n      \"user\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    }\n  ],\n  \"replacements\": {\n    \"key_0\": \"<string>\"\n  },\n  \"title\": \"<string>\",\n  \"users\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d0d18ef9-c0fb-42c1-93d5-ce913c2231a7",
+              "name": "Indicates a successful call. The conversation was updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "current_user",
+                    "conversations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The conversation's `id` value."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiConfig\": {\n    \"actionTypeId\": 9876,\n    \"connectorId\": \"54321\"\n  },\n  \"category\": \"insights\",\n  \"excludeFromLastConversationStorage\": true,\n  \"messages\": [\n    {\n      \"content\": \"The issue was resolved.\",\n      \"role\": \"assistant\",\n      \"timestamp\": \"2023-10-31T12:30:00Z\"\n    }\n  ],\n  \"replacements\": {},\n  \"title\": \"Updated Security Discussion\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiConfig\": {\n    \"actionTypeId\": 9876,\n    \"connectorId\": \"54321\"\n  },\n  \"category\": \"insights\",\n  \"createdAt\": \"2023-10-31T12:01:00Z\",\n  \"createdBy\": {\n    \"id\": \"user1\",\n    \"name\": \"John Doe\"\n  },\n  \"excludeFromLastConversationStorage\": true,\n  \"id\": \"abc123\",\n  \"messages\": [\n    {\n      \"content\": \"The issue was resolved.\",\n      \"role\": \"assistant\",\n      \"timestamp\": \"2023-10-31T12:30:00Z\"\n    }\n  ],\n  \"namespace\": \"default\",\n  \"replacements\": {},\n  \"title\": \"Updated Security Discussion\",\n  \"updatedAt\": \"2023-10-31T12:31:00Z\",\n  \"users\": [\n    {\n      \"id\": \"user1\",\n      \"name\": \"John Doe\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82d55625-0e2d-4c5d-b8e8-a9352d9f38db",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "current_user",
+                    "conversations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The conversation's `id` value."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiConfig\": {\n    \"actionTypeId\": 9876,\n    \"connectorId\": \"54321\"\n  },\n  \"category\": \"insights\",\n  \"excludeFromLastConversationStorage\": true,\n  \"messages\": [\n    {\n      \"content\": \"The issue was resolved.\",\n      \"role\": \"assistant\",\n      \"timestamp\": \"2023-10-31T12:30:00Z\"\n    }\n  ],\n  \"replacements\": {},\n  \"title\": \"Updated Security Discussion\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Missing required field: title\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83adf05e-f1d7-4490-8de2-dd3e900941c6",
+          "name": "Read a KnowledgeBase",
+          "request": {
+            "name": "Read a KnowledgeBase",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRead a single KB",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "knowledge_base"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "295957bd-3eca-4e93-aed5-efba1360fa8a",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defend_insights_exists\": true,\n  \"elser_exists\": false,\n  \"is_setup_available\": true,\n  \"is_setup_in_progress\": true,\n  \"product_documentation_status\": \"installed\",\n  \"security_labs_exists\": false,\n  \"user_data_exists\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65ab7d16-8e7d-4922-97db-e988ecfd7bb8",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid resource ID provided.\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c40ffd4-c9f9-4ee7-a549-bcf6b1f5e52d",
+          "name": "Create a KnowledgeBase",
+          "request": {
+            "name": "Create a KnowledgeBase",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a knowledge base. Use this endpoint when no specific resource identifier is needed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "knowledge_base"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "modelId",
+                  "value": "<string>",
+                  "description": "ELSER modelId to use when setting up the Knowledge Base. If not provided, a default model will be used."
+                },
+                {
+                  "disabled": false,
+                  "key": "ignoreSecurityLabs",
+                  "value": "false",
+                  "description": "Indicates whether we should or should not install Security Labs docs when setting up the Knowledge Base. Defaults to `false`."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b461a303-1071-4520-91d5-ef587167e133",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "modelId",
+                      "value": "elser-model-001"
+                    },
+                    {
+                      "key": "ignoreSecurityLabs",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7a46883-1a98-4323-9e0a-afe1e16a5394",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "modelId",
+                      "value": "elser-model-001"
+                    },
+                    {
+                      "key": "ignoreSecurityLabs",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"statusCode: 400 error: Bad Request message: \\\"[request query]: ignoreSecurityLabs: Invalid enum value. Expected 'true' | 'false', received 'yes', ignoreSecurityLabs: Expected boolean, received string\\\"\\n\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5339fef5-7d5f-4677-895b-deba68253668",
+          "name": "Read a KnowledgeBase for a resource",
+          "request": {
+            "name": "Read a KnowledgeBase for a resource",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/{resource}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRead a knowledge base with a specific resource identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "knowledge_base",
+                ":resource"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resource",
+                  "description": "(Required) The KnowledgeBase `resource` value."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fdadd926-befa-48b7-92b2-da2b1af85aba",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    ":resource"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resource",
+                      "description": "(Required) The KnowledgeBase `resource` value."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defend_insights_exists\": true,\n  \"elser_exists\": false,\n  \"is_setup_available\": true,\n  \"is_setup_in_progress\": true,\n  \"product_documentation_status\": \"installed\",\n  \"security_labs_exists\": false,\n  \"user_data_exists\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d7a6d50-24f4-4a37-926d-6753b36c9b91",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    ":resource"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resource",
+                      "description": "(Required) The KnowledgeBase `resource` value."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid resource ID provided.\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "732bd827-66ef-4fa5-b39d-689d6139b5aa",
+          "name": "Create a KnowledgeBase for a resource",
+          "request": {
+            "name": "Create a KnowledgeBase for a resource",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/{resource}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a knowledge base with a specific resource identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "knowledge_base",
+                ":resource"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "modelId",
+                  "value": "<string>",
+                  "description": "ELSER modelId to use when setting up the Knowledge Base. If not provided, a default model will be used."
+                },
+                {
+                  "disabled": false,
+                  "key": "ignoreSecurityLabs",
+                  "value": "false",
+                  "description": "Indicates whether we should or should not install Security Labs docs when setting up the Knowledge Base. Defaults to `false`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resource",
+                  "description": "(Required) The KnowledgeBase `resource` value."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44d03054-8518-42aa-ae1f-d251a6824205",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    ":resource"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "modelId",
+                      "value": "elser-model-001"
+                    },
+                    {
+                      "key": "ignoreSecurityLabs",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resource",
+                      "description": "(Required) The KnowledgeBase `resource` value."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f137aee5-dc19-467d-b91b-6da62b4870f2",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    ":resource"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "modelId",
+                      "value": "elser-model-001"
+                    },
+                    {
+                      "key": "ignoreSecurityLabs",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resource",
+                      "description": "(Required) The KnowledgeBase `resource` value."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"statusCode: 400 error: Bad Request message: \\\"[request query]: ignoreSecurityLabs: Invalid enum value. Expected 'true' | 'false', received 'yes', ignoreSecurityLabs: Expected boolean, received string\\\"\\n\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85b22464-f87f-4f44-81c9-c9d9c03503e7",
+          "name": "Create a Knowledge Base Entry",
+          "request": {
+            "name": "Create a Knowledge Base Entry",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/entries</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a Knowledge Base Entry",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "knowledge_base",
+                "entries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"kbResource\": \"<string>\",\n  \"name\": \"<string>\",\n  \"source\": \"<string>\",\n  \"text\": \"<string>\",\n  \"type\": \"<string>\",\n  \"global\": \"<boolean>\",\n  \"namespace\": \"<string>\",\n  \"users\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"required\": \"<boolean>\",\n  \"vector\": {\n    \"modelId\": \"<string>\",\n    \"tokens\": {\n      \"key_0\": \"<number>\",\n      \"key_1\": \"<number>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4d70730-2155-401f-8be0-1878b16f0e2e",
+              "name": "Successful request returning Knowledge Base Entries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    "entries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"kbResource\": \"user\",\n  \"name\": \"How to reset a password\",\n  \"source\": \"manual\",\n  \"text\": \"To reset your password, go to the settings page and click 'Reset Password'.\",\n  \"type\": \"document\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"2024-01-15T10:00:00.000Z\",\n  \"createdBy\": \"user@example.com\",\n  \"global\": false,\n  \"id\": \"12345\",\n  \"kbResource\": \"user\",\n  \"name\": \"How to reset a password\",\n  \"namespace\": \"default\",\n  \"source\": \"manual\",\n  \"text\": \"To reset your password, go to the settings page and click 'Reset Password'.\",\n  \"type\": \"document\",\n  \"updatedAt\": \"2024-01-15T10:00:00.000Z\",\n  \"updatedBy\": \"user@example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5857478-963f-4131-ac5d-8ffcb6b17643",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    "entries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"kbResource\": \"user\",\n  \"name\": \"How to reset a password\",\n  \"source\": \"manual\",\n  \"text\": \"To reset your password, go to the settings page and click 'Reset Password'.\",\n  \"type\": \"document\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid input\",\n  \"message\": \"The 'name' field is required.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39f5dbc9-65ff-4e06-a93e-951cfb649077",
+          "name": "Applies a bulk action to multiple Knowledge Base Entries",
+          "request": {
+            "name": "Applies a bulk action to multiple Knowledge Base Entries",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/entries/_bulk_action</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nThe bulk action is applied to all Knowledge Base Entries that match the filter or to the list of Knowledge Base Entries by their IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "knowledge_base",
+                "entries",
+                "_bulk_action"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"create\": [\n    {\n      \"kbResource\": \"<string>\",\n      \"name\": \"<string>\",\n      \"source\": \"<string>\",\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"global\": \"<boolean>\",\n      \"namespace\": \"<string>\",\n      \"users\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"required\": \"<boolean>\",\n      \"vector\": {\n        \"modelId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"tokens\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"kbResource\": \"<string>\",\n      \"name\": \"<string>\",\n      \"source\": \"<string>\",\n      \"text\": \"<string>\",\n      \"type\": \"<string>\",\n      \"global\": \"<boolean>\",\n      \"namespace\": \"<string>\",\n      \"users\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"required\": \"<boolean>\",\n      \"vector\": {\n        \"modelId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"tokens\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"delete\": {\n    \"ids\": [\n      \"<string>\"\n    ],\n    \"query\": \"<string>\"\n  },\n  \"update\": [\n    {\n      \"id\": \"<nonempty>\",\n      \"kbResource\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"name\": \"<string>\",\n      \"source\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"text\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"type\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"global\": \"<boolean>\",\n      \"namespace\": \"<string>\",\n      \"users\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"required\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"vector\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    {\n      \"id\": \"<nonempty>\",\n      \"kbResource\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"name\": \"<string>\",\n      \"source\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"text\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"type\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"global\": \"<boolean>\",\n      \"namespace\": \"<string>\",\n      \"users\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"required\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"vector\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd481469-8935-4f7a-8317-550a274373e0",
+              "name": "Successful bulk operation request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    "entries",
+                    "_bulk_action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"create\": [\n    {\n      \"kbResource\": \"user\",\n      \"name\": \"New Entry\",\n      \"source\": \"manual\",\n      \"text\": \"This is the content of the new entry.\",\n      \"type\": \"document\"\n    }\n  ],\n  \"delete\": {\n    \"ids\": [\n      \"789\"\n    ]\n  },\n  \"update\": [\n    {\n      \"id\": \"123\",\n      \"kbResource\": \"user\",\n      \"name\": \"Updated Entry\",\n      \"source\": \"manual\",\n      \"text\": \"Updated content.\",\n      \"type\": \"document\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attributes\": {\n    \"results\": {\n      \"created\": [\n        {\n          \"createdAt\": \"2024-01-15T10:00:00.000Z\",\n          \"createdBy\": \"user@example.com\",\n          \"global\": false,\n          \"id\": \"456\",\n          \"kbResource\": \"user\",\n          \"name\": \"New Entry\",\n          \"namespace\": \"default\",\n          \"source\": \"manual\",\n          \"text\": \"This is the content of the new entry.\",\n          \"type\": \"document\",\n          \"updatedAt\": \"2024-01-15T10:00:00.000Z\",\n          \"updatedBy\": \"user@example.com\"\n        }\n      ],\n      \"deleted\": [\n        \"789\"\n      ],\n      \"skipped\": [],\n      \"updated\": [\n        {\n          \"createdAt\": \"2024-01-14T09:00:00.000Z\",\n          \"createdBy\": \"user@example.com\",\n          \"global\": false,\n          \"id\": \"123\",\n          \"kbResource\": \"user\",\n          \"name\": \"Updated Entry\",\n          \"namespace\": \"default\",\n          \"source\": \"manual\",\n          \"text\": \"Updated content.\",\n          \"type\": \"document\",\n          \"updatedAt\": \"2024-01-15T10:00:00.000Z\",\n          \"updatedBy\": \"user@example.com\"\n        }\n      ]\n    },\n    \"summary\": {\n      \"failed\": 0,\n      \"skipped\": 0,\n      \"succeeded\": 3,\n      \"total\": 3\n    }\n  },\n  \"knowledgeBaseEntriesCount\": 3,\n  \"message\": \"Bulk action completed successfully.\",\n  \"statusCode\": 200,\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "623af4a0-ccfd-4522-af00-7f29b4431aa3",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    "entries",
+                    "_bulk_action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"create\": [\n    {\n      \"kbResource\": \"user\",\n      \"name\": \"New Entry\",\n      \"source\": \"manual\",\n      \"text\": \"This is the content of the new entry.\",\n      \"type\": \"document\"\n    }\n  ],\n  \"delete\": {\n    \"ids\": [\n      \"789\"\n    ]\n  },\n  \"update\": [\n    {\n      \"id\": \"123\",\n      \"kbResource\": \"user\",\n      \"name\": \"Updated Entry\",\n      \"source\": \"manual\",\n      \"text\": \"Updated content.\",\n      \"type\": \"document\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request body.\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3bf9b15b-2ee4-46d5-9531-94fb12f21b95",
+          "name": "Finds Knowledge Base Entries that match the given query.",
+          "request": {
+            "name": "Finds Knowledge Base Entries that match the given query.",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/entries/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nFinds Knowledge Base Entries that match the given query.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "knowledge_base",
+                "entries",
+                "_find"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "A list of fields to include in the response. If not provided, all fields will be included."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "A list of fields to include in the response. If not provided, all fields will be included."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Search query to filter Knowledge Base Entries by specific criteria."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_field",
+                  "value": "<string>",
+                  "description": "Field to sort the Knowledge Base Entries by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Sort order for the results, either asc or desc."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results. Defaults to 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "Number of Knowledge Base Entries to return per page. Defaults to 20."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "516599f8-a7c5-42b4-83f0-2bc2da4fabd3",
+              "name": "Successful response containing the paginated Knowledge Base Entries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    "entries",
+                    "_find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "name"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "error handling"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "page",
+                      "value": "2"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"createdAt\": \"2024-01-15T10:00:00.000Z\",\n      \"createdBy\": \"user@example.com\",\n      \"global\": false,\n      \"id\": \"12345\",\n      \"kbResource\": \"user\",\n      \"name\": \"How to reset a password\",\n      \"namespace\": \"default\",\n      \"source\": \"manual\",\n      \"text\": \"To reset your password, go to the settings page and click 'Reset Password'.\",\n      \"type\": \"document\",\n      \"updatedAt\": \"2024-01-15T10:00:00.000Z\",\n      \"updatedBy\": \"user@example.com\"\n    }\n  ],\n  \"page\": 1,\n  \"perPage\": 20,\n  \"total\": 100\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f52dc874-9d8e-4c2d-83c9-49252a898d6b",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    "entries",
+                    "_find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "name"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "error handling"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "page",
+                      "value": "2"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid query parameter: sort_order\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a0ca54f-55b7-4536-9fda-954590057a37",
+          "name": "Deletes a single Knowledge Base Entry using the `id` field",
+          "request": {
+            "name": "Deletes a single Knowledge Base Entry using the `id` field",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/entries/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a Knowledge Base Entry by its unique `id`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "knowledge_base",
+                "entries",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<nonempty>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier (`id`) of the Knowledge Base Entry to delete."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3e86d17-488e-45f1-b4ad-187731cf325e",
+              "name": "Successful request returning the `id` of the deleted Knowledge Base Entry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    "entries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (`id`) of the Knowledge Base Entry to delete."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"12345\",\n  \"message\": \"Knowledge Base Entry successfully deleted.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b809be7e-338c-4c1f-858e-2ac11daace5d",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    "entries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (`id`) of the Knowledge Base Entry to delete."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No Knowledge Base Entry found with the provided `id`.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b411eec2-346b-4e89-a77c-01343031b61a",
+          "name": "Read a Knowledge Base Entry",
+          "request": {
+            "name": "Read a Knowledge Base Entry",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/entries/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a Knowledge Base Entry by its unique `id`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "knowledge_base",
+                "entries",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<nonempty>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier (`id`) of the Knowledge Base Entry to retrieve."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72be22d4-a1f6-4d7c-9817-292d9ce46238",
+              "name": "Successful request returning the requested Knowledge Base Entry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    "entries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (`id`) of the Knowledge Base Entry to retrieve."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"2024-01-15T10:00:00.000Z\",\n  \"createdBy\": \"user@example.com\",\n  \"global\": false,\n  \"id\": \"12345\",\n  \"kbResource\": \"user\",\n  \"name\": \"How to reset a password\",\n  \"namespace\": \"default\",\n  \"source\": \"manual\",\n  \"text\": \"To reset your password, go to the settings page and click 'Reset Password'.\",\n  \"type\": \"document\",\n  \"updatedAt\": \"2024-01-15T10:00:00.000Z\",\n  \"updatedBy\": \"user@example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57bcedca-ee88-43ae-a851-ad3c134b0b05",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    "entries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (`id`) of the Knowledge Base Entry to retrieve."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No Knowledge Base Entry found with the provided `id`.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47a108aa-09f0-4835-bb77-6d1199a32fd7",
+          "name": "Update a Knowledge Base Entry",
+          "request": {
+            "name": "Update a Knowledge Base Entry",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/entries/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an existing Knowledge Base Entry by its unique `id`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "knowledge_base",
+                "entries",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<nonempty>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier (`id`) of the Knowledge Base Entry to update."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"kbResource\": \"<string>\",\n  \"name\": \"<string>\",\n  \"source\": \"<string>\",\n  \"text\": \"<string>\",\n  \"type\": \"<string>\",\n  \"global\": \"<boolean>\",\n  \"namespace\": \"<string>\",\n  \"users\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"required\": \"<boolean>\",\n  \"vector\": {\n    \"modelId\": \"<string>\",\n    \"tokens\": {\n      \"key_0\": \"<number>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3593cb19-4098-493c-a7f5-2ce2907658ab",
+              "name": "Successful request returning the updated Knowledge Base Entry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    "entries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (`id`) of the Knowledge Base Entry to update."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"kbResource\": \"user\",\n  \"name\": \"How to reset a password (updated)\",\n  \"source\": \"manual\",\n  \"text\": \"Updated: go to settings and click Reset Password, then follow the on-screen instructions.\",\n  \"type\": \"document\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"2024-01-15T10:00:00.000Z\",\n  \"createdBy\": \"user@example.com\",\n  \"global\": false,\n  \"id\": \"12345\",\n  \"kbResource\": \"user\",\n  \"name\": \"How to reset a password (updated)\",\n  \"namespace\": \"default\",\n  \"source\": \"manual\",\n  \"text\": \"Updated: go to settings and click Reset Password, then follow the on-screen instructions.\",\n  \"type\": \"document\",\n  \"updatedAt\": \"2024-01-15T10:05:00.000Z\",\n  \"updatedBy\": \"user@example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e273bcff-a90d-4e85-af10-31db8f5597ed",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "knowledge_base",
+                    "entries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (`id`) of the Knowledge Base Entry to update."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"kbResource\": \"user\",\n  \"name\": \"How to reset a password (updated)\",\n  \"source\": \"manual\",\n  \"text\": \"Updated: go to settings and click Reset Password, then follow the on-screen instructions.\",\n  \"type\": \"document\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid input\",\n  \"message\": \"The 'text' field cannot be empty.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "777f8100-c7a5-4d4e-8110-b1b4067c5802",
+          "name": "Apply a bulk action to prompts",
+          "request": {
+            "name": "Apply a bulk action to prompts",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/prompts/_bulk_action</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nApply a bulk action to multiple prompts. The bulk action is applied to all prompts that match the filter or to the list of prompts by their IDs. This action allows for bulk create, update, or delete operations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "prompts",
+                "_bulk_action"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"create\": [\n    {\n      \"name\": \"<string>\",\n      \"content\": \"<string>\",\n      \"promptType\": \"<string>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"color\": \"<string>\",\n      \"consumer\": \"<string>\",\n      \"isDefault\": \"<boolean>\",\n      \"isNewConversationDefault\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"content\": \"<string>\",\n      \"promptType\": \"<string>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"color\": \"<string>\",\n      \"consumer\": \"<string>\",\n      \"isDefault\": \"<boolean>\",\n      \"isNewConversationDefault\": \"<boolean>\"\n    }\n  ],\n  \"delete\": {\n    \"ids\": [\n      \"<string>\"\n    ],\n    \"query\": \"<string>\"\n  },\n  \"update\": [\n    {\n      \"id\": \"<string>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"color\": \"<string>\",\n      \"consumer\": \"<string>\",\n      \"content\": \"<string>\",\n      \"isDefault\": \"<boolean>\",\n      \"isNewConversationDefault\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"categories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"color\": \"<string>\",\n      \"consumer\": \"<string>\",\n      \"content\": \"<string>\",\n      \"isDefault\": \"<boolean>\",\n      \"isNewConversationDefault\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d5597521-cb4a-413b-9932-3814d1eb4b6e",
+              "name": "Indicates a successful call with the results of the bulk action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "prompts",
+                    "_bulk_action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"create\": [\n    {\n      \"content\": \"Please verify the security settings.\",\n      \"name\": \"New Security Prompt\",\n      \"promptType\": \"system\"\n    }\n  ],\n  \"delete\": {\n    \"ids\": [\n      \"prompt1\",\n      \"prompt2\"\n    ]\n  },\n  \"update\": [\n    {\n      \"content\": \"Updated content for security prompt.\",\n      \"id\": \"prompt123\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attributes\": {\n    \"errors\": [],\n    \"results\": {\n      \"created\": [\n        {\n          \"content\": \"Please verify the security settings.\",\n          \"id\": \"prompt6\",\n          \"name\": \"New Security Prompt\",\n          \"promptType\": \"system\"\n        }\n      ],\n      \"deleted\": [\n        \"prompt2\",\n        \"prompt3\"\n      ],\n      \"skipped\": [\n        {\n          \"id\": \"prompt4\",\n          \"name\": \"Security Prompt\",\n          \"skip_reason\": \"PROMPT_FIELD_NOT_MODIFIED\"\n        }\n      ],\n      \"updated\": [\n        {\n          \"content\": \"Updated security settings prompt\",\n          \"id\": \"prompt1\",\n          \"name\": \"Security Prompt\",\n          \"promptType\": \"system\"\n        }\n      ]\n    },\n    \"summary\": {\n      \"failed\": 0,\n      \"skipped\": 1,\n      \"succeeded\": 4,\n      \"total\": 5\n    }\n  },\n  \"message\": \"Bulk action completed successfully.\",\n  \"prompts_count\": 5,\n  \"status_code\": 200,\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "542d6b33-d595-4627-9c00-6d4c6c460579",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "prompts",
+                    "_bulk_action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"create\": [\n    {\n      \"content\": \"Please verify the security settings.\",\n      \"name\": \"New Security Prompt\",\n      \"promptType\": \"system\"\n    }\n  ],\n  \"delete\": {\n    \"ids\": [\n      \"prompt1\",\n      \"prompt2\"\n    ]\n  },\n  \"update\": [\n    {\n      \"content\": \"Updated content for security prompt.\",\n      \"id\": \"prompt123\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid prompt ID or missing required fields.\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b91f97cb-950d-4eea-b419-ff6769fe5f05",
+          "name": "Get prompts",
+          "request": {
+            "name": "Get prompts",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/prompts/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all prompts based on optional filters, sorting, and pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security_ai_assistant",
+                "prompts",
+                "_find"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "List of specific fields to include in each returned prompt."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "List of specific fields to include in each returned prompt."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Search query string to filter prompts by matching fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_field",
+                  "value": "<string>",
+                  "description": "Field to sort prompts by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Sort order, either asc or desc."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "Number of prompts per page."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29c943fa-d9df-47f7-a451-66118004414e",
+              "name": "Successful response containing a list of prompts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "prompts",
+                    "_find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "name"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "content"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "error handling"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"categories\": [\n        \"troubleshooting\",\n        \"logging\"\n      ],\n      \"color\": \"#FF5733\",\n      \"consumer\": \"security\",\n      \"content\": \"If you encounter an error, check the logs and retry.\",\n      \"createdAt\": \"2025-04-20T21:00:00Z\",\n      \"createdBy\": \"jdoe\",\n      \"id\": \"prompt-123\",\n      \"isDefault\": true,\n      \"isNewConversationDefault\": false,\n      \"name\": \"Error Troubleshooting Prompt\",\n      \"namespace\": \"default\",\n      \"promptType\": \"standard\",\n      \"timestamp\": \"2025-04-30T22:30:00Z\",\n      \"updatedAt\": \"2025-04-30T22:45:00Z\",\n      \"updatedBy\": \"jdoe\",\n      \"users\": [\n        {\n          \"full_name\": \"John Doe\",\n          \"username\": \"jdoe\"\n        }\n      ]\n    }\n  ],\n  \"page\": 1,\n  \"perPage\": 20,\n  \"total\": 142\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5dde2c9a-450e-4322-9c91-984f1c1642c3",
+              "name": "Bad request due to invalid parameters or malformed query.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security_ai_assistant",
+                    "prompts",
+                    "_find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "id"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "name"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "content"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "error handling"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid sort order value provided.\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:5601",
+      "key": "kibana_url"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kibana_url}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "68ea31f6-16fb-47e2-b563-4a2942ff51b0",
+    "name": "Kibana APIs Actions Security AI Assistant API API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.\nThe API calls are stateless.\nEach request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the\nrequest.\nAPI requests return JSON output, which is a format that is machine-readable and works well for automation.\n\nTo interact with Kibana APIs, use the following operations:\n\n- GET: Fetches the information.\n- PATCH: Applies partial modifications to the existing information.\n- POST: Adds new information.\n- PUT: Updates the existing information.\n- DELETE: Removes the information.\n\nYou can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.\nFor example:\n\n```\nGET kbn:/api/data_views\n```\n\nFor more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).\n\nNOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.\n\n## Documentation source and versions\n\nThis documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.\nIt is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).\n\nThis documentation contains work-in-progress information for future Elastic Stack releases.\n\n\nContact Support:\n Name: Kibana Team",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Fleet enrollment API keys API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fleet enrollment API keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get enrollment API keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/enrollment_api_keys",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "kuery",
+                "value": "",
+                "type": "query",
+                "description": "A KQL query string to filter results"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/enrollment_api_keys</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nList all enrollment API keys.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all OR fleet-setup."
+        },
+        {
+          "info": {
+            "name": "Create an enrollment API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/enrollment_api_keys",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/enrollment_api_keys</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate an enrollment API key for a given agent policy.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all."
+        },
+        {
+          "info": {
+            "name": "Bulk revoke or delete enrollment API keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/enrollment_api_keys/_bulk_delete",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/enrollment_api_keys/_bulk_delete</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRevoke or delete multiple enrollment API keys.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all."
+        },
+        {
+          "info": {
+            "name": "Get an enrollment API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/enrollment_api_keys/:keyId",
+            "params": [
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the enrollment API key"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/enrollment_api_keys/{keyId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet an enrollment API key by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all OR fleet-setup."
+        },
+        {
+          "info": {
+            "name": "Revoke or delete an enrollment API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/fleet/enrollment_api_keys/:keyId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the enrollment API key"
+              },
+              {
+                "name": "forceDelete",
+                "value": "",
+                "type": "query",
+                "description": "When false (default), invalidate the API key and mark the token as inactive. When true, also delete the token document."
+              },
+              {
+                "name": "includeHidden",
+                "value": "",
+                "type": "query",
+                "description": "When true, allow deletion of hidden enrollment tokens (managed/agentless policies). Defaults to false."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/enrollment_api_keys/{keyId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRevoke or delete an enrollment API key by ID. Use `forceDelete=true` to remove the document.<br/><br/>[Required authorization] Route required privileges: fleet-agents-all."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

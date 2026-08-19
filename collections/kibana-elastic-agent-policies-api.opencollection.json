@@ -1,0 +1,480 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Elastic Agent policies API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Elastic Agent policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get agent policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/agent_policies",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order, ascending or descending"
+              },
+              {
+                "name": "showUpgradeable",
+                "value": "",
+                "type": "query",
+                "description": "When true, only show policies with upgradeable agents"
+              },
+              {
+                "name": "kuery",
+                "value": "",
+                "type": "query",
+                "description": "A KQL query string to filter results"
+              },
+              {
+                "name": "noAgentCount",
+                "value": "",
+                "type": "query",
+                "description": "use withAgentCount instead"
+              },
+              {
+                "name": "withAgentCount",
+                "value": "",
+                "type": "query",
+                "description": "get policies with agent count"
+              },
+              {
+                "name": "full",
+                "value": "",
+                "type": "query",
+                "description": "get full policies with package policies populated"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format for the response: simplified or legacy"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agent_policies</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nList all agent policies.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-agents-read OR fleet-setup."
+        },
+        {
+          "info": {
+            "name": "Create an agent policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/agent_policies",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "sys_monitoring",
+                "value": "",
+                "type": "query",
+                "description": "Whether to add the system integration to the new agent policy"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agent_policies</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new agent policy.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Bulk get agent policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/agent_policies/_bulk_get",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format for the response: simplified or legacy"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agent_policies/_bulk_get</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet multiple agent policies by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-agents-read OR fleet-setup."
+        },
+        {
+          "info": {
+            "name": "Get an agent policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/agent_policies/:agentPolicyId",
+            "params": [
+              {
+                "name": "agentPolicyId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the agent policy"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format for the response: simplified or legacy"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agent_policies/{agentPolicyId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet an agent policy by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-agents-read OR fleet-setup."
+        },
+        {
+          "info": {
+            "name": "Update an agent policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/fleet/agent_policies/:agentPolicyId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agentPolicyId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the agent policy"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format for the response: simplified or legacy"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agent_policies/{agentPolicyId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an agent policy by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Get auto upgrade agent status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/agent_policies/:agentPolicyId/auto_upgrade_agents_status",
+            "params": [
+              {
+                "name": "agentPolicyId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the agent policy"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agent_policies/{agentPolicyId}/auto_upgrade_agents_status</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the auto-upgrade status for agents assigned to an agent policy.<br/><br/>[Required authorization] Route required privileges: fleet-agents-read."
+        },
+        {
+          "info": {
+            "name": "Copy an agent policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/agent_policies/:agentPolicyId/copy",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agentPolicyId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the agent policy"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format for the response: simplified or legacy"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agent_policies/{agentPolicyId}/copy</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCopy an agent policy by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Download an agent policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/agent_policies/:agentPolicyId/download",
+            "params": [
+              {
+                "name": "agentPolicyId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the agent policy"
+              },
+              {
+                "name": "download",
+                "value": "",
+                "type": "query",
+                "description": "If true, returns the policy as a downloadable file"
+              },
+              {
+                "name": "standalone",
+                "value": "",
+                "type": "query",
+                "description": "If true, returns the policy formatted for standalone agents"
+              },
+              {
+                "name": "kubernetes",
+                "value": "",
+                "type": "query",
+                "description": "If true, returns the policy formatted for Kubernetes deployment"
+              },
+              {
+                "name": "revision",
+                "value": "",
+                "type": "query",
+                "description": "If provided, returns the policy at the specified revision. Cannot be used with standalone or kubernetes flags."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agent_policies/{agentPolicyId}/download</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDownload an agent policy by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-setup."
+        },
+        {
+          "info": {
+            "name": "Get a full agent policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/agent_policies/:agentPolicyId/full",
+            "params": [
+              {
+                "name": "agentPolicyId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the agent policy"
+              },
+              {
+                "name": "download",
+                "value": "",
+                "type": "query",
+                "description": "If true, returns the policy as a downloadable file"
+              },
+              {
+                "name": "standalone",
+                "value": "",
+                "type": "query",
+                "description": "If true, returns the policy formatted for standalone agents"
+              },
+              {
+                "name": "kubernetes",
+                "value": "",
+                "type": "query",
+                "description": "If true, returns the policy formatted for Kubernetes deployment"
+              },
+              {
+                "name": "revision",
+                "value": "",
+                "type": "query",
+                "description": "If provided, returns the policy at the specified revision. Cannot be used with standalone or kubernetes flags."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agent_policies/{agentPolicyId}/full</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a full agent policy by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read."
+        },
+        {
+          "info": {
+            "name": "Get outputs for an agent policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/agent_policies/:agentPolicyId/outputs",
+            "params": [
+              {
+                "name": "agentPolicyId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the agent policy"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agent_policies/{agentPolicyId}/outputs</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of outputs associated with agent policy by policy id.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read AND fleet-settings-read."
+        },
+        {
+          "info": {
+            "name": "Delete an agent policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/agent_policies/delete",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agent_policies/delete</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete an agent policy by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Get outputs for agent policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/agent_policies/outputs",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agent_policies/outputs</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of outputs associated with agent policies.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read AND fleet-settings-read."
+        },
+        {
+          "info": {
+            "name": "Get a full K8s agent manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/kubernetes",
+            "params": [
+              {
+                "name": "download",
+                "value": "",
+                "type": "query",
+                "description": "If true, returns the manifest as a downloadable file"
+              },
+              {
+                "name": "fleetServer",
+                "value": "",
+                "type": "query",
+                "description": "Fleet Server host URL to include in the manifest"
+              },
+              {
+                "name": "enrolToken",
+                "value": "",
+                "type": "query",
+                "description": "Enrollment token to include in the manifest"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/kubernetes</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the Kubernetes manifest for deploying Elastic Agent.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-setup."
+        },
+        {
+          "info": {
+            "name": "Download an agent manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/kubernetes/download",
+            "params": [
+              {
+                "name": "download",
+                "value": "",
+                "type": "query",
+                "description": "If true, returns the manifest as a downloadable file"
+              },
+              {
+                "name": "fleetServer",
+                "value": "",
+                "type": "query",
+                "description": "Fleet Server host URL to include in the manifest"
+              },
+              {
+                "name": "enrolToken",
+                "value": "",
+                "type": "query",
+                "description": "Enrollment token to include in the manifest"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/kubernetes/download</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDownload the Kubernetes manifest for deploying Elastic Agent.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-setup."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

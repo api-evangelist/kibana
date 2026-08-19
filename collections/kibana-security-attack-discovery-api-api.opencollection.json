@@ -1,0 +1,397 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Security Attack discovery API API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security Attack discovery API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bulk update Attack discoveries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/attack_discovery/_bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/_bulk</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nPerforms bulk updates on multiple Attack discoveries, including workflow status changes and visibility settings. This endpoint allows efficient batch processing of alert modifications without requiring individual A"
+        },
+        {
+          "info": {
+            "name": "Find Attack discoveries that match the search criteria",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/attack_discovery/_find",
+            "params": [
+              {
+                "name": "alert_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter results to Attack discoveries that include any of the provided alert IDs"
+              },
+              {
+                "name": "connector_names",
+                "value": "",
+                "type": "query",
+                "description": "Filter results to Attack discoveries created by any of the provided human readable connector names. Note that values must match the human readable `connector_name` property of an Attack discovery, e.g. \"GPT-5 Chat\", which are distinct from `connector_id` values used to generate Attack discoveries."
+              },
+              {
+                "name": "enable_field_rendering",
+                "value": "false",
+                "type": "query",
+                "description": "Enables a markdown syntax used to render pivot fields, for example `{{ user.name james }}`. When disabled, the same example would be rendered as `james`. This is primarily used for Attack Discovery views within Kibana. Defaults to `false`."
+              },
+              {
+                "name": "end",
+                "value": "now",
+                "type": "query",
+                "description": "End of the time range for the search. Accepts absolute timestamps (ISO 8601) or relative date math (e.g. \"now\", \"now-24h\")."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter results to the Attack discoveries with the specified IDs"
+              },
+              {
+                "name": "include_unique_alert_ids",
+                "value": "false",
+                "type": "query",
+                "description": "If `true`, the response will include `unique_alert_ids` and `unique_alert_ids_count` aggregated across the matched Attack discoveries"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page number to return (used for pagination). Defaults to 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of Attack discoveries to return per page (used for pagination). Defaults to 10."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search query applied to relevant text fields of Attack discoveries (title, description, tags, etc.)"
+              },
+              {
+                "name": "shared",
+                "value": "",
+                "type": "query",
+                "description": "Whether to filter by shared visibility. If omitted, both shared and privately visible Attack discoveries are returned. Use `true` to return only shared discoveries, `false` to return only those visible to the current user."
+              },
+              {
+                "name": "scheduled",
+                "value": "",
+                "type": "query",
+                "description": "Whether to filter by scheduled or ad-hoc attack discoveries. If omitted, both types of attack discoveries are returned. Use `true` to return only scheduled discoveries or `false` to return only ad-hoc discoveries."
+              },
+              {
+                "name": "sort_field",
+                "value": "@timestamp",
+                "type": "query",
+                "description": "Field used to sort results. See `AttackDiscoveryFindSortField` for allowed values."
+              },
+              {
+                "name": "sort_order",
+                "value": "desc",
+                "type": "query",
+                "description": "Sort order direction `asc` for ascending or `desc` for descending. Defaults to `desc`."
+              },
+              {
+                "name": "start",
+                "value": "now-24h",
+                "type": "query",
+                "description": "Start of the time range for the search. Accepts absolute timestamps (ISO 8601) or relative date math (e.g. \"now-7d\")."
+              },
+              {
+                "name": "status",
+                "value": "open,acknowledged",
+                "type": "query",
+                "description": "Filter by alert workflow status. Provide one or more of the allowed workflow states."
+              },
+              {
+                "name": "with_replacements",
+                "value": "true",
+                "type": "query",
+                "description": "When true, return the created Attack discoveries with text replacements applied to the detailsMarkdown, entitySummaryMarkdown, summaryMarkdown, and title fields. Defaults to `true`."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nFind Attack discoveries that match the search criteria. Supports free text search, filtering, pagination, and sorting."
+        },
+        {
+          "info": {
+            "name": "Generate attack discoveries from alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/attack_discovery/_generate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/_generate</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nInitiates the generation of attack discoveries by analyzing security alerts using AI. Returns an execution UUID that can be used to track the generation progress and retrieve results. Results may also be retrie"
+        },
+        {
+          "info": {
+            "name": "Get the latest Attack Discovery generations metadata for the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/attack_discovery/generations",
+            "params": [
+              {
+                "name": "end",
+                "value": "now",
+                "type": "query",
+                "description": "End of the time range for filtering generations. Accepts absolute timestamps (ISO 8601) or relative date math (e.g. \"now\", \"now-24h\")."
+              },
+              {
+                "name": "size",
+                "value": "50",
+                "type": "query",
+                "description": "The maximum number of generations to retrieve"
+              },
+              {
+                "name": "start",
+                "value": "now-24h",
+                "type": "query",
+                "description": "Start of the time range for filtering generations. Accepts absolute timestamps (ISO 8601) or relative date math (e.g. \"now-7d\")."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/generations</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the latest Attack Discovery generations metadata (that are not dismissed) for the current user. This endpoint retrieves generation metadata including execution status and statistics for Attack Discovery gen"
+        },
+        {
+          "info": {
+            "name": "Get a single Attack Discovery generation, including its discoveries and (optional) generation metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/attack_discovery/generations/:execution_uuid",
+            "params": [
+              {
+                "name": "execution_uuid",
+                "value": "2e13f386-46cf-4d65-9e2b-68609e132ba5",
+                "type": "path",
+                "description": "The unique identifier for the Attack Discovery generation execution. This UUID is returned at the start of an Attack Discovery generation."
+              },
+              {
+                "name": "enable_field_rendering",
+                "value": "false",
+                "type": "query",
+                "description": "Enables a markdown syntax used to render pivot fields, for example `{{ user.name james }}`. When disabled, the same example would be rendered as `james`. This is primarily used for Attack Discovery views within Kibana. Defaults to `false`."
+              },
+              {
+                "name": "with_replacements",
+                "value": "true",
+                "type": "query",
+                "description": "When true, return the created Attack discoveries with text replacements applied to the detailsMarkdown, entitySummaryMarkdown, summaryMarkdown, and title fields. Defaults to `true`."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/generations/{execution_uuid}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nReturns a specific Attack Discovery generation, including all generated Attack discoveries and associated metadata, including execution status and statistics."
+        },
+        {
+          "info": {
+            "name": "Dismiss an Attack Discovery generation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/attack_discovery/generations/:execution_uuid/_dismiss",
+            "params": [
+              {
+                "name": "execution_uuid",
+                "value": "46b218d5-535d-4329-be56-d0f6af6986b7",
+                "type": "path",
+                "description": "The unique identifier for the Attack Discovery generation execution. This UUID is returned when an Attack Discovery generation is created and can be found in generation responses."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/generations/{execution_uuid}/_dismiss</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDismisses an Attack Discovery generation for the current user, indicating that its status should not be reported in the UI. This sets the generation's status to \"dismissed\" and affec"
+        },
+        {
+          "info": {
+            "name": "Create Attack Discovery schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/attack_discovery/schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/schedules</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreates a new Attack Discovery schedule that analyzes security alerts at specified intervals. The schedule defines when and how Attack Discovery analysis should run, including which alerts to analyze, which AI "
+        },
+        {
+          "info": {
+            "name": "Find Attack Discovery schedules that match the search criteria",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/attack_discovery/schedules/_find",
+            "params": [
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page number to return (used for pagination). Defaults to 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of Attack Discovery schedules to return per page (used for pagination). Defaults to 10."
+              },
+              {
+                "name": "sort_field",
+                "value": "name",
+                "type": "query",
+                "description": "Field used to sort results. Common fields include 'name', 'created_at', 'updated_at', and 'enabled'."
+              },
+              {
+                "name": "sort_direction",
+                "value": "asc",
+                "type": "query",
+                "description": "Sort order direction. Use 'asc' for ascending or 'desc' for descending. Defaults to 'asc'."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/schedules/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nFind Attack Discovery schedules that match the search criteria. Supports pagination and sorting by various fields."
+        },
+        {
+          "info": {
+            "name": "Get Attack Discovery schedule by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/attack_discovery/schedules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "12345678-1234-1234-1234-123456789012",
+                "type": "path",
+                "description": "The unique identifier (UUID) of the Attack Discovery schedule to retrieve. This ID is returned when creating a schedule and can be found in schedule listings."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/schedules/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieves a specific Attack Discovery schedule by its unique identifier. Returns complete schedule configuration including parameters, interval settings, associated actions, and execution history."
+        },
+        {
+          "info": {
+            "name": "Update Attack Discovery schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/attack_discovery/schedules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "12345678-1234-1234-1234-123456789012",
+                "type": "path",
+                "description": "The unique identifier (UUID) of the Attack Discovery schedule to update. This ID is returned when creating a schedule and can be found in schedule listings."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/schedules/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdates an existing Attack Discovery schedule with new configuration. All schedule properties can be modified including name, parameters, interval, and actions. The update operation replaces the entire sched"
+        },
+        {
+          "info": {
+            "name": "Delete Attack Discovery schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/attack_discovery/schedules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "12345678-1234-1234-1234-123456789012",
+                "type": "path",
+                "description": "The unique identifier (UUID) of the Attack Discovery schedule to delete. This ID is returned when creating a schedule and can be found in schedule listings."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/schedules/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nPermanently deletes an Attack Discovery schedule and all associated configuration."
+        },
+        {
+          "info": {
+            "name": "Disable Attack Discovery schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/attack_discovery/schedules/:id/_disable",
+            "params": [
+              {
+                "name": "id",
+                "value": "12345678-1234-1234-1234-123456789012",
+                "type": "path",
+                "description": "The unique identifier (UUID) of the Attack Discovery schedule to disable. This ID is returned when creating a schedule and can be found in schedule listings."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/schedules/{id}/_disable</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDisables an Attack Discovery schedule, preventing it from running according to its configured interval. The schedule configuration is preserved and can be re-enabled later. Any currently running e"
+        },
+        {
+          "info": {
+            "name": "Enable Attack Discovery schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/attack_discovery/schedules/:id/_enable",
+            "params": [
+              {
+                "name": "id",
+                "value": "12345678-1234-1234-1234-123456789012",
+                "type": "path",
+                "description": "The unique identifier (UUID) of the Attack Discovery schedule to enable. This ID is returned when creating a schedule and can be found in schedule listings."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/schedules/{id}/_enable</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nEnables a previously disabled Attack Discovery schedule, allowing it to run according to its configured interval. Once enabled, the schedule will begin executing at the next scheduled time based on"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

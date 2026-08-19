@@ -1,0 +1,2813 @@
+{
+  "item": [
+    {
+      "id": "959861e3-93d5-4449-a852-6f00e5f1270e",
+      "name": "Security Attack discovery API",
+      "description": {
+        "content": "Use the Attack discovery APIs to generate and manage Attack discoveries. Attack Discovery leverages large language models (LLMs) to analyze alerts in your environment and identify threats. Each \"discovery\" represents a potential attack and describes relationships among multiple alerts to tell you which users and hosts are involved, how alerts correspond to the MITRE ATT&CK matrix, and which threat actor might be responsible.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "004ade48-4e20-4445-9e2c-8d0c9c8b0f11",
+          "name": "Bulk update Attack discoveries",
+          "request": {
+            "name": "Bulk update Attack discoveries",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/_bulk</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nPerforms bulk updates on multiple Attack discoveries, including workflow status changes and visibility settings. This endpoint allows efficient batch processing of alert modifications without requiring individual API calls for each alert.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "attack_discovery",
+                "_bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"update\": {\n    \"ids\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"enable_field_rendering\": false,\n    \"kibana_alert_workflow_status\": \"<string>\",\n    \"visibility\": \"<string>\",\n    \"with_replacements\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "82e038dc-c74d-4a9d-8887-c6218aeb14d0",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "_bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"update\": {\n    \"enable_field_rendering\": false,\n    \"ids\": [\n      \"c0c8a8bbb4a6561856a974ee9e461f0c82e673a1f0d83f86c5a8d80fc8de4c4f\",\n      \"5aa8f2900c0b03854b3b1a52a19558c5ea9893865c78235d4ad3dcc46196f4c7\"\n    ],\n    \"kibana_alert_workflow_status\": \"acknowledged\",\n    \"with_replacements\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"alert_ids\": [\n        \"alert-abc-1\"\n      ],\n      \"alert_workflow_status\": \"acknowledged\",\n      \"connector_id\": \"gen-ai-connector\",\n      \"connector_name\": \"OpenAI GPT-4\",\n      \"details_markdown\": \"- **Host** `workstation-01` showed credential access patterns consistent with mimikatz.\",\n      \"generation_uuid\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"id\": \"c0c8a8bbb4a6561856a974ee9e461f0c82e673a1f0d83f86c5a8d80fc8de4c4f\",\n      \"summary_markdown\": \"A user account was compromised using mimikatz to dump credentials.\",\n      \"timestamp\": \"2024-01-15T10:00:00.000Z\",\n      \"title\": \"Credential theft via mimikatz\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "206771cb-c9cb-4857-9b9d-0ae89a211497",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "_bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"update\": {\n    \"enable_field_rendering\": false,\n    \"ids\": [\n      \"c0c8a8bbb4a6561856a974ee9e461f0c82e673a1f0d83f86c5a8d80fc8de4c4f\",\n      \"5aa8f2900c0b03854b3b1a52a19558c5ea9893865c78235d4ad3dcc46196f4c7\"\n    ],\n    \"kibana_alert_workflow_status\": \"acknowledged\",\n    \"with_replacements\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request parameters.\",\n  \"status_code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "88d40424-85f5-4956-8e6f-ac818190d646",
+          "name": "Find Attack discoveries that match the search criteria",
+          "request": {
+            "name": "Find Attack discoveries that match the search criteria",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nFind Attack discoveries that match the search criteria. Supports free text search, filtering, pagination, and sorting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "attack_discovery",
+                "_find"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "alert_ids",
+                  "value": "<string>",
+                  "description": "Filter results to Attack discoveries that include any of the provided alert IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "alert_ids",
+                  "value": "<string>",
+                  "description": "Filter results to Attack discoveries that include any of the provided alert IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "connector_names",
+                  "value": "<string>",
+                  "description": "Filter results to Attack discoveries created by any of the provided human readable connector names. Note that values must match the human readable `connector_name` property of an Attack discovery, e.g. \"GPT-5 Chat\", which are distinct from `connector_id` values used to generate Attack discoveries."
+                },
+                {
+                  "disabled": false,
+                  "key": "connector_names",
+                  "value": "<string>",
+                  "description": "Filter results to Attack discoveries created by any of the provided human readable connector names. Note that values must match the human readable `connector_name` property of an Attack discovery, e.g. \"GPT-5 Chat\", which are distinct from `connector_id` values used to generate Attack discoveries."
+                },
+                {
+                  "disabled": false,
+                  "key": "enable_field_rendering",
+                  "value": "false",
+                  "description": "Enables a markdown syntax used to render pivot fields, for example `{{ user.name james }}`. When disabled, the same example would be rendered as `james`. This is primarily used for Attack Discovery views within Kibana. Defaults to `false`."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "End of the time range for the search. Accepts absolute timestamps (ISO 8601) or relative date math (e.g. \"now\", \"now-24h\")."
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Filter results to the Attack discoveries with the specified IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Filter results to the Attack discoveries with the specified IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_unique_alert_ids",
+                  "value": "<boolean>",
+                  "description": "If `true`, the response will include `unique_alert_ids` and `unique_alert_ids_count` aggregated across the matched Attack discoveries"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number to return (used for pagination). Defaults to 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Number of Attack discoveries to return per page (used for pagination). Defaults to 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Free-text search query applied to relevant text fields of Attack discoveries (title, description, tags, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "key": "shared",
+                  "value": "<boolean>",
+                  "description": "Whether to filter by shared visibility. If omitted, both shared and privately visible Attack discoveries are returned. Use `true` to return only shared discoveries, `false` to return only those visible to the current user."
+                },
+                {
+                  "disabled": false,
+                  "key": "scheduled",
+                  "value": "<boolean>",
+                  "description": "Whether to filter by scheduled or ad-hoc attack discoveries. If omitted, both types of attack discoveries are returned. Use `true` to return only scheduled discoveries or `false` to return only ad-hoc discoveries."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_field",
+                  "value": "<string>",
+                  "description": "Field used to sort results. See `AttackDiscoveryFindSortField` for allowed values."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Sort order direction `asc` for ascending or `desc` for descending. Defaults to `desc`."
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "Start of the time range for the search. Accepts absolute timestamps (ISO 8601) or relative date math (e.g. \"now-7d\")."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by alert workflow status. Provide one or more of the allowed workflow states."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by alert workflow status. Provide one or more of the allowed workflow states."
+                },
+                {
+                  "disabled": false,
+                  "key": "with_replacements",
+                  "value": "true",
+                  "description": "When true, return the created Attack discoveries with text replacements applied to the detailsMarkdown, entitySummaryMarkdown, summaryMarkdown, and title fields. Defaults to `true`."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e12509f-a90b-420e-95a0-24a111734303",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "_find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "alert_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "alert_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "connector_names",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "connector_names",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enable_field_rendering",
+                      "value": "false"
+                    },
+                    {
+                      "key": "end",
+                      "value": "now"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_unique_alert_ids",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": ""
+                    },
+                    {
+                      "key": "shared",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scheduled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "@timestamp"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "start",
+                      "value": "now-24h"
+                    },
+                    {
+                      "key": "status",
+                      "value": "open"
+                    },
+                    {
+                      "key": "status",
+                      "value": "acknowledged"
+                    },
+                    {
+                      "key": "with_replacements",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connector_names\": [\n    \"GPT-5 Chat\"\n  ],\n  \"data\": [\n    {\n      \"connector_name\": \"GPT-5 Chat\",\n      \"id\": \"c0c8a8bbb4a6561856a974ee9e461f0c82e673a1f0d83f86c5a8d80fc8de4c4f\",\n      \"title\": \"Suspicious process execution on host-01\"\n    }\n  ],\n  \"page\": 1,\n  \"per_page\": 10,\n  \"total\": 1,\n  \"unique_alert_ids_count\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87175de5-5a83-4dac-90fb-44e61a9c4f19",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "_find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "alert_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "alert_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "connector_names",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "connector_names",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enable_field_rendering",
+                      "value": "false"
+                    },
+                    {
+                      "key": "end",
+                      "value": "now"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_unique_alert_ids",
+                      "value": "false"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": ""
+                    },
+                    {
+                      "key": "shared",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scheduled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "@timestamp"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "start",
+                      "value": "now-24h"
+                    },
+                    {
+                      "key": "status",
+                      "value": "open"
+                    },
+                    {
+                      "key": "status",
+                      "value": "acknowledged"
+                    },
+                    {
+                      "key": "with_replacements",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request payload.\",\n  \"status_code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b6828ab-ff7e-47d1-beba-06a8a4e1032a",
+          "name": "Generate attack discoveries from alerts",
+          "request": {
+            "name": "Generate attack discoveries from alerts",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/_generate</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nInitiates the generation of attack discoveries by analyzing security alerts using AI. Returns an execution UUID that can be used to track the generation progress and retrieve results. Results may also be retrieved via the find endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "attack_discovery",
+                "_generate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiConfig\": {\n    \"connectorId\": \"<string>\",\n    \"actionTypeId\": \"<string>\",\n    \"defaultSystemPromptId\": \"<string>\",\n    \"model\": \"<string>\",\n    \"provider\": \"<string>\"\n  },\n  \"alertsIndexPattern\": \"<string>\",\n  \"anonymizationFields\": [\n    {\n      \"id\": \"<nonempty>\",\n      \"field\": \"<string>\",\n      \"allowed\": \"<boolean>\",\n      \"anonymized\": \"<boolean>\",\n      \"createdAt\": \"<string>\",\n      \"createdBy\": \"<string>\",\n      \"namespace\": \"<string>\",\n      \"timestamp\": \"<nonempty>\",\n      \"updatedAt\": \"<string>\",\n      \"updatedBy\": \"<string>\"\n    },\n    {\n      \"id\": \"<nonempty>\",\n      \"field\": \"<string>\",\n      \"allowed\": \"<boolean>\",\n      \"anonymized\": \"<boolean>\",\n      \"createdAt\": \"<string>\",\n      \"createdBy\": \"<string>\",\n      \"namespace\": \"<string>\",\n      \"timestamp\": \"<nonempty>\",\n      \"updatedAt\": \"<string>\",\n      \"updatedBy\": \"<string>\"\n    }\n  ],\n  \"size\": \"<number>\",\n  \"subAction\": \"<string>\",\n  \"connectorName\": \"<string>\",\n  \"end\": \"<string>\",\n  \"filter\": {\n    \"key_0\": \"string\"\n  },\n  \"model\": \"<string>\",\n  \"replacements\": {\n    \"key_0\": \"<string>\"\n  },\n  \"start\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c05ced8c-198f-47d1-8147-b616815701b2",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "_generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsIndexPattern\": \".alerts-security.alerts-default\",\n  \"anonymizationFields\": [\n    {\n      \"allowed\": true,\n      \"anonymized\": true,\n      \"field\": \"host.name\"\n    },\n    {\n      \"allowed\": true,\n      \"anonymized\": true,\n      \"field\": \"user.name\"\n    },\n    {\n      \"allowed\": true,\n      \"anonymized\": false,\n      \"field\": \"process.name\"\n    }\n  ],\n  \"apiConfig\": {\n    \"actionTypeId\": \".gen-ai\",\n    \"connectorId\": \"12345678-1234-1234-1234-123456789012\"\n  },\n  \"connectorName\": \"GPT-5 Chat\",\n  \"end\": \"now\",\n  \"replacements\": {},\n  \"size\": 100,\n  \"start\": \"now-24h\",\n  \"subAction\": \"invokeAI\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"execution_uuid\": \"edd26039-0990-4d9f-9829-2a1fcacb77b5\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20005976-9c5e-404e-a736-14a45038ae1d",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "_generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertsIndexPattern\": \".alerts-security.alerts-default\",\n  \"anonymizationFields\": [\n    {\n      \"allowed\": true,\n      \"anonymized\": true,\n      \"field\": \"host.name\"\n    },\n    {\n      \"allowed\": true,\n      \"anonymized\": true,\n      \"field\": \"user.name\"\n    },\n    {\n      \"allowed\": true,\n      \"anonymized\": false,\n      \"field\": \"process.name\"\n    }\n  ],\n  \"apiConfig\": {\n    \"actionTypeId\": \".gen-ai\",\n    \"connectorId\": \"12345678-1234-1234-1234-123456789012\"\n  },\n  \"connectorName\": \"GPT-5 Chat\",\n  \"end\": \"now\",\n  \"replacements\": {},\n  \"size\": 100,\n  \"start\": \"now-24h\",\n  \"subAction\": \"invokeAI\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request parameters.\",\n  \"status_code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f51f0660-ba9f-4fe1-be53-5d6a263fc075",
+          "name": "Get the latest Attack Discovery generations metadata for the current user",
+          "request": {
+            "name": "Get the latest Attack Discovery generations metadata for the current user",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/generations</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the latest Attack Discovery generations metadata (that are not dismissed) for the current user. This endpoint retrieves generation metadata including execution status and statistics for Attack Discovery generations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "attack_discovery",
+                "generations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "End of the time range for filtering generations. Accepts absolute timestamps (ISO 8601) or relative date math (e.g. \"now\", \"now-24h\")."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "The maximum number of generations to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "Start of the time range for filtering generations. Accepts absolute timestamps (ISO 8601) or relative date math (e.g. \"now-7d\")."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8a5055b-ac6a-4e85-97c8-4b94653091e5",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "generations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "end",
+                      "value": "now"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    },
+                    {
+                      "key": "start",
+                      "value": "now-24h"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"generations\": [\n    {\n      \"alerts_context_count\": 75,\n      \"connector_id\": \"chatGpt5_0ChatAzure\",\n      \"discoveries\": 3,\n      \"end\": \"2025-09-29T06:42:44.810Z\",\n      \"execution_uuid\": \"46b218d5-535d-4329-be56-d0f6af6986b7\",\n      \"loading_message\": \"AI is analyzing up to 100 alerts in the last 24 hours to generate discoveries.\",\n      \"start\": \"2025-09-29T06:42:08.962Z\",\n      \"status\": \"succeeded\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68bd5a5b-4c57-4c61-ad49-8204d9eaa340",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "generations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "end",
+                      "value": "now"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    },
+                    {
+                      "key": "start",
+                      "value": "now-24h"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid size parameter. Must be a positive number.\",\n  \"status_code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "880080ca-2c17-48c7-bb38-bfc2042ef217",
+          "name": "Get a single Attack Discovery generation, including its discoveries and (optional) generation metadata",
+          "request": {
+            "name": "Get a single Attack Discovery generation, including its discoveries and (optional) generation metadata",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/generations/{execution_uuid}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nReturns a specific Attack Discovery generation, including all generated Attack discoveries and associated metadata, including execution status and statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "attack_discovery",
+                "generations",
+                ":execution_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "enable_field_rendering",
+                  "value": "false",
+                  "description": "Enables a markdown syntax used to render pivot fields, for example `{{ user.name james }}`. When disabled, the same example would be rendered as `james`. This is primarily used for Attack Discovery views within Kibana. Defaults to `false`."
+                },
+                {
+                  "disabled": false,
+                  "key": "with_replacements",
+                  "value": "true",
+                  "description": "When true, return the created Attack discoveries with text replacements applied to the detailsMarkdown, entitySummaryMarkdown, summaryMarkdown, and title fields. Defaults to `true`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<nonempty>",
+                  "key": "execution_uuid",
+                  "description": "(Required) The unique identifier for the Attack Discovery generation execution. This UUID is returned at the start of an Attack Discovery generation."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7dc03a1d-6752-455c-8a53-f9750e6f525e",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "generations",
+                    ":execution_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enable_field_rendering",
+                      "value": "false"
+                    },
+                    {
+                      "key": "with_replacements",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "execution_uuid",
+                      "description": "(Required) The unique identifier for the Attack Discovery generation execution. This UUID is returned at the start of an Attack Discovery generation."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"c0c8a8bbb4a6561856a974ee9e461f0c82e673a1f0d83f86c5a8d80fc8de4c4f\",\n      \"title\": \"Suspicious process execution on host-01\"\n    }\n  ],\n  \"generation\": {\n    \"alerts_context_count\": 50,\n    \"discoveries\": 1,\n    \"end\": \"2025-09-29T06:42:44.810Z\",\n    \"execution_uuid\": \"2e13f386-46cf-4d65-9e2b-68609e132ba5\",\n    \"start\": \"2025-09-29T06:42:08.962Z\",\n    \"status\": \"succeeded\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cff27657-89e9-476a-87d8-3d05719b2f16",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "generations",
+                    ":execution_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "enable_field_rendering",
+                      "value": "false"
+                    },
+                    {
+                      "key": "with_replacements",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "execution_uuid",
+                      "description": "(Required) The unique identifier for the Attack Discovery generation execution. This UUID is returned at the start of an Attack Discovery generation."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request parameters.\",\n  \"status_code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea307c96-adf5-42fe-914b-3e1143b585fb",
+          "name": "Dismiss an Attack Discovery generation",
+          "request": {
+            "name": "Dismiss an Attack Discovery generation",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/generations/{execution_uuid}/_dismiss</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDismisses an Attack Discovery generation for the current user, indicating that its status should not be reported in the UI. This sets the generation's status to \"dismissed\" and affects how the generation appears in subsequent queries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "attack_discovery",
+                "generations",
+                ":execution_uuid",
+                "_dismiss"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<nonempty>",
+                  "key": "execution_uuid",
+                  "description": "(Required) The unique identifier for the Attack Discovery generation execution. This UUID is returned when an Attack Discovery generation is created and can be found in generation responses."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5593cc49-b663-4e98-bb76-60986dff7428",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "generations",
+                    ":execution_uuid",
+                    "_dismiss"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "execution_uuid",
+                      "description": "(Required) The unique identifier for the Attack Discovery generation execution. This UUID is returned when an Attack Discovery generation is created and can be found in generation responses."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts_context_count\": 75,\n  \"connector_id\": \"chatGpt5_0ChatAzure\",\n  \"discoveries\": 3,\n  \"end\": \"2025-09-29T06:42:44.810Z\",\n  \"execution_uuid\": \"46b218d5-535d-4329-be56-d0f6af6986b7\",\n  \"loading_message\": \"AI is analyzing up to 100 alerts in the last 24 hours to generate discoveries.\",\n  \"start\": \"2025-09-29T06:42:08.962Z\",\n  \"status\": \"dismissed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "479891f0-73db-47e4-9b28-1a3c666ec41e",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "generations",
+                    ":execution_uuid",
+                    "_dismiss"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "execution_uuid",
+                      "description": "(Required) The unique identifier for the Attack Discovery generation execution. This UUID is returned when an Attack Discovery generation is created and can be found in generation responses."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request parameters.\",\n  \"status_code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41b87feb-cc7c-47ac-9b6b-544465979136",
+          "name": "Create Attack Discovery schedule",
+          "request": {
+            "name": "Create Attack Discovery schedule",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/schedules</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreates a new Attack Discovery schedule that analyzes security alerts at specified intervals. The schedule defines when and how Attack Discovery analysis should run, including which alerts to analyze, which AI connector to use, and what actions to take when discoveries are found.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "attack_discovery",
+                "schedules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"params\": {\n    \"alerts_index_pattern\": \"<string>\",\n    \"api_config\": {\n      \"actionTypeId\": \"<string>\",\n      \"connectorId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"defaultSystemPromptId\": \"<string>\",\n      \"model\": \"<string>\",\n      \"provider\": \"<string>\"\n    },\n    \"size\": \"<number>\",\n    \"combined_filter\": {\n      \"key_0\": false\n    },\n    \"end\": \"<string>\",\n    \"query\": {\n      \"query\": \"<string>\",\n      \"language\": \"<string>\"\n    },\n    \"start\": \"<string>\"\n  },\n  \"schedule\": {\n    \"interval\": \"<string>\"\n  },\n  \"actions\": [\n    {\n      \"action_type_id\": \"<string>\",\n      \"group\": \"<string>\",\n      \"id\": \"<string>\",\n      \"params\": {\n        \"key_0\": 1437.5872811490497,\n        \"key_1\": 510\n      },\n      \"alerts_filter\": {\n        \"key_0\": 8883.533606725254\n      },\n      \"frequency\": {\n        \"summary\": \"<boolean>\",\n        \"notify_when\": \"<string>\",\n        \"throttle\": \"<string>\"\n      },\n      \"uuid\": \"<nonempty>\"\n    },\n    {\n      \"action_type_id\": \"<string>\",\n      \"group\": \"<string>\",\n      \"id\": \"<string>\",\n      \"params\": {\n        \"key_0\": 7124,\n        \"key_1\": 3804\n      },\n      \"alerts_filter\": {\n        \"key_0\": 7652\n      },\n      \"frequency\": {\n        \"summary\": \"<boolean>\",\n        \"notify_when\": \"<string>\",\n        \"throttle\": \"<string>\"\n      },\n      \"uuid\": \"<nonempty>\"\n    }\n  ],\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "de96faa1-0609-4117-9186-cc131939d1e6",
+              "name": "The Attack Discovery schedule was successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"actions\": [],\n  \"enabled\": true,\n  \"name\": \"Daily Security Analysis\",\n  \"params\": {\n    \"alerts_index_pattern\": \".alerts-security.alerts-default\",\n    \"api_config\": {\n      \"actionTypeId\": \"bedrock\",\n      \"connectorId\": \"my-bedrock-connector\",\n      \"name\": \"Claude 3.5 Sonnet\"\n    },\n    \"end\": \"now\",\n    \"size\": 100,\n    \"start\": \"now-24h\"\n  },\n  \"schedule\": {\n    \"interval\": \"24h\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"actions\": [],\n  \"created_at\": \"2023-10-31T10:00:00.000Z\",\n  \"created_by\": \"elastic\",\n  \"enabled\": true,\n  \"id\": \"12345678-1234-1234-1234-123456789012\",\n  \"name\": \"Daily Security Analysis\",\n  \"params\": {\n    \"alerts_index_pattern\": \".alerts-security.alerts-default\",\n    \"api_config\": {\n      \"actionTypeId\": \"bedrock\",\n      \"connectorId\": \"my-bedrock-connector\",\n      \"name\": \"Claude 3.5 Sonnet\"\n    },\n    \"end\": \"now\",\n    \"size\": 100,\n    \"start\": \"now-24h\"\n  },\n  \"schedule\": {\n    \"interval\": \"24h\"\n  },\n  \"updated_at\": \"2023-10-31T10:00:00.000Z\",\n  \"updated_by\": \"elastic\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86ccb36f-e74f-40d7-ac37-2f0664943298",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"actions\": [],\n  \"enabled\": true,\n  \"name\": \"Daily Security Analysis\",\n  \"params\": {\n    \"alerts_index_pattern\": \".alerts-security.alerts-default\",\n    \"api_config\": {\n      \"actionTypeId\": \"bedrock\",\n      \"connectorId\": \"my-bedrock-connector\",\n      \"name\": \"Claude 3.5 Sonnet\"\n    },\n    \"end\": \"now\",\n    \"size\": 100,\n    \"start\": \"now-24h\"\n  },\n  \"schedule\": {\n    \"interval\": \"24h\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request parameters.\",\n  \"status_code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e658d69-2553-460f-8c5c-907ffff431cb",
+          "name": "Find Attack Discovery schedules that match the search criteria",
+          "request": {
+            "name": "Find Attack Discovery schedules that match the search criteria",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/schedules/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nFind Attack Discovery schedules that match the search criteria. Supports pagination and sorting by various fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "attack_discovery",
+                "schedules",
+                "_find"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>",
+                  "description": "Page number to return (used for pagination). Defaults to 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<number>",
+                  "description": "Number of Attack Discovery schedules to return per page (used for pagination). Defaults to 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_field",
+                  "value": "<nonempty>",
+                  "description": "Field used to sort results. Common fields include 'name', 'created_at', 'updated_at', and 'enabled'."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_direction",
+                  "value": "<string>",
+                  "description": "Sort order direction. Use 'asc' for ascending or 'desc' for descending. Defaults to 'asc'."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5eb177d4-f3fe-4c48-8a00-e16306df65e7",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "schedules",
+                    "_find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "name"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"actions\": [],\n      \"created_at\": \"2023-10-31T10:00:00.000Z\",\n      \"created_by\": \"elastic\",\n      \"enabled\": true,\n      \"id\": \"12345678-1234-1234-1234-123456789012\",\n      \"name\": \"Daily Security Analysis\",\n      \"params\": {\n        \"alerts_index_pattern\": \".alerts-security.alerts-default\",\n        \"api_config\": {\n          \"actionTypeId\": \"bedrock\",\n          \"connectorId\": \"my-bedrock-connector\",\n          \"name\": \"Claude 3.5 Sonnet\"\n        },\n        \"end\": \"now\",\n        \"size\": 100,\n        \"start\": \"now-24h\"\n      },\n      \"schedule\": {\n        \"interval\": \"24h\"\n      },\n      \"updated_at\": \"2023-10-31T10:00:00.000Z\",\n      \"updated_by\": \"elastic\"\n    }\n  ],\n  \"page\": 1,\n  \"per_page\": 10,\n  \"total\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "781fa741-7be8-4ca0-8897-ec457e631365",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "schedules",
+                    "_find"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "name"
+                    },
+                    {
+                      "key": "sort_direction",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request payload.\",\n  \"status_code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2404dbd-632e-4ebc-9c1c-ff0c69a27964",
+          "name": "Delete Attack Discovery schedule",
+          "request": {
+            "name": "Delete Attack Discovery schedule",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/schedules/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nPermanently deletes an Attack Discovery schedule and all associated configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "attack_discovery",
+                "schedules",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<nonempty>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier (UUID) of the Attack Discovery schedule to delete. This ID is returned when creating a schedule and can be found in schedule listings."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32c5a9bb-4526-4feb-a1fd-44dfcf4df21e",
+              "name": "Successfully deleted Attack Discovery schedule, returning the ID of the deleted schedule for confirmation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "schedules",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (UUID) of the Attack Discovery schedule to delete. This ID is returned when creating a schedule and can be found in schedule listings."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"12345678-1234-1234-1234-123456789012\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5507c63e-af19-4227-96d8-d1ed091a112f",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "schedules",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (UUID) of the Attack Discovery schedule to delete. This ID is returned when creating a schedule and can be found in schedule listings."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request parameters.\",\n  \"status_code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5c13515-f878-4436-9178-d11101552410",
+          "name": "Get Attack Discovery schedule by ID",
+          "request": {
+            "name": "Get Attack Discovery schedule by ID",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/schedules/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieves a specific Attack Discovery schedule by its unique identifier. Returns complete schedule configuration including parameters, interval settings, associated actions, and execution history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "attack_discovery",
+                "schedules",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<nonempty>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier (UUID) of the Attack Discovery schedule to retrieve. This ID is returned when creating a schedule and can be found in schedule listings."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eeb5c779-4ec6-438b-b504-f3c954e4e4d5",
+              "name": "Successfully retrieved Attack Discovery schedule with complete configuration and metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "schedules",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (UUID) of the Attack Discovery schedule to retrieve. This ID is returned when creating a schedule and can be found in schedule listings."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"actions\": [],\n  \"created_at\": \"2023-10-31T10:00:00.000Z\",\n  \"created_by\": \"elastic\",\n  \"enabled\": true,\n  \"id\": \"12345678-1234-1234-1234-123456789012\",\n  \"last_execution\": {\n    \"date\": \"2023-10-31T10:00:00.000Z\",\n    \"last_duration\": 45.2,\n    \"status\": \"ok\"\n  },\n  \"name\": \"Daily Security Analysis\",\n  \"params\": {\n    \"alerts_index_pattern\": \".alerts-security.alerts-default\",\n    \"api_config\": {\n      \"actionTypeId\": \"bedrock\",\n      \"connectorId\": \"my-bedrock-connector\",\n      \"name\": \"Claude 3.5 Sonnet\"\n    },\n    \"end\": \"now\",\n    \"size\": 100,\n    \"start\": \"now-24h\"\n  },\n  \"schedule\": {\n    \"interval\": \"24h\"\n  },\n  \"updated_at\": \"2023-10-31T10:00:00.000Z\",\n  \"updated_by\": \"elastic\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bda6570d-80d5-45bf-af77-0e8770279235",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "schedules",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (UUID) of the Attack Discovery schedule to retrieve. This ID is returned when creating a schedule and can be found in schedule listings."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request parameters.\",\n  \"status_code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0869233c-5cea-4fff-828d-87bba047ae4d",
+          "name": "Update Attack Discovery schedule",
+          "request": {
+            "name": "Update Attack Discovery schedule",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/schedules/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdates an existing Attack Discovery schedule with new configuration. All schedule properties can be modified including name, parameters, interval, and actions. The update operation replaces the entire schedule configuration with the provided values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "attack_discovery",
+                "schedules",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<nonempty>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier (UUID) of the Attack Discovery schedule to update. This ID is returned when creating a schedule and can be found in schedule listings."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"params\": {\n    \"alerts_index_pattern\": \"<string>\",\n    \"api_config\": {\n      \"actionTypeId\": \"<string>\",\n      \"connectorId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"defaultSystemPromptId\": \"<string>\",\n      \"model\": \"<string>\",\n      \"provider\": \"<string>\"\n    },\n    \"size\": \"<number>\",\n    \"combined_filter\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"end\": \"<string>\",\n    \"query\": {\n      \"query\": \"<string>\",\n      \"language\": \"<string>\"\n    },\n    \"start\": \"<string>\"\n  },\n  \"schedule\": {\n    \"interval\": \"<string>\"\n  },\n  \"actions\": [\n    {\n      \"action_type_id\": \"<string>\",\n      \"group\": \"<string>\",\n      \"id\": \"<string>\",\n      \"params\": {\n        \"key_0\": 4048.981690729615\n      },\n      \"alerts_filter\": {\n        \"key_0\": 9814\n      },\n      \"frequency\": {\n        \"summary\": \"<boolean>\",\n        \"notify_when\": \"<string>\",\n        \"throttle\": \"<string>\"\n      },\n      \"uuid\": \"<nonempty>\"\n    },\n    {\n      \"action_type_id\": \"<string>\",\n      \"group\": \"<string>\",\n      \"id\": \"<string>\",\n      \"params\": {\n        \"key_0\": 1146\n      },\n      \"alerts_filter\": {\n        \"key_0\": true,\n        \"key_1\": \"string\"\n      },\n      \"frequency\": {\n        \"summary\": \"<boolean>\",\n        \"notify_when\": \"<string>\",\n        \"throttle\": \"<string>\"\n      },\n      \"uuid\": \"<nonempty>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d7bea60-cd75-4628-9482-17fad0bf5eca",
+              "name": "Successfully updated Attack Discovery schedule with the new configuration and metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "schedules",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (UUID) of the Attack Discovery schedule to update. This ID is returned when creating a schedule and can be found in schedule listings."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"actions\": [],\n  \"name\": \"Updated Daily Security Analysis\",\n  \"params\": {\n    \"alerts_index_pattern\": \".alerts-security.alerts-default\",\n    \"api_config\": {\n      \"actionTypeId\": \"bedrock\",\n      \"connectorId\": \"my-bedrock-connector\",\n      \"name\": \"Claude 3.5 Sonnet\"\n    },\n    \"end\": \"now\",\n    \"size\": 200,\n    \"start\": \"now-48h\"\n  },\n  \"schedule\": {\n    \"interval\": \"12h\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"actions\": [],\n  \"created_at\": \"2023-10-31T10:00:00.000Z\",\n  \"created_by\": \"elastic\",\n  \"enabled\": true,\n  \"id\": \"12345678-1234-1234-1234-123456789012\",\n  \"name\": \"Updated Daily Security Analysis\",\n  \"params\": {\n    \"alerts_index_pattern\": \".alerts-security.alerts-default\",\n    \"api_config\": {\n      \"actionTypeId\": \"bedrock\",\n      \"connectorId\": \"my-bedrock-connector\",\n      \"name\": \"Claude 3.5 Sonnet\"\n    },\n    \"end\": \"now\",\n    \"size\": 200,\n    \"start\": \"now-48h\"\n  },\n  \"schedule\": {\n    \"interval\": \"12h\"\n  },\n  \"updated_at\": \"2023-10-31T12:00:00.000Z\",\n  \"updated_by\": \"elastic\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f0d84de-684f-4c0b-9c7d-e55fe9fd7d58",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "schedules",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (UUID) of the Attack Discovery schedule to update. This ID is returned when creating a schedule and can be found in schedule listings."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"actions\": [],\n  \"name\": \"Updated Daily Security Analysis\",\n  \"params\": {\n    \"alerts_index_pattern\": \".alerts-security.alerts-default\",\n    \"api_config\": {\n      \"actionTypeId\": \"bedrock\",\n      \"connectorId\": \"my-bedrock-connector\",\n      \"name\": \"Claude 3.5 Sonnet\"\n    },\n    \"end\": \"now\",\n    \"size\": 200,\n    \"start\": \"now-48h\"\n  },\n  \"schedule\": {\n    \"interval\": \"12h\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request parameters.\",\n  \"status_code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "acf37025-a410-4ae3-87e7-cb8bf88dc15f",
+          "name": "Disable Attack Discovery schedule",
+          "request": {
+            "name": "Disable Attack Discovery schedule",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/schedules/{id}/_disable</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDisables an Attack Discovery schedule, preventing it from running according to its configured interval. The schedule configuration is preserved and can be re-enabled later. Any currently running executions will complete, but no new executions will be started.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "attack_discovery",
+                "schedules",
+                ":id",
+                "_disable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<nonempty>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier (UUID) of the Attack Discovery schedule to disable. This ID is returned when creating a schedule and can be found in schedule listings."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d4329399-3edd-4975-94ff-41294175c46a",
+              "name": "Successfully disabled Attack Discovery schedule, returning the schedule ID for confirmation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "schedules",
+                    ":id",
+                    "_disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (UUID) of the Attack Discovery schedule to disable. This ID is returned when creating a schedule and can be found in schedule listings."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"12345678-1234-1234-1234-123456789012\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a544f7c5-df70-43cc-801e-5dc935bdf541",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "schedules",
+                    ":id",
+                    "_disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (UUID) of the Attack Discovery schedule to disable. This ID is returned when creating a schedule and can be found in schedule listings."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request parameters.\",\n  \"status_code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6700eafd-7867-475f-85c4-f1ac4222ba05",
+          "name": "Enable Attack Discovery schedule",
+          "request": {
+            "name": "Enable Attack Discovery schedule",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/attack_discovery/schedules/{id}/_enable</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nEnables a previously disabled Attack Discovery schedule, allowing it to run according to its configured interval. Once enabled, the schedule will begin executing at the next scheduled time based on its interval configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "attack_discovery",
+                "schedules",
+                ":id",
+                "_enable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<nonempty>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier (UUID) of the Attack Discovery schedule to enable. This ID is returned when creating a schedule and can be found in schedule listings."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6cd21658-695e-491b-99e9-be061a3fdb53",
+              "name": "Successfully enabled Attack Discovery schedule, returning the schedule ID for confirmation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "schedules",
+                    ":id",
+                    "_enable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (UUID) of the Attack Discovery schedule to enable. This ID is returned when creating a schedule and can be found in schedule listings."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"12345678-1234-1234-1234-123456789012\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "502a95d3-9f74-45f0-bfc1-1ef7c996e5a7",
+              "name": "Bad Request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "attack_discovery",
+                    "schedules",
+                    ":id",
+                    "_enable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<nonempty>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier (UUID) of the Attack Discovery schedule to enable. This ID is returned when creating a schedule and can be found in schedule listings."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request parameters.\",\n  \"status_code\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:5601",
+      "key": "kibana_url"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kibana_url}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "158cf336-40a8-47f5-96cf-aa36394d4fb1",
+    "name": "Kibana APIs Actions Security Attack discovery API API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.\nThe API calls are stateless.\nEach request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the\nrequest.\nAPI requests return JSON output, which is a format that is machine-readable and works well for automation.\n\nTo interact with Kibana APIs, use the following operations:\n\n- GET: Fetches the information.\n- PATCH: Applies partial modifications to the existing information.\n- POST: Adds new information.\n- PUT: Updates the existing information.\n- DELETE: Removes the information.\n\nYou can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.\nFor example:\n\n```\nGET kbn:/api/data_views\n```\n\nFor more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).\n\nNOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.\n\n## Documentation source and versions\n\nThis documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.\nIt is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).\n\nThis documentation contains work-in-progress information for future Elastic Stack releases.\n\n\nContact Support:\n Name: Kibana Team",
+      "type": "text/plain"
+    }
+  }
+}

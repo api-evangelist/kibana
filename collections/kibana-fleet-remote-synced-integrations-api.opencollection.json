@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Fleet remote synced integrations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fleet remote synced integrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get remote synced integrations status by outputId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/remote_synced_integrations/:outputId/remote_status",
+            "params": [
+              {
+                "name": "outputId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the output"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/remote_synced_integrations/{outputId}/remote_status</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the synchronization status of remote integrations for a specific output by its ID.<br/><br/>[Required authorization] Route required privileges: fleet-settings-read AND integrati"
+        },
+        {
+          "info": {
+            "name": "Get remote synced integrations status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/remote_synced_integrations/status"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/remote_synced_integrations/status</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the synchronization status of all remote integrations across connected remote clusters.<br/><br/>[Required authorization] Route required privileges: fleet-settings-read AND integrations-read."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

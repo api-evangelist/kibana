@@ -1,0 +1,498 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Security Exceptions API API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security Exceptions API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create rule exception items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/detection_engine/rules/:id/exceptions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Detection rule's identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/detection_engine/rules/{id}/exceptions</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate exception items that apply to a single detection rule."
+        },
+        {
+          "info": {
+            "name": "Get exception list details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/exception_lists",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Exception list's identifier. Either `id` or `list_id` must be specified."
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "Human readable exception list string identifier, e.g. `trusted-linux-processes`. Either `id` or `list_id` must be specified."
+              },
+              {
+                "name": "namespace_type",
+                "value": "",
+                "type": "query",
+                "description": "When `single`, the list is resolved in the current Kibana space. When `agnostic`, the list is a global\n(space-agnostic) container. Required for looking up the correct list when `list_id` is not unique.\n"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/exception_lists</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the details of an exception list using the `id` or `list_id` field."
+        },
+        {
+          "info": {
+            "name": "Create an exception list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/exception_lists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/exception_lists</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nAn exception list groups exception items and can be associated with detection rules. You can assign exception lists to multiple detection rules.\n> info\n> All exception items added to the same list are evaluated using `OR`"
+        },
+        {
+          "info": {
+            "name": "Update an exception list",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/exception_lists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/exception_lists</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an exception list using the `id` or `list_id` field."
+        },
+        {
+          "info": {
+            "name": "Delete an exception list",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/exception_lists",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Exception list's identifier. Either `id` or `list_id` must be specified."
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "Human readable exception list string identifier, e.g. `trusted-linux-processes`. Either `id` or `list_id` must be specified."
+              },
+              {
+                "name": "namespace_type",
+                "value": "",
+                "type": "query",
+                "description": "`single` deletes the list in the current Kibana space; `agnostic` deletes a global list. Must match the\nlist you are removing when using `list_id` or `id`.\n"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/exception_lists</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete an exception list using the `id` or `list_id` field."
+        },
+        {
+          "info": {
+            "name": "Duplicate an exception list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/exception_lists/_duplicate",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "The `list_id` of the existing exception list to copy (source list)."
+              },
+              {
+                "name": "namespace_type",
+                "value": "",
+                "type": "query",
+                "description": "Scope in which the source list is defined (`single` = current space, `agnostic` = all spaces)."
+              },
+              {
+                "name": "include_expired_exceptions",
+                "value": "",
+                "type": "query",
+                "description": "Determines whether to include expired exceptions in the duplicated list. Expiration date defined by `expire_time`."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/exception_lists/_duplicate</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDuplicate an existing exception list."
+        },
+        {
+          "info": {
+            "name": "Export an exception list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/exception_lists/_export",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Exception list's internal `id` (UUID) returned on create; use with `list_id` and `namespace_type` for an unambiguous target."
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "Human-readable `list_id` of the exception list to export, as shown in the UI and API responses."
+              },
+              {
+                "name": "namespace_type",
+                "value": "",
+                "type": "query",
+                "description": "`single` exports a list in the current Kibana space; `agnostic` exports a global (space-agnostic) list.\n"
+              },
+              {
+                "name": "include_expired_exceptions",
+                "value": "true",
+                "type": "query",
+                "description": "Determines whether to include expired exceptions in the exported list. Expiration date defined by `expire_time`."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/exception_lists/_export</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nExport an exception list and its associated items to an NDJSON file."
+        },
+        {
+          "info": {
+            "name": "Get exception lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/exception_lists/_find",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned results according to the value of the specified field.\n\nUses the `so type.field name:field` value syntax, where `so type` can be:\n\n- `exception-list`: Specify a space-aware exception list.\n- `exception-list-agnostic`: Specify an exception list that is shared across spaces.\n"
+              },
+              {
+                "name": "namespace_type",
+                "value": "",
+                "type": "query",
+                "description": "Determines whether the returned containers are Kibana associated with a Kibana space\nor available in all spaces (`agnostic` or `single`)\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to return"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of exception lists to return per page"
+              },
+              {
+                "name": "sort_field",
+                "value": "",
+                "type": "query",
+                "description": "Determines which field is used to sort the results."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Determines the sort order, which can be `desc` or `asc`."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/exception_lists/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all exception list containers."
+        },
+        {
+          "info": {
+            "name": "Import an exception list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/exception_lists/_import",
+            "params": [
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query",
+                "description": "Determines whether existing exception lists with the same `list_id` are overwritten.\nIf any exception items have the same `item_id`, those are also overwritten.\n"
+              },
+              {
+                "name": "as_new_list",
+                "value": "",
+                "type": "query",
+                "description": "Determines whether the list being imported will have a new `list_id` generated.\nAdditional `item_id`'s are generated for each exception item. Both the exception\nlist and its items are overwritten.\n"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/exception_lists/_import</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nImport an exception list and its associated items from an NDJSON file."
+        },
+        {
+          "info": {
+            "name": "Get an exception list item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/exception_lists/items",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Exception list item's identifier. Either `id` or `item_id` must be specified."
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "query",
+                "description": "Human readable exception item string identifier, e.g. `trusted-linux-processes`. Either `id` or `item_id` must be specified."
+              },
+              {
+                "name": "namespace_type",
+                "value": "",
+                "type": "query",
+                "description": "`single` fetches the item in the current space; `agnostic` fetches a global (space-agnostic) item. Must\nmatch how the list was created.\n"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/exception_lists/items</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the details of an exception list item using the `id` or `item_id` field."
+        },
+        {
+          "info": {
+            "name": "Create an exception list item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/exception_lists/items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/exception_lists/items</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate an exception item and associate it with the specified exception list.\n> info\n> Before creating exception items, you must create an exception list.\n"
+        },
+        {
+          "info": {
+            "name": "Update an exception list item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/exception_lists/items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/exception_lists/items</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an exception list item using the `id` or `item_id` field."
+        },
+        {
+          "info": {
+            "name": "Delete an exception list item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/exception_lists/items",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Exception item's identifier. Either `id` or `item_id` must be specified"
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "query",
+                "description": "Human readable exception item string identifier, e.g. `trusted-linux-processes`. Either `id` or `item_id` must be specified"
+              },
+              {
+                "name": "namespace_type",
+                "value": "",
+                "type": "query",
+                "description": "`single` deletes the item in the current Kibana space; `agnostic` deletes an item in a space-agnostic list. Must match the list that owns the item.\n"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/exception_lists/items</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete an exception list item using the `id` or `item_id` field."
+        },
+        {
+          "info": {
+            "name": "Get exception list items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/exception_lists/items/_find",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "The `list_id`s of the items to fetch."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned results according to the value of the specified field,\nusing the `<field name>:<field value>` syntax.\n"
+              },
+              {
+                "name": "namespace_type",
+                "value": "",
+                "type": "query",
+                "description": "Determines whether the returned containers are Kibana associated with a Kibana space\nor available in all spaces (`agnostic` or `single`)\n"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search term applied to exception list item fields (for example a hostname or file path fragment).\n"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to return"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of exception list items to return per page"
+              },
+              {
+                "name": "sort_field",
+                "value": "name",
+                "type": "query",
+                "description": "Determines which field is used to sort the results."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Determines the sort order, which can be `desc` or `asc`."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/exception_lists/items/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all exception list items in the specified list."
+        },
+        {
+          "info": {
+            "name": "Get an exception list summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/exception_lists/summary",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Exception list's identifier generated upon creation."
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "Exception list's human readable identifier."
+              },
+              {
+                "name": "namespace_type",
+                "value": "",
+                "type": "query",
+                "description": "`single` returns summary for a list in the current space; `agnostic` for a space-agnostic list. Must\nline up with `id` / `list_id` used to look up the list.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Search filter clause"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/exception_lists/summary</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a summary of the specified exception list."
+        },
+        {
+          "info": {
+            "name": "Create a shared exception list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/exceptions/shared",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/exceptions/shared</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nAn exception list groups exception items and can be associated with detection rules. A shared exception list can apply to multiple detection rules.\n> info\n> All exception items added to the same list are evaluated using"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

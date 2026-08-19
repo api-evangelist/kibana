@@ -1,0 +1,555 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Security AI Assistant API API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security AI Assistant API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apply a bulk action to anonymization fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/security_ai_assistant/anonymization_fields/_bulk_action",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/anonymization_fields/_bulk_action</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nApply a bulk action to multiple anonymization fields. The bulk action is applied to all anonymization fields that match the filter or to the list of anonymization fields by their ID"
+        },
+        {
+          "info": {
+            "name": "Get anonymization fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/security_ai_assistant/anonymization_fields/_find",
+            "params": [
+              {
+                "name": "fields",
+                "value": "id,field,anonymized,allowed",
+                "type": "query",
+                "description": "Fields to return"
+              },
+              {
+                "name": "filter",
+                "value": "field: \"user.name\"",
+                "type": "query",
+                "description": "Search query"
+              },
+              {
+                "name": "sort_field",
+                "value": "created_at",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sort_order",
+                "value": "asc",
+                "type": "query",
+                "description": "Sort order"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "20",
+                "type": "query",
+                "description": "AnonymizationFields per page"
+              },
+              {
+                "name": "all_data",
+                "value": "",
+                "type": "query",
+                "description": "If true, additionally fetch all anonymization fields, otherwise fetch only the provided page"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/anonymization_fields/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all anonymization fields."
+        },
+        {
+          "info": {
+            "name": "Create a model response",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/security_ai_assistant/chat/complete",
+            "params": [
+              {
+                "name": "content_references_disabled",
+                "value": "false",
+                "type": "query",
+                "description": "If true, the response will not include content references."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/chat/complete</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a model response for the given chat conversation."
+        },
+        {
+          "info": {
+            "name": "Create a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/security_ai_assistant/current_user/conversations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/current_user/conversations</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new Security AI Assistant conversation. This endpoint allows the user to initiate a conversation with the Security AI Assistant by providing the required parameters."
+        },
+        {
+          "info": {
+            "name": "Delete conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/security_ai_assistant/current_user/conversations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/current_user/conversations</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nThis endpoint allows users to permanently delete all conversations."
+        },
+        {
+          "info": {
+            "name": "Get conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/security_ai_assistant/current_user/conversations/_find",
+            "params": [
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A list of fields to include in the response. If omitted, all fields are returned."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A search query to filter the conversations. Can match against titles, messages, or other conversation attributes."
+              },
+              {
+                "name": "sort_field",
+                "value": "",
+                "type": "query",
+                "description": "The field by which to sort the results. Valid fields are `created_at`, `title`, and `updated_at`."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "The order in which to sort the results. Can be either `asc` for ascending or `desc` for descending."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number of the results to retrieve. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of conversations to return per page. Default is 20."
+              },
+              {
+                "name": "is_owner",
+                "value": "",
+                "type": "query",
+                "description": "Whether to return conversations that the current user owns. If true, only conversations owned by the user are returned."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/current_user/conversations/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all conversations for the current user. This endpoint allows users to search, filter, sort, and paginate through their conversations."
+        },
+        {
+          "info": {
+            "name": "Get a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/security_ai_assistant/current_user/conversations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "abc123",
+                "type": "path",
+                "description": "The conversation's `id` value, a unique identifier for the conversation."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/current_user/conversations/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the details of an existing conversation using the conversation ID. This allows users to fetch the specific conversation data by its unique ID."
+        },
+        {
+          "info": {
+            "name": "Update a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/security_ai_assistant/current_user/conversations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "abc123",
+                "type": "path",
+                "description": "The conversation's `id` value."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/current_user/conversations/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an existing conversation using the conversation ID. This endpoint allows users to modify the details of an existing conversation."
+        },
+        {
+          "info": {
+            "name": "Delete a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/security_ai_assistant/current_user/conversations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "abc123",
+                "type": "path",
+                "description": "The conversation's `id` value."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/current_user/conversations/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete an existing conversation using the conversation ID. This endpoint allows users to permanently delete a conversation."
+        },
+        {
+          "info": {
+            "name": "Read a KnowledgeBase",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/security_ai_assistant/knowledge_base"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRead a single KB"
+        },
+        {
+          "info": {
+            "name": "Create a KnowledgeBase",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/security_ai_assistant/knowledge_base",
+            "params": [
+              {
+                "name": "modelId",
+                "value": "elser-model-001",
+                "type": "query",
+                "description": "ELSER modelId to use when setting up the Knowledge Base. If not provided, a default model will be used."
+              },
+              {
+                "name": "ignoreSecurityLabs",
+                "value": "true",
+                "type": "query",
+                "description": "Indicates whether we should or should not install Security Labs docs when setting up the Knowledge Base. Defaults to `false`."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a knowledge base. Use this endpoint when no specific resource identifier is needed."
+        },
+        {
+          "info": {
+            "name": "Read a KnowledgeBase for a resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/security_ai_assistant/knowledge_base/:resource",
+            "params": [
+              {
+                "name": "resource",
+                "value": "kb12345",
+                "type": "path",
+                "description": "The KnowledgeBase `resource` value."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/{resource}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRead a knowledge base with a specific resource identifier."
+        },
+        {
+          "info": {
+            "name": "Create a KnowledgeBase for a resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/security_ai_assistant/knowledge_base/:resource",
+            "params": [
+              {
+                "name": "resource",
+                "value": "kb12345",
+                "type": "path",
+                "description": "The KnowledgeBase `resource` value."
+              },
+              {
+                "name": "modelId",
+                "value": "elser-model-001",
+                "type": "query",
+                "description": "ELSER modelId to use when setting up the Knowledge Base. If not provided, a default model will be used."
+              },
+              {
+                "name": "ignoreSecurityLabs",
+                "value": "true",
+                "type": "query",
+                "description": "Indicates whether we should or should not install Security Labs docs when setting up the Knowledge Base. Defaults to `false`."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/{resource}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a knowledge base with a specific resource identifier."
+        },
+        {
+          "info": {
+            "name": "Create a Knowledge Base Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/security_ai_assistant/knowledge_base/entries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/entries</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a Knowledge Base Entry"
+        },
+        {
+          "info": {
+            "name": "Applies a bulk action to multiple Knowledge Base Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/security_ai_assistant/knowledge_base/entries/_bulk_action",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/entries/_bulk_action</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nThe bulk action is applied to all Knowledge Base Entries that match the filter or to the list of Knowledge Base Entries by their IDs."
+        },
+        {
+          "info": {
+            "name": "Finds Knowledge Base Entries that match the given query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/security_ai_assistant/knowledge_base/entries/_find",
+            "params": [
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A list of fields to include in the response. If not provided, all fields will be included."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Search query to filter Knowledge Base Entries by specific criteria."
+              },
+              {
+                "name": "sort_field",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the Knowledge Base Entries by."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for the results, either asc or desc."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results. Defaults to 1."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of Knowledge Base Entries to return per page. Defaults to 20."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/entries/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nFinds Knowledge Base Entries that match the given query."
+        },
+        {
+          "info": {
+            "name": "Read a Knowledge Base Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/security_ai_assistant/knowledge_base/entries/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "12345",
+                "type": "path",
+                "description": "The unique identifier (`id`) of the Knowledge Base Entry to retrieve."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/entries/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a Knowledge Base Entry by its unique `id`."
+        },
+        {
+          "info": {
+            "name": "Update a Knowledge Base Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/security_ai_assistant/knowledge_base/entries/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "12345",
+                "type": "path",
+                "description": "The unique identifier (`id`) of the Knowledge Base Entry to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/entries/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an existing Knowledge Base Entry by its unique `id`."
+        },
+        {
+          "info": {
+            "name": "Deletes a single Knowledge Base Entry using the `id` field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/security_ai_assistant/knowledge_base/entries/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "12345",
+                "type": "path",
+                "description": "The unique identifier (`id`) of the Knowledge Base Entry to delete."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/knowledge_base/entries/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a Knowledge Base Entry by its unique `id`."
+        },
+        {
+          "info": {
+            "name": "Apply a bulk action to prompts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/security_ai_assistant/prompts/_bulk_action",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/prompts/_bulk_action</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nApply a bulk action to multiple prompts. The bulk action is applied to all prompts that match the filter or to the list of prompts by their IDs. This action allows for bulk create, update, or de"
+        },
+        {
+          "info": {
+            "name": "Get prompts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/security_ai_assistant/prompts/_find",
+            "params": [
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "List of specific fields to include in each returned prompt."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Search query string to filter prompts by matching fields."
+              },
+              {
+                "name": "sort_field",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort prompts by."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order, either asc or desc."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of prompts per page."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/security_ai_assistant/prompts/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all prompts based on optional filters, sorting, and pagination."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

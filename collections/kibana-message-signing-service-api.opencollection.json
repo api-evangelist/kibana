@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Message Signing Service API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Message Signing Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Rotate a Fleet message signing key pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/message_signing_service/rotate_key_pair",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "acknowledge",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to confirm you understand the risks of rotating the key pair"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/message_signing_service/rotate_key_pair</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRotate the key pair used by Fleet to sign messages sent to Elastic Agents. This operation is irreversible and requires all agents in the Fleet to be re-enrolled after rotation. You must expli"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

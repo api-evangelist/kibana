@@ -1,0 +1,2357 @@
+{
+  "item": [
+    {
+      "id": "8699e51b-1bf8-4054-bad0-7a7ed750a89d",
+      "name": "Fleet package policies",
+      "description": {
+        "content": "Fleet package policies APIs enable you to manage Fleet package policies, including creating, updating, and deleting policies, performing bulk operations, and managing policy upgrades.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e7efb862-fbeb-44dc-ab68-3105a645258f",
+          "name": "Get package policies",
+          "request": {
+            "name": "Get package policies",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/package_policies</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nList all package policies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "fleet",
+                "package_policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<number>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "Field to sort results by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "Sort order, ascending or descending"
+                },
+                {
+                  "disabled": false,
+                  "key": "showUpgradeable",
+                  "value": "<boolean>",
+                  "description": "When true, only show policies with available upgrades"
+                },
+                {
+                  "disabled": false,
+                  "key": "kuery",
+                  "value": "<string>",
+                  "description": "A KQL query string to filter results"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Format for the response: simplified or legacy"
+                },
+                {
+                  "disabled": false,
+                  "key": "withAgentCount",
+                  "value": "<boolean>",
+                  "description": "When true, include the agent count per package policy"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "867f03f6-c4ac-4a01-9794-40e457ccc1b2",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "showUpgradeable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "kuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "withAgentCount",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"created_at\": \"2024-01-15T10:00:00.000Z\",\n      \"enabled\": true,\n      \"id\": \"package-policy-id-1\",\n      \"inputs\": [],\n      \"name\": \"nginx-1\",\n      \"namespace\": \"default\",\n      \"package\": {\n        \"name\": \"nginx\",\n        \"title\": \"Nginx\",\n        \"version\": \"1.20.0\"\n      },\n      \"policy_ids\": [\n        \"agent-policy-id-1\"\n      ],\n      \"updated_at\": \"2024-01-15T10:00:00.000Z\"\n    }\n  ],\n  \"page\": 1,\n  \"perPage\": 20,\n  \"total\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f73f32e0-3b81-4486-b39f-a12b8e4b7fe9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "showUpgradeable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "kuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "withAgentCount",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"An error message describing what went wrong\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2b94b6c-e051-455e-bbd4-fc915ca10702",
+          "name": "Create a package policy",
+          "request": {
+            "name": "Create a package policy",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/package_policies</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new package policy and assign it to an agent policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "fleet",
+                "package_policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Format for the response: simplified or legacy"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"inputs\": [\n    {\n      \"type\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"config\": {\n        \"key_0\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        \"key_1\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"deprecated\": {\n        \"description\": \"<string>\",\n        \"replaced_by\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"since\": \"<string>\"\n      },\n      \"id\": \"<string>\",\n      \"keep_enabled\": \"<boolean>\",\n      \"migrate_from\": \"<string>\",\n      \"name\": \"<string>\",\n      \"policy_template\": \"<string>\",\n      \"streams\": [\n        {\n          \"enabled\": \"<boolean>\",\n          \"data_stream\": {\n            \"dataset\": \"<string>\",\n            \"elasticsearch\": {\n              \"dynamic_dataset\": \"<boolean>\",\n              \"dynamic_namespace\": \"<boolean>\",\n              \"privileges\": {\n                \"indices\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"type\": \"<string>\"\n          },\n          \"compiled_stream\": {},\n          \"config\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          },\n          \"deprecated\": {\n            \"description\": \"<string>\",\n            \"replaced_by\": {\n              \"key_0\": \"<string>\"\n            },\n            \"since\": \"<string>\"\n          },\n          \"id\": \"<string>\",\n          \"keep_enabled\": \"<boolean>\",\n          \"migrate_from\": \"<string>\",\n          \"release\": \"<string>\",\n          \"var_group_selections\": {\n            \"key_0\": \"<string>\"\n          },\n          \"vars\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_1\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          }\n        },\n        {\n          \"enabled\": \"<boolean>\",\n          \"data_stream\": {\n            \"dataset\": \"<string>\",\n            \"elasticsearch\": {\n              \"dynamic_dataset\": \"<boolean>\",\n              \"dynamic_namespace\": \"<boolean>\",\n              \"privileges\": {\n                \"indices\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"type\": \"<string>\"\n          },\n          \"compiled_stream\": {},\n          \"config\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_1\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_2\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_3\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          },\n          \"deprecated\": {\n            \"description\": \"<string>\",\n            \"replaced_by\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\"\n            },\n            \"since\": \"<string>\"\n          },\n          \"id\": \"<string>\",\n          \"keep_enabled\": \"<boolean>\",\n          \"migrate_from\": \"<string>\",\n          \"release\": \"<string>\",\n          \"var_group_selections\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\",\n            \"key_3\": \"<string>\"\n          },\n          \"vars\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_1\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_2\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          }\n        }\n      ],\n      \"var_group_selections\": {\n        \"key_0\": \"<string>\"\n      },\n      \"vars\": {\n        \"key_0\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        \"key_1\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"config\": {\n        \"key_0\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"deprecated\": {\n        \"description\": \"<string>\",\n        \"replaced_by\": {\n          \"key_0\": \"<string>\"\n        },\n        \"since\": \"<string>\"\n      },\n      \"id\": \"<string>\",\n      \"keep_enabled\": \"<boolean>\",\n      \"migrate_from\": \"<string>\",\n      \"name\": \"<string>\",\n      \"policy_template\": \"<string>\",\n      \"streams\": [\n        {\n          \"enabled\": \"<boolean>\",\n          \"data_stream\": {\n            \"dataset\": \"<string>\",\n            \"elasticsearch\": {\n              \"dynamic_dataset\": \"<boolean>\",\n              \"dynamic_namespace\": \"<boolean>\",\n              \"privileges\": {\n                \"indices\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"type\": \"<string>\"\n          },\n          \"compiled_stream\": {},\n          \"config\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_1\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_2\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          },\n          \"deprecated\": {\n            \"description\": \"<string>\",\n            \"replaced_by\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\"\n            },\n            \"since\": \"<string>\"\n          },\n          \"id\": \"<string>\",\n          \"keep_enabled\": \"<boolean>\",\n          \"migrate_from\": \"<string>\",\n          \"release\": \"<string>\",\n          \"var_group_selections\": {\n            \"key_0\": \"<string>\"\n          },\n          \"vars\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_1\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          }\n        },\n        {\n          \"enabled\": \"<boolean>\",\n          \"data_stream\": {\n            \"dataset\": \"<string>\",\n            \"elasticsearch\": {\n              \"dynamic_dataset\": \"<boolean>\",\n              \"dynamic_namespace\": \"<boolean>\",\n              \"privileges\": {\n                \"indices\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"type\": \"<string>\"\n          },\n          \"compiled_stream\": {},\n          \"config\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_1\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_2\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_3\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          },\n          \"deprecated\": {\n            \"description\": \"<string>\",\n            \"replaced_by\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\"\n            },\n            \"since\": \"<string>\"\n          },\n          \"id\": \"<string>\",\n          \"keep_enabled\": \"<boolean>\",\n          \"migrate_from\": \"<string>\",\n          \"release\": \"<string>\",\n          \"var_group_selections\": {\n            \"key_0\": \"<string>\"\n          },\n          \"vars\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_1\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_2\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_3\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          }\n        }\n      ],\n      \"var_group_selections\": {\n        \"key_0\": \"<string>\"\n      },\n      \"vars\": {\n        \"key_0\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        \"key_1\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"additional_datastreams_permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cloud_connector_id\": \"<string>\",\n  \"cloud_connector_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"force\": \"<boolean>\",\n  \"global_data_tags\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"id\": \"<string>\",\n  \"is_managed\": \"<boolean>\",\n  \"namespace\": \"<string>\",\n  \"output_id\": \"<string>\",\n  \"overrides\": {\n    \"inputs\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  },\n  \"package\": {\n    \"name\": \"<string>\",\n    \"version\": \"<string>\",\n    \"experimental_data_stream_features\": [\n      {\n        \"data_stream\": \"<string>\",\n        \"features\": {\n          \"doc_value_only_numeric\": \"<boolean>\",\n          \"doc_value_only_other\": \"<boolean>\",\n          \"synthetic_source\": \"<boolean>\",\n          \"tsdb\": \"<boolean>\"\n        }\n      },\n      {\n        \"data_stream\": \"<string>\",\n        \"features\": {\n          \"doc_value_only_numeric\": \"<boolean>\",\n          \"doc_value_only_other\": \"<boolean>\",\n          \"synthetic_source\": \"<boolean>\",\n          \"tsdb\": \"<boolean>\"\n        }\n      }\n    ],\n    \"fips_compatible\": \"<boolean>\",\n    \"requires_root\": \"<boolean>\",\n    \"title\": \"<string>\"\n  },\n  \"package_agent_version_condition\": \"<string>\",\n  \"policy_id\": \"<string>\",\n  \"policy_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"spaceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"supports_agentless\": false,\n  \"supports_cloud_connector\": false,\n  \"var_group_selections\": {\n    \"key_0\": \"<string>\"\n  },\n  \"vars\": {\n    \"key_0\": {\n      \"value\": {},\n      \"frozen\": \"<boolean>\",\n      \"type\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "55806ff5-91cc-4574-ade4-e0d598dc46f3",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputs\": {},\n  \"name\": \"nginx-1\",\n  \"namespace\": \"default\",\n  \"package\": {\n    \"name\": \"nginx\",\n    \"version\": \"1.20.0\"\n  },\n  \"policy_ids\": [\n    \"agent-policy-id-1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"item\": {\n    \"created_at\": \"2024-01-15T10:00:00.000Z\",\n    \"enabled\": true,\n    \"id\": \"package-policy-id-2\",\n    \"inputs\": [],\n    \"name\": \"nginx-1\",\n    \"namespace\": \"default\",\n    \"package\": {\n      \"name\": \"nginx\",\n      \"title\": \"Nginx\",\n      \"version\": \"1.20.0\"\n    },\n    \"policy_ids\": [\n      \"agent-policy-id-1\"\n    ],\n    \"updated_at\": \"2024-01-15T10:00:00.000Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7343aee-3ed6-49bb-9aed-fecf1d31c622",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputs\": {},\n  \"name\": \"nginx-1\",\n  \"namespace\": \"default\",\n  \"package\": {\n    \"name\": \"nginx\",\n    \"version\": \"1.20.0\"\n  },\n  \"policy_ids\": [\n    \"agent-policy-id-1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"An error message describing what went wrong\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d0b2a6c-a6bd-4bbf-bd1d-3457670b8b9d",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputs\": {},\n  \"name\": \"nginx-1\",\n  \"namespace\": \"default\",\n  \"package\": {\n    \"name\": \"nginx\",\n    \"version\": \"1.20.0\"\n  },\n  \"policy_ids\": [\n    \"agent-policy-id-1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Conflict\",\n  \"message\": \"An error message describing what went wrong\",\n  \"statusCode\": 409\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d77ad1a2-434b-4183-ab3e-3ecd6cb847b6",
+          "name": "Bulk get package policies",
+          "request": {
+            "name": "Bulk get package policies",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/package_policies/_bulk_get</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet multiple package policies by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "fleet",
+                "package_policies",
+                "_bulk_get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Format for the response: simplified or legacy"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ignoreMissing\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "80cf4516-6725-4f5f-84e4-d42be5b5fa7b",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    "_bulk_get"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"package-policy-id-1\",\n    \"package-policy-id-2\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"created_at\": \"2024-01-15T10:00:00.000Z\",\n      \"enabled\": true,\n      \"id\": \"package-policy-id-1\",\n      \"inputs\": [],\n      \"name\": \"nginx-1\",\n      \"namespace\": \"default\",\n      \"package\": {\n        \"name\": \"nginx\",\n        \"title\": \"Nginx\",\n        \"version\": \"1.20.0\"\n      },\n      \"policy_ids\": [\n        \"agent-policy-id-1\"\n      ],\n      \"updated_at\": \"2024-01-15T10:00:00.000Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e35b255b-cb4d-446d-9133-0c64e1d152a9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    "_bulk_get"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"package-policy-id-1\",\n    \"package-policy-id-2\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"An error message describing what went wrong\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "367ceff7-67e0-4806-98c9-bd171c87e02c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    "_bulk_get"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"package-policy-id-1\",\n    \"package-policy-id-2\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Package policy package-policy-id-2 not found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3763a3e-42e1-4b6f-ace4-25431661ecda",
+          "name": "Delete a package policy",
+          "request": {
+            "name": "Delete a package policy",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/package_policies/{packagePolicyId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a package policy by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all AND integrations-all.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "fleet",
+                "package_policies",
+                ":packagePolicyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<boolean>",
+                  "description": "When true, delete the package policy even if it is managed"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "packagePolicyId",
+                  "description": "(Required) The ID of the package policy"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "adc4cebc-44b0-4e96-b5fd-3b724820fbc4",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    ":packagePolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packagePolicyId",
+                      "description": "(Required) The ID of the package policy"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"package-policy-id-1\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b1bba08-8aad-444e-92ca-8d691dfbb502",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    ":packagePolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packagePolicyId",
+                      "description": "(Required) The ID of the package policy"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"An error message describing what went wrong\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7c110e6-16ee-412d-b8af-8d739315715b",
+          "name": "Get a package policy",
+          "request": {
+            "name": "Get a package policy",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/package_policies/{packagePolicyId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a package policy by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "fleet",
+                "package_policies",
+                ":packagePolicyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Format for the response: simplified or legacy"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "packagePolicyId",
+                  "description": "(Required) The ID of the package policy"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae97c355-5f93-4e46-bb54-6583bde523a5",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    ":packagePolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packagePolicyId",
+                      "description": "(Required) The ID of the package policy"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"item\": {\n    \"created_at\": \"2024-01-15T10:00:00.000Z\",\n    \"enabled\": true,\n    \"id\": \"package-policy-id-1\",\n    \"inputs\": [],\n    \"name\": \"nginx-1\",\n    \"namespace\": \"default\",\n    \"package\": {\n      \"name\": \"nginx\",\n      \"title\": \"Nginx\",\n      \"version\": \"1.20.0\"\n    },\n    \"policy_ids\": [\n      \"agent-policy-id-1\"\n    ],\n    \"updated_at\": \"2024-01-15T10:00:00.000Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abd7ff3a-ee7c-4ae8-b24a-9d4f0d18c19e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    ":packagePolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packagePolicyId",
+                      "description": "(Required) The ID of the package policy"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"An error message describing what went wrong\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70667711-a752-4db8-ad2a-858c10cc1dc6",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    ":packagePolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packagePolicyId",
+                      "description": "(Required) The ID of the package policy"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Package policy package-policy-id-1 not found\",\n  \"statusCode\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2836e24-edb1-451b-8ff0-89b139c82b73",
+          "name": "Update a package policy",
+          "request": {
+            "name": "Update a package policy",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/package_policies/{packagePolicyId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate a package policy by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "fleet",
+                "package_policies",
+                ":packagePolicyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Format for the response: simplified or legacy"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "packagePolicyId",
+                  "description": "(Required) The ID of the package policy"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"additional_datastreams_permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cloud_connector_id\": \"<string>\",\n  \"cloud_connector_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"force\": \"<boolean>\",\n  \"global_data_tags\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"inputs\": [\n    {\n      \"type\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"config\": {\n        \"key_0\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"deprecated\": {\n        \"description\": \"<string>\",\n        \"replaced_by\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"since\": \"<string>\"\n      },\n      \"id\": \"<string>\",\n      \"keep_enabled\": \"<boolean>\",\n      \"migrate_from\": \"<string>\",\n      \"name\": \"<string>\",\n      \"policy_template\": \"<string>\",\n      \"streams\": [\n        {\n          \"enabled\": \"<boolean>\",\n          \"data_stream\": {\n            \"dataset\": \"<string>\",\n            \"elasticsearch\": {\n              \"dynamic_dataset\": \"<boolean>\",\n              \"dynamic_namespace\": \"<boolean>\",\n              \"privileges\": {\n                \"indices\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"type\": \"<string>\"\n          },\n          \"compiled_stream\": {},\n          \"config\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_1\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_2\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          },\n          \"deprecated\": {\n            \"description\": \"<string>\",\n            \"replaced_by\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\",\n              \"key_2\": \"<string>\"\n            },\n            \"since\": \"<string>\"\n          },\n          \"id\": \"<string>\",\n          \"keep_enabled\": \"<boolean>\",\n          \"migrate_from\": \"<string>\",\n          \"release\": \"<string>\",\n          \"var_group_selections\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"vars\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_1\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          }\n        },\n        {\n          \"enabled\": \"<boolean>\",\n          \"data_stream\": {\n            \"dataset\": \"<string>\",\n            \"elasticsearch\": {\n              \"dynamic_dataset\": \"<boolean>\",\n              \"dynamic_namespace\": \"<boolean>\",\n              \"privileges\": {\n                \"indices\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"type\": \"<string>\"\n          },\n          \"compiled_stream\": {},\n          \"config\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_1\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          },\n          \"deprecated\": {\n            \"description\": \"<string>\",\n            \"replaced_by\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\",\n              \"key_2\": \"<string>\"\n            },\n            \"since\": \"<string>\"\n          },\n          \"id\": \"<string>\",\n          \"keep_enabled\": \"<boolean>\",\n          \"migrate_from\": \"<string>\",\n          \"release\": \"<string>\",\n          \"var_group_selections\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\",\n            \"key_3\": \"<string>\"\n          },\n          \"vars\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_1\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_2\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          }\n        }\n      ],\n      \"var_group_selections\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"vars\": {\n        \"key_0\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        \"key_1\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        \"key_2\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"config\": {\n        \"key_0\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        \"key_1\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"deprecated\": {\n        \"description\": \"<string>\",\n        \"replaced_by\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"since\": \"<string>\"\n      },\n      \"id\": \"<string>\",\n      \"keep_enabled\": \"<boolean>\",\n      \"migrate_from\": \"<string>\",\n      \"name\": \"<string>\",\n      \"policy_template\": \"<string>\",\n      \"streams\": [\n        {\n          \"enabled\": \"<boolean>\",\n          \"data_stream\": {\n            \"dataset\": \"<string>\",\n            \"elasticsearch\": {\n              \"dynamic_dataset\": \"<boolean>\",\n              \"dynamic_namespace\": \"<boolean>\",\n              \"privileges\": {\n                \"indices\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"type\": \"<string>\"\n          },\n          \"compiled_stream\": {},\n          \"config\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_1\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          },\n          \"deprecated\": {\n            \"description\": \"<string>\",\n            \"replaced_by\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\",\n              \"key_2\": \"<string>\"\n            },\n            \"since\": \"<string>\"\n          },\n          \"id\": \"<string>\",\n          \"keep_enabled\": \"<boolean>\",\n          \"migrate_from\": \"<string>\",\n          \"release\": \"<string>\",\n          \"var_group_selections\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          },\n          \"vars\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_1\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          }\n        },\n        {\n          \"enabled\": \"<boolean>\",\n          \"data_stream\": {\n            \"dataset\": \"<string>\",\n            \"elasticsearch\": {\n              \"dynamic_dataset\": \"<boolean>\",\n              \"dynamic_namespace\": \"<boolean>\",\n              \"privileges\": {\n                \"indices\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            },\n            \"type\": \"<string>\"\n          },\n          \"compiled_stream\": {},\n          \"config\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_1\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_2\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            },\n            \"key_3\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          },\n          \"deprecated\": {\n            \"description\": \"<string>\",\n            \"replaced_by\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\"\n            },\n            \"since\": \"<string>\"\n          },\n          \"id\": \"<string>\",\n          \"keep_enabled\": \"<boolean>\",\n          \"migrate_from\": \"<string>\",\n          \"release\": \"<string>\",\n          \"var_group_selections\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"vars\": {\n            \"key_0\": {\n              \"value\": {},\n              \"frozen\": \"<boolean>\",\n              \"type\": \"<string>\"\n            }\n          }\n        }\n      ],\n      \"var_group_selections\": {\n        \"key_0\": \"<string>\"\n      },\n      \"vars\": {\n        \"key_0\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        \"key_1\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        },\n        \"key_2\": {\n          \"value\": {},\n          \"frozen\": \"<boolean>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"is_managed\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"output_id\": \"<string>\",\n  \"overrides\": {\n    \"inputs\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  },\n  \"package\": {\n    \"name\": \"<string>\",\n    \"version\": \"<string>\",\n    \"experimental_data_stream_features\": [\n      {\n        \"data_stream\": \"<string>\",\n        \"features\": {\n          \"doc_value_only_numeric\": \"<boolean>\",\n          \"doc_value_only_other\": \"<boolean>\",\n          \"synthetic_source\": \"<boolean>\",\n          \"tsdb\": \"<boolean>\"\n        }\n      },\n      {\n        \"data_stream\": \"<string>\",\n        \"features\": {\n          \"doc_value_only_numeric\": \"<boolean>\",\n          \"doc_value_only_other\": \"<boolean>\",\n          \"synthetic_source\": \"<boolean>\",\n          \"tsdb\": \"<boolean>\"\n        }\n      }\n    ],\n    \"fips_compatible\": \"<boolean>\",\n    \"requires_root\": \"<boolean>\",\n    \"title\": \"<string>\"\n  },\n  \"package_agent_version_condition\": \"<string>\",\n  \"policy_id\": \"<string>\",\n  \"policy_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"spaceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"supports_agentless\": false,\n  \"supports_cloud_connector\": false,\n  \"var_group_selections\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"vars\": {\n    \"key_0\": {\n      \"value\": {},\n      \"frozen\": \"<boolean>\",\n      \"type\": \"<string>\"\n    },\n    \"key_1\": {\n      \"value\": {},\n      \"frozen\": \"<boolean>\",\n      \"type\": \"<string>\"\n    },\n    \"key_2\": {\n      \"value\": {},\n      \"frozen\": \"<boolean>\",\n      \"type\": \"<string>\"\n    },\n    \"key_3\": {\n      \"value\": {},\n      \"frozen\": \"<boolean>\",\n      \"type\": \"<string>\"\n    }\n  },\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8cce72a5-d4a1-4758-9178-b3ee8af2b3e2",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    ":packagePolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packagePolicyId",
+                      "description": "(Required) The ID of the package policy"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": true,\n  \"inputs\": {},\n  \"name\": \"nginx-1-updated\",\n  \"namespace\": \"default\",\n  \"package\": {\n    \"name\": \"nginx\",\n    \"version\": \"1.20.0\"\n  },\n  \"policy_ids\": [\n    \"agent-policy-id-1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"item\": {\n    \"created_at\": \"2024-01-15T10:00:00.000Z\",\n    \"enabled\": true,\n    \"id\": \"package-policy-id-1\",\n    \"inputs\": [],\n    \"name\": \"nginx-1-updated\",\n    \"namespace\": \"default\",\n    \"package\": {\n      \"name\": \"nginx\",\n      \"title\": \"Nginx\",\n      \"version\": \"1.20.0\"\n    },\n    \"policy_ids\": [\n      \"agent-policy-id-1\"\n    ],\n    \"updated_at\": \"2024-01-15T11:00:00.000Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ae31932-c9e8-42a1-bdc6-12794096b214",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    ":packagePolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packagePolicyId",
+                      "description": "(Required) The ID of the package policy"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": true,\n  \"inputs\": {},\n  \"name\": \"nginx-1-updated\",\n  \"namespace\": \"default\",\n  \"package\": {\n    \"name\": \"nginx\",\n    \"version\": \"1.20.0\"\n  },\n  \"policy_ids\": [\n    \"agent-policy-id-1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"An error message describing what went wrong\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e826886b-dcce-4e27-8850-9b4d5fefbea5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    ":packagePolicyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packagePolicyId",
+                      "description": "(Required) The ID of the package policy"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": true,\n  \"inputs\": {},\n  \"name\": \"nginx-1-updated\",\n  \"namespace\": \"default\",\n  \"package\": {\n    \"name\": \"nginx\",\n    \"version\": \"1.20.0\"\n  },\n  \"policy_ids\": [\n    \"agent-policy-id-1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"An error message describing what went wrong\",\n  \"statusCode\": 403\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc5638e4-f4f9-48de-8edd-37e54b618cac",
+          "name": "Bulk delete package policies",
+          "request": {
+            "name": "Bulk delete package policies",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/package_policies/delete</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete multiple package policies by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all AND integrations-all.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "fleet",
+                "package_policies",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"packagePolicyIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"force\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9e626298-6a8f-49a2-8ba8-51ea93280226",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packagePolicyIds\": [\n    \"package-policy-id-1\",\n    \"package-policy-id-2\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"package-policy-id-1\",\n    \"success\": true\n  },\n  {\n    \"id\": \"package-policy-id-2\",\n    \"success\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "640f44d7-d72d-4b4d-b5fc-9fdca9f2517a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packagePolicyIds\": [\n    \"package-policy-id-1\",\n    \"package-policy-id-2\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"An error message describing what went wrong\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0403bc2-def1-41c9-bcba-780b5ee1e1cb",
+          "name": "Upgrade a package policy",
+          "request": {
+            "name": "Upgrade a package policy",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/package_policies/upgrade</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpgrade a package policy to a newer package version.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all AND integrations-all.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "fleet",
+                "package_policies",
+                "upgrade"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"packagePolicyIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5ac087b8-5d09-48ca-881b-71249be1eee9",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    "upgrade"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packagePolicyIds\": [\n    \"package-policy-id-1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"package-policy-id-1\",\n    \"name\": \"nginx-1\",\n    \"success\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88982cea-c4e4-4406-8842-3ef855b30346",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    "upgrade"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packagePolicyIds\": [\n    \"package-policy-id-1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"An error message describing what went wrong\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c7a6245-08d5-4c3d-81af-93949923c537",
+          "name": "Dry run a package policy upgrade",
+          "request": {
+            "name": "Dry run a package policy upgrade",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/package_policies/upgrade/dryrun</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nPreview the changes that would be applied by upgrading a package policy to a newer package version.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read AND integrations-read.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "fleet",
+                "package_policies",
+                "upgrade",
+                "dryrun"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"packagePolicyIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"packageVersion\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8a71011c-531b-4d0a-88b9-5d005dad50eb",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    "upgrade",
+                    "dryrun"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packagePolicyIds\": [\n    \"package-policy-id-1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"diff\": [\n      {\n        \"id\": \"package-policy-id-1\",\n        \"name\": \"nginx-1\",\n        \"package\": {\n          \"name\": \"nginx\",\n          \"version\": \"1.20.0\"\n        }\n      },\n      {\n        \"name\": \"nginx-1\",\n        \"package\": {\n          \"name\": \"nginx\",\n          \"version\": \"1.21.0\"\n        }\n      }\n    ],\n    \"hasErrors\": false,\n    \"name\": \"nginx-1\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "160d4c20-f2b4-466e-91ef-bcfcffacc327",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "package_policies",
+                    "upgrade",
+                    "dryrun"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packagePolicyIds\": [\n    \"package-policy-id-1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"An error message describing what went wrong\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:5601",
+      "key": "kibana_url"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kibana_url}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e148b848-b966-4dfd-aa21-fbdc21c37738",
+    "name": "Kibana APIs Actions Fleet package policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.\nThe API calls are stateless.\nEach request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the\nrequest.\nAPI requests return JSON output, which is a format that is machine-readable and works well for automation.\n\nTo interact with Kibana APIs, use the following operations:\n\n- GET: Fetches the information.\n- PATCH: Applies partial modifications to the existing information.\n- POST: Adds new information.\n- PUT: Updates the existing information.\n- DELETE: Removes the information.\n\nYou can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.\nFor example:\n\n```\nGET kbn:/api/data_views\n```\n\nFor more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).\n\nNOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.\n\n## Documentation source and versions\n\nThis documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.\nIt is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).\n\nThis documentation contains work-in-progress information for future Elastic Stack releases.\n\n\nContact Support:\n Name: Kibana Team",
+      "type": "text/plain"
+    }
+  }
+}

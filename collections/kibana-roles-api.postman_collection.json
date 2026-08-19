@@ -1,0 +1,694 @@
+{
+  "item": [
+    {
+      "id": "13a6e552-62d0-4046-a4d7-78879310a0f7",
+      "name": "roles",
+      "description": {
+        "content": "Manage the roles that grant Elasticsearch and Kibana privileges.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4badd26a-f35a-4111-8157-3a3b4e31f4e1",
+          "name": "Get all roles",
+          "request": {
+            "name": "Get all roles",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "role"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "replaceDeprecatedPrivileges",
+                  "value": "<boolean>",
+                  "description": "If `true` and the response contains any privileges that are associated with deprecated features, they are omitted in favor of details about the appropriate replacement feature privileges."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "99eaef66-d01c-47ef-9b43-001fee4caeaa",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "role"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "replaceDeprecatedPrivileges",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"my_kibana_role\",\n    \"description\": \"My kibana role description\",\n    \"metadata\": {\n      \"version\": 1\n    },\n    \"transient_metadata\": {\n      \"enabled\": true\n    },\n    \"elasticsearch\": {\n      \"indices\": [],\n      \"cluster\": [],\n      \"run_as\": []\n    },\n    \"kibana\": [\n      {\n        \"base\": [\n          \"all\"\n        ],\n        \"feature\": {},\n        \"spaces\": [\n          \"*\"\n        ]\n      }\n    ]\n  },\n  {\n    \"name\": \"my_admin_role\",\n    \"description\": \"My admin role description\",\n    \"metadata\": {\n      \"version\": 1\n    },\n    \"transient_metadata\": {\n      \"enabled\": true\n    },\n    \"elasticsearch\": {\n      \"cluster\": [\n        \"all\"\n      ],\n      \"indices\": [\n        {\n          \"names\": [\n            \"index1\",\n            \"index2\"\n          ],\n          \"privileges\": [\n            \"all\"\n          ],\n          \"field_security\": {\n            \"grant\": [\n              \"title\",\n              \"body\"\n            ]\n          },\n          \"query\": \"{\\\\\\\"match\\\\\\\": {\\\\\\\"title\\\\\\\": \\\\\\\"foo\\\\\\\"}}\"\n        }\n      ]\n    },\n    \"kibana\": []\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "245b4fa2-ac3c-48ca-800a-df8d7808deca",
+          "name": "Delete a role",
+          "request": {
+            "name": "Delete a role",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "role",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The role name."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b369c60-7e40-476a-b187-1ad51be62496",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "role",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The role name."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1796bb34-bcc4-4be8-b99a-50c5522a19f6",
+          "name": "Get a role",
+          "request": {
+            "name": "Get a role",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "role",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "replaceDeprecatedPrivileges",
+                  "value": "<boolean>",
+                  "description": "If `true` and the response contains any privileges that are associated with deprecated features, they are omitted in favor of details about the appropriate replacement feature privileges."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The role name."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60e7036d-0e25-4a39-acc5-84f7867e4d12",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "role",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "replaceDeprecatedPrivileges",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The role name."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"my_kibana_role\",\n  \"description\": \"Grants all cluster privileges and full access to index1 and index2. Grants full access to remote_index1 and remote_index2, and the monitor_enrich cluster privilege on remote_cluster1. Grants all Kibana privileges in the default space.\",\n  \"metadata\": {\n    \"version\": 1\n  },\n  \"transient_metadata\": {\n    \"enabled\": true\n  },\n  \"elasticsearch\": {\n    \"cluster\": [\n      \"all\"\n    ],\n    \"remote_cluster\": [\n      {\n        \"privileges\": [\n          \"monitor_enrich\"\n        ],\n        \"clusters\": [\n          \"remote_cluster1\"\n        ]\n      }\n    ],\n    \"indices\": [\n      {\n        \"names\": [\n          \"index1\",\n          \"index2\"\n        ],\n        \"privileges\": [\n          \"all\"\n        ],\n        \"allow_restricted_indices\": false\n      }\n    ],\n    \"remote_indices\": [\n      {\n        \"names\": [\n          \"remote_index1\",\n          \"remote_index2\"\n        ],\n        \"privileges\": [\n          \"all\"\n        ],\n        \"allow_restricted_indices\": false,\n        \"clusters\": [\n          \"remote_cluster1\"\n        ]\n      }\n    ],\n    \"run_as\": []\n  },\n  \"kibana\": [\n    {\n      \"base\": [\n        \"all\"\n      ],\n      \"feature\": {},\n      \"spaces\": [\n        \"default\"\n      ]\n    }\n  ],\n  \"_transform_error\": [],\n  \"_unrecognized_applications\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae346807-d6b3-4bd3-9633-d276f699752f",
+          "name": "Create or update a role",
+          "request": {
+            "name": "Create or update a role",
+            "description": {
+              "content": "Create a new Kibana role or update the attributes of an existing role. Kibana roles are stored in the Elasticsearch native realm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "role",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "createOnly",
+                  "value": "false",
+                  "description": "When true, a role is not overwritten if it already exists."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The role name."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"elasticsearch\": {\n    \"cluster\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"indices\": [\n      {\n        \"names\": [\n          \"<string>\"\n        ],\n        \"privileges\": [\n          \"<string>\"\n        ],\n        \"allow_restricted_indices\": \"<boolean>\",\n        \"field_security\": {\n          \"key_0\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"query\": \"<string>\"\n      },\n      {\n        \"names\": [\n          \"<string>\"\n        ],\n        \"privileges\": [\n          \"<string>\"\n        ],\n        \"allow_restricted_indices\": \"<boolean>\",\n        \"field_security\": {\n          \"key_0\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"key_1\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"query\": \"<string>\"\n      }\n    ],\n    \"remote_cluster\": [\n      {\n        \"privileges\": [\n          \"<string>\"\n        ],\n        \"clusters\": [\n          \"<string>\"\n        ]\n      },\n      {\n        \"privileges\": [\n          \"<string>\"\n        ],\n        \"clusters\": [\n          \"<string>\"\n        ]\n      }\n    ],\n    \"remote_indices\": [\n      {\n        \"clusters\": [\n          \"<string>\"\n        ],\n        \"names\": [\n          \"<string>\"\n        ],\n        \"privileges\": [\n          \"<string>\"\n        ],\n        \"allow_restricted_indices\": \"<boolean>\",\n        \"field_security\": {\n          \"key_0\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"query\": \"<string>\"\n      },\n      {\n        \"clusters\": [\n          \"<string>\"\n        ],\n        \"names\": [\n          \"<string>\"\n        ],\n        \"privileges\": [\n          \"<string>\"\n        ],\n        \"allow_restricted_indices\": \"<boolean>\",\n        \"field_security\": {\n          \"key_0\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"key_1\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"query\": \"<string>\"\n      }\n    ],\n    \"run_as\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"description\": \"<string>\",\n  \"kibana\": [\n    {\n      \"base\": [],\n      \"feature\": {\n        \"key_0\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"spaces\": [\n        \"<string>\"\n      ]\n    },\n    {\n      \"base\": [],\n      \"feature\": {\n        \"key_0\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"spaces\": [\n        \"<string>\"\n      ]\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "518edf65-dee8-4875-aa37-a50372c62912",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "role",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "createOnly",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The role name."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Grant full access to discover and dashboard features in the default space. Grant read access in the marketing, and sales spaces.\",\n  \"metadata\": {\n    \"version\": 1\n  },\n  \"elasticsearch\": {\n    \"cluster\": [],\n    \"indices\": []\n  },\n  \"kibana\": [\n    {\n      \"base\": [],\n      \"feature\": {\n        \"discover\": [\n          \"all\"\n        ],\n        \"dashboard\": [\n          \"all\"\n        ]\n      },\n      \"spaces\": [\n        \"default\"\n      ]\n    },\n    {\n      \"base\": [\n        \"read\"\n      ],\n      \"spaces\": [\n        \"marketing\",\n        \"sales\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9049df23-b48c-4c10-815a-d8e36cf70051",
+          "name": "Create or update roles",
+          "request": {
+            "name": "Create or update roles",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "security",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roles\": {\n    \"key_0\": {\n      \"elasticsearch\": {\n        \"cluster\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"indices\": [\n          {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          },\n          {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          }\n        ],\n        \"remote_cluster\": [\n          {\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"remote_indices\": [\n          {\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          },\n          {\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          }\n        ],\n        \"run_as\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"description\": \"<string>\",\n      \"kibana\": [\n        {\n          \"base\": [],\n          \"feature\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"spaces\": [\n            \"<string>\"\n          ]\n        },\n        {\n          \"base\": [],\n          \"feature\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"spaces\": [\n            \"<string>\"\n          ]\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": {}\n      }\n    },\n    \"key_1\": {\n      \"elasticsearch\": {\n        \"cluster\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"indices\": [\n          {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          },\n          {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          }\n        ],\n        \"remote_cluster\": [\n          {\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"remote_indices\": [\n          {\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          },\n          {\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          }\n        ],\n        \"run_as\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"description\": \"<string>\",\n      \"kibana\": [\n        {\n          \"base\": [],\n          \"feature\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"spaces\": [\n            \"<string>\"\n          ]\n        },\n        {\n          \"base\": [],\n          \"feature\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"spaces\": [\n            \"<string>\"\n          ]\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": {}\n      }\n    },\n    \"key_2\": {\n      \"elasticsearch\": {\n        \"cluster\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"indices\": [\n          {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          },\n          {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          }\n        ],\n        \"remote_cluster\": [\n          {\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"remote_indices\": [\n          {\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          },\n          {\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          }\n        ],\n        \"run_as\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"description\": \"<string>\",\n      \"kibana\": [\n        {\n          \"base\": [],\n          \"feature\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"spaces\": [\n            \"<string>\"\n          ]\n        },\n        {\n          \"base\": [],\n          \"feature\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"spaces\": [\n            \"<string>\"\n          ]\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": {}\n      }\n    },\n    \"key_3\": {\n      \"elasticsearch\": {\n        \"cluster\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"indices\": [\n          {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          },\n          {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          }\n        ],\n        \"remote_cluster\": [\n          {\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"remote_indices\": [\n          {\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          },\n          {\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          }\n        ],\n        \"run_as\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"description\": \"<string>\",\n      \"kibana\": [\n        {\n          \"base\": [],\n          \"feature\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_3\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_4\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"spaces\": [\n            \"<string>\"\n          ]\n        },\n        {\n          \"base\": [],\n          \"feature\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"spaces\": [\n            \"<string>\"\n          ]\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "770badd0-0bef-47ca-b05b-84df8f2ef7d0",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "security",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roles\": {\n    \"key_0\": {\n      \"elasticsearch\": {\n        \"cluster\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"indices\": [\n          {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_3\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_4\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          },\n          {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          }\n        ],\n        \"remote_cluster\": [\n          {\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"remote_indices\": [\n          {\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          },\n          {\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          }\n        ],\n        \"run_as\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"description\": \"<string>\",\n      \"kibana\": [\n        {\n          \"base\": [],\n          \"feature\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"spaces\": [\n            \"<string>\"\n          ]\n        },\n        {\n          \"base\": [],\n          \"feature\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_3\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"spaces\": [\n            \"<string>\"\n          ]\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"key_1\": {\n      \"elasticsearch\": {\n        \"cluster\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"indices\": [\n          {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          },\n          {\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          }\n        ],\n        \"remote_cluster\": [\n          {\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"remote_indices\": [\n          {\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_3\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          },\n          {\n            \"clusters\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"names\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"privileges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"allow_restricted_indices\": \"<boolean>\",\n            \"field_security\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"query\": \"<string>\"\n          }\n        ],\n        \"run_as\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"description\": \"<string>\",\n      \"kibana\": [\n        {\n          \"base\": [],\n          \"feature\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"spaces\": [\n            \"<string>\"\n          ]\n        },\n        {\n          \"base\": [],\n          \"feature\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"spaces\": [\n            \"<string>\"\n          ]\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": {}\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:5601",
+      "key": "kibana_url"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kibana_url}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "083023c2-8b6a-406d-a6d0-f2d1ea5283fc",
+    "name": "Kibana APIs Actions roles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.\nThe API calls are stateless.\nEach request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the\nrequest.\nAPI requests return JSON output, which is a format that is machine-readable and works well for automation.\n\nTo interact with Kibana APIs, use the following operations:\n\n- GET: Fetches the information.\n- PATCH: Applies partial modifications to the existing information.\n- POST: Adds new information.\n- PUT: Updates the existing information.\n- DELETE: Removes the information.\n\nYou can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.\nFor example:\n\n```\nGET kbn:/api/data_views\n```\n\nFor more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).\n\nNOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.\n\n## Documentation source and versions\n\nThis documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.\nIt is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).\n\nThis documentation contains work-in-progress information for future Elastic Stack releases.\n\n\nContact Support:\n Name: Kibana Team",
+      "type": "text/plain"
+    }
+  }
+}

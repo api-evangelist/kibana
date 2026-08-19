@@ -1,0 +1,371 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions data views API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "data views",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all data views",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/data_views"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a list of all data views. Use this endpoint to identify available data views in the current Kibana space.\n"
+        },
+        {
+          "info": {
+            "name": "Create a data view",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/data_views/data_view",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a data view. Data views identify the Elasticsearch data you want to explore and visualize. They can point to one or more data streams, indices, or index aliases, and use optional runtime fields to compute valu"
+        },
+        {
+          "info": {
+            "name": "Get a data view",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/data_views/data_view/:viewId",
+            "params": [
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the data view."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a single data view by its identifier. Data views identify the Elasticsearch data you want to explore and visualize. They can point to one or more data streams, indices, or index aliases, and use optio"
+        },
+        {
+          "info": {
+            "name": "Update a data view",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/data_views/data_view/:viewId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the data view."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an existing data view. Only the fields provided in the request body are updated.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a data view",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/data_views/data_view/:viewId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the data view."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a data view by its identifier. WARNING: When you delete a data view, it cannot be recovered.\n"
+        },
+        {
+          "info": {
+            "name": "Update field metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/data_views/data_view/:viewId/fields",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the data view."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}/fields</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate field metadata for a data view. Use this endpoint to set custom labels, custom descriptions, and format overrides for individual fields.\n"
+        },
+        {
+          "info": {
+            "name": "Create a runtime field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/data_views/data_view/:viewId/runtime_field",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the data view."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}/runtime_field</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a runtime field for a data view. Runtime fields are computed at query time using a [Painless script](https://www.elastic.co/docs/explore-analyze/scripting/modules-scripting-painless) and"
+        },
+        {
+          "info": {
+            "name": "Create or update a runtime field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/data_views/data_view/:viewId/runtime_field",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data view fields you want to update.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}/runtime_field</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate or update a runtime field for a data view. If the runtime field already exists, it is replaced with the new definition.\n"
+        },
+        {
+          "info": {
+            "name": "Get a runtime field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/data_views/data_view/:viewId/runtime_field/:fieldName",
+            "params": [
+              {
+                "name": "fieldName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the runtime field."
+              },
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the data view."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}/runtime_field/{fieldName}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve a single runtime field by name from a data view.\n"
+        },
+        {
+          "info": {
+            "name": "Update a runtime field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/data_views/data_view/:viewId/runtime_field/:fieldName",
+            "params": [
+              {
+                "name": "fieldName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the runtime field."
+              },
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the data view."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}/runtime_field/{fieldName}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate an existing runtime field in a data view. Only the fields provided in the request body are updated.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a runtime field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/data_views/data_view/:viewId/runtime_field/:fieldName",
+            "params": [
+              {
+                "name": "fieldName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the runtime field."
+              },
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the data view."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/data_view/{viewId}/runtime_field/{fieldName}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a runtime field from a data view.\n"
+        },
+        {
+          "info": {
+            "name": "Get the default data view",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/data_views/default"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/default</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve the identifier of the default data view for the current Kibana space.\n"
+        },
+        {
+          "info": {
+            "name": "Set the default data view",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/data_views/default",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/default</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nSet the default data view for the current Kibana space. The default data view is used as a fallback when no specific data view is selected.\n"
+        },
+        {
+          "info": {
+            "name": "Swap saved object references",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/data_views/swap_references",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/swap_references</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nSwap saved object references from one data view to another. Use this endpoint to update dashboards, visualizations, and other saved objects that reference a data view. WARNING: Misuse can break large numbers of"
+        },
+        {
+          "info": {
+            "name": "Preview swap references",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/data_views/swap_references/_preview",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/data_views/swap_references/_preview</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nPreview the effect of swapping saved object references from one data view to another. Returns the list of affected saved objects without making any changes.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

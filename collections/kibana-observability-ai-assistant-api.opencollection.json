@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions observability_ai_assistant API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "observability_ai_assistant",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a chat completion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/observability_ai_assistant/chat/complete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/observability_ai_assistant/chat/complete</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new chat completion by using the Observability AI Assistant.\n\nThe API returns the model's response based on the current conversation context.\n\nIt also handles any tool requests within the"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,666 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions cases API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/cases",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nYou must have `all` privileges for the **Cases** feature in the **Management**, **Observability**, or **Security** section of the Kibana  feature privileges, depending on the owner of the case you're creating.\n"
+        },
+        {
+          "info": {
+            "name": "Update cases",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{kibana_url}/api/cases",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb patch\">patch</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nYou must have `all` privileges for the **Cases** feature in the  **Management**, **Observability**, or **Security** section of the Kibana  feature privileges, depending on the owner of the case you're updating.\n"
+        },
+        {
+          "info": {
+            "name": "Delete cases",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/cases",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "The cases that you want to removed. To get the case identifiers, use the search cases (`_find`) API. In the Dev Console, you can specify the array of cases in the following format: `ids=[\"e58e77e3-ef8e-4251-926f-efb115f3c4ec\"]`. In `curl`, all non-ASCII characters must be URL encoded. For example: `ids=%5B%22e58e77e3-ef8e-4251-926f-efb115f3c4ec%22%5D`\n"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nYou must have `read` or `all` privileges and the `delete` sub-feature privilege for the **Cases** feature in the **Management**, **Observability**, or **Security** section of the Kibana feature privileges, depending on the owne"
+        },
+        {
+          "info": {
+            "name": "Search cases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/cases/_find",
+            "params": [
+              {
+                "name": "assignees",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned cases by assignees. Valid values are `none` or unique identifiers for the user profiles. These identifiers can be found by using the suggest user profile API.\n"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned cases by category."
+              },
+              {
+                "name": "defaultSearchOperator",
+                "value": "OR",
+                "type": "query",
+                "description": "he default operator to use for the simple_query_string."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Returns only cases that were created after a specific date. The date must be specified as a KQL data range or date match expression.\n"
+              },
+              {
+                "name": "owner",
+                "value": "cases",
+                "type": "query",
+                "description": "A filter to limit the response to a specific set of applications. If this parameter is omitted, the response contains information about all the cases that the user has access to read.\n"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "The page number to return."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return. Limited to 100 items."
+              },
+              {
+                "name": "reporters",
+                "value": "elastic",
+                "type": "query",
+                "description": "Filters the returned cases by the user name of the reporter."
+              },
+              {
+                "name": "search",
+                "value": "Case title 1",
+                "type": "query",
+                "description": "An Elasticsearch simple_query_string query that filters the objects in the response."
+              },
+              {
+                "name": "searchFields",
+                "value": "",
+                "type": "query",
+                "description": "The fields to perform the simple_query_string parsed query against."
+              },
+              {
+                "name": "severity",
+                "value": "low",
+                "type": "query",
+                "description": "The severity of the case."
+              },
+              {
+                "name": "sortField",
+                "value": "updatedAt",
+                "type": "query",
+                "description": "Determines which field is used to sort the results."
+              },
+              {
+                "name": "sortOrder",
+                "value": "desc",
+                "type": "query",
+                "description": "Determines the sort order."
+              },
+              {
+                "name": "status",
+                "value": "open",
+                "type": "query",
+                "description": "Filters the returned cases by state."
+              },
+              {
+                "name": "tags",
+                "value": "tag-1",
+                "type": "query",
+                "description": "Filters the returned cases by tags."
+              },
+              {
+                "name": "to",
+                "value": "now+1d",
+                "type": "query",
+                "description": "Returns only cases that were created before a specific date. The date must be specified as a KQL data range or date match expression.\n"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nYou must have `read` privileges for the **Cases** feature in the **Management**, **Observability**, or **Security** section of the Kibana feature privileges, depending on the owner of the cases you're seeking.\n"
+        },
+        {
+          "info": {
+            "name": "Get case information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/cases/:caseId",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the case. To retrieve case IDs, use the search cases (`_find)` API. All non-ASCII characters must be URL encoded."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/{caseId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nReturns case details. The response does not include a comments property;  use the find case comments API to retrieve comments. The totalComment field  reflects the actual number of user comments on the case. You must have `r"
+        },
+        {
+          "info": {
+            "name": "Get all alerts for a case",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/cases/:caseId/alerts",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the case. To retrieve case IDs, use the search cases (`_find)` API. All non-ASCII characters must be URL encoded."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/{caseId}/alerts</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nYou must have `read` privileges for the **Cases** feature in the **Management**, **Observability**, or **Security** section of the Kibana feature privileges, depending on the owner of the cases you're seeking.\n"
+        },
+        {
+          "info": {
+            "name": "Add a case comment or alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/cases/:caseId/comments",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the case. To retrieve case IDs, use the search cases (`_find)` API. All non-ASCII characters must be URL encoded."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/{caseId}/comments</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nYou must have `all` privileges for the **Cases** feature in the **Management**, **Observability**, or **Security** section of the Kibana feature privileges, depending on the owner of the case you're creating. NOTE"
+        },
+        {
+          "info": {
+            "name": "Update a case comment or alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{kibana_url}/api/cases/:caseId/comments",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the case. To retrieve case IDs, use the search cases (`_find)` API. All non-ASCII characters must be URL encoded."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb patch\">patch</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/{caseId}/comments</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nYou must have `all` privileges for the **Cases** feature in the **Management**, **Observability**, or **Security** section of the Kibana feature privileges, depending on the owner of the case you're updating. NO"
+        },
+        {
+          "info": {
+            "name": "Delete all case comments and alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/cases/:caseId/comments",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the case. To retrieve case IDs, use the search cases (`_find)` API. All non-ASCII characters must be URL encoded."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/{caseId}/comments</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDeletes all comments and alerts from a case. You must have `all` privileges for the **Cases** feature in the **Management**, **Observability**, or **Security** section of the Kibana feature privileges, dependi"
+        },
+        {
+          "info": {
+            "name": "Find case comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/cases/:caseId/comments/_find",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the case. To retrieve case IDs, use the search cases (`_find)` API. All non-ASCII characters must be URL encoded."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "The page number to return."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return. Limited to 100 items."
+              },
+              {
+                "name": "sortOrder",
+                "value": "desc",
+                "type": "query",
+                "description": "Determines the sort order."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/{caseId}/comments/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieves a paginated list of comments for a case. You must have `read` privileges for the **Cases** feature in the **Management**, **Observability**, or **Security** section of the Kibana feature privileges, "
+        },
+        {
+          "info": {
+            "name": "Get a case comment or alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/cases/:caseId/comments/:commentId",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the case. To retrieve case IDs, use the search cases (`_find)` API. All non-ASCII characters must be URL encoded."
+              },
+              {
+                "name": "commentId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the comment. To retrieve comment IDs, use the get case or search cases (`_find`) APIs.\n"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/{caseId}/comments/{commentId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nYou must have `read` privileges for the **Cases** feature in the **Management**, **Observability**, or **Security** section of the Kibana feature privileges, depending on the owner of the cases with the "
+        },
+        {
+          "info": {
+            "name": "Delete a case comment or alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/cases/:caseId/comments/:commentId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the case. To retrieve case IDs, use the search cases (`_find)` API. All non-ASCII characters must be URL encoded."
+              },
+              {
+                "name": "commentId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the comment. To retrieve comment IDs, use the get case or search cases (`_find`) APIs.\n"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/{caseId}/comments/{commentId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nYou must have `all` privileges for the **Cases** feature in the **Management**, **Observability**, or **Security** section of the Kibana feature privileges, depending on the owner of the cases you'"
+        },
+        {
+          "info": {
+            "name": "Push a case to an external service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/cases/:caseId/connector/:connectorId/_push",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the case. To retrieve case IDs, use the search cases (`_find)` API. All non-ASCII characters must be URL encoded."
+              },
+              {
+                "name": "connectorId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the connector. To retrieve connector IDs, use the find connectors API."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/{caseId}/connector/{connectorId}/_push</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nYou must have `all` privileges for the **Actions and Connectors** feature in the **Management** section of the Kibana feature privileges. You must also have `all` privileges for the **Cases** "
+        },
+        {
+          "info": {
+            "name": "Attach a file to a case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/cases/:caseId/files",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the case. To retrieve case IDs, use the search cases (`_find)` API. All non-ASCII characters must be URL encoded."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/{caseId}/files</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nAttach a file to a case. You must have `all` privileges for the **Cases** feature in the **Management**, **Observability**, or **Security** section of the Kibana feature privileges, depending on the owner of the case"
+        },
+        {
+          "info": {
+            "name": "Find case activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/cases/:caseId/user_actions/_find",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the case. To retrieve case IDs, use the search cases (`_find)` API. All non-ASCII characters must be URL encoded."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "The page number to return."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return. Limited to 100 items."
+              },
+              {
+                "name": "sortOrder",
+                "value": "desc",
+                "type": "query",
+                "description": "Determines the sort order."
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "Determines the types of user actions to return."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/{caseId}/user_actions/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieves a paginated list of user activity for a case. You must have `read` privileges for the **Cases** feature in the **Management**, **Observability**, or **Security** section of the Kibana feature pri"
+        },
+        {
+          "info": {
+            "name": "Get cases for an alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/cases/alerts/:alertId",
+            "params": [
+              {
+                "name": "alertId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the alert."
+              },
+              {
+                "name": "owner",
+                "value": "cases",
+                "type": "query",
+                "description": "A filter to limit the response to a specific set of applications. If this parameter is omitted, the response contains information about all the cases that the user has access to read.\n"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/alerts/{alertId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nYou must have `read` privileges for the **Cases** feature in the **Management**, **Observability**, or **Security** section of the Kibana feature privileges, depending on the owner of the cases you're seeking.\n"
+        },
+        {
+          "info": {
+            "name": "Get case settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/cases/configure",
+            "params": [
+              {
+                "name": "owner",
+                "value": "cases",
+                "type": "query",
+                "description": "A filter to limit the response to a specific set of applications. If this parameter is omitted, the response contains information about all the cases that the user has access to read.\n"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/configure</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet setting details such as the closure type, custom fields, templates, and the default connector for cases. You must have `read` privileges for the **Cases** feature in the **Management**, **Observability**, or **Security*"
+        },
+        {
+          "info": {
+            "name": "Add case settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/cases/configure",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/configure</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCase settings include external connection details, custom fields, and templates. Connectors are used to interface with external systems. You must create a connector before you can use it in your cases. If you set a defaul"
+        },
+        {
+          "info": {
+            "name": "Update case settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{kibana_url}/api/cases/configure/:configurationId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configurationId",
+                "value": "",
+                "type": "path",
+                "description": "An identifier for the configuration."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb patch\">patch</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/configure/{configurationId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdates setting details such as the closure type, custom fields, templates, and the default connector for cases. Connectors are used to interface with external systems. You must create a connector befo"
+        },
+        {
+          "info": {
+            "name": "Get case connectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/cases/configure/connectors/_find"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/configure/connectors/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet information about connectors that are supported for use in cases. You must have `read` privileges for the **Actions and Connectors** feature in the **Management** section of the Kibana feature privilege"
+        },
+        {
+          "info": {
+            "name": "Get case creators",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/cases/reporters",
+            "params": [
+              {
+                "name": "owner",
+                "value": "cases",
+                "type": "query",
+                "description": "A filter to limit the response to a specific set of applications. If this parameter is omitted, the response contains information about all the cases that the user has access to read.\n"
+              }
+            ]
+          },
+          "docs": "Returns information about the users who opened cases. You must have read privileges for the **Cases** feature in the **Management**, **Observability**, or **Security** section of the Kibana feature privileges, depending on the owner of the cases. The API returns information about the users as they existed at the time of the case creation, including their name, full name, and email address. If any of those details change thereafter or if a user is deleted, the information returned by this API is "
+        },
+        {
+          "info": {
+            "name": "Get case tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/cases/tags",
+            "params": [
+              {
+                "name": "owner",
+                "value": "cases",
+                "type": "query",
+                "description": "A filter to limit the response to a specific set of applications. If this parameter is omitted, the response contains information about all the cases that the user has access to read.\n"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/cases/tags</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nAggregates and returns a list of case tags. You must have read privileges for the **Cases** feature in the **Management**, **Observability**, or **Security** section of the Kibana feature privileges, depending on the owner of th"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

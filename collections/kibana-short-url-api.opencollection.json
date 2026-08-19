@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions short url API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "short url",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a short URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/short_url",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Kibana URLs may be long and cumbersome, short URLs are much easier to remember and share.\nShort URLs are created by specifying the locator ID and locator parameters. When a short URL is resolved, the locator ID and locator parameters are used to redirect user to the right Kibana page.\n"
+        },
+        {
+          "info": {
+            "name": "Resolve a short URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/short_url/_slug/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the short URL."
+              }
+            ]
+          },
+          "docs": "Resolve a Kibana short URL by its slug.\n"
+        },
+        {
+          "info": {
+            "name": "Get a short URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/short_url/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the short URL."
+              }
+            ]
+          },
+          "docs": "Get a single Kibana short URL.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a short URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/short_url/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the short URL."
+              }
+            ]
+          },
+          "docs": "Delete a Kibana short URL.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

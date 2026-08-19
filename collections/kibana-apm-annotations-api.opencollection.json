@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions APM annotations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "APM annotations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a service annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/apm/services/:serviceName/annotation",
+            "headers": [
+              {
+                "name": "elastic-api-version",
+                "value": ""
+              },
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the service"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/apm/services/{serviceName}/annotation</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new annotation for a specific service."
+        },
+        {
+          "info": {
+            "name": "Search for annotations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/apm/services/:serviceName/annotation/search",
+            "headers": [
+              {
+                "name": "elastic-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "serviceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the service"
+              },
+              {
+                "name": "environment",
+                "value": "",
+                "type": "query",
+                "description": "The environment to filter annotations by"
+              },
+              {
+                "name": "start",
+                "value": "2024-01-01T00:00:00.000Z",
+                "type": "query",
+                "description": "The start date for the search"
+              },
+              {
+                "name": "end",
+                "value": "2024-01-31T23:59:59.999Z",
+                "type": "query",
+                "description": "The end date for the search"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/apm/services/{serviceName}/annotation/search</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nSearch for annotations related to a specific service."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

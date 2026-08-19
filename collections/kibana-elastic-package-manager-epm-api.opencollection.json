@@ -1,0 +1,1097 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Elastic Package Manager (EPM) API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Elastic Package Manager (EPM)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bulk get assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/epm/bulk_assets",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/bulk_assets</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieve multiple Kibana saved object assets by their IDs and types.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all."
+        },
+        {
+          "info": {
+            "name": "Get package categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/epm/categories",
+            "params": [
+              {
+                "name": "prerelease",
+                "value": "",
+                "type": "query",
+                "description": "When true, include prerelease packages in the results"
+              },
+              {
+                "name": "include_policy_templates",
+                "value": "",
+                "type": "query",
+                "description": "When true, include categories that only contain policy templates"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/categories</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of integration categories.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all."
+        },
+        {
+          "info": {
+            "name": "Create a custom integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/epm/custom_integrations",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/custom_integrations</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new custom integration package with user-defined data streams.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Update a custom integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/fleet/epm/custom_integrations/:pkgName",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/custom_integrations/{pkgName}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate the datasets of an existing custom integration package.<br/><br/>[Required authorization] Route required privileges: fleet-settings-all AND integrations-all."
+        },
+        {
+          "info": {
+            "name": "Get packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/epm/packages",
+            "params": [
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter packages by category"
+              },
+              {
+                "name": "prerelease",
+                "value": "",
+                "type": "query",
+                "description": "When true, include prerelease packages in the results"
+              },
+              {
+                "name": "excludeInstallStatus",
+                "value": "",
+                "type": "query",
+                "description": "When true, exclude the install status from the response"
+              },
+              {
+                "name": "withPackagePoliciesCount",
+                "value": "",
+                "type": "query",
+                "description": "When true, include the number of package policies per package"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of integration packages available in the registry.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all."
+        },
+        {
+          "info": {
+            "name": "Install a package by upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/epm/packages",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ignoreMappingUpdateErrors",
+                "value": "",
+                "type": "query",
+                "description": "When true, ignore mapping update errors during installation"
+              },
+              {
+                "name": "skipDataStreamRollover",
+                "value": "",
+                "type": "query",
+                "description": "When true, skip data stream rollover after installation"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nInstall a package by uploading a .zip or .tar.gz archive (max 100MB). Only available to superusers.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Bulk install packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/_bulk",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "prerelease",
+                "value": "",
+                "type": "query",
+                "description": "When true, allow installing prerelease versions"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/_bulk</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nInstall multiple packages from the Elastic Package Registry in a single request.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Bulk rollback packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/_bulk_rollback",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/_bulk_rollback</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRollback multiple packages to their previous versions.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Get Bulk rollback packages details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/_bulk_rollback/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID of the bulk operation"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/_bulk_rollback/{taskId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the status and results of a bulk package rollback operation.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Bulk uninstall packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/_bulk_uninstall",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/_bulk_uninstall</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUninstall multiple packages in a single operation.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Get Bulk uninstall packages details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/_bulk_uninstall/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID of the bulk operation"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/_bulk_uninstall/{taskId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the status and results of a bulk package uninstall operation.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Bulk upgrade packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/_bulk_upgrade",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/_bulk_upgrade</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpgrade multiple packages to their latest versions.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Get Bulk upgrade packages details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/_bulk_upgrade/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID of the bulk operation"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/_bulk_upgrade/{taskId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the status and results of a bulk package upgrade operation.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Get a package",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName",
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "ignoreUnverified",
+                "value": "",
+                "type": "query",
+                "description": "When true, returns the package even if the signature cannot be verified"
+              },
+              {
+                "name": "prerelease",
+                "value": "",
+                "type": "query",
+                "description": "When true, include prerelease versions"
+              },
+              {
+                "name": "full",
+                "value": "",
+                "type": "query",
+                "description": "When true, return the full package info including assets"
+              },
+              {
+                "name": "withMetadata",
+                "value": "",
+                "type": "query",
+                "description": "When true, include package metadata such as whether it has package policies"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet information about a package by name, returning the latest installed or available version."
+        },
+        {
+          "info": {
+            "name": "Install a package from the registry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "prerelease",
+                "value": "",
+                "type": "query",
+                "description": "When true, allow installing prerelease versions"
+              },
+              {
+                "name": "ignoreMappingUpdateErrors",
+                "value": "",
+                "type": "query",
+                "description": "When true, ignore mapping update errors during installation"
+              },
+              {
+                "name": "skipDataStreamRollover",
+                "value": "",
+                "type": "query",
+                "description": "When true, skip data stream rollover after installation"
+              },
+              {
+                "name": "skipDependencyCheck",
+                "value": "",
+                "type": "query",
+                "description": "Skip dependency validation when installing a package with dependencies"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nInstall the latest version of a package from the Elastic Package Registry.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Update package settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate settings for a package, such as whether policies are kept up to date automatically.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Delete a package",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "When true, delete the package even if it has active package policies"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUninstall a package and remove all its assets.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Get a package",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName/:pkgVersion",
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "pkgVersion",
+                "value": "",
+                "type": "path",
+                "description": "Package version"
+              },
+              {
+                "name": "ignoreUnverified",
+                "value": "",
+                "type": "query",
+                "description": "When true, returns the package even if the signature cannot be verified"
+              },
+              {
+                "name": "prerelease",
+                "value": "",
+                "type": "query",
+                "description": "When true, include prerelease versions"
+              },
+              {
+                "name": "full",
+                "value": "",
+                "type": "query",
+                "description": "When true, return the full package info including assets"
+              },
+              {
+                "name": "withMetadata",
+                "value": "",
+                "type": "query",
+                "description": "When true, include package metadata such as whether it has package policies"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet information about a specific version of a package."
+        },
+        {
+          "info": {
+            "name": "Install a package from the registry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName/:pkgVersion",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "pkgVersion",
+                "value": "",
+                "type": "path",
+                "description": "Package version"
+              },
+              {
+                "name": "prerelease",
+                "value": "",
+                "type": "query",
+                "description": "When true, allow installing prerelease versions"
+              },
+              {
+                "name": "ignoreMappingUpdateErrors",
+                "value": "",
+                "type": "query",
+                "description": "When true, ignore mapping update errors during installation"
+              },
+              {
+                "name": "skipDataStreamRollover",
+                "value": "",
+                "type": "query",
+                "description": "When true, skip data stream rollover after installation"
+              },
+              {
+                "name": "skipDependencyCheck",
+                "value": "",
+                "type": "query",
+                "description": "Skip dependency validation when installing a package with dependencies"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nInstall a specific version of a package from the Elastic Package Registry.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Update package settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName/:pkgVersion",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "pkgVersion",
+                "value": "",
+                "type": "path",
+                "description": "Package version"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate settings for a specific version of a package.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Delete a package",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName/:pkgVersion",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "pkgVersion",
+                "value": "",
+                "type": "path",
+                "description": "Package version"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "When true, delete the package even if it has active package policies"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUninstall a specific version of a package and remove all its assets.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Get a package file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName/:pkgVersion/:filePath",
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "pkgVersion",
+                "value": "",
+                "type": "path",
+                "description": "Package version"
+              },
+              {
+                "name": "filePath",
+                "value": "",
+                "type": "path",
+                "description": "File path within the package"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/{filePath}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the contents of a specific file from a package.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all."
+        },
+        {
+          "info": {
+            "name": "Delete assets for an input package",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName/:pkgVersion/datastream_assets",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "pkgVersion",
+                "value": "",
+                "type": "path",
+                "description": "Package version"
+              },
+              {
+                "name": "packagePolicyId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the package policy"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/datastream_assets</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete datastream assets for a specific input package, by data stream name.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-pol"
+        },
+        {
+          "info": {
+            "name": "Get package dependencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName/:pkgVersion/dependencies",
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "pkgVersion",
+                "value": "",
+                "type": "path",
+                "description": "Package version"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/dependencies</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the list of packages that a specific package depends on.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all."
+        },
+        {
+          "info": {
+            "name": "Install Kibana assets for a package",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName/:pkgVersion/kibana_assets",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "pkgVersion",
+                "value": "",
+                "type": "path",
+                "description": "Package version"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/kibana_assets</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nInstall Kibana assets (dashboards, visualizations, etc.) for a specific package version.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agen"
+        },
+        {
+          "info": {
+            "name": "Delete Kibana assets for a package",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName/:pkgVersion/kibana_assets",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "pkgVersion",
+                "value": "",
+                "type": "path",
+                "description": "Package version"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/kibana_assets</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete Kibana assets (dashboards, visualizations, etc.) for a specific package version.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-a"
+        },
+        {
+          "info": {
+            "name": "Install Kibana alert rule for a package",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName/:pkgVersion/rule_assets",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "pkgVersion",
+                "value": "",
+                "type": "path",
+                "description": "Package version"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/rule_assets</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nInstall Kibana alert rule assets for a specific package version.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Authorize transforms",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName/:pkgVersion/transforms/authorize",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "pkgVersion",
+                "value": "",
+                "type": "path",
+                "description": "Package version"
+              },
+              {
+                "name": "prerelease",
+                "value": "",
+                "type": "query",
+                "description": "When true, allow prerelease versions"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/transforms/authorize</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nReauthorize Elasticsearch transforms installed by a package with secondary authorization headers."
+        },
+        {
+          "info": {
+            "name": "Review a pending policy upgrade for a package with deprecations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName/review_upgrade",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name to review upgrade for"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}/review_upgrade</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nReview and accept or reject a pending policy upgrade for a package that contains deprecations.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-poli"
+        },
+        {
+          "info": {
+            "name": "Rollback a package to previous version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName/rollback",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name to roll back"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}/rollback</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRollback a package to its previously installed version.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all."
+        },
+        {
+          "info": {
+            "name": "Get package stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/:pkgName/stats",
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/{pkgName}/stats</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet usage statistics for a specific package, such as the number of agent policies using it.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all."
+        },
+        {
+          "info": {
+            "name": "Get installed packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/installed",
+            "params": [
+              {
+                "name": "dataStreamType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by data stream type"
+              },
+              {
+                "name": "showOnlyActiveDataStreams",
+                "value": "",
+                "type": "query",
+                "description": "When true, only return packages with active data streams"
+              },
+              {
+                "name": "nameQuery",
+                "value": "",
+                "type": "query",
+                "description": "Filter packages by name"
+              },
+              {
+                "name": "searchAfter",
+                "value": "",
+                "type": "query",
+                "description": "Sort values from the previous page for `search_after` pagination"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order, ascending or descending"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/installed</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all currently installed integration packages.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all."
+        },
+        {
+          "info": {
+            "name": "Get a limited package list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/epm/packages/limited"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/packages/limited</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the list of packages that cannot be uninstalled (e.g. elastic_agent, fleet_server).<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all."
+        },
+        {
+          "info": {
+            "name": "Get an inputs template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/epm/templates/:pkgName/:pkgVersion/inputs",
+            "params": [
+              {
+                "name": "pkgName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "pkgVersion",
+                "value": "",
+                "type": "path",
+                "description": "Package version"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format for the inputs template: json, yml, or yaml"
+              },
+              {
+                "name": "prerelease",
+                "value": "",
+                "type": "query",
+                "description": "When true, allow prerelease versions"
+              },
+              {
+                "name": "ignoreUnverified",
+                "value": "",
+                "type": "query",
+                "description": "When true, return inputs even if the package signature cannot be verified"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/templates/{pkgName}/{pkgVersion}/inputs</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet an inputs template for a package, used to pre-populate package policy forms.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all."
+        },
+        {
+          "info": {
+            "name": "Get a package signature verification key ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/epm/verification_key_id"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/epm/verification_key_id</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the GPG key ID used to verify the signatures of packages from the Elastic Package Registry.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

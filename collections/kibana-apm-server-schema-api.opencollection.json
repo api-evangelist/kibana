@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions APM server schema API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "APM server schema",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Save APM server schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/apm/fleet/apm_server_schema",
+            "headers": [
+              {
+                "name": "elastic-api-version",
+                "value": ""
+              },
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/apm/fleet/apm_server_schema</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDEPRECATED: This endpoint is intended for internal use by Fleet integrations to push the APM Server configuration schema. Do not use for new integrations. It stores the provided schema object as a Kibana saved"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

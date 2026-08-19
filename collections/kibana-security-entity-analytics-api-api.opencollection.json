@@ -1,0 +1,846 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Security Entity Analytics API API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security Entity Analytics API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an asset criticality record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/asset_criticality",
+            "params": [
+              {
+                "name": "id_value",
+                "value": "my_host",
+                "type": "query",
+                "description": "The ID value of the asset."
+              },
+              {
+                "name": "id_field",
+                "value": "host.name",
+                "type": "query",
+                "description": "The field representing the ID."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/asset_criticality</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the asset criticality record for a specific entity."
+        },
+        {
+          "info": {
+            "name": "Upsert an asset criticality record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/asset_criticality",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/asset_criticality</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate or update an asset criticality record for a specific entity.\n\nIf a record already exists for the specified entity, that record is overwritten with the specified value. If a record doesn't exist for the specified "
+        },
+        {
+          "info": {
+            "name": "Delete an asset criticality record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/asset_criticality",
+            "params": [
+              {
+                "name": "id_value",
+                "value": "my_host",
+                "type": "query",
+                "description": "The ID value of the asset."
+              },
+              {
+                "name": "id_field",
+                "value": "host.name",
+                "type": "query",
+                "description": "The field representing the ID."
+              },
+              {
+                "name": "refresh",
+                "value": "",
+                "type": "query",
+                "description": "If 'wait_for' the request will wait for the index refresh."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/asset_criticality</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete the asset criticality record for a specific entity."
+        },
+        {
+          "info": {
+            "name": "Bulk upsert asset criticality records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/asset_criticality/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/asset_criticality/bulk</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nBulk upsert up to 1000 asset criticality records.\n\nIf asset criticality records already exist for the specified entities, those records are overwritten with the specified values. If asset criticality records don't "
+        },
+        {
+          "info": {
+            "name": "List asset criticality records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/asset_criticality/list",
+            "params": [
+              {
+                "name": "sort_field",
+                "value": "",
+                "type": "query",
+                "description": "The field to sort by."
+              },
+              {
+                "name": "sort_direction",
+                "value": "",
+                "type": "query",
+                "description": "The order to sort by."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of records to return per page."
+              },
+              {
+                "name": "kuery",
+                "value": "",
+                "type": "query",
+                "description": "The kuery to filter by."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/asset_criticality/list</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nList asset criticality records, paging, sorting and filtering as needed."
+        },
+        {
+          "info": {
+            "name": "Delete the Privilege Monitoring Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/entity_analytics/monitoring/engine/delete",
+            "params": [
+              {
+                "name": "data",
+                "value": "",
+                "type": "query",
+                "description": "Whether to delete all the privileged user data"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/monitoring/engine/delete</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDeletes the Privilege Monitoring Engine and optionally removes all associated privileged user data."
+        },
+        {
+          "info": {
+            "name": "Disable the Privilege Monitoring Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/entity_analytics/monitoring/engine/disable"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/monitoring/engine/disable</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDisables the Privilege Monitoring Engine, stopping all monitoring activity without removing data."
+        },
+        {
+          "info": {
+            "name": "Initialize the Privilege Monitoring Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/entity_analytics/monitoring/engine/init"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/monitoring/engine/init</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nInitializes the Privilege Monitoring Engine, setting up the required resources and starting the engine."
+        },
+        {
+          "info": {
+            "name": "Schedule the Privilege Monitoring Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/entity_analytics/monitoring/engine/schedule_now"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/monitoring/engine/schedule_now</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nSchedules the Privilege Monitoring Engine to run as soon as possible, triggering an immediate monitoring cycle."
+        },
+        {
+          "info": {
+            "name": "Health check on Privilege Monitoring",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/entity_analytics/monitoring/privileges/health"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/monitoring/privileges/health</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nReturns the current health status of the Privilege Monitoring Engine, including engine status, error details, and user count statistics."
+        },
+        {
+          "info": {
+            "name": "Run a privileges check on Privilege Monitoring",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/entity_analytics/monitoring/privileges/privileges"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/monitoring/privileges/privileges</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCheck if the current user has all required permissions for Privilege Monitoring"
+        },
+        {
+          "info": {
+            "name": "Create a new monitored user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/entity_analytics/monitoring/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/monitoring/users</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreates a new privileged user to be monitored by the Privilege Monitoring Engine."
+        },
+        {
+          "info": {
+            "name": "Upsert multiple monitored users via CSV upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/entity_analytics/monitoring/users/_csv",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/monitoring/users/_csv</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nBulk upserts privileged users by uploading a CSV file. Returns per-row errors and aggregate upload statistics."
+        },
+        {
+          "info": {
+            "name": "Update a monitored user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/entity_analytics/monitoring/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The document ID of the monitored user to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/monitoring/users/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdates the details of an existing monitored privileged user by their document ID."
+        },
+        {
+          "info": {
+            "name": "Delete a monitored user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/entity_analytics/monitoring/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The document ID of the monitored user to delete"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/monitoring/users/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRemoves a privileged user from monitoring by their document ID."
+        },
+        {
+          "info": {
+            "name": "List all monitored users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/entity_analytics/monitoring/users/list",
+            "params": [
+              {
+                "name": "kql",
+                "value": "",
+                "type": "query",
+                "description": "KQL query to filter the list of monitored users"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/monitoring/users/list</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nReturns a list of all privileged users currently being monitored. Supports optional KQL filtering."
+        },
+        {
+          "info": {
+            "name": "Installs the privileged access detection package for the Entity Analytics privileged user monitoring experience",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/entity_analytics/privileged_user_monitoring/pad/install"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/privileged_user_monitoring/pad/install</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nInstalls the privileged access detection integration package and sets up the associated ML modules required for the Entity Analytics privileged user monitoring experience."
+        },
+        {
+          "info": {
+            "name": "Gets the status of the privileged access detection package for the Entity Analytics privileged user monitoring experience",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/entity_analytics/privileged_user_monitoring/pad/status"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/privileged_user_monitoring/pad/status</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nReturns the installation and ML module setup status of the privileged access detection package, along with the state of each associated ML job."
+        },
+        {
+          "info": {
+            "name": "Create a new watchlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/entity_analytics/watchlists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/watchlists</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreates a new entity analytics watchlist with an optional set of entity sources. Watchlists apply a risk score modifier to matched entities."
+        },
+        {
+          "info": {
+            "name": "Get a watchlist by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/entity_analytics/watchlists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of the watchlist"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/watchlists/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRetrieves the details of an entity analytics watchlist by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Update an existing watchlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/entity_analytics/watchlists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the watchlist to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/watchlists/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdates the name, description, risk modifier, or managed status of an existing entity analytics watchlist."
+        },
+        {
+          "info": {
+            "name": "Upload a CSV file to add entities to a watchlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/entity_analytics/watchlists/:watchlist_id/csv_upload",
+            "params": [
+              {
+                "name": "watchlist_id",
+                "value": "high-risk-vendors",
+                "type": "path",
+                "description": "The ID of the watchlist to add entities to"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/watchlists/{watchlist_id}/csv_upload</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUploads a CSV file to add entities to a watchlist. The CSV must contain a header row\nwith a \"type\" column (user, host, service, or generic) and one or more ECS identity\nfields (e.g. \""
+        },
+        {
+          "info": {
+            "name": "Manually assign entities to a watchlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/entity_analytics/watchlists/:watchlist_id/entities/assign",
+            "params": [
+              {
+                "name": "watchlist_id",
+                "value": "high-risk-vendors",
+                "type": "path",
+                "description": "The ID of the watchlist to add entities to"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/watchlists/{watchlist_id}/entities/assign</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nAssigns the provided entities to the specified watchlist using a \"manual\" source label.\nThe entities must already exist in the entity store.\n\nIf an entity is already on the watch"
+        },
+        {
+          "info": {
+            "name": "Manually unassign entities from a watchlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/entity_analytics/watchlists/:watchlist_id/entities/unassign",
+            "params": [
+              {
+                "name": "watchlist_id",
+                "value": "high-risk-vendors",
+                "type": "path",
+                "description": "The ID of the watchlist to remove entities from"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/watchlists/{watchlist_id}/entities/unassign</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUnassigns the provided entities from the specified watchlist.\nThis only removes the \"manual\" assignment. If the entity is also\nassigned via other sources (for example, index or"
+        },
+        {
+          "info": {
+            "name": "List all watchlists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/entity_analytics/watchlists/list"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_analytics/watchlists/list</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nReturns a list of all entity analytics watchlists."
+        },
+        {
+          "info": {
+            "name": "Initialize the Entity Store",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/entity_store/enable",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_store/enable</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nInitialize the entire Entity Store, creating engines for all or specified entity types."
+        },
+        {
+          "info": {
+            "name": "List the Entity Engines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/entity_store/engines"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_store/engines</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all installed entity engines and their current status."
+        },
+        {
+          "info": {
+            "name": "Delete Entity Engines",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/entity_store/engines",
+            "params": [
+              {
+                "name": "entityTypes",
+                "value": "",
+                "type": "query",
+                "description": "The entity type of the engine ('user', 'host', 'service', 'generic')."
+              },
+              {
+                "name": "delete_data",
+                "value": "",
+                "type": "query",
+                "description": "Control flag to also delete the entity data."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_store/engines</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information."
+        },
+        {
+          "info": {
+            "name": "Get an Entity Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/entity_store/engines/:entityType",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "host",
+                "type": "path",
+                "description": "The entity type of the engine."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_store/engines/{entityType}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the engine descriptor for a specific entity type, including its configuration and current status."
+        },
+        {
+          "info": {
+            "name": "Delete the Entity Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/entity_store/engines/:entityType",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "path",
+                "description": "The entity type of the engine (either 'user' or 'host')."
+              },
+              {
+                "name": "delete_data",
+                "value": "",
+                "type": "query",
+                "description": "Control flag to also delete the entity data."
+              },
+              {
+                "name": "data",
+                "value": "",
+                "type": "query",
+                "description": "Control flag to also delete the entity data."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_store/engines/{entityType}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information."
+        },
+        {
+          "info": {
+            "name": "Initialize an Entity Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/entity_store/engines/:entityType/init",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "path",
+                "description": "The entity type of the engine."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_store/engines/{entityType}/init</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nInitialize a single entity engine for the specified entity type."
+        },
+        {
+          "info": {
+            "name": "Start an Entity Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/entity_store/engines/:entityType/start",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "host",
+                "type": "path",
+                "description": "The entity type of the engine to start."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_store/engines/{entityType}/start</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nStart a previously stopped entity engine, resuming transform processing for the given entity type."
+        },
+        {
+          "info": {
+            "name": "Stop an Entity Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/entity_store/engines/:entityType/stop",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "host",
+                "type": "path",
+                "description": "The entity type of the engine to stop."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_store/engines/{entityType}/stop</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nStop a running entity engine, pausing transform processing for the given entity type."
+        },
+        {
+          "info": {
+            "name": "Apply DataView indices to all installed engines",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/entity_store/engines/apply_dataview_indices"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_store/engines/apply_dataview_indices</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nSynchronize data view index patterns to all running entity engines so that newly added indices are picked up by the transforms."
+        },
+        {
+          "info": {
+            "name": "Upsert an entity in Entity Store",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/entity_store/entities/:entityType",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "user",
+                "type": "path"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "When true, allows updating protected fields."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_store/entities/{entityType}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate or create an entity in Entity Store.\nIf the specified entity already exists, it is updated with the provided values.  If the entity does not exist, a new one is created. By default, only the follow"
+        },
+        {
+          "info": {
+            "name": "Delete an entity in Entity Store",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/entity_store/entities/:entityType",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "user",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_store/entities/{entityType}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a single entity in Entity Store.\nThe entity will be immediately deleted from the latest index.  It will remain available in historical snapshots if it has been snapshotted.  The delete operat"
+        },
+        {
+          "info": {
+            "name": "Upsert many entities in Entity Store",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/entity_store/entities/bulk",
+            "params": [
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "When true, allows updating protected fields."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_store/entities/bulk</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate or create many entities in Entity Store.\nIf the specified entity already exists, it is updated with the provided values.  If the entity does not exist, a new one is created.\nThe creation is asynchronous. T"
+        },
+        {
+          "info": {
+            "name": "List Entity Store Entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/entity_store/entities/list",
+            "params": [
+              {
+                "name": "sort_field",
+                "value": "entity.name",
+                "type": "query",
+                "description": "Field to sort results by."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page number to return (1-indexed)."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of entities per page."
+              },
+              {
+                "name": "filterQuery",
+                "value": "",
+                "type": "query",
+                "description": "An ES query to filter by."
+              },
+              {
+                "name": "entity_types",
+                "value": "",
+                "type": "query",
+                "description": "Entity types to include in the results."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_store/entities/list</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nList entities records, paging, sorting and filtering as needed."
+        },
+        {
+          "info": {
+            "name": "Get the status of the Entity Store",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/entity_store/status",
+            "params": [
+              {
+                "name": "include_components",
+                "value": "true",
+                "type": "query",
+                "description": "If true, returns a detailed status of each engine including all its components."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/entity_store/status</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the overall Entity Store status and per-engine statuses, optionally including component-level health details."
+        },
+        {
+          "info": {
+            "name": "Cleanup the Risk Engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/risk_score/engine/dangerously_delete_data"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/risk_score/engine/dangerously_delete_data</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCleaning up the the Risk Engine by removing the indices, mapping and transforms"
+        },
+        {
+          "info": {
+            "name": "Configure the Risk Engine Saved Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{kibana_url}/api/risk_score/engine/saved_object/configure",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb patch\">patch</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/risk_score/engine/saved_object/configure</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nConfiguring the Risk Engine Saved Object"
+        },
+        {
+          "info": {
+            "name": "Run the risk scoring engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/risk_score/engine/schedule_now",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/risk_score/engine/schedule_now</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nSchedule the risk scoring engine to run as soon as possible. You can use this to recalculate entity risk scores after updating their asset criticality."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

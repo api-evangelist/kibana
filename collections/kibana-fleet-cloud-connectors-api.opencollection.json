@@ -1,0 +1,188 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Fleet cloud connectors API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fleet cloud connectors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get cloud connectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/cloud_connectors",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "kuery",
+                "value": "",
+                "type": "query",
+                "description": "KQL query to filter cloud connectors."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/cloud_connectors</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nList all Fleet cloud connectors.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read OR integrations-read."
+        },
+        {
+          "info": {
+            "name": "Create cloud connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/fleet/cloud_connectors",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/cloud_connectors</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new Fleet cloud connector.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all OR integrations-all."
+        },
+        {
+          "info": {
+            "name": "Get cloud connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/cloud_connectors/:cloudConnectorId",
+            "params": [
+              {
+                "name": "cloudConnectorId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cloud connector."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/cloud_connectors/{cloudConnectorId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a cloud connector by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read OR integrations-read."
+        },
+        {
+          "info": {
+            "name": "Update cloud connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/fleet/cloud_connectors/:cloudConnectorId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cloudConnectorId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cloud connector to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/cloud_connectors/{cloudConnectorId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate a cloud connector by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all OR integrations-all."
+        },
+        {
+          "info": {
+            "name": "Delete cloud connector (supports force deletion)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/fleet/cloud_connectors/:cloudConnectorId",
+            "headers": [
+              {
+                "name": "kbn-xsrf",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cloudConnectorId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cloud connector to delete."
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, forces deletion even if the cloud connector is in use."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/cloud_connectors/{cloudConnectorId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a cloud connector by ID. Use the `force` query parameter to delete even if package policies are still using it.<br/><br/>[Required authorization] Route required privileges: fleet-agent"
+        },
+        {
+          "info": {
+            "name": "Get cloud connector usage (package policies using the connector)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/fleet/cloud_connectors/:cloudConnectorId/usage",
+            "params": [
+              {
+                "name": "cloudConnectorId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the cloud connector."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/cloud_connectors/{cloudConnectorId}/usage</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of package policies that are using a given cloud connector.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read OR integrations-read."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

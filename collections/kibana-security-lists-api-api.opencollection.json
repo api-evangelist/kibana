@@ -1,0 +1,442 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kibana APIs Actions Security Lists API API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security Lists API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get value list details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/lists",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Value list identifier (`id`) returned when the list was created."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the details of a value list using the list ID."
+        },
+        {
+          "info": {
+            "name": "Create a value list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/lists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a new value list."
+        },
+        {
+          "info": {
+            "name": "Update a value list",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/lists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate a value list using the list `id`. The original list is replaced, and all unspecified fields are deleted.\n> info\n> You cannot modify the `id` value.\n"
+        },
+        {
+          "info": {
+            "name": "Patch a value list",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{kibana_url}/api/lists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb patch\">patch</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate specific fields of an existing list using the list `id`."
+        },
+        {
+          "info": {
+            "name": "Delete a value list",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/lists",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Value list identifier to delete, including all of its list items."
+              },
+              {
+                "name": "deleteReferences",
+                "value": "",
+                "type": "query",
+                "description": "Determines whether exception items referencing this value list should be deleted."
+              },
+              {
+                "name": "ignoreReferences",
+                "value": "",
+                "type": "query",
+                "description": "Determines whether to delete value list without performing any additional checks of where this list may be utilized."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a value list using the list ID.\n> info\n> When you delete a list, all of its list items are also deleted.\n"
+        },
+        {
+          "info": {
+            "name": "Get value lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/lists/_find",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of value lists to return per page."
+              },
+              {
+                "name": "sort_field",
+                "value": "",
+                "type": "query",
+                "description": "Determines which field is used to sort the results."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Determines the sort order, which can be `desc` or `asc`"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Returns the lists that come after the last lists returned in the previous call (use the `cursor` value returned in the previous call). This parameter uses the `tie_breaker_id` field to ensure all lists are sorted and returned correctly."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned results according to the value of the specified field,\nusing the <field name>:<field value> syntax.\n"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a paginated subset of value lists. By default, the first page is returned, with 20 results per page."
+        },
+        {
+          "info": {
+            "name": "Get status of value list data streams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/lists/index"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists/index</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nVerify that `.lists` and `.items` data streams exist."
+        },
+        {
+          "info": {
+            "name": "Create list data streams",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/lists/index"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists/index</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\n**DEPRECATED.** `deprecated: true` is set on this operation. Value list backing data streams for the space\nare now created as part of supported workflows; calling this explicitly is rarely required.\n**WARNING:** Do not use fo"
+        },
+        {
+          "info": {
+            "name": "Delete value list data streams",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/lists/index"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists/index</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete the `.lists` and `.items` data streams."
+        },
+        {
+          "info": {
+            "name": "Get a value list item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/lists/items",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Value list item identifier. Required if `list_id` and `value` are not specified."
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "Value list item list's `id` identfier. Required if `id` is not specified."
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "query",
+                "description": "The value used to evaluate exceptions. Required if `id` is not specified."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists/items</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the details of a value list item."
+        },
+        {
+          "info": {
+            "name": "Create a value list item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/lists/items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists/items</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate a value list item and associate it with the specified value list.\n\nAll value list items in the same list must be the same type. For example, each list item in an `ip` list must define a specific IP address.\n> info\n> Be"
+        },
+        {
+          "info": {
+            "name": "Update a value list item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{kibana_url}/api/lists/items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb put\">put</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists/items</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate a value list item using the list item ID. The original list item is replaced, and all unspecified fields are deleted.\n> info\n> You cannot modify the `id` value.\n"
+        },
+        {
+          "info": {
+            "name": "Patch a value list item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{kibana_url}/api/lists/items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb patch\">patch</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists/items</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpdate specific fields of an existing value list item using the item `id`."
+        },
+        {
+          "info": {
+            "name": "Delete a value list item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{kibana_url}/api/lists/items",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Value list item's identifier. Required if `list_id` and `value` are not specified."
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "Value list's identifier. Required if `id` is not specified."
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "query",
+                "description": "The value used to evaluate exceptions. Required if `id` is not specified."
+              },
+              {
+                "name": "refresh",
+                "value": "",
+                "type": "query",
+                "description": "Determines when changes made by the request are made visible to search."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists/items</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete a value list item using its `id`, or its `list_id` and `value` fields."
+        },
+        {
+          "info": {
+            "name": "Export value list items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/lists/items/_export",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "Value list's `id` to export."
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists/items/_export</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nExport list item values from the specified value list."
+        },
+        {
+          "info": {
+            "name": "Get value list items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/lists/items/_find",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "Parent value list's `id` to page through items for."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of list items to return per page."
+              },
+              {
+                "name": "sort_field",
+                "value": "",
+                "type": "query",
+                "description": "Determines which field is used to sort the results."
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Determines the sort order, which can be `desc` or `asc`"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Opaque cursor returned in a previous response; pass it to continue listing from the next page. Omit on the first request.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned results according to the value of the specified field,\nusing the <field name>:<field value> syntax.\n"
+              }
+            ]
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists/items/_find</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet all value list items in the specified list."
+        },
+        {
+          "info": {
+            "name": "Import value list items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{kibana_url}/api/lists/items/_import",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "List's id.\n\nRequired when importing to an existing list.\n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the importing list.\n\nRequired when importing a new list whose list `id` is not specified.\n"
+              },
+              {
+                "name": "refresh",
+                "value": "",
+                "type": "query",
+                "description": "Determines when changes made by the request are made visible to search."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists/items/_import</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nImport value list items from a TXT or CSV file. The maximum file size is 9 million bytes.\n\nYou can import items to a new or existing list.\n"
+        },
+        {
+          "info": {
+            "name": "Get value list privileges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{kibana_url}/api/lists/privileges"
+          },
+          "docs": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/lists/privileges</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nReturns the caller's authentication state and the Elasticsearch `cluster`, `index`, and `application`\nprivileges for `.lists` and `.items` data streams in the current Kibana space. Use this to decide which list\nAPIs (`read"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

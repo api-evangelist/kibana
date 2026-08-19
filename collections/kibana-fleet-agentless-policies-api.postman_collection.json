@@ -1,0 +1,643 @@
+{
+  "item": [
+    {
+      "id": "688fbf0a-c8b6-441c-8616-2af52dbedbb9",
+      "name": "Fleet agentless policies",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3bc7b1c1-a7b8-407b-a85b-4e5f7887949c",
+          "name": "Create an agentless policy",
+          "request": {
+            "name": "Create an agentless policy",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agentless_policies</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate an agentless policy",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "fleet",
+                "agentless_policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "simplified",
+                  "description": "The format of the response package policy."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"package\": {\n    \"name\": \"<string>\",\n    \"version\": \"<string>\",\n    \"experimental_data_stream_features\": [\n      {\n        \"data_stream\": \"<string>\",\n        \"features\": {\n          \"doc_value_only_numeric\": \"<boolean>\",\n          \"doc_value_only_other\": \"<boolean>\",\n          \"synthetic_source\": \"<boolean>\",\n          \"tsdb\": \"<boolean>\"\n        }\n      },\n      {\n        \"data_stream\": \"<string>\",\n        \"features\": {\n          \"doc_value_only_numeric\": \"<boolean>\",\n          \"doc_value_only_other\": \"<boolean>\",\n          \"synthetic_source\": \"<boolean>\",\n          \"tsdb\": \"<boolean>\"\n        }\n      }\n    ],\n    \"fips_compatible\": \"<boolean>\",\n    \"requires_root\": \"<boolean>\",\n    \"title\": \"<string>\"\n  },\n  \"additional_datastreams_permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cloud_connector\": {\n    \"cloud_connector_id\": \"<string>\",\n    \"enabled\": false,\n    \"name\": \"<string>\",\n    \"target_csp\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"force\": \"<boolean>\",\n  \"global_data_tags\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"id\": \"<string>\",\n  \"inputs\": {\n    \"key_0\": {\n      \"deprecated\": {\n        \"description\": \"<string>\",\n        \"replaced_by\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"since\": \"<string>\"\n      },\n      \"enabled\": \"<boolean>\",\n      \"streams\": {\n        \"key_0\": {\n          \"deprecated\": {\n            \"description\": \"<string>\",\n            \"replaced_by\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\",\n              \"key_2\": \"<string>\"\n            },\n            \"since\": \"<string>\"\n          },\n          \"enabled\": \"<boolean>\",\n          \"var_group_selections\": {\n            \"key_0\": \"<string>\"\n          },\n          \"vars\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          }\n        },\n        \"key_1\": {\n          \"deprecated\": {\n            \"description\": \"<string>\",\n            \"replaced_by\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\",\n              \"key_2\": \"<string>\"\n            },\n            \"since\": \"<string>\"\n          },\n          \"enabled\": \"<boolean>\",\n          \"var_group_selections\": {\n            \"key_0\": \"<string>\"\n          },\n          \"vars\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          }\n        }\n      },\n      \"vars\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"key_1\": {\n      \"deprecated\": {\n        \"description\": \"<string>\",\n        \"replaced_by\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"since\": \"<string>\"\n      },\n      \"enabled\": \"<boolean>\",\n      \"streams\": {\n        \"key_0\": {\n          \"deprecated\": {\n            \"description\": \"<string>\",\n            \"replaced_by\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\",\n              \"key_2\": \"<string>\"\n            },\n            \"since\": \"<string>\"\n          },\n          \"enabled\": \"<boolean>\",\n          \"var_group_selections\": {\n            \"key_0\": \"<string>\"\n          },\n          \"vars\": {\n            \"key_0\": \"<string>\"\n          }\n        },\n        \"key_1\": {\n          \"deprecated\": {\n            \"description\": \"<string>\",\n            \"replaced_by\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\"\n            },\n            \"since\": \"<string>\"\n          },\n          \"enabled\": \"<boolean>\",\n          \"var_group_selections\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"vars\": {\n            \"key_0\": \"<string>\"\n          }\n        }\n      },\n      \"vars\": {\n        \"key_0\": \"<string>\"\n      }\n    }\n  },\n  \"namespace\": \"<string>\",\n  \"policy_template\": \"<string>\",\n  \"var_group_selections\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"vars\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "779aaf79-dd06-4d1e-9c22-8965ebb5ce06",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "agentless_policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "simplified"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"test\",\n  \"inputs\": {\n    \"ESS Billing-cel\": {\n      \"enabled\": true,\n      \"streams\": {\n        \"ess_billing.billing\": {\n          \"enabled\": true,\n          \"vars\": {\n            \"hide_sensitive\": true,\n            \"http_client_timeout\": \"30s\",\n            \"lookbehind\": 365,\n            \"tags\": [\n              \"forwarded\",\n              \"billing\"\n            ]\n          }\n        },\n        \"ess_billing.credits\": {\n          \"enabled\": false\n        }\n      },\n      \"vars\": {\n        \"api_key\": \"<REPLACE_WITH_YOUR_API_KEY>\",\n        \"organization_id\": \"1234\"\n      }\n    }\n  },\n  \"name\": \"ess_billing-1\",\n  \"namespace\": \"default\",\n  \"package\": {\n    \"name\": \"ess_billing\",\n    \"version\": \"1.6.0\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"item\": {\n    \"created_at\": \"2025-11-06T18:27:43.541Z\",\n    \"created_by\": \"test_user\",\n    \"description\": \"test\",\n    \"enabled\": true,\n    \"id\": \"d52a7812-5736-4fdc-aed8-72152afa1ffa\",\n    \"inputs\": {\n      \"ESS Billing-cel\": {\n        \"enabled\": true,\n        \"streams\": {\n          \"ess_billing.billing\": {\n            \"enabled\": true,\n            \"vars\": {\n              \"hide_sensitive\": true,\n              \"http_client_timeout\": \"30s\",\n              \"lookbehind\": 365,\n              \"tags\": [\n                \"forwarded\",\n                \"billing\"\n              ]\n            }\n          },\n          \"ess_billing.credits\": {\n            \"enabled\": false\n          }\n        },\n        \"vars\": {\n          \"api_key\": {\n            \"id\": \"QY1sWpoBbWcMW-edr0Ee\",\n            \"isSecretRef\": true\n          },\n          \"organization_id\": \"1234\",\n          \"url\": \"https://billing.elastic-cloud.com\"\n        }\n      }\n    },\n    \"name\": \"ess_billing-1\",\n    \"namespace\": \"default\",\n    \"package\": {\n      \"name\": \"ess_billing\",\n      \"title\": \"Elasticsearch Service Billing\",\n      \"version\": \"1.6.0\"\n    },\n    \"revision\": 1,\n    \"secret_references\": [\n      {\n        \"id\": \"QY1sWpoBbWcMW-edr0Ee\"\n      }\n    ],\n    \"supports_agentless\": true,\n    \"updated_at\": \"2025-11-06T18:27:43.541Z\",\n    \"updated_by\": \"test_user\",\n    \"version\": \"WzE0OTgsMV0=\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25bd899a-d2b0-419d-ac40-aa34e8583955",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "agentless_policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "simplified"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"test\",\n  \"inputs\": {\n    \"ESS Billing-cel\": {\n      \"enabled\": true,\n      \"streams\": {\n        \"ess_billing.billing\": {\n          \"enabled\": true,\n          \"vars\": {\n            \"hide_sensitive\": true,\n            \"http_client_timeout\": \"30s\",\n            \"lookbehind\": 365,\n            \"tags\": [\n              \"forwarded\",\n              \"billing\"\n            ]\n          }\n        },\n        \"ess_billing.credits\": {\n          \"enabled\": false\n        }\n      },\n      \"vars\": {\n        \"api_key\": \"<REPLACE_WITH_YOUR_API_KEY>\",\n        \"organization_id\": \"1234\"\n      }\n    }\n  },\n  \"name\": \"ess_billing-1\",\n  \"namespace\": \"default\",\n  \"package\": {\n    \"name\": \"ess_billing\",\n    \"version\": \"1.6.0\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"An error message describing what went wrong\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b72c65a3-5f08-4a7f-9d3c-924d563ce103",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "agentless_policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "simplified"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"test\",\n  \"inputs\": {\n    \"ESS Billing-cel\": {\n      \"enabled\": true,\n      \"streams\": {\n        \"ess_billing.billing\": {\n          \"enabled\": true,\n          \"vars\": {\n            \"hide_sensitive\": true,\n            \"http_client_timeout\": \"30s\",\n            \"lookbehind\": 365,\n            \"tags\": [\n              \"forwarded\",\n              \"billing\"\n            ]\n          }\n        },\n        \"ess_billing.credits\": {\n          \"enabled\": false\n        }\n      },\n      \"vars\": {\n        \"api_key\": \"<REPLACE_WITH_YOUR_API_KEY>\",\n        \"organization_id\": \"1234\"\n      }\n    }\n  },\n  \"name\": \"ess_billing-1\",\n  \"namespace\": \"default\",\n  \"package\": {\n    \"name\": \"ess_billing\",\n    \"version\": \"1.6.0\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Conflict\",\n  \"message\": \"An error message describing what went wrong\",\n  \"statusCode\": 409\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8333edbc-b5ec-4c91-b15a-69e82e6eb681",
+          "name": "Delete an agentless policy",
+          "request": {
+            "name": "Delete an agentless policy",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb delete\">delete</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/fleet/agentless_policies/{policyId}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDelete an agentless policy",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "fleet",
+                "agentless_policies",
+                ":policyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<boolean>",
+                  "description": "Force delete the policy even if the policy is managed."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyId",
+                  "description": "(Required) The ID of the policy to delete."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A required header to protect against CSRF attacks",
+                "key": "kbn-xsrf",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a01ead9-c4f7-452b-ad2c-ebe35a28ae87",
+              "name": "Indicates a successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "agentless_policies",
+                    ":policyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyId",
+                      "description": "(Required) The ID of the policy to delete."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"item\": {\n    \"id\": \"d52a7812-5736-4fdc-aed8-72152afa1ffa\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "244db3fb-3832-48f2-a721-a1db3663820f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "agentless_policies",
+                    ":policyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyId",
+                      "description": "(Required) The ID of the policy to delete."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"An error message describing what went wrong\",\n  \"statusCode\": 400\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13d3e4ff-ac9c-4893-ad26-f05c1e4dbafc",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "fleet",
+                    "agentless_policies",
+                    ":policyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyId",
+                      "description": "(Required) The ID of the policy to delete."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A required header to protect against CSRF attacks",
+                    "key": "kbn-xsrf",
+                    "value": "true"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Conflict\",\n  \"message\": \"An error message describing what went wrong\",\n  \"statusCode\": 409\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:5601",
+      "key": "kibana_url"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kibana_url}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d694adf1-8f4b-464a-b4f9-36676b0ce7bc",
+    "name": "Kibana APIs Actions Fleet agentless policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.\nThe API calls are stateless.\nEach request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the\nrequest.\nAPI requests return JSON output, which is a format that is machine-readable and works well for automation.\n\nTo interact with Kibana APIs, use the following operations:\n\n- GET: Fetches the information.\n- PATCH: Applies partial modifications to the existing information.\n- POST: Adds new information.\n- PUT: Updates the existing information.\n- DELETE: Removes the information.\n\nYou can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.\nFor example:\n\n```\nGET kbn:/api/data_views\n```\n\nFor more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).\n\nNOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.\n\n## Documentation source and versions\n\nThis documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.\nIt is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).\n\nThis documentation contains work-in-progress information for future Elastic Stack releases.\n\n\nContact Support:\n Name: Kibana Team",
+      "type": "text/plain"
+    }
+  }
+}

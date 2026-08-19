@@ -1,0 +1,3135 @@
+{
+  "item": [
+    {
+      "id": "b68946c9-b57d-43a8-b982-b92f787d0e5f",
+      "name": "Security Endpoint Management API",
+      "description": {
+        "content": "Interact with and manage endpoints running the Elastic Defend integration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ca09aa5a-7afd-471d-8806-fbcbd22688d3",
+          "name": "Get response actions",
+          "request": {
+            "name": "Get response actions",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all response actions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "commands",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "commands",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "agentIds",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "userIds",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "agentTypes",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "withOutputs",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a09fbb5-eb14-49e9-8f42-a3ea54112fe2",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "commands",
+                      "value": "isolate"
+                    },
+                    {
+                      "key": "commands",
+                      "value": "unisolate"
+                    },
+                    {
+                      "key": "agentIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2023-10-31T00:00:00.000Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2023-10-31T23:59:59.999Z"
+                    },
+                    {
+                      "key": "agentTypes",
+                      "value": "endpoint"
+                    },
+                    {
+                      "key": "withOutputs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "automated"
+                    },
+                    {
+                      "key": "types",
+                      "value": "manual"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agentTypes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"commands\": [\n    \"string\",\n    \"string\"\n  ],\n  \"data\": [\n    {\n      \"command\": \"<string>\",\n      \"agents\": [\n        \"847fd89e-20e2-7f5d-6471-e63ff426dee7\",\n        \"895dd316-8242-e893-0a41-ee9c7f0bfea0\"\n      ],\n      \"agentState\": {\n        \"key_0\": {\n          \"completedAt\": \"string\",\n          \"isCompleted\": true,\n          \"wasSuccessful\": true\n        },\n        \"key_1\": {\n          \"completedAt\": \"string\",\n          \"isCompleted\": false,\n          \"wasSuccessful\": true\n        },\n        \"key_2\": {\n          \"completedAt\": \"string\",\n          \"isCompleted\": false,\n          \"wasSuccessful\": true\n        }\n      },\n      \"agentType\": \"endpoint\",\n      \"completedAt\": \"2004-04-25T04:04:27.376Z\",\n      \"createdBy\": \"string\",\n      \"hosts\": {\n        \"key_0\": {\n          \"name\": \"string\"\n        },\n        \"key_1\": {\n          \"name\": \"string\"\n        }\n      },\n      \"id\": \"842c58ee-b6ce-8f58-1c31-3f5a684d857b\",\n      \"isComplete\": true,\n      \"isExpired\": true,\n      \"outputs\": {\n        \"key_0\": {\n          \"type\": \"text\",\n          \"content\": {}\n        },\n        \"key_1\": {\n          \"type\": \"text\",\n          \"content\": {}\n        }\n      },\n      \"parameters\": {},\n      \"startedAt\": \"1985-01-28T05:40:00.324Z\",\n      \"status\": \"string\",\n      \"wasSuccessful\": true\n    },\n    {\n      \"command\": \"<string>\",\n      \"agents\": [\n        \"95ade271-badb-a005-a0ec-cc512a5ac19b\",\n        \"3881fc9a-07f7-5bff-54b9-2c39fb19f4c5\"\n      ],\n      \"agentState\": {\n        \"key_0\": {\n          \"completedAt\": \"string\",\n          \"isCompleted\": true,\n          \"wasSuccessful\": false\n        }\n      },\n      \"agentType\": \"endpoint\",\n      \"completedAt\": \"1993-09-06T23:04:07.635Z\",\n      \"createdBy\": \"string\",\n      \"hosts\": {\n        \"key_0\": {\n          \"name\": \"string\"\n        }\n      },\n      \"id\": \"82673348-018b-2792-36cb-d96686e77ebd\",\n      \"isComplete\": true,\n      \"isExpired\": false,\n      \"outputs\": {\n        \"key_0\": {\n          \"type\": \"json\",\n          \"content\": {}\n        },\n        \"key_1\": {\n          \"type\": \"json\",\n          \"content\": {}\n        },\n        \"key_2\": {\n          \"type\": \"json\",\n          \"content\": {}\n        }\n      },\n      \"parameters\": {},\n      \"startedAt\": \"1965-04-14T17:37:06.640Z\",\n      \"status\": \"string\",\n      \"wasSuccessful\": false\n    }\n  ],\n  \"elasticAgentIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"endDate\": \"string\",\n  \"page\": 2598,\n  \"pageSize\": 3109,\n  \"startDate\": \"string\",\n  \"statuses\": [\n    \"string\",\n    \"string\"\n  ],\n  \"total\": 3583,\n  \"userIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03d0c64c-22d0-4c44-bd18-57f954abc493",
+          "name": "Get response actions status",
+          "request": {
+            "name": "Get response actions status",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action_status</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the status of response actions for the specified agent IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action_status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "agent_ids",
+                  "value": "<string>",
+                  "description": "(Required) A list of agent IDs to get the action status for."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a073893a-4afc-452e-b429-a1f18f7ce7ae",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action_status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agent_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"body\": {\n    \"data\": {\n      \"agent_id\": \"string\",\n      \"pending_actions\": {\n        \"execute\": 9711,\n        \"get-file\": 6171,\n        \"isolate\": 7223,\n        \"kill-process\": 7990,\n        \"running-processes\": 5080,\n        \"scan\": 4108,\n        \"suspend-process\": 4234,\n        \"unisolate\": 8800,\n        \"upload\": 2126\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0cf8014f-eea7-409d-aa5f-851fbfa9e468",
+          "name": "Get action details",
+          "request": {
+            "name": "Get action details",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/{action_id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the details of a response action using the action ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                ":action_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "action_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "714c9539-7e16-4689-afee-4d62ceda4193",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    ":action_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"command\": \"<string>\",\n  \"agents\": [\n    \"7f1d91b9-cdf2-bc6a-8ca4-98ec0549a0d8\",\n    \"d6bc8b43-588f-4adc-6c24-a03ef10c3187\"\n  ],\n  \"agentState\": {\n    \"key_0\": {\n      \"completedAt\": \"string\",\n      \"isCompleted\": true,\n      \"wasSuccessful\": false\n    }\n  },\n  \"agentType\": \"endpoint\",\n  \"completedAt\": \"1999-06-25T01:36:18.306Z\",\n  \"createdBy\": \"string\",\n  \"hosts\": {\n    \"key_0\": {\n      \"name\": \"string\"\n    },\n    \"key_1\": {\n      \"name\": \"string\"\n    },\n    \"key_2\": {\n      \"name\": \"string\"\n    },\n    \"key_3\": {\n      \"name\": \"string\"\n    }\n  },\n  \"id\": \"249d5a37-af7e-fe9f-7a14-fb1b18564b42\",\n  \"isComplete\": false,\n  \"isExpired\": true,\n  \"outputs\": {\n    \"key_0\": {\n      \"type\": \"json\",\n      \"content\": {\n        \"code\": \"string\",\n        \"command\": \"string\",\n        \"pid\": 2670.3688962090478\n      }\n    },\n    \"key_1\": {\n      \"type\": \"json\",\n      \"content\": {\n        \"code\": \"string\",\n        \"command\": \"string\",\n        \"pid\": 6956.850477175549\n      }\n    }\n  },\n  \"parameters\": {\n    \"pid\": 8903.845941711186\n  },\n  \"startedAt\": \"1958-03-28T05:27:32.886Z\",\n  \"status\": \"string\",\n  \"wasSuccessful\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0ab86ce-90fc-4946-a7bf-dbd6ae88236a",
+          "name": "Get file information",
+          "request": {
+            "name": "Get file information",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/{action_id}/file/{file_id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet information for the specified response action file download.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                ":action_id",
+                "file",
+                ":file_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "action_id",
+                  "description": "(Required) The ID of the response action that generated the file."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "file_id",
+                  "description": "(Required) The file identifier is constructed in one of two ways:\n- For Elastic Defend agents (`agentType` of `endpoint`): combine the `action_id` and `agent_id` values using a dot (`.`) separator:\n`{file_id}` = `{action_id}.{agent_id}`\n- For all other agent types: the `file_id` is the `agent_id` for which the response action was sent to.\n"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93294384-06c7-4cd8-8bce-1dacf458d6dd",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    ":action_id",
+                    "file",
+                    ":file_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) The ID of the response action that generated the file."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "file_id",
+                      "description": "(Required) The file identifier is constructed in one of two ways:\n- For Elastic Defend agents (`agentType` of `endpoint`): combine the `action_id` and `agent_id` values using a dot (`.`) separator:\n`{file_id}` = `{action_id}.{agent_id}`\n- For all other agent types: the `file_id` is the `agent_id` for which the response action was sent to.\n"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"actionId\": \"string\",\n    \"agentId\": \"string\",\n    \"agentType\": \"string\",\n    \"created\": \"1965-07-27T22:51:08.178Z\",\n    \"id\": \"string\",\n    \"mimeType\": \"string\",\n    \"name\": \"string\",\n    \"size\": 2759.59599362142,\n    \"status\": \"DELETED\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d6c0cfe6-3138-45f4-8a99-41e8ad0f9dcb",
+          "name": "Download a file",
+          "request": {
+            "name": "Download a file",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/{action_id}/file/{file_id}/download</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nDownload a file associated with a response action. Files are downloaded in a password-protected `.zip` archive to prevent the file from running. Use password `elastic` to open the `.zip` in a safe environment.\n> info\n> Files retrieved from third-party-protected hosts require a different password. Refer to [Third-party response actions](https://www.elastic.co/docs/solutions/security/endpoint-response-actions/third-party-response-actions) for your system's password.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                ":action_id",
+                "file",
+                ":file_id",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "action_id",
+                  "description": "(Required) The ID of the response action that generated the file."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "file_id",
+                  "description": "(Required) The file identifier is constructed in one of two ways:\n- For Elastic Defend agents (`agentType` of `endpoint`): combine the `action_id` and `agent_id` values using a dot (`.`) separator:\n`{file_id}` = `{action_id}.{agent_id}`\n- For all other agent types: the `file_id` is the `agent_id` for which the response action was sent to.\n"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54072e05-7865-402f-a901-97679756eee4",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    ":action_id",
+                    "file",
+                    ":file_id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "action_id",
+                      "description": "(Required) The ID of the response action that generated the file."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "file_id",
+                      "description": "(Required) The file identifier is constructed in one of two ways:\n- For Elastic Defend agents (`agentType` of `endpoint`): combine the `action_id` and `agent_id` values using a dot (`.`) separator:\n`{file_id}` = `{action_id}.{agent_id}`\n- For all other agent types: the `file_id` is the `agent_id` for which the response action was sent to.\n"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98c71f4a-b7bc-4277-9f71-7251beedf30a",
+          "name": "Cancel a response action",
+          "request": {
+            "name": "Cancel a response action",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/cancel</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCancel a running or pending response action (Applies only to some agent types).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_ids\": [\n    \"<string>\"\n  ],\n  \"parameters\": \"<object>\",\n  \"agent_type\": \"<string>\",\n  \"alert_ids\": [\n    \"<string>\"\n  ],\n  \"case_ids\": [\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0232cff8-2937-46ba-b1ab-23d731eb0cde",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent_type\": \"microsoft_defender_endpoint\",\n  \"comment\": \"Cancelling action due to change in requirements\",\n  \"endpoint_ids\": [\n    \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n  ],\n  \"parameters\": {\n    \"id\": \"7f8c9b2a-4d3e-4f5a-8b1c-2e3f4a5b6c7d\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"agents\": [\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n    ],\n    \"agentState\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"isCompleted\": false,\n        \"wasSuccessful\": false\n      }\n    },\n    \"agentType\": \"microsoft_defender_endpoint\",\n    \"command\": \"cancel\",\n    \"createdBy\": \"elastic\",\n    \"hosts\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"name\": \"gke-node-1235412\"\n      }\n    },\n    \"id\": \"233db9ea-6733-4849-9226-5a7039c7161d\",\n    \"isCompleted\": false,\n    \"isExpired\": false,\n    \"outputs\": {},\n    \"parameters\": {\n      \"id\": \"7f8c9b2a-4d3e-4f5a-8b1c-2e3f4a5b6c7d\"\n    },\n    \"startedAt\": \"2022-07-29T19:08:49.126Z\",\n    \"status\": \"pending\",\n    \"wasSuccessful\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "baa03f39-161f-430e-9068-49f1a688bf41",
+          "name": "Run a command",
+          "request": {
+            "name": "Run a command",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/execute</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRun a shell command on an endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                "execute"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_ids\": [\n    \"<string>\"\n  ],\n  \"parameters\": \"<object>\",\n  \"agent_type\": \"<string>\",\n  \"alert_ids\": [\n    \"<string>\"\n  ],\n  \"case_ids\": [\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7a007121-a82e-4014-b15c-e225a0fe7885",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"Get list of all files\",\n  \"endpoint_ids\": [\n    \"b3d6de74-36b0-4fa8-be46-c375bf1771bf\"\n  ],\n  \"parameters\": {\n    \"command\": \"ls -al\",\n    \"timeout\": 600\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"agents\": [\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n    ],\n    \"agentState\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"isCompleted\": false,\n        \"wasSuccessful\": false\n      }\n    },\n    \"agentType\": \"endpoint\",\n    \"command\": \"execute\",\n    \"createdBy\": \"elastic\",\n    \"hosts\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"name\": \"gke-node-1235412\"\n      }\n    },\n    \"id\": \"9f934028-2300-4927-b531-b26376793dc4\",\n    \"isCompleted\": false,\n    \"isExpired\": false,\n    \"outputs\": {},\n    \"parameters\": {\n      \"command\": \"ls -al\",\n      \"timeout\": 600\n    },\n    \"startedAt\": \"2023-07-28T18:43:27.362Z\",\n    \"status\": \"pending\",\n    \"wasSuccessful\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ffb2be0-daf1-4782-9304-b3e648f9d3ac",
+          "name": "Get a file",
+          "request": {
+            "name": "Get a file",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/get_file</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a file from an endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                "get_file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_ids\": [\n    \"<string>\"\n  ],\n  \"parameters\": \"<object>\",\n  \"agent_type\": \"<string>\",\n  \"alert_ids\": [\n    \"<string>\"\n  ],\n  \"case_ids\": [\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e8b52ae-23cf-4004-91b7-226bd66e343c",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    "get_file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"Get my file\",\n  \"endpoint_ids\": [\n    \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n  ],\n  \"parameters\": {\n    \"path\": \"/usr/my-file.txt\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"agents\": [\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n    ],\n    \"agentState\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"isCompleted\": false,\n        \"wasSuccessful\": false\n      }\n    },\n    \"agentType\": \"endpoint\",\n    \"command\": \"get-file\",\n    \"createdBy\": \"elastic\",\n    \"hosts\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"name\": \"gke-node-1235412\"\n      }\n    },\n    \"id\": \"27ba1b42-7cc6-4e53-86ce-675c876092b2\",\n    \"isCompleted\": false,\n    \"isExpired\": false,\n    \"outputs\": {},\n    \"parameters\": {\n      \"path\": \"/usr/my-file.txt\"\n    },\n    \"startedAt\": \"2023-07-28T19:00:03.911Z\",\n    \"status\": \"pending\",\n    \"wasSuccessful\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32b82915-5812-4216-90ba-bc5d00cdd3b6",
+          "name": "Isolate an endpoint",
+          "request": {
+            "name": "Isolate an endpoint",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/isolate</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nIsolate an endpoint from the network. The endpoint remains isolated until it's released.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                "isolate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_ids\": [\n    \"<string>\"\n  ],\n  \"agent_type\": \"<string>\",\n  \"alert_ids\": [\n    \"<string>\"\n  ],\n  \"case_ids\": [\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"parameters\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "987204f1-a582-428e-b9a1-f032896f3949",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    "isolate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"Locked down, pending further investigation\",\n  \"endpoint_ids\": [\n    \"9972d10e-4b9e-41aa-a534-a85e2a28ea42\",\n    \"bc0e4f0c-3bca-4633-9fee-156c0b505d16\",\n    \"fa89271b-b9d4-43f2-a684-307cffddeb5a\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action\": \"233db9ea-6733-4849-9226-5a7039c7161d\",\n  \"data\": {\n    \"agents\": [\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n    ],\n    \"agentState\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"isCompleted\": false,\n        \"wasSuccessful\": false\n      }\n    },\n    \"agentType\": \"endpoint\",\n    \"command\": \"isolate\",\n    \"createdBy\": \"elastic\",\n    \"hosts\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"name\": \"gke-node-1235412\"\n      }\n    },\n    \"id\": \"233db9ea-6733-4849-9226-5a7039c7161d\",\n    \"isCompleted\": false,\n    \"isExpired\": false,\n    \"outputs\": {},\n    \"startedAt\": \"2022-07-29T19:08:49.126Z\",\n    \"status\": \"pending\",\n    \"wasSuccessful\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bea6e7a4-d361-47e7-8b83-1ec894065913",
+          "name": "Terminate a process",
+          "request": {
+            "name": "Terminate a process",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/kill_process</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nTerminate a running process on an endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                "kill_process"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_ids\": [\n    \"<string>\"\n  ],\n  \"parameters\": \"<object>\",\n  \"agent_type\": \"<string>\",\n  \"alert_ids\": [\n    \"<string>\"\n  ],\n  \"case_ids\": [\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a6d47ca5-6be7-4865-823c-52029e8f9b0b",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    "kill_process"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"Terminating malicious process\",\n  \"endpoint_ids\": [\n    \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n  ],\n  \"parameters\": {\n    \"entity_id\": \"abc123\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"agents\": [\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n    ],\n    \"agentState\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"isCompleted\": false,\n        \"wasSuccessful\": false\n      }\n    },\n    \"agentType\": \"endpoint\",\n    \"command\": \"kill-process\",\n    \"createdBy\": \"elastic\",\n    \"hosts\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"name\": \"gke-node-1235412\"\n      }\n    },\n    \"id\": \"233db9ea-6733-4849-9226-5a7039c7161d\",\n    \"isCompleted\": false,\n    \"isExpired\": false,\n    \"outputs\": {},\n    \"parameters\": {\n      \"entity_id\": \"abc123\"\n    },\n    \"startedAt\": \"2022-07-29T19:08:49.126Z\",\n    \"status\": \"pending\",\n    \"wasSuccessful\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd744f12-1d7b-4223-8d72-46a29ae61b12",
+          "name": "Generate a memory dump from the host machine",
+          "request": {
+            "name": "Generate a memory dump from the host machine",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/memory_dump</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGenerates memory dumps on the targeted host.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                "memory_dump"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_ids\": [\n    \"<string>\"\n  ],\n  \"parameters\": \"<object>\",\n  \"agent_type\": \"<string>\",\n  \"alert_ids\": [\n    \"<string>\"\n  ],\n  \"case_ids\": [\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b929fae5-5396-46dd-a602-738e6b49e630",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    "memory_dump"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent_type\": \"endpoint\",\n  \"comment\": \"Generating memory dump for investigation\",\n  \"endpoint_ids\": [\n    \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n  ],\n  \"parameters\": {\n    \"entity_id\": \"abc123\",\n    \"type\": \"process\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"agents\": [\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n    ],\n    \"agentState\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"isCompleted\": false,\n        \"wasSuccessful\": false\n      }\n    },\n    \"agentType\": \"endpoint\",\n    \"command\": \"memory-dump\",\n    \"createdBy\": \"elastic\",\n    \"hosts\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"name\": \"gke-node-1235412\"\n      }\n    },\n    \"id\": \"233db9ea-6733-4849-9226-5a7039c7161d\",\n    \"isCompleted\": false,\n    \"isExpired\": false,\n    \"outputs\": {},\n    \"parameters\": {\n      \"entity_id\": \"abc123\",\n      \"type\": \"process\"\n    },\n    \"startedAt\": \"2022-07-29T19:08:49.126Z\",\n    \"status\": \"pending\",\n    \"wasSuccessful\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae33af03-c3bf-4c4d-8a0f-69f80d4c4ed8",
+          "name": "Get running processes",
+          "request": {
+            "name": "Get running processes",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/running_procs</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all processes running on an endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                "running_procs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_ids\": [\n    \"<string>\"\n  ],\n  \"agent_type\": \"<string>\",\n  \"alert_ids\": [\n    \"<string>\"\n  ],\n  \"case_ids\": [\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"parameters\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3a23c35-f510-4861-a30b-e518e222948c",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    "running_procs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint_ids\": [\n    \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"agents\": [\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n    ],\n    \"agentState\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"isCompleted\": false,\n        \"wasSuccessful\": false\n      }\n    },\n    \"agentType\": \"endpoint\",\n    \"command\": \"running-processes\",\n    \"createdBy\": \"elastic\",\n    \"hosts\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"name\": \"gke-node-1235412\"\n      }\n    },\n    \"id\": \"233db9ea-6733-4849-9226-5a7039c7161d\",\n    \"isCompleted\": false,\n    \"isExpired\": false,\n    \"outputs\": {},\n    \"startedAt\": \"2022-07-29T19:08:49.126Z\",\n    \"status\": \"pending\",\n    \"wasSuccessful\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1dd5ec84-75e5-416c-86e2-1bd0097dbb51",
+          "name": "Run a script",
+          "request": {
+            "name": "Run a script",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/runscript</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRun a script on a host. Currently supported only for some agent types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                "runscript"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_ids\": [\n    \"<string>\"\n  ],\n  \"parameters\": \"<object>\",\n  \"agent_type\": \"<string>\",\n  \"alert_ids\": [\n    \"<string>\"\n  ],\n  \"case_ids\": [\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a800d0ea-e783-4a91-bed5-b1090ec8d34b",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    "runscript"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agent_type\": \"microsoft_defender_endpoint\",\n  \"endpoint_ids\": [\n    \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n  ],\n  \"parameters\": {\n    \"args\": \"-param1 value1 -param2 value2\",\n    \"scriptName\": \"my-script.ps1\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"agents\": [\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n    ],\n    \"agentState\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"isCompleted\": false,\n        \"wasSuccessful\": false\n      }\n    },\n    \"agentType\": \"sentinel_one\",\n    \"command\": \"runscript\",\n    \"createdBy\": \"elastic\",\n    \"hosts\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"name\": \"gke-node-1235412\"\n      }\n    },\n    \"id\": \"233db9ea-6733-4849-9226-5a7039c7161d\",\n    \"isCompleted\": false,\n    \"isExpired\": false,\n    \"outputs\": {},\n    \"parameters\": {\n      \"scriptId\": \"1111-2222-3333-4444-5555-6666-7777-8888\"\n    },\n    \"startedAt\": \"2022-07-29T19:08:49.126Z\",\n    \"status\": \"pending\",\n    \"wasSuccessful\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1af95baa-c0bc-4571-801d-df6c18dc805d",
+          "name": "Scan a file or directory",
+          "request": {
+            "name": "Scan a file or directory",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/scan</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nScan a specific file or directory on an endpoint for malware.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                "scan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_ids\": [\n    \"<string>\"\n  ],\n  \"parameters\": \"<object>\",\n  \"agent_type\": \"<string>\",\n  \"alert_ids\": [\n    \"<string>\"\n  ],\n  \"case_ids\": [\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8d1ba5cc-2845-4ea2-84c4-e010fe398987",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    "scan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"Scan the file for malware\",\n  \"endpoint_ids\": [\n    \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n  ],\n  \"parameters\": {\n    \"path\": \"/usr/my-file.txt\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"agents\": [\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n    ],\n    \"agentState\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"isCompleted\": false,\n        \"wasSuccessful\": false\n      }\n    },\n    \"agentType\": \"endpoint\",\n    \"command\": \"scan\",\n    \"createdBy\": \"elastic\",\n    \"hosts\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"name\": \"gke-node-1235412\"\n      }\n    },\n    \"id\": \"27ba1b42-7cc6-4e53-86ce-675c876092b2\",\n    \"isCompleted\": false,\n    \"isExpired\": false,\n    \"outputs\": {},\n    \"parameters\": {\n      \"path\": \"/usr/my-file.txt\"\n    },\n    \"startedAt\": \"2023-07-28T19:00:03.911Z\",\n    \"status\": \"pending\",\n    \"wasSuccessful\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61a4e153-5967-4b48-863f-013b21748565",
+          "name": "Get actions state",
+          "request": {
+            "name": "Get actions state",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/state</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a response actions state, which reports whether encryption is enabled.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                "state"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0928d41-40b7-4560-ad88-c76d7dfcdad5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    "state"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"body\": {\n    \"data\": {\n      \"canEncrypt\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b9d4118-5c2d-4eb6-a7b1-9b7a5c99386a",
+          "name": "Suspend a process",
+          "request": {
+            "name": "Suspend a process",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/suspend_process</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nSuspend a running process on an endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                "suspend_process"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_ids\": [\n    \"<string>\"\n  ],\n  \"parameters\": \"<object>\",\n  \"agent_type\": \"<string>\",\n  \"alert_ids\": [\n    \"<string>\"\n  ],\n  \"case_ids\": [\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fd090483-8433-4dd5-bc6b-5ec2a81d019f",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    "suspend_process"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"Suspending suspicious process\",\n  \"endpoint_ids\": [\n    \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n  ],\n  \"parameters\": {\n    \"entity_id\": \"abc123\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"agents\": [\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n    ],\n    \"agentState\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"isCompleted\": false,\n        \"wasSuccessful\": false\n      }\n    },\n    \"agentType\": \"endpoint\",\n    \"command\": \"suspend-process\",\n    \"createdBy\": \"elastic\",\n    \"hosts\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"name\": \"gke-node-1235412\"\n      }\n    },\n    \"id\": \"233db9ea-6733-4849-9226-5a7039c7161d\",\n    \"isCompleted\": false,\n    \"isExpired\": false,\n    \"outputs\": {},\n    \"parameters\": {\n      \"entity_id\": \"abc123\"\n    },\n    \"startedAt\": \"2022-07-29T19:08:49.126Z\",\n    \"status\": \"pending\",\n    \"wasSuccessful\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6804171-4970-434a-bbb0-4791074b18bc",
+          "name": "Release an isolated endpoint",
+          "request": {
+            "name": "Release an isolated endpoint",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/unisolate</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nRelease an isolated endpoint, allowing it to rejoin a network.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                "unisolate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_ids\": [\n    \"<string>\"\n  ],\n  \"agent_type\": \"<string>\",\n  \"alert_ids\": [\n    \"<string>\"\n  ],\n  \"case_ids\": [\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"parameters\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "985625b3-a927-4c7a-b6ae-72395e844f0e",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    "unisolate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"Benign process identified, releasing group\",\n  \"endpoint_ids\": [\n    \"9972d10e-4b9e-41aa-a534-a85e2a28ea42\",\n    \"bc0e4f0c-3bca-4633-9fee-156c0b505d16\",\n    \"fa89271b-b9d4-43f2-a684-307cffddeb5a\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action\": \"233db9ea-6733-4849-9226-5a7039c7161d\",\n  \"data\": {\n    \"agents\": [\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n    ],\n    \"agentState\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"isCompleted\": false,\n        \"wasSuccessful\": false\n      }\n    },\n    \"agentType\": \"endpoint\",\n    \"command\": \"unisolate\",\n    \"createdBy\": \"elastic\",\n    \"hosts\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"name\": \"gke-node-1235412\"\n      }\n    },\n    \"id\": \"233db9ea-6733-4849-9226-5a7039c7161d\",\n    \"isCompleted\": false,\n    \"isExpired\": false,\n    \"outputs\": {},\n    \"startedAt\": \"2022-07-29T19:08:49.126Z\",\n    \"status\": \"pending\",\n    \"wasSuccessful\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "591804f3-d8e2-4278-97c8-aaf07021c93e",
+          "name": "Upload a file",
+          "request": {
+            "name": "Upload a file",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/action/upload</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nUpload a file to an endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "action",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "endpoint_ids",
+                  "value": "[\"<string>\"]",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "file",
+                  "value": "<binary>",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "parameters",
+                  "value": "<object>",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "agent_type",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "alert_ids",
+                  "value": "[\"<string>\"]",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "case_ids",
+                  "value": "[\"<string>\"]",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "comment",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "undefined"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5cb1f9cb-a92a-4b1d-a574-3de1544fd95f",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "action",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "endpoint_ids",
+                      "value": "[\"endpoint-id-1\",\"endpoint-id-2\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "RWxhc3RpYw==",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "parameters",
+                      "value": "<object>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "agent_type",
+                      "value": "endpoint",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "alert_ids",
+                      "value": "[\"alert-id-1\",\"alert-id-2\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "case_ids",
+                      "value": "[\"case-id-1\",\"case-id-2\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "comment",
+                      "value": "This is a comment",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"agents\": [\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\"\n    ],\n    \"agentState\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"isCompleted\": false,\n        \"wasSuccessful\": false\n      }\n    },\n    \"agentType\": \"endpoint\",\n    \"command\": \"upload\",\n    \"createdBy\": \"elastic\",\n    \"hosts\": {\n      \"ed518850-681a-4d60-bb98-e22640cae2a8\": {\n        \"name\": \"Host-5i6cuc8kdv\"\n      }\n    },\n    \"id\": \"9ff6aebc-2cb6-481e-8869-9b30036c9731\",\n    \"isCompleted\": false,\n    \"isExpired\": false,\n    \"outputs\": {},\n    \"parameters\": {\n      \"file_id\": \"10e4ce3d-4abb-4f93-a0cd-eaf63a489280\",\n      \"file_name\": \"fix-malware.sh\",\n      \"file_sha256\": \"a0bed94220193ba4895c0aa5b4e7e293381d15765cb164ddf7be5cdd010ae42a\",\n      \"file_size\": 69\n    },\n    \"startedAt\": \"2023-07-03T15:07:22.837Z\",\n    \"status\": \"pending\",\n    \"wasSuccessful\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14db5a4a-d297-4b28-80a2-4da7a1760074",
+          "name": "Get a metadata list",
+          "request": {
+            "name": "Get a metadata list",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/metadata</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet a list of all endpoint host metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "kuery",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "hostStatuses",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "hostStatuses",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDirection",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86dd6ead-0007-4d23-96e0-251819a1611f",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "kuery",
+                      "value": "united.endpoint.host.os.name : 'Windows'"
+                    },
+                    {
+                      "key": "hostStatuses",
+                      "value": "healthy"
+                    },
+                    {
+                      "key": "hostStatuses",
+                      "value": "updating"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "enrolled_at"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"host_status\": \"healthy\",\n      \"last_checkin\": \"2023-07-04T15:47:57.432Z\",\n      \"metadata\": {\n        \"@timestamp\": \"2023-07-04T15:47:57.432173535Z\",\n        \"agent\": {\n          \"build\": {\n            \"original\": \"version: 7.16.0, compiled: Tue Nov 16 16:00:00 2021, branch: 7.16, commit: 73a51033db85e0fb3be1c934697ef6a2b08979ab\"\n          },\n          \"type\": \"endpoint\",\n          \"version\": \"7.16.0\"\n        },\n        \"data_stream\": {\n          \"dataset\": \"endpoint.metadata\",\n          \"namespace\": \"default\",\n          \"type\": \"metrics\"\n        },\n        \"ecs\": {\n          \"version\": \"1.11.0\"\n        },\n        \"elastic\": {\n          \"agent\": {}\n        },\n        \"Endpoint\": {\n          \"capabilities\": [\n            \"isolation\"\n          ],\n          \"configuration\": {\n            \"isolation\": false\n          },\n          \"policy\": {\n            \"applied\": {\n              \"endpoint_policy_version\": \"2\",\n              \"name\": \"test\",\n              \"status\": \"success\",\n              \"version\": \"3\"\n            }\n          },\n          \"state\": {\n            \"isolation\": false\n          },\n          \"status\": \"enrolled\"\n        },\n        \"event\": {\n          \"action\": \"endpoint_metadata\",\n          \"agent_id_status\": \"verified\",\n          \"category\": [\n            \"host\"\n          ],\n          \"created\": \"2023-07-04T15:47:57.432173535Z\",\n          \"dataset\": \"endpoint.metadata\",\n          \"ingested\": \"2023-07-04T15:47:58Z\",\n          \"kind\": \"metric\",\n          \"module\": \"endpoint\",\n          \"sequence\": 400,\n          \"type\": [\n            \"info\"\n          ]\n        },\n        \"host\": {\n          \"architecture\": \"x86_64\",\n          \"hostname\": \"david-Xubuntu\",\n          \"ip\": [\n            \"127.0.0.1\",\n            \"::1\",\n            \"10.0.2.15\",\n            \"fe80::2ac7:8e15:b957:2fa1\"\n          ],\n          \"mac\": [\n            \"08:00:27:e6:78:8b\"\n          ],\n          \"name\": \"david-Xubuntu\",\n          \"os\": {\n            \"Ext\": {\n              \"variant\": \"Ubuntu\"\n            },\n            \"family\": \"ubuntu\",\n            \"full\": \"Ubuntu 20.04.2\",\n            \"kernel\": \"5.8.0-59-generic #66~20.04.1-Ubuntu SMP Thu Jun 17 11:14:10 UTC 2021\",\n            \"name\": \"Linux\",\n            \"platform\": \"ubuntu\",\n            \"type\": \"linux\",\n            \"version\": \"20.04.2\"\n          }\n        },\n        \"message\": \"Endpoint metadata\"\n      },\n      \"policy_info\": {\n        \"agent\": {\n          \"applied\": {\n            \"revision\": 0\n          },\n          \"configured\": {\n            \"revision\": 3\n          }\n        },\n        \"endpoint\": {\n          \"revision\": 2\n        }\n      }\n    },\n    {\n      \"host_status\": \"healthy\",\n      \"last_checkin\": \"2023-07-04T15:44:31.491Z\",\n      \"metadata\": {\n        \"@timestamp\": \"2023-07-04T15:44:31.4917849Z\",\n        \"agent\": {\n          \"build\": {\n            \"original\": \"version: 7.16.0, compiled: Tue Nov 16 17:00:00 2021, branch: 7.16, commit: 73a51033db85e0fb3be1c934697ef6a2b08979ab\"\n          },\n          \"type\": \"endpoint\",\n          \"version\": \"7.16.0\"\n        },\n        \"data_stream\": {\n          \"dataset\": \"endpoint.metadata\",\n          \"namespace\": \"default\",\n          \"type\": \"metrics\"\n        },\n        \"ecs\": {\n          \"version\": \"1.11.0\"\n        },\n        \"elastic\": {\n          \"agent\": {}\n        },\n        \"Endpoint\": {\n          \"capabilities\": [\n            \"isolation\"\n          ],\n          \"configuration\": {\n            \"isolation\": false\n          },\n          \"policy\": {\n            \"applied\": {\n              \"endpoint_policy_version\": \"2\",\n              \"name\": \"test\",\n              \"status\": \"success\",\n              \"version\": \"3\"\n            }\n          },\n          \"state\": {\n            \"isolation\": false\n          },\n          \"status\": \"enrolled\"\n        },\n        \"event\": {\n          \"action\": \"endpoint_metadata\",\n          \"agent_id_status\": \"verified\",\n          \"category\": [\n            \"host\"\n          ],\n          \"created\": \"2023-07-04T15:44:31.4917849Z\",\n          \"dataset\": \"endpoint.metadata\",\n          \"ingested\": \"2023-07-04T15:44:33Z\",\n          \"kind\": \"metric\",\n          \"module\": \"endpoint\",\n          \"sequence\": 5159,\n          \"type\": [\n            \"info\"\n          ]\n        },\n        \"host\": {\n          \"architecture\": \"x86_64\",\n          \"hostname\": \"WinDev2104Eval\",\n          \"ip\": [\n            \"10.0.2.15\",\n            \"fe80::21a6:63d3:d70e:e3ad\",\n            \"127.0.0.1\",\n            \"::1\"\n          ],\n          \"mac\": [\n            \"08:00:27:b1:1d:5a\"\n          ],\n          \"name\": \"WinDev2104Eval\",\n          \"os\": {\n            \"Ext\": {\n              \"variant\": \"Windows 10 Enterprise Evaluation\"\n            },\n            \"family\": \"windows\",\n            \"full\": \"Windows 10 Enterprise Evaluation 20H2 (10.0.19042.906)\",\n            \"kernel\": \"20H2 (10.0.19042.906)\",\n            \"name\": \"Windows\",\n            \"platform\": \"windows\",\n            \"type\": \"windows\",\n            \"version\": \"20H2 (10.0.19042.906)\"\n          }\n        },\n        \"message\": \"Endpoint metadata\"\n      },\n      \"policy_info\": {\n        \"agent\": {\n          \"applied\": {\n            \"revision\": 0\n          },\n          \"configured\": {\n            \"revision\": 3\n          }\n        },\n        \"endpoint\": {\n          \"revision\": 2\n        }\n      }\n    }\n  ],\n  \"page\": 0,\n  \"pageSize\": 10,\n  \"sortDirection\": \"desc\",\n  \"sortField\": \"enrolled_at\",\n  \"total\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ee08f7d-9212-4da7-b5bd-aafc9fb7ba0d",
+          "name": "Get metadata",
+          "request": {
+            "name": "Get metadata",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/metadata/{id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet host metadata for a specific endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "metadata",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The agent ID of the endpoint."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e2cd6f2-83c4-4f5a-b99f-13270ddf7d9b",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "metadata",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The agent ID of the endpoint."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"host_status\": \"healthy\",\n  \"last_checkin\": \"2023-07-04T15:48:57.360Z\",\n  \"metadata\": {\n    \"@timestamp\": \"2023-07-04T15:48:57.3609346Z\",\n    \"agent\": {\n      \"build\": {\n        \"original\": \"version: 7.16.0, compiled: Tue Nov 16 17:00:00 2021, branch: 7.16, commit: 73a51033db85e0fb3be1c934697ef6a2b08979ab\"\n      },\n      \"type\": \"endpoint\",\n      \"version\": \"7.16.0\"\n    },\n    \"data_stream\": {\n      \"dataset\": \"endpoint.metadata\",\n      \"namespace\": \"default\",\n      \"type\": \"metrics\"\n    },\n    \"ecs\": {\n      \"version\": \"1.11.0\"\n    },\n    \"elastic\": {\n      \"agent\": {}\n    },\n    \"Endpoint\": {\n      \"capabilities\": [\n        \"isolation\"\n      ],\n      \"configuration\": {\n        \"isolation\": false\n      },\n      \"policy\": {\n        \"applied\": {\n          \"endpoint_policy_version\": \"2\",\n          \"name\": \"test\",\n          \"status\": \"success\",\n          \"version\": \"3\"\n        }\n      },\n      \"state\": {\n        \"isolation\": false\n      },\n      \"status\": \"enrolled\"\n    },\n    \"event\": {\n      \"action\": \"endpoint_metadata\",\n      \"agent_id_status\": \"verified\",\n      \"category\": [\n        \"host\"\n      ],\n      \"created\": \"2023-07-04T15:48:57.3609346Z\",\n      \"dataset\": \"endpoint.metadata\",\n      \"ingested\": \"2023-07-04T15:48:58Z\",\n      \"kind\": \"metric\",\n      \"module\": \"endpoint\",\n      \"sequence\": 43757,\n      \"type\": [\n        \"info\"\n      ]\n    },\n    \"host\": {\n      \"architecture\": \"x86_64\",\n      \"hostname\": \"WinDev2104Eval\",\n      \"ip\": [\n        \"10.0.2.15\",\n        \"fe80::21a6:63d3:d70e:e3ad\",\n        \"127.0.0.1\",\n        \"::1\"\n      ],\n      \"mac\": [\n        \"08:00:27:b1:1d:5a\"\n      ],\n      \"name\": \"WinDev2104Eval\",\n      \"os\": {\n        \"Ext\": {\n          \"variant\": \"Windows 10 Enterprise Evaluation\"\n        },\n        \"family\": \"windows\",\n        \"full\": \"Windows 10 Enterprise Evaluation 20H2 (10.0.19042.906)\",\n        \"kernel\": \"20H2 (10.0.19042.906)\",\n        \"name\": \"Windows\",\n        \"platform\": \"windows\",\n        \"type\": \"windows\",\n        \"version\": \"20H2 (10.0.19042.906)\"\n      }\n    },\n    \"message\": \"Endpoint metadata\",\n    \"policy_info\": {\n      \"agent\": {\n        \"applied\": {\n          \"revision\": 3\n        },\n        \"configured\": {\n          \"revision\": 3\n        }\n      },\n      \"endpoint\": {\n        \"revision\": 2\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04c7ee37-cac7-4968-933e-80ab46ffac19",
+          "name": "Get a policy response",
+          "request": {
+            "name": "Get a policy response",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/policy_response</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the most recent policy response for an endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "policy_response"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "agentId",
+                  "value": "<string>",
+                  "description": "(Required) The agent ID to retrieve the policy response for."
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a95d7dd-9299-4ff3-b5bd-aa2a79b5caf7",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "policy_response"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d018ddc-5b9a-4ff3-b572-7b7c00a0598d",
+          "name": "Get a protection updates note",
+          "request": {
+            "name": "Get a protection updates note",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb get\">get</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/protection_updates_note/{package_policy_id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nGet the protection updates note for a package policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "protection_updates_note",
+                ":package_policy_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "package_policy_id",
+                  "description": "(Required) The package policy ID to retrieve the protection updates note for."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb76b155-5358-4e70-b0fc-919c97c87e8c",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "protection_updates_note",
+                    ":package_policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "package_policy_id",
+                      "description": "(Required) The package policy ID to retrieve the protection updates note for."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"note\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3cc466d9-dd67-47c9-883d-72fb0cfee56e",
+          "name": "Create or update a protection updates note",
+          "request": {
+            "name": "Create or update a protection updates note",
+            "description": {
+              "content": "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/endpoint/protection_updates_note/{package_policy_id}</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nCreate or update the protection updates note for a package policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "endpoint",
+                "protection_updates_note",
+                ":package_policy_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "package_policy_id",
+                  "description": "(Required) The package policy ID to create or update the protection updates note for."
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{kibana_url}}",
+                  "key": "kibana_url"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "93c2a4be-95b0-4d65-a3de-422bc96fca90",
+              "name": "Indicates a successful call.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "endpoint",
+                    "protection_updates_note",
+                    ":package_policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "package_policy_id",
+                      "description": "(Required) The package policy ID to create or update the protection updates note for."
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{kibana_url}}",
+                      "key": "kibana_url"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"note\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:5601",
+      "key": "kibana_url"
+    },
+    {
+      "type": "string",
+      "value": "https://{{kibana_url}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3802685e-f608-47f4-af9a-8433535af3cd",
+    "name": "Kibana APIs Actions Security Endpoint Management API API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.\nThe API calls are stateless.\nEach request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the\nrequest.\nAPI requests return JSON output, which is a format that is machine-readable and works well for automation.\n\nTo interact with Kibana APIs, use the following operations:\n\n- GET: Fetches the information.\n- PATCH: Applies partial modifications to the existing information.\n- POST: Adds new information.\n- PUT: Updates the existing information.\n- DELETE: Removes the information.\n\nYou can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.\nFor example:\n\n```\nGET kbn:/api/data_views\n```\n\nFor more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).\n\nNOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.\n\n## Documentation source and versions\n\nThis documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.\nIt is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).\n\nThis documentation contains work-in-progress information for future Elastic Stack releases.\n\n\nContact Support:\n Name: Kibana Team",
+      "type": "text/plain"
+    }
+  }
+}
