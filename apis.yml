@@ -60,6 +60,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - Agent Builder
+  tags_raw:
   - agent builder
   properties:
   - type: OpenAPI
@@ -77,6 +79,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - Alerting
+  tags_raw:
   - alerting
   properties:
   - type: OpenAPI
@@ -173,6 +177,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - Cases
+  tags_raw:
   - cases
   properties:
   - type: OpenAPI
@@ -190,6 +196,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - Connectors
+  tags_raw:
   - connectors
   properties:
   - type: OpenAPI
@@ -206,6 +214,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - Data Streams
+  tags_raw:
   - Data streams
   properties:
   - type: OpenAPI
@@ -220,6 +230,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - DataViews
+  tags_raw:
   - data views
   properties:
   - type: OpenAPI
@@ -577,6 +589,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - ML
+  tags_raw:
   - ml
   properties:
   - type: OpenAPI
@@ -590,7 +604,8 @@ apis:
   description: Interact with the Observability AI Assistant resources.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
-  tags:
+  tags: []
+  tags_raw:
   - observability_ai_assistant
   properties:
   - type: OpenAPI
@@ -605,6 +620,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - Roles
+  tags_raw:
   - roles
   properties:
   - type: OpenAPI
@@ -637,6 +654,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - SavedObjects
+  tags_raw:
   - saved objects
   properties:
   - type: OpenAPI
@@ -970,6 +989,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - Short URL
+  tags_raw:
   - short url
   properties:
   - type: OpenAPI
@@ -984,6 +1005,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - SLO
+  tags_raw:
   - slo
   properties:
   - type: OpenAPI
@@ -1023,6 +1046,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - Streams
+  tags_raw:
   - streams
   properties:
   - type: OpenAPI
@@ -1037,6 +1062,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - Synthetics
+  tags_raw:
   - synthetics
   properties:
   - type: OpenAPI
@@ -1052,6 +1079,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - System
+  tags_raw:
   - system
   properties:
   - type: OpenAPI
@@ -1068,6 +1097,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - Task Manager
+  tags_raw:
   - task manager
   properties:
   - type: OpenAPI
@@ -1091,6 +1122,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - Upgrade
+  tags_raw:
   - upgrade
   properties:
   - type: OpenAPI
@@ -1105,6 +1138,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - Uptime
+  tags_raw:
   - uptime
   properties:
   - type: OpenAPI
@@ -1119,6 +1154,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - User Session
+  tags_raw:
   - user session
   properties:
   - type: OpenAPI
@@ -1140,6 +1177,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - Workflows
+  tags_raw:
   - workflows
   properties:
   - type: OpenAPI
