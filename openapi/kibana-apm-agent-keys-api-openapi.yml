@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -57,7 +57,7 @@ info:
 
     '
   title: Kibana APIs Actions APM agent keys API
-  version: "1.0"
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -150,39 +150,36 @@ paths:
       - content: Kibana
         name: product_name
 components:
-  parameters:
-    APM_UI_elastic_api_version:
-      description: The version of the API to use
-      in: header
-      name: elastic-api-version
-      required: true
-      schema:
-        default: '2023-10-31'
-        enum:
-        - '2023-10-31'
-        type: string
-    APM_UI_kbn_xsrf:
-      description: A required header to protect against CSRF attacks
-      in: header
-      name: kbn-xsrf
-      required: true
-      schema:
-        example: 'true'
-        type: string
+  examples:
+    APM_UI_agent_keys_object_post_request1:
+      description: Run `POST /api/apm/agent_keys` to create an APM agent API key with the specified privileges.
+      value:
+        name: apm-key
+        privileges:
+        - event:write
+        - config_agent:read
+    APM_UI_agent_keys_object_post_200_response1:
+      description: An example of a successful response from `POST /api/apm/agent_keys`, which creates an APM agent API key.
+      value:
+        agentKey:
+          api_key: PjGloCGOTzaZr8ilUPvkjA
+          encoded: M0RDTG1uMEIzWk1oTFVhN1dCRzk6UGpHbG9DR09UemFacjhpbFVQdmtqQQ==
+          id: 3DCLmn0B3ZMhLUa7WBG9
+          name: apm-key
   schemas:
-    APM_UI_403_response:
+    APM_UI_500_response:
       type: object
       properties:
         error:
           description: Error type
-          example: Forbidden
+          example: Internal Server Error
           type: string
         message:
           description: Error message
           type: string
         statusCode:
           description: Error status code
-          example: 403
+          example: 500
           type: number
     APM_UI_401_response:
       type: object
@@ -198,40 +195,19 @@ components:
           description: Error status code
           example: 401
           type: number
-    APM_UI_agent_keys_object:
-      type: object
-      properties:
-        name:
-          description: The name of the APM agent key.
-          type: string
-        privileges:
-          description: 'The APM agent key privileges. It can take one or more of the following values:
-
-            * `event:write`, which is required for ingesting APM agent events. * `config_agent:read`, which is required for APM agents to read agent configuration remotely.
-
-            '
-          items:
-            enum:
-            - event:write
-            - config_agent:read
-            type: string
-          type: array
-      required:
-      - name
-      - privileges
-    APM_UI_500_response:
+    APM_UI_403_response:
       type: object
       properties:
         error:
           description: Error type
-          example: Internal Server Error
+          example: Forbidden
           type: string
         message:
           description: Error message
           type: string
         statusCode:
           description: Error status code
-          example: 500
+          example: 403
           type: number
     APM_UI_agent_keys_response:
       type: object
@@ -271,22 +247,46 @@ components:
           description: Error status code
           example: 400
           type: number
-  examples:
-    APM_UI_agent_keys_object_post_200_response1:
-      description: An example of a successful response from `POST /api/apm/agent_keys`, which creates an APM agent API key.
-      value:
-        agentKey:
-          api_key: PjGloCGOTzaZr8ilUPvkjA
-          encoded: M0RDTG1uMEIzWk1oTFVhN1dCRzk6UGpHbG9DR09UemFacjhpbFVQdmtqQQ==
-          id: 3DCLmn0B3ZMhLUa7WBG9
-          name: apm-key
-    APM_UI_agent_keys_object_post_request1:
-      description: Run `POST /api/apm/agent_keys` to create an APM agent API key with the specified privileges.
-      value:
-        name: apm-key
+    APM_UI_agent_keys_object:
+      type: object
+      properties:
+        name:
+          description: The name of the APM agent key.
+          type: string
         privileges:
-        - event:write
-        - config_agent:read
+          description: 'The APM agent key privileges. It can take one or more of the following values:
+
+            * `event:write`, which is required for ingesting APM agent events. * `config_agent:read`, which is required for APM agents to read agent configuration remotely.
+
+            '
+          items:
+            enum:
+            - event:write
+            - config_agent:read
+            type: string
+          type: array
+      required:
+      - name
+      - privileges
+  parameters:
+    APM_UI_elastic_api_version:
+      description: The version of the API to use
+      in: header
+      name: elastic-api-version
+      required: true
+      schema:
+        default: '2023-10-31'
+        enum:
+        - '2023-10-31'
+        type: string
+    APM_UI_kbn_xsrf:
+      description: A required header to protect against CSRF attacks
+      in: header
+      name: kbn-xsrf
+      required: true
+      schema:
+        example: 'true'
+        type: string
   securitySchemes:
     apiKeyAuth:
       description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`

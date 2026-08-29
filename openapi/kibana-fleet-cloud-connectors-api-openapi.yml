@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -57,7 +57,7 @@ info:
 
     '
   title: Kibana APIs Actions Fleet cloud connectors API
-  version: "1.0"
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -154,8 +154,7 @@ paths:
                         updated_at:
                           type: string
                         vars:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                         verification_failed_at:
                           type: string
@@ -191,8 +190,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -345,8 +343,7 @@ paths:
                       updated_at:
                         type: string
                       vars:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                       verification_failed_at:
                         type: string
@@ -380,8 +377,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -467,8 +463,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -549,8 +544,7 @@ paths:
                       updated_at:
                         type: string
                       vars:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                       verification_failed_at:
                         type: string
@@ -584,8 +578,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -731,8 +724,7 @@ paths:
                       updated_at:
                         type: string
                       vars:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                       verification_failed_at:
                         type: string
@@ -766,8 +758,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -915,8 +906,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:

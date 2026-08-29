@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -57,7 +57,7 @@ info:
 
     '
   title: Kibana APIs Actions Fleet package policies API
-  version: "1.0"
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -186,20 +186,23 @@ paths:
                           items:
                             type: string
                           maxItems: 1000
-                          nullable: true
-                          type: array
+                          type:
+                          - array
+                          - 'null'
                         agents:
                           type: number
                         cloud_connector_id:
                           description: ID of the cloud connector associated with this package policy.
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         cloud_connector_name:
                           description: Transient field for cloud connector name during creation.
                           maxLength: 255
                           minLength: 1
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         created_at:
                           type: string
                         created_by:
@@ -239,8 +242,9 @@ paths:
                             - name
                             - value
                           maxItems: 100
-                          nullable: true
-                          type: array
+                          type:
+                          - array
+                          - 'null'
                         id:
                           description: Package policy unique identifier.
                           type: string
@@ -250,8 +254,7 @@ paths:
                               additionalProperties: false
                               type: object
                               properties:
-                                compiled_input:
-                                  nullable: true
+                                compiled_input: {}
                                 config:
                                   additionalProperties:
                                     additionalProperties: false
@@ -261,8 +264,7 @@ paths:
                                         type: boolean
                                       type:
                                         type: string
-                                      value:
-                                        nullable: true
+                                      value: {}
                                     required:
                                     - value
                                   description: Package variable (see integration documentation for more information)
@@ -298,8 +300,7 @@ paths:
                                     additionalProperties: false
                                     type: object
                                     properties:
-                                      compiled_stream:
-                                        nullable: true
+                                      compiled_stream: {}
                                       config:
                                         additionalProperties:
                                           additionalProperties: false
@@ -309,8 +310,7 @@ paths:
                                               type: boolean
                                             type:
                                               type: string
-                                            value:
-                                              nullable: true
+                                            value: {}
                                           required:
                                           - value
                                         description: Package variable (see integration documentation for more information)
@@ -384,8 +384,7 @@ paths:
                                               type: boolean
                                             type:
                                               type: string
-                                            value:
-                                              nullable: true
+                                            value: {}
                                           required:
                                           - value
                                         description: Package variable (see integration documentation for more information)
@@ -412,8 +411,7 @@ paths:
                                         type: boolean
                                       type:
                                         type: string
-                                      value:
-                                        nullable: true
+                                      value: {}
                                     required:
                                     - value
                                   description: Package variable (see integration documentation for more information)
@@ -497,7 +495,6 @@ paths:
                                             required:
                                             - id
                                             - isSecretRef
-                                          nullable: true
                                         description: Input/stream level variable. Refer to the integration documentation for more information.
                                         type: object
                                   description: Input streams. Refer to the integration documentation to know which streams are available.
@@ -526,7 +523,6 @@ paths:
                                       required:
                                       - id
                                       - isSecretRef
-                                    nullable: true
                                   description: Input/stream level variable. Refer to the integration documentation for more information.
                                   type: object
                             description: Package policy inputs. Refer to the integration documentation to know which inputs are available.
@@ -542,17 +538,18 @@ paths:
                           description: The package policy namespace. Leave blank to inherit the agent policy's namespace.
                           type: string
                         output_id:
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         overrides:
                           additionalProperties: false
                           description: Override settings that are defined in the package policy. The override option should be used only in unusual circumstances and not as a routine procedure.
-                          nullable: true
-                          type: object
+                          type:
+                          - object
+                          - 'null'
                           properties:
                             inputs:
-                              additionalProperties:
-                                nullable: true
+                              additionalProperties: {}
                               type: object
                         package:
                           additionalProperties: false
@@ -602,8 +599,9 @@ paths:
                         policy_id:
                           deprecated: true
                           description: ID of the agent policy which the package policy will be added to.
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         policy_ids:
                           items:
                             description: IDs of the agent policies which that package policy will be added to.
@@ -632,13 +630,15 @@ paths:
                         supports_agentless:
                           default: false
                           description: Indicates whether the package policy belongs to an agentless agent policy.
-                          nullable: true
-                          type: boolean
+                          type:
+                          - boolean
+                          - 'null'
                         supports_cloud_connector:
                           default: false
                           description: Indicates whether the package policy supports cloud connectors.
-                          nullable: true
-                          type: boolean
+                          type:
+                          - boolean
+                          - 'null'
                         updated_at:
                           type: string
                         updated_by:
@@ -658,8 +658,7 @@ paths:
                                   type: boolean
                                 type:
                                   type: string
-                                value:
-                                  nullable: true
+                                value: {}
                               required:
                               - value
                             description: Package variable (see integration documentation for more information)
@@ -687,7 +686,6 @@ paths:
                                 required:
                                 - id
                                 - isSecretRef
-                              nullable: true
                             description: Input/stream level variable. Refer to the integration documentation for more information.
                             type: object
                             x-oas-optional: true
@@ -734,8 +732,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -808,18 +805,21 @@ paths:
                     items:
                       type: string
                     maxItems: 1000
-                    nullable: true
-                    type: array
+                    type:
+                    - array
+                    - 'null'
                   cloud_connector_id:
                     description: ID of the cloud connector associated with this package policy.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   cloud_connector_name:
                     description: Transient field for cloud connector name during creation.
                     maxLength: 255
                     minLength: 1
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   description:
                     description: Package policy description
                     type: string
@@ -845,8 +845,9 @@ paths:
                       - name
                       - value
                     maxItems: 100
-                    nullable: true
-                    type: array
+                    type:
+                    - array
+                    - 'null'
                   id:
                     description: Package policy unique identifier
                     type: string
@@ -864,8 +865,7 @@ paths:
                                 type: boolean
                               type:
                                 type: string
-                              value:
-                                nullable: true
+                              value: {}
                             required:
                             - value
                           description: Package variable (see integration documentation for more information)
@@ -901,8 +901,7 @@ paths:
                             additionalProperties: false
                             type: object
                             properties:
-                              compiled_stream:
-                                nullable: true
+                              compiled_stream: {}
                               config:
                                 additionalProperties:
                                   additionalProperties: false
@@ -912,8 +911,7 @@ paths:
                                       type: boolean
                                     type:
                                       type: string
-                                    value:
-                                      nullable: true
+                                    value: {}
                                   required:
                                   - value
                                 description: Package variable (see integration documentation for more information)
@@ -987,8 +985,7 @@ paths:
                                       type: boolean
                                     type:
                                       type: string
-                                    value:
-                                      nullable: true
+                                    value: {}
                                   required:
                                   - value
                                 description: Package variable (see integration documentation for more information)
@@ -1015,8 +1012,7 @@ paths:
                                 type: boolean
                               type:
                                 type: string
-                              value:
-                                nullable: true
+                              value: {}
                             required:
                             - value
                           description: Package variable (see integration documentation for more information)
@@ -1035,17 +1031,18 @@ paths:
                     description: The package policy namespace. Leave blank to inherit the agent policy's namespace.
                     type: string
                   output_id:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   overrides:
                     additionalProperties: false
                     description: Override settings that are defined in the package policy. The override option should be used only in unusual circumstances and not as a routine procedure.
-                    nullable: true
-                    type: object
+                    type:
+                    - object
+                    - 'null'
                     properties:
                       inputs:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                   package:
                     additionalProperties: false
@@ -1095,8 +1092,9 @@ paths:
                   policy_id:
                     deprecated: true
                     description: ID of the agent policy which the package policy will be added to.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   policy_ids:
                     items:
                       description: IDs of the agent policies which that package policy will be added to.
@@ -1112,13 +1110,15 @@ paths:
                     default: false
                     deprecated: true
                     description: Indicates whether the package policy belongs to an agentless agent policy. Deprecated in favor of the Fleet agentless policies API.
-                    nullable: true
-                    type: boolean
+                    type:
+                    - boolean
+                    - 'null'
                   supports_cloud_connector:
                     default: false
                     description: Indicates whether the package policy supports cloud connectors.
-                    nullable: true
-                    type: boolean
+                    type:
+                    - boolean
+                    - 'null'
                   var_group_selections:
                     additionalProperties:
                       type: string
@@ -1133,8 +1133,7 @@ paths:
                           type: boolean
                         type:
                           type: string
-                        value:
-                          nullable: true
+                        value: {}
                       required:
                       - value
                     description: Package variable (see integration documentation for more information)
@@ -1150,8 +1149,9 @@ paths:
                     items:
                       type: string
                     maxItems: 100
-                    nullable: true
-                    type: array
+                    type:
+                    - array
+                    - 'null'
                   description:
                     description: Policy description.
                     type: string
@@ -1234,7 +1234,6 @@ paths:
                                     required:
                                     - id
                                     - isSecretRef
-                                  nullable: true
                                 description: Input/stream level variable. Refer to the integration documentation for more information.
                                 type: object
                           description: Input streams. Refer to the integration documentation to know which streams are available.
@@ -1263,7 +1262,6 @@ paths:
                               required:
                               - id
                               - isSecretRef
-                            nullable: true
                           description: Input/stream level variable. Refer to the integration documentation for more information.
                           type: object
                     description: Package policy inputs. Refer to the integration documentation to know which inputs are available.
@@ -1275,8 +1273,9 @@ paths:
                     description: Policy namespace. When not specified, it inherits the agent policy namespace.
                     type: string
                   output_id:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   package:
                     additionalProperties: false
                     type: object
@@ -1323,8 +1322,9 @@ paths:
                   policy_id:
                     deprecated: true
                     description: Deprecated. Use policy_ids instead.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   policy_ids:
                     description: IDs of the agent policies which that package policy will be added to.
                     items:
@@ -1335,8 +1335,9 @@ paths:
                     default: false
                     deprecated: true
                     description: Indicates whether the package policy belongs to an agentless agent policy. Deprecated in favor of the Fleet agentless policies API.
-                    nullable: true
-                    type: boolean
+                    type:
+                    - boolean
+                    - 'null'
                   var_group_selections:
                     additionalProperties:
                       type: string
@@ -1366,7 +1367,6 @@ paths:
                         required:
                         - id
                         - isSecretRef
-                      nullable: true
                     description: Input/stream level variable. Refer to the integration documentation for more information.
                     type: object
                 required:
@@ -1408,20 +1408,23 @@ paths:
                         items:
                           type: string
                         maxItems: 1000
-                        nullable: true
-                        type: array
+                        type:
+                        - array
+                        - 'null'
                       agents:
                         type: number
                       cloud_connector_id:
                         description: ID of the cloud connector associated with this package policy.
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       cloud_connector_name:
                         description: Transient field for cloud connector name during creation.
                         maxLength: 255
                         minLength: 1
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       created_at:
                         type: string
                       created_by:
@@ -1461,8 +1464,9 @@ paths:
                           - name
                           - value
                         maxItems: 100
-                        nullable: true
-                        type: array
+                        type:
+                        - array
+                        - 'null'
                       id:
                         description: Package policy unique identifier.
                         type: string
@@ -1472,8 +1476,7 @@ paths:
                             additionalProperties: false
                             type: object
                             properties:
-                              compiled_input:
-                                nullable: true
+                              compiled_input: {}
                               config:
                                 additionalProperties:
                                   additionalProperties: false
@@ -1483,8 +1486,7 @@ paths:
                                       type: boolean
                                     type:
                                       type: string
-                                    value:
-                                      nullable: true
+                                    value: {}
                                   required:
                                   - value
                                 description: Package variable (see integration documentation for more information)
@@ -1520,8 +1522,7 @@ paths:
                                   additionalProperties: false
                                   type: object
                                   properties:
-                                    compiled_stream:
-                                      nullable: true
+                                    compiled_stream: {}
                                     config:
                                       additionalProperties:
                                         additionalProperties: false
@@ -1531,8 +1532,7 @@ paths:
                                             type: boolean
                                           type:
                                             type: string
-                                          value:
-                                            nullable: true
+                                          value: {}
                                         required:
                                         - value
                                       description: Package variable (see integration documentation for more information)
@@ -1606,8 +1606,7 @@ paths:
                                             type: boolean
                                           type:
                                             type: string
-                                          value:
-                                            nullable: true
+                                          value: {}
                                         required:
                                         - value
                                       description: Package variable (see integration documentation for more information)
@@ -1634,8 +1633,7 @@ paths:
                                       type: boolean
                                     type:
                                       type: string
-                                    value:
-                                      nullable: true
+                                    value: {}
                                   required:
                                   - value
                                 description: Package variable (see integration documentation for more information)
@@ -1719,7 +1717,6 @@ paths:
                                           required:
                                           - id
                                           - isSecretRef
-                                        nullable: true
                                       description: Input/stream level variable. Refer to the integration documentation for more information.
                                       type: object
                                 description: Input streams. Refer to the integration documentation to know which streams are available.
@@ -1748,7 +1745,6 @@ paths:
                                     required:
                                     - id
                                     - isSecretRef
-                                  nullable: true
                                 description: Input/stream level variable. Refer to the integration documentation for more information.
                                 type: object
                           description: Package policy inputs. Refer to the integration documentation to know which inputs are available.
@@ -1764,17 +1760,18 @@ paths:
                         description: The package policy namespace. Leave blank to inherit the agent policy's namespace.
                         type: string
                       output_id:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       overrides:
                         additionalProperties: false
                         description: Override settings that are defined in the package policy. The override option should be used only in unusual circumstances and not as a routine procedure.
-                        nullable: true
-                        type: object
+                        type:
+                        - object
+                        - 'null'
                         properties:
                           inputs:
-                            additionalProperties:
-                              nullable: true
+                            additionalProperties: {}
                             type: object
                       package:
                         additionalProperties: false
@@ -1824,8 +1821,9 @@ paths:
                       policy_id:
                         deprecated: true
                         description: ID of the agent policy which the package policy will be added to.
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       policy_ids:
                         items:
                           description: IDs of the agent policies which that package policy will be added to.
@@ -1854,13 +1852,15 @@ paths:
                       supports_agentless:
                         default: false
                         description: Indicates whether the package policy belongs to an agentless agent policy.
-                        nullable: true
-                        type: boolean
+                        type:
+                        - boolean
+                        - 'null'
                       supports_cloud_connector:
                         default: false
                         description: Indicates whether the package policy supports cloud connectors.
-                        nullable: true
-                        type: boolean
+                        type:
+                        - boolean
+                        - 'null'
                       updated_at:
                         type: string
                       updated_by:
@@ -1880,8 +1880,7 @@ paths:
                                 type: boolean
                               type:
                                 type: string
-                              value:
-                                nullable: true
+                              value: {}
                             required:
                             - value
                           description: Package variable (see integration documentation for more information)
@@ -1909,7 +1908,6 @@ paths:
                               required:
                               - id
                               - isSecretRef
-                            nullable: true
                           description: Input/stream level variable. Refer to the integration documentation for more information.
                           type: object
                           x-oas-optional: true
@@ -1945,8 +1943,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1974,8 +1971,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2084,20 +2080,23 @@ paths:
                           items:
                             type: string
                           maxItems: 1000
-                          nullable: true
-                          type: array
+                          type:
+                          - array
+                          - 'null'
                         agents:
                           type: number
                         cloud_connector_id:
                           description: ID of the cloud connector associated with this package policy.
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         cloud_connector_name:
                           description: Transient field for cloud connector name during creation.
                           maxLength: 255
                           minLength: 1
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         created_at:
                           type: string
                         created_by:
@@ -2137,8 +2136,9 @@ paths:
                             - name
                             - value
                           maxItems: 100
-                          nullable: true
-                          type: array
+                          type:
+                          - array
+                          - 'null'
                         id:
                           description: Package policy unique identifier.
                           type: string
@@ -2148,8 +2148,7 @@ paths:
                               additionalProperties: false
                               type: object
                               properties:
-                                compiled_input:
-                                  nullable: true
+                                compiled_input: {}
                                 config:
                                   additionalProperties:
                                     additionalProperties: false
@@ -2159,8 +2158,7 @@ paths:
                                         type: boolean
                                       type:
                                         type: string
-                                      value:
-                                        nullable: true
+                                      value: {}
                                     required:
                                     - value
                                   description: Package variable (see integration documentation for more information)
@@ -2196,8 +2194,7 @@ paths:
                                     additionalProperties: false
                                     type: object
                                     properties:
-                                      compiled_stream:
-                                        nullable: true
+                                      compiled_stream: {}
                                       config:
                                         additionalProperties:
                                           additionalProperties: false
@@ -2207,8 +2204,7 @@ paths:
                                               type: boolean
                                             type:
                                               type: string
-                                            value:
-                                              nullable: true
+                                            value: {}
                                           required:
                                           - value
                                         description: Package variable (see integration documentation for more information)
@@ -2282,8 +2278,7 @@ paths:
                                               type: boolean
                                             type:
                                               type: string
-                                            value:
-                                              nullable: true
+                                            value: {}
                                           required:
                                           - value
                                         description: Package variable (see integration documentation for more information)
@@ -2310,8 +2305,7 @@ paths:
                                         type: boolean
                                       type:
                                         type: string
-                                      value:
-                                        nullable: true
+                                      value: {}
                                     required:
                                     - value
                                   description: Package variable (see integration documentation for more information)
@@ -2395,7 +2389,6 @@ paths:
                                             required:
                                             - id
                                             - isSecretRef
-                                          nullable: true
                                         description: Input/stream level variable. Refer to the integration documentation for more information.
                                         type: object
                                   description: Input streams. Refer to the integration documentation to know which streams are available.
@@ -2424,7 +2417,6 @@ paths:
                                       required:
                                       - id
                                       - isSecretRef
-                                    nullable: true
                                   description: Input/stream level variable. Refer to the integration documentation for more information.
                                   type: object
                             description: Package policy inputs. Refer to the integration documentation to know which inputs are available.
@@ -2440,17 +2432,18 @@ paths:
                           description: The package policy namespace. Leave blank to inherit the agent policy's namespace.
                           type: string
                         output_id:
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         overrides:
                           additionalProperties: false
                           description: Override settings that are defined in the package policy. The override option should be used only in unusual circumstances and not as a routine procedure.
-                          nullable: true
-                          type: object
+                          type:
+                          - object
+                          - 'null'
                           properties:
                             inputs:
-                              additionalProperties:
-                                nullable: true
+                              additionalProperties: {}
                               type: object
                         package:
                           additionalProperties: false
@@ -2500,8 +2493,9 @@ paths:
                         policy_id:
                           deprecated: true
                           description: ID of the agent policy which the package policy will be added to.
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         policy_ids:
                           items:
                             description: IDs of the agent policies which that package policy will be added to.
@@ -2530,13 +2524,15 @@ paths:
                         supports_agentless:
                           default: false
                           description: Indicates whether the package policy belongs to an agentless agent policy.
-                          nullable: true
-                          type: boolean
+                          type:
+                          - boolean
+                          - 'null'
                         supports_cloud_connector:
                           default: false
                           description: Indicates whether the package policy supports cloud connectors.
-                          nullable: true
-                          type: boolean
+                          type:
+                          - boolean
+                          - 'null'
                         updated_at:
                           type: string
                         updated_by:
@@ -2556,8 +2552,7 @@ paths:
                                   type: boolean
                                 type:
                                   type: string
-                                value:
-                                  nullable: true
+                                value: {}
                               required:
                               - value
                             description: Package variable (see integration documentation for more information)
@@ -2585,7 +2580,6 @@ paths:
                                 required:
                                 - id
                                 - isSecretRef
-                              nullable: true
                             description: Input/stream level variable. Refer to the integration documentation for more information.
                             type: object
                             x-oas-optional: true
@@ -2623,8 +2617,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2728,8 +2721,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2811,20 +2803,23 @@ paths:
                         items:
                           type: string
                         maxItems: 1000
-                        nullable: true
-                        type: array
+                        type:
+                        - array
+                        - 'null'
                       agents:
                         type: number
                       cloud_connector_id:
                         description: ID of the cloud connector associated with this package policy.
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       cloud_connector_name:
                         description: Transient field for cloud connector name during creation.
                         maxLength: 255
                         minLength: 1
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       created_at:
                         type: string
                       created_by:
@@ -2864,8 +2859,9 @@ paths:
                           - name
                           - value
                         maxItems: 100
-                        nullable: true
-                        type: array
+                        type:
+                        - array
+                        - 'null'
                       id:
                         description: Package policy unique identifier.
                         type: string
@@ -2875,8 +2871,7 @@ paths:
                             additionalProperties: false
                             type: object
                             properties:
-                              compiled_input:
-                                nullable: true
+                              compiled_input: {}
                               config:
                                 additionalProperties:
                                   additionalProperties: false
@@ -2886,8 +2881,7 @@ paths:
                                       type: boolean
                                     type:
                                       type: string
-                                    value:
-                                      nullable: true
+                                    value: {}
                                   required:
                                   - value
                                 description: Package variable (see integration documentation for more information)
@@ -2923,8 +2917,7 @@ paths:
                                   additionalProperties: false
                                   type: object
                                   properties:
-                                    compiled_stream:
-                                      nullable: true
+                                    compiled_stream: {}
                                     config:
                                       additionalProperties:
                                         additionalProperties: false
@@ -2934,8 +2927,7 @@ paths:
                                             type: boolean
                                           type:
                                             type: string
-                                          value:
-                                            nullable: true
+                                          value: {}
                                         required:
                                         - value
                                       description: Package variable (see integration documentation for more information)
@@ -3009,8 +3001,7 @@ paths:
                                             type: boolean
                                           type:
                                             type: string
-                                          value:
-                                            nullable: true
+                                          value: {}
                                         required:
                                         - value
                                       description: Package variable (see integration documentation for more information)
@@ -3037,8 +3028,7 @@ paths:
                                       type: boolean
                                     type:
                                       type: string
-                                    value:
-                                      nullable: true
+                                    value: {}
                                   required:
                                   - value
                                 description: Package variable (see integration documentation for more information)
@@ -3122,7 +3112,6 @@ paths:
                                           required:
                                           - id
                                           - isSecretRef
-                                        nullable: true
                                       description: Input/stream level variable. Refer to the integration documentation for more information.
                                       type: object
                                 description: Input streams. Refer to the integration documentation to know which streams are available.
@@ -3151,7 +3140,6 @@ paths:
                                     required:
                                     - id
                                     - isSecretRef
-                                  nullable: true
                                 description: Input/stream level variable. Refer to the integration documentation for more information.
                                 type: object
                           description: Package policy inputs. Refer to the integration documentation to know which inputs are available.
@@ -3167,17 +3155,18 @@ paths:
                         description: The package policy namespace. Leave blank to inherit the agent policy's namespace.
                         type: string
                       output_id:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       overrides:
                         additionalProperties: false
                         description: Override settings that are defined in the package policy. The override option should be used only in unusual circumstances and not as a routine procedure.
-                        nullable: true
-                        type: object
+                        type:
+                        - object
+                        - 'null'
                         properties:
                           inputs:
-                            additionalProperties:
-                              nullable: true
+                            additionalProperties: {}
                             type: object
                       package:
                         additionalProperties: false
@@ -3227,8 +3216,9 @@ paths:
                       policy_id:
                         deprecated: true
                         description: ID of the agent policy which the package policy will be added to.
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       policy_ids:
                         items:
                           description: IDs of the agent policies which that package policy will be added to.
@@ -3257,13 +3247,15 @@ paths:
                       supports_agentless:
                         default: false
                         description: Indicates whether the package policy belongs to an agentless agent policy.
-                        nullable: true
-                        type: boolean
+                        type:
+                        - boolean
+                        - 'null'
                       supports_cloud_connector:
                         default: false
                         description: Indicates whether the package policy supports cloud connectors.
-                        nullable: true
-                        type: boolean
+                        type:
+                        - boolean
+                        - 'null'
                       updated_at:
                         type: string
                       updated_by:
@@ -3283,8 +3275,7 @@ paths:
                                 type: boolean
                               type:
                                 type: string
-                              value:
-                                nullable: true
+                              value: {}
                             required:
                             - value
                           description: Package variable (see integration documentation for more information)
@@ -3312,7 +3303,6 @@ paths:
                               required:
                               - id
                               - isSecretRef
-                            nullable: true
                           description: Input/stream level variable. Refer to the integration documentation for more information.
                           type: object
                           x-oas-optional: true
@@ -3348,8 +3338,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -3448,18 +3437,21 @@ paths:
                     items:
                       type: string
                     maxItems: 1000
-                    nullable: true
-                    type: array
+                    type:
+                    - array
+                    - 'null'
                   cloud_connector_id:
                     description: ID of the cloud connector associated with this package policy.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   cloud_connector_name:
                     description: Transient field for cloud connector name during creation.
                     maxLength: 255
                     minLength: 1
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   description:
                     description: Package policy description
                     type: string
@@ -3484,8 +3476,9 @@ paths:
                       - name
                       - value
                     maxItems: 100
-                    nullable: true
-                    type: array
+                    type:
+                    - array
+                    - 'null'
                   inputs:
                     items:
                       additionalProperties: false
@@ -3500,8 +3493,7 @@ paths:
                                 type: boolean
                               type:
                                 type: string
-                              value:
-                                nullable: true
+                              value: {}
                             required:
                             - value
                           description: Package variable (see integration documentation for more information)
@@ -3537,8 +3529,7 @@ paths:
                             additionalProperties: false
                             type: object
                             properties:
-                              compiled_stream:
-                                nullable: true
+                              compiled_stream: {}
                               config:
                                 additionalProperties:
                                   additionalProperties: false
@@ -3548,8 +3539,7 @@ paths:
                                       type: boolean
                                     type:
                                       type: string
-                                    value:
-                                      nullable: true
+                                    value: {}
                                   required:
                                   - value
                                 description: Package variable (see integration documentation for more information)
@@ -3623,8 +3613,7 @@ paths:
                                       type: boolean
                                     type:
                                       type: string
-                                    value:
-                                      nullable: true
+                                    value: {}
                                   required:
                                   - value
                                 description: Package variable (see integration documentation for more information)
@@ -3651,8 +3640,7 @@ paths:
                                 type: boolean
                               type:
                                 type: string
-                              value:
-                                nullable: true
+                              value: {}
                             required:
                             - value
                           description: Package variable (see integration documentation for more information)
@@ -3670,17 +3658,18 @@ paths:
                     description: The package policy namespace. Leave blank to inherit the agent policy's namespace.
                     type: string
                   output_id:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   overrides:
                     additionalProperties: false
                     description: Override settings that are defined in the package policy. The override option should be used only in unusual circumstances and not as a routine procedure.
-                    nullable: true
-                    type: object
+                    type:
+                    - object
+                    - 'null'
                     properties:
                       inputs:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                   package:
                     additionalProperties: false
@@ -3730,8 +3719,9 @@ paths:
                   policy_id:
                     deprecated: true
                     description: ID of the agent policy which the package policy will be added to.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   policy_ids:
                     items:
                       description: IDs of the agent policies which that package policy will be added to.
@@ -3746,13 +3736,15 @@ paths:
                   supports_agentless:
                     default: false
                     description: Indicates whether the package policy belongs to an agentless agent policy.
-                    nullable: true
-                    type: boolean
+                    type:
+                    - boolean
+                    - 'null'
                   supports_cloud_connector:
                     default: false
                     description: Indicates whether the package policy supports cloud connectors.
-                    nullable: true
-                    type: boolean
+                    type:
+                    - boolean
+                    - 'null'
                   var_group_selections:
                     additionalProperties:
                       type: string
@@ -3767,8 +3759,7 @@ paths:
                           type: boolean
                         type:
                           type: string
-                        value:
-                          nullable: true
+                        value: {}
                       required:
                       - value
                     description: Package variable (see integration documentation for more information)
@@ -3783,8 +3774,9 @@ paths:
                     items:
                       type: string
                     maxItems: 100
-                    nullable: true
-                    type: array
+                    type:
+                    - array
+                    - 'null'
                   description:
                     description: Policy description.
                     type: string
@@ -3867,7 +3859,6 @@ paths:
                                     required:
                                     - id
                                     - isSecretRef
-                                  nullable: true
                                 description: Input/stream level variable. Refer to the integration documentation for more information.
                                 type: object
                           description: Input streams. Refer to the integration documentation to know which streams are available.
@@ -3896,7 +3887,6 @@ paths:
                               required:
                               - id
                               - isSecretRef
-                            nullable: true
                           description: Input/stream level variable. Refer to the integration documentation for more information.
                           type: object
                     description: Package policy inputs. Refer to the integration documentation to know which inputs are available.
@@ -3908,8 +3898,9 @@ paths:
                     description: Policy namespace. When not specified, it inherits the agent policy namespace.
                     type: string
                   output_id:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   package:
                     additionalProperties: false
                     type: object
@@ -3956,8 +3947,9 @@ paths:
                   policy_id:
                     deprecated: true
                     description: Deprecated. Use policy_ids instead.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   policy_ids:
                     description: IDs of the agent policies which that package policy will be added to.
                     items:
@@ -3968,8 +3960,9 @@ paths:
                     default: false
                     deprecated: true
                     description: Indicates whether the package policy belongs to an agentless agent policy. Deprecated in favor of the Fleet agentless policies API.
-                    nullable: true
-                    type: boolean
+                    type:
+                    - boolean
+                    - 'null'
                   var_group_selections:
                     additionalProperties:
                       type: string
@@ -3999,7 +3992,6 @@ paths:
                         required:
                         - id
                         - isSecretRef
-                      nullable: true
                     description: Input/stream level variable. Refer to the integration documentation for more information.
                     type: object
                 required:
@@ -4040,20 +4032,23 @@ paths:
                         items:
                           type: string
                         maxItems: 1000
-                        nullable: true
-                        type: array
+                        type:
+                        - array
+                        - 'null'
                       agents:
                         type: number
                       cloud_connector_id:
                         description: ID of the cloud connector associated with this package policy.
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       cloud_connector_name:
                         description: Transient field for cloud connector name during creation.
                         maxLength: 255
                         minLength: 1
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       created_at:
                         type: string
                       created_by:
@@ -4093,8 +4088,9 @@ paths:
                           - name
                           - value
                         maxItems: 100
-                        nullable: true
-                        type: array
+                        type:
+                        - array
+                        - 'null'
                       id:
                         description: Package policy unique identifier.
                         type: string
@@ -4104,8 +4100,7 @@ paths:
                             additionalProperties: false
                             type: object
                             properties:
-                              compiled_input:
-                                nullable: true
+                              compiled_input: {}
                               config:
                                 additionalProperties:
                                   additionalProperties: false
@@ -4115,8 +4110,7 @@ paths:
                                       type: boolean
                                     type:
                                       type: string
-                                    value:
-                                      nullable: true
+                                    value: {}
                                   required:
                                   - value
                                 description: Package variable (see integration documentation for more information)
@@ -4152,8 +4146,7 @@ paths:
                                   additionalProperties: false
                                   type: object
                                   properties:
-                                    compiled_stream:
-                                      nullable: true
+                                    compiled_stream: {}
                                     config:
                                       additionalProperties:
                                         additionalProperties: false
@@ -4163,8 +4156,7 @@ paths:
                                             type: boolean
                                           type:
                                             type: string
-                                          value:
-                                            nullable: true
+                                          value: {}
                                         required:
                                         - value
                                       description: Package variable (see integration documentation for more information)
@@ -4238,8 +4230,7 @@ paths:
                                             type: boolean
                                           type:
                                             type: string
-                                          value:
-                                            nullable: true
+                                          value: {}
                                         required:
                                         - value
                                       description: Package variable (see integration documentation for more information)
@@ -4266,8 +4257,7 @@ paths:
                                       type: boolean
                                     type:
                                       type: string
-                                    value:
-                                      nullable: true
+                                    value: {}
                                   required:
                                   - value
                                 description: Package variable (see integration documentation for more information)
@@ -4351,7 +4341,6 @@ paths:
                                           required:
                                           - id
                                           - isSecretRef
-                                        nullable: true
                                       description: Input/stream level variable. Refer to the integration documentation for more information.
                                       type: object
                                 description: Input streams. Refer to the integration documentation to know which streams are available.
@@ -4380,7 +4369,6 @@ paths:
                                     required:
                                     - id
                                     - isSecretRef
-                                  nullable: true
                                 description: Input/stream level variable. Refer to the integration documentation for more information.
                                 type: object
                           description: Package policy inputs. Refer to the integration documentation to know which inputs are available.
@@ -4396,17 +4384,18 @@ paths:
                         description: The package policy namespace. Leave blank to inherit the agent policy's namespace.
                         type: string
                       output_id:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       overrides:
                         additionalProperties: false
                         description: Override settings that are defined in the package policy. The override option should be used only in unusual circumstances and not as a routine procedure.
-                        nullable: true
-                        type: object
+                        type:
+                        - object
+                        - 'null'
                         properties:
                           inputs:
-                            additionalProperties:
-                              nullable: true
+                            additionalProperties: {}
                             type: object
                       package:
                         additionalProperties: false
@@ -4456,8 +4445,9 @@ paths:
                       policy_id:
                         deprecated: true
                         description: ID of the agent policy which the package policy will be added to.
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       policy_ids:
                         items:
                           description: IDs of the agent policies which that package policy will be added to.
@@ -4486,13 +4476,15 @@ paths:
                       supports_agentless:
                         default: false
                         description: Indicates whether the package policy belongs to an agentless agent policy.
-                        nullable: true
-                        type: boolean
+                        type:
+                        - boolean
+                        - 'null'
                       supports_cloud_connector:
                         default: false
                         description: Indicates whether the package policy supports cloud connectors.
-                        nullable: true
-                        type: boolean
+                        type:
+                        - boolean
+                        - 'null'
                       updated_at:
                         type: string
                       updated_by:
@@ -4512,8 +4504,7 @@ paths:
                                 type: boolean
                               type:
                                 type: string
-                              value:
-                                nullable: true
+                              value: {}
                             required:
                             - value
                           description: Package variable (see integration documentation for more information)
@@ -4541,7 +4532,6 @@ paths:
                               required:
                               - id
                               - isSecretRef
-                            nullable: true
                           description: Input/stream level variable. Refer to the integration documentation for more information.
                           type: object
                           x-oas-optional: true
@@ -4577,8 +4567,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -4606,8 +4595,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -4700,8 +4688,9 @@ paths:
                     name:
                       type: string
                     output_id:
-                      nullable: true
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                     package:
                       additionalProperties: false
                       type: object
@@ -4748,8 +4737,9 @@ paths:
                     policy_id:
                       deprecated: true
                       description: Use `policy_ids` instead
-                      nullable: true
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                     policy_ids:
                       items:
                         type: string
@@ -4782,8 +4772,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -4896,8 +4885,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -5103,20 +5091,23 @@ paths:
                               items:
                                 type: string
                               maxItems: 1000
-                              nullable: true
-                              type: array
+                              type:
+                              - array
+                              - 'null'
                             agents:
                               type: number
                             cloud_connector_id:
                               description: ID of the cloud connector associated with this package policy.
-                              nullable: true
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                             cloud_connector_name:
                               description: Transient field for cloud connector name during creation.
                               maxLength: 255
                               minLength: 1
-                              nullable: true
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                             created_at:
                               type: string
                             created_by:
@@ -5156,8 +5147,9 @@ paths:
                                 - name
                                 - value
                               maxItems: 100
-                              nullable: true
-                              type: array
+                              type:
+                              - array
+                              - 'null'
                             id:
                               type: string
                             inputs:
@@ -5166,8 +5158,7 @@ paths:
                                   additionalProperties: false
                                   type: object
                                   properties:
-                                    compiled_input:
-                                      nullable: true
+                                    compiled_input: {}
                                     config:
                                       additionalProperties:
                                         additionalProperties: false
@@ -5177,8 +5168,7 @@ paths:
                                             type: boolean
                                           type:
                                             type: string
-                                          value:
-                                            nullable: true
+                                          value: {}
                                         required:
                                         - value
                                       description: Package variable (see integration documentation for more information)
@@ -5214,8 +5204,7 @@ paths:
                                         additionalProperties: false
                                         type: object
                                         properties:
-                                          compiled_stream:
-                                            nullable: true
+                                          compiled_stream: {}
                                           config:
                                             additionalProperties:
                                               additionalProperties: false
@@ -5225,8 +5214,7 @@ paths:
                                                   type: boolean
                                                 type:
                                                   type: string
-                                                value:
-                                                  nullable: true
+                                                value: {}
                                               required:
                                               - value
                                             description: Package variable (see integration documentation for more information)
@@ -5300,8 +5288,7 @@ paths:
                                                   type: boolean
                                                 type:
                                                   type: string
-                                                value:
-                                                  nullable: true
+                                                value: {}
                                               required:
                                               - value
                                             description: Package variable (see integration documentation for more information)
@@ -5328,8 +5315,7 @@ paths:
                                             type: boolean
                                           type:
                                             type: string
-                                          value:
-                                            nullable: true
+                                          value: {}
                                         required:
                                         - value
                                       description: Package variable (see integration documentation for more information)
@@ -5413,7 +5399,6 @@ paths:
                                                 required:
                                                 - id
                                                 - isSecretRef
-                                              nullable: true
                                             description: Input/stream level variable. Refer to the integration documentation for more information.
                                             type: object
                                       description: Input streams. Refer to the integration documentation to know which streams are available.
@@ -5442,7 +5427,6 @@ paths:
                                           required:
                                           - id
                                           - isSecretRef
-                                        nullable: true
                                       description: Input/stream level variable. Refer to the integration documentation for more information.
                                       type: object
                                 description: Package policy inputs. Refer to the integration documentation to know which inputs are available.
@@ -5458,17 +5442,18 @@ paths:
                               description: The package policy namespace. Leave blank to inherit the agent policy's namespace.
                               type: string
                             output_id:
-                              nullable: true
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                             overrides:
                               additionalProperties: false
                               description: Override settings that are defined in the package policy. The override option should be used only in unusual circumstances and not as a routine procedure.
-                              nullable: true
-                              type: object
+                              type:
+                              - object
+                              - 'null'
                               properties:
                                 inputs:
-                                  additionalProperties:
-                                    nullable: true
+                                  additionalProperties: {}
                                   type: object
                             package:
                               additionalProperties: false
@@ -5518,8 +5503,9 @@ paths:
                             policy_id:
                               deprecated: true
                               description: ID of the agent policy which the package policy will be added to.
-                              nullable: true
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                             policy_ids:
                               items:
                                 description: IDs of the agent policies which that package policy will be added to.
@@ -5548,13 +5534,15 @@ paths:
                             supports_agentless:
                               default: false
                               description: Indicates whether the package policy belongs to an agentless agent policy.
-                              nullable: true
-                              type: boolean
+                              type:
+                              - boolean
+                              - 'null'
                             supports_cloud_connector:
                               default: false
                               description: Indicates whether the package policy supports cloud connectors.
-                              nullable: true
-                              type: boolean
+                              type:
+                              - boolean
+                              - 'null'
                             updated_at:
                               type: string
                             updated_by:
@@ -5574,8 +5562,7 @@ paths:
                                       type: boolean
                                     type:
                                       type: string
-                                    value:
-                                      nullable: true
+                                    value: {}
                                   required:
                                   - value
                                 description: Package variable (see integration documentation for more information)
@@ -5603,7 +5590,6 @@ paths:
                                     required:
                                     - id
                                     - isSecretRef
-                                  nullable: true
                                 description: Input/stream level variable. Refer to the integration documentation for more information.
                                 type: object
                                 x-oas-optional: true
@@ -5628,18 +5614,21 @@ paths:
                               items:
                                 type: string
                               maxItems: 1000
-                              nullable: true
-                              type: array
+                              type:
+                              - array
+                              - 'null'
                             cloud_connector_id:
                               description: ID of the cloud connector associated with this package policy.
-                              nullable: true
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                             cloud_connector_name:
                               description: Transient field for cloud connector name during creation.
                               maxLength: 255
                               minLength: 1
-                              nullable: true
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                             created_at:
                               type: string
                             created_by:
@@ -5694,8 +5683,9 @@ paths:
                                 - name
                                 - value
                               maxItems: 100
-                              nullable: true
-                              type: array
+                              type:
+                              - array
+                              - 'null'
                             id:
                               type: string
                             inputs:
@@ -5703,8 +5693,7 @@ paths:
                                 additionalProperties: false
                                 type: object
                                 properties:
-                                  compiled_input:
-                                    nullable: true
+                                  compiled_input: {}
                                   config:
                                     additionalProperties:
                                       additionalProperties: false
@@ -5714,8 +5703,7 @@ paths:
                                           type: boolean
                                         type:
                                           type: string
-                                        value:
-                                          nullable: true
+                                        value: {}
                                       required:
                                       - value
                                     description: Package variable (see integration documentation for more information)
@@ -5751,8 +5739,7 @@ paths:
                                       additionalProperties: false
                                       type: object
                                       properties:
-                                        compiled_stream:
-                                          nullable: true
+                                        compiled_stream: {}
                                         config:
                                           additionalProperties:
                                             additionalProperties: false
@@ -5762,8 +5749,7 @@ paths:
                                                 type: boolean
                                               type:
                                                 type: string
-                                              value:
-                                                nullable: true
+                                              value: {}
                                             required:
                                             - value
                                           description: Package variable (see integration documentation for more information)
@@ -5837,8 +5823,7 @@ paths:
                                                 type: boolean
                                               type:
                                                 type: string
-                                              value:
-                                                nullable: true
+                                              value: {}
                                             required:
                                             - value
                                           description: Package variable (see integration documentation for more information)
@@ -5865,8 +5850,7 @@ paths:
                                           type: boolean
                                         type:
                                           type: string
-                                        value:
-                                          nullable: true
+                                        value: {}
                                       required:
                                       - value
                                     description: Package variable (see integration documentation for more information)
@@ -5892,17 +5876,18 @@ paths:
                               description: The package policy namespace. Leave blank to inherit the agent policy's namespace.
                               type: string
                             output_id:
-                              nullable: true
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                             overrides:
                               additionalProperties: false
                               description: Override settings that are defined in the package policy. The override option should be used only in unusual circumstances and not as a routine procedure.
-                              nullable: true
-                              type: object
+                              type:
+                              - object
+                              - 'null'
                               properties:
                                 inputs:
-                                  additionalProperties:
-                                    nullable: true
+                                  additionalProperties: {}
                                   type: object
                             package:
                               additionalProperties: false
@@ -5952,8 +5937,9 @@ paths:
                             policy_id:
                               deprecated: true
                               description: ID of the agent policy which the package policy will be added to.
-                              nullable: true
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                             policy_ids:
                               items:
                                 description: IDs of the agent policies which that package policy will be added to.
@@ -5976,13 +5962,15 @@ paths:
                             supports_agentless:
                               default: false
                               description: Indicates whether the package policy belongs to an agentless agent policy.
-                              nullable: true
-                              type: boolean
+                              type:
+                              - boolean
+                              - 'null'
                             supports_cloud_connector:
                               default: false
                               description: Indicates whether the package policy supports cloud connectors.
-                              nullable: true
-                              type: boolean
+                              type:
+                              - boolean
+                              - 'null'
                             updated_at:
                               type: string
                             updated_by:
@@ -6001,8 +5989,7 @@ paths:
                                     type: boolean
                                   type:
                                     type: string
-                                  value:
-                                    nullable: true
+                                  value: {}
                                 required:
                                 - value
                               description: Package variable (see integration documentation for more information)
@@ -6042,8 +6029,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -57,7 +57,7 @@ info:
 
     '
   title: Kibana APIs Actions Elastic Agent actions API
-  version: "1.0"
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -124,10 +124,8 @@ paths:
                   - additionalProperties: false
                     type: object
                     properties:
-                      ack_data:
-                        nullable: true
-                      data:
-                        nullable: true
+                      ack_data: {}
+                      data: {}
                       type:
                         enum:
                         - UNENROLL
@@ -151,8 +149,9 @@ paths:
                             - info
                             - warning
                             - error
-                            nullable: true
-                            type: string
+                            type:
+                            - string
+                            - 'null'
                         required:
                         - log_level
                       type:
@@ -186,8 +185,7 @@ paths:
                     additionalProperties: false
                     type: object
                     properties:
-                      ack_data:
-                        nullable: true
+                      ack_data: {}
                       agents:
                         items:
                           type: string
@@ -195,8 +193,7 @@ paths:
                         type: array
                       created_at:
                         type: string
-                      data:
-                        nullable: true
+                      data: {}
                       expiration:
                         type: string
                       id:
@@ -244,8 +241,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -335,8 +331,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -393,8 +388,9 @@ paths:
                   - CPU
             schema:
               additionalProperties: false
-              nullable: true
-              type: object
+              type:
+              - object
+              - 'null'
               properties:
                 additional_metrics:
                   items:
@@ -436,8 +432,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -520,8 +515,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -578,8 +572,9 @@ paths:
                   revoke: false
             schema:
               additionalProperties: false
-              nullable: true
-              type: object
+              type:
+              - object
+              - 'null'
               properties:
                 force:
                   type: boolean
@@ -688,8 +683,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -897,8 +891,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -973,8 +966,7 @@ paths:
                     additionalProperties: false
                     type: object
                     properties:
-                      ack_data:
-                        nullable: true
+                      ack_data: {}
                       agents:
                         items:
                           type: string
@@ -982,8 +974,7 @@ paths:
                         type: array
                       created_at:
                         type: string
-                      data:
-                        nullable: true
+                      data: {}
                       expiration:
                         type: string
                       id:
@@ -1031,8 +1022,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1137,8 +1127,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1245,8 +1234,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1349,8 +1337,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1461,8 +1448,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1577,8 +1563,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1695,8 +1680,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -56,8 +56,8 @@ info:
     This documentation contains work-in-progress information for future Elastic Stack releases.
 
     '
-  title: Kibana APIs Actions API
-  version: "1.0"
+  title: Kibana Actions API
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/

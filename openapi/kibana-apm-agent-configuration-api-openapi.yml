@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -57,7 +57,7 @@ info:
 
     '
   title: Kibana APIs Actions APM agent configuration API
-  version: "1.0"
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -505,63 +505,6 @@ paths:
         name: product_name
 components:
   examples:
-    APM_UI_agent_configuration_intake_object_search_200_response1:
-      description: An example of a successful response from `POST /api/apm/settings/agent-configuration/search`.
-      value:
-        _id: CIaqXXABmQCdPphWj8EJ
-        _index: .apm-agent-configuration
-        _score: 2
-        _source:
-          '@timestamp': 1582031336265
-          agent_name: nodejs
-          applied_by_agent: false
-          etag: 5080ed25785b7b19f32713681e79f46996801a5b
-          service:
-            name: frontend
-          settings:
-            transaction_sample_rate: '1'
-    APM_UI_agent_configuration_intake_object_delete_200_response1:
-      description: An example of a successful response from `DELETE /api/apm/settings/agent-configuration`.
-      value:
-        result: deleted
-    APM_UI_agent_configuration_intake_object_search_request1:
-      description: Run `POST /api/apm/settings/agent-configuration/search` to search configuration details.
-      value:
-        etag: 1e58c178efeebae15c25c539da740d21dee422fc
-        service:
-          environment: production
-          name: frontend
-    APM_UI_agent_configuration_environments_200_response1:
-      description: An example of a successful response from `GET /api/apm/settings/agent-configuration/environments`.
-      value:
-        environments:
-        - alreadyConfigured: true
-          name: production
-        - alreadyConfigured: false
-          name: development
-        - alreadyConfigured: false
-          name: ALL_OPTION_VALUE
-    APM_UI_agent_configuration_intake_object_delete_request1:
-      description: Run `DELETE /api/apm/settings/agent-configuration` to delete a configuration.
-      value:
-        service:
-          environment: production
-          name: frontend
-    APM_UI_agent_configuration_intake_object_view_200_response1:
-      description: An example of a successful response from `GET /api/apm/settings/agent-configuration/view`.
-      value:
-        '@timestamp': 1582031336265
-        agent_name: nodejs
-        applied_by_agent: true
-        etag: 5080ed25785b7b19f32713681e79f46996801a5b
-        id: CIaqXXABmQCdPphWj8EJ
-        service:
-          environment: production
-          name: frontend
-        settings:
-          capture_body: 'off'
-          transaction_max_spans: '500'
-          transaction_sample_rate: '0.4'
     APM_UI_agent_configuration_intake_object_put_request1:
       description: Run `PUT /api/apm/settings/agent-configuration` to create or update configuration details.
       value:
@@ -573,6 +516,10 @@ components:
           capture_body: 'off'
           transaction_max_spans: '500'
           transaction_sample_rate: '0.4'
+    APM_UI_agent_configuration_intake_object_delete_200_response1:
+      description: An example of a successful response from `DELETE /api/apm/settings/agent-configuration`.
+      value:
+        result: deleted
     APM_UI_agent_configuration_intake_object_get_200_response1:
       description: An example of a successful response from `GET /api/apm/settings/agent-configuration`.
       value:
@@ -605,40 +552,101 @@ components:
           name: frontend
         settings:
           transaction_sample_rate: '1'
+    APM_UI_agent_configuration_intake_object_search_request1:
+      description: Run `POST /api/apm/settings/agent-configuration/search` to search configuration details.
+      value:
+        etag: 1e58c178efeebae15c25c539da740d21dee422fc
+        service:
+          environment: production
+          name: frontend
+    APM_UI_agent_configuration_environments_200_response1:
+      description: An example of a successful response from `GET /api/apm/settings/agent-configuration/environments`.
+      value:
+        environments:
+        - alreadyConfigured: true
+          name: production
+        - alreadyConfigured: false
+          name: development
+        - alreadyConfigured: false
+          name: ALL_OPTION_VALUE
+    APM_UI_agent_configuration_intake_object_search_200_response1:
+      description: An example of a successful response from `POST /api/apm/settings/agent-configuration/search`.
+      value:
+        _id: CIaqXXABmQCdPphWj8EJ
+        _index: .apm-agent-configuration
+        _score: 2
+        _source:
+          '@timestamp': 1582031336265
+          agent_name: nodejs
+          applied_by_agent: false
+          etag: 5080ed25785b7b19f32713681e79f46996801a5b
+          service:
+            name: frontend
+          settings:
+            transaction_sample_rate: '1'
+    APM_UI_agent_configuration_intake_object_view_200_response1:
+      description: An example of a successful response from `GET /api/apm/settings/agent-configuration/view`.
+      value:
+        '@timestamp': 1582031336265
+        agent_name: nodejs
+        applied_by_agent: true
+        etag: 5080ed25785b7b19f32713681e79f46996801a5b
+        id: CIaqXXABmQCdPphWj8EJ
+        service:
+          environment: production
+          name: frontend
+        settings:
+          capture_body: 'off'
+          transaction_max_spans: '500'
+          transaction_sample_rate: '0.4'
+    APM_UI_agent_configuration_intake_object_delete_request1:
+      description: Run `DELETE /api/apm/settings/agent-configuration` to delete a configuration.
+      value:
+        service:
+          environment: production
+          name: frontend
     APM_UI_agent_configuration_intake_object_put_200_response1:
       description: An example of a successful response from `PUT /api/apm/settings/agent-configuration`. The response body is intentionally empty.
       value: {}
   schemas:
-    APM_UI_single_agent_configuration_response:
-      allOf:
-      - type: object
-        properties:
-          id:
-            type: string
-        required:
-        - id
-      - $ref: '#/components/schemas/APM_UI_agent_configuration_object'
-    APM_UI_service_agent_name_response:
-      type: object
-      properties:
-        agentName:
-          description: Agent name
-          example: nodejs
-          type: string
-    APM_UI_401_response:
+    APM_UI_search_agent_configuration_object:
       type: object
       properties:
         error:
-          description: Error type
-          example: Unauthorized
+          description: 'If provided, the agent configuration will be marked as error and `applied_by_agent` will be set to `false`.
+
+            This is useful for cases where the agent configuration was not applied successfully.
+
+            '
           type: string
-        message:
-          description: Error message
+        etag:
+          description: If etags match then `applied_by_agent` field will be set to `true`
+          example: 0bc3b5ebf18fba8163fe4c96f491e3767a358f85
           type: string
-        statusCode:
-          description: Error status code
-          example: 401
-          type: number
+        mark_as_applied_by_agent:
+          description: '`markAsAppliedByAgent=true` means "force setting it to true regardless of etag".
+
+            This is needed for Jaeger agent that doesn''t have etags
+
+            '
+          type: boolean
+        service:
+          $ref: '#/components/schemas/APM_UI_service_object'
+      required:
+      - service
+    APM_UI_agent_configuration_intake_object:
+      type: object
+      properties:
+        agent_name:
+          description: The agent name is used by the UI to determine which settings to display.
+          type: string
+        service:
+          $ref: '#/components/schemas/APM_UI_service_object'
+        settings:
+          $ref: '#/components/schemas/APM_UI_settings_object'
+      required:
+      - service
+      - settings
     APM_UI_search_agent_configuration_response:
       type: object
       properties:
@@ -653,52 +661,13 @@ components:
           type: number
         _source:
           $ref: '#/components/schemas/APM_UI_agent_configuration_object'
-    APM_UI_agent_configurations_response:
+    APM_UI_service_agent_name_response:
       type: object
       properties:
-        configurations:
-          description: Agent configuration
-          items:
-            $ref: '#/components/schemas/APM_UI_agent_configuration_object'
-          type: array
-    APM_UI_agent_configuration_intake_object:
-      type: object
-      properties:
-        agent_name:
-          description: The agent name is used by the UI to determine which settings to display.
+        agentName:
+          description: Agent name
+          example: nodejs
           type: string
-        service:
-          $ref: '#/components/schemas/APM_UI_service_object'
-        settings:
-          $ref: '#/components/schemas/APM_UI_settings_object'
-      required:
-      - service
-      - settings
-    APM_UI_403_response:
-      type: object
-      properties:
-        error:
-          description: Error type
-          example: Forbidden
-          type: string
-        message:
-          description: Error message
-          type: string
-        statusCode:
-          description: Error status code
-          example: 403
-          type: number
-    APM_UI_delete_agent_configurations_response:
-      type: object
-      properties:
-        result:
-          description: Result
-          type: string
-    APM_UI_settings_object:
-      additionalProperties:
-        type: string
-      description: Agent configuration settings
-      type: object
     APM_UI_agent_configuration_object:
       description: Agent configuration
       type: object
@@ -729,51 +698,14 @@ components:
       - settings
       - '@timestamp'
       - etag
-    APM_UI_search_agent_configuration_object:
+    APM_UI_delete_service_object:
+      description: Service
       type: object
       properties:
-        error:
-          description: 'If provided, the agent configuration will be marked as error and `applied_by_agent` will be set to `false`.
-
-            This is useful for cases where the agent configuration was not applied successfully.
-
-            '
-          type: string
-        etag:
-          description: If etags match then `applied_by_agent` field will be set to `true`
-          example: 0bc3b5ebf18fba8163fe4c96f491e3767a358f85
-          type: string
-        mark_as_applied_by_agent:
-          description: '`markAsAppliedByAgent=true` means "force setting it to true regardless of etag".
-
-            This is needed for Jaeger agent that doesn''t have etags
-
-            '
-          type: boolean
         service:
           $ref: '#/components/schemas/APM_UI_service_object'
       required:
       - service
-    APM_UI_service_object:
-      description: Service
-      type: object
-      properties:
-        environment:
-          description: The environment of the service.
-          example: prod
-          type: string
-        name:
-          description: The name of the service.
-          example: node
-          type: string
-    APM_UI_service_environments_response:
-      type: object
-      properties:
-        environments:
-          description: Service environment list
-          items:
-            $ref: '#/components/schemas/APM_UI_service_environment_object'
-          type: array
     APM_UI_service_environment_object:
       type: object
       properties:
@@ -784,14 +716,20 @@ components:
           description: Service environment name
           example: ALL_OPTION_VALUE
           type: string
-    APM_UI_delete_service_object:
-      description: Service
+    APM_UI_delete_agent_configurations_response:
       type: object
       properties:
-        service:
-          $ref: '#/components/schemas/APM_UI_service_object'
-      required:
-      - service
+        result:
+          description: Result
+          type: string
+    APM_UI_agent_configurations_response:
+      type: object
+      properties:
+        configurations:
+          description: Agent configuration
+          items:
+            $ref: '#/components/schemas/APM_UI_agent_configuration_object'
+          type: array
     APM_UI_404_response:
       type: object
       properties:
@@ -806,6 +744,68 @@ components:
         statusCode:
           description: Error status code
           example: 404
+          type: number
+    APM_UI_single_agent_configuration_response:
+      allOf:
+      - type: object
+        properties:
+          id:
+            type: string
+        required:
+        - id
+      - $ref: '#/components/schemas/APM_UI_agent_configuration_object'
+    APM_UI_service_object:
+      description: Service
+      type: object
+      properties:
+        environment:
+          description: The environment of the service.
+          example: prod
+          type: string
+        name:
+          description: The name of the service.
+          example: node
+          type: string
+    APM_UI_settings_object:
+      additionalProperties:
+        type: string
+      description: Agent configuration settings
+      type: object
+    APM_UI_401_response:
+      type: object
+      properties:
+        error:
+          description: Error type
+          example: Unauthorized
+          type: string
+        message:
+          description: Error message
+          type: string
+        statusCode:
+          description: Error status code
+          example: 401
+          type: number
+    APM_UI_service_environments_response:
+      type: object
+      properties:
+        environments:
+          description: Service environment list
+          items:
+            $ref: '#/components/schemas/APM_UI_service_environment_object'
+          type: array
+    APM_UI_403_response:
+      type: object
+      properties:
+        error:
+          description: Error type
+          example: Forbidden
+          type: string
+        message:
+          description: Error message
+          type: string
+        statusCode:
+          description: Error status code
+          example: 403
           type: number
     APM_UI_400_response:
       type: object
@@ -823,14 +823,6 @@ components:
           example: 400
           type: number
   parameters:
-    APM_UI_kbn_xsrf:
-      description: A required header to protect against CSRF attacks
-      in: header
-      name: kbn-xsrf
-      required: true
-      schema:
-        example: 'true'
-        type: string
     APM_UI_elastic_api_version:
       description: The version of the API to use
       in: header
@@ -840,6 +832,14 @@ components:
         default: '2023-10-31'
         enum:
         - '2023-10-31'
+        type: string
+    APM_UI_kbn_xsrf:
+      description: A required header to protect against CSRF attacks
+      in: header
+      name: kbn-xsrf
+      required: true
+      schema:
+        example: 'true'
         type: string
   securitySchemes:
     apiKeyAuth:

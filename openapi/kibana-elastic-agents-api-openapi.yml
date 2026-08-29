@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -57,7 +57,7 @@ info:
 
     '
   title: Kibana APIs Actions Elastic Agents API
-  version: "1.0"
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -141,8 +141,7 @@ paths:
                 type: object
                 properties:
                   dataPreview:
-                    items:
-                      nullable: true
+                    items: {}
                     maxItems: 10000
                     type: array
                   items:
@@ -177,8 +176,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -390,8 +388,7 @@ paths:
                                     message:
                                       type: string
                                     payload:
-                                      additionalProperties:
-                                        nullable: true
+                                      additionalProperties: {}
                                       type: object
                                     status:
                                       enum:
@@ -442,13 +439,11 @@ paths:
                           type: array
                         default_api_key_id:
                           type: string
-                        effective_config:
-                          nullable: true
+                        effective_config: {}
                         enrolled_at:
                           type: string
                         health:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                         id:
                           type: string
@@ -484,8 +479,7 @@ paths:
                           - orphaned
                           type: string
                         local_metadata:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                         metrics:
                           additionalProperties: false
@@ -536,13 +530,13 @@ paths:
                         policy_id:
                           type: string
                         policy_revision:
-                          nullable: true
-                          type: number
+                          type:
+                          - number
+                          - 'null'
                         sequence_num:
                           type: number
                         sort:
-                          items:
-                            nullable: true
+                          items: {}
                           maxItems: 10
                           type: array
                         status:
@@ -583,8 +577,9 @@ paths:
                             - other
                             type: string
                           maxItems: 3
-                          nullable: true
-                          type: array
+                          type:
+                          - array
+                          - 'null'
                         upgrade:
                           additionalProperties: false
                           type: object
@@ -607,12 +602,14 @@ paths:
                           items:
                             type: string
                           maxItems: 10000
-                          nullable: true
-                          type: array
+                          type:
+                          - array
+                          - 'null'
                         upgrade_details:
                           additionalProperties: false
-                          nullable: true
-                          type: object
+                          type:
+                          - object
+                          - 'null'
                           properties:
                             action_id:
                               type: string
@@ -665,14 +662,15 @@ paths:
                           - action_id
                           - state
                         upgrade_started_at:
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         upgraded_at:
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         user_provided_metadata:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                       required:
                       - id
@@ -719,8 +717,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -821,8 +818,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -904,8 +900,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1052,8 +1047,7 @@ paths:
                                   message:
                                     type: string
                                   payload:
-                                    additionalProperties:
-                                      nullable: true
+                                    additionalProperties: {}
                                     type: object
                                   status:
                                     enum:
@@ -1104,13 +1098,11 @@ paths:
                         type: array
                       default_api_key_id:
                         type: string
-                      effective_config:
-                        nullable: true
+                      effective_config: {}
                       enrolled_at:
                         type: string
                       health:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                       id:
                         type: string
@@ -1146,8 +1138,7 @@ paths:
                         - orphaned
                         type: string
                       local_metadata:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                       metrics:
                         additionalProperties: false
@@ -1198,13 +1189,13 @@ paths:
                       policy_id:
                         type: string
                       policy_revision:
-                        nullable: true
-                        type: number
+                        type:
+                        - number
+                        - 'null'
                       sequence_num:
                         type: number
                       sort:
-                        items:
-                          nullable: true
+                        items: {}
                         maxItems: 10
                         type: array
                       status:
@@ -1245,8 +1236,9 @@ paths:
                           - other
                           type: string
                         maxItems: 3
-                        nullable: true
-                        type: array
+                        type:
+                        - array
+                        - 'null'
                       upgrade:
                         additionalProperties: false
                         type: object
@@ -1269,12 +1261,14 @@ paths:
                         items:
                           type: string
                         maxItems: 10000
-                        nullable: true
-                        type: array
+                        type:
+                        - array
+                        - 'null'
                       upgrade_details:
                         additionalProperties: false
-                        nullable: true
-                        type: object
+                        type:
+                        - object
+                        - 'null'
                         properties:
                           action_id:
                             type: string
@@ -1327,14 +1321,15 @@ paths:
                         - action_id
                         - state
                       upgrade_started_at:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       upgraded_at:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       user_provided_metadata:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                     required:
                     - id
@@ -1362,8 +1357,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1439,8 +1433,7 @@ paths:
                   maxItems: 10
                   type: array
                 user_provided_metadata:
-                  additionalProperties:
-                    nullable: true
+                  additionalProperties: {}
                   type: object
       responses:
         '200':
@@ -1527,8 +1520,7 @@ paths:
                                   message:
                                     type: string
                                   payload:
-                                    additionalProperties:
-                                      nullable: true
+                                    additionalProperties: {}
                                     type: object
                                   status:
                                     enum:
@@ -1579,13 +1571,11 @@ paths:
                         type: array
                       default_api_key_id:
                         type: string
-                      effective_config:
-                        nullable: true
+                      effective_config: {}
                       enrolled_at:
                         type: string
                       health:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                       id:
                         type: string
@@ -1621,8 +1611,7 @@ paths:
                         - orphaned
                         type: string
                       local_metadata:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                       metrics:
                         additionalProperties: false
@@ -1673,13 +1662,13 @@ paths:
                       policy_id:
                         type: string
                       policy_revision:
-                        nullable: true
-                        type: number
+                        type:
+                        - number
+                        - 'null'
                       sequence_num:
                         type: number
                       sort:
-                        items:
-                          nullable: true
+                        items: {}
                         maxItems: 10
                         type: array
                       status:
@@ -1720,8 +1709,9 @@ paths:
                           - other
                           type: string
                         maxItems: 3
-                        nullable: true
-                        type: array
+                        type:
+                        - array
+                        - 'null'
                       upgrade:
                         additionalProperties: false
                         type: object
@@ -1744,12 +1734,14 @@ paths:
                         items:
                           type: string
                         maxItems: 10000
-                        nullable: true
-                        type: array
+                        type:
+                        - array
+                        - 'null'
                       upgrade_details:
                         additionalProperties: false
-                        nullable: true
-                        type: object
+                        type:
+                        - object
+                        - 'null'
                         properties:
                           action_id:
                             type: string
@@ -1802,14 +1794,15 @@ paths:
                         - action_id
                         - state
                       upgrade_started_at:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       upgraded_at:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       user_provided_metadata:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                     required:
                     - id
@@ -1837,8 +1830,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1900,8 +1892,7 @@ paths:
                 additionalProperties: false
                 type: object
                 properties:
-                  effective_config:
-                    nullable: true
+                  effective_config: {}
                 required:
                 - effective_config
           description: 'OK: A successful request.'
@@ -1917,8 +1908,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2057,8 +2047,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2116,8 +2105,9 @@ paths:
                     username: username
             schema:
               additionalProperties: false
-              nullable: true
-              type: object
+              type:
+              - object
+              - 'null'
               properties:
                 user_info:
                   additionalProperties: false
@@ -2166,8 +2156,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2279,8 +2268,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2352,8 +2340,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2497,8 +2484,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2603,8 +2589,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2688,8 +2673,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2760,8 +2744,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2878,8 +2861,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2968,8 +2950,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -3054,8 +3035,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -56,8 +56,8 @@ info:
     This documentation contains work-in-progress information for future Elastic Stack releases.
 
     '
-  title: Kibana APIs Actions Security AI Assistant API API
-  version: "1.0"
+  title: Kibana APIs Actions Security AI Assistant API
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -2267,6 +2267,456 @@ paths:
         name: product_name
 components:
   schemas:
+    Security_AI_Assistant_API_NormalizedAnonymizationFieldError:
+      type: object
+      properties:
+        anonymization_fields:
+          description: Array of anonymization fields that caused the error.
+          items:
+            $ref: '#/components/schemas/Security_AI_Assistant_API_AnonymizationFieldDetailsInError'
+          type: array
+        err_code:
+          description: Error code indicating the type of failure.
+          example: UPDATE_FAILED
+          type: string
+        message:
+          description: Error message.
+          example: Failed to update anonymization field.
+          type: string
+        status_code:
+          description: Status code of the response.
+          example: 400
+          type: integer
+      required:
+      - message
+      - status_code
+      - anonymization_fields
+    Security_AI_Assistant_API_FindAnonymizationFieldsSortField:
+      enum:
+      - created_at
+      - anonymized
+      - allowed
+      - field
+      - updated_at
+      type: string
+    Security_AI_Assistant_API_BaseContentReference:
+      description: The basis of a content reference
+      type: object
+      properties:
+        id:
+          description: Id of the content reference
+          example: content123
+          type: string
+        type:
+          description: Type of the content reference
+          example: SecurityAlert
+          type: string
+      required:
+      - id
+      - type
+    Security_AI_Assistant_API_InputTextInterruptValue:
+      allOf:
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseInterruptValue'
+      - type: object
+        properties:
+          description:
+            description: Description of action required
+            example: What is the index you would like to use for the query.
+            type: string
+          placeholder:
+            description: Placeholder text for the input field
+            example: Enter index pattern here...
+            type: string
+          type:
+            enum:
+            - INPUT_TEXT
+            example: INPUT_TEXT
+            type: string
+        required:
+        - type
+      description: Interrupt that requests user to provide text input
+    Security_AI_Assistant_API_FindKnowledgeBaseEntriesSortField:
+      description: Fields available for sorting Knowledge Base Entries.
+      enum:
+      - created_at
+      - is_default
+      - title
+      - updated_at
+      example: title
+      type: string
+    Security_AI_Assistant_API_Replacements:
+      additionalProperties:
+        type: string
+      description: Replacements object used to anonymize/deanonymize messages
+      type: object
+    Security_AI_Assistant_API_AnonymizationFieldDetailsInError:
+      type: object
+      properties:
+        id:
+          description: The ID of the anonymization field.
+          example: field12
+          type: string
+        name:
+          description: Name of the anonymization field.
+          example: host.name
+          type: string
+      required:
+      - id
+    Security_AI_Assistant_API_DocumentEntryOptionalFields:
+      type: object
+      properties:
+        required:
+          description: Whether this resource should always be included, defaults to false.
+          example: false
+          type: boolean
+        vector:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_Vector'
+    Security_AI_Assistant_API_ChatMessage:
+      description: A message exchanged within the AI chat conversation.
+      type: object
+      properties:
+        content:
+          description: The textual content of the message.
+          example: What security incidents have been reported today?
+          type: string
+        data:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_MessageData'
+          description: Metadata to attach to the context of the message.
+        fields_to_anonymize:
+          description: List of field names within the data object that should be anonymized.
+          example:
+          - user.name
+          - source.ip
+          items:
+            type: string
+          type: array
+        role:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_ChatMessageRole'
+          description: The sender role of the message.
+      required:
+      - role
+    Security_AI_Assistant_API_PromptsBulkActionSkipResult:
+      type: object
+      properties:
+        id:
+          description: The ID of the prompt that was skipped.
+          type: string
+        name:
+          description: The name of the prompt that was skipped.
+          type: string
+        skip_reason:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_PromptsBulkActionSkipReason'
+          description: The reason for skipping the prompt.
+      required:
+      - id
+      - skip_reason
+    Security_AI_Assistant_API_InputTextInterruptResumeValue:
+      allOf:
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseInterruptResumeValue'
+      - type: object
+        properties:
+          type:
+            enum:
+            - INPUT_TEXT
+            example: INPUT_TEXT
+            type: string
+          value:
+            description: Text value used to resume the graph execution with.
+            example: .logs*
+            type: string
+        required:
+        - value
+        - type
+      description: A resume value for input text
+    Security_AI_Assistant_API_ConversationCategory:
+      description: The conversation category.
+      enum:
+      - assistant
+      - insights
+      example: assistant
+      type: string
+    Security_AI_Assistant_API_EsqlContentReference:
+      allOf:
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseContentReference'
+      - type: object
+        properties:
+          label:
+            description: Label of the query
+            example: High Severity Alerts
+            type: string
+          query:
+            description: An ESQL query
+            example: SELECT * FROM alerts WHERE severity = "high"
+            type: string
+          timerange:
+            description: Time range to select in the time picker.
+            type: object
+            properties:
+              from:
+                example: '2025-04-01T00:00:00Z'
+                type: string
+              to:
+                example: '2025-04-30T23:59:59Z'
+                type: string
+            required:
+            - from
+            - to
+          type:
+            enum:
+            - EsqlQuery
+            example: EsqlQuery
+            type: string
+        required:
+        - type
+        - query
+        - label
+      description: References an ESQL query
+    Security_AI_Assistant_API_KnowledgeBaseReadResponse200:
+      type: object
+      properties:
+        defend_insights_exists:
+          description: Indicates if Defend Insights documentation exists in the KnowledgeBase.
+          example: true
+          type: boolean
+        elser_exists:
+          description: Indicates if the ELSER model exists for the KnowledgeBase.
+          example: true
+          type: boolean
+        is_setup_available:
+          description: Indicates if the setup process is available for the KnowledgeBase.
+          example: true
+          type: boolean
+        is_setup_in_progress:
+          description: Indicates if the setup process is currently in progress.
+          example: false
+          type: boolean
+        product_documentation_status:
+          description: The status of the product documentation in the KnowledgeBase.
+          example: complete
+          type: string
+        security_labs_exists:
+          description: Indicates if Security Labs documentation exists in the KnowledgeBase.
+          example: true
+          type: boolean
+        user_data_exists:
+          description: Indicates if user data exists in the KnowledgeBase.
+          example: false
+          type: boolean
+    Security_AI_Assistant_API_TraceData:
+      description: Trace Data
+      type: object
+      properties:
+        traceId:
+          description: Could be any string, not necessarily a UUID
+          example: d9876543-f0a1-2345-6789-abcdef123456
+          type: string
+        transactionId:
+          description: Could be any string, not necessarily a UUID
+          example: a1234567-bc89-0def-1234-56789abcdef0
+          type: string
+    Security_AI_Assistant_API_SelectOptionInterruptOption:
+      description: A request approval option
+      type: object
+      properties:
+        buttonColor:
+          enum:
+          - text
+          - accent
+          - accentSecondary
+          - primary
+          - success
+          - warning
+          - danger
+          - neutral
+          - risk
+          example: danger
+          type: string
+        label:
+          example: Option 1
+          type: string
+        value:
+          example: option_1
+          type: string
+      required:
+      - label
+      - value
+    Security_AI_Assistant_API_KnowledgeBaseResponse400:
+      type: object
+      properties:
+        error:
+          description: A short description of the error.
+          example: Bad Request
+          type: string
+        message:
+          description: A detailed error message.
+          example: Invalid resource ID provided.
+          type: string
+        statusCode:
+          description: The HTTP status code of the error.
+          example: 400
+          type: number
+    Security_AI_Assistant_API_SecurityAlertContentReference:
+      allOf:
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseContentReference'
+      - type: object
+        properties:
+          alertId:
+            description: ID of the Alert
+            example: alert789
+            type: string
+          type:
+            enum:
+            - SecurityAlert
+            example: SecurityAlert
+            type: string
+        required:
+        - type
+        - alertId
+      description: References a security alert
+    Security_AI_Assistant_API_FindPromptsSortField:
+      description: Field by which to sort the prompts.
+      enum:
+      - created_at
+      - is_default
+      - name
+      - updated_at
+      example: created_at
+      type: string
+    Security_AI_Assistant_API_DocumentEntryResponseFields:
+      allOf:
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryRequiredFields'
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryOptionalFields'
+    Security_AI_Assistant_API_PromptsBulkCrudActionResults:
+      type: object
+      properties:
+        created:
+          description: List of prompts that were created.
+          items:
+            $ref: '#/components/schemas/Security_AI_Assistant_API_PromptResponse'
+          type: array
+        deleted:
+          description: List of IDs of prompts that were deleted.
+          items:
+            type: string
+          type: array
+        skipped:
+          description: List of prompts that were skipped.
+          items:
+            $ref: '#/components/schemas/Security_AI_Assistant_API_PromptsBulkActionSkipResult'
+          type: array
+        updated:
+          description: List of prompts that were updated.
+          items:
+            $ref: '#/components/schemas/Security_AI_Assistant_API_PromptResponse'
+          type: array
+      required:
+      - updated
+      - created
+      - deleted
+      - skipped
+    Security_AI_Assistant_API_IndexEntryRequiredFields:
+      type: object
+      properties:
+        description:
+          description: Description for when this index or data stream should be queried for Knowledge Base content. Passed to the LLM as a tool description.
+          example: Query this index for general knowledge base content.
+          type: string
+        field:
+          description: Field to query for Knowledge Base content.
+          example: content
+          type: string
+        index:
+          description: Index or Data Stream to query for Knowledge Base content.
+          example: knowledge_base_index
+          type: string
+        queryDescription:
+          description: Description of query field used to fetch Knowledge Base content. Passed to the LLM as part of the tool input schema.
+          example: Search for documents containing the specified keywords.
+          type: string
+        type:
+          description: Entry type.
+          enum:
+          - index
+          example: index
+          type: string
+      required:
+      - type
+      - index
+      - field
+      - description
+      - queryDescription
+    Security_AI_Assistant_API_PromptType:
+      description: Type of the prompt (either system or quick).
+      enum:
+      - system
+      - quick
+      type: string
+    Security_AI_Assistant_API_ChatCompleteProps:
+      description: The request payload for creating a chat completion.
+      example:
+        connectorId: conn-001
+        conversationId: abc123
+        isStream: true
+        langSmithApiKey: <LANGSMITH_API_KEY>
+        langSmithProject: security_ai_project
+        messages:
+        - content: How do I detect ransomware on my endpoints?
+          data:
+            device_id: device-567
+          fields_to_anonymize:
+          - device.name
+          - file.path
+          role: user
+        model: gpt-4
+        persist: true
+        promptId: prompt_456
+        responseLanguage: en
+      type: object
+      properties:
+        connectorId:
+          description: Required connector identifier to route the request.
+          example: conn-001
+          type: string
+        conversationId:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
+          description: Existing conversation ID to continue.
+        isStream:
+          description: If true, the response will be streamed in chunks.
+          example: true
+          type: boolean
+        langSmithApiKey:
+          description: API key for LangSmith integration.
+          example: <LANGSMITH_API_KEY>
+          type: string
+        langSmithProject:
+          description: LangSmith project name for tracing.
+          example: security_ai_project
+          type: string
+        messages:
+          description: List of chat messages exchanged so far.
+          items:
+            $ref: '#/components/schemas/Security_AI_Assistant_API_ChatMessage'
+          type: array
+        model:
+          description: Model ID or name to use for the response.
+          example: gpt-4
+          type: string
+        persist:
+          description: Whether to persist the chat and response to storage.
+          example: true
+          type: boolean
+        promptId:
+          description: Prompt template identifier.
+          example: prompt_001
+          type: string
+        responseLanguage:
+          description: ISO language code for the assistant's response.
+          example: en
+          type: string
+      required:
+      - messages
+      - persist
+      - connectorId
     Security_AI_Assistant_API_AnonymizationFieldsBulkCrudActionResults:
       type: object
       properties:
@@ -2296,60 +2746,134 @@ components:
       - created
       - deleted
       - skipped
-    Security_AI_Assistant_API_KnowledgeBaseEntryBulkActionSkipResult:
+    Security_AI_Assistant_API_ConversationUpdateProps:
+      type: object
+      properties:
+        apiConfig:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_ApiConfig'
+          description: LLM API configuration.
+        category:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_ConversationCategory'
+          description: The conversation category.
+          example: assistant
+        excludeFromLastConversationStorage:
+          description: Exclude from last conversation storage.
+          type: boolean
+        id:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
+        messages:
+          description: The conversation messages.
+          items:
+            $ref: '#/components/schemas/Security_AI_Assistant_API_Message'
+          type: array
+        replacements:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_Replacements'
+        title:
+          description: The conversation title.
+          example: Updated Security AI Assistant Setup
+          type: string
+        users:
+          items:
+            $ref: '#/components/schemas/Security_AI_Assistant_API_User'
+          type: array
+      required:
+      - id
+    Security_AI_Assistant_API_KnowledgeBaseResource:
+      description: Knowledge Base resource name for grouping entries, e.g. 'security_labs', 'user', etc.
+      enum:
+      - security_labs
+      - defend_insights
+      - user
+      example: security_labs
+      type: string
+    Security_AI_Assistant_API_KnowledgeBaseEntryDetailsInError:
       type: object
       properties:
         id:
-          description: ID of the skipped Knowledge Base Entry.
-          example: '123'
+          description: ID of the Knowledge Base Entry that encountered an error.
+          example: '456'
           type: string
         name:
-          description: Name of the skipped Knowledge Base Entry.
-          example: Skipped Entry
+          description: Name of the Knowledge Base Entry that encountered an error.
+          example: Error Entry
+          type: string
+      required:
+      - id
+    Security_AI_Assistant_API_Reader:
+      additionalProperties: true
+      type: object
+    Security_AI_Assistant_API_BaseInterruptResumeValue:
+      description: The basis of an interrupt resume value
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_InterruptType'
+          description: Type of the resume value
+          example: SELECT_OPTION
+      required:
+      - type
+    Security_AI_Assistant_API_Vector:
+      description: Object containing Knowledge Base Entry text embeddings and modelId used to create the embeddings.
+      type: object
+      properties:
+        modelId:
+          description: ID of the model used to create the embeddings.
+          example: bert-base-uncased
+          type: string
+        tokens:
+          additionalProperties:
+            type: number
+          description: Tokens with their corresponding values.
+          example:
+            token1: 0.123
+            token2: 0.456
+          type: object
+      required:
+      - modelId
+      - tokens
+    Security_AI_Assistant_API_InterruptResumeValue:
+      description: Union of the interrupt resume values
+      oneOf:
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_SelectOptionInterruptResumeValue'
+        additionalProperties: false
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_InputTextInterruptResumeValue'
+        additionalProperties: false
+    Security_AI_Assistant_API_User:
+      description: Could be any string, not necessarily a UUID.
+      type: object
+      properties:
+        id:
+          description: User id.
+          example: user123
+          type: string
+        name:
+          description: User name.
+          example: John Doe
+          type: string
+    Security_AI_Assistant_API_DeleteResponseFields:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
+      required:
+      - id
+    Security_AI_Assistant_API_AnonymizationFieldsBulkActionSkipResult:
+      type: object
+      properties:
+        id:
+          description: The ID of the anonymization field that was not modified.
+          example: field4
+          type: string
+        name:
+          description: Name of the anonymization field that was not modified.
+          example: user.name
           type: string
         skip_reason:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_KnowledgeBaseEntryBulkActionSkipReason'
+          $ref: '#/components/schemas/Security_AI_Assistant_API_AnonymizationFieldsBulkActionSkipReason'
+          description: Reason why the anonymization field was not modified.
       required:
       - id
       - skip_reason
-    Security_AI_Assistant_API_Replacements:
-      additionalProperties:
-        type: string
-      description: Replacements object used to anonymize/deanonymize messages
-      type: object
-    Security_AI_Assistant_API_KnowledgeBaseEntryUpdateProps:
-      anyOf:
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryUpdateFields'
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryUpdateFields'
-      discriminator:
-        mapping:
-          document: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryUpdateFields'
-          index: '#/components/schemas/Security_AI_Assistant_API_IndexEntryUpdateFields'
-        propertyName: type
-    Security_AI_Assistant_API_KnowledgeBaseEntryBulkCrudActionSummary:
-      type: object
-      properties:
-        failed:
-          description: Number of Knowledge Base Entries that failed during the bulk action.
-          example: 2
-          type: integer
-        skipped:
-          description: Number of Knowledge Base Entries that were skipped during the bulk action.
-          example: 1
-          type: integer
-        succeeded:
-          description: Number of Knowledge Base Entries that were successfully processed during the bulk action.
-          example: 5
-          type: integer
-        total:
-          description: Total number of Knowledge Base Entries involved in the bulk action.
-          example: 8
-          type: integer
-      required:
-      - failed
-      - skipped
-      - succeeded
-      - total
     Security_AI_Assistant_API_KnowledgeBaseEntryBulkCrudActionResponse:
       type: object
       properties:
@@ -2393,45 +2917,68 @@ components:
           type: boolean
       required:
       - attributes
-    Security_AI_Assistant_API_KnowledgeBaseReadResponse200:
+    Security_AI_Assistant_API_MessageMetadata:
+      description: Message metadata
       type: object
       properties:
-        defend_insights_exists:
-          description: Indicates if Defend Insights documentation exists in the KnowledgeBase.
-          example: true
-          type: boolean
-        elser_exists:
-          description: Indicates if the ELSER model exists for the KnowledgeBase.
-          example: true
-          type: boolean
-        is_setup_available:
-          description: Indicates if the setup process is available for the KnowledgeBase.
-          example: true
-          type: boolean
-        is_setup_in_progress:
-          description: Indicates if the setup process is currently in progress.
-          example: false
-          type: boolean
-        product_documentation_status:
-          description: The status of the product documentation in the KnowledgeBase.
-          example: complete
+        contentReferences:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_ContentReferences'
+          description: Data referred to by the message content.
+        interruptResumeValue:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_InterruptResumeValue'
+          description: When the agent is resumed after an interrupt, this field is populated with the details of the resume value.
+        interruptValue:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_InterruptValue'
+          description: When the agent is interrupted (for example, when user input is required), this field is populated with the details of the interrupt. Messages containing interruptValues in the metadata are excluded from the LLM context.
+    Security_AI_Assistant_API_Message:
+      description: AI assistant conversation message.
+      type: object
+      properties:
+        content:
+          description: Message content.
+          example: Hello, how can I assist you today?
           type: string
-        security_labs_exists:
-          description: Indicates if Security Labs documentation exists in the KnowledgeBase.
-          example: true
-          type: boolean
-        user_data_exists:
-          description: Indicates if user data exists in the KnowledgeBase.
+        id:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
+          description: Message id
+        isError:
+          description: Is error message.
           example: false
           type: boolean
-    Security_AI_Assistant_API_MessageRole:
-      description: Message role.
-      enum:
-      - system
-      - user
-      - assistant
-      example: assistant
-      type: string
+        metadata:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_MessageMetadata'
+          description: Metadata
+        reader:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_Reader'
+          description: Message content.
+        refusal:
+          description: Refusal reason returned by the model when content is filtered.
+          type: string
+        role:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_MessageRole'
+          description: Message role.
+          example: assistant
+        timestamp:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyTimestamp'
+          description: The timestamp message was sent or received.
+          example: '2025-04-30T15:30:00Z'
+        traceData:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_TraceData'
+          description: Trace data
+        user:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_User'
+          description: The user who sent the message.
+      required:
+      - timestamp
+      - content
+      - role
+    Security_AI_Assistant_API_MessageData:
+      additionalProperties: true
+      description: ECS-style metadata attached to the message.
+      example:
+        alert_id: alert-456
+        user_id: abc123
+      type: object
     Security_AI_Assistant_API_KnowledgeBaseEntryResponse:
       anyOf:
       - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntry'
@@ -2441,277 +2988,6 @@ components:
           document: '#/components/schemas/Security_AI_Assistant_API_DocumentEntry'
           index: '#/components/schemas/Security_AI_Assistant_API_IndexEntry'
         propertyName: type
-    Security_AI_Assistant_API_BaseInterruptResumeValue:
-      description: The basis of an interrupt resume value
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_InterruptType'
-          description: Type of the resume value
-          example: SELECT_OPTION
-      required:
-      - type
-    Security_AI_Assistant_API_AnonymizationFieldResponse:
-      type: object
-      properties:
-        allowed:
-          description: Whether this field is allowed to be sent to the model.
-          example: true
-          type: boolean
-        anonymized:
-          description: Whether this field should be anonymized.
-          example: false
-          type: boolean
-        createdAt:
-          description: Timestamp of when the anonymization field was created.
-          example: '2023-10-31T12:00:00Z'
-          type: string
-        createdBy:
-          description: Username of the person who created the anonymization field.
-          example: user1
-          type: string
-        field:
-          description: Name of the anonymization field.
-          example: url.domain
-          type: string
-        id:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
-          description: The ID of the anonymization field.
-        namespace:
-          description: Kibana space in which this anonymization field exists.
-          example: default
-          type: string
-        timestamp:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyTimestamp'
-          description: Timestamp when the anonymization field was initially created.
-        updatedAt:
-          description: Timestamp of the last update.
-          example: '2023-10-31T12:00:00Z'
-          type: string
-        updatedBy:
-          description: Username of the person who last updated the field.
-          example: user1
-          type: string
-      required:
-      - id
-      - field
-    Security_AI_Assistant_API_ConversationCategory:
-      description: The conversation category.
-      enum:
-      - assistant
-      - insights
-      example: assistant
-      type: string
-    Security_AI_Assistant_API_TraceData:
-      description: Trace Data
-      type: object
-      properties:
-        traceId:
-          description: Could be any string, not necessarily a UUID
-          example: d9876543-f0a1-2345-6789-abcdef123456
-          type: string
-        transactionId:
-          description: Could be any string, not necessarily a UUID
-          example: a1234567-bc89-0def-1234-56789abcdef0
-          type: string
-    Security_AI_Assistant_API_ContentReferences:
-      additionalProperties:
-        oneOf:
-        - $ref: '#/components/schemas/Security_AI_Assistant_API_KnowledgeBaseEntryContentReference'
-        - $ref: '#/components/schemas/Security_AI_Assistant_API_SecurityAlertContentReference'
-        - $ref: '#/components/schemas/Security_AI_Assistant_API_SecurityAlertsPageContentReference'
-        - $ref: '#/components/schemas/Security_AI_Assistant_API_ProductDocumentationContentReference'
-        - $ref: '#/components/schemas/Security_AI_Assistant_API_EsqlContentReference'
-        - $ref: '#/components/schemas/Security_AI_Assistant_API_HrefContentReference'
-          additionalProperties: false
-      description: A union of all content reference types
-      type: object
-    Security_AI_Assistant_API_KnowledgeBaseEntryCreateProps:
-      anyOf:
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryCreateFields'
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryCreateFields'
-      discriminator:
-        mapping:
-          document: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryCreateFields'
-          index: '#/components/schemas/Security_AI_Assistant_API_IndexEntryCreateFields'
-        propertyName: type
-    Security_AI_Assistant_API_InputTextInterruptValue:
-      allOf:
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseInterruptValue'
-      - type: object
-        properties:
-          description:
-            description: Description of action required
-            example: What is the index you would like to use for the query.
-            type: string
-          placeholder:
-            description: Placeholder text for the input field
-            example: Enter index pattern here...
-            type: string
-          type:
-            enum:
-            - INPUT_TEXT
-            example: INPUT_TEXT
-            type: string
-        required:
-        - type
-      description: Interrupt that requests user to provide text input
-    Security_AI_Assistant_API_ResponseFields:
-      type: object
-      properties:
-        createdAt:
-          description: Time the Knowledge Base Entry was created.
-          example: '2023-01-01T12:00:00Z'
-          type: string
-        createdBy:
-          description: User who created the Knowledge Base Entry.
-          example: admin
-          type: string
-        id:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
-        updatedAt:
-          description: Time the Knowledge Base Entry was last updated.
-          example: '2023-01-02T12:00:00Z'
-          type: string
-        updatedBy:
-          description: User who last updated the Knowledge Base Entry.
-          example: editor
-          type: string
-      required:
-      - id
-      - createdAt
-      - createdBy
-      - updatedAt
-      - updatedBy
-    Security_AI_Assistant_API_Reader:
-      additionalProperties: true
-      type: object
-    Security_AI_Assistant_API_ChatMessageRole:
-      description: The role associated with the message in the chat.
-      enum:
-      - system
-      - user
-      - assistant
-      example: user
-      type: string
-    Security_AI_Assistant_API_KnowledgeBaseEntryBulkActionSkipReason:
-      description: Reason why a Knowledge Base Entry was skipped during the bulk action.
-      enum:
-      - KNOWLEDGE_BASE_ENTRY_NOT_MODIFIED
-      type: string
-    Security_AI_Assistant_API_AnonymizationFieldsBulkActionSkipReason:
-      description: Reason why the anonymization field was not modified.
-      enum:
-      - ANONYMIZATION_FIELD_NOT_MODIFIED
-      type: string
-    Security_AI_Assistant_API_InputTextInterruptResumeValue:
-      allOf:
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseInterruptResumeValue'
-      - type: object
-        properties:
-          type:
-            enum:
-            - INPUT_TEXT
-            example: INPUT_TEXT
-            type: string
-          value:
-            description: Text value used to resume the graph execution with.
-            example: .logs*
-            type: string
-        required:
-        - value
-        - type
-      description: A resume value for input text
-    Security_AI_Assistant_API_FindAnonymizationFieldsSortField:
-      enum:
-      - created_at
-      - anonymized
-      - allowed
-      - field
-      - updated_at
-      type: string
-    Security_AI_Assistant_API_SortOrder:
-      description: The order in which results are sorted.
-      enum:
-      - asc
-      - desc
-      example: asc
-      type: string
-    Security_AI_Assistant_API_PromptDetailsInError:
-      type: object
-      properties:
-        id:
-          description: The ID of the prompt that encountered an error.
-          type: string
-        name:
-          description: The name of the prompt that encountered an error.
-          type: string
-      required:
-      - id
-    Security_AI_Assistant_API_AnonymizationFieldsBulkCrudActionResponse:
-      type: object
-      properties:
-        anonymization_fields_count:
-          description: Total number of anonymization fields processed.
-          example: 5
-          type: integer
-        attributes:
-          type: object
-          properties:
-            errors:
-              description: List of errors that occurred during the bulk operation.
-              items:
-                $ref: '#/components/schemas/Security_AI_Assistant_API_NormalizedAnonymizationFieldError'
-              type: array
-            results:
-              $ref: '#/components/schemas/Security_AI_Assistant_API_AnonymizationFieldsBulkCrudActionResults'
-            summary:
-              $ref: '#/components/schemas/Security_AI_Assistant_API_BulkCrudActionSummary'
-          required:
-          - results
-          - summary
-        message:
-          description: Message providing information about the bulk action result.
-          example: Bulk action completed successfully
-          type: string
-        status_code:
-          description: HTTP status code returned.
-          example: 200
-          type: integer
-        success:
-          description: Indicates if the bulk action was successful.
-          example: true
-          type: boolean
-      required:
-      - attributes
-    Security_AI_Assistant_API_DocumentEntry:
-      allOf:
-      - type: object
-        properties:
-          global:
-            description: Whether this Knowledge Base Entry is global, defaults to false.
-            example: false
-            type: boolean
-          name:
-            description: Name of the Knowledge Base Entry.
-            example: Example Entry
-            type: string
-          namespace:
-            description: Kibana Space, defaults to 'default' space.
-            example: default
-            type: string
-          users:
-            description: Users who have access to the Knowledge Base Entry, defaults to current user. Empty array provides access to all users.
-            items:
-              $ref: '#/components/schemas/Security_AI_Assistant_API_User'
-            type: array
-        required:
-        - name
-        - namespace
-        - global
-        - users
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_ResponseFields'
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryResponseFields'
     Security_AI_Assistant_API_SecurityAlertsPageContentReference:
       allOf:
       - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseContentReference'
@@ -2725,20 +3001,6 @@ components:
         required:
         - type
       description: References the security alerts page
-    Security_AI_Assistant_API_NonEmptyString:
-      description: A string that does not contain only whitespace characters.
-      example: I am a string
-      format: nonempty
-      minLength: 1
-      type: string
-    Security_AI_Assistant_API_FindConversationsSortField:
-      description: The field by which to sort the conversations. Possible values are `created_at`, `title`, and `updated_at`.
-      enum:
-      - created_at
-      - title
-      - updated_at
-      example: created_at
-      type: string
     Security_AI_Assistant_API_PromptUpdateProps:
       type: object
       properties:
@@ -2776,6 +3038,94 @@ components:
           type: boolean
       required:
       - id
+    Security_AI_Assistant_API_InterruptType:
+      description: The type of interrupt
+      enum:
+      - SELECT_OPTION
+      - INPUT_TEXT
+      type: string
+    Security_AI_Assistant_API_KnowledgeBaseEntryErrorSchema:
+      additionalProperties: false
+      type: object
+      properties:
+        error:
+          description: Error type or category.
+          example: Not Found
+          type: string
+        message:
+          description: Detailed error message.
+          example: The requested Knowledge Base Entry was not found.
+          type: string
+        statusCode:
+          description: HTTP status code of the error.
+          example: 404
+          type: number
+      required:
+      - statusCode
+      - error
+      - message
+    Security_AI_Assistant_API_PromptCreateProps:
+      type: object
+      properties:
+        categories:
+          description: List of categories for the prompt.
+          example:
+          - security
+          - verification
+          items:
+            type: string
+          type: array
+        color:
+          description: The color associated with the prompt.
+          example: blue
+          type: string
+        consumer:
+          description: The consumer associated with the prompt.
+          example: admin
+          type: string
+        content:
+          description: The content of the prompt.
+          example: Please verify the security settings.
+          type: string
+        isDefault:
+          description: Whether this prompt should be the default.
+          example: false
+          type: boolean
+        isNewConversationDefault:
+          description: Whether this prompt should be the default for new conversations.
+          example: true
+          type: boolean
+        name:
+          description: The name of the prompt.
+          example: New Security Prompt
+          type: string
+        promptType:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_PromptType'
+          description: The type of the prompt.
+          example: system
+      required:
+      - name
+      - content
+      - promptType
+    Security_AI_Assistant_API_HrefContentReference:
+      allOf:
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseContentReference'
+      - type: object
+        properties:
+          href:
+            description: URL to the external resource
+            type: string
+          label:
+            description: Label of the query
+            type: string
+          type:
+            enum:
+            - Href
+            type: string
+        required:
+        - type
+        - href
+      description: References an external URL
     Security_AI_Assistant_API_PromptResponse:
       type: object
       properties:
@@ -2889,612 +3239,32 @@ components:
       - users
       - namespace
       - category
-    Security_AI_Assistant_API_InterruptValue:
-      description: Union of the interrupt values
-      oneOf:
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_SelectOptionInterruptValue'
-        additionalProperties: false
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_InputTextInterruptValue'
-        additionalProperties: false
-    Security_AI_Assistant_API_SelectOptionInterruptValue:
-      allOf:
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseInterruptValue'
-      - type: object
-        properties:
-          description:
-            description: Description of action required
-            example: Select one of the options
-            type: string
-          options:
-            description: List of actions to choose from
-            example:
-            - label: Option 1
-            - label: Option 2
-            items:
-              $ref: '#/components/schemas/Security_AI_Assistant_API_SelectOptionInterruptOption'
-            type: array
-          type:
-            enum:
-            - SELECT_OPTION
-            example: SELECT_OPTION
-            type: string
-        required:
-        - type
-        - description
-        - options
-      description: Interrupt that requests user to select one of the provided options
-    Security_AI_Assistant_API_BaseContentReference:
-      description: The basis of a content reference
+    Security_AI_Assistant_API_ApiConfig:
       type: object
       properties:
-        id:
-          description: Id of the content reference
-          example: content123
+        actionTypeId:
+          description: Action type ID
+          example: actionType456
           type: string
-        type:
-          description: Type of the content reference
-          example: SecurityAlert
-          type: string
-      required:
-      - id
-      - type
-    Security_AI_Assistant_API_ProductDocumentationContentReference:
-      allOf:
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseContentReference'
-      - type: object
-        properties:
-          title:
-            description: Title of the documentation
-            example: Getting Started with Security AI Assistant
-            type: string
-          type:
-            enum:
-            - ProductDocumentation
-            example: ProductDocumentation
-            type: string
-          url:
-            description: URL to the documentation
-            example: https://docs.example.com/security-ai-assistant
-            type: string
-        required:
-        - type
-        - title
-        - url
-      description: References the product documentation
-    Security_AI_Assistant_API_SelectOptionInterruptOption:
-      description: A request approval option
-      type: object
-      properties:
-        buttonColor:
-          enum:
-          - text
-          - accent
-          - accentSecondary
-          - primary
-          - success
-          - warning
-          - danger
-          - neutral
-          - risk
-          example: danger
-          type: string
-        label:
-          example: Option 1
-          type: string
-        value:
-          example: option_1
-          type: string
-      required:
-      - label
-      - value
-    Security_AI_Assistant_API_IndexEntryUpdateFields:
-      allOf:
-      - type: object
-        properties:
-          global:
-            description: Whether this Knowledge Base Entry is global, defaults to false.
-            example: false
-            type: boolean
-          id:
-            $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
-          name:
-            description: Name of the Knowledge Base Entry.
-            example: Example Entry
-            type: string
-          namespace:
-            description: Kibana Space, defaults to 'default' space.
-            example: default
-            type: string
-          users:
-            description: Users who have access to the Knowledge Base Entry, defaults to current user. Empty array provides access to all users.
-            items:
-              $ref: '#/components/schemas/Security_AI_Assistant_API_User'
-            type: array
-        required:
-        - id
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryCreateFields'
-    Security_AI_Assistant_API_MessageData:
-      additionalProperties: true
-      description: ECS-style metadata attached to the message.
-      example:
-        alert_id: alert-456
-        user_id: abc123
-      type: object
-    Security_AI_Assistant_API_KnowledgeBaseEntryUpdateRouteProps:
-      anyOf:
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryCreateFields'
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryCreateFields'
-      discriminator:
-        mapping:
-          document: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryCreateFields'
-          index: '#/components/schemas/Security_AI_Assistant_API_IndexEntryCreateFields'
-        propertyName: type
-    Security_AI_Assistant_API_User:
-      description: Could be any string, not necessarily a UUID.
-      type: object
-      properties:
-        id:
-          description: User id.
-          example: user123
-          type: string
-        name:
-          description: User name.
-          example: John Doe
-          type: string
-    Security_AI_Assistant_API_KnowledgeBaseEntryErrorSchema:
-      additionalProperties: false
-      type: object
-      properties:
-        error:
-          description: Error type or category.
-          example: Not Found
-          type: string
-        message:
-          description: Detailed error message.
-          example: The requested Knowledge Base Entry was not found.
-          type: string
-        statusCode:
-          description: HTTP status code of the error.
-          example: 404
-          type: number
-      required:
-      - statusCode
-      - error
-      - message
-    Security_AI_Assistant_API_BaseInterruptValue:
-      description: The basis of an agent interrupt
-      type: object
-      properties:
-        expired:
-          description: Whether the interrupt has expired and can no longer be resumed.
-          example: false
-          type: boolean
-        threadId:
-          description: Thread ID of the graph execution that produced this message.
-          example: <UUID>
-          type: string
-        type:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_InterruptType'
-          description: Type of the interrupt
-          example: SELECT_OPTION
-      required:
-      - type
-      - threadId
-    Security_AI_Assistant_API_KnowledgeBaseEntryDetailsInError:
-      type: object
-      properties:
-        id:
-          description: ID of the Knowledge Base Entry that encountered an error.
-          example: '456'
-          type: string
-        name:
-          description: Name of the Knowledge Base Entry that encountered an error.
-          example: Error Entry
-          type: string
-      required:
-      - id
-    Security_AI_Assistant_API_DocumentEntryRequiredFields:
-      type: object
-      properties:
-        kbResource:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_KnowledgeBaseResource'
-        source:
-          description: Source document name or filepath.
-          example: /documents/example.txt
-          type: string
-        text:
-          description: Knowledge Base Entry content.
-          example: This is the content of the document.
-          type: string
-        type:
-          description: Entry type.
-          enum:
-          - document
-          example: document
-          type: string
-      required:
-      - type
-      - kbResource
-      - source
-      - text
-    Security_AI_Assistant_API_InterruptType:
-      description: The type of interrupt
-      enum:
-      - SELECT_OPTION
-      - INPUT_TEXT
-      type: string
-    Security_AI_Assistant_API_PromptCreateProps:
-      type: object
-      properties:
-        categories:
-          description: List of categories for the prompt.
-          example:
-          - security
-          - verification
-          items:
-            type: string
-          type: array
-        color:
-          description: The color associated with the prompt.
-          example: blue
-          type: string
-        consumer:
-          description: The consumer associated with the prompt.
-          example: admin
-          type: string
-        content:
-          description: The content of the prompt.
-          example: Please verify the security settings.
-          type: string
-        isDefault:
-          description: Whether this prompt should be the default.
-          example: false
-          type: boolean
-        isNewConversationDefault:
-          description: Whether this prompt should be the default for new conversations.
-          example: true
-          type: boolean
-        name:
-          description: The name of the prompt.
-          example: New Security Prompt
-          type: string
-        promptType:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_PromptType'
-          description: The type of the prompt.
-          example: system
-      required:
-      - name
-      - content
-      - promptType
-    Security_AI_Assistant_API_EsqlContentReference:
-      allOf:
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseContentReference'
-      - type: object
-        properties:
-          label:
-            description: Label of the query
-            example: High Severity Alerts
-            type: string
-          query:
-            description: An ESQL query
-            example: SELECT * FROM alerts WHERE severity = "high"
-            type: string
-          timerange:
-            description: Time range to select in the time picker.
-            type: object
-            properties:
-              from:
-                example: '2025-04-01T00:00:00Z'
-                type: string
-              to:
-                example: '2025-04-30T23:59:59Z'
-                type: string
-            required:
-            - from
-            - to
-          type:
-            enum:
-            - EsqlQuery
-            example: EsqlQuery
-            type: string
-        required:
-        - type
-        - query
-        - label
-      description: References an ESQL query
-    Security_AI_Assistant_API_InterruptResumeValue:
-      description: Union of the interrupt resume values
-      oneOf:
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_SelectOptionInterruptResumeValue'
-        additionalProperties: false
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_InputTextInterruptResumeValue'
-        additionalProperties: false
-    Security_AI_Assistant_API_PromptType:
-      description: Type of the prompt (either system or quick).
-      enum:
-      - system
-      - quick
-      type: string
-    Security_AI_Assistant_API_KnowledgeBaseResponse400:
-      type: object
-      properties:
-        error:
-          description: A short description of the error.
-          example: Bad Request
-          type: string
-        message:
-          description: A detailed error message.
-          example: Invalid resource ID provided.
-          type: string
-        statusCode:
-          description: The HTTP status code of the error.
-          example: 400
-          type: number
-    Security_AI_Assistant_API_DocumentEntryUpdateFields:
-      allOf:
-      - type: object
-        properties:
-          global:
-            description: Whether this Knowledge Base Entry is global, defaults to false.
-            example: false
-            type: boolean
-          id:
-            $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
-          name:
-            description: Name of the Knowledge Base Entry.
-            example: Example Entry
-            type: string
-          namespace:
-            description: Kibana Space, defaults to 'default' space.
-            example: default
-            type: string
-          users:
-            description: Users who have access to the Knowledge Base Entry, defaults to current user. Empty array provides access to all users.
-            items:
-              $ref: '#/components/schemas/Security_AI_Assistant_API_User'
-            type: array
-        required:
-        - id
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryCreateFields'
-    Security_AI_Assistant_API_IndexEntryOptionalFields:
-      type: object
-      properties:
-        inputSchema:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_InputSchema'
-        outputFields:
-          description: Fields to extract from the query result, defaults to all fields if not provided or empty.
-          example:
-          - title
-          - author
-          items:
-            type: string
-          type: array
-    Security_AI_Assistant_API_KnowledgeBaseResource:
-      description: Knowledge Base resource name for grouping entries, e.g. 'security_labs', 'user', etc.
-      enum:
-      - security_labs
-      - defend_insights
-      - user
-      example: security_labs
-      type: string
-    Security_AI_Assistant_API_ConversationCreateProps:
-      type: object
-      properties:
-        apiConfig:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_ApiConfig'
-          description: LLM API configuration.
-        category:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_ConversationCategory'
-          description: The conversation category.
-          example: assistant
-        excludeFromLastConversationStorage:
-          description: Exclude from last conversation storage.
-          type: boolean
-        id:
-          description: The conversation id.
-          example: conversation123
-          type: string
-        messages:
-          description: The conversation messages.
-          items:
-            $ref: '#/components/schemas/Security_AI_Assistant_API_Message'
-          type: array
-        replacements:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_Replacements'
-        title:
-          description: The conversation title.
-          example: Security AI Assistant Setup
-          type: string
-      required:
-      - title
-    Security_AI_Assistant_API_KnowledgeBaseEntryContentReference:
-      allOf:
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseContentReference'
-      - type: object
-        properties:
-          knowledgeBaseEntryId:
-            description: Id of the Knowledge Base Entry
-            example: kbentry456
-            type: string
-          knowledgeBaseEntryName:
-            description: Name of the knowledge base entry
-            example: Network Security Best Practices
-            type: string
-          type:
-            enum:
-            - KnowledgeBaseEntry
-            example: KnowledgeBaseEntry
-            type: string
-        required:
-        - type
-        - knowledgeBaseEntryId
-        - knowledgeBaseEntryName
-      description: References a knowledge base entry
-    Security_AI_Assistant_API_PromptsBulkActionSkipResult:
-      type: object
-      properties:
-        id:
-          description: The ID of the prompt that was skipped.
-          type: string
-        name:
-          description: The name of the prompt that was skipped.
-          type: string
-        skip_reason:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_PromptsBulkActionSkipReason'
-          description: The reason for skipping the prompt.
-      required:
-      - id
-      - skip_reason
-    Security_AI_Assistant_API_ChatCompleteProps:
-      description: The request payload for creating a chat completion.
-      example:
-        connectorId: conn-001
-        conversationId: abc123
-        isStream: true
-        langSmithApiKey: <LANGSMITH_API_KEY>
-        langSmithProject: security_ai_project
-        messages:
-        - content: How do I detect ransomware on my endpoints?
-          data:
-            device_id: device-567
-          fields_to_anonymize:
-          - device.name
-          - file.path
-          role: user
-        model: gpt-4
-        persist: true
-        promptId: prompt_456
-        responseLanguage: en
-      type: object
-      properties:
         connectorId:
-          description: Required connector identifier to route the request.
-          example: conn-001
+          description: Connector ID
+          example: connector123
           type: string
-        conversationId:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
-          description: Existing conversation ID to continue.
-        isStream:
-          description: If true, the response will be streamed in chunks.
-          example: true
-          type: boolean
-        langSmithApiKey:
-          description: API key for LangSmith integration.
-          example: <LANGSMITH_API_KEY>
+        defaultSystemPromptId:
+          description: Default system prompt ID
+          example: systemPrompt001
           type: string
-        langSmithProject:
-          description: LangSmith project name for tracing.
-          example: security_ai_project
-          type: string
-        messages:
-          description: List of chat messages exchanged so far.
-          items:
-            $ref: '#/components/schemas/Security_AI_Assistant_API_ChatMessage'
-          type: array
         model:
-          description: Model ID or name to use for the response.
+          description: Model
           example: gpt-4
           type: string
-        persist:
-          description: Whether to persist the chat and response to storage.
-          example: true
-          type: boolean
-        promptId:
-          description: Prompt template identifier.
-          example: prompt_001
-          type: string
-        responseLanguage:
-          description: ISO language code for the assistant's response.
-          example: en
-          type: string
+        provider:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_Provider'
+          description: Provider
+          example: OpenAI
       required:
-      - messages
-      - persist
       - connectorId
-    Security_AI_Assistant_API_ConversationUpdateProps:
-      type: object
-      properties:
-        apiConfig:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_ApiConfig'
-          description: LLM API configuration.
-        category:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_ConversationCategory'
-          description: The conversation category.
-          example: assistant
-        excludeFromLastConversationStorage:
-          description: Exclude from last conversation storage.
-          type: boolean
-        id:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
-        messages:
-          description: The conversation messages.
-          items:
-            $ref: '#/components/schemas/Security_AI_Assistant_API_Message'
-          type: array
-        replacements:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_Replacements'
-        title:
-          description: The conversation title.
-          example: Updated Security AI Assistant Setup
-          type: string
-        users:
-          items:
-            $ref: '#/components/schemas/Security_AI_Assistant_API_User'
-          type: array
-      required:
-      - id
-    Security_AI_Assistant_API_HrefContentReference:
-      allOf:
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseContentReference'
-      - type: object
-        properties:
-          href:
-            description: URL to the external resource
-            type: string
-          label:
-            description: Label of the query
-            type: string
-          type:
-            enum:
-            - Href
-            type: string
-        required:
-        - type
-        - href
-      description: References an external URL
-    Security_AI_Assistant_API_ChatMessage:
-      description: A message exchanged within the AI chat conversation.
-      type: object
-      properties:
-        content:
-          description: The textual content of the message.
-          example: What security incidents have been reported today?
-          type: string
-        data:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_MessageData'
-          description: Metadata to attach to the context of the message.
-        fields_to_anonymize:
-          description: List of field names within the data object that should be anonymized.
-          example:
-          - user.name
-          - source.ip
-          items:
-            type: string
-          type: array
-        role:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_ChatMessageRole'
-          description: The sender role of the message.
-      required:
-      - role
-    Security_AI_Assistant_API_FindPromptsSortField:
-      description: Field by which to sort the prompts.
-      enum:
-      - created_at
-      - is_default
-      - name
-      - updated_at
-      example: created_at
-      type: string
+      - actionTypeId
     Security_AI_Assistant_API_PromptsBulkCrudActionResponse:
       type: object
       properties:
@@ -3530,202 +3300,55 @@ components:
           type: boolean
       required:
       - attributes
-    Security_AI_Assistant_API_IndexEntryRequiredFields:
-      type: object
-      properties:
-        description:
-          description: Description for when this index or data stream should be queried for Knowledge Base content. Passed to the LLM as a tool description.
-          example: Query this index for general knowledge base content.
-          type: string
-        field:
-          description: Field to query for Knowledge Base content.
-          example: content
-          type: string
-        index:
-          description: Index or Data Stream to query for Knowledge Base content.
-          example: knowledge_base_index
-          type: string
-        queryDescription:
-          description: Description of query field used to fetch Knowledge Base content. Passed to the LLM as part of the tool input schema.
-          example: Search for documents containing the specified keywords.
-          type: string
-        type:
-          description: Entry type.
-          enum:
-          - index
-          example: index
-          type: string
-      required:
-      - type
-      - index
-      - field
-      - description
-      - queryDescription
-    Security_AI_Assistant_API_AnonymizationFieldCreateProps:
-      type: object
-      properties:
-        allowed:
-          description: Whether this field is allowed to be sent to the model.
-          example: true
-          type: boolean
-        anonymized:
-          description: Whether this field should be anonymized.
-          example: false
-          type: boolean
-        field:
-          description: Name of the anonymization field to create.
-          example: host.name
-          type: string
-      required:
-      - field
-    Security_AI_Assistant_API_Message:
-      description: AI assistant conversation message.
-      type: object
-      properties:
-        content:
-          description: Message content.
-          example: Hello, how can I assist you today?
-          type: string
-        id:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
-          description: Message id
-        isError:
-          description: Is error message.
-          example: false
-          type: boolean
-        metadata:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_MessageMetadata'
-          description: Metadata
-        reader:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_Reader'
-          description: Message content.
-        refusal:
-          description: Refusal reason returned by the model when content is filtered.
-          type: string
-        role:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_MessageRole'
-          description: Message role.
-          example: assistant
-        timestamp:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyTimestamp'
-          description: The timestamp message was sent or received.
-          example: '2025-04-30T15:30:00Z'
-        traceData:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_TraceData'
-          description: Trace data
-        user:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_User'
-          description: The user who sent the message.
-      required:
-      - timestamp
-      - content
-      - role
-    Security_AI_Assistant_API_NormalizedAnonymizationFieldError:
-      type: object
-      properties:
-        anonymization_fields:
-          description: Array of anonymization fields that caused the error.
-          items:
-            $ref: '#/components/schemas/Security_AI_Assistant_API_AnonymizationFieldDetailsInError'
-          type: array
-        err_code:
-          description: Error code indicating the type of failure.
-          example: UPDATE_FAILED
-          type: string
-        message:
-          description: Error message.
-          example: Failed to update anonymization field.
-          type: string
-        status_code:
-          description: Status code of the response.
-          example: 400
-          type: integer
-      required:
-      - message
-      - status_code
-      - anonymization_fields
-    Security_AI_Assistant_API_KnowledgeBaseResponse:
-      description: AI assistant KnowledgeBase.
-      type: object
-      properties:
-        success:
-          description: Identify the success of the method execution.
-          example: true
-          type: boolean
-    Security_AI_Assistant_API_AnonymizationFieldsBulkActionSkipResult:
-      type: object
-      properties:
-        id:
-          description: The ID of the anonymization field that was not modified.
-          example: field4
-          type: string
-        name:
-          description: Name of the anonymization field that was not modified.
-          example: user.name
-          type: string
-        skip_reason:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_AnonymizationFieldsBulkActionSkipReason'
-          description: Reason why the anonymization field was not modified.
-      required:
-      - id
-      - skip_reason
-    Security_AI_Assistant_API_SelectOptionInterruptResumeValue:
+    Security_AI_Assistant_API_DocumentEntryUpdateFields:
       allOf:
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseInterruptResumeValue'
       - type: object
         properties:
+          global:
+            description: Whether this Knowledge Base Entry is global, defaults to false.
+            example: false
+            type: boolean
+          id:
+            $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
+          name:
+            description: Name of the Knowledge Base Entry.
+            example: Example Entry
+            type: string
+          namespace:
+            description: Kibana Space, defaults to 'default' space.
+            example: default
+            type: string
+          users:
+            description: Users who have access to the Knowledge Base Entry, defaults to current user. Empty array provides access to all users.
+            items:
+              $ref: '#/components/schemas/Security_AI_Assistant_API_User'
+            type: array
+        required:
+        - id
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryCreateFields'
+    Security_AI_Assistant_API_ProductDocumentationContentReference:
+      allOf:
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseContentReference'
+      - type: object
+        properties:
+          title:
+            description: Title of the documentation
+            example: Getting Started with Security AI Assistant
+            type: string
           type:
             enum:
-            - SELECT_OPTION
-            example: SELECT_OPTION
+            - ProductDocumentation
+            example: ProductDocumentation
             type: string
-          value:
-            description: The value of the selected option to resume the graph execution with
-            example: option_1
+          url:
+            description: URL to the documentation
+            example: https://docs.example.com/security-ai-assistant
             type: string
         required:
-        - value
         - type
-      description: A request approval resume schema
-    Security_AI_Assistant_API_AnonymizationFieldUpdateProps:
-      type: object
-      properties:
-        allowed:
-          description: Whether this field is allowed to be sent to the model.
-          example: true
-          type: boolean
-        anonymized:
-          description: Whether this field should be anonymized.
-          example: false
-          type: boolean
-        id:
-          description: The ID of the anonymization field to update.
-          example: field8
-          type: string
-      required:
-      - id
-    Security_AI_Assistant_API_FindKnowledgeBaseEntriesSortField:
-      description: Fields available for sorting Knowledge Base Entries.
-      enum:
-      - created_at
-      - is_default
-      - title
-      - updated_at
-      example: title
-      type: string
-    Security_AI_Assistant_API_MessageMetadata:
-      description: Message metadata
-      type: object
-      properties:
-        contentReferences:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_ContentReferences'
-          description: Data referred to by the message content.
-        interruptResumeValue:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_InterruptResumeValue'
-          description: When the agent is resumed after an interrupt, this field is populated with the details of the resume value.
-        interruptValue:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_InterruptValue'
-          description: When the agent is interrupted (for example, when user input is required), this field is populated with the details of the interrupt. Messages containing interruptValues in the metadata are excluded from the LLM context.
+        - title
+        - url
+      description: References the product documentation
     Security_AI_Assistant_API_NormalizedKnowledgeBaseEntryError:
       type: object
       properties:
@@ -3750,77 +3373,204 @@ components:
       - message
       - statusCode
       - knowledgeBaseEntries
-    Security_AI_Assistant_API_AnonymizationFieldDetailsInError:
+    Security_AI_Assistant_API_KnowledgeBaseEntryBulkCrudActionSummary:
       type: object
       properties:
-        id:
-          description: The ID of the anonymization field.
-          example: field12
-          type: string
-        name:
-          description: Name of the anonymization field.
-          example: host.name
-          type: string
-      required:
-      - id
-    Security_AI_Assistant_API_IndexEntryResponseFields:
-      allOf:
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryRequiredFields'
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryOptionalFields'
-    Security_AI_Assistant_API_DeleteResponseFields:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
-      required:
-      - id
-    Security_AI_Assistant_API_PromptsBulkCrudActionResults:
-      type: object
-      properties:
-        created:
-          description: List of prompts that were created.
-          items:
-            $ref: '#/components/schemas/Security_AI_Assistant_API_PromptResponse'
-          type: array
-        deleted:
-          description: List of IDs of prompts that were deleted.
-          items:
-            type: string
-          type: array
+        failed:
+          description: Number of Knowledge Base Entries that failed during the bulk action.
+          example: 2
+          type: integer
         skipped:
-          description: List of prompts that were skipped.
-          items:
-            $ref: '#/components/schemas/Security_AI_Assistant_API_PromptsBulkActionSkipResult'
-          type: array
-        updated:
-          description: List of prompts that were updated.
-          items:
-            $ref: '#/components/schemas/Security_AI_Assistant_API_PromptResponse'
-          type: array
+          description: Number of Knowledge Base Entries that were skipped during the bulk action.
+          example: 1
+          type: integer
+        succeeded:
+          description: Number of Knowledge Base Entries that were successfully processed during the bulk action.
+          example: 5
+          type: integer
+        total:
+          description: Total number of Knowledge Base Entries involved in the bulk action.
+          example: 8
+          type: integer
       required:
-      - updated
-      - created
-      - deleted
+      - failed
       - skipped
-    Security_AI_Assistant_API_SecurityAlertContentReference:
+      - succeeded
+      - total
+    Security_AI_Assistant_API_DocumentEntryRequiredFields:
+      type: object
+      properties:
+        kbResource:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_KnowledgeBaseResource'
+        source:
+          description: Source document name or filepath.
+          example: /documents/example.txt
+          type: string
+        text:
+          description: Knowledge Base Entry content.
+          example: This is the content of the document.
+          type: string
+        type:
+          description: Entry type.
+          enum:
+          - document
+          example: document
+          type: string
+      required:
+      - type
+      - kbResource
+      - source
+      - text
+    Security_AI_Assistant_API_AnonymizationFieldUpdateProps:
+      type: object
+      properties:
+        allowed:
+          description: Whether this field is allowed to be sent to the model.
+          example: true
+          type: boolean
+        anonymized:
+          description: Whether this field should be anonymized.
+          example: false
+          type: boolean
+        id:
+          description: The ID of the anonymization field to update.
+          example: field8
+          type: string
+      required:
+      - id
+    Security_AI_Assistant_API_AnonymizationFieldsBulkCrudActionResponse:
+      type: object
+      properties:
+        anonymization_fields_count:
+          description: Total number of anonymization fields processed.
+          example: 5
+          type: integer
+        attributes:
+          type: object
+          properties:
+            errors:
+              description: List of errors that occurred during the bulk operation.
+              items:
+                $ref: '#/components/schemas/Security_AI_Assistant_API_NormalizedAnonymizationFieldError'
+              type: array
+            results:
+              $ref: '#/components/schemas/Security_AI_Assistant_API_AnonymizationFieldsBulkCrudActionResults'
+            summary:
+              $ref: '#/components/schemas/Security_AI_Assistant_API_BulkCrudActionSummary'
+          required:
+          - results
+          - summary
+        message:
+          description: Message providing information about the bulk action result.
+          example: Bulk action completed successfully
+          type: string
+        status_code:
+          description: HTTP status code returned.
+          example: 200
+          type: integer
+        success:
+          description: Indicates if the bulk action was successful.
+          example: true
+          type: boolean
+      required:
+      - attributes
+    Security_AI_Assistant_API_SortOrder:
+      description: The order in which results are sorted.
+      enum:
+      - asc
+      - desc
+      example: asc
+      type: string
+    Security_AI_Assistant_API_KnowledgeBaseEntryContentReference:
       allOf:
       - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseContentReference'
       - type: object
         properties:
-          alertId:
-            description: ID of the Alert
-            example: alert789
+          knowledgeBaseEntryId:
+            description: Id of the Knowledge Base Entry
+            example: kbentry456
+            type: string
+          knowledgeBaseEntryName:
+            description: Name of the knowledge base entry
+            example: Network Security Best Practices
             type: string
           type:
             enum:
-            - SecurityAlert
-            example: SecurityAlert
+            - KnowledgeBaseEntry
+            example: KnowledgeBaseEntry
             type: string
         required:
         - type
-        - alertId
-      description: References a security alert
-    Security_AI_Assistant_API_IndexEntryCreateFields:
+        - knowledgeBaseEntryId
+        - knowledgeBaseEntryName
+      description: References a knowledge base entry
+    Security_AI_Assistant_API_Provider:
+      description: Provider
+      enum:
+      - OpenAI
+      - Azure OpenAI
+      - Other
+      example: OpenAI
+      type: string
+    Security_AI_Assistant_API_KnowledgeBaseEntryCreateProps:
+      anyOf:
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryCreateFields'
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryCreateFields'
+      discriminator:
+        mapping:
+          document: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryCreateFields'
+          index: '#/components/schemas/Security_AI_Assistant_API_IndexEntryCreateFields'
+        propertyName: type
+    Security_AI_Assistant_API_PromptsBulkActionSkipReason:
+      description: Reason why a prompt was skipped during the bulk action.
+      enum:
+      - PROMPT_FIELD_NOT_MODIFIED
+      type: string
+    Security_AI_Assistant_API_AnonymizationFieldCreateProps:
+      type: object
+      properties:
+        allowed:
+          description: Whether this field is allowed to be sent to the model.
+          example: true
+          type: boolean
+        anonymized:
+          description: Whether this field should be anonymized.
+          example: false
+          type: boolean
+        field:
+          description: Name of the anonymization field to create.
+          example: host.name
+          type: string
+      required:
+      - field
+    Security_AI_Assistant_API_ResponseFields:
+      type: object
+      properties:
+        createdAt:
+          description: Time the Knowledge Base Entry was created.
+          example: '2023-01-01T12:00:00Z'
+          type: string
+        createdBy:
+          description: User who created the Knowledge Base Entry.
+          example: admin
+          type: string
+        id:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
+        updatedAt:
+          description: Time the Knowledge Base Entry was last updated.
+          example: '2023-01-02T12:00:00Z'
+          type: string
+        updatedBy:
+          description: User who last updated the Knowledge Base Entry.
+          example: editor
+          type: string
+      required:
+      - id
+      - createdAt
+      - createdBy
+      - updatedAt
+      - updatedBy
+    Security_AI_Assistant_API_IndexEntryUpdateFields:
       allOf:
       - type: object
         properties:
@@ -3828,6 +3578,8 @@ components:
             description: Whether this Knowledge Base Entry is global, defaults to false.
             example: false
             type: boolean
+          id:
+            $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
           name:
             description: Name of the Knowledge Base Entry.
             example: Example Entry
@@ -3842,9 +3594,122 @@ components:
               $ref: '#/components/schemas/Security_AI_Assistant_API_User'
             type: array
         required:
-        - name
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryRequiredFields'
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryOptionalFields'
+        - id
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryCreateFields'
+    Security_AI_Assistant_API_FindConversationsSortField:
+      description: The field by which to sort the conversations. Possible values are `created_at`, `title`, and `updated_at`.
+      enum:
+      - created_at
+      - title
+      - updated_at
+      example: created_at
+      type: string
+    Security_AI_Assistant_API_InputSchema:
+      description: Array of objects defining the input schema, allowing the LLM to extract structured data to be used in retrieval.
+      items:
+        type: object
+        properties:
+          description:
+            description: Description of the field.
+            example: The title of the document.
+            type: string
+          fieldName:
+            description: Name of the field.
+            example: title
+            type: string
+          fieldType:
+            description: Type of the field.
+            example: string
+            type: string
+        required:
+        - fieldName
+        - fieldType
+        - description
+      type: array
+    Security_AI_Assistant_API_ChatMessageRole:
+      description: The role associated with the message in the chat.
+      enum:
+      - system
+      - user
+      - assistant
+      example: user
+      type: string
+    Security_AI_Assistant_API_KnowledgeBaseEntryBulkActionSkipReason:
+      description: Reason why a Knowledge Base Entry was skipped during the bulk action.
+      enum:
+      - KNOWLEDGE_BASE_ENTRY_NOT_MODIFIED
+      type: string
+    Security_AI_Assistant_API_ConversationCreateProps:
+      type: object
+      properties:
+        apiConfig:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_ApiConfig'
+          description: LLM API configuration.
+        category:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_ConversationCategory'
+          description: The conversation category.
+          example: assistant
+        excludeFromLastConversationStorage:
+          description: Exclude from last conversation storage.
+          type: boolean
+        id:
+          description: The conversation id.
+          example: conversation123
+          type: string
+        messages:
+          description: The conversation messages.
+          items:
+            $ref: '#/components/schemas/Security_AI_Assistant_API_Message'
+          type: array
+        replacements:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_Replacements'
+        title:
+          description: The conversation title.
+          example: Security AI Assistant Setup
+          type: string
+      required:
+      - title
+    Security_AI_Assistant_API_KnowledgeBaseEntryUpdateProps:
+      anyOf:
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryUpdateFields'
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryUpdateFields'
+      discriminator:
+        mapping:
+          document: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryUpdateFields'
+          index: '#/components/schemas/Security_AI_Assistant_API_IndexEntryUpdateFields'
+        propertyName: type
+    Security_AI_Assistant_API_PromptDetailsInError:
+      type: object
+      properties:
+        id:
+          description: The ID of the prompt that encountered an error.
+          type: string
+        name:
+          description: The name of the prompt that encountered an error.
+          type: string
+      required:
+      - id
+    Security_AI_Assistant_API_NormalizedPromptError:
+      type: object
+      properties:
+        err_code:
+          description: A code representing the error type.
+          type: string
+        message:
+          description: A message describing the error encountered.
+          type: string
+        prompts:
+          description: List of prompts that encountered errors.
+          items:
+            $ref: '#/components/schemas/Security_AI_Assistant_API_PromptDetailsInError'
+          type: array
+        status_code:
+          description: The HTTP status code associated with the error.
+          type: integer
+      required:
+      - message
+      - status_code
+      - prompts
     Security_AI_Assistant_API_KnowledgeBaseEntryBulkCrudActionResults:
       type: object
       properties:
@@ -3893,77 +3758,35 @@ components:
       - created
       - deleted
       - skipped
-    Security_AI_Assistant_API_DocumentEntryOptionalFields:
+    Security_AI_Assistant_API_KnowledgeBaseEntryBulkActionSkipResult:
       type: object
       properties:
-        required:
-          description: Whether this resource should always be included, defaults to false.
-          example: false
-          type: boolean
-        vector:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_Vector'
-    Security_AI_Assistant_API_Vector:
-      description: Object containing Knowledge Base Entry text embeddings and modelId used to create the embeddings.
-      type: object
-      properties:
-        modelId:
-          description: ID of the model used to create the embeddings.
-          example: bert-base-uncased
+        id:
+          description: ID of the skipped Knowledge Base Entry.
+          example: '123'
           type: string
-        tokens:
-          additionalProperties:
-            type: number
-          description: Tokens with their corresponding values.
-          example:
-            token1: 0.123
-            token2: 0.456
-          type: object
+        name:
+          description: Name of the skipped Knowledge Base Entry.
+          example: Skipped Entry
+          type: string
+        skip_reason:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_KnowledgeBaseEntryBulkActionSkipReason'
       required:
-      - modelId
-      - tokens
-    Security_AI_Assistant_API_PromptsBulkActionSkipReason:
-      description: Reason why a prompt was skipped during the bulk action.
-      enum:
-      - PROMPT_FIELD_NOT_MODIFIED
-      type: string
-    Security_AI_Assistant_API_ApiConfig:
-      type: object
-      properties:
-        actionTypeId:
-          description: Action type ID
-          example: actionType456
-          type: string
-        connectorId:
-          description: Connector ID
-          example: connector123
-          type: string
-        defaultSystemPromptId:
-          description: Default system prompt ID
-          example: systemPrompt001
-          type: string
-        model:
-          description: Model
-          example: gpt-4
-          type: string
-        provider:
-          $ref: '#/components/schemas/Security_AI_Assistant_API_Provider'
-          description: Provider
-          example: OpenAI
-      required:
-      - connectorId
-      - actionTypeId
-    Security_AI_Assistant_API_DocumentEntryResponseFields:
+      - id
+      - skip_reason
+    Security_AI_Assistant_API_IndexEntryResponseFields:
       allOf:
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryRequiredFields'
-      - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryOptionalFields'
-    Security_AI_Assistant_API_Provider:
-      description: Provider
-      enum:
-      - OpenAI
-      - Azure OpenAI
-      - Other
-      example: OpenAI
-      type: string
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryRequiredFields'
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryOptionalFields'
+    Security_AI_Assistant_API_KnowledgeBaseEntryUpdateRouteProps:
+      anyOf:
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryCreateFields'
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryCreateFields'
+      discriminator:
+        mapping:
+          document: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryCreateFields'
+          index: '#/components/schemas/Security_AI_Assistant_API_IndexEntryCreateFields'
+        propertyName: type
     Security_AI_Assistant_API_BulkCrudActionSummary:
       type: object
       properties:
@@ -3988,6 +3811,159 @@ components:
       - skipped
       - succeeded
       - total
+    Security_AI_Assistant_API_SelectOptionInterruptValue:
+      allOf:
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseInterruptValue'
+      - type: object
+        properties:
+          description:
+            description: Description of action required
+            example: Select one of the options
+            type: string
+          options:
+            description: List of actions to choose from
+            example:
+            - label: Option 1
+            - label: Option 2
+            items:
+              $ref: '#/components/schemas/Security_AI_Assistant_API_SelectOptionInterruptOption'
+            type: array
+          type:
+            enum:
+            - SELECT_OPTION
+            example: SELECT_OPTION
+            type: string
+        required:
+        - type
+        - description
+        - options
+      description: Interrupt that requests user to select one of the provided options
+    Security_AI_Assistant_API_KnowledgeBaseResponse:
+      description: AI assistant KnowledgeBase.
+      type: object
+      properties:
+        success:
+          description: Identify the success of the method execution.
+          example: true
+          type: boolean
+    Security_AI_Assistant_API_AnonymizationFieldResponse:
+      type: object
+      properties:
+        allowed:
+          description: Whether this field is allowed to be sent to the model.
+          example: true
+          type: boolean
+        anonymized:
+          description: Whether this field should be anonymized.
+          example: false
+          type: boolean
+        createdAt:
+          description: Timestamp of when the anonymization field was created.
+          example: '2023-10-31T12:00:00Z'
+          type: string
+        createdBy:
+          description: Username of the person who created the anonymization field.
+          example: user1
+          type: string
+        field:
+          description: Name of the anonymization field.
+          example: url.domain
+          type: string
+        id:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyString'
+          description: The ID of the anonymization field.
+        namespace:
+          description: Kibana space in which this anonymization field exists.
+          example: default
+          type: string
+        timestamp:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_NonEmptyTimestamp'
+          description: Timestamp when the anonymization field was initially created.
+        updatedAt:
+          description: Timestamp of the last update.
+          example: '2023-10-31T12:00:00Z'
+          type: string
+        updatedBy:
+          description: Username of the person who last updated the field.
+          example: user1
+          type: string
+      required:
+      - id
+      - field
+    Security_AI_Assistant_API_NonEmptyTimestamp:
+      description: A string that represents a timestamp in ISO 8601 format and does not contain only whitespace characters.
+      example: '2023-10-31T12:00:00Z'
+      format: nonempty
+      minLength: 1
+      type: string
+    Security_AI_Assistant_API_AnonymizationFieldsBulkActionSkipReason:
+      description: Reason why the anonymization field was not modified.
+      enum:
+      - ANONYMIZATION_FIELD_NOT_MODIFIED
+      type: string
+    Security_AI_Assistant_API_NonEmptyString:
+      description: A string that does not contain only whitespace characters.
+      example: I am a string
+      format: nonempty
+      minLength: 1
+      type: string
+    Security_AI_Assistant_API_SelectOptionInterruptResumeValue:
+      allOf:
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_BaseInterruptResumeValue'
+      - type: object
+        properties:
+          type:
+            enum:
+            - SELECT_OPTION
+            example: SELECT_OPTION
+            type: string
+          value:
+            description: The value of the selected option to resume the graph execution with
+            example: option_1
+            type: string
+        required:
+        - value
+        - type
+      description: A request approval resume schema
+    Security_AI_Assistant_API_BaseInterruptValue:
+      description: The basis of an agent interrupt
+      type: object
+      properties:
+        expired:
+          description: Whether the interrupt has expired and can no longer be resumed.
+          example: false
+          type: boolean
+        threadId:
+          description: Thread ID of the graph execution that produced this message.
+          example: <UUID>
+          type: string
+        type:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_InterruptType'
+          description: Type of the interrupt
+          example: SELECT_OPTION
+      required:
+      - type
+      - threadId
+    Security_AI_Assistant_API_InterruptValue:
+      description: Union of the interrupt values
+      oneOf:
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_SelectOptionInterruptValue'
+        additionalProperties: false
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_InputTextInterruptValue'
+        additionalProperties: false
+    Security_AI_Assistant_API_IndexEntryOptionalFields:
+      type: object
+      properties:
+        inputSchema:
+          $ref: '#/components/schemas/Security_AI_Assistant_API_InputSchema'
+        outputFields:
+          description: Fields to extract from the query result, defaults to all fields if not provided or empty.
+          example:
+          - title
+          - author
+          items:
+            type: string
+          type: array
     Security_AI_Assistant_API_IndexEntry:
       allOf:
       - type: object
@@ -4016,28 +3992,54 @@ components:
         - users
       - $ref: '#/components/schemas/Security_AI_Assistant_API_ResponseFields'
       - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryResponseFields'
-    Security_AI_Assistant_API_InputSchema:
-      description: Array of objects defining the input schema, allowing the LLM to extract structured data to be used in retrieval.
-      items:
-        type: object
+    Security_AI_Assistant_API_ContentReferences:
+      additionalProperties:
+        oneOf:
+        - $ref: '#/components/schemas/Security_AI_Assistant_API_KnowledgeBaseEntryContentReference'
+        - $ref: '#/components/schemas/Security_AI_Assistant_API_SecurityAlertContentReference'
+        - $ref: '#/components/schemas/Security_AI_Assistant_API_SecurityAlertsPageContentReference'
+        - $ref: '#/components/schemas/Security_AI_Assistant_API_ProductDocumentationContentReference'
+        - $ref: '#/components/schemas/Security_AI_Assistant_API_EsqlContentReference'
+        - $ref: '#/components/schemas/Security_AI_Assistant_API_HrefContentReference'
+          additionalProperties: false
+      description: A union of all content reference types
+      type: object
+    Security_AI_Assistant_API_DocumentEntry:
+      allOf:
+      - type: object
         properties:
-          description:
-            description: Description of the field.
-            example: The title of the document.
+          global:
+            description: Whether this Knowledge Base Entry is global, defaults to false.
+            example: false
+            type: boolean
+          name:
+            description: Name of the Knowledge Base Entry.
+            example: Example Entry
             type: string
-          fieldName:
-            description: Name of the field.
-            example: title
+          namespace:
+            description: Kibana Space, defaults to 'default' space.
+            example: default
             type: string
-          fieldType:
-            description: Type of the field.
-            example: string
-            type: string
+          users:
+            description: Users who have access to the Knowledge Base Entry, defaults to current user. Empty array provides access to all users.
+            items:
+              $ref: '#/components/schemas/Security_AI_Assistant_API_User'
+            type: array
         required:
-        - fieldName
-        - fieldType
-        - description
-      type: array
+        - name
+        - namespace
+        - global
+        - users
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_ResponseFields'
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryResponseFields'
+    Security_AI_Assistant_API_MessageRole:
+      description: Message role.
+      enum:
+      - system
+      - user
+      - assistant
+      example: assistant
+      type: string
     Security_AI_Assistant_API_DocumentEntryCreateFields:
       allOf:
       - type: object
@@ -4063,33 +4065,31 @@ components:
         - name
       - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryRequiredFields'
       - $ref: '#/components/schemas/Security_AI_Assistant_API_DocumentEntryOptionalFields'
-    Security_AI_Assistant_API_NonEmptyTimestamp:
-      description: A string that represents a timestamp in ISO 8601 format and does not contain only whitespace characters.
-      example: '2023-10-31T12:00:00Z'
-      format: nonempty
-      minLength: 1
-      type: string
-    Security_AI_Assistant_API_NormalizedPromptError:
-      type: object
-      properties:
-        err_code:
-          description: A code representing the error type.
-          type: string
-        message:
-          description: A message describing the error encountered.
-          type: string
-        prompts:
-          description: List of prompts that encountered errors.
-          items:
-            $ref: '#/components/schemas/Security_AI_Assistant_API_PromptDetailsInError'
-          type: array
-        status_code:
-          description: The HTTP status code associated with the error.
-          type: integer
-      required:
-      - message
-      - status_code
-      - prompts
+    Security_AI_Assistant_API_IndexEntryCreateFields:
+      allOf:
+      - type: object
+        properties:
+          global:
+            description: Whether this Knowledge Base Entry is global, defaults to false.
+            example: false
+            type: boolean
+          name:
+            description: Name of the Knowledge Base Entry.
+            example: Example Entry
+            type: string
+          namespace:
+            description: Kibana Space, defaults to 'default' space.
+            example: default
+            type: string
+          users:
+            description: Users who have access to the Knowledge Base Entry, defaults to current user. Empty array provides access to all users.
+            items:
+              $ref: '#/components/schemas/Security_AI_Assistant_API_User'
+            type: array
+        required:
+        - name
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryRequiredFields'
+      - $ref: '#/components/schemas/Security_AI_Assistant_API_IndexEntryOptionalFields'
   securitySchemes:
     apiKeyAuth:
       description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`

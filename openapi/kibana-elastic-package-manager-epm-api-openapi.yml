@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -56,8 +56,8 @@ info:
     This documentation contains work-in-progress information for future Elastic Stack releases.
 
     '
-  title: Kibana APIs Actions Elastic Package Manager (EPM) API
-  version: "1.0"
+  title: Kibana APIs Actions Elastic Package Manager (EPM) Elastic Package Manager (EPM) API
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -197,8 +197,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -301,8 +300,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -490,8 +488,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -585,8 +582,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -713,8 +709,7 @@ paths:
                                   type: string
                         data_streams:
                           items:
-                            additionalProperties:
-                              nullable: true
+                            additionalProperties: {}
                             type: object
                           maxItems: 1000
                           type: array
@@ -979,8 +974,9 @@ paths:
                               maxItems: 100
                               type: array
                             previous_version:
-                              nullable: true
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                             rolled_back:
                               type: boolean
                             type:
@@ -988,8 +984,9 @@ paths:
                             updated_at:
                               type: string
                             verification_key_id:
-                              nullable: true
-                              type: string
+                              type:
+                              - string
+                              - 'null'
                             verification_status:
                               enum:
                               - unverified
@@ -1031,8 +1028,7 @@ paths:
                           type: string
                         policy_templates:
                           items:
-                            additionalProperties:
-                              nullable: true
+                            additionalProperties: {}
                             type: object
                           maxItems: 1000
                           type: array
@@ -1122,8 +1118,7 @@ paths:
                           type: array
                         vars:
                           items:
-                            additionalProperties:
-                              nullable: true
+                            additionalProperties: {}
                             type: object
                           maxItems: 1000
                           type: array
@@ -1154,8 +1149,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1339,8 +1333,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1524,8 +1517,7 @@ paths:
                                     - type
                                 maxItems: 10000
                                 type: array
-                              error:
-                                nullable: true
+                              error: {}
                               installSource:
                                 type: string
                               installType:
@@ -1550,7 +1542,7 @@ paths:
                           error:
                             anyOf:
                             - type: string
-                            - nullable: true
+                            - {}
                           name:
                             type: string
                           statusCode:
@@ -1578,8 +1570,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1675,8 +1666,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1774,8 +1764,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1882,8 +1871,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -1990,8 +1978,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2102,8 +2089,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2210,8 +2196,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2355,8 +2340,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -2479,8 +2463,7 @@ paths:
                         maxItems: 1000
                         type: array
                       assets:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                       categories:
                         items:
@@ -2524,8 +2507,7 @@ paths:
                                 type: string
                       data_streams:
                         items:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                         maxItems: 1000
                         type: array
@@ -2574,8 +2556,7 @@ paths:
                       download:
                         type: string
                       elasticsearch:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                       format_version:
                         type: string
@@ -2792,8 +2773,9 @@ paths:
                             maxItems: 100
                             type: array
                           previous_version:
-                            nullable: true
-                            type: string
+                            type:
+                            - string
+                            - 'null'
                           rolled_back:
                             type: boolean
                           type:
@@ -2801,8 +2783,9 @@ paths:
                           updated_at:
                             type: string
                           verification_key_id:
-                            nullable: true
-                            type: string
+                            type:
+                            - string
+                            - 'null'
                           verification_status:
                             enum:
                             - unverified
@@ -2850,8 +2833,7 @@ paths:
                         type: string
                       policy_templates:
                         items:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                         maxItems: 1000
                         type: array
@@ -2962,8 +2944,7 @@ paths:
                         type: array
                       vars:
                         items:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                         maxItems: 1000
                         type: array
@@ -3000,8 +2981,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -3083,8 +3063,9 @@ paths:
                   ignore_constraints: false
             schema:
               additionalProperties: false
-              nullable: true
-              type: object
+              type:
+              - object
+              - 'null'
               properties:
                 force:
                   default: false
@@ -3198,8 +3179,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -3312,8 +3292,7 @@ paths:
                         maxItems: 1000
                         type: array
                       assets:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                       categories:
                         items:
@@ -3357,8 +3336,7 @@ paths:
                                 type: string
                       data_streams:
                         items:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                         maxItems: 1000
                         type: array
@@ -3407,8 +3385,7 @@ paths:
                       download:
                         type: string
                       elasticsearch:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                       format_version:
                         type: string
@@ -3625,8 +3602,9 @@ paths:
                             maxItems: 100
                             type: array
                           previous_version:
-                            nullable: true
-                            type: string
+                            type:
+                            - string
+                            - 'null'
                           rolled_back:
                             type: boolean
                           type:
@@ -3634,8 +3612,9 @@ paths:
                           updated_at:
                             type: string
                           verification_key_id:
-                            nullable: true
-                            type: string
+                            type:
+                            - string
+                            - 'null'
                           verification_status:
                             enum:
                             - unverified
@@ -3683,8 +3662,7 @@ paths:
                         type: string
                       policy_templates:
                         items:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                         maxItems: 1000
                         type: array
@@ -3795,8 +3773,7 @@ paths:
                         type: array
                       vars:
                         items:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                         maxItems: 1000
                         type: array
@@ -3825,8 +3802,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -3976,8 +3952,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -4106,8 +4081,7 @@ paths:
                         maxItems: 1000
                         type: array
                       assets:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                       categories:
                         items:
@@ -4151,8 +4125,7 @@ paths:
                                 type: string
                       data_streams:
                         items:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                         maxItems: 1000
                         type: array
@@ -4201,8 +4174,7 @@ paths:
                       download:
                         type: string
                       elasticsearch:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                       format_version:
                         type: string
@@ -4419,8 +4391,9 @@ paths:
                             maxItems: 100
                             type: array
                           previous_version:
-                            nullable: true
-                            type: string
+                            type:
+                            - string
+                            - 'null'
                           rolled_back:
                             type: boolean
                           type:
@@ -4428,8 +4401,9 @@ paths:
                           updated_at:
                             type: string
                           verification_key_id:
-                            nullable: true
-                            type: string
+                            type:
+                            - string
+                            - 'null'
                           verification_status:
                             enum:
                             - unverified
@@ -4477,8 +4451,7 @@ paths:
                         type: string
                       policy_templates:
                         items:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                         maxItems: 1000
                         type: array
@@ -4589,8 +4562,7 @@ paths:
                         type: array
                       vars:
                         items:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                         maxItems: 1000
                         type: array
@@ -4627,8 +4599,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -4716,8 +4687,9 @@ paths:
                   ignore_constraints: false
             schema:
               additionalProperties: false
-              nullable: true
-              type: object
+              type:
+              - object
+              - 'null'
               properties:
                 force:
                   default: false
@@ -4831,8 +4803,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -4951,8 +4922,7 @@ paths:
                         maxItems: 1000
                         type: array
                       assets:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                       categories:
                         items:
@@ -4996,8 +4966,7 @@ paths:
                                 type: string
                       data_streams:
                         items:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                         maxItems: 1000
                         type: array
@@ -5046,8 +5015,7 @@ paths:
                       download:
                         type: string
                       elasticsearch:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         type: object
                       format_version:
                         type: string
@@ -5264,8 +5232,9 @@ paths:
                             maxItems: 100
                             type: array
                           previous_version:
-                            nullable: true
-                            type: string
+                            type:
+                            - string
+                            - 'null'
                           rolled_back:
                             type: boolean
                           type:
@@ -5273,8 +5242,9 @@ paths:
                           updated_at:
                             type: string
                           verification_key_id:
-                            nullable: true
-                            type: string
+                            type:
+                            - string
+                            - 'null'
                           verification_status:
                             enum:
                             - unverified
@@ -5322,8 +5292,7 @@ paths:
                         type: string
                       policy_templates:
                         items:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                         maxItems: 1000
                         type: array
@@ -5434,8 +5403,7 @@ paths:
                         type: array
                       vars:
                         items:
-                          additionalProperties:
-                            nullable: true
+                          additionalProperties: {}
                           type: object
                         maxItems: 1000
                         type: array
@@ -5464,8 +5432,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -5541,8 +5508,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -5635,8 +5601,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -5734,8 +5699,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -5823,8 +5787,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -5884,8 +5847,9 @@ paths:
                 value: {}
             schema:
               additionalProperties: false
-              nullable: true
-              type: object
+              type:
+              - object
+              - 'null'
               properties:
                 force:
                   type: boolean
@@ -5931,8 +5895,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -5993,8 +5956,9 @@ paths:
                 value: {}
             schema:
               additionalProperties: false
-              nullable: true
-              type: object
+              type:
+              - object
+              - 'null'
               properties:
                 force:
                   type: boolean
@@ -6033,8 +5997,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -6135,8 +6098,7 @@ paths:
                   additionalProperties: false
                   type: object
                   properties:
-                    error:
-                      nullable: true
+                    error: {}
                     success:
                       type: boolean
                     transformId:
@@ -6163,8 +6125,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -6262,8 +6223,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -6343,8 +6303,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -6427,8 +6386,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -6599,8 +6557,7 @@ paths:
                       - type: string
                       - type: number
                       - type: boolean
-                      - nullable: true
-                      nullable: true
+                      - {}
                     maxItems: 2
                     type: array
                   total:
@@ -6624,8 +6581,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -6696,8 +6652,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -6789,16 +6744,13 @@ paths:
                   type: object
                   properties:
                     connectors:
-                      additionalProperties:
-                        nullable: true
+                      additionalProperties: {}
                       type: object
                     exporters:
-                      additionalProperties:
-                        nullable: true
+                      additionalProperties: {}
                       type: object
                     extensions:
-                      additionalProperties:
-                        nullable: true
+                      additionalProperties: {}
                       type: object
                     inputs:
                       items:
@@ -6837,12 +6789,10 @@ paths:
                       maxItems: 10000
                       type: array
                     processors:
-                      additionalProperties:
-                        nullable: true
+                      additionalProperties: {}
                       type: object
                     receivers:
-                      additionalProperties:
-                        nullable: true
+                      additionalProperties: {}
                       type: object
                     service:
                       additionalProperties: false
@@ -6893,8 +6843,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -6941,8 +6890,9 @@ paths:
                 type: object
                 properties:
                   id:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                 required:
                 - id
           description: Successful response
@@ -6961,8 +6911,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:

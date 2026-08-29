@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -57,7 +57,7 @@ info:
 
     '
   title: Kibana APIs Actions short url API
-  version: "1.0"
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -264,14 +264,6 @@ paths:
       - content: Kibana
         name: product_name
 components:
-  parameters:
-    Short_URL_APIs_idParam:
-      description: The identifier for the short URL.
-      in: path
-      name: id
-      required: true
-      schema:
-        type: string
   schemas:
     Short_URL_APIs_urlResponse:
       type: object
@@ -307,6 +299,14 @@ components:
 
             '
           type: string
+  parameters:
+    Short_URL_APIs_idParam:
+      description: The identifier for the short URL.
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`

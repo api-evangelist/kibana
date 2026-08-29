@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -57,7 +57,7 @@ info:
 
     '
   title: Kibana APIs Actions APM sourcemaps API
-  version: "1.0"
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -317,73 +317,6 @@ paths:
         name: product_name
 components:
   schemas:
-    APM_UI_base_source_map_object:
-      type: object
-      properties:
-        compressionAlgorithm:
-          description: Compression Algorithm
-          type: string
-        created:
-          description: Created date
-          type: string
-        decodedSha256:
-          description: Decoded SHA-256
-          type: string
-        decodedSize:
-          description: Decoded size
-          type: number
-        encodedSha256:
-          description: Encoded SHA-256
-          type: string
-        encodedSize:
-          description: Encoded size
-          type: number
-        encryptionAlgorithm:
-          description: Encryption Algorithm
-          type: string
-        id:
-          description: Identifier
-          type: string
-        identifier:
-          description: Identifier
-          type: string
-        packageName:
-          description: Package name
-          type: string
-        relative_url:
-          description: Relative URL
-          type: string
-        type:
-          description: Type
-          type: string
-    APM_UI_403_response:
-      type: object
-      properties:
-        error:
-          description: Error type
-          example: Forbidden
-          type: string
-        message:
-          description: Error message
-          type: string
-        statusCode:
-          description: Error status code
-          example: 403
-          type: number
-    APM_UI_401_response:
-      type: object
-      properties:
-        error:
-          description: Error type
-          example: Unauthorized
-          type: string
-        message:
-          description: Error message
-          type: string
-        statusCode:
-          description: Error status code
-          example: 401
-          type: number
     APM_UI_501_response:
       type: object
       properties:
@@ -398,35 +331,6 @@ components:
         statusCode:
           description: Error status code
           example: 501
-          type: number
-    APM_UI_500_response:
-      type: object
-      properties:
-        error:
-          description: Error type
-          example: Internal Server Error
-          type: string
-        message:
-          description: Error message
-          type: string
-        statusCode:
-          description: Error status code
-          example: 500
-          type: number
-    APM_UI_400_response:
-      type: object
-      properties:
-        error:
-          description: Error type
-          example: Not Found
-          type: string
-        message:
-          description: Error message
-          example: Not Found
-          type: string
-        statusCode:
-          description: Error status code
-          example: 400
           type: number
     APM_UI_upload_source_map_object:
       type: object
@@ -453,6 +357,34 @@ components:
       - service_version
       - bundle_filepath
       - sourcemap
+    APM_UI_500_response:
+      type: object
+      properties:
+        error:
+          description: Error type
+          example: Internal Server Error
+          type: string
+        message:
+          description: Error message
+          type: string
+        statusCode:
+          description: Error status code
+          example: 500
+          type: number
+    APM_UI_401_response:
+      type: object
+      properties:
+        error:
+          description: Error type
+          example: Unauthorized
+          type: string
+        message:
+          description: Error message
+          type: string
+        statusCode:
+          description: Error status code
+          example: 401
+          type: number
     APM_UI_source_maps_response:
       type: object
       properties:
@@ -492,6 +424,45 @@ components:
                           type: number
             - $ref: '#/components/schemas/APM_UI_base_source_map_object'
           type: array
+    APM_UI_base_source_map_object:
+      type: object
+      properties:
+        compressionAlgorithm:
+          description: Compression Algorithm
+          type: string
+        created:
+          description: Created date
+          type: string
+        decodedSha256:
+          description: Decoded SHA-256
+          type: string
+        decodedSize:
+          description: Decoded size
+          type: number
+        encodedSha256:
+          description: Encoded SHA-256
+          type: string
+        encodedSize:
+          description: Encoded size
+          type: number
+        encryptionAlgorithm:
+          description: Encryption Algorithm
+          type: string
+        id:
+          description: Identifier
+          type: string
+        identifier:
+          description: Identifier
+          type: string
+        packageName:
+          description: Package name
+          type: string
+        relative_url:
+          description: Relative URL
+          type: string
+        type:
+          description: Type
+          type: string
     APM_UI_upload_source_maps_response:
       allOf:
       - type: object
@@ -499,29 +470,55 @@ components:
           body:
             type: string
       - $ref: '#/components/schemas/APM_UI_base_source_map_object'
-  parameters:
-    APM_UI_kbn_xsrf:
-      description: A required header to protect against CSRF attacks
-      in: header
-      name: kbn-xsrf
-      required: true
-      schema:
-        example: 'true'
-        type: string
-    APM_UI_elastic_api_version:
-      description: The version of the API to use
-      in: header
-      name: elastic-api-version
-      required: true
-      schema:
-        default: '2023-10-31'
-        enum:
-        - '2023-10-31'
-        type: string
+    APM_UI_403_response:
+      type: object
+      properties:
+        error:
+          description: Error type
+          example: Forbidden
+          type: string
+        message:
+          description: Error message
+          type: string
+        statusCode:
+          description: Error status code
+          example: 403
+          type: number
+    APM_UI_400_response:
+      type: object
+      properties:
+        error:
+          description: Error type
+          example: Not Found
+          type: string
+        message:
+          description: Error message
+          example: Not Found
+          type: string
+        statusCode:
+          description: Error status code
+          example: 400
+          type: number
   examples:
     APM_UI_source_maps_delete_200_response1:
       description: An example of a successful response from `DELETE /api/apm/sourcemaps/{id}`. The response body is intentionally empty.
       value: {}
+    APM_UI_source_maps_upload_200_response1:
+      description: A successful response from `POST /api/apm/sourcemaps`.
+      value:
+        body: eJyFkL1OwzAUhd/Fc+MbYMuCEBIbHRjKgBgc96R16tiWr1OQqr47NwqJxEK3q/PzWccXxchnZ7E1A1SjuhjVZtF2yOxiEPlO17oWox3D3uPFeSRTjmJQARfCPeiAgGx8NTKsYdAc1T3rwaSJGcds8Sp3c1HnhfywUZ3QhMTFFGepZxqMC9oex3CS9tpk1XyozgOlmoVKuJX1DqEQZ0su7PGtLU+V/3JPKc3cL7TJ2FNDRPov4bFta3MDM4f7W69lpJjLO9qdK8bzVPhcJz3HUCQ4LbO/p5hCSC4cZPByrp/wFqOklbpefwAhzpqI
+        compressionAlgorithm: zlib
+        created: '2021-07-09T20:47:44.812Z'
+        decodedSha256: 644fd5a997d1ddd90ee131ba18e2b3d03931d89dd1fe4599143c0b3264b3e456
+        decodedSize: 441
+        encodedSha256: 024c72749c3e3dd411b103f7040ae62633558608f480bce4b108cf5b2275bd24
+        encodedSize: 237
+        encryptionAlgorithm: none
+        id: apm:foo-1.0.0-644fd5a997d1ddd90ee131ba18e2b3d03931d89dd1fe4599143c0b3264b3e456
+        identifier: foo-1.0.0
+        packageName: apm
+        relative_url: /api/fleet/artifacts/foo-1.0.0/644fd5a997d1ddd90ee131ba18e2b3d03931d89dd1fe4599143c0b3264b3e456
+        type: sourcemap
     APM_UI_source_maps_get_200_response1:
       description: A successful response from `GET /api/apm/sourcemaps`.
       value:
@@ -555,22 +552,25 @@ components:
           packageName: apm
           relative_url: /api/fleet/artifacts/foo-1.0.0/644fd5a997d1ddd90ee131ba18e2b3d03931d89dd1fe4599143c0b3264b3e456
           type: sourcemap
-    APM_UI_source_maps_upload_200_response1:
-      description: A successful response from `POST /api/apm/sourcemaps`.
-      value:
-        body: eJyFkL1OwzAUhd/Fc+MbYMuCEBIbHRjKgBgc96R16tiWr1OQqr47NwqJxEK3q/PzWccXxchnZ7E1A1SjuhjVZtF2yOxiEPlO17oWox3D3uPFeSRTjmJQARfCPeiAgGx8NTKsYdAc1T3rwaSJGcds8Sp3c1HnhfywUZ3QhMTFFGepZxqMC9oex3CS9tpk1XyozgOlmoVKuJX1DqEQZ0su7PGtLU+V/3JPKc3cL7TJ2FNDRPov4bFta3MDM4f7W69lpJjLO9qdK8bzVPhcJz3HUCQ4LbO/p5hCSC4cZPByrp/wFqOklbpefwAhzpqI
-        compressionAlgorithm: zlib
-        created: '2021-07-09T20:47:44.812Z'
-        decodedSha256: 644fd5a997d1ddd90ee131ba18e2b3d03931d89dd1fe4599143c0b3264b3e456
-        decodedSize: 441
-        encodedSha256: 024c72749c3e3dd411b103f7040ae62633558608f480bce4b108cf5b2275bd24
-        encodedSize: 237
-        encryptionAlgorithm: none
-        id: apm:foo-1.0.0-644fd5a997d1ddd90ee131ba18e2b3d03931d89dd1fe4599143c0b3264b3e456
-        identifier: foo-1.0.0
-        packageName: apm
-        relative_url: /api/fleet/artifacts/foo-1.0.0/644fd5a997d1ddd90ee131ba18e2b3d03931d89dd1fe4599143c0b3264b3e456
-        type: sourcemap
+  parameters:
+    APM_UI_elastic_api_version:
+      description: The version of the API to use
+      in: header
+      name: elastic-api-version
+      required: true
+      schema:
+        default: '2023-10-31'
+        enum:
+        - '2023-10-31'
+        type: string
+    APM_UI_kbn_xsrf:
+      description: A required header to protect against CSRF attacks
+      in: header
+      name: kbn-xsrf
+      required: true
+      schema:
+        example: 'true'
+        type: string
   securitySchemes:
     apiKeyAuth:
       description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -57,7 +57,7 @@ info:
 
     '
   title: Kibana APIs Actions Security API
-  version: "1.0"
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -102,23 +102,6 @@ paths:
         name: product_name
 components:
   schemas:
-    Kibana_HTTP_APIs_security_query_roles_body:
-      additionalProperties: false
-      description: The request body for querying roles.
-      properties:
-        filters:
-          $ref: '#/components/schemas/Kibana_HTTP_APIs_security_query_roles_filters'
-        from:
-          type: number
-        query:
-          type: string
-        size:
-          type: number
-        sort:
-          $ref: '#/components/schemas/Kibana_HTTP_APIs_security_query_roles_sort'
-      title: security_query_roles_body
-      type: object
-      required: []
     Kibana_HTTP_APIs_security_query_roles_sort:
       additionalProperties: false
       description: The sort criteria for the query.
@@ -145,6 +128,23 @@ components:
       title: security_query_roles_filters
       type: object
       x-oas-optional: true
+    Kibana_HTTP_APIs_security_query_roles_body:
+      additionalProperties: false
+      description: The request body for querying roles.
+      properties:
+        filters:
+          $ref: '#/components/schemas/Kibana_HTTP_APIs_security_query_roles_filters'
+        from:
+          type: number
+        query:
+          type: string
+        size:
+          type: number
+        sort:
+          $ref: '#/components/schemas/Kibana_HTTP_APIs_security_query_roles_sort'
+      title: security_query_roles_body
+      type: object
+      required: []
   securitySchemes:
     apiKeyAuth:
       description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`

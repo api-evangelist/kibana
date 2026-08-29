@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -57,7 +57,7 @@ info:
 
     '
   title: Kibana APIs Actions agent builder API
-  version: "1.0"
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -516,8 +516,7 @@ paths:
                   type: string
                 search_after:
                   description: Cursor for pagination. Pass the search_after value from the previous response.
-                  items:
-                    nullable: true
+                  items: {}
                   maxItems: 10000
                   type: array
                 size:
@@ -1183,7 +1182,6 @@ paths:
               properties:
                 data:
                   description: The attachment data/content. Required unless origin is provided.
-                  nullable: true
                 description:
                   description: Human-readable description of the attachment.
                   type: string
@@ -1421,7 +1419,6 @@ paths:
               properties:
                 data:
                   description: The new attachment data/content.
-                  nullable: true
                 description:
                   description: Optional new description for the attachment.
                   type: string
@@ -1720,8 +1717,7 @@ paths:
                     type: object
                     properties:
                       data:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         description: Payload of the attachment. Required unless `origin` is provided (content is resolved once at send time).
                         type: object
                       hidden:
@@ -1753,7 +1749,6 @@ paths:
                         type: string
                       schema:
                         description: JSON Schema defining the tool parameters (JsonSchema7Type).
-                        nullable: true
                     required:
                     - id
                     - description
@@ -1790,15 +1785,17 @@ paths:
                       type: array
                 connector_id:
                   description: Optional connector ID for the agent to use for model routing. Mutually exclusive with `inference_id`; omit or use only one.
-                  nullable: true
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                 conversation_id:
                   description: Optional existing conversation ID to continue a previous conversation.
                   type: string
                 inference_id:
                   description: Optional inference endpoint ID for model routing (public alias for the same internal identifier as `connector_id`). Mutually exclusive with `connector_id`.
-                  nullable: true
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                 input:
                   description: The user input message to send to the agent.
                   type: string
@@ -1905,8 +1902,7 @@ paths:
                     type: object
                     properties:
                       data:
-                        additionalProperties:
-                          nullable: true
+                        additionalProperties: {}
                         description: Payload of the attachment. Required unless `origin` is provided (content is resolved once at send time).
                         type: object
                       hidden:
@@ -1938,7 +1934,6 @@ paths:
                         type: string
                       schema:
                         description: JSON Schema defining the tool parameters (JsonSchema7Type).
-                        nullable: true
                     required:
                     - id
                     - description
@@ -1975,15 +1970,17 @@ paths:
                       type: array
                 connector_id:
                   description: Optional connector ID for the agent to use for model routing. Mutually exclusive with `inference_id`; omit or use only one.
-                  nullable: true
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                 conversation_id:
                   description: Optional existing conversation ID to continue a previous conversation.
                   type: string
                 inference_id:
                   description: Optional inference endpoint ID for model routing (public alias for the same internal identifier as `connector_id`). Mutually exclusive with `connector_id`.
-                  nullable: true
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                 input:
                   description: The user input message to send to the agent.
                   type: string
@@ -2892,8 +2889,7 @@ paths:
               type: object
               properties:
                 configuration:
-                  additionalProperties:
-                    nullable: true
+                  additionalProperties: {}
                   description: Tool-specific configuration parameters. See examples for details.
                   type: object
                 description:
@@ -3059,8 +3055,7 @@ paths:
                   description: The ID of the tool to execute.
                   type: string
                 tool_params:
-                  additionalProperties:
-                    nullable: true
+                  additionalProperties: {}
                   description: Parameters to pass to the tool execution. See examples for details
                   type: object
               required:
@@ -3454,8 +3449,7 @@ paths:
               type: object
               properties:
                 configuration:
-                  additionalProperties:
-                    nullable: true
+                  additionalProperties: {}
                   description: Updated tool-specific configuration parameters. See examples for details.
                   type: object
                 description:

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -56,8 +56,8 @@ info:
     This documentation contains work-in-progress information for future Elastic Stack releases.
 
     '
-  title: Kibana APIs Actions Security Entity Analytics API API
-  version: "1.0"
+  title: Kibana APIs Actions Security Entity Analytics API
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -2961,233 +2961,47 @@ paths:
         name: product_name
 components:
   schemas:
-    Security_Entity_Analytics_API_HostEntity:
-      additionalProperties: false
-      description: An entity record representing a host, stored in the Entity Store latest index.
+    Security_Entity_Analytics_API_RiskScoreInput:
+      description: A generic representation of a document contributing to a Risk Score.
       type: object
       properties:
-        '@timestamp':
-          description: The time the entity record was last updated.
-          format: date-time
+        category:
+          description: The risk category of the risk input document.
+          example: category_1
           type: string
-        asset:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_Asset'
-          additionalProperties: false
-        entity:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityField'
-        event:
-          additionalProperties: false
-          type: object
-          properties:
-            ingested:
-              description: When the event was ingested into Elasticsearch.
-              format: date-time
-              type: string
-        host:
-          additionalProperties: false
-          description: Elastic Common Schema (ECS) host fields collected on the entity.
-          type: object
-          properties:
-            architecture:
-              description: Observed CPU architectures.
-              items:
-                type: string
-              type: array
-            domain:
-              description: Observed host domains.
-              items:
-                type: string
-              type: array
-            entity:
-              $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityField'
-            hostname:
-              description: Observed hostnames.
-              items:
-                type: string
-              type: array
-            id:
-              description: Observed host IDs.
-              items:
-                type: string
-              type: array
-            ip:
-              description: Observed IP addresses.
-              items:
-                type: string
-              type: array
-            mac:
-              description: Observed MAC addresses.
-              items:
-                type: string
-              type: array
-            name:
-              description: Primary host name.
-              type: string
-            os:
-              additionalProperties: false
-              description: Elastic Common Schema (ECS) host.os fields collected on the entity latest index.
-              type: object
-              properties:
-                family:
-                  type: string
-                full:
-                  type: string
-                kernel:
-                  type: string
-                name:
-                  oneOf:
-                  - type: string
-                  - items:
-                      type: string
-                    type: array
-                platform:
-                  type: string
-                type:
-                  oneOf:
-                  - type: string
-                  - items:
-                      type: string
-                    type: array
-                version:
-                  type: string
-            risk:
-              $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityRiskScoreRecord'
-            type:
-              description: Observed host types.
-              items:
-                type: string
-              type: array
-          required:
-          - name
+        contribution_score:
+          format: double
+          type: number
+        description:
+          description: A human-readable description of the risk input document.
+          example: 'Generated from Detection Engine Rule: Malware Prevention Alert'
+          type: string
+        entity_id:
+          description: The EUID of the entity within the graph that generated this alert.
+          type: string
+        id:
+          description: The unique identifier (`_id`) of the original source document
+          example: 91a93376a507e86cfbf282166275b89f9dbdb1f0be6c8103c6ff2909ca8e1a1c
+          type: string
+        index:
+          description: The unique index (`_index`) of the original source document
+          example: .internal.alerts-security.alerts-default-000001
+          type: string
+        risk_score:
+          description: The weighted risk score of the risk input document.
+          format: double
+          maximum: 100
+          minimum: 0
+          type: number
+        timestamp:
+          description: The @timestamp of the risk input document.
+          example: '2017-07-21T17:32:28Z'
+          type: string
       required:
-      - entity
-    Security_Entity_Analytics_API_EntityContainer:
-      description: A wrapper that pairs an entity type with the entity record to upsert.
-      type: object
-      properties:
-        record:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_Entity'
-          description: The entity record to create or update.
-        type:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityType'
-          description: The entity type of the record.
-      required:
-      - type
-      - record
-    Security_Entity_Analytics_API_AssetCriticalityRecordEcsParts:
-      type: object
-      properties:
-        asset:
-          type: object
-          properties:
-            criticality:
-              $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityLevel'
-          required:
-          - asset
-        entity:
-          type: object
-          properties:
-            asset:
-              type: object
-              properties:
-                criticality:
-                  $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityLevel'
-              required:
-              - criticality
-            id:
-              type: string
-          required:
-          - id
-        host:
-          type: object
-          properties:
-            asset:
-              type: object
-              properties:
-                criticality:
-                  $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityLevel'
-              required:
-              - criticality
-            name:
-              type: string
-          required:
-          - name
-        service:
-          type: object
-          properties:
-            asset:
-              type: object
-              properties:
-                criticality:
-                  $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityLevel'
-              required:
-              - criticality
-            name:
-              type: string
-          required:
-          - name
-        user:
-          type: object
-          properties:
-            asset:
-              type: object
-              properties:
-                criticality:
-                  $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityLevel'
-              required:
-              - criticality
-            name:
-              type: string
-          required:
-          - name
-      required:
-      - asset
-    Security_Entity_Analytics_API_CreateAssetCriticalityRecord:
-      allOf:
-      - $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityRecordIdParts'
-      - type: object
-        properties:
-          criticality_level:
-            $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityLevel'
-        required:
-        - criticality_level
-    Security_Entity_Analytics_API_Interval:
-      description: Interval in which enrich policy runs. For example, `"1h"` means the rule runs every hour. Must be less than or equal to half the duration of the lookback period,
-      example: 1h
-      pattern: ^[1-9]\d*[smh]$
-      type: string
-    Security_Entity_Analytics_API_EntitiesContainer:
-      description: A collection of entities to upsert in bulk.
-      type: object
-      properties:
-        entities:
-          description: The entities to create or update.
-          items:
-            $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityContainer'
-          type: array
-      required:
-      - entities
-    Security_Entity_Analytics_API_ConfigureRiskEngineSavedObjectErrorResponse:
-      type: object
-      properties:
-        errors:
-          items:
-            type: object
-            properties:
-              error:
-                type: string
-              seq:
-                type: integer
-            required:
-            - seq
-            - error
-          type: array
-        risk_engine_saved_object_configured:
-          example: false
-          type: boolean
-      required:
-      - risk_engine_saved_object_configured
-      - errors
+      - id
+      - index
+      - description
+      - category
     Security_Entity_Analytics_API_PrivilegeMonitoringEngineStatus:
       description: The status of the Privilege Monitoring Engine
       enum:
@@ -3196,196 +3010,22 @@ components:
       - disabled
       - not_installed
       type: string
-    Security_Entity_Analytics_API_WatchlistObject:
-      example:
-        createdAt: '2026-01-28T12:00:00.000Z'
-        description: High risk vendor watchlist
-        id: watchlist-123
-        managed: false
-        name: High Risk Vendors
-        riskModifier: 1.5
-        updatedAt: '2026-02-18T12:00:00.000Z'
+    Security_Entity_Analytics_API_PrivmonUserCsvUploadStats:
       type: object
       properties:
-        createdAt:
-          description: Timestamp indicating when the watchlist was created
-          format: date-time
-          type: string
-        description:
-          description: Description of the watchlist
-          type: string
-        entityCount:
-          description: Number of entities in the watchlist
-          type: number
-        entitySourceIds:
-          description: List of entity source IDs associated with the watchlist
-          items:
-            type: string
-          type: array
-        id:
-          description: The unique ID of the watchlist
-          type: string
-        managed:
-          description: Indicates if the watchlist is managed by the system
-          type: boolean
-        name:
-          description: The name of the watchlist
-          type: string
-        riskModifier:
-          description: Risk score modifier associated with the watchlist
-          type: number
-        updatedAt:
-          description: Timestamp indicating when the watchlist was last updated
-          format: date-time
-          type: string
-      required:
-      - name
-      - riskModifier
-      - managed
-    Security_Entity_Analytics_API_AssetCriticalityBulkUploadStats:
-      type: object
-      properties:
-        failed:
+        failedOperations:
           type: integer
-        successful:
+        successfulOperations:
           type: integer
-        total:
+        totalOperations:
+          type: integer
+        uploaded:
           type: integer
       required:
-      - successful
-      - failed
-      - total
-    Security_Entity_Analytics_API_TransformStatsMetadata:
-      description: Statistics from the underlying Elasticsearch transform.
-      type: object
-      properties:
-        delete_time_in_ms:
-          description: Total time spent deleting documents, in milliseconds.
-          type: integer
-        documents_deleted:
-          description: Total number of documents deleted from the destination index.
-          type: integer
-        documents_indexed:
-          description: Total number of documents written to the destination index.
-          type: integer
-        documents_processed:
-          description: Total number of source documents processed.
-          type: integer
-        exponential_avg_checkpoint_duration_ms:
-          description: Exponential moving average of checkpoint duration, in milliseconds.
-          type: integer
-        exponential_avg_documents_indexed:
-          description: Exponential moving average of documents indexed per checkpoint.
-          type: integer
-        exponential_avg_documents_processed:
-          description: Exponential moving average of documents processed per checkpoint.
-          type: integer
-        index_failures:
-          description: Total number of failed index operations.
-          type: integer
-        index_time_in_ms:
-          description: Total time spent indexing documents, in milliseconds.
-          type: integer
-        index_total:
-          description: Total number of index operations.
-          type: integer
-        pages_processed:
-          description: Number of composite aggregation pages processed.
-          type: integer
-        processing_time_in_ms:
-          description: Total time spent processing results, in milliseconds.
-          type: integer
-        processing_total:
-          description: Total number of processing operations.
-          type: integer
-        search_failures:
-          description: Total number of failed search operations.
-          type: integer
-        search_time_in_ms:
-          description: Total time spent on search queries, in milliseconds.
-          type: integer
-        search_total:
-          description: Total number of search operations.
-          type: integer
-        trigger_count:
-          description: Number of times the transform has been triggered.
-          type: integer
-      required:
-      - pages_processed
-      - documents_processed
-      - documents_indexed
-      - trigger_count
-      - index_time_in_ms
-      - index_total
-      - index_failures
-      - search_time_in_ms
-      - search_total
-      - search_failures
-      - processing_time_in_ms
-      - processing_total
-      - exponential_avg_checkpoint_duration_ms
-      - exponential_avg_documents_indexed
-      - exponential_avg_documents_processed
-    Security_Entity_Analytics_API_EngineComponentResource:
-      description: The type of Elasticsearch or Kibana resource backing an engine component.
-      enum:
-      - entity_engine
-      - entity_definition
-      - index
-      - data_stream
-      - component_template
-      - index_template
-      - ingest_pipeline
-      - enrich_policy
-      - task
-      - transform
-      - ilm_policy
-      type: string
-    Security_Entity_Analytics_API_InspectQuery:
-      description: Debug information about the Elasticsearch query executed.
-      type: object
-      properties:
-        dsl:
-          description: Elasticsearch query DSL that was executed.
-          items:
-            type: string
-          type: array
-        response:
-          description: Raw Elasticsearch responses.
-          items:
-            type: string
-          type: array
-      required:
-      - dsl
-      - response
-    Security_Entity_Analytics_API_RiskEngineScheduleNowErrorResponse:
-      type: object
-      properties:
-        full_error:
-          type: string
-        message:
-          type: string
-      required:
-      - message
-      - full_error
-    Security_Entity_Analytics_API_EngineDataviewUpdateResult:
-      description: The result of applying data view index changes to a single engine.
-      type: object
-      properties:
-        changes:
-          description: The changes applied to the engine.
-          type: object
-          properties:
-            indexPatterns:
-              description: The updated list of index patterns now used by the engine.
-              items:
-                type: string
-              type: array
-        type:
-          description: The entity type of the engine that was updated.
-          type: string
-      required:
-      - type
+      - successfulOperations
+      - uploaded
+      - failedOperations
+      - totalOperations
     Security_Entity_Analytics_API_ServiceEntity:
       additionalProperties: false
       description: An entity record representing a service, stored in the Entity Store latest index.
@@ -3432,43 +3072,90 @@ components:
       - service
       - generic
       type: string
-    Security_Entity_Analytics_API_AssetCriticalityLevelsForBulkUpload:
-      description: The criticality level of the asset for bulk upload. The value `unassigned` is used to indicate that the criticality level is not assigned and is only used for bulk upload.
-      enum:
-      - low_impact
-      - medium_impact
-      - high_impact
-      - extreme_impact
-      - unassigned
-      type: string
-    Security_Entity_Analytics_API_RiskEngineScheduleNowResponse:
+    Security_Entity_Analytics_API_UserName:
       type: object
       properties:
-        success:
+        entity_analytics_monitoring:
+          description: Entity analytics monitoring configuration for the user
+          type: object
+          properties:
+            labels:
+              description: Array of labels associated with the user
+              items:
+                type: object
+                properties:
+                  field:
+                    description: The field name for the label
+                    type: string
+                  source:
+                    description: The source where this label was created (api, csv, or index_sync)
+                    enum:
+                    - api
+                    - csv
+                    - index_sync
+                    type: string
+                  value:
+                    description: The value of the label
+                    type: string
+              type: array
+        user:
+          type: object
+          properties:
+            name:
+              description: The name of the user.
+              type: string
+    Security_Entity_Analytics_API_UpdateableMonitoringEntitySourceProperties:
+      type: object
+      properties:
+        enabled:
           type: boolean
-    Security_Entity_Analytics_API_AssetCriticalityLevel:
-      description: The criticality level of the asset.
-      enum:
-      - low_impact
-      - medium_impact
-      - high_impact
-      - extreme_impact
-      type: string
-    Security_Entity_Analytics_API_PrivmonUserCsvUploadErrorItem:
+        filter:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_Filter'
+        identifierField:
+          description: Field used to query the entity store for index-type sources
+          type: string
+        indexPattern:
+          type: string
+        integrationName:
+          type: string
+        integrations:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_Integrations'
+        matchers:
+          items:
+            $ref: '#/components/schemas/Security_Entity_Analytics_API_Matcher'
+          type: array
+        name:
+          type: string
+        queryRule:
+          description: KQL query used to filter data from the provided index patterns
+          type: string
+        range:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_DateRange'
+        type:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_EntitySourceType'
+    Security_Entity_Analytics_API_GenericEntity:
+      additionalProperties: false
+      description: A generic entity record. Maps only the `entity` and `asset` namespaces. Add additional field mappings here as needed.
       type: object
       properties:
-        index:
-          nullable: true
-          type: integer
-        message:
+        '@timestamp':
+          description: The time the entity record was last updated.
+          format: date-time
           type: string
-        username:
-          nullable: true
-          type: string
+        asset:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_Asset'
+          additionalProperties: false
+        entity:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityField'
       required:
-      - message
-      - index
-      - username
+      - entity
+    Security_Entity_Analytics_API_MonitoringEntitySourceProperties:
+      allOf:
+      - $ref: '#/components/schemas/Security_Entity_Analytics_API_UpdateableMonitoringEntitySourceProperties'
+      - type: object
+        properties:
+          managed:
+            type: boolean
     Security_Entity_Analytics_API_IdField:
       enum:
       - host.name
@@ -3476,6 +3163,180 @@ components:
       - service.name
       - entity.id
       type: string
+    Security_Entity_Analytics_API_EngineStatus:
+      description: The current operational status of an entity engine.
+      enum:
+      - installing
+      - started
+      - stopped
+      - updating
+      - error
+      type: string
+    Security_Entity_Analytics_API_Asset:
+      additionalProperties: false
+      description: Asset metadata associated with the entity.
+      type: object
+      properties:
+        business_unit:
+          description: Business unit the asset belongs to.
+          type: string
+        criticality:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityLevel'
+          description: The criticality level assigned to this asset.
+        environment:
+          description: Deployment environment (for example, production, staging).
+          type: string
+        id:
+          description: Unique identifier for the asset.
+          type: string
+        model:
+          description: Model name or number.
+          type: string
+        name:
+          description: Human-readable asset name.
+          type: string
+        owner:
+          description: The owner of the asset.
+          type: string
+        serial_number:
+          description: Serial number of the asset.
+          type: string
+        vendor:
+          description: Vendor or manufacturer.
+          type: string
+    Security_Entity_Analytics_API_WatchlistEntityAssignResponseItem:
+      example:
+        euid: user:john.doe
+        status: success
+      type: object
+      properties:
+        error:
+          description: Error message if the entity failed to process
+          example: Invalid entity type
+          type: string
+        euid:
+          description: The EUID of the entity
+          example: user:john.doe
+          type: string
+        status:
+          enum:
+          - success
+          - failure
+          - not_found
+          example: success
+          type: string
+      required:
+      - euid
+      - status
+    Security_Entity_Analytics_API_MonitoredUserUpdateDoc:
+      type: object
+      properties:
+        entity_analytics_monitoring:
+          type: object
+          properties:
+            labels:
+              items:
+                $ref: '#/components/schemas/Security_Entity_Analytics_API_MonitoringLabel'
+              type: array
+        id:
+          type: string
+        labels:
+          type: object
+          properties:
+            source_ids:
+              items:
+                type: string
+              type: array
+            source_integrations:
+              items:
+                type: string
+              type: array
+            sources:
+              items:
+                enum:
+                - csv
+                - index_sync
+                - api
+              type: array
+        user:
+          type: object
+          properties:
+            is_privileged:
+              description: Indicates if the user is privileged.
+              type: boolean
+            name:
+              type: string
+    Security_Entity_Analytics_API_RiskEngineScheduleNowErrorResponse:
+      type: object
+      properties:
+        full_error:
+          type: string
+        message:
+          type: string
+      required:
+      - message
+      - full_error
+    Security_Entity_Analytics_API_WatchlistEntityUnassignResponseItem:
+      example:
+        euid: user:john.doe
+        status: success
+      type: object
+      properties:
+        error:
+          description: Error message if the entity failed to process
+          example: Invalid entity type
+          type: string
+        euid:
+          description: The EUID of the entity
+          example: user:john.doe
+          type: string
+        status:
+          enum:
+          - success
+          - failure
+          - not_found
+          example: success
+          type: string
+      required:
+      - euid
+      - status
+    Security_Entity_Analytics_API_CreateAssetCriticalityRecord:
+      allOf:
+      - $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityRecordIdParts'
+      - type: object
+        properties:
+          criticality_level:
+            $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityLevel'
+        required:
+        - criticality_level
+    Security_Entity_Analytics_API_Integrations:
+      type: object
+      properties:
+        syncData:
+          description: integrations latest full sync and update syncData
+          type: object
+          properties:
+            lastFullSync:
+              description: Timestamp of the last full sync from integrations
+              format: date-time
+              type: string
+            lastUpdateProcessed:
+              description: Timestamp of the last update processed from integrations
+              format: date-time
+              type: string
+        syncMarkerIndex:
+          description: Index to read latest sync markers from
+          type: string
+    Security_Entity_Analytics_API_EngineMetadata:
+      additionalProperties: false
+      description: Internal metadata attached to an entity by the engine that produced it.
+      type: object
+      properties:
+        Type:
+          description: The engine type that produced this entity record.
+          type: string
+      required:
+      - Type
     Security_Entity_Analytics_API_EngineDescriptor:
       description: Describes a single entity engine, including its configuration and current status.
       type: object
@@ -3545,63 +3406,131 @@ components:
       - indexPattern
       - status
       - fieldHistoryLength
-    Security_Entity_Analytics_API_EngineComponentStatus:
-      description: Status of an individual Elasticsearch or Kibana resource backing an engine.
+    Security_Entity_Analytics_API_EntityAnalyticsPrivileges:
       type: object
       properties:
-        errors:
-          description: Errors reported by this component, if any.
-          items:
-            type: object
-            properties:
-              message:
-                description: Detailed error message.
-                type: string
-              title:
-                description: Short error title.
-                type: string
-          type: array
-        health:
-          description: The health status of the component.
-          enum:
-          - green
-          - yellow
-          - red
-          - unavailable
-          - unknown
-          type: string
-        id:
-          description: Unique identifier for the component.
-          type: string
-        installed:
-          description: Whether the component is currently installed.
+        has_all_required:
           type: boolean
-        metadata:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_TransformStatsMetadata'
-        resource:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_EngineComponentResource'
+        has_read_permissions:
+          type: boolean
+        has_write_permissions:
+          type: boolean
+        privileges:
+          type: object
+          properties:
+            elasticsearch:
+              type: object
+              properties:
+                cluster:
+                  additionalProperties:
+                    type: boolean
+                  type: object
+                index:
+                  additionalProperties:
+                    additionalProperties:
+                      type: boolean
+                    type: object
+                  type: object
+            kibana:
+              additionalProperties:
+                type: boolean
+              type: object
+          required:
+          - elasticsearch
       required:
-      - id
-      - installed
-      - resource
-    Security_Entity_Analytics_API_EntitySourceType:
-      enum:
-      - index
-      - entity_analytics_integration
-      - store
-      type: string
-    Security_Entity_Analytics_API_TaskManagerUnavailableResponse:
-      description: Task manager is unavailable
+      - has_all_required
+      - privileges
+    Security_Entity_Analytics_API_UserEntity:
+      additionalProperties: false
+      description: An entity record representing a user, stored in the Entity Store latest index.
       type: object
       properties:
-        message:
+        '@timestamp':
+          description: The time the entity record was last updated.
+          format: date-time
           type: string
-        status_code:
-          minimum: 400
-          type: integer
+        asset:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_Asset'
+          additionalProperties: false
+        entity:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityField'
+        event:
+          additionalProperties: false
+          type: object
+          properties:
+            ingested:
+              description: When the event was ingested into Elasticsearch.
+              format: date-time
+              type: string
+        user:
+          additionalProperties: false
+          description: Elastic Common Schema (ECS) user fields collected on the entity.
+          type: object
+          properties:
+            domain:
+              description: Observed user domains.
+              items:
+                type: string
+              type: array
+            email:
+              description: Observed email addresses.
+              items:
+                type: string
+              type: array
+            full_name:
+              description: Observed full names of the user.
+              items:
+                type: string
+              type: array
+            hash:
+              description: Observed user hashes.
+              items:
+                type: string
+              type: array
+            id:
+              description: Observed user IDs.
+              items:
+                type: string
+              type: array
+            name:
+              description: Primary user name.
+              type: string
+            risk:
+              $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityRiskScoreRecord'
+              additionalProperties: false
+            roles:
+              description: Observed roles assigned to the user.
+              items:
+                type: string
+              type: array
+          required:
+          - name
       required:
-      - status_code
-      - message
+      - entity
+    Security_Entity_Analytics_API_Filter:
+      type: object
+      properties:
+        kuery:
+          oneOf:
+          - type: string
+          - type: object
+    Security_Entity_Analytics_API_InspectQuery:
+      description: Debug information about the Elasticsearch query executed.
+      type: object
+      properties:
+        dsl:
+          description: Elasticsearch query DSL that was executed.
+          items:
+            type: string
+          type: array
+        response:
+          description: Raw Elasticsearch responses.
+          items:
+            type: string
+          type: array
+      required:
+      - dsl
+      - response
     Security_Entity_Analytics_API_EntityField:
       additionalProperties: false
       description: Core entity fields shared across all entity types. The `entity` namespace is a root-level field in the Entity Store latest index.
@@ -3751,27 +3680,11 @@ components:
           type: string
       required:
       - id
-    Security_Entity_Analytics_API_CleanUpRiskEngineErrorResponse:
-      type: object
-      properties:
-        cleanup_successful:
-          example: false
-          type: boolean
-        errors:
-          items:
-            type: object
-            properties:
-              error:
-                type: string
-              seq:
-                type: integer
-            required:
-            - seq
-            - error
-          type: array
-      required:
-      - cleanup_successful
-      - errors
+    Security_Entity_Analytics_API_Interval:
+      description: Interval in which enrich policy runs. For example, `"1h"` means the rule runs every hour. Must be less than or equal to half the duration of the lookback period,
+      example: 1h
+      pattern: ^[1-9]\d*[smh]$
+      type: string
     Security_Entity_Analytics_API_AssetCriticalityBulkUploadErrorItem:
       type: object
       properties:
@@ -3782,286 +3695,91 @@ components:
       required:
       - message
       - index
-    Security_Entity_Analytics_API_StoreStatus:
-      description: The overall operational status of the Entity Store.
-      enum:
-      - not_installed
-      - installing
-      - running
-      - stopped
-      - error
-      type: string
-    Security_Entity_Analytics_API_AssetCriticalityRecordIdParts:
+    Security_Entity_Analytics_API_RiskEngineScheduleNowResponse:
       type: object
       properties:
-        id_field:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_IdField'
-          description: The field representing the ID.
-          example: host.name
-        id_value:
-          description: The ID value of the asset.
-          type: string
-      required:
-      - id_value
-      - id_field
-    Security_Entity_Analytics_API_UserEntity:
-      additionalProperties: false
-      description: An entity record representing a user, stored in the Entity Store latest index.
-      type: object
-      properties:
-        '@timestamp':
-          description: The time the entity record was last updated.
-          format: date-time
-          type: string
-        asset:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_Asset'
-          additionalProperties: false
-        entity:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityField'
-        event:
-          additionalProperties: false
-          type: object
-          properties:
-            ingested:
-              description: When the event was ingested into Elasticsearch.
-              format: date-time
-              type: string
-        user:
-          additionalProperties: false
-          description: Elastic Common Schema (ECS) user fields collected on the entity.
-          type: object
-          properties:
-            domain:
-              description: Observed user domains.
-              items:
-                type: string
-              type: array
-            email:
-              description: Observed email addresses.
-              items:
-                type: string
-              type: array
-            full_name:
-              description: Observed full names of the user.
-              items:
-                type: string
-              type: array
-            hash:
-              description: Observed user hashes.
-              items:
-                type: string
-              type: array
-            id:
-              description: Observed user IDs.
-              items:
-                type: string
-              type: array
-            name:
-              description: Primary user name.
-              type: string
-            risk:
-              $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityRiskScoreRecord'
-              additionalProperties: false
-            roles:
-              description: Observed roles assigned to the user.
-              items:
-                type: string
-              type: array
-          required:
-          - name
-      required:
-      - entity
-    Security_Entity_Analytics_API_WatchlistEntityAssignResponseItem:
-      example:
-        euid: user:john.doe
-        status: success
-      type: object
-      properties:
-        error:
-          description: Error message if the entity failed to process
-          example: Invalid entity type
-          type: string
-        euid:
-          description: The EUID of the entity
-          example: user:john.doe
-          type: string
-        status:
-          enum:
-          - success
-          - failure
-          - not_found
-          example: success
-          type: string
-      required:
-      - euid
-      - status
-    Security_Entity_Analytics_API_EngineStatus:
-      description: The current operational status of an entity engine.
-      enum:
-      - installing
-      - started
-      - stopped
-      - updating
-      - error
-      type: string
-    Security_Entity_Analytics_API_EntityRiskLevels:
-      enum:
-      - Unknown
-      - Low
-      - Moderate
-      - High
-      - Critical
-      type: string
-    Security_Entity_Analytics_API_EngineMetadata:
-      additionalProperties: false
-      description: Internal metadata attached to an entity by the engine that produced it.
-      type: object
-      properties:
-        Type:
-          description: The engine type that produced this entity record.
-          type: string
-      required:
-      - Type
-    Security_Entity_Analytics_API_EntityAnalyticsPrivileges:
-      type: object
-      properties:
-        has_all_required:
+        success:
           type: boolean
-        has_read_permissions:
-          type: boolean
-        has_write_permissions:
-          type: boolean
-        privileges:
-          type: object
-          properties:
-            elasticsearch:
-              type: object
-              properties:
-                cluster:
-                  additionalProperties:
-                    type: boolean
-                  type: object
-                index:
-                  additionalProperties:
-                    additionalProperties:
-                      type: boolean
+    Security_Entity_Analytics_API_MonitoredUserDoc:
+      allOf:
+      - $ref: '#/components/schemas/Security_Entity_Analytics_API_MonitoredUserUpdateDoc'
+      - type: object
+        properties:
+          '@timestamp':
+            format: date-time
+            type: string
+          event:
+            type: object
+            properties:
+              '@timestamp':
+                format: date-time
+                type: string
+              ingested:
+                format: date-time
+                type: string
+          user:
+            type: object
+            properties:
+              entity:
+                type: object
+                properties:
+                  attributes:
                     type: object
-                  type: object
-            kibana:
-              additionalProperties:
+                    properties:
+                      Privileged:
+                        description: Indicates if the user is privileged.
+                        type: boolean
+              is_privileged:
+                description: Indicates if the user is privileged.
                 type: boolean
-              type: object
-          required:
-          - elasticsearch
-      required:
-      - has_all_required
-      - privileges
-    Security_Entity_Analytics_API_RiskScoreInput:
-      description: A generic representation of a document contributing to a Risk Score.
+              name:
+                type: string
+    Security_Entity_Analytics_API_WatchlistObject:
+      example:
+        createdAt: '2026-01-28T12:00:00.000Z'
+        description: High risk vendor watchlist
+        id: watchlist-123
+        managed: false
+        name: High Risk Vendors
+        riskModifier: 1.5
+        updatedAt: '2026-02-18T12:00:00.000Z'
       type: object
       properties:
-        category:
-          description: The risk category of the risk input document.
-          example: category_1
-          type: string
-        contribution_score:
-          format: double
-          type: number
-        description:
-          description: A human-readable description of the risk input document.
-          example: 'Generated from Detection Engine Rule: Malware Prevention Alert'
-          type: string
-        entity_id:
-          description: The EUID of the entity within the graph that generated this alert.
-          type: string
-        id:
-          description: The unique identifier (`_id`) of the original source document
-          example: 91a93376a507e86cfbf282166275b89f9dbdb1f0be6c8103c6ff2909ca8e1a1c
-          type: string
-        index:
-          description: The unique index (`_index`) of the original source document
-          example: .internal.alerts-security.alerts-default-000001
-          type: string
-        risk_score:
-          description: The weighted risk score of the risk input document.
-          format: double
-          maximum: 100
-          minimum: 0
-          type: number
-        timestamp:
-          description: The @timestamp of the risk input document.
-          example: '2017-07-21T17:32:28Z'
-          type: string
-      required:
-      - id
-      - index
-      - description
-      - category
-    Security_Entity_Analytics_API_GenericEntity:
-      additionalProperties: false
-      description: A generic entity record. Maps only the `entity` and `asset` namespaces. Add additional field mappings here as needed.
-      type: object
-      properties:
-        '@timestamp':
-          description: The time the entity record was last updated.
+        createdAt:
+          description: Timestamp indicating when the watchlist was created
           format: date-time
           type: string
-        asset:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_Asset'
-          additionalProperties: false
-        entity:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityField'
-      required:
-      - entity
-    Security_Entity_Analytics_API_UpdateableMonitoringEntitySourceProperties:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        filter:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_Filter'
-        identifierField:
-          description: Field used to query the entity store for index-type sources
+        description:
+          description: Description of the watchlist
           type: string
-        indexPattern:
-          type: string
-        integrationName:
-          type: string
-        integrations:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_Integrations'
-        matchers:
+        entityCount:
+          description: Number of entities in the watchlist
+          type: number
+        entitySourceIds:
+          description: List of entity source IDs associated with the watchlist
           items:
-            $ref: '#/components/schemas/Security_Entity_Analytics_API_Matcher'
+            type: string
           type: array
+        id:
+          description: The unique ID of the watchlist
+          type: string
+        managed:
+          description: Indicates if the watchlist is managed by the system
+          type: boolean
         name:
+          description: The name of the watchlist
           type: string
-        queryRule:
-          description: KQL query used to filter data from the provided index patterns
-          type: string
-        range:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_DateRange'
-        type:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_EntitySourceType'
-    Security_Entity_Analytics_API_MonitoringLabel:
-      type: object
-      properties:
-        field:
-          type: string
-        source:
-          type: string
-        value:
+        riskModifier:
+          description: Risk score modifier associated with the watchlist
+          type: number
+        updatedAt:
+          description: Timestamp indicating when the watchlist was last updated
+          format: date-time
           type: string
       required:
-      - field
-      - value
-      - source
-    Security_Entity_Analytics_API_Entity:
-      description: An entity record from the Entity Store. The `entity` namespace is a root-level field in the latest index, unlike source logs where it is nested under `host`, `user`, or `service`.
-      oneOf:
-      - $ref: '#/components/schemas/Security_Entity_Analytics_API_UserEntity'
-      - $ref: '#/components/schemas/Security_Entity_Analytics_API_HostEntity'
-      - $ref: '#/components/schemas/Security_Entity_Analytics_API_ServiceEntity'
-      - $ref: '#/components/schemas/Security_Entity_Analytics_API_GenericEntity'
+      - name
+      - riskModifier
+      - managed
     Security_Entity_Analytics_API_AssetCriticalityRecord:
       allOf:
       - $ref: '#/components/schemas/Security_Entity_Analytics_API_CreateAssetCriticalityRecord'
@@ -4086,84 +3804,40 @@ components:
           name: my_host
         id_field: host.name
         id_value: my_host
-    Security_Entity_Analytics_API_Filter:
+    Security_Entity_Analytics_API_MonitoringLabel:
       type: object
       properties:
-        kuery:
-          oneOf:
-          - type: string
-          - type: object
-    Security_Entity_Analytics_API_Integrations:
-      type: object
-      properties:
-        syncData:
-          description: integrations latest full sync and update syncData
-          type: object
-          properties:
-            lastFullSync:
-              description: Timestamp of the last full sync from integrations
-              format: date-time
-              type: string
-            lastUpdateProcessed:
-              description: Timestamp of the last update processed from integrations
-              format: date-time
-              type: string
-        syncMarkerIndex:
-          description: Index to read latest sync markers from
+        field:
           type: string
-    Security_Entity_Analytics_API_DateRange:
-      description: Defines the lookback period for filtering source data by timestamp.
-      type: object
-      properties:
-        end:
-          description: End of the lookback period (date math or ISO string, e.g. "now")
+        source:
           type: string
-        start:
-          description: Start of the lookback period (date math or ISO string, e.g. "now-10d")
+        value:
           type: string
       required:
-      - start
-      - end
-    Security_Entity_Analytics_API_Asset:
-      additionalProperties: false
-      description: Asset metadata associated with the entity.
+      - field
+      - value
+      - source
+    Security_Entity_Analytics_API_CleanUpRiskEngineErrorResponse:
       type: object
       properties:
-        business_unit:
-          description: Business unit the asset belongs to.
-          type: string
-        criticality:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityLevel'
-          description: The criticality level assigned to this asset.
-          nullable: true
-        environment:
-          description: Deployment environment (for example, production, staging).
-          type: string
-        id:
-          description: Unique identifier for the asset.
-          type: string
-        model:
-          description: Model name or number.
-          type: string
-        name:
-          description: Human-readable asset name.
-          type: string
-        owner:
-          description: The owner of the asset.
-          type: string
-        serial_number:
-          description: Serial number of the asset.
-          type: string
-        vendor:
-          description: Vendor or manufacturer.
-          type: string
-    Security_Entity_Analytics_API_MonitoringEntitySourceProperties:
-      allOf:
-      - $ref: '#/components/schemas/Security_Entity_Analytics_API_UpdateableMonitoringEntitySourceProperties'
-      - type: object
-        properties:
-          managed:
-            type: boolean
+        cleanup_successful:
+          example: false
+          type: boolean
+        errors:
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+              seq:
+                type: integer
+            required:
+            - seq
+            - error
+          type: array
+      required:
+      - cleanup_successful
+      - errors
     Security_Entity_Analytics_API_Matcher:
       type: object
       properties:
@@ -4185,46 +3859,518 @@ components:
       required:
       - fields
       - values
-    Security_Entity_Analytics_API_WatchlistEntityUnassignResponseItem:
+    Security_Entity_Analytics_API_EntityContainer:
+      description: A wrapper that pairs an entity type with the entity record to upsert.
+      type: object
+      properties:
+        record:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_Entity'
+          description: The entity record to create or update.
+        type:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityType'
+          description: The entity type of the record.
+      required:
+      - type
+      - record
+    Security_Entity_Analytics_API_MonitoringEngineDescriptor:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              description: Error message typically only present if the engine is in error state
+              type: string
+        status:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_PrivilegeMonitoringEngineStatus'
+      required:
+      - status
+    Security_Entity_Analytics_API_DateRange:
+      description: Defines the lookback period for filtering source data by timestamp.
+      type: object
+      properties:
+        end:
+          description: End of the lookback period (date math or ISO string, e.g. "now")
+          type: string
+        start:
+          description: Start of the lookback period (date math or ISO string, e.g. "now-10d")
+          type: string
+      required:
+      - start
+      - end
+    Security_Entity_Analytics_API_AssetCriticalityLevelsForBulkUpload:
+      description: The criticality level of the asset for bulk upload. The value `unassigned` is used to indicate that the criticality level is not assigned and is only used for bulk upload.
+      enum:
+      - low_impact
+      - medium_impact
+      - high_impact
+      - extreme_impact
+      - unassigned
+      type: string
+    Security_Entity_Analytics_API_PrivmonUserCsvUploadErrorItem:
+      type: object
+      properties:
+        index:
+          type:
+          - integer
+          - 'null'
+        message:
+          type: string
+        username:
+          type:
+          - string
+          - 'null'
+      required:
+      - message
+      - index
+      - username
+    Security_Entity_Analytics_API_IndexPattern:
+      description: An additional Elasticsearch index pattern to include as a source for entity data. Merged with the default data view indices when the engine runs.
+      example: logs-*
+      type: string
+    Security_Entity_Analytics_API_EntitiesContainer:
+      description: A collection of entities to upsert in bulk.
+      type: object
+      properties:
+        entities:
+          description: The entities to create or update.
+          items:
+            $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityContainer'
+          type: array
+      required:
+      - entities
+    Security_Entity_Analytics_API_AssetCriticalityRecordEcsParts:
+      type: object
+      properties:
+        asset:
+          type: object
+          properties:
+            criticality:
+              $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityLevel'
+          required:
+          - asset
+        entity:
+          type: object
+          properties:
+            asset:
+              type: object
+              properties:
+                criticality:
+                  $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityLevel'
+              required:
+              - criticality
+            id:
+              type: string
+          required:
+          - id
+        host:
+          type: object
+          properties:
+            asset:
+              type: object
+              properties:
+                criticality:
+                  $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityLevel'
+              required:
+              - criticality
+            name:
+              type: string
+          required:
+          - name
+        service:
+          type: object
+          properties:
+            asset:
+              type: object
+              properties:
+                criticality:
+                  $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityLevel'
+              required:
+              - criticality
+            name:
+              type: string
+          required:
+          - name
+        user:
+          type: object
+          properties:
+            asset:
+              type: object
+              properties:
+                criticality:
+                  $ref: '#/components/schemas/Security_Entity_Analytics_API_AssetCriticalityLevel'
+              required:
+              - criticality
+            name:
+              type: string
+          required:
+          - name
+      required:
+      - asset
+    Security_Entity_Analytics_API_EntitySourceType:
+      enum:
+      - index
+      - entity_analytics_integration
+      - store
+      type: string
+    Security_Entity_Analytics_API_AssetCriticalityBulkUploadStats:
+      type: object
+      properties:
+        failed:
+          type: integer
+        successful:
+          type: integer
+        total:
+          type: integer
+      required:
+      - successful
+      - failed
+      - total
+    Security_Entity_Analytics_API_EngineDataviewUpdateResult:
+      description: The result of applying data view index changes to a single engine.
+      type: object
+      properties:
+        changes:
+          description: The changes applied to the engine.
+          type: object
+          properties:
+            indexPatterns:
+              description: The updated list of index patterns now used by the engine.
+              items:
+                type: string
+              type: array
+        type:
+          description: The entity type of the engine that was updated.
+          type: string
+      required:
+      - type
+    Security_Entity_Analytics_API_MonitoringEntitySource:
+      allOf:
+      - $ref: '#/components/schemas/Security_Entity_Analytics_API_MonitoringEntitySourceProperties'
+      - type: object
+        properties:
+          id:
+            type: string
+        required:
+        - type
+        - name
+        - id
+        - managed
+    Security_Entity_Analytics_API_ConfigureRiskEngineSavedObjectErrorResponse:
+      type: object
+      properties:
+        errors:
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+              seq:
+                type: integer
+            required:
+            - seq
+            - error
+          type: array
+        risk_engine_saved_object_configured:
+          example: false
+          type: boolean
+      required:
+      - risk_engine_saved_object_configured
+      - errors
+    Security_Entity_Analytics_API_HostEntity:
+      additionalProperties: false
+      description: An entity record representing a host, stored in the Entity Store latest index.
+      type: object
+      properties:
+        '@timestamp':
+          description: The time the entity record was last updated.
+          format: date-time
+          type: string
+        asset:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_Asset'
+          additionalProperties: false
+        entity:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityField'
+        event:
+          additionalProperties: false
+          type: object
+          properties:
+            ingested:
+              description: When the event was ingested into Elasticsearch.
+              format: date-time
+              type: string
+        host:
+          additionalProperties: false
+          description: Elastic Common Schema (ECS) host fields collected on the entity.
+          type: object
+          properties:
+            architecture:
+              description: Observed CPU architectures.
+              items:
+                type: string
+              type: array
+            domain:
+              description: Observed host domains.
+              items:
+                type: string
+              type: array
+            entity:
+              $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityField'
+            hostname:
+              description: Observed hostnames.
+              items:
+                type: string
+              type: array
+            id:
+              description: Observed host IDs.
+              items:
+                type: string
+              type: array
+            ip:
+              description: Observed IP addresses.
+              items:
+                type: string
+              type: array
+            mac:
+              description: Observed MAC addresses.
+              items:
+                type: string
+              type: array
+            name:
+              description: Primary host name.
+              type: string
+            os:
+              additionalProperties: false
+              description: Elastic Common Schema (ECS) host.os fields collected on the entity latest index.
+              type: object
+              properties:
+                family:
+                  type: string
+                full:
+                  type: string
+                kernel:
+                  type: string
+                name:
+                  oneOf:
+                  - type: string
+                  - items:
+                      type: string
+                    type: array
+                platform:
+                  type: string
+                type:
+                  oneOf:
+                  - type: string
+                  - items:
+                      type: string
+                    type: array
+                version:
+                  type: string
+            risk:
+              $ref: '#/components/schemas/Security_Entity_Analytics_API_EntityRiskScoreRecord'
+            type:
+              description: Observed host types.
+              items:
+                type: string
+              type: array
+          required:
+          - name
+      required:
+      - entity
+    Security_Entity_Analytics_API_EngineComponentResource:
+      description: The type of Elasticsearch or Kibana resource backing an engine component.
+      enum:
+      - entity_engine
+      - entity_definition
+      - index
+      - data_stream
+      - component_template
+      - index_template
+      - ingest_pipeline
+      - enrich_policy
+      - task
+      - transform
+      - ilm_policy
+      type: string
+    Security_Entity_Analytics_API_WatchlistCsvUploadResponseItem:
       example:
-        euid: user:john.doe
+        matchedEntities: 1
         status: success
       type: object
       properties:
         error:
-          description: Error message if the entity failed to process
+          description: Error message if the row failed to process
           example: Invalid entity type
           type: string
-        euid:
-          description: The EUID of the entity
-          example: user:john.doe
-          type: string
+        matchedEntities:
+          description: Number of entities matched for this row
+          example: 1
+          type: integer
         status:
           enum:
           - success
           - failure
-          - not_found
+          - unmatched
           example: success
           type: string
       required:
-      - euid
       - status
-    Security_Entity_Analytics_API_PrivmonUserCsvUploadStats:
+      - matchedEntities
+    Security_Entity_Analytics_API_AssetCriticalityRecordIdParts:
       type: object
       properties:
-        failedOperations:
+        id_field:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_IdField'
+          description: The field representing the ID.
+          example: host.name
+        id_value:
+          description: The ID value of the asset.
+          type: string
+      required:
+      - id_value
+      - id_field
+    Security_Entity_Analytics_API_EngineComponentStatus:
+      description: Status of an individual Elasticsearch or Kibana resource backing an engine.
+      type: object
+      properties:
+        errors:
+          description: Errors reported by this component, if any.
+          items:
+            type: object
+            properties:
+              message:
+                description: Detailed error message.
+                type: string
+              title:
+                description: Short error title.
+                type: string
+          type: array
+        health:
+          description: The health status of the component.
+          enum:
+          - green
+          - yellow
+          - red
+          - unavailable
+          - unknown
+          type: string
+        id:
+          description: Unique identifier for the component.
+          type: string
+        installed:
+          description: Whether the component is currently installed.
+          type: boolean
+        metadata:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_TransformStatsMetadata'
+        resource:
+          $ref: '#/components/schemas/Security_Entity_Analytics_API_EngineComponentResource'
+      required:
+      - id
+      - installed
+      - resource
+    Security_Entity_Analytics_API_Entity:
+      description: An entity record from the Entity Store. The `entity` namespace is a root-level field in the latest index, unlike source logs where it is nested under `host`, `user`, or `service`.
+      oneOf:
+      - $ref: '#/components/schemas/Security_Entity_Analytics_API_UserEntity'
+      - $ref: '#/components/schemas/Security_Entity_Analytics_API_HostEntity'
+      - $ref: '#/components/schemas/Security_Entity_Analytics_API_ServiceEntity'
+      - $ref: '#/components/schemas/Security_Entity_Analytics_API_GenericEntity'
+    Security_Entity_Analytics_API_StoreStatus:
+      description: The overall operational status of the Entity Store.
+      enum:
+      - not_installed
+      - installing
+      - running
+      - stopped
+      - error
+      type: string
+    Security_Entity_Analytics_API_TransformStatsMetadata:
+      description: Statistics from the underlying Elasticsearch transform.
+      type: object
+      properties:
+        delete_time_in_ms:
+          description: Total time spent deleting documents, in milliseconds.
           type: integer
-        successfulOperations:
+        documents_deleted:
+          description: Total number of documents deleted from the destination index.
           type: integer
-        totalOperations:
+        documents_indexed:
+          description: Total number of documents written to the destination index.
           type: integer
-        uploaded:
+        documents_processed:
+          description: Total number of source documents processed.
+          type: integer
+        exponential_avg_checkpoint_duration_ms:
+          description: Exponential moving average of checkpoint duration, in milliseconds.
+          type: integer
+        exponential_avg_documents_indexed:
+          description: Exponential moving average of documents indexed per checkpoint.
+          type: integer
+        exponential_avg_documents_processed:
+          description: Exponential moving average of documents processed per checkpoint.
+          type: integer
+        index_failures:
+          description: Total number of failed index operations.
+          type: integer
+        index_time_in_ms:
+          description: Total time spent indexing documents, in milliseconds.
+          type: integer
+        index_total:
+          description: Total number of index operations.
+          type: integer
+        pages_processed:
+          description: Number of composite aggregation pages processed.
+          type: integer
+        processing_time_in_ms:
+          description: Total time spent processing results, in milliseconds.
+          type: integer
+        processing_total:
+          description: Total number of processing operations.
+          type: integer
+        search_failures:
+          description: Total number of failed search operations.
+          type: integer
+        search_time_in_ms:
+          description: Total time spent on search queries, in milliseconds.
+          type: integer
+        search_total:
+          description: Total number of search operations.
+          type: integer
+        trigger_count:
+          description: Number of times the transform has been triggered.
           type: integer
       required:
-      - successfulOperations
-      - uploaded
-      - failedOperations
-      - totalOperations
+      - pages_processed
+      - documents_processed
+      - documents_indexed
+      - trigger_count
+      - index_time_in_ms
+      - index_total
+      - index_failures
+      - search_time_in_ms
+      - search_total
+      - search_failures
+      - processing_time_in_ms
+      - processing_total
+      - exponential_avg_checkpoint_duration_ms
+      - exponential_avg_documents_indexed
+      - exponential_avg_documents_processed
+    Security_Entity_Analytics_API_AssetCriticalityLevel:
+      description: The criticality level of the asset.
+      enum:
+      - low_impact
+      - medium_impact
+      - high_impact
+      - extreme_impact
+      type: string
+    Security_Entity_Analytics_API_EntityRiskLevels:
+      enum:
+      - Unknown
+      - Low
+      - Moderate
+      - High
+      - Critical
+      type: string
     Security_Entity_Analytics_API_EntityRiskScoreRecord:
       type: object
       properties:
@@ -4333,163 +4479,18 @@ components:
       - category_1_count
       - inputs
       - notes
-    Security_Entity_Analytics_API_IndexPattern:
-      description: An additional Elasticsearch index pattern to include as a source for entity data. Merged with the default data view indices when the engine runs.
-      example: logs-*
-      type: string
-    Security_Entity_Analytics_API_MonitoringEngineDescriptor:
+    Security_Entity_Analytics_API_TaskManagerUnavailableResponse:
+      description: Task manager is unavailable
       type: object
       properties:
-        error:
-          type: object
-          properties:
-            message:
-              description: Error message typically only present if the engine is in error state
-              type: string
-        status:
-          $ref: '#/components/schemas/Security_Entity_Analytics_API_PrivilegeMonitoringEngineStatus'
-      required:
-      - status
-    Security_Entity_Analytics_API_UserName:
-      type: object
-      properties:
-        entity_analytics_monitoring:
-          description: Entity analytics monitoring configuration for the user
-          type: object
-          properties:
-            labels:
-              description: Array of labels associated with the user
-              items:
-                type: object
-                properties:
-                  field:
-                    description: The field name for the label
-                    type: string
-                  source:
-                    description: The source where this label was created (api, csv, or index_sync)
-                    enum:
-                    - api
-                    - csv
-                    - index_sync
-                    type: string
-                  value:
-                    description: The value of the label
-                    type: string
-              type: array
-        user:
-          type: object
-          properties:
-            name:
-              description: The name of the user.
-              type: string
-    Security_Entity_Analytics_API_WatchlistCsvUploadResponseItem:
-      example:
-        matchedEntities: 1
-        status: success
-      type: object
-      properties:
-        error:
-          description: Error message if the row failed to process
-          example: Invalid entity type
+        message:
           type: string
-        matchedEntities:
-          description: Number of entities matched for this row
-          example: 1
+        status_code:
+          minimum: 400
           type: integer
-        status:
-          enum:
-          - success
-          - failure
-          - unmatched
-          example: success
-          type: string
       required:
-      - status
-      - matchedEntities
-    Security_Entity_Analytics_API_MonitoringEntitySource:
-      allOf:
-      - $ref: '#/components/schemas/Security_Entity_Analytics_API_MonitoringEntitySourceProperties'
-      - type: object
-        properties:
-          id:
-            type: string
-        required:
-        - type
-        - name
-        - id
-        - managed
-    Security_Entity_Analytics_API_MonitoredUserDoc:
-      allOf:
-      - $ref: '#/components/schemas/Security_Entity_Analytics_API_MonitoredUserUpdateDoc'
-      - type: object
-        properties:
-          '@timestamp':
-            format: date-time
-            type: string
-          event:
-            type: object
-            properties:
-              '@timestamp':
-                format: date-time
-                type: string
-              ingested:
-                format: date-time
-                type: string
-          user:
-            type: object
-            properties:
-              entity:
-                type: object
-                properties:
-                  attributes:
-                    type: object
-                    properties:
-                      Privileged:
-                        description: Indicates if the user is privileged.
-                        type: boolean
-              is_privileged:
-                description: Indicates if the user is privileged.
-                type: boolean
-              name:
-                type: string
-    Security_Entity_Analytics_API_MonitoredUserUpdateDoc:
-      type: object
-      properties:
-        entity_analytics_monitoring:
-          type: object
-          properties:
-            labels:
-              items:
-                $ref: '#/components/schemas/Security_Entity_Analytics_API_MonitoringLabel'
-              type: array
-        id:
-          type: string
-        labels:
-          type: object
-          properties:
-            source_ids:
-              items:
-                type: string
-              type: array
-            source_integrations:
-              items:
-                type: string
-              type: array
-            sources:
-              items:
-                enum:
-                - csv
-                - index_sync
-                - api
-              type: array
-        user:
-          type: object
-          properties:
-            is_privileged:
-              description: Indicates if the user is privileged.
-              type: boolean
-            name:
-              type: string
+      - status_code
+      - message
   securitySchemes:
     apiKeyAuth:
       description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`

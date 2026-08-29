@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -56,8 +56,8 @@ info:
     This documentation contains work-in-progress information for future Elastic Stack releases.
 
     '
-  title: Kibana APIs Actions observability_ai_assistant API
-  version: "1.0"
+  title: Kibana APIs Actions Observability AI Assistant API
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -167,19 +167,32 @@ paths:
       - content: Kibana
         name: product_name
 components:
-  examples:
-    Observability_AI_Assistant_API_ChatCompleteRequestExample:
-      summary: Example of completing a chat interaction
-      value: "{\n  \"connectorId\": \"<connectorId>\",\n  \"disableFunctions\": false,\n  \"messages\": [\n    {\n      \"@timestamp\": \"2025-06-25T23:45:00.000Z\",\n      \"message\": {\n        \"role\": \"user\",\n        \"content\": \"Is my Elasticsearch cluster healthy right now?\"\n      }\n    }\n  ],\n  \"persist\": false,\n  \"actions\": [\n    {\n      \"name\": \"get_cluster_health\",\n      \"description\": \"Fetch the current Elasticsearch cluster-health status and key metrics.\",\n      \"parameters\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"includeShardStats\": {\n            \"type\": \"boolean\",\n            \"default\": false\n          }\n        }\n      }\n    }\n  ],\n  \"instructions\": [\"When the user asks about Elasticsearch cluster health, use the get_cluster_health tool to retrieve cluster health, then summarize the response in plain English.\"]\n}\n"
-    Observability_AI_Assistant_API_ChatCompleteResponseExample:
-      summary: Get a chat completion from the Observability AI Assistant
-      value: 'data: {"model":"unknown","choices":[{"delta":{"content":"","function_call":{"name":"get_cluster_health","arguments":"{\"includeShardStats\":true}"}},"finish_reason":null,"index":0}],"created":1750936626911,"id":"9c8eff9b-4fd4-4203-a4ab-2e364688deff","object":"chat.completion.chunk"}
-
-
-        data: [DONE]
-
-        '
   schemas:
+    Observability_AI_Assistant_API_MessageRoleEnum:
+      description: The role of the message sender.
+      enum:
+      - system
+      - assistant
+      - function
+      - user
+      - elastic
+      type: string
+    Observability_AI_Assistant_API_Instruction:
+      oneOf:
+      - description: A simple instruction represented as a string.
+        type: string
+      - description: A detailed instruction with an ID and text.
+        type: object
+        properties:
+          id:
+            description: A unique identifier for the instruction.
+            type: string
+          text:
+            description: The text of the instruction.
+            type: string
+        required:
+        - id
+        - text
     Observability_AI_Assistant_API_FunctionCall:
       description: Details of the function call within the message.
       type: object
@@ -200,6 +213,18 @@ components:
       required:
       - name
       - trigger
+    Observability_AI_Assistant_API_Function:
+      type: object
+      properties:
+        description:
+          description: The description of the function.
+          type: string
+        name:
+          description: The name of the function.
+          type: string
+        parameters:
+          description: The parameters of the function.
+          type: object
     Observability_AI_Assistant_API_Message:
       name: Message
       type: object
@@ -232,43 +257,18 @@ components:
       required:
       - '@timestamp'
       - message
-    Observability_AI_Assistant_API_MessageRoleEnum:
-      description: The role of the message sender.
-      enum:
-      - system
-      - assistant
-      - function
-      - user
-      - elastic
-      type: string
-    Observability_AI_Assistant_API_Function:
-      type: object
-      properties:
-        description:
-          description: The description of the function.
-          type: string
-        name:
-          description: The name of the function.
-          type: string
-        parameters:
-          description: The parameters of the function.
-          type: object
-    Observability_AI_Assistant_API_Instruction:
-      oneOf:
-      - description: A simple instruction represented as a string.
-        type: string
-      - description: A detailed instruction with an ID and text.
-        type: object
-        properties:
-          id:
-            description: A unique identifier for the instruction.
-            type: string
-          text:
-            description: The text of the instruction.
-            type: string
-        required:
-        - id
-        - text
+  examples:
+    Observability_AI_Assistant_API_ChatCompleteRequestExample:
+      summary: Example of completing a chat interaction
+      value: "{\n  \"connectorId\": \"<connectorId>\",\n  \"disableFunctions\": false,\n  \"messages\": [\n    {\n      \"@timestamp\": \"2025-06-25T23:45:00.000Z\",\n      \"message\": {\n        \"role\": \"user\",\n        \"content\": \"Is my Elasticsearch cluster healthy right now?\"\n      }\n    }\n  ],\n  \"persist\": false,\n  \"actions\": [\n    {\n      \"name\": \"get_cluster_health\",\n      \"description\": \"Fetch the current Elasticsearch cluster-health status and key metrics.\",\n      \"parameters\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"includeShardStats\": {\n            \"type\": \"boolean\",\n            \"default\": false\n          }\n        }\n      }\n    }\n  ],\n  \"instructions\": [\"When the user asks about Elasticsearch cluster health, use the get_cluster_health tool to retrieve cluster health, then summarize the response in plain English.\"]\n}\n"
+    Observability_AI_Assistant_API_ChatCompleteResponseExample:
+      summary: Get a chat completion from the Observability AI Assistant
+      value: 'data: {"model":"unknown","choices":[{"delta":{"content":"","function_call":{"name":"get_cluster_health","arguments":"{\"includeShardStats\":true}"}},"finish_reason":null,"index":0}],"created":1750936626911,"id":"9c8eff9b-4fd4-4203-a4ab-2e364688deff","object":"chat.completion.chunk"}
+
+
+        data: [DONE]
+
+        '
   securitySchemes:
     apiKeyAuth:
       description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`

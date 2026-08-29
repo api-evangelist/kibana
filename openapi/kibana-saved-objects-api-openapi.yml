@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -57,7 +57,7 @@ info:
 
     '
   title: Kibana APIs Actions saved objects API
-  version: "1.0"
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -229,8 +229,7 @@ paths:
                 type: object
                 properties:
                   attributes:
-                    additionalProperties:
-                      nullable: true
+                    additionalProperties: {}
                     type: object
                   coreMigrationVersion:
                     type: string
@@ -710,8 +709,7 @@ paths:
                 type: object
                 properties:
                   attributes:
-                    additionalProperties:
-                      nullable: true
+                    additionalProperties: {}
                     type: object
                   id:
                     type: string
@@ -1543,8 +1541,7 @@ paths:
               type: object
               properties:
                 attributes:
-                  additionalProperties:
-                    nullable: true
+                  additionalProperties: {}
                   type: object
                 coreMigrationVersion:
                   type: string
@@ -1839,8 +1836,7 @@ paths:
               type: object
               properties:
                 attributes:
-                  additionalProperties:
-                    nullable: true
+                  additionalProperties: {}
                   type: object
                 coreMigrationVersion:
                   type: string
@@ -1974,8 +1970,7 @@ paths:
               type: object
               properties:
                 attributes:
-                  additionalProperties:
-                    nullable: true
+                  additionalProperties: {}
                   type: object
                 references:
                   items:
@@ -1995,8 +1990,7 @@ paths:
                   maxItems: 1000
                   type: array
                 upsert:
-                  additionalProperties:
-                    nullable: true
+                  additionalProperties: {}
                   type: object
                 version:
                   type: string

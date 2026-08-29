@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -56,8 +56,8 @@ info:
     This documentation contains work-in-progress information for future Elastic Stack releases.
 
     '
-  title: Kibana APIs Actions streams API
-  version: "1.0"
+  title: Kibana APIs Actions Streams API
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -102,7 +102,7 @@ paths:
               - additionalProperties: false
                 type: object
                 properties: {}
-              - nullable: true
+              - {}
               - {}
       responses:
         '200':
@@ -229,7 +229,7 @@ paths:
               - additionalProperties: false
                 type: object
                 properties: {}
-              - nullable: true
+              - {}
               - {}
       responses: {}
       summary: Disable streams
@@ -268,7 +268,7 @@ paths:
               - additionalProperties: false
                 type: object
                 properties: {}
-              - nullable: true
+              - {}
               - {}
       responses: {}
       summary: Enable streams
@@ -307,7 +307,7 @@ paths:
               - additionalProperties: false
                 type: object
                 properties: {}
-              - nullable: true
+              - {}
               - {}
       responses: {}
       summary: Resync streams
@@ -352,7 +352,7 @@ paths:
               - additionalProperties: false
                 type: object
                 properties: {}
-              - nullable: true
+              - {}
               - {}
       responses:
         '200':
@@ -391,7 +391,7 @@ paths:
               - additionalProperties: false
                 type: object
                 properties: {}
-              - nullable: true
+              - {}
               - {}
       responses:
         '200':
@@ -672,7 +672,7 @@ paths:
               - additionalProperties: false
                 type: object
                 properties: {}
-              - nullable: true
+              - {}
               - {}
       responses:
         '200':
@@ -980,7 +980,7 @@ paths:
               - additionalProperties: false
                 type: object
                 properties: {}
-              - nullable: true
+              - {}
               - {}
       responses:
         '200':
@@ -1203,7 +1203,7 @@ paths:
               - additionalProperties: false
                 type: object
                 properties: {}
-              - nullable: true
+              - {}
               - {}
       responses:
         '200':
@@ -1384,7 +1384,7 @@ paths:
               - additionalProperties: false
                 type: object
                 properties: {}
-              - nullable: true
+              - {}
               - {}
       responses:
         '200':
@@ -1536,7 +1536,7 @@ paths:
               - additionalProperties: false
                 type: object
                 properties: {}
-              - nullable: true
+              - {}
               - {}
       responses:
         '200':
@@ -1639,7 +1639,7 @@ paths:
               - additionalProperties: false
                 type: object
                 properties: {}
-              - nullable: true
+              - {}
               - {}
       responses:
         '200':
@@ -1784,7 +1784,7 @@ paths:
               - additionalProperties: false
                 type: object
                 properties: {}
-              - nullable: true
+              - {}
               - {}
       responses:
         '200':
@@ -1970,7 +1970,7 @@ paths:
               - additionalProperties: false
                 type: object
                 properties: {}
-              - nullable: true
+              - {}
               - {}
       responses:
         '200':
@@ -2041,7 +2041,7 @@ paths:
               - additionalProperties: false
                 type: object
                 properties: {}
-              - nullable: true
+              - {}
               - {}
       responses:
         '200':
@@ -2115,163 +2115,15 @@ components:
             - disabled
         required:
         - lifecycle
-    Kibana_HTTP_APIs_ClassicStreamUpsertRequest:
-      additionalProperties: false
+    Kibana_HTTP_APIs_FieldDefinition:
+      additionalProperties:
+        $ref: '#/components/schemas/Kibana_HTTP_APIs_FieldDefinitionConfig'
       type: object
-      properties:
-        dashboards:
-          items:
-            type: string
-          type: array
-        queries:
-          items:
-            type: object
-            properties:
-              description:
-                type: string
-              esql:
-                type: object
-                properties:
-                  query:
-                    type: string
-                required:
-                - query
-              evidence:
-                items:
-                  type: string
-                type: array
-              id:
-                description: A non-empty string.
-                minLength: 1
-                type: string
-              severity_score:
-                type: number
-              title:
-                description: A non-empty string.
-                minLength: 1
-                type: string
-              type:
-                default: match
-                enum:
-                - match
-                - stats
-                type: string
-            required:
-            - id
-            - title
-            - description
-            - esql
-          type: array
-        rules:
-          items:
-            type: string
-          type: array
-        stream:
-          additionalProperties: false
-          type: object
-          properties:
-            description:
-              type: string
-            ingest:
-              additionalProperties: false
-              type: object
-              properties:
-                classic:
-                  additionalProperties: false
-                  type: object
-                  properties:
-                    field_overrides:
-                      $ref: '#/components/schemas/Kibana_HTTP_APIs_ClassicFieldDefinition'
-                failure_store:
-                  $ref: '#/components/schemas/Kibana_HTTP_APIs_FailureStore'
-                lifecycle:
-                  $ref: '#/components/schemas/Kibana_HTTP_APIs_IngestStreamLifecycle'
-                processing:
-                  additionalProperties: false
-                  type: object
-                  properties:
-                    steps:
-                      items:
-                        $ref: '#/components/schemas/Kibana_HTTP_APIs_StreamlangStep'
-                      type: array
-                    updated_at: {}
-                  required:
-                  - steps
-                settings:
-                  additionalProperties: false
-                  type: object
-                  properties:
-                    index.number_of_replicas:
-                      additionalProperties: false
-                      type: object
-                      properties:
-                        value:
-                          type: number
-                      required:
-                      - value
-                    index.number_of_shards:
-                      additionalProperties: false
-                      type: object
-                      properties:
-                        value:
-                          type: number
-                      required:
-                      - value
-                    index.refresh_interval:
-                      additionalProperties: false
-                      type: object
-                      properties:
-                        value:
-                          anyOf:
-                          - type: string
-                          - enum:
-                            - -1
-                            type: number
-                      required:
-                      - value
-              required:
-              - lifecycle
-              - processing
-              - settings
-              - failure_store
-              - classic
-            query_streams:
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                required:
-                - name
-              type: array
-            type:
-              enum:
-              - classic
-              type: string
-          required:
-          - description
-          - ingest
-          - type
-      required:
-      - dashboards
-      - rules
-      - queries
-      - stream
     Kibana_HTTP_APIs_StreamUpsertRequest:
       anyOf:
       - $ref: '#/components/schemas/Kibana_HTTP_APIs_WiredStreamUpsertRequest'
       - $ref: '#/components/schemas/Kibana_HTTP_APIs_ClassicStreamUpsertRequest'
       - $ref: '#/components/schemas/Kibana_HTTP_APIs_QueryStreamUpsertRequest'
-    Kibana_HTTP_APIs_StreamlangConditionBlock:
-      additionalProperties: false
-      type: object
-      properties:
-        condition:
-          $ref: '#/components/schemas/Kibana_HTTP_APIs_ConditionWithSteps'
-        customIdentifier:
-          type: string
-      required:
-      - condition
     Kibana_HTTP_APIs_StreamlangStep:
       anyOf:
       - anyOf:
@@ -3230,129 +3082,58 @@ components:
           - action
           - processors
       - $ref: '#/components/schemas/Kibana_HTTP_APIs_StreamlangConditionBlock'
-    Kibana_HTTP_APIs_ClassicFieldDefinition:
-      additionalProperties:
-        $ref: '#/components/schemas/Kibana_HTTP_APIs_ClassicFieldDefinitionConfig'
-      type: object
-    Kibana_HTTP_APIs_FilterCondition:
+    Kibana_HTTP_APIs_ContentPackIncludedObjects:
       anyOf:
       - additionalProperties: false
-        description: A condition that compares a field to a value or range using an operator as the key.
         type: object
         properties:
-          contains:
-            anyOf:
-            - type: string
-            - type: number
-            - type: boolean
-            description: Contains comparison value.
-          endsWith:
-            anyOf:
-            - type: string
-            - type: number
-            - type: boolean
-            description: Ends-with comparison value.
-          eq:
-            anyOf:
-            - type: string
-            - type: number
-            - type: boolean
-            description: Equality comparison value.
-          field:
-            description: The document field to filter on.
-            minLength: 1
-            type: string
-          gt:
-            anyOf:
-            - type: string
-            - type: number
-            - type: boolean
-            description: Greater-than comparison value.
-          gte:
-            anyOf:
-            - type: string
-            - type: number
-            - type: boolean
-            description: Greater-than-or-equal comparison value.
-          includes:
-            anyOf:
-            - type: string
-            - type: number
-            - type: boolean
-            description: Checks if multivalue field includes the value.
-          lt:
-            anyOf:
-            - type: string
-            - type: number
-            - type: boolean
-            description: Less-than comparison value.
-          lte:
-            anyOf:
-            - type: string
-            - type: number
-            - type: boolean
-            description: Less-than-or-equal comparison value.
-          neq:
-            anyOf:
-            - type: string
-            - type: number
-            - type: boolean
-            description: Inequality comparison value.
-          range:
+          objects:
             additionalProperties: false
-            description: Range comparison values.
             type: object
             properties:
-              gt:
-                anyOf:
-                - type: string
-                - type: number
-                - type: boolean
-                description: A value that can be a string, number, or boolean.
-              gte:
-                anyOf:
-                - type: string
-                - type: number
-                - type: boolean
-                description: A value that can be a string, number, or boolean.
-              lt:
-                anyOf:
-                - type: string
-                - type: number
-                - type: boolean
-                description: A value that can be a string, number, or boolean.
-              lte:
-                anyOf:
-                - type: string
-                - type: number
-                - type: boolean
-                description: A value that can be a string, number, or boolean.
-          startsWith:
-            anyOf:
-            - type: string
-            - type: number
-            - type: boolean
-            description: Starts-with comparison value.
+              all:
+                additionalProperties: false
+                type: object
+                properties: {}
+            required:
+            - all
         required:
-        - field
+        - objects
       - additionalProperties: false
-        description: A condition that checks for the existence or non-existence of a field.
         type: object
         properties:
-          exists:
-            description: Indicates whether the field exists or not.
-            type: boolean
-          field:
-            description: The document field to check.
-            minLength: 1
-            type: string
+          objects:
+            additionalProperties: false
+            type: object
+            properties:
+              mappings:
+                type: boolean
+              queries:
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                  required:
+                  - id
+                type: array
+              routing:
+                items:
+                  allOf:
+                  - $ref: '#/components/schemas/Kibana_HTTP_APIs_ContentPackIncludedObjects'
+                  - type: object
+                    properties:
+                      destination:
+                        type: string
+                    required:
+                    - destination
+                type: array
+            required:
+            - mappings
+            - queries
+            - routing
         required:
-        - field
-      description: A basic filter condition, either unary or binary.
-    Kibana_HTTP_APIs_FieldDefinition:
-      additionalProperties:
-        $ref: '#/components/schemas/Kibana_HTTP_APIs_FieldDefinitionConfig'
-      type: object
+        - objects
     Kibana_HTTP_APIs_FieldDefinitionConfig:
       allOf:
       - $ref: '#/components/schemas/Kibana_HTTP_APIs_RecursiveRecord'
@@ -3427,6 +3208,311 @@ components:
             type: array
         required:
         - steps
+    Kibana_HTTP_APIs_ClassicFieldDefinition:
+      additionalProperties:
+        $ref: '#/components/schemas/Kibana_HTTP_APIs_ClassicFieldDefinitionConfig'
+      type: object
+    Kibana_HTTP_APIs_ClassicFieldDefinitionConfig:
+      allOf:
+      - $ref: '#/components/schemas/Kibana_HTTP_APIs_RecursiveRecord'
+      - anyOf:
+        - additionalProperties: false
+          type: object
+          properties:
+            description:
+              type: string
+            format:
+              description: A non-empty string.
+              minLength: 1
+              type: string
+            type:
+              enum:
+              - keyword
+              - match_only_text
+              - long
+              - double
+              - date
+              - boolean
+              - ip
+              - geo_point
+              - integer
+              - short
+              - byte
+              - float
+              - half_float
+              - text
+              - wildcard
+              - version
+              - unsigned_long
+              - date_nanos
+              type: string
+          required:
+          - type
+        - additionalProperties: false
+          type: object
+          properties:
+            description:
+              type: string
+            type:
+              enum:
+              - system
+              type: string
+          required:
+          - type
+    Kibana_HTTP_APIs_ClassicStreamUpsertRequest:
+      additionalProperties: false
+      type: object
+      properties:
+        dashboards:
+          items:
+            type: string
+          type: array
+        queries:
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              esql:
+                type: object
+                properties:
+                  query:
+                    type: string
+                required:
+                - query
+              evidence:
+                items:
+                  type: string
+                type: array
+              id:
+                description: A non-empty string.
+                minLength: 1
+                type: string
+              severity_score:
+                type: number
+              title:
+                description: A non-empty string.
+                minLength: 1
+                type: string
+              type:
+                default: match
+                enum:
+                - match
+                - stats
+                type: string
+            required:
+            - id
+            - title
+            - description
+            - esql
+          type: array
+        rules:
+          items:
+            type: string
+          type: array
+        stream:
+          additionalProperties: false
+          type: object
+          properties:
+            description:
+              type: string
+            ingest:
+              additionalProperties: false
+              type: object
+              properties:
+                classic:
+                  additionalProperties: false
+                  type: object
+                  properties:
+                    field_overrides:
+                      $ref: '#/components/schemas/Kibana_HTTP_APIs_ClassicFieldDefinition'
+                failure_store:
+                  $ref: '#/components/schemas/Kibana_HTTP_APIs_FailureStore'
+                lifecycle:
+                  $ref: '#/components/schemas/Kibana_HTTP_APIs_IngestStreamLifecycle'
+                processing:
+                  additionalProperties: false
+                  type: object
+                  properties:
+                    steps:
+                      items:
+                        $ref: '#/components/schemas/Kibana_HTTP_APIs_StreamlangStep'
+                      type: array
+                    updated_at: {}
+                  required:
+                  - steps
+                settings:
+                  additionalProperties: false
+                  type: object
+                  properties:
+                    index.number_of_replicas:
+                      additionalProperties: false
+                      type: object
+                      properties:
+                        value:
+                          type: number
+                      required:
+                      - value
+                    index.number_of_shards:
+                      additionalProperties: false
+                      type: object
+                      properties:
+                        value:
+                          type: number
+                      required:
+                      - value
+                    index.refresh_interval:
+                      additionalProperties: false
+                      type: object
+                      properties:
+                        value:
+                          anyOf:
+                          - type: string
+                          - enum:
+                            - -1
+                            type: number
+                      required:
+                      - value
+              required:
+              - lifecycle
+              - processing
+              - settings
+              - failure_store
+              - classic
+            query_streams:
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                required:
+                - name
+              type: array
+            type:
+              enum:
+              - classic
+              type: string
+          required:
+          - description
+          - ingest
+          - type
+      required:
+      - dashboards
+      - rules
+      - queries
+      - stream
+    Kibana_HTTP_APIs_Condition:
+      anyOf:
+      - $ref: '#/components/schemas/Kibana_HTTP_APIs_FilterCondition'
+      - additionalProperties: false
+        description: A logical AND that groups multiple conditions.
+        type: object
+        properties:
+          and:
+            description: An array of conditions. All sub-conditions must be true for this condition to be true.
+            items:
+              $ref: '#/components/schemas/Kibana_HTTP_APIs_Condition'
+            type: array
+        required:
+        - and
+      - additionalProperties: false
+        description: A logical OR that groups multiple conditions.
+        type: object
+        properties:
+          or:
+            description: An array of conditions. At least one sub-condition must be true for this condition to be true.
+            items:
+              $ref: '#/components/schemas/Kibana_HTTP_APIs_Condition'
+            type: array
+        required:
+        - or
+      - additionalProperties: false
+        description: A logical NOT that negates a condition.
+        type: object
+        properties:
+          not:
+            $ref: '#/components/schemas/Kibana_HTTP_APIs_Condition'
+            description: A condition that negates another condition.
+        required:
+        - not
+      - additionalProperties: false
+        description: A condition that always evaluates to false.
+        type: object
+        properties:
+          never:
+            additionalProperties: false
+            description: An empty object. This condition never matches.
+            type: object
+            properties: {}
+        required:
+        - never
+      - additionalProperties: false
+        description: A condition that always evaluates to true. Useful for catch-all scenarios, but use with caution as partitions are ordered.
+        type: object
+        properties:
+          always:
+            additionalProperties: false
+            description: An empty object. This condition always matches.
+            type: object
+            properties: {}
+        required:
+        - always
+      description: The root condition object. It can be a simple filter or a combination of other conditions.
+    Kibana_HTTP_APIs_IngestStreamLifecycle:
+      anyOf:
+      - additionalProperties: false
+        type: object
+        properties:
+          dsl:
+            additionalProperties: false
+            type: object
+            properties:
+              data_retention:
+                description: A non-empty string.
+                minLength: 1
+                type: string
+              downsample:
+                items:
+                  type: object
+                  properties:
+                    after:
+                      description: A non-empty string.
+                      minLength: 1
+                      type: string
+                    fixed_interval:
+                      description: A non-empty string.
+                      minLength: 1
+                      type: string
+                  required:
+                  - after
+                  - fixed_interval
+                type: array
+        required:
+        - dsl
+      - additionalProperties: false
+        type: object
+        properties:
+          ilm:
+            additionalProperties: false
+            type: object
+            properties:
+              policy:
+                description: A non-empty string.
+                minLength: 1
+                type: string
+            required:
+            - policy
+        required:
+        - ilm
+      - additionalProperties: false
+        type: object
+        properties:
+          inherit:
+            additionalProperties: false
+            type: object
+            properties: {}
+        required:
+        - inherit
     Kibana_HTTP_APIs_WiredStreamUpsertRequest:
       additionalProperties: false
       type: object
@@ -3595,186 +3681,16 @@ components:
       - rules
       - queries
       - stream
-    Kibana_HTTP_APIs_ClassicFieldDefinitionConfig:
-      allOf:
-      - $ref: '#/components/schemas/Kibana_HTTP_APIs_RecursiveRecord'
-      - anyOf:
-        - additionalProperties: false
-          type: object
-          properties:
-            description:
-              type: string
-            format:
-              description: A non-empty string.
-              minLength: 1
-              type: string
-            type:
-              enum:
-              - keyword
-              - match_only_text
-              - long
-              - double
-              - date
-              - boolean
-              - ip
-              - geo_point
-              - integer
-              - short
-              - byte
-              - float
-              - half_float
-              - text
-              - wildcard
-              - version
-              - unsigned_long
-              - date_nanos
-              type: string
-          required:
-          - type
-        - additionalProperties: false
-          type: object
-          properties:
-            description:
-              type: string
-            type:
-              enum:
-              - system
-              type: string
-          required:
-          - type
-    Kibana_HTTP_APIs_Condition:
-      anyOf:
-      - $ref: '#/components/schemas/Kibana_HTTP_APIs_FilterCondition'
-      - additionalProperties: false
-        description: A logical AND that groups multiple conditions.
-        type: object
-        properties:
-          and:
-            description: An array of conditions. All sub-conditions must be true for this condition to be true.
-            items:
-              $ref: '#/components/schemas/Kibana_HTTP_APIs_Condition'
-            type: array
-        required:
-        - and
-      - additionalProperties: false
-        description: A logical OR that groups multiple conditions.
-        type: object
-        properties:
-          or:
-            description: An array of conditions. At least one sub-condition must be true for this condition to be true.
-            items:
-              $ref: '#/components/schemas/Kibana_HTTP_APIs_Condition'
-            type: array
-        required:
-        - or
-      - additionalProperties: false
-        description: A logical NOT that negates a condition.
-        type: object
-        properties:
-          not:
-            $ref: '#/components/schemas/Kibana_HTTP_APIs_Condition'
-            description: A condition that negates another condition.
-        required:
-        - not
-      - additionalProperties: false
-        description: A condition that always evaluates to false.
-        type: object
-        properties:
-          never:
-            additionalProperties: false
-            description: An empty object. This condition never matches.
-            type: object
-            properties: {}
-        required:
-        - never
-      - additionalProperties: false
-        description: A condition that always evaluates to true. Useful for catch-all scenarios, but use with caution as partitions are ordered.
-        type: object
-        properties:
-          always:
-            additionalProperties: false
-            description: An empty object. This condition always matches.
-            type: object
-            properties: {}
-        required:
-        - always
-      description: The root condition object. It can be a simple filter or a combination of other conditions.
-    Kibana_HTTP_APIs_RecursiveRecord:
-      additionalProperties:
-        anyOf:
-        - anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - nullable: true
-          - {}
-        - items:
-            anyOf:
-            - type: string
-            - type: number
-            - type: boolean
-            - nullable: true
-            - {}
-          type: array
-        - items: {}
-          type: array
-        - $ref: '#/components/schemas/Kibana_HTTP_APIs_RecursiveRecord'
+    Kibana_HTTP_APIs_StreamlangConditionBlock:
+      additionalProperties: false
       type: object
-    Kibana_HTTP_APIs_IngestStreamLifecycle:
-      anyOf:
-      - additionalProperties: false
-        type: object
-        properties:
-          dsl:
-            additionalProperties: false
-            type: object
-            properties:
-              data_retention:
-                description: A non-empty string.
-                minLength: 1
-                type: string
-              downsample:
-                items:
-                  type: object
-                  properties:
-                    after:
-                      description: A non-empty string.
-                      minLength: 1
-                      type: string
-                    fixed_interval:
-                      description: A non-empty string.
-                      minLength: 1
-                      type: string
-                  required:
-                  - after
-                  - fixed_interval
-                type: array
-        required:
-        - dsl
-      - additionalProperties: false
-        type: object
-        properties:
-          ilm:
-            additionalProperties: false
-            type: object
-            properties:
-              policy:
-                description: A non-empty string.
-                minLength: 1
-                type: string
-            required:
-            - policy
-        required:
-        - ilm
-      - additionalProperties: false
-        type: object
-        properties:
-          inherit:
-            additionalProperties: false
-            type: object
-            properties: {}
-        required:
-        - inherit
+      properties:
+        condition:
+          $ref: '#/components/schemas/Kibana_HTTP_APIs_ConditionWithSteps'
+        customIdentifier:
+          type: string
+      required:
+      - condition
     Kibana_HTTP_APIs_QueryStreamUpsertRequest:
       additionalProperties: false
       type: object
@@ -3869,58 +3785,142 @@ components:
       - rules
       - queries
       - stream
-    Kibana_HTTP_APIs_ContentPackIncludedObjects:
+    Kibana_HTTP_APIs_RecursiveRecord:
+      additionalProperties:
+        anyOf:
+        - anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - {}
+          - {}
+        - items:
+            anyOf:
+            - type: string
+            - type: number
+            - type: boolean
+            - {}
+            - {}
+          type: array
+        - items: {}
+          type: array
+        - $ref: '#/components/schemas/Kibana_HTTP_APIs_RecursiveRecord'
+      type: object
+    Kibana_HTTP_APIs_FilterCondition:
       anyOf:
       - additionalProperties: false
+        description: A condition that compares a field to a value or range using an operator as the key.
         type: object
         properties:
-          objects:
+          contains:
+            anyOf:
+            - type: string
+            - type: number
+            - type: boolean
+            description: Contains comparison value.
+          endsWith:
+            anyOf:
+            - type: string
+            - type: number
+            - type: boolean
+            description: Ends-with comparison value.
+          eq:
+            anyOf:
+            - type: string
+            - type: number
+            - type: boolean
+            description: Equality comparison value.
+          field:
+            description: The document field to filter on.
+            minLength: 1
+            type: string
+          gt:
+            anyOf:
+            - type: string
+            - type: number
+            - type: boolean
+            description: Greater-than comparison value.
+          gte:
+            anyOf:
+            - type: string
+            - type: number
+            - type: boolean
+            description: Greater-than-or-equal comparison value.
+          includes:
+            anyOf:
+            - type: string
+            - type: number
+            - type: boolean
+            description: Checks if multivalue field includes the value.
+          lt:
+            anyOf:
+            - type: string
+            - type: number
+            - type: boolean
+            description: Less-than comparison value.
+          lte:
+            anyOf:
+            - type: string
+            - type: number
+            - type: boolean
+            description: Less-than-or-equal comparison value.
+          neq:
+            anyOf:
+            - type: string
+            - type: number
+            - type: boolean
+            description: Inequality comparison value.
+          range:
             additionalProperties: false
+            description: Range comparison values.
             type: object
             properties:
-              all:
-                additionalProperties: false
-                type: object
-                properties: {}
-            required:
-            - all
+              gt:
+                anyOf:
+                - type: string
+                - type: number
+                - type: boolean
+                description: A value that can be a string, number, or boolean.
+              gte:
+                anyOf:
+                - type: string
+                - type: number
+                - type: boolean
+                description: A value that can be a string, number, or boolean.
+              lt:
+                anyOf:
+                - type: string
+                - type: number
+                - type: boolean
+                description: A value that can be a string, number, or boolean.
+              lte:
+                anyOf:
+                - type: string
+                - type: number
+                - type: boolean
+                description: A value that can be a string, number, or boolean.
+          startsWith:
+            anyOf:
+            - type: string
+            - type: number
+            - type: boolean
+            description: Starts-with comparison value.
         required:
-        - objects
+        - field
       - additionalProperties: false
+        description: A condition that checks for the existence or non-existence of a field.
         type: object
         properties:
-          objects:
-            additionalProperties: false
-            type: object
-            properties:
-              mappings:
-                type: boolean
-              queries:
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                  required:
-                  - id
-                type: array
-              routing:
-                items:
-                  allOf:
-                  - $ref: '#/components/schemas/Kibana_HTTP_APIs_ContentPackIncludedObjects'
-                  - type: object
-                    properties:
-                      destination:
-                        type: string
-                    required:
-                    - destination
-                type: array
-            required:
-            - mappings
-            - queries
-            - routing
+          exists:
+            description: Indicates whether the field exists or not.
+            type: boolean
+          field:
+            description: The document field to check.
+            minLength: 1
+            type: string
         required:
-        - objects
+        - field
+      description: A basic filter condition, either unary or binary.
   securitySchemes:
     apiKeyAuth:
       description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`

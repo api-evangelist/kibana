@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -56,8 +56,8 @@ info:
     This documentation contains work-in-progress information for future Elastic Stack releases.
 
     '
-  title: Kibana APIs Actions maintenance-window API
-  version: "1.0"
+  title: Kibana APIs Actions Maintenance Window API
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -265,8 +265,9 @@ paths:
                     type: string
                   created_by:
                     description: The identifier for the user that created the maintenance window.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   enabled:
                     description: Whether the current maintenance window is enabled. Disabled maintenance windows do not suppress notifications.
                     type: boolean
@@ -361,8 +362,9 @@ paths:
                     type: string
                   updated_by:
                     description: The identifier for the user that last updated this maintenance window.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                 required:
                 - id
                 - title
@@ -518,8 +520,9 @@ paths:
                           type: string
                         created_by:
                           description: The identifier for the user that created the maintenance window.
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         enabled:
                           description: Whether the current maintenance window is enabled. Disabled maintenance windows do not suppress notifications.
                           type: boolean
@@ -614,8 +617,9 @@ paths:
                           type: string
                         updated_by:
                           description: The identifier for the user that last updated this maintenance window.
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                       required:
                       - id
                       - title
@@ -758,8 +762,9 @@ paths:
                     type: string
                   created_by:
                     description: The identifier for the user that created the maintenance window.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   enabled:
                     description: Whether the current maintenance window is enabled. Disabled maintenance windows do not suppress notifications.
                     type: boolean
@@ -854,8 +859,9 @@ paths:
                     type: string
                   updated_by:
                     description: The identifier for the user that last updated this maintenance window.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                 required:
                 - id
                 - title
@@ -1063,8 +1069,9 @@ paths:
                     type: string
                   created_by:
                     description: The identifier for the user that created the maintenance window.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   enabled:
                     description: Whether the current maintenance window is enabled. Disabled maintenance windows do not suppress notifications.
                     type: boolean
@@ -1159,8 +1166,9 @@ paths:
                     type: string
                   updated_by:
                     description: The identifier for the user that last updated this maintenance window.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                 required:
                 - id
                 - title
@@ -1257,8 +1265,9 @@ paths:
                     type: string
                   created_by:
                     description: The identifier for the user that created the maintenance window.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   enabled:
                     description: Whether the current maintenance window is enabled. Disabled maintenance windows do not suppress notifications.
                     type: boolean
@@ -1353,8 +1362,9 @@ paths:
                     type: string
                   updated_by:
                     description: The identifier for the user that last updated this maintenance window.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                 required:
                 - id
                 - title
@@ -1449,8 +1459,9 @@ paths:
                     type: string
                   created_by:
                     description: The identifier for the user that created the maintenance window.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   enabled:
                     description: Whether the current maintenance window is enabled. Disabled maintenance windows do not suppress notifications.
                     type: boolean
@@ -1545,8 +1556,9 @@ paths:
                     type: string
                   updated_by:
                     description: The identifier for the user that last updated this maintenance window.
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                 required:
                 - id
                 - title

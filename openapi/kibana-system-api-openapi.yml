@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -56,8 +56,8 @@ info:
     This documentation contains work-in-progress information for future Elastic Stack releases.
 
     '
-  title: Kibana APIs Actions system API
-  version: "1.0"
+  title: Kibana APIs Actions System API
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -213,8 +213,7 @@ components:
                       - critical
                       type: string
                     meta:
-                      additionalProperties:
-                        nullable: true
+                      additionalProperties: {}
                       description: An unstructured set of extra metadata about this service.
                       type: object
                     summary:
@@ -243,8 +242,7 @@ components:
                       - critical
                       type: string
                     meta:
-                      additionalProperties:
-                        nullable: true
+                      additionalProperties: {}
                       description: An unstructured set of extra metadata about this service.
                       type: object
                     summary:
@@ -273,8 +271,7 @@ components:
                       - critical
                       type: string
                     meta:
-                      additionalProperties:
-                        nullable: true
+                      additionalProperties: {}
                       description: An unstructured set of extra metadata about this service.
                       type: object
                     summary:
@@ -306,8 +303,7 @@ components:
                   - critical
                   type: string
                 meta:
-                  additionalProperties:
-                    nullable: true
+                  additionalProperties: {}
                   description: An unstructured set of extra metadata about this service.
                   type: object
                 summary:
@@ -337,8 +333,7 @@ components:
                     - critical
                     type: string
                   meta:
-                    additionalProperties:
-                      nullable: true
+                    additionalProperties: {}
                     description: An unstructured set of extra metadata about this service.
                     type: object
                   summary:

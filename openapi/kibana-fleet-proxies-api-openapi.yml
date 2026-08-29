@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -57,7 +57,7 @@ info:
 
     '
   title: Kibana APIs Actions Fleet proxies API
-  version: "1.0"
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -119,14 +119,17 @@ paths:
                       type: object
                       properties:
                         certificate:
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         certificate_authorities:
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         certificate_key:
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         id:
                           type: string
                         is_preconfigured:
@@ -140,8 +143,9 @@ paths:
                             - type: string
                             - type: boolean
                             - type: number
-                          nullable: true
-                          type: object
+                          type:
+                          - object
+                          - 'null'
                         url:
                           type: string
                       required:
@@ -177,8 +181,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -231,14 +234,17 @@ paths:
               type: object
               properties:
                 certificate:
-                  nullable: true
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                 certificate_authorities:
-                  nullable: true
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                 certificate_key:
-                  nullable: true
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                 id:
                   type: string
                 is_preconfigured:
@@ -252,8 +258,9 @@ paths:
                     - type: string
                     - type: boolean
                     - type: number
-                  nullable: true
-                  type: object
+                  type:
+                  - object
+                  - 'null'
                 url:
                   type: string
               required:
@@ -281,14 +288,17 @@ paths:
                     type: object
                     properties:
                       certificate:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       certificate_authorities:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       certificate_key:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       id:
                         type: string
                       is_preconfigured:
@@ -302,8 +312,9 @@ paths:
                           - type: string
                           - type: boolean
                           - type: number
-                        nullable: true
-                        type: object
+                        type:
+                        - object
+                        - 'null'
                       url:
                         type: string
                     required:
@@ -328,8 +339,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -408,8 +418,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -480,14 +489,17 @@ paths:
                     type: object
                     properties:
                       certificate:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       certificate_authorities:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       certificate_key:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       id:
                         type: string
                       is_preconfigured:
@@ -501,8 +513,9 @@ paths:
                           - type: string
                           - type: boolean
                           - type: number
-                        nullable: true
-                        type: object
+                        type:
+                        - object
+                        - 'null'
                       url:
                         type: string
                     required:
@@ -527,8 +540,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:
@@ -598,14 +610,17 @@ paths:
               type: object
               properties:
                 certificate:
-                  nullable: true
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                 certificate_authorities:
-                  nullable: true
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                 certificate_key:
-                  nullable: true
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                 name:
                   type: string
                 proxy_headers:
@@ -614,8 +629,9 @@ paths:
                     - type: string
                     - type: boolean
                     - type: number
-                  nullable: true
-                  type: object
+                  type:
+                  - object
+                  - 'null'
                 url:
                   type: string
               required:
@@ -644,14 +660,17 @@ paths:
                     type: object
                     properties:
                       certificate:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       certificate_authorities:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       certificate_key:
-                        nullable: true
-                        type: string
+                        type:
+                        - string
+                        - 'null'
                       id:
                         type: string
                       is_preconfigured:
@@ -665,8 +684,9 @@ paths:
                           - type: string
                           - type: boolean
                           - type: number
-                        nullable: true
-                        type: object
+                        type:
+                        - object
+                        - 'null'
                       url:
                         type: string
                     required:
@@ -691,8 +711,7 @@ paths:
                 description: Generic Error
                 type: object
                 properties:
-                  attributes:
-                    nullable: true
+                  attributes: {}
                   error:
                     type: string
                   errorType:

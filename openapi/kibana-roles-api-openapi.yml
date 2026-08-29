@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -56,8 +56,8 @@ info:
     This documentation contains work-in-progress information for future Elastic Stack releases.
 
     '
-  title: Kibana APIs Actions roles API
-  version: "1.0"
+  title: Kibana APIs Actions Roles API
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -236,114 +236,181 @@ paths:
       - content: Kibana
         name: product_name
 components:
-  schemas:
-    Kibana_HTTP_APIs_security_role_kibana_privilege:
-      additionalProperties: false
-      description: The Kibana privilege entry for the role.
-      properties:
-        base:
-          anyOf:
-          - items: {}
-            type: array
-          - type: boolean
-          - type: number
-          - type: object
-          - type: string
-          nullable: true
-          oneOf:
-          - items:
-              description: A base privilege that grants applies to all spaces.
-              type: string
-            maxItems: 50
-            type: array
-          - items:
-              description: A base privilege that applies to specific spaces.
-              type: string
-            maxItems: 50
-            type: array
-        feature:
-          additionalProperties:
-            items:
-              description: The privileges that the role member has for the feature.
-              type: string
-            maxItems: 100
-            type: array
-          type: object
-        spaces:
-          anyOf:
-          - items:
-              enum:
-              - '*'
-              type: string
-            maxItems: 1
-            minItems: 1
-            type: array
-          - items:
-              description: A space that the privilege applies to.
-              type: string
-            maxItems: 1000
-            type: array
-          default:
-          - '*'
-      required:
-      - base
-      title: security_role_kibana_privilege
-      type: object
-    Kibana_HTTP_APIs_security_role_elasticsearch:
-      additionalProperties: false
-      description: The Elasticsearch cluster, index, and remote cluster security privileges for the role.
-      properties:
-        cluster:
-          items:
-            description: Cluster privileges that define the cluster level actions that users can perform.
-            type: string
-          maxItems: 100
-          type: array
-        indices:
-          items:
-            $ref: '#/components/schemas/Kibana_HTTP_APIs_security_role_indices_privileges'
-          maxItems: 1000
-          type: array
-        remote_cluster:
-          items:
-            $ref: '#/components/schemas/Kibana_HTTP_APIs_security_role_remote_cluster_privileges'
-          maxItems: 100
-          type: array
-        remote_indices:
-          items:
-            $ref: '#/components/schemas/Kibana_HTTP_APIs_security_role_remote_indices_privileges'
-          maxItems: 1000
-          type: array
-        run_as:
-          items:
-            description: A username that members of this role can impersonate.
-            type: string
-          maxItems: 100
-          type: array
-      title: security_role_elasticsearch
-      type: object
-    Kibana_HTTP_APIs_security_role_put_payload:
-      additionalProperties: false
-      description: The role definition to create or update.
-      properties:
-        description:
-          description: A description for the role.
-          maxLength: 2048
-          type: string
-        elasticsearch:
-          $ref: '#/components/schemas/Kibana_HTTP_APIs_security_role_elasticsearch'
-        kibana:
-          items:
-            $ref: '#/components/schemas/Kibana_HTTP_APIs_security_role_kibana_privilege'
-          type: array
+  examples:
+    get_roles_response1:
+      summary: Get all role details
+      value:
+      - name: my_kibana_role
+        description: My kibana role description
         metadata:
-          additionalProperties:
-            nullable: true
-          type: object
-      required:
-      - elasticsearch
-      title: security_role_put_payload
-      type: object
+          version: 1
+        transient_metadata:
+          enabled: true
+        elasticsearch:
+          indices: []
+          cluster: []
+          run_as: []
+        kibana:
+        - base:
+          - all
+          feature: {}
+          spaces:
+          - '*'
+      - name: my_admin_role
+        description: My admin role description
+        metadata:
+          version: 1
+        transient_metadata:
+          enabled: true
+        elasticsearch:
+          cluster:
+          - all
+          indices:
+          - names:
+            - index1
+            - index2
+            privileges:
+            - all
+            field_security:
+              grant:
+              - title
+              - body
+            query: '{\"match\": {\"title\": \"foo\"}}'
+        kibana: []
+    create_role_request3:
+      summary: Feature privileges in a space
+      description: Grant full access to all features in the default space.
+      value:
+        metadata:
+          version: 1
+        elasticsearch:
+          cluster: []
+          indices: []
+        kibana:
+        - base:
+          - all
+          feature: {}
+          spaces:
+          - default
+    create_role_request4:
+      summary: Elasticsearch and Kibana feature privileges
+      description: Grant Elasticsearch and Kibana feature privileges.
+      value:
+        description: Grant all cluster privileges and full access to index1 and index2. Grant full access to remote_index1 and remote_index2, and the monitor_enrich cluster privilege on remote_cluster1. Grant all Kibana privileges in the default space.
+        metadata:
+          version: 1
+        elasticsearch:
+          cluster:
+          - all
+          indices:
+          - names:
+            - index1
+            - index2
+            privileges:
+            - all
+          remote_indices:
+          - clusters:
+            - remote_cluster1
+            names:
+            - remote_index1
+            - remote_index2
+            privileges:
+            - all
+          remote_cluster:
+          - clusters:
+            - remote_cluster1
+            privileges:
+            - monitor_enrich
+        kibana:
+        - base:
+          - all
+          feature: {}
+          spaces:
+          - default
+    create_role_request2:
+      summary: Dashboard privileges in a space
+      description: Grant access to dashboard features in a Marketing space.
+      value:
+        description: Grant dashboard access in the Marketing space.
+        metadata:
+          version: 1
+        elasticsearch:
+          cluster: []
+          indices: []
+        kibana:
+        - base: []
+          feature:
+            dashboard:
+            - read
+          spaces:
+          - marketing
+    get_role_response1:
+      summary: Get role details
+      value:
+        name: my_kibana_role
+        description: Grants all cluster privileges and full access to index1 and index2. Grants full access to remote_index1 and remote_index2, and the monitor_enrich cluster privilege on remote_cluster1. Grants all Kibana privileges in the default space.
+        metadata:
+          version: 1
+        transient_metadata:
+          enabled: true
+        elasticsearch:
+          cluster:
+          - all
+          remote_cluster:
+          - privileges:
+            - monitor_enrich
+            clusters:
+            - remote_cluster1
+          indices:
+          - names:
+            - index1
+            - index2
+            privileges:
+            - all
+            allow_restricted_indices: false
+          remote_indices:
+          - names:
+            - remote_index1
+            - remote_index2
+            privileges:
+            - all
+            allow_restricted_indices: false
+            clusters:
+            - remote_cluster1
+          run_as: []
+        kibana:
+        - base:
+          - all
+          feature: {}
+          spaces:
+          - default
+        _transform_error: []
+        _unrecognized_applications: []
+    create_role_request1:
+      summary: Feature privileges in multiple spaces
+      description: Grant access to various features in some spaces.
+      value:
+        description: Grant full access to discover and dashboard features in the default space. Grant read access in the marketing, and sales spaces.
+        metadata:
+          version: 1
+        elasticsearch:
+          cluster: []
+          indices: []
+        kibana:
+        - base: []
+          feature:
+            discover:
+            - all
+            dashboard:
+            - all
+          spaces:
+          - default
+        - base:
+          - read
+          spaces:
+          - marketing
+          - sales
+  schemas:
     Kibana_HTTP_APIs_security_role_remote_indices_privileges:
       additionalProperties: false
       description: The remote indices privileges entry.
@@ -389,6 +456,80 @@ components:
       - privileges
       title: security_role_remote_indices_privileges
       type: object
+    Kibana_HTTP_APIs_security_role_kibana_privilege:
+      additionalProperties: false
+      description: The Kibana privilege entry for the role.
+      properties:
+        base:
+          anyOf:
+          - items: {}
+            type: array
+          - type: boolean
+          - type: number
+          - type: object
+          - type: string
+          oneOf:
+          - items:
+              description: A base privilege that grants applies to all spaces.
+              type: string
+            maxItems: 50
+            type: array
+          - items:
+              description: A base privilege that applies to specific spaces.
+              type: string
+            maxItems: 50
+            type: array
+        feature:
+          additionalProperties:
+            items:
+              description: The privileges that the role member has for the feature.
+              type: string
+            maxItems: 100
+            type: array
+          type: object
+        spaces:
+          anyOf:
+          - items:
+              enum:
+              - '*'
+              type: string
+            maxItems: 1
+            minItems: 1
+            type: array
+          - items:
+              description: A space that the privilege applies to.
+              type: string
+            maxItems: 1000
+            type: array
+          default:
+          - '*'
+      required:
+      - base
+      title: security_role_kibana_privilege
+      type: object
+    Kibana_HTTP_APIs_security_role_remote_cluster_privileges:
+      additionalProperties: false
+      description: The remote cluster privileges entry.
+      properties:
+        clusters:
+          items:
+            description: A list of remote cluster aliases. It supports literal strings as well as wildcards and regular expressions.
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+        privileges:
+          items:
+            description: The cluster level privileges for the remote cluster. The allowed values are a subset of the cluster privileges.
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+      required:
+      - privileges
+      - clusters
+      title: security_role_remote_cluster_privileges
+      type: object
     Kibana_HTTP_APIs_security_role_indices_privileges:
       additionalProperties: false
       description: The indices privileges entry.
@@ -426,28 +567,59 @@ components:
       - privileges
       title: security_role_indices_privileges
       type: object
-    Kibana_HTTP_APIs_security_role_remote_cluster_privileges:
+    Kibana_HTTP_APIs_security_role_put_payload:
       additionalProperties: false
-      description: The remote cluster privileges entry.
+      description: The role definition to create or update.
       properties:
-        clusters:
+        description:
+          description: A description for the role.
+          maxLength: 2048
+          type: string
+        elasticsearch:
+          $ref: '#/components/schemas/Kibana_HTTP_APIs_security_role_elasticsearch'
+        kibana:
           items:
-            description: A list of remote cluster aliases. It supports literal strings as well as wildcards and regular expressions.
-            type: string
-          maxItems: 100
-          minItems: 1
+            $ref: '#/components/schemas/Kibana_HTTP_APIs_security_role_kibana_privilege'
           type: array
-        privileges:
-          items:
-            description: The cluster level privileges for the remote cluster. The allowed values are a subset of the cluster privileges.
-            type: string
-          maxItems: 100
-          minItems: 1
-          type: array
+        metadata:
+          additionalProperties: {}
+          type: object
       required:
-      - privileges
-      - clusters
-      title: security_role_remote_cluster_privileges
+      - elasticsearch
+      title: security_role_put_payload
+      type: object
+    Kibana_HTTP_APIs_security_role_elasticsearch:
+      additionalProperties: false
+      description: The Elasticsearch cluster, index, and remote cluster security privileges for the role.
+      properties:
+        cluster:
+          items:
+            description: Cluster privileges that define the cluster level actions that users can perform.
+            type: string
+          maxItems: 100
+          type: array
+        indices:
+          items:
+            $ref: '#/components/schemas/Kibana_HTTP_APIs_security_role_indices_privileges'
+          maxItems: 1000
+          type: array
+        remote_cluster:
+          items:
+            $ref: '#/components/schemas/Kibana_HTTP_APIs_security_role_remote_cluster_privileges'
+          maxItems: 100
+          type: array
+        remote_indices:
+          items:
+            $ref: '#/components/schemas/Kibana_HTTP_APIs_security_role_remote_indices_privileges'
+          maxItems: 1000
+          type: array
+        run_as:
+          items:
+            description: A username that members of this role can impersonate.
+            type: string
+          maxItems: 100
+          type: array
+      title: security_role_elasticsearch
       type: object
     Kibana_HTTP_APIs_security_roles_bulk_create_or_update_payload:
       additionalProperties: false
@@ -461,180 +633,6 @@ components:
       - roles
       title: security_roles_bulk_create_or_update_payload
       type: object
-  examples:
-    get_roles_response1:
-      summary: Get all role details
-      value:
-      - name: my_kibana_role
-        description: My kibana role description
-        metadata:
-          version: 1
-        transient_metadata:
-          enabled: true
-        elasticsearch:
-          indices: []
-          cluster: []
-          run_as: []
-        kibana:
-        - base:
-          - all
-          feature: {}
-          spaces:
-          - '*'
-      - name: my_admin_role
-        description: My admin role description
-        metadata:
-          version: 1
-        transient_metadata:
-          enabled: true
-        elasticsearch:
-          cluster:
-          - all
-          indices:
-          - names:
-            - index1
-            - index2
-            privileges:
-            - all
-            field_security:
-              grant:
-              - title
-              - body
-            query: '{\"match\": {\"title\": \"foo\"}}'
-        kibana: []
-    create_role_request1:
-      summary: Feature privileges in multiple spaces
-      description: Grant access to various features in some spaces.
-      value:
-        description: Grant full access to discover and dashboard features in the default space. Grant read access in the marketing, and sales spaces.
-        metadata:
-          version: 1
-        elasticsearch:
-          cluster: []
-          indices: []
-        kibana:
-        - base: []
-          feature:
-            discover:
-            - all
-            dashboard:
-            - all
-          spaces:
-          - default
-        - base:
-          - read
-          spaces:
-          - marketing
-          - sales
-    create_role_request4:
-      summary: Elasticsearch and Kibana feature privileges
-      description: Grant Elasticsearch and Kibana feature privileges.
-      value:
-        description: Grant all cluster privileges and full access to index1 and index2. Grant full access to remote_index1 and remote_index2, and the monitor_enrich cluster privilege on remote_cluster1. Grant all Kibana privileges in the default space.
-        metadata:
-          version: 1
-        elasticsearch:
-          cluster:
-          - all
-          indices:
-          - names:
-            - index1
-            - index2
-            privileges:
-            - all
-          remote_indices:
-          - clusters:
-            - remote_cluster1
-            names:
-            - remote_index1
-            - remote_index2
-            privileges:
-            - all
-          remote_cluster:
-          - clusters:
-            - remote_cluster1
-            privileges:
-            - monitor_enrich
-        kibana:
-        - base:
-          - all
-          feature: {}
-          spaces:
-          - default
-    create_role_request3:
-      summary: Feature privileges in a space
-      description: Grant full access to all features in the default space.
-      value:
-        metadata:
-          version: 1
-        elasticsearch:
-          cluster: []
-          indices: []
-        kibana:
-        - base:
-          - all
-          feature: {}
-          spaces:
-          - default
-    get_role_response1:
-      summary: Get role details
-      value:
-        name: my_kibana_role
-        description: Grants all cluster privileges and full access to index1 and index2. Grants full access to remote_index1 and remote_index2, and the monitor_enrich cluster privilege on remote_cluster1. Grants all Kibana privileges in the default space.
-        metadata:
-          version: 1
-        transient_metadata:
-          enabled: true
-        elasticsearch:
-          cluster:
-          - all
-          remote_cluster:
-          - privileges:
-            - monitor_enrich
-            clusters:
-            - remote_cluster1
-          indices:
-          - names:
-            - index1
-            - index2
-            privileges:
-            - all
-            allow_restricted_indices: false
-          remote_indices:
-          - names:
-            - remote_index1
-            - remote_index2
-            privileges:
-            - all
-            allow_restricted_indices: false
-            clusters:
-            - remote_cluster1
-          run_as: []
-        kibana:
-        - base:
-          - all
-          feature: {}
-          spaces:
-          - default
-        _transform_error: []
-        _unrecognized_applications: []
-    create_role_request2:
-      summary: Dashboard privileges in a space
-      description: Grant access to dashboard features in a Marketing space.
-      value:
-        description: Grant dashboard access in the Marketing space.
-        metadata:
-          version: 1
-        elasticsearch:
-          cluster: []
-          indices: []
-        kibana:
-        - base: []
-          feature:
-            dashboard:
-            - read
-          spaces:
-          - marketing
   securitySchemes:
     apiKeyAuth:
       description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`

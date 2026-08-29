@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -57,7 +57,7 @@ info:
 
     '
   title: Kibana APIs Actions APM server schema API
-  version: "1.0"
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -151,40 +151,11 @@ paths:
       - content: Kibana
         name: product_name
 components:
-  parameters:
-    APM_UI_kbn_xsrf:
-      description: A required header to protect against CSRF attacks
-      in: header
-      name: kbn-xsrf
-      required: true
-      schema:
-        example: 'true'
-        type: string
-    APM_UI_elastic_api_version:
-      description: The version of the API to use
-      in: header
-      name: elastic-api-version
-      required: true
-      schema:
-        default: '2023-10-31'
-        enum:
-        - '2023-10-31'
-        type: string
+  examples:
+    APM_UI_fleet_apm_server_schema_200_response1:
+      description: An example of a successful response from `POST /api/apm/fleet/apm_server_schema`. The response body is intentionally empty.
+      value: {}
   schemas:
-    APM_UI_403_response:
-      type: object
-      properties:
-        error:
-          description: Error type
-          example: Forbidden
-          type: string
-        message:
-          description: Error message
-          type: string
-        statusCode:
-          description: Error status code
-          example: 403
-          type: number
     APM_UI_401_response:
       type: object
       properties:
@@ -198,6 +169,20 @@ components:
         statusCode:
           description: Error status code
           example: 401
+          type: number
+    APM_UI_403_response:
+      type: object
+      properties:
+        error:
+          description: Error type
+          example: Forbidden
+          type: string
+        message:
+          description: Error message
+          type: string
+        statusCode:
+          description: Error status code
+          example: 403
           type: number
     APM_UI_404_response:
       type: object
@@ -229,10 +214,25 @@ components:
           description: Error status code
           example: 400
           type: number
-  examples:
-    APM_UI_fleet_apm_server_schema_200_response1:
-      description: An example of a successful response from `POST /api/apm/fleet/apm_server_schema`. The response body is intentionally empty.
-      value: {}
+  parameters:
+    APM_UI_elastic_api_version:
+      description: The version of the API to use
+      in: header
+      name: elastic-api-version
+      required: true
+      schema:
+        default: '2023-10-31'
+        enum:
+        - '2023-10-31'
+        type: string
+    APM_UI_kbn_xsrf:
+      description: A required header to protect against CSRF attacks
+      in: header
+      name: kbn-xsrf
+      required: true
+      schema:
+        example: 'true'
+        type: string
   securitySchemes:
     apiKeyAuth:
       description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`

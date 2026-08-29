@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -56,8 +56,8 @@ info:
     This documentation contains work-in-progress information for future Elastic Stack releases.
 
     '
-  title: Kibana APIs Actions workflows API
-  version: "1.0"
+  title: Kibana APIs Actions Workflows API
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -851,8 +851,7 @@ paths:
               type: object
               properties:
                 input:
-                  additionalProperties:
-                    nullable: true
+                  additionalProperties: {}
                   description: Input data to resume the execution with.
                   type: object
               required:
@@ -1268,13 +1267,11 @@ paths:
               type: object
               properties:
                 contextOverride:
-                  additionalProperties:
-                    nullable: true
+                  additionalProperties: {}
                   description: Context overrides for the step execution.
                   type: object
                 executionContext:
-                  additionalProperties:
-                    nullable: true
+                  additionalProperties: {}
                   description: Execution context for the step execution.
                   type: object
                 stepId:
@@ -1354,8 +1351,7 @@ paths:
               type: object
               properties:
                 inputs:
-                  additionalProperties:
-                    nullable: true
+                  additionalProperties: {}
                   description: Key-value inputs for the test execution.
                   type: object
                 workflowId:
@@ -1809,13 +1805,11 @@ paths:
               type: object
               properties:
                 inputs:
-                  additionalProperties:
-                    nullable: true
+                  additionalProperties: {}
                   description: Key-value inputs for the workflow execution.
                   type: object
                 metadata:
-                  additionalProperties:
-                    nullable: true
+                  additionalProperties: {}
                   description: Optional metadata for the execution.
                   type: object
               required:

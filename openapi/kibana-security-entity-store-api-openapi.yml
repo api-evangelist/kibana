@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
@@ -57,7 +57,7 @@ info:
 
     '
   title: Kibana APIs Actions Security entity store API
-  version: "1.0"
+  version: '1.0'
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -553,7 +553,7 @@ paths:
                           - high_impact
                           - extreme_impact
                           type: string
-                        - nullable: true
+                        - {}
                       environment:
                         type: string
                       id:
@@ -1099,7 +1099,7 @@ paths:
                           - high_impact
                           - extreme_impact
                           type: string
-                        - nullable: true
+                        - {}
                       environment:
                         type: string
                       id:
@@ -1675,7 +1675,7 @@ paths:
                           - high_impact
                           - extreme_impact
                           type: string
-                        - nullable: true
+                        - {}
                       environment:
                         type: string
                       id:
@@ -2223,7 +2223,7 @@ paths:
                           - high_impact
                           - extreme_impact
                           type: string
-                        - nullable: true
+                        - {}
                       environment:
                         type: string
                       id:
@@ -2928,7 +2928,7 @@ paths:
                           - high_impact
                           - extreme_impact
                           type: string
-                        - nullable: true
+                        - {}
                       environment:
                         type: string
                       id:
@@ -3474,7 +3474,7 @@ paths:
                           - high_impact
                           - extreme_impact
                           type: string
-                        - nullable: true
+                        - {}
                       environment:
                         type: string
                       id:
@@ -4050,7 +4050,7 @@ paths:
                           - high_impact
                           - extreme_impact
                           type: string
-                        - nullable: true
+                        - {}
                       environment:
                         type: string
                       id:
@@ -4598,7 +4598,7 @@ paths:
                           - high_impact
                           - extreme_impact
                           type: string
-                        - nullable: true
+                        - {}
                       environment:
                         type: string
                       id:
@@ -5307,7 +5307,7 @@ paths:
                                     - high_impact
                                     - extreme_impact
                                     type: string
-                                  - nullable: true
+                                  - {}
                                 environment:
                                   type: string
                                 id:
@@ -5853,7 +5853,7 @@ paths:
                                     - high_impact
                                     - extreme_impact
                                     type: string
-                                  - nullable: true
+                                  - {}
                                 environment:
                                   type: string
                                 id:
@@ -6429,7 +6429,7 @@ paths:
                                     - high_impact
                                     - extreme_impact
                                     type: string
-                                  - nullable: true
+                                  - {}
                                 environment:
                                   type: string
                                 id:
@@ -6977,7 +6977,7 @@ paths:
                                     - high_impact
                                     - extreme_impact
                                     type: string
-                                  - nullable: true
+                                  - {}
                                 environment:
                                   type: string
                                 id:
