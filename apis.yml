@@ -5,6 +5,18 @@ description: Kibana is an open-source data visualization and exploration tool us
   dashboards, alerting, and management of saved objects across spaces, exposing a comprehensive REST API for programmatic
   configuration and automation.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -1190,6 +1202,9 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 common:
+- type: CapabilityMap
+  url: capabilities/kibana-capability-edges.yml
+  name: Kibana Business Capability Map
 - type: AgenticAccess
   url: agentic-access/kibana-agentic-access.yml
 - type: TrustCenter
