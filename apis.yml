@@ -1,9 +1,9 @@
 aid: kibana
 name: Kibana
-description: Kibana is an open-source data visualization and exploration tool used for log and time-series analytics, application
-  monitoring, and operational intelligence. Kibana provides histograms, line graphs, pie charts, heat maps, geospatial visualizations,
-  dashboards, alerting, and management of saved objects across spaces, exposing a comprehensive REST API for programmatic
-  configuration and automation.
+description: Kibana is an open-source data visualization and exploration tool used for log and time-series
+  analytics, application monitoring, and operational intelligence. Kibana provides histograms, line graphs,
+  pie charts, heat maps, geospatial visualizations, dashboards, alerting, and management of saved objects
+  across spaces, exposing a comprehensive REST API for programmatic configuration and automation.
 type: Index
 deliveryModel:
   model: saas
@@ -44,7 +44,7 @@ tags:
 - Visualization
 url: https://raw.githubusercontent.com/api-evangelist/kibana/refs/heads/main/apis.yml
 created: '2024-01-15'
-modified: '2026-05-19'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: kibana:kibana-actions-api
@@ -63,14 +63,13 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-agent-builder-api
   name: Kibana agent builder API
-  description: >-
-    Agent Builder is a set of AI-powered capabilities for developing and interacting with agents that
-    work with your Elasticsearch data.
+  description: 'Agent Builder is a set of AI-powered capabilities for developing and interacting with
+    agents that work with your Elasticsearch data.
 
     Most users will probably want to integrate with Agent Builder using MCP or A2A, but you can also work
     programmatically with tools, agents, and conversations using these Kibana APIs.
 
-    **Elastic Agent Builder requires an Enterprise subscription.**
+    **Elastic Agent Builder requires an Enterprise subscription.**'
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -86,10 +85,10 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-alerting-api
   name: Kibana alerting API
-  description: >-
-    Alerting enables you to define rules, which detect complex conditions within your data. When a condition
-    is met, the rule tracks it as an alert and runs the actions that are defined in the rule. Actions
-    typically involve the use of connectors to interact with Kibana services or third party integrations.
+  description: Alerting enables you to define rules, which detect complex conditions within your data.
+    When a condition is met, the rule tracks it as an alert and runs the actions that are defined in the
+    rule. Actions typically involve the use of connectors to interact with Kibana services or third party
+    integrations.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -133,9 +132,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-apm-annotations-api
   name: Kibana APM annotations API
-  description: >-
-    Annotate visualizations in the APM app with significant events. Annotations enable you to easily see
-    how events are impacting the performance of your applications.
+  description: Annotate visualizations in the APM app with significant events. Annotations enable you
+    to easily see how events are impacting the performance of your applications.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -163,14 +161,13 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-apm-sourcemaps-api
   name: Kibana APM sourcemaps API
-  description: >-
-    Configure APM source maps. A source map allows minified files to be mapped back to original source
-    code--allowing you to maintain the speed advantage of minified code, without losing the ability to
-    quickly and easily debug your application.
+  description: 'Configure APM source maps. A source map allows minified files to be mapped back to original
+    source code--allowing you to maintain the speed advantage of minified code, without losing the ability
+    to quickly and easily debug your application.
 
     For best results, uploading source maps should become a part of your deployment procedure, and not
-    something you only do when you see unhelpful errors. That's because uploading source maps after errors
-    happen won't make old errors magically readable--errors must occur again for source mapping to occur.
+    something you only do when you see unhelpful errors. That''s because uploading source maps after errors
+    happen won''t make old errors magically readable--errors must occur again for source mapping to occur.'
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -184,10 +181,9 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-cases-api
   name: Kibana cases API
-  description: >-
-    Cases are used to open and track issues. You can add assignees and tags to your cases, set their severity
-    and status, and add alerts, comments, and visualizations. You can also send cases to external incident
-    management systems by configuring connectors.
+  description: Cases are used to open and track issues. You can add assignees and tags to your cases,
+    set their severity and status, and add alerts, comments, and visualizations. You can also send cases
+    to external incident management systems by configuring connectors.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -203,9 +199,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-connectors-api
   name: Kibana connectors API
-  description: >-
-    Connectors provide a central place to store connection information for services and integrations with
-    Elastic or third party systems. Alerting rules can use connectors to run actions when rule conditions
+  description: Connectors provide a central place to store connection information for services and integrations
+    with Elastic or third party systems. Alerting rules can use connectors to run actions when rule conditions
     are met.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
@@ -222,9 +217,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-data-streams-api
   name: Kibana Data streams API
-  description: >-
-    Data stream APIs enable you to manage data streams, which are collections of indices that share the
-    same index template and are managed as a single unit for time-series data.
+  description: Data stream APIs enable you to manage data streams, which are collections of indices that
+    share the same index template and are managed as a single unit for time-series data.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -256,10 +250,9 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-elastic-agent-actions-api
   name: Kibana Elastic Agent actions API
-  description: >-
-    Elastic Agent actions APIs enable you to manage actions performed on Elastic Agents, including agent
-    reassignment, diagnostics collection, enrollment management, upgrades, and bulk operations for agent
-    lifecycle management.
+  description: Elastic Agent actions APIs enable you to manage actions performed on Elastic Agents, including
+    agent reassignment, diagnostics collection, enrollment management, upgrades, and bulk operations for
+    agent lifecycle management.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -273,9 +266,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-elastic-agent-binary-download-sources-api
   name: Kibana Elastic Agent binary download sources API
-  description: >-
-    Elastic Agent binary download sources APIs enable you to manage download sources for Elastic Agent
-    binaries, including creating, updating, and deleting custom download sources for agent binaries.
+  description: Elastic Agent binary download sources APIs enable you to manage download sources for Elastic
+    Agent binaries, including creating, updating, and deleting custom download sources for agent binaries.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -289,9 +281,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-elastic-agent-policies-api
   name: Kibana Elastic Agent policies API
-  description: >-
-    Elastic Agent policies APIs enable you to manage agent policies, including creating, updating, and
-    deleting policies, as well as to retrieve agent policy outputs, manifests, and auto-upgrade status
+  description: Elastic Agent policies APIs enable you to manage agent policies, including creating, updating,
+    and deleting policies, as well as to retrieve agent policy outputs, manifests, and auto-upgrade status
     information.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
@@ -306,9 +297,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-elastic-agent-status-api
   name: Kibana Elastic Agent status API
-  description: >-
-    Enables you to retrieve status information about Elastic Agents, including health summaries and operational
-    status.
+  description: Enables you to retrieve status information about Elastic Agents, including health summaries
+    and operational status.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -322,9 +312,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-elastic-agents-api
   name: Kibana Elastic Agents API
-  description: >-
-    Elastic Agents APIs enable you to manage Elastic Agents, including retrieving agent information, managing
-    agent lifecycle, handling file uploads, and initiating agent setup.
+  description: Elastic Agents APIs enable you to manage Elastic Agents, including retrieving agent information,
+    managing agent lifecycle, handling file uploads, and initiating agent setup.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -338,9 +327,9 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-elastic-package-manager-epm-api
   name: Kibana Elastic Package Manager (EPM) API
-  description: >-
-    Elastic Package Manager (EPM) APIs enable you to manage packages and integrations, including installing,
-    updating, and uninstalling packages, managing custom integrations, and handling package assets.
+  description: Elastic Package Manager (EPM) APIs enable you to manage packages and integrations, including
+    installing, updating, and uninstalling packages, managing custom integrations, and handling package
+    assets.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -354,8 +343,7 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-fleet-agentless-policies-api
   name: Kibana Fleet agentless policies API
-  description: >-
-    The Fleet agentless policies API from Kibana — 2 operation(s) for fleet agentless policies.
+  description: The Fleet agentless policies API from Kibana — 2 operation(s) for fleet agentless policies.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -383,9 +371,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-fleet-cloud-connectors-api
   name: Kibana Fleet cloud connectors API
-  description: >-
-    Fleet cloud connectors APIs enable you to manage Fleet cloud connectors, including creating, updating,
-    and deleting cloud connector configurations for Fleet integrations.
+  description: Fleet cloud connectors APIs enable you to manage Fleet cloud connectors, including creating,
+    updating, and deleting cloud connector configurations for Fleet integrations.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -399,9 +386,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-fleet-enrollment-api-keys-api
   name: Kibana Fleet enrollment API keys API
-  description: >-
-    Fleet enrollment API keys APIs enable you to manage enrollment API keys for Fleet, including creating,
-    retrieving, and revoking API keys used for agent enrollment.
+  description: Fleet enrollment API keys APIs enable you to manage enrollment API keys for Fleet, including
+    creating, retrieving, and revoking API keys used for agent enrollment.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -415,9 +401,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-fleet-internals-api
   name: Kibana Fleet internals API
-  description: >-
-    Fleet internals APIs enable you to manage Fleet internal operations, including checking permissions,
-    monitoring Fleet Server health, managing settings, and initiating Fleet setup.
+  description: Fleet internals APIs enable you to manage Fleet internal operations, including checking
+    permissions, monitoring Fleet Server health, managing settings, and initiating Fleet setup.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -431,9 +416,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-fleet-outputs-api
   name: Kibana Fleet outputs API
-  description: >-
-    Fleet outputs APIs enable you to manage Fleet outputs, including creating, updating, and deleting
-    output configurations, generating Logstash API keys, and monitoring output health.
+  description: Fleet outputs APIs enable you to manage Fleet outputs, including creating, updating, and
+    deleting output configurations, generating Logstash API keys, and monitoring output health.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -447,9 +431,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-fleet-package-policies-api
   name: Kibana Fleet package policies API
-  description: >-
-    Fleet package policies APIs enable you to manage Fleet package policies, including creating, updating,
-    and deleting policies, performing bulk operations, and managing policy upgrades.
+  description: Fleet package policies APIs enable you to manage Fleet package policies, including creating,
+    updating, and deleting policies, performing bulk operations, and managing policy upgrades.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -463,9 +446,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-fleet-proxies-api
   name: Kibana Fleet proxies API
-  description: >-
-    Fleet proxies APIs enable you to manage Fleet proxies, including creating, updating, and deleting
-    proxy configurations for Fleet agent communication.
+  description: Fleet proxies APIs enable you to manage Fleet proxies, including creating, updating, and
+    deleting proxy configurations for Fleet agent communication.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -479,16 +461,15 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-fleet-remote-synced-integrations-api
   name: Kibana Fleet remote synced integrations API
-  description: >-
-    Use the Fleet remote synced integrations API to check the status of the automatic integrations synchronization
-    on a remote cluster:
+  description: 'Use the Fleet remote synced integrations API to check the status of the automatic integrations
+    synchronization on a remote cluster:
 
     * Use the `/api/fleet/remote_synced_integrations/{outputId}/remote_status` endpoint on the management
     cluster to query the synchronization status of the integrations installed on the remote cluster by
     the ID of the configured remote Elasticsearch output.
 
     * Use the `/api/fleet/remote_synced_integrations/status` endpoint on the remote cluster to query the
-    synchronization status of the installed integrations.
+    synchronization status of the installed integrations.'
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -502,9 +483,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-fleet-server-hosts-api
   name: Kibana Fleet Server hosts API
-  description: >-
-    Fleet Server hosts APIs enable you to manage Fleet Server hosts, including creating, updating, and
-    deleting Fleet Server host configurations.
+  description: Fleet Server hosts APIs enable you to manage Fleet Server hosts, including creating, updating,
+    and deleting Fleet Server host configurations.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -532,9 +512,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-fleet-uninstall-tokens-api
   name: Kibana Fleet uninstall tokens API
-  description: >-
-    Fleet uninstall tokens APIs enable you to manage Fleet uninstall tokens, including retrieving metadata
-    and decrypted tokens for agent uninstallation.
+  description: Fleet uninstall tokens APIs enable you to manage Fleet uninstall tokens, including retrieving
+    metadata and decrypted tokens for agent uninstallation.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -548,14 +527,13 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-logstash-api
   name: Kibana logstash API
-  description: >-
-    Programmatically integrate with Logstash configuration management.
+  description: 'Programmatically integrate with Logstash configuration management.
 
     > warn
 
     > Do not directly access the `.logstash` index. The structure of the `.logstash` index is subject
     to change, which could cause your integration to break. Instead, use the Logstash configuration management
-    APIs.
+    APIs.'
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -569,8 +547,7 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-maintenance-window-api
   name: Kibana maintenance-window API
-  description: >-
-    You can schedule single or recurring maintenance windows to temporarily reduce rule notifications.
+  description: You can schedule single or recurring maintenance windows to temporarily reduce rule notifications.
     For example, a maintenance window prevents false alarms during planned outages.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
@@ -646,9 +623,8 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-saved-objects-api
   name: Kibana saved objects API
-  description: >-
-    Export sets of saved objects that you want to import into Kibana, resolve import errors, and rotate
-    an encryption key for encrypted saved objects with the saved objects APIs.
+  description: 'Export sets of saved objects that you want to import into Kibana, resolve import errors,
+    and rotate an encryption key for encrypted saved objects with the saved objects APIs.
 
 
     To manage a specific type of saved object, use the corresponding APIs.
@@ -664,7 +640,7 @@ apis:
 
 
     Warning: Do not write documents directly to the `.kibana` index. When you write directly to the `.kibana`
-    index, the data becomes corrupted and permanently breaks future Kibana versions.
+    index, the data becomes corrupted and permanently breaks future Kibana versions.'
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -679,7 +655,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-security-ai-assistant-api-api
-  name: Kibana Security AI Assistant API API
+  name: Kibana Security AI Assistant API
   description: Manage and interact with Security Assistant resources.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
@@ -707,13 +683,12 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-security-attack-discovery-api-api
-  name: Kibana Security Attack discovery API API
-  description: >-
-    Use the Attack discovery APIs to generate and manage Attack discoveries. Attack Discovery leverages
-    large language models (LLMs) to analyze alerts in your environment and identify threats. Each "discovery"
-    represents a potential attack and describes relationships among multiple alerts to tell you which
-    users and hosts are involved, how alerts correspond to the MITRE ATT&CK matrix, and which threat actor
-    might be responsible.
+  name: Kibana Security Attack discovery API
+  description: Use the Attack discovery APIs to generate and manage Attack discoveries. Attack Discovery
+    leverages large language models (LLMs) to analyze alerts in your environment and identify threats.
+    Each "discovery" represents a potential attack and describes relationships among multiple alerts to
+    tell you which users and hosts are involved, how alerts correspond to the MITRE ATT&CK matrix, and
+    which threat actor might be responsible.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -726,12 +701,11 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-security-detections-api-api
-  name: Kibana Security Detections API API
-  description: >-
-    Use the detections APIs to create and manage detection rules. Detection rules search events and external
-    alerts sent to Elastic Security and generate detection alerts from any hits. Alerts are displayed
-    on the **Alerts** page and can be assigned and triaged, using the alert status to mark them as open,
-    closed, or acknowledged.
+  name: Kibana Security Detections API
+  description: 'Use the detections APIs to create and manage detection rules. Detection rules search events
+    and external alerts sent to Elastic Security and generate detection alerts from any hits. Alerts are
+    displayed on the **Alerts** page and can be assigned and triaged, using the alert status to mark them
+    as open, closed, or acknowledged.
 
 
     This API supports both key-based authentication and basic authentication.
@@ -759,7 +733,7 @@ apis:
 
     To create and run rules, the user must meet specific requirements for the Kibana space. Refer to the
     [Detections requirements](https://www.elastic.co/guide/en/security/current/detections-permissions-section.html)
-    for a complete list of requirements.
+    for a complete list of requirements.'
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -772,10 +746,9 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-security-endpoint-exceptions-api-api
-  name: Kibana Security Endpoint Exceptions API API
-  description: >-
-    Endpoint Exceptions API allows you to manage detection rule endpoint exceptions to prevent a rule
-    from generating an alert from incoming events even when the rule's other criteria are met.
+  name: Kibana Security Endpoint Exceptions API
+  description: Endpoint Exceptions API allows you to manage detection rule endpoint exceptions to prevent
+    a rule from generating an alert from incoming events even when the rule's other criteria are met.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -788,7 +761,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-security-endpoint-management-api-api
-  name: Kibana Security Endpoint Management API API
+  name: Kibana Security Endpoint Management API
   description: Interact with and manage endpoints running the Elastic Defend integration.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
@@ -802,10 +775,9 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-security-entity-analytics-api-api
-  name: Kibana Security Entity Analytics API API
-  description: >-
-    Use the Security entity analytics APIs to manage entity analytics and risk scoring, including asset
-    criticality, privileged user monitoring, and entity engines.
+  name: Kibana Security Entity Analytics API
+  description: Use the Security entity analytics APIs to manage entity analytics and risk scoring, including
+    asset criticality, privileged user monitoring, and entity engines.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -832,12 +804,11 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-security-exceptions-api-api
-  name: Kibana Security Exceptions API API
-  description: >-
-    Exceptions are associated with detection and endpoint rules, and are used to prevent a rule from generating
-    an alert from incoming events, even when the rule's other criteria are met. They can help reduce the
-    number of false positives and prevent trusted processes and network activity from generating unnecessary
-    alerts.
+  name: Kibana Security Exceptions API
+  description: 'Exceptions are associated with detection and endpoint rules, and are used to prevent a
+    rule from generating an alert from incoming events, even when the rule''s other criteria are met.
+    They can help reduce the number of false positives and prevent trusted processes and network activity
+    from generating unnecessary alerts.
 
 
     Exceptions are made up of:
@@ -849,7 +820,7 @@ apis:
     The container can then be associated with all the relevant rules.
 
     * **Exception items**: The query (fields, values, and logic) used to prevent rules from generating
-    alerts. When an exception item's query evaluates to `true`, the rule does not generate an alert.
+    alerts. When an exception item''s query evaluates to `true`, the rule does not generate an alert.
 
 
     For detection rules, you can also use lists to define rule exceptions. A list holds multiple values
@@ -874,7 +845,7 @@ apis:
     Before you can start working with exceptions that use value lists, you must create the `.lists` and
     `.items` data streams for the relevant Kibana space. To do this, use the [Create list data streams](../operation/operation-createlistindex)
     endpoint. Once these data streams are created, your role needs privileges to manage rules. For a complete
-    list of requirements, refer to [Enable and access detections](https://www.elastic.co/guide/en/security/current/detections-permissions-section.html#enable-detections-ui).
+    list of requirements, refer to [Enable and access detections](https://www.elastic.co/guide/en/security/current/detections-permissions-section.html#enable-detections-ui).'
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -887,75 +858,29 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-security-lists-api-api
-  name: Kibana Security Lists API API
-  description: >-
-    Lists can be used with detection rule exceptions to define values that prevent a rule from generating
-    alerts.
-
-
-    Lists are made up of:
-
-
-    * **List containers**: A container for values of the same Elasticsearch data type. The following data
-    types can be used:
-        * `boolean`
-        * `byte`
-        * `date`
-        * `date_nanos`
-        * `date_range`
-        * `double`
-        * `double_range`
-        * `float`
-        * `float_range`
-        * `half_float`
-        * `integer`
-        * `integer_range`
-        * `ip`
-        * `ip_range`
-        * `keyword`
-        * `long`
-        * `long_range`
-        * `short`
-        * `text`
-    * **List items**: The values used to determine whether the exception prevents an alert from being
-    generated.
-
-
-    All list items in the same list container must be of the same data type, and each item defines a single
-    value. For example, an IP list container named `internal-ip-addresses-southport` contains five items,
-    where each item defines one internal IP address:
-
-    1. `192.168.1.1`
-
-    2. `192.168.1.3`
-
-    3. `192.168.1.18`
-
-    4. `192.168.1.12`
-
-    5. `192.168.1.7`
-
-
-    To use these IP addresses as values for defining rule exceptions, use the Security exceptions API
-    to [create an exception list item](../operation/operation-createexceptionlistitem) that references
-    the `internal-ip-addresses-southport` list.
-
-    > info
-
-    > Lists cannot be added directly to rules, nor do they define the operators used to determine when
-    exceptions are applied (`is in list`, `is not in list`). Use an exception item to define the operator
-    and associate it with an [exception container](../operation/operation-createexceptionlist). You can
-    then add the exception container to a rule's `exceptions_list` object.
-
-
-    ## Lists requirements
-
-
-    Before you can start using lists, you must create the `.lists` and `.items` data streams for the relevant
-    Kibana space. To do this, use the [Create list data streams](../operation/operation-createlistindex)
-    endpoint. Once these data streams are created, your role needs privileges to manage rules. Refer to
-    [Enable and access detections](https://www.elastic.co/guide/en/security/current/detections-permissions-section.html#enable-detections-ui)
-    for a complete list of requirements.
+  name: Kibana Security Lists API
+  description: "Lists can be used with detection rule exceptions to define values that prevent a rule\
+    \ from generating alerts.\n\nLists are made up of:\n\n* **List containers**: A container for values\
+    \ of the same Elasticsearch data type. The following data types can be used:\n    * `boolean`\n  \
+    \  * `byte`\n    * `date`\n    * `date_nanos`\n    * `date_range`\n    * `double`\n    * `double_range`\n\
+    \    * `float`\n    * `float_range`\n    * `half_float`\n    * `integer`\n    * `integer_range`\n\
+    \    * `ip`\n    * `ip_range`\n    * `keyword`\n    * `long`\n    * `long_range`\n    * `short`\n\
+    \    * `text`\n* **List items**: The values used to determine whether the exception prevents an alert\
+    \ from being generated.\n\nAll list items in the same list container must be of the same data type,\
+    \ and each item defines a single value. For example, an IP list container named `internal-ip-addresses-southport`\
+    \ contains five items, where each item defines one internal IP address:\n1. `192.168.1.1`\n2. `192.168.1.3`\n\
+    3. `192.168.1.18`\n4. `192.168.1.12`\n5. `192.168.1.7`\n\nTo use these IP addresses as values for\
+    \ defining rule exceptions, use the Security exceptions API to [create an exception list item](../operation/operation-createexceptionlistitem)\
+    \ that references the `internal-ip-addresses-southport` list.\n> info\n> Lists cannot be added directly\
+    \ to rules, nor do they define the operators used to determine when exceptions are applied (`is in\
+    \ list`, `is not in list`). Use an exception item to define the operator and associate it with an\
+    \ [exception container](../operation/operation-createexceptionlist). You can then add the exception\
+    \ container to a rule's `exceptions_list` object.\n\n## Lists requirements\n\nBefore you can start\
+    \ using lists, you must create the `.lists` and `.items` data streams for the relevant Kibana space.\
+    \ To do this, use the [Create list data streams](../operation/operation-createlistindex) endpoint.\
+    \ Once these data streams are created, your role needs privileges to manage rules. Refer to [Enable\
+    \ and access detections](https://www.elastic.co/guide/en/security/current/detections-permissions-section.html#enable-detections-ui)\
+    \ for a complete list of requirements."
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -968,7 +893,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-security-osquery-api-api
-  name: Kibana Security Osquery API API
+  name: Kibana Security Osquery API
   description: Run live queries, manage packs and saved queries.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
@@ -982,10 +907,9 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-security-timeline-api-api
-  name: Kibana Security Timeline API API
-  description: >-
-    You can create Timelines and Timeline templates via the API, as well as import new Timelines from
-    an ndjson file.
+  name: Kibana Security Timeline API
+  description: You can create Timelines and Timeline templates via the API, as well as import new Timelines
+    from an ndjson file.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -1045,18 +969,13 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-streams-api
   name: Kibana streams API
-  description: >-
-    Streams provide a unified data management layer for ingestion, routing, and processing. There are
-    three stream types:
-
-    * **Wired** streams are managed by Kibana. They route documents to child streams based on
-      field conditions and support custom field mappings and processing steps.
-
-    * **Classic** streams map to existing Elasticsearch data streams. You can add processing
-      steps to classic streams without changing their underlying index template.
-
-    * **Query** streams are virtual aggregations backed by an ES|QL expression. They aggregate
-      data from multiple streams into a single logical view without duplicating documents.
+  description: "Streams provide a unified data management layer for ingestion, routing, and processing.\
+    \ There are three stream types:\n* **Wired** streams are managed by Kibana. They route documents to\
+    \ child streams based on\n  field conditions and support custom field mappings and processing steps.\n\
+    \n* **Classic** streams map to existing Elasticsearch data streams. You can add processing\n  steps\
+    \ to classic streams without changing their underlying index template.\n\n* **Query** streams are\
+    \ virtual aggregations backed by an ES|QL expression. They aggregate\n  data from multiple streams\
+    \ into a single logical view without duplicating documents."
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -1088,8 +1007,7 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-system-api
   name: Kibana system API
-  description: >-
-    Get information about the system status, resource usage, features, and installed plugins.
+  description: Get information about the system status, resource usage, features, and installed plugins.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -1105,9 +1023,9 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-task-manager-api
   name: Kibana task manager API
-  description: >-
-    Task manager APIs enable you to check the health of the Kibana task manager, which is used by features
-    such as alerting, actions, and reporting to run mission critical work as persistent background tasks.
+  description: Task manager APIs enable you to check the health of the Kibana task manager, which is used
+    by features such as alerting, actions, and reporting to run mission critical work as persistent background
+    tasks.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -1123,8 +1041,7 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-upgrade-api
   name: Kibana upgrade API
-  description: >-
-    The Kibana Upgrade Assistant API helps you prepare for the next major Elasticsearch release.
+  description: 'The Kibana Upgrade Assistant API helps you prepare for the next major Elasticsearch release.
 
     > warn
 
@@ -1132,7 +1049,7 @@ apis:
 
     > * Self-managed URL pattern: `https://localhost:5601`
 
-    > * Elastic Cloud URL pattern: `https://your-deployment.kb.us-east-1.aws.elastic.cloud:9243`
+    > * Elastic Cloud URL pattern: `https://your-deployment.kb.us-east-1.aws.elastic.cloud:9243`'
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
@@ -1180,14 +1097,13 @@ apis:
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-workflows-api
   name: Kibana workflows API
-  description: >-
-    Workflows enable you to automate multi-step processes directly in Kibana. Define sequences of steps
-    in YAML to transform data insights into automated actions and outcomes, without needing external automation
-    tools.
+  description: 'Workflows enable you to automate multi-step processes directly in Kibana. Define sequences
+    of steps in YAML to transform data insights into automated actions and outcomes, without needing external
+    automation tools.
 
 
     Use the workflows APIs to create, manage, and run workflows programmatically. You can also search,
-    export, import, and monitor workflow executions.
+    export, import, and monitor workflow executions.'
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
