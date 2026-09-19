@@ -580,7 +580,7 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
-  - ML
+  - Machine-Learning
   tags_raw:
   - ml
   properties:
@@ -959,6 +959,8 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - Space
+  tags_raw:
   - Spaces
   properties:
   - type: OpenAPI
