@@ -10,6 +10,11 @@ provenance:
   grounding: every price_text was found verbatim in the fetched page text
 audience: developer-api
 pricing_basis: negotiated
+delivery:
+  delivery: managed+licensed
+  method: page
+  read: '2026-09-20'
+  evidence: License-based pricing Licensing based on number of nodes and used RAM
 published: false
 note: No numeric price is published on the pricing page; Pricing overview/landing page comparing Hosted,
   Serverless, and Self-managed deployment options. It describes pricing models qualitatively (resource-based,
