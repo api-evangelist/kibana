@@ -1120,6 +1120,8 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 common:
+- type: Plans
+  url: plans/kibana-plans-pricing.yml
 - type: CapabilityMap
   url: capabilities/kibana-capability-edges.yml
   name: Kibana Business Capability Map
