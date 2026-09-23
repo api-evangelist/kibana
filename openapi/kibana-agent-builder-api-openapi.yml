@@ -2,62 +2,9 @@ openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
-  description: 'The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
-
-    The API calls are stateless.
-
-    Each request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the
-
-    request.
-
-    API requests return JSON output, which is a format that is machine-readable and works well for automation.
-
-
-    To interact with Kibana APIs, use the following operations:
-
-
-    - GET: Fetches the information.
-
-    - PATCH: Applies partial modifications to the existing information.
-
-    - POST: Adds new information.
-
-    - PUT: Updates the existing information.
-
-    - DELETE: Removes the information.
-
-
-    You can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.
-
-    For example:
-
-
-    ```
-
-    GET kbn:/api/data_views
-
-    ```
-
-
-    For more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).
-
-
-    NOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.
-
-
-    ## Documentation source and versions
-
-
-    This documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.
-
-    It is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).
-
-
-    This documentation contains work-in-progress information for future Elastic Stack releases.
-
-    '
-  title: Kibana APIs Actions agent builder API
-  version: '1.0'
+  description: The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
+  title: Kibana agent builder API
+  version: ''
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -73,14 +20,12 @@ security:
 - apiKeyAuth: []
 - basicAuth: []
 tags:
-- name: agent builder
+- name: Agent Builder
   description: 'Agent Builder is a set of AI-powered capabilities for developing and interacting with agents that work with your Elasticsearch data.
 
     Most users will probably want to integrate with Agent Builder using MCP or A2A, but you can also work programmatically with tools, agents, and conversations using these Kibana APIs.
 
-    **Elastic Agent Builder requires an Enterprise subscription.**
-
-    '
+    **Elastic Agent Builder requires an Enterprise subscription.**'
   externalDocs:
     description: Agent Builder docs
     url: https://www.elastic.co/docs/solutions/search/agent-builder/programmatic-access
@@ -91,15 +36,18 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/a2a/{agentId}</span></div>
+        post /s/{space_id}/api/agent_builder/a2a/{agentId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         > warn
 
-        > This endpoint is designed for A2A protocol clients and should not be used directly via REST APIs. Use an A2A SDK or A2A Inspector instead.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        > This endpoint is designed for A2A protocol clients and should not be used directly via REST APIs. Use an A2A SDK or A2A Inspector instead.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: post-agent-builder-a2a-agentid
       parameters:
       - description: The unique identifier of the agent to send the A2A task to.
@@ -141,7 +89,7 @@ paths:
           description: Indicates a successful response
       summary: Send A2A task
       tags:
-      - agent builder
+      - Agent Builder
       x-state: Technical Preview; added in 9.2.0
       x-metaTags:
       - content: Kibana
@@ -151,13 +99,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/a2a/{agentId}.json</span></div>
+        get /s/{space_id}/api/agent_builder/a2a/{agentId}.json
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get agent discovery metadata in JSON format. Use this endpoint to provide agent information for A2A protocol integration and discovery.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Get agent discovery metadata in JSON format. Use this endpoint to provide agent information for A2A protocol integration and discovery.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: get-agent-builder-a2a-agentid.json
       parameters:
       - description: The unique identifier of the agent to get A2A metadata for.
@@ -213,7 +164,7 @@ paths:
           description: Indicates a successful response
       summary: Get A2A agent card
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X GET \"${KIBANA_URL}/api/agent_builder/a2a/{agentId}.json\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\"\n"
@@ -230,13 +181,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/agents</span></div>
+        get /s/{space_id}/api/agent_builder/agents
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        List all available agents. Use this endpoint to retrieve complete agent information including their current configuration and assigned tools. To learn more, refer to the [agents documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/agent-builder-agents).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        List all available agents. Use this endpoint to retrieve complete agent information including their current configuration and assigned tools. To learn more, refer to the agents documentation.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: get-agent-builder-agents
       parameters: []
       responses:
@@ -279,7 +233,7 @@ paths:
           description: Indicates a successful response
       summary: List agents
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n -X GET \"${KIBANA_URL}/api/agent_builder/agents\" \\\n -H \"Authorization: ApiKey ${API_KEY}\"\n"
@@ -295,13 +249,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/agents</span></div>
+        post /s/{space_id}/api/agent_builder/agents
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Create a new agent. Use this endpoint to define the agent''s behavior, appearance, and capabilities through comprehensive configuration options. To learn more, refer to the [agents documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/agent-builder-agents).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageAgents.'
+        Create a new agent. Use this endpoint to define the agent''s behavior, appearance, and capabilities through comprehensive configuration options. To learn more, refer to the agents documentation.
+
+
+        [Required authorization] Route required privileges: agentBuilder:manageAgents.'
       operationId: post-agent-builder-agents
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -447,7 +404,7 @@ paths:
           description: Indicates a successful response
       summary: Create an agent
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X POST \"${KIBANA_URL}/api/agent_builder/agents\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\" \\\n  -H \"kbn-xsrf: true\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"id\": \"new-agent-id\",\n    \"name\": \"Search Index Helper\",\n    \"description\": \"Hi! I can help you search the data within the indices starting with \\\"content-\\\" prefix.\",\n    \"labels\": [\"custom-indices\", \"department-search\"],\n    \"avatar_color\": \"#BFDBFF\",\n    \"avatar_symbol\": \"SI\",\n    \"configuration\": {\n      \"instructions\": \"You are a custom agent that wants to help searching data using all indices starting with prefix \\\"content-\\\".\",\n      \"tools\": [\n        {\n          \"tool_ids\": [\n            \"platform.core.search\",\n            \"platform.core.list_indices\",\n            \"platform.core.get_index_mapping\",\n            \"platform.core.get_document_by_id\"\n          ]\n        }\n      ]\n    }\n}'\n"
@@ -462,13 +419,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/agents/{agent_id}/consumption</span></div>
+        post /s/{space_id}/api/agent_builder/agents/{agent_id}/consumption
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Returns paginated, per-conversation token consumption data for a given agent. Includes input/output token counts, round counts, LLM call counts, and warnings for conversations with high token usage. Requires the manageAgents privilege.<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageAgents.'
+        Returns paginated, per-conversation token consumption data for a given agent. Includes input/output token counts, round counts, LLM call counts, and warnings for conversations with high token usage. Requires the manageAgents privilege.
+
+
+        [Required authorization] Route required privileges: agentBuilder:manageAgents.'
       operationId: post-agent-builder-agents-agent-id-consumption
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -598,7 +558,7 @@ paths:
           description: Indicates a successful response
       summary: Get agent consumption data
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n -X POST \"${KIBANA_URL}/api/agent_builder/agents/elastic-ai-agent/consumption\" \\\n -H \"Authorization: ApiKey ${API_KEY}\" \\\n -H \"Content-Type: application/json\" \\\n -H \"elastic-api-version: 2023-10-31\" \\\n -d '{\"size\": 25, \"sort_field\": \"updated_at\", \"sort_order\": \"desc\"}'\n"
@@ -617,13 +577,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb delete">delete</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/agents/{id}</span></div>
+        delete /s/{space_id}/api/agent_builder/agents/{id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Delete an agent by ID. This action cannot be undone. To learn more, refer to the [agents documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/agent-builder-agents).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageAgents.'
+        Delete an agent by ID. This action cannot be undone. To learn more, refer to the agents documentation.
+
+
+        [Required authorization] Route required privileges: agentBuilder:manageAgents.'
       operationId: delete-agent-builder-agents-id
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -651,7 +614,7 @@ paths:
           description: Indicates a successful response
       summary: Delete an agent
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X DELETE \"${KIBANA_URL}/api/agent_builder/agents/{id}\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\" \\\n  -H \"kbn-xsrf: true\"\n"
@@ -667,13 +630,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/agents/{id}</span></div>
+        get /s/{space_id}/api/agent_builder/agents/{id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get a specific agent by ID. Use this endpoint to retrieve the complete agent definition including all configuration details and tool assignments. To learn more, refer to the [agents documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/agent-builder-agents).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Get a specific agent by ID. Use this endpoint to retrieve the complete agent definition including all configuration details and tool assignments. To learn more, refer to the agents documentation.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: get-agent-builder-agents-id
       parameters:
       - description: The unique identifier of the agent to retrieve.
@@ -710,7 +676,7 @@ paths:
           description: Indicates a successful response
       summary: Get an agent by ID
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X GET \"${KIBANA_URL}/api/agent_builder/agents/{id}\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\"\n"
@@ -726,13 +692,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb put">put</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/agents/{id}</span></div>
+        put /s/{space_id}/api/agent_builder/agents/{id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Update an existing agent configuration. Use this endpoint to modify any aspect of the agent''s behavior, appearance, or capabilities. To learn more, refer to the [agents documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/agent-builder-agents).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageAgents.'
+        Update an existing agent configuration. Use this endpoint to modify any aspect of the agent''s behavior, appearance, or capabilities. To learn more, refer to the agents documentation.
+
+
+        [Required authorization] Route required privileges: agentBuilder:manageAgents.'
       operationId: put-agent-builder-agents-id
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -876,7 +845,7 @@ paths:
           description: Indicates a successful response
       summary: Update an agent
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X PUT \"${KIBANA_URL}/api/agent_builder/agents/{id}\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\" \\\n  -H \"kbn-xsrf: true\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"name\": \"Search Index Helper\",\n    \"description\": \"Updated description - Search for anything in \\\"content-*\\\" indices!\",\n    \"labels\": [\"custom-indices\", \"department-search\", \"elastic-employees\"],\n    \"avatar_color\": \"#BFDBFF\",\n    \"avatar_symbol\": \"SI\",\n    \"configuration\": {\n      \"instructions\": \"You are a custom agent that wants to help searching data using all indices starting with prefix \\\"content-\\\".\",\n      \"tools\": [{\n        \"tool_ids\": [\n          \"platform.core.search\",\n          \"platform.core.list_indices\",\n          \"platform.core.get_index_mapping\",\n          \"platform.core.get_document_by_id\"\n        ]\n      }]\n    }\n  }'\n"
@@ -891,13 +860,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/conversations</span></div>
+        get /s/{space_id}/api/agent_builder/conversations
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        List all conversations for a user. Use the optional agent ID to filter conversations by a specific agent.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        List all conversations for a user. Use the optional agent ID to filter conversations by a specific agent.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: get-agent-builder-conversations
       parameters:
       - description: Optional agent ID to filter conversations by a specific agent.
@@ -925,7 +897,7 @@ paths:
           description: Indicates a successful response
       summary: List conversations
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X GET \"${KIBANA_URL}/api/agent_builder/conversations\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\"\n"
@@ -942,13 +914,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb delete">delete</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/conversations/{conversation_id}</span></div>
+        delete /s/{space_id}/api/agent_builder/conversations/{conversation_id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Delete a conversation by ID. This action cannot be undone.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Delete a conversation by ID. This action cannot be undone.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: delete-agent-builder-conversations-conversation-id
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -976,7 +951,7 @@ paths:
           description: Indicates a successful response
       summary: Delete conversation by ID
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X DELETE \"${KIBANA_URL}/api/agent_builder/conversations/{conversation_id}\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\" \\\n  -H \"kbn-xsrf: true\"\n"
@@ -992,13 +967,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/conversations/{conversation_id}</span></div>
+        get /s/{space_id}/api/agent_builder/conversations/{conversation_id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get a specific conversation by ID. Use this endpoint to retrieve the complete conversation history including all messages and metadata.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Get a specific conversation by ID. Use this endpoint to retrieve the complete conversation history including all messages and metadata.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: get-agent-builder-conversations-conversation-id
       parameters:
       - description: The unique identifier of the conversation to retrieve.
@@ -1035,7 +1013,7 @@ paths:
           description: Indicates a successful response
       summary: Get conversation by ID
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X GET \"${KIBANA_URL}/api/agent_builder/conversations/{conversation_id}\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\"\n"
@@ -1052,13 +1030,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments</span></div>
+        get /s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        List all attachments for a conversation. Use the optional include_deleted query parameter to include soft-deleted attachments.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        List all attachments for a conversation. Use the optional include_deleted query parameter to include soft-deleted attachments.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: get-agent-builder-conversations-conversation-id-attachments
       parameters:
       - description: The unique identifier of the conversation.
@@ -1116,7 +1097,7 @@ paths:
           description: Indicates a successful response
       summary: List conversation attachments
       tags:
-      - agent builder
+      - Agent Builder
       x-state: Technical Preview; added in 9.2.0
       x-metaTags:
       - content: Kibana
@@ -1125,13 +1106,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments</span></div>
+        post /s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Create a new attachment for a conversation with version tracking.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Create a new attachment for a conversation with version tracking.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: post-agent-builder-conversations-conversation-id-attachments
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -1223,7 +1207,7 @@ paths:
           description: Indicates a successful response
       summary: Create conversation attachment
       tags:
-      - agent builder
+      - Agent Builder
       x-state: Technical Preview; added in 9.2.0
       x-metaTags:
       - content: Kibana
@@ -1233,13 +1217,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb delete">delete</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}</span></div>
+        delete /s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Delete an attachment. By default performs a soft delete (can be restored). Use permanent=true to permanently remove unreferenced attachments.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Delete an attachment. By default performs a soft delete (can be restored). Use permanent=true to permanently remove unreferenced attachments.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: delete-agent-builder-conversations-conversation-id-attachments-attachment-id
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -1285,7 +1272,7 @@ paths:
           description: Indicates a successful response
       summary: Delete conversation attachment
       tags:
-      - agent builder
+      - Agent Builder
       x-state: Technical Preview; added in 9.2.0
       x-metaTags:
       - content: Kibana
@@ -1294,13 +1281,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb patch">patch</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}</span></div>
+        patch /s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Rename an attachment without creating a new version.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Rename an attachment without creating a new version.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: patch-agent-builder-conversations-conversation-id-attachments-attachment-id
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -1363,7 +1353,7 @@ paths:
           description: Indicates a successful response
       summary: Rename attachment
       tags:
-      - agent builder
+      - Agent Builder
       x-state: Technical Preview; added in 9.2.0
       x-metaTags:
       - content: Kibana
@@ -1372,13 +1362,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb put">put</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}</span></div>
+        put /s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Update an attachment content. Creates a new version if content changed.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Update an attachment content. Creates a new version if content changed.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: put-agent-builder-conversations-conversation-id-attachments-attachment-id
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -1453,7 +1446,7 @@ paths:
           description: Indicates a successful response
       summary: Update conversation attachment
       tags:
-      - agent builder
+      - Agent Builder
       x-state: Technical Preview; added in 9.2.0
       x-metaTags:
       - content: Kibana
@@ -1463,13 +1456,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}/_restore</span></div>
+        post /s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}/_restore
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Restore a soft-deleted attachment.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Restore a soft-deleted attachment.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: post-agent-builder-conversations-conversation-id-attachments-attachment-id-restore
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -1515,7 +1511,7 @@ paths:
           description: Indicates a successful response
       summary: Restore deleted attachment
       tags:
-      - agent builder
+      - Agent Builder
       x-state: Technical Preview; added in 9.2.0
       x-metaTags:
       - content: Kibana
@@ -1525,13 +1521,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb put">put</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}/origin</span></div>
+        put /s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments/{attachment_id}/origin
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Update the origin reference for an attachment. Use this after saving a by-value attachment to link it to its persistent store.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Update the origin reference for an attachment. Use this after saving a by-value attachment to link it to its persistent store.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: put-agent-builder-conversations-conversation-id-attachments-attachment-id-origin
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -1599,7 +1598,7 @@ paths:
           description: Indicates a successful response
       summary: Update attachment origin
       tags:
-      - agent builder
+      - Agent Builder
       x-state: Technical Preview; added in 9.4.0
       x-metaTags:
       - content: Kibana
@@ -1609,13 +1608,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments/stale</span></div>
+        get /s/{space_id}/api/agent_builder/conversations/{conversation_id}/attachments/stale
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Checks staleness for the latest version of all conversation attachments against their origin snapshot.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Checks staleness for the latest version of all conversation attachments against their origin snapshot.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: get-agent-builder-conversations-conversation-id-attachments-stale
       parameters:
       - description: The unique identifier of the conversation.
@@ -1649,7 +1651,7 @@ paths:
           description: Indicates a successful response
       summary: Check attachment staleness
       tags:
-      - agent builder
+      - Agent Builder
       x-state: Technical Preview; added in 9.4.0
       x-metaTags:
       - content: Kibana
@@ -1659,13 +1661,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/converse</span></div>
+        post /s/{space_id}/api/agent_builder/converse
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Send a message to an agent and receive a complete response. This synchronous endpoint waits for the agent to fully process your request before returning the final result. Use this for simple chat interactions where you need the complete response. To learn more, refer to the [agent chat documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/chat).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Send a message to an agent and receive a complete response. This synchronous endpoint waits for the agent to fully process your request before returning the final result. Use this for simple chat interactions where you need the complete response. To learn more, refer to the agent chat documentation.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: post-agent-builder-converse
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -1838,7 +1843,7 @@ paths:
           description: Indicates a successful response
       summary: Send chat message
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X POST \"${KIBANA_URL}/api/agent_builder/converse\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\" \\\n  -H \"kbn-xsrf: true\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"input\": \"What is Elasticsearch?\",\n    \"agent_id\": \"elastic-ai-agent\"}'\n"
@@ -1850,7 +1855,319 @@ paths:
         name: product_name
   /api/agent_builder/converse/async:
     post:
-      description: "**Spaces method and path for this operation:**\n\n<div><span class=\"operation-verb post\">post</span>&nbsp;<span class=\"operation-path\">/s/{space_id}/api/agent_builder/converse/async</span></div>\n\nRefer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.\n\nSend a message to an agent and receive real-time streaming events. This asynchronous endpoint provides live updates as the agent processes your request, allowing you to see intermediate steps and progress. Use this for interactive experiences where you want to monitor the agent's thinking process.\n\n## Event types\n\nThe endpoint emits Server-Sent Events (SSE) with the following custom event types:\n\n`conversation_id_set`\n\nSets the conversation ID.\n\nSchema:\n```json\n{\n  \"conversation_id\": \"uuid\"\n}\n```\n\n---\n\n`conversation_created`\n\nFires when a new conversation is persisted and assigned an ID.\n\nSchema:\n```json\n{\n  \"conversation_id\": \"uuid\",\n  \"title\": \"conversation title\"\n}\n```\n\n---\n\n`conversation_updated`\n\nFires when a conversation is updated.\n\nSchema:\n```json\n{\n  \"conversation_id\": \"uuid\",\n  \"title\": \"updated conversation title\"\n}\n```\n\n---\n\n`reasoning`\n\nHandles reasoning-related data.\n\nSchema:\n```json\n{\n  \"reasoning\": \"plain text reasoning content\",\n  \"transient\": false\n}\n```\n\n---\n\n`tool_call`\n\nTriggers when a tool is invoked.\n\nSchema:\n```json\n{\n  \"tool_call_id\": \"uuid\",\n  \"tool_id\": \"tool_name\",\n  \"params\": {}\n}\n```\n\n---\n\n`tool_progress`\n\nReports progress of a running tool.\n\nSchema:\n```json\n{\n  \"tool_call_id\": \"uuid\",\n  \"message\": \"progress message\"\n}\n```\n\n---\n\n`tool_result`\n\nReturns results from a completed tool call.\n\nSchema:\n```json\n{\n  \"tool_call_id\": \"uuid\",\n  \"tool_id\": \"tool_name\",\n  \"results\": []\n}\n```\n\n**Note:** `results` is an array of `ToolResult` objects.\n\n---\n\n`message_chunk`\n\nStreams partial text chunks.\n\nSchema:\n```json\n{\n  \"message_id\": \"uuid\",\n  \"text_chunk\": \"partial text\"\n}\n```\n\n---\n\n`message_complete`\n\nIndicates message stream is finished.\n\nSchema:\n```json\n{\n  \"message_id\": \"uuid\",\n  \"message_content\": \"full text content of the message\"\n}\n```\n\n---\n\n`thinking_complete`\n\nMarks the end of the thinking/reasoning phase.\n\nSchema:\n```json\n{\n  \"time_to_first_token\": 0\n}\n```\n\n**Note:** `time_to_first_token` is in milliseconds.\n\n---\n\n`round_complete`\n\nMarks end of one conversation round.\n\nSchema:\n```json\n{\n  \"round\": {}\n}\n```\n\n**Note:** `round` contains the full round json object.\n\n---\n\n## Event flow\n\nA typical conversation round emits events in this sequence:\n\n1. `reasoning` (potentially multiple, some transient)\n2. `tool_call` (if tools are used)\n3. `tool_progress` (zero or more progress updates)\n4. `tool_result` (when tool completes)\n5. `thinking_complete`\n6. `message_chunk` (multiple, as text streams)\n7. `message_complete`\n8. `round_complete`\n\n<br/><br/>[Required authorization] Route required privileges: agentBuilder:read."
+      description: '**Spaces method and path for this operation:**
+
+
+        post /s/{space_id}/api/agent_builder/converse/async
+
+
+        Refer to Spaces for more information.
+
+
+        Send a message to an agent and receive real-time streaming events. This asynchronous endpoint provides live updates as the agent processes your request, allowing you to see intermediate steps and progress. Use this for interactive experiences where you want to monitor the agent''s thinking process.
+
+
+        ## Event types
+
+
+        The endpoint emits Server-Sent Events (SSE) with the following custom event types:
+
+
+        `conversation_id_set`
+
+
+        Sets the conversation ID.
+
+
+        Schema:
+
+        ```json
+
+        {
+
+        "conversation_id": "uuid"
+
+        }
+
+        ```
+
+
+        ---
+
+
+        `conversation_created`
+
+
+        Fires when a new conversation is persisted and assigned an ID.
+
+
+        Schema:
+
+        ```json
+
+        {
+
+        "conversation_id": "uuid",
+
+        "title": "conversation title"
+
+        }
+
+        ```
+
+
+        ---
+
+
+        `conversation_updated`
+
+
+        Fires when a conversation is updated.
+
+
+        Schema:
+
+        ```json
+
+        {
+
+        "conversation_id": "uuid",
+
+        "title": "updated conversation title"
+
+        }
+
+        ```
+
+
+        ---
+
+
+        `reasoning`
+
+
+        Handles reasoning-related data.
+
+
+        Schema:
+
+        ```json
+
+        {
+
+        "reasoning": "plain text reasoning content",
+
+        "transient": false
+
+        }
+
+        ```
+
+
+        ---
+
+
+        `tool_call`
+
+
+        Triggers when a tool is invoked.
+
+
+        Schema:
+
+        ```json
+
+        {
+
+        "tool_call_id": "uuid",
+
+        "tool_id": "tool_name",
+
+        "params": {}
+
+        }
+
+        ```
+
+
+        ---
+
+
+        `tool_progress`
+
+
+        Reports progress of a running tool.
+
+
+        Schema:
+
+        ```json
+
+        {
+
+        "tool_call_id": "uuid",
+
+        "message": "progress message"
+
+        }
+
+        ```
+
+
+        ---
+
+
+        `tool_result`
+
+
+        Returns results from a completed tool call.
+
+
+        Schema:
+
+        ```json
+
+        {
+
+        "tool_call_id": "uuid",
+
+        "tool_id": "tool_name",
+
+        "results": []
+
+        }
+
+        ```
+
+
+        **Note:** `results` is an array of `ToolResult` objects.
+
+
+        ---
+
+
+        `message_chunk`
+
+
+        Streams partial text chunks.
+
+
+        Schema:
+
+        ```json
+
+        {
+
+        "message_id": "uuid",
+
+        "text_chunk": "partial text"
+
+        }
+
+        ```
+
+
+        ---
+
+
+        `message_complete`
+
+
+        Indicates message stream is finished.
+
+
+        Schema:
+
+        ```json
+
+        {
+
+        "message_id": "uuid",
+
+        "message_content": "full text content of the message"
+
+        }
+
+        ```
+
+
+        ---
+
+
+        `thinking_complete`
+
+
+        Marks the end of the thinking/reasoning phase.
+
+
+        Schema:
+
+        ```json
+
+        {
+
+        "time_to_first_token": 0
+
+        }
+
+        ```
+
+
+        **Note:** `time_to_first_token` is in milliseconds.
+
+
+        ---
+
+
+        `round_complete`
+
+
+        Marks end of one conversation round.
+
+
+        Schema:
+
+        ```json
+
+        {
+
+        "round": {}
+
+        }
+
+        ```
+
+
+        **Note:** `round` contains the full round json object.
+
+
+        ---
+
+
+        ## Event flow
+
+
+        A typical conversation round emits events in this sequence:
+
+
+        1. `reasoning` (potentially multiple, some transient)
+
+        2. `tool_call` (if tools are used)
+
+        3. `tool_progress` (zero or more progress updates)
+
+        4. `tool_result` (when tool completes)
+
+        5. `thinking_complete`
+
+        6. `message_chunk` (multiple, as text streams)
+
+        7. `message_complete`
+
+        8. `round_complete`
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: post-agent-builder-converse-async
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -2038,7 +2355,7 @@ paths:
           description: Indicates a successful response
       summary: Send chat message (streaming)
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X POST \"${KIBANA_URL}/api/agent_builder/converse/async\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\" \\\n  -H \"kbn-xsrf: true\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"input\": \"Hello again let us have an async chat\",\n    \"agent_id\": \"elastic-ai-agent\",\n    \"conversation_id\": \"<CONVERSATION_ID>\"\n  }'\n"
@@ -2053,17 +2370,20 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/mcp</span></div>
+        post /s/{space_id}/api/agent_builder/mcp
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         > warn
 
         > This endpoint is designed for MCP clients (Claude Desktop, Cursor, VS Code, etc.) and should not be used directly via REST APIs. Use MCP Inspector or native MCP clients instead.
 
-        To learn more, refer to the [MCP documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/mcp-server).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        To learn more, refer to the MCP documentation.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: post-agent-builder-mcp
       parameters:
       - description: Comma-separated list of namespaces to filter tools. Only tools matching the specified namespaces will be returned.
@@ -2110,7 +2430,7 @@ paths:
           description: Indicates a successful response
       summary: MCP server
       tags:
-      - agent builder
+      - Agent Builder
       x-state: Added in 9.2.0
       x-metaTags:
       - content: Kibana
@@ -2120,13 +2440,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/plugins</span></div>
+        get /s/{space_id}/api/agent_builder/plugins
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        List all installed plugins and their managed assets. Plugins are installable packages that bundle agent capabilities such as skills, following the [Claude agent plugin specification](https://code.claude.com/docs/en/plugins).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        List all installed plugins and their managed assets. Plugins are installable packages that bundle agent capabilities such as skills, following the Claude agent plugin specification.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: get-agent-builder-plugins
       parameters: []
       responses:
@@ -2164,7 +2487,7 @@ paths:
           description: Indicates a successful response
       summary: List plugins
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n -X GET \"${KIBANA_URL}/api/agent_builder/plugins\" \\\n -H \"Authorization: ApiKey ${API_KEY}\"\n"
@@ -2181,13 +2504,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb delete">delete</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/plugins/{pluginId}</span></div>
+        delete /s/{space_id}/api/agent_builder/plugins/{pluginId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Delete an installed plugin by ID. This action cannot be undone.<br/><br/>[Required authorization] Route required privileges: agentBuilder:write.'
+        Delete an installed plugin by ID. This action cannot be undone.
+
+
+        [Required authorization] Route required privileges: agentBuilder:write.'
       operationId: delete-agent-builder-plugins-pluginid
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -2222,7 +2548,7 @@ paths:
           description: Indicates a successful response
       summary: Delete a plugin
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X DELETE \"${KIBANA_URL}/api/agent_builder/plugins/{id}\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\" \\\n  -H \"kbn-xsrf: true\"\n"
@@ -2238,13 +2564,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/plugins/{pluginId}</span></div>
+        get /s/{space_id}/api/agent_builder/plugins/{pluginId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get a specific plugin by ID.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Get a specific plugin by ID.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: get-agent-builder-plugins-pluginid
       parameters:
       - description: The unique identifier of the plugin.
@@ -2287,7 +2616,7 @@ paths:
           description: Indicates a successful response
       summary: Get a plugin by id
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X GET \"${KIBANA_URL}/api/agent_builder/plugins/{id}\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\"\n"
@@ -2304,13 +2633,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/plugins/install</span></div>
+        post /s/{space_id}/api/agent_builder/plugins/install
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Install a plugin from a [GitHub Claude plugin URL](https://code.claude.com/docs/en/plugins) or a direct ZIP URL. Plugins bundle agent capabilities such as skills.<br/><br/>[Required authorization] Route required privileges: agentBuilder:write.'
+        Install a plugin from a GitHub Claude plugin URL or a direct ZIP URL. Plugins bundle agent capabilities such as skills.
+
+
+        [Required authorization] Route required privileges: agentBuilder:write.'
       operationId: post-agent-builder-plugins-install
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -2383,7 +2715,7 @@ paths:
           description: Indicates a successful response
       summary: Install a plugin
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X POST \"${KIBANA_URL}/api/agent_builder/plugins/install\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\" \\\n  -H \"kbn-xsrf: true\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"url\": \"https://github.com/anthropics/financial-services-plugins/tree/main/financial-analysis\"\n}'\n"
@@ -2398,13 +2730,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/skills</span></div>
+        get /s/{space_id}/api/agent_builder/skills
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        List all available skills (built-in and user-created).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        List all available skills (built-in and user-created).
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: get-agent-builder-skills
       parameters:
       - description: Set to true to include skills from plugins.
@@ -2417,7 +2752,7 @@ paths:
       responses: {}
       summary: List skills
       tags:
-      - agent builder
+      - Agent Builder
       x-state: Technical Preview; added in 9.4.0
       x-metaTags:
       - content: Kibana
@@ -2426,13 +2761,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/skills</span></div>
+        post /s/{space_id}/api/agent_builder/skills
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Create a new user-defined skill.<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageSkills.'
+        Create a new user-defined skill.
+
+
+        [Required authorization] Route required privileges: agentBuilder:manageSkills.'
       operationId: post-agent-builder-skills
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -2497,7 +2835,7 @@ paths:
       responses: {}
       summary: Create a skill
       tags:
-      - agent builder
+      - Agent Builder
       x-state: Technical Preview; added in 9.4.0
       x-metaTags:
       - content: Kibana
@@ -2507,13 +2845,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb delete">delete</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/skills/{skillId}</span></div>
+        delete /s/{space_id}/api/agent_builder/skills/{skillId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Delete a user-created skill by ID. If agents still reference the skill, the request returns 409 unless force=true, which removes the skill from agents first. Built-in skills cannot be deleted.<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageSkills.'
+        Delete a user-created skill by ID. If agents still reference the skill, the request returns 409 unless force=true, which removes the skill from agents first. Built-in skills cannot be deleted.
+
+
+        [Required authorization] Route required privileges: agentBuilder:manageSkills.'
       operationId: delete-agent-builder-skills-skillid
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -2550,7 +2891,7 @@ paths:
           description: Indicates a successful response
       summary: Delete a skill
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X DELETE \"https://${KIBANA_URL}/api/agent_builder/skills/{skillId}?force=false\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\" \\\n  -H \"kbn-xsrf: true\"\n"
@@ -2566,13 +2907,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/skills/{skillId}</span></div>
+        get /s/{space_id}/api/agent_builder/skills/{skillId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get a specific skill by ID.<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Get a specific skill by ID.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: get-agent-builder-skills-skillid
       parameters:
       - description: The unique identifier of the skill.
@@ -2586,7 +2930,7 @@ paths:
       responses: {}
       summary: Get a skill by id
       tags:
-      - agent builder
+      - Agent Builder
       x-state: Technical Preview; added in 9.4.0
       x-metaTags:
       - content: Kibana
@@ -2595,13 +2939,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb put">put</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/skills/{skillId}</span></div>
+        put /s/{space_id}/api/agent_builder/skills/{skillId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Update an existing user-created skill.<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageSkills.'
+        Update an existing user-created skill.
+
+
+        [Required authorization] Route required privileges: agentBuilder:manageSkills.'
       operationId: put-agent-builder-skills-skillid
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -2665,7 +3012,7 @@ paths:
       responses: {}
       summary: Update a skill
       tags:
-      - agent builder
+      - Agent Builder
       x-state: Technical Preview; added in 9.4.0
       x-metaTags:
       - content: Kibana
@@ -2675,13 +3022,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/tools</span></div>
+        get /s/{space_id}/api/agent_builder/tools
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        List all available tools. Use this endpoint to retrieve complete tool definitions including their schemas and configuration requirements. To learn more, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        List all available tools. Use this endpoint to retrieve complete tool definitions including their schemas and configuration requirements. To learn more, refer to the tools documentation.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: get-agent-builder-tools
       parameters: []
       responses:
@@ -2819,7 +3169,7 @@ paths:
           description: Indicates a successful response
       summary: List tools
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X GET \"https://${KIBANA_URL}/api/agent_builder/tools\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\"\n"
@@ -2835,13 +3185,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/tools</span></div>
+        post /s/{space_id}/api/agent_builder/tools
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Create a new tool. Use this endpoint to define a custom tool with specific functionality and configuration for use by agents. To learn more, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageTools.'
+        Create a new tool. Use this endpoint to define a custom tool with specific functionality and configuration for use by agents. To learn more, refer to the tools documentation.
+
+
+        [Required authorization] Route required privileges: agentBuilder:manageTools.'
       operationId: post-agent-builder-tools
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -2983,7 +3336,7 @@ paths:
           description: Indicates a successful response
       summary: Create a tool
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n -X POST \"https://${KIBANA_URL}/api/agent_builder/tools\" \\\n -H \"Authorization: ApiKey ${API_KEY}\" \\\n -H \"kbn-xsrf: true\" \\\n -H \"Content-Type: application/json\" \\\n -d '{\n   \"id\": \"example-esql-tool\",\n   \"type\": \"esql\",\n   \"description\": \"Example ES|QL query tool for analyzing financial trades with time filtering\",\n   \"tags\": [\"analytics\", \"finance\"],\n   \"configuration\": {\n     \"query\": \"FROM financial_trades | WHERE execution_timestamp >= ?startTime | STATS trade_count=COUNT(*), avg_price=AVG(execution_price) BY symbol | SORT trade_count DESC | LIMIT ?limit\",\n     \"params\": {\n       \"startTime\": {\n         \"type\": \"date\",\n         \"description\": \"Start time for the analysis in ISO format\"\n       },\n       \"limit\": {\n         \"type\": \"integer\",\n         \"description\": \"Maximum number of results to return\"\n       }\n     }\n   }\n }'\n"
@@ -2998,13 +3351,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/tools/_execute</span></div>
+        post /s/{space_id}/api/agent_builder/tools/_execute
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Run a tool with parameters. Use this endpoint to run a tool directly with specified inputs and optional external connector integration. To learn more, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Run a tool with parameters. Use this endpoint to run a tool directly with specified inputs and optional external connector integration. To learn more, refer to the tools documentation.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: post-agent-builder-tools-execute
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -3199,7 +3555,7 @@ paths:
           description: Indicates a successful response
       summary: Run a tool
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n -X POST \"https://${KIBANA_URL}/api/agent_builder/tools/_execute\" \\\n -H \"Authorization: ApiKey ${API_KEY}\" \\\n -H \"kbn-xsrf: true\" \\\n -H \"Content-Type: application/json\" \\\n -d '{\n   \"tool_id\": \"platform.core.search\",\n   \"tool_params\": {\n     \"query\": \"can you find john doe's email from the employee index?\"}\n   }\n }'\n"
@@ -3214,13 +3570,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb delete">delete</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/tools/{toolId}</span></div>
+        delete /s/{space_id}/api/agent_builder/tools/{toolId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Delete a tool by ID. This action cannot be undone. To learn more, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageTools.'
+        Delete a tool by ID. This action cannot be undone. To learn more, refer to the tools documentation.
+
+
+        [Required authorization] Route required privileges: agentBuilder:manageTools.'
       operationId: delete-agent-builder-tools-toolid
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -3255,7 +3614,7 @@ paths:
           description: Indicates a successful response
       summary: Delete a tool
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X DELETE \"https://${KIBANA_URL}/api/agent_builder/tools/{toolId}\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\" \\\n  -H \"kbn-xsrf: true\"\n"
@@ -3271,13 +3630,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/tools/{toolId}</span></div>
+        get /s/{space_id}/api/agent_builder/tools/{toolId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get a specific tool by ID. Use this endpoint to retrieve the complete tool definition including its schema and configuration requirements. To learn more, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:read.'
+        Get a specific tool by ID. Use this endpoint to retrieve the complete tool definition including its schema and configuration requirements. To learn more, refer to the tools documentation.
+
+
+        [Required authorization] Route required privileges: agentBuilder:read.'
       operationId: get-agent-builder-tools-toolid
       parameters:
       - description: The unique identifier of the tool to retrieve.
@@ -3373,7 +3735,7 @@ paths:
           description: Indicates a successful response
       summary: Get a tool by id
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n  -X GET \"https://${KIBANA_URL}/api/agent_builder/tools/{toolId}\" \\\n  -H \"Authorization: ApiKey ${API_KEY}\"\n"
@@ -3389,13 +3751,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb put">put</span>&nbsp;<span class="operation-path">/s/{space_id}/api/agent_builder/tools/{toolId}</span></div>
+        put /s/{space_id}/api/agent_builder/tools/{toolId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Update an existing tool. Use this endpoint to modify any aspect of the tool''s configuration or metadata. To learn more, refer to the [tools documentation](https://www.elastic.co/docs/explore-analyze/ai-features/agent-builder/tools).<br/><br/>[Required authorization] Route required privileges: agentBuilder:manageTools.'
+        Update an existing tool. Use this endpoint to modify any aspect of the tool''s configuration or metadata. To learn more, refer to the tools documentation.
+
+
+        [Required authorization] Route required privileges: agentBuilder:manageTools.'
       operationId: put-agent-builder-tools-toolid
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -3536,7 +3901,7 @@ paths:
           description: Indicates a successful response
       summary: Update a tool
       tags:
-      - agent builder
+      - Agent Builder
       x-codeSamples:
       - lang: curl
         source: "curl \\\n -X PUT \"https://${KIBANA_URL}/api/agent_builder/tools/{toolId}\" \\\n -H \"Authorization: ApiKey ${API_KEY}\" \\\n -H \"kbn-xsrf: true\" \\\n -H \"Content-Type: application/json\" \\\n -d '{\n   \"description\": \"Updated ES|QL query tool for analyzing financial trades with time filtering\",\n   \"tags\": [\"analytics\", \"finance\", \"updated\"],\n   \"configuration\": {\n     \"query\": \"FROM financial_trades | WHERE execution_timestamp >= ?startTime | STATS trade_count=COUNT(*), avg_price=AVG(execution_price) BY symbol | SORT trade_count DESC | LIMIT ?limit\",\n     \"params\": {\n       \"startTime\": {\n         \"type\": \"date\",\n         \"description\": \"Start time for the analysis in ISO format\"\n       },\n       \"limit\": {\n         \"type\": \"integer\",\n         \"description\": \"Maximum number of results to return\"\n       }\n     }\n   }\n }'\n"

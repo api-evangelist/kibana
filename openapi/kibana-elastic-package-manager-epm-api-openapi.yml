@@ -2,62 +2,9 @@ openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
-  description: 'The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
-
-    The API calls are stateless.
-
-    Each request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the
-
-    request.
-
-    API requests return JSON output, which is a format that is machine-readable and works well for automation.
-
-
-    To interact with Kibana APIs, use the following operations:
-
-
-    - GET: Fetches the information.
-
-    - PATCH: Applies partial modifications to the existing information.
-
-    - POST: Adds new information.
-
-    - PUT: Updates the existing information.
-
-    - DELETE: Removes the information.
-
-
-    You can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.
-
-    For example:
-
-
-    ```
-
-    GET kbn:/api/data_views
-
-    ```
-
-
-    For more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).
-
-
-    NOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.
-
-
-    ## Documentation source and versions
-
-
-    This documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.
-
-    It is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).
-
-
-    This documentation contains work-in-progress information for future Elastic Stack releases.
-
-    '
-  title: Kibana APIs Actions Elastic Package Manager (EPM) Elastic Package Manager (EPM) API
-  version: '1.0'
+  description: The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
+  title: Kibana Elastic Package Manager (EPM) API
+  version: ''
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -74,9 +21,7 @@ security:
 - basicAuth: []
 tags:
 - name: Elastic Package Manager (EPM)
-  description: 'Elastic Package Manager (EPM) APIs enable you to manage packages and integrations, including installing, updating, and uninstalling packages, managing custom integrations, and handling package assets.
-
-    '
+  description: Elastic Package Manager (EPM) APIs enable you to manage packages and integrations, including installing, updating, and uninstalling packages, managing custom integrations, and handling package assets.
   x-displayName: Elastic Package Manager (EPM)
 paths:
   /api/fleet/epm/bulk_assets:
@@ -84,13 +29,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/bulk_assets</span></div>
+        post /s/{space_id}/api/fleet/epm/bulk_assets
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Retrieve multiple Kibana saved object assets by their IDs and types.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
+        Retrieve multiple Kibana saved object assets by their IDs and types.
+
+
+        [Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
       operationId: post-fleet-epm-bulk-assets
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -221,13 +169,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/categories</span></div>
+        get /s/{space_id}/api/fleet/epm/categories
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get a list of integration categories.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
+        Get a list of integration categories.
+
+
+        [Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
       operationId: get-fleet-epm-categories
       parameters:
       - description: When true, include prerelease packages in the results
@@ -324,13 +275,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/custom_integrations</span></div>
+        post /s/{space_id}/api/fleet/epm/custom_integrations
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Create a new custom integration package with user-defined data streams.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Create a new custom integration package with user-defined data streams.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: post-fleet-epm-custom-integrations
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -512,13 +466,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb put">put</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/custom_integrations/{pkgName}</span></div>
+        put /s/{space_id}/api/fleet/epm/custom_integrations/{pkgName}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Update the datasets of an existing custom integration package.<br/><br/>[Required authorization] Route required privileges: fleet-settings-all AND integrations-all.'
+        Update the datasets of an existing custom integration package.
+
+
+        [Required authorization] Route required privileges: fleet-settings-all AND integrations-all.'
       operationId: put-fleet-epm-custom-integrations-pkgname
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -606,13 +563,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages</span></div>
+        get /s/{space_id}/api/fleet/epm/packages
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get a list of integration packages available in the registry.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
+        Get a list of integration packages available in the registry.
+
+
+        [Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
       operationId: get-fleet-epm-packages
       parameters:
       - description: Filter packages by category
@@ -1172,13 +1132,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages</span></div>
+        post /s/{space_id}/api/fleet/epm/packages
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Install a package by uploading a .zip or .tar.gz archive (max 100MB). Only available to superusers.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Install a package by uploading a .zip or .tar.gz archive (max 100MB). Only available to superusers.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: post-fleet-epm-packages
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -1365,13 +1328,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/_bulk</span></div>
+        post /s/{space_id}/api/fleet/epm/packages/_bulk
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Install multiple packages from the Elastic Package Registry in a single request.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Install multiple packages from the Elastic Package Registry in a single request.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: post-fleet-epm-packages-bulk
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -1594,13 +1560,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/_bulk_rollback</span></div>
+        post /s/{space_id}/api/fleet/epm/packages/_bulk_rollback
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Rollback multiple packages to their previous versions.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Rollback multiple packages to their previous versions.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: post-fleet-epm-packages-bulk-rollback
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -1690,13 +1659,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/_bulk_rollback/{taskId}</span></div>
+        get /s/{space_id}/api/fleet/epm/packages/_bulk_rollback/{taskId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get the status and results of a bulk package rollback operation.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Get the status and results of a bulk package rollback operation.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: get-fleet-epm-packages-bulk-rollback-taskid
       parameters:
       - description: Task ID of the bulk operation
@@ -1788,13 +1760,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/_bulk_uninstall</span></div>
+        post /s/{space_id}/api/fleet/epm/packages/_bulk_uninstall
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Uninstall multiple packages in a single operation.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Uninstall multiple packages in a single operation.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: post-fleet-epm-packages-bulk-uninstall
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -1895,13 +1870,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/_bulk_uninstall/{taskId}</span></div>
+        get /s/{space_id}/api/fleet/epm/packages/_bulk_uninstall/{taskId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get the status and results of a bulk package uninstall operation.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Get the status and results of a bulk package uninstall operation.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: get-fleet-epm-packages-bulk-uninstall-taskid
       parameters:
       - description: Task ID of the bulk operation
@@ -2002,13 +1980,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/_bulk_upgrade</span></div>
+        post /s/{space_id}/api/fleet/epm/packages/_bulk_upgrade
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Upgrade multiple packages to their latest versions.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Upgrade multiple packages to their latest versions.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: post-fleet-epm-packages-bulk-upgrade
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -2113,13 +2094,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/_bulk_upgrade/{taskId}</span></div>
+        get /s/{space_id}/api/fleet/epm/packages/_bulk_upgrade/{taskId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get the status and results of a bulk package upgrade operation.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Get the status and results of a bulk package upgrade operation.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: get-fleet-epm-packages-bulk-upgrade-taskid
       parameters:
       - description: Task ID of the bulk operation
@@ -2220,13 +2204,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb delete">delete</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}</span></div>
+        delete /s/{space_id}/api/fleet/epm/packages/{pkgName}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Uninstall a package and remove all its assets.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Uninstall a package and remove all its assets.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: delete-fleet-epm-packages-pkgname
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -2363,10 +2350,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}</span></div>
+        get /s/{space_id}/api/fleet/epm/packages/{pkgName}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Get information about a package by name, returning the latest installed or available version.'
@@ -3004,13 +2991,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}</span></div>
+        post /s/{space_id}/api/fleet/epm/packages/{pkgName}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Install the latest version of a package from the Elastic Package Registry.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Install the latest version of a package from the Elastic Package Registry.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: post-fleet-epm-packages-pkgname
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -3202,13 +3192,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb put">put</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}</span></div>
+        put /s/{space_id}/api/fleet/epm/packages/{pkgName}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Update settings for a package, such as whether policies are kept up to date automatically.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Update settings for a package, such as whether policies are kept up to date automatically.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: put-fleet-epm-packages-pkgname
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -3826,13 +3819,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb delete">delete</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}</span></div>
+        delete /s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Uninstall a specific version of a package and remove all its assets.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Uninstall a specific version of a package and remove all its assets.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: delete-fleet-epm-packages-pkgname-pkgversion
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -3975,10 +3971,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}</span></div>
+        get /s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Get information about a specific version of a package.'
@@ -4622,13 +4618,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}</span></div>
+        post /s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Install a specific version of a package from the Elastic Package Registry.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Install a specific version of a package from the Elastic Package Registry.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: post-fleet-epm-packages-pkgname-pkgversion
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -4826,13 +4825,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb put">put</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}</span></div>
+        put /s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Update settings for a specific version of a package.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Update settings for a specific version of a package.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: put-fleet-epm-packages-pkgname-pkgversion
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -5456,13 +5458,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/{filePath}</span></div>
+        get /s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/{filePath}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get the contents of a specific file from a package.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
+        Get the contents of a specific file from a package.
+
+
+        [Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
       operationId: get-fleet-epm-packages-pkgname-pkgversion-filepath
       parameters:
       - description: Package name
@@ -5532,13 +5537,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb delete">delete</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/datastream_assets</span></div>
+        delete /s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/datastream_assets
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Delete datastream assets for a specific input package, by data stream name.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Delete datastream assets for a specific input package, by data stream name.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: delete-fleet-epm-packages-pkgname-pkgversion-datastream-assets
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -5625,13 +5633,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/dependencies</span></div>
+        get /s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/dependencies
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get the list of packages that a specific package depends on.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
+        Get the list of packages that a specific package depends on.
+
+
+        [Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
       operationId: get-fleet-epm-packages-pkgname-pkgversion-dependencies
       parameters:
       - description: Package name
@@ -5724,13 +5735,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb delete">delete</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/kibana_assets</span></div>
+        delete /s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/kibana_assets
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Delete Kibana assets (dashboards, visualizations, etc.) for a specific package version.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Delete Kibana assets (dashboards, visualizations, etc.) for a specific package version.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: delete-fleet-epm-packages-pkgname-pkgversion-kibana-assets
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -5810,13 +5824,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/kibana_assets</span></div>
+        post /s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/kibana_assets
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Install Kibana assets (dashboards, visualizations, etc.) for a specific package version.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Install Kibana assets (dashboards, visualizations, etc.) for a specific package version.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: post-fleet-epm-packages-pkgname-pkgversion-kibana-assets
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -5919,13 +5936,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/rule_assets</span></div>
+        post /s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/rule_assets
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Install Kibana alert rule assets for a specific package version.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Install Kibana alert rule assets for a specific package version.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: post-fleet-epm-packages-pkgname-pkgversion-rule-assets
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -6021,10 +6041,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/transforms/authorize</span></div>
+        post /s/{space_id}/api/fleet/epm/packages/{pkgName}/{pkgVersion}/transforms/authorize
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Reauthorize Elasticsearch transforms installed by a package with secondary authorization headers.'
@@ -6149,13 +6169,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}/review_upgrade</span></div>
+        post /s/{space_id}/api/fleet/epm/packages/{pkgName}/review_upgrade
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Review and accept or reject a pending policy upgrade for a package that contains deprecations.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Review and accept or reject a pending policy upgrade for a package that contains deprecations.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: post-fleet-epm-packages-pkgname-review-upgrade
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -6248,13 +6271,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}/rollback</span></div>
+        post /s/{space_id}/api/fleet/epm/packages/{pkgName}/rollback
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Rollback a package to its previously installed version.<br/><br/>[Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
+        Rollback a package to its previously installed version.
+
+
+        [Required authorization] Route required privileges: integrations-all AND fleet-agent-policies-all.'
       operationId: post-fleet-epm-packages-pkgname-rollback
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -6328,13 +6354,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/{pkgName}/stats</span></div>
+        get /s/{space_id}/api/fleet/epm/packages/{pkgName}/stats
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get usage statistics for a specific package, such as the number of agent policies using it.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
+        Get usage statistics for a specific package, such as the number of agent policies using it.
+
+
+        [Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
       operationId: get-fleet-epm-packages-pkgname-stats
       parameters:
       - description: Package name
@@ -6410,13 +6439,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/installed</span></div>
+        get /s/{space_id}/api/fleet/epm/packages/installed
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get a list of all currently installed integration packages.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
+        Get a list of all currently installed integration packages.
+
+
+        [Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
       operationId: get-fleet-epm-packages-installed
       parameters:
       - description: Filter by data stream type
@@ -6605,13 +6637,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/packages/limited</span></div>
+        get /s/{space_id}/api/fleet/epm/packages/limited
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get the list of packages that cannot be uninstalled (e.g. elastic_agent, fleet_server).<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
+        Get the list of packages that cannot be uninstalled (e.g. elastic_agent, fleet_server).
+
+
+        [Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
       operationId: get-fleet-epm-packages-limited
       parameters: []
       responses:
@@ -6676,13 +6711,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/templates/{pkgName}/{pkgVersion}/inputs</span></div>
+        get /s/{space_id}/api/fleet/epm/templates/{pkgName}/{pkgVersion}/inputs
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get an inputs template for a package, used to pre-populate package policy forms.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
+        Get an inputs template for a package, used to pre-populate package policy forms.
+
+
+        [Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
       operationId: get-fleet-epm-templates-pkgname-pkgversion-inputs
       parameters:
       - description: Package name
@@ -6867,13 +6905,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/epm/verification_key_id</span></div>
+        get /s/{space_id}/api/fleet/epm/verification_key_id
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get the GPG key ID used to verify the signatures of packages from the Elastic Package Registry.<br/><br/>[Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
+        Get the GPG key ID used to verify the signatures of packages from the Elastic Package Registry.
+
+
+        [Required authorization] Route required privileges: integrations-read OR fleet-setup OR fleet-all.'
       operationId: get-fleet-epm-verification-key-id
       parameters: []
       responses:

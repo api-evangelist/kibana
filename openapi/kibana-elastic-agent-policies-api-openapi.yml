@@ -2,62 +2,9 @@ openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
-  description: 'The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
-
-    The API calls are stateless.
-
-    Each request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the
-
-    request.
-
-    API requests return JSON output, which is a format that is machine-readable and works well for automation.
-
-
-    To interact with Kibana APIs, use the following operations:
-
-
-    - GET: Fetches the information.
-
-    - PATCH: Applies partial modifications to the existing information.
-
-    - POST: Adds new information.
-
-    - PUT: Updates the existing information.
-
-    - DELETE: Removes the information.
-
-
-    You can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.
-
-    For example:
-
-
-    ```
-
-    GET kbn:/api/data_views
-
-    ```
-
-
-    For more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).
-
-
-    NOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.
-
-
-    ## Documentation source and versions
-
-
-    This documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.
-
-    It is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).
-
-
-    This documentation contains work-in-progress information for future Elastic Stack releases.
-
-    '
-  title: Kibana APIs Actions Elastic Agent policies API
-  version: '1.0'
+  description: The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
+  title: Kibana Elastic Agent policies API
+  version: ''
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -74,9 +21,7 @@ security:
 - basicAuth: []
 tags:
 - name: Elastic Agent policies
-  description: 'Elastic Agent policies APIs enable you to manage agent policies, including creating, updating, and deleting policies, as well as to retrieve agent policy outputs, manifests, and auto-upgrade status information.
-
-    '
+  description: Elastic Agent policies APIs enable you to manage agent policies, including creating, updating, and deleting policies, as well as to retrieve agent policy outputs, manifests, and auto-upgrade status information.
   x-displayName: Elastic Agent policies
 paths:
   /api/fleet/agent_policies:
@@ -84,13 +29,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/agent_policies</span></div>
+        get /s/{space_id}/api/fleet/agent_policies
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        List all agent policies.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-agents-read OR fleet-setup.'
+        List all agent policies.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-agents-read OR fleet-setup.'
       operationId: get-fleet-agent-policies
       parameters:
       - description: Page number
@@ -1070,13 +1018,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/agent_policies</span></div>
+        post /s/{space_id}/api/fleet/agent_policies
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Create a new agent policy.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all.'
+        Create a new agent policy.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-all.'
       operationId: post-fleet-agent-policies
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -2231,13 +2182,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/agent_policies/_bulk_get</span></div>
+        post /s/{space_id}/api/fleet/agent_policies/_bulk_get
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get multiple agent policies by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-agents-read OR fleet-setup.'
+        Get multiple agent policies by ID.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-agents-read OR fleet-setup.'
       operationId: post-fleet-agent-policies-bulk-get
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -3192,13 +3146,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/agent_policies/{agentPolicyId}</span></div>
+        get /s/{space_id}/api/fleet/agent_policies/{agentPolicyId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get an agent policy by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-agents-read OR fleet-setup.'
+        Get an agent policy by ID.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-agents-read OR fleet-setup.'
       operationId: get-fleet-agent-policies-agentpolicyid
       parameters:
       - description: The ID of the agent policy
@@ -4122,13 +4079,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb put">put</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/agent_policies/{agentPolicyId}</span></div>
+        put /s/{space_id}/api/fleet/agent_policies/{agentPolicyId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Update an agent policy by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all.'
+        Update an agent policy by ID.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-all.'
       operationId: put-fleet-agent-policies-agentpolicyid
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -5293,13 +5253,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/agent_policies/{agentPolicyId}/auto_upgrade_agents_status</span></div>
+        get /s/{space_id}/api/fleet/agent_policies/{agentPolicyId}/auto_upgrade_agents_status
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get the auto-upgrade status for agents assigned to an agent policy.<br/><br/>[Required authorization] Route required privileges: fleet-agents-read.'
+        Get the auto-upgrade status for agents assigned to an agent policy.
+
+
+        [Required authorization] Route required privileges: fleet-agents-read.'
       operationId: get-fleet-agent-policies-agentpolicyid-auto-upgrade-agents-status
       parameters:
       - description: The ID of the agent policy
@@ -5406,13 +5369,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/agent_policies/{agentPolicyId}/copy</span></div>
+        post /s/{space_id}/api/fleet/agent_policies/{agentPolicyId}/copy
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Copy an agent policy by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all.'
+        Copy an agent policy by ID.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-all.'
       operationId: post-fleet-agent-policies-agentpolicyid-copy
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -6353,13 +6319,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/agent_policies/{agentPolicyId}/download</span></div>
+        get /s/{space_id}/api/fleet/agent_policies/{agentPolicyId}/download
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Download an agent policy by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-setup.'
+        Download an agent policy by ID.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-setup.'
       operationId: get-fleet-agent-policies-agentpolicyid-download
       parameters:
       - description: The ID of the agent policy
@@ -6471,13 +6440,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/agent_policies/{agentPolicyId}/full</span></div>
+        get /s/{space_id}/api/fleet/agent_policies/{agentPolicyId}/full
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get a full agent policy by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read.'
+        Get a full agent policy by ID.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-read.'
       operationId: get-fleet-agent-policies-agentpolicyid-full
       parameters:
       - description: The ID of the agent policy
@@ -7092,13 +7064,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/agent_policies/{agentPolicyId}/outputs</span></div>
+        get /s/{space_id}/api/fleet/agent_policies/{agentPolicyId}/outputs
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get a list of outputs associated with agent policy by policy id.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read AND fleet-settings-read.'
+        Get a list of outputs associated with agent policy by policy id.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-read AND fleet-settings-read.'
       operationId: get-fleet-agent-policies-agentpolicyid-outputs
       parameters:
       - description: The ID of the agent policy
@@ -7239,13 +7214,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/agent_policies/delete</span></div>
+        post /s/{space_id}/api/fleet/agent_policies/delete
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Delete an agent policy by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all.'
+        Delete an agent policy by ID.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-all.'
       operationId: post-fleet-agent-policies-delete
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -7336,13 +7314,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/agent_policies/outputs</span></div>
+        post /s/{space_id}/api/fleet/agent_policies/outputs
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get a list of outputs associated with agent policies.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read AND fleet-settings-read.'
+        Get a list of outputs associated with agent policies.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-read AND fleet-settings-read.'
       operationId: post-fleet-agent-policies-outputs
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -7499,13 +7480,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/kubernetes</span></div>
+        get /s/{space_id}/api/fleet/kubernetes
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get the Kubernetes manifest for deploying Elastic Agent.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-setup.'
+        Get the Kubernetes manifest for deploying Elastic Agent.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-setup.'
       operationId: get-fleet-kubernetes
       parameters:
       - description: If true, returns the manifest as a downloadable file
@@ -7583,13 +7567,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/kubernetes/download</span></div>
+        get /s/{space_id}/api/fleet/kubernetes/download
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Download the Kubernetes manifest for deploying Elastic Agent.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-setup.'
+        Download the Kubernetes manifest for deploying Elastic Agent.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-read OR fleet-setup.'
       operationId: get-fleet-kubernetes-download
       parameters:
       - description: If true, returns the manifest as a downloadable file

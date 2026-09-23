@@ -2,62 +2,9 @@ openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
-  description: 'The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
-
-    The API calls are stateless.
-
-    Each request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the
-
-    request.
-
-    API requests return JSON output, which is a format that is machine-readable and works well for automation.
-
-
-    To interact with Kibana APIs, use the following operations:
-
-
-    - GET: Fetches the information.
-
-    - PATCH: Applies partial modifications to the existing information.
-
-    - POST: Adds new information.
-
-    - PUT: Updates the existing information.
-
-    - DELETE: Removes the information.
-
-
-    You can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.
-
-    For example:
-
-
-    ```
-
-    GET kbn:/api/data_views
-
-    ```
-
-
-    For more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).
-
-
-    NOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.
-
-
-    ## Documentation source and versions
-
-
-    This documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.
-
-    It is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).
-
-
-    This documentation contains work-in-progress information for future Elastic Stack releases.
-
-    '
-  title: Kibana APIs Actions Security Endpoint Management API
-  version: '1.0'
+  description: The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
+  title: Kibana Security Endpoint Management API
+  version: ''
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -82,10 +29,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action</span></div>
+        get /s/{space_id}/api/endpoint/action
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Get a list of all response actions.'
@@ -159,10 +106,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action_status</span></div>
+        get /s/{space_id}/api/endpoint/action_status
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Get the status of response actions for the specified agent IDs.'
@@ -192,10 +139,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/{action_id}</span></div>
+        get /s/{space_id}/api/endpoint/action/{action_id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Get the details of a response action using the action ID.'
@@ -226,15 +173,13 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/{action_id}/file/{file_id}</span></div>
+        get /s/{space_id}/api/endpoint/action/{action_id}/file/{file_id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Get information for the specified response action file download.
-
-        '
+        Get information for the specified response action file download.'
       operationId: EndpointFileInfo
       parameters:
       - description: The ID of the response action that generated the file.
@@ -312,19 +257,17 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/{action_id}/file/{file_id}/download</span></div>
+        get /s/{space_id}/api/endpoint/action/{action_id}/file/{file_id}/download
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Download a file associated with a response action. Files are downloaded in a password-protected `.zip` archive to prevent the file from running. Use password `elastic` to open the `.zip` in a safe environment.
 
         > info
 
-        > Files retrieved from third-party-protected hosts require a different password. Refer to [Third-party response actions](https://www.elastic.co/docs/solutions/security/endpoint-response-actions/third-party-response-actions) for your system''s password.
-
-        '
+        > Files retrieved from third-party-protected hosts require a different password. Refer to Third-party response actions for your system''s password.'
       operationId: EndpointFileDownload
       parameters:
       - description: The ID of the response action that generated the file.
@@ -366,10 +309,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/cancel</span></div>
+        post /s/{space_id}/api/endpoint/action/cancel
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Cancel a running or pending response action (Applies only to some agent types).'
@@ -434,10 +377,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/execute</span></div>
+        post /s/{space_id}/api/endpoint/action/execute
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Run a shell command on an endpoint.'
@@ -503,10 +446,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/get_file</span></div>
+        post /s/{space_id}/api/endpoint/action/get_file
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Get a file from an endpoint.'
@@ -570,10 +513,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/isolate</span></div>
+        post /s/{space_id}/api/endpoint/action/isolate
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Isolate an endpoint from the network. The endpoint remains isolated until it''s released.'
@@ -683,10 +626,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/kill_process</span></div>
+        post /s/{space_id}/api/endpoint/action/kill_process
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Terminate a running process on an endpoint.'
@@ -757,10 +700,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/memory_dump</span></div>
+        post /s/{space_id}/api/endpoint/action/memory_dump
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Generates memory dumps on the targeted host.'
@@ -827,10 +770,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/running_procs</span></div>
+        post /s/{space_id}/api/endpoint/action/running_procs
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Get a list of all processes running on an endpoint.'
@@ -889,10 +832,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/runscript</span></div>
+        post /s/{space_id}/api/endpoint/action/runscript
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Run a script on a host. Currently supported only for some agent types.'
@@ -968,10 +911,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/scan</span></div>
+        post /s/{space_id}/api/endpoint/action/scan
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Scan a specific file or directory on an endpoint for malware.'
@@ -1035,10 +978,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/state</span></div>
+        get /s/{space_id}/api/endpoint/action/state
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Get a response actions state, which reports whether encryption is enabled.'
@@ -1061,10 +1004,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/suspend_process</span></div>
+        post /s/{space_id}/api/endpoint/action/suspend_process
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Suspend a running process on an endpoint.'
@@ -1135,10 +1078,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/unisolate</span></div>
+        post /s/{space_id}/api/endpoint/action/unisolate
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Release an isolated endpoint, allowing it to rejoin a network.'
@@ -1248,10 +1191,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/action/upload</span></div>
+        post /s/{space_id}/api/endpoint/action/upload
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Upload a file to an endpoint.'
@@ -1309,10 +1252,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/metadata</span></div>
+        get /s/{space_id}/api/endpoint/metadata
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Get a list of all endpoint host metadata.'
@@ -1366,10 +1309,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/metadata/{id}</span></div>
+        get /s/{space_id}/api/endpoint/metadata/{id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Get host metadata for a specific endpoint.'
@@ -1400,10 +1343,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/policy_response</span></div>
+        get /s/{space_id}/api/endpoint/policy_response
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Get the most recent policy response for an endpoint.'
@@ -1433,10 +1376,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/protection_updates_note/{package_policy_id}</span></div>
+        get /s/{space_id}/api/endpoint/protection_updates_note/{package_policy_id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Get the protection updates note for a package policy.'
@@ -1465,10 +1408,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/endpoint/protection_updates_note/{package_policy_id}</span></div>
+        post /s/{space_id}/api/endpoint/protection_updates_note/{package_policy_id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Create or update the protection updates note for a package policy.'
@@ -1505,148 +1448,40 @@ paths:
         name: product_name
 components:
   schemas:
-    Security_Endpoint_Management_API_Upload:
-      allOf:
-      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
-      - type: object
-        properties:
-          outputs:
-            additionalProperties:
-              type: object
-              properties:
-                content:
-                  type: object
-                  properties:
-                    code:
-                      type: string
-                    disk_free_space:
-                      type: number
-                    path:
-                      type: string
-            type: object
-          parameters:
-            description: 'The parameters for upload returned on the details are derived via the API from the file that
-
-              was uploaded at the time that the response action was submitted
-
-              '
-            type: object
-            properties:
-              file_id:
-                type: string
-              file_name:
-                type: string
-              file_sha256:
-                type: string
-              file_size:
-                type: number
-    Security_Endpoint_Management_API_Commands:
-      description: A list of response action command names.
+    Security_Endpoint_Management_API_SentinelOneRunScriptParameters:
+      description: Parameters for Run Script response action against SentinelOne agent type.
       example:
-      - isolate
-      - unisolate
-      items:
-        $ref: '#/components/schemas/Security_Endpoint_Management_API_Command'
-      maxItems: 50
-      type: array
-    Security_Endpoint_Management_API_RunscriptParamsMicrosoft:
-      type: object
-      properties:
-        args:
-          type: string
-        scriptName:
-          type: string
-    Security_Endpoint_Management_API_MDERunScriptParameters:
-      description: Parameters for Run Script response action against Microsoft Defender Endpoint agent type.
-      example:
-        agent_type: microsoft_defender_endpoint
+        agent_type: sentinel_one
         endpoint_ids:
         - endpoint-id-1
         parameters:
-          args: -param1 value1 -param2 value2
-          scriptName: my-script.ps1
+          scriptId: 1111-2222-3333-4444-5555-6666-7777-8888
+          scriptInput: --delete --paths-to-delete /tmp/temp_file.txt,/tmp/random_file.txt
       properties:
-        args:
-          description: Optional command line arguments for the script.
+        scriptId:
+          description: The script ID from SentinelOne scripts library that will be executed.
           minLength: 1
           type: string
-        scriptName:
-          description: The name of the script to execute from the cloud storage.
+        scriptInput:
+          description: The input parameter arguments for the script that was selected.
           minLength: 1
           type: string
       required:
-      - scriptName
-      title: Microsoft Defender Endpoint Run Script Parameters
+      - scriptId
+      title: SentinelOne Run Script Parameters
       type: object
-    Security_Endpoint_Management_API_RunscriptParamsCrowdStrike:
+    Security_Endpoint_Management_API_DownloadUri:
       type: object
       properties:
-        cloudFile:
+        downloadUri:
+          description: 'The server relative URI to download the file associated with the output of the response action.
+
+            URI does **not** include the space prefix
+
+            '
+          example: /api/endpoint/action/497f6eca-6276/file/35645-6276-4993/download
+          format: uri-reference
           type: string
-        commandLine:
-          type: string
-        hostPath:
-          type: string
-        raw:
-          type: string
-        timeout:
-          type: number
-    Security_Endpoint_Management_API_SuspendProcess:
-      allOf:
-      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
-      - type: object
-        properties:
-          outputs:
-            additionalProperties:
-              type: object
-              properties:
-                content:
-                  oneOf:
-                  - type: object
-                    properties:
-                      code:
-                        type: string
-                      command:
-                        type: string
-                      pid:
-                        type: number
-                  - type: object
-                    properties:
-                      code:
-                        type: string
-                      command:
-                        type: string
-                      entity_id:
-                        type: string
-            type: object
-          parameters:
-            oneOf:
-            - type: object
-              properties:
-                pid:
-                  description: The process ID (PID) of the process to terminate.
-                  minimum: 1
-                  type: number
-            - type: object
-              properties:
-                entity_id:
-                  description: The entity ID of the process to terminate.
-                  minLength: 1
-                  type: string
-    Security_Endpoint_Management_API_RunningProcesses:
-      allOf:
-      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
-      - type: object
-        properties:
-          outputs:
-            additionalProperties:
-              type: object
-              properties:
-                content:
-                  oneOf:
-                  - $ref: '#/components/schemas/Security_Endpoint_Management_API_RunningProcessesOutputEndpoint'
-                  - $ref: '#/components/schemas/Security_Endpoint_Management_API_RunningProcessesOutputSentinelOne'
-            type: object
     Security_Endpoint_Management_API_RawScriptParameters:
       type: object
       properties:
@@ -1664,11 +1499,47 @@ components:
           type: integer
       required:
       - raw
+    Security_Endpoint_Management_API_PendingActionDataType:
+      description: Number of pending actions of this type.
+      type: integer
+    Security_Endpoint_Management_API_UnisolateRouteResponse:
+      type: object
+      properties:
+        action:
+          description: The action ID (legacy field, same as `data.id`).
+          type: string
+        data:
+          $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
     Security_Endpoint_Management_API_Kuery:
       description: A KQL string.
       example: 'united.endpoint.host.os.name : ''Windows'''
       type: string
-    Security_Endpoint_Management_API_KillProcessRouteRequestBody:
+    Security_Endpoint_Management_API_RunningProcessesOutputEndpoint:
+      description: Processes output for `agentType` of `endpoint`
+      type: object
+      properties:
+        code:
+          type: string
+        entries:
+          items:
+            type: object
+            properties:
+              command:
+                type: string
+              entity_id:
+                type: string
+              pid:
+                type: number
+              user:
+                type: string
+          type: array
+    Security_Endpoint_Management_API_Type:
+      description: Type of response action
+      enum:
+      - automated
+      - manual
+      type: string
+    Security_Endpoint_Management_API_ScanRouteRequestBody:
       allOf:
       - type: object
         properties:
@@ -1707,37 +1578,46 @@ components:
       - type: object
         properties:
           parameters:
-            oneOf:
-            - type: object
-              properties:
-                pid:
-                  description: The process ID (PID) of the process to terminate.
-                  example: 123
-                  minimum: 1
-                  type: integer
-            - type: object
-              properties:
-                entity_id:
-                  description: The entity ID of the process to terminate.
-                  example: abc123
-                  minLength: 1
-                  type: string
-            - type: object
-              properties:
-                process_name:
-                  description: The name of the process to terminate. Valid for SentinelOne agent type only.
-                  example: Elastic
-                  minLength: 1
-                  type: string
+            type: object
+            properties:
+              path:
+                description: The folder or file's full path (including the file name).
+                example: /usr/my-file.txt
+                type: string
+            required:
+            - path
         required:
         - parameters
-    Security_Endpoint_Management_API_RunscriptParamsSentinelOne:
+    Security_Endpoint_Management_API_Types:
+      description: List of types of response actions
+      example:
+      - automated
+      - manual
+      items:
+        $ref: '#/components/schemas/Security_Endpoint_Management_API_Type'
+      maxLength: 2
+      minLength: 1
+      type: array
+    Security_Endpoint_Management_API_ActionStatusSuccessResponse:
       type: object
       properties:
-        scriptId:
-          type: string
-        scriptInput:
-          type: string
+        body:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                agent_id:
+                  $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentId'
+                pending_actions:
+                  $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionsSchema'
+              required:
+              - agent_id
+              - pending_actions
+          required:
+          - data
+      required:
+      - body
     Security_Endpoint_Management_API_HostStatuses:
       description: A set of agent health statuses to filter by.
       example:
@@ -1753,78 +1633,124 @@ components:
         type: string
       maxItems: 20
       type: array
-    Security_Endpoint_Management_API_Types:
-      description: List of types of response actions
-      example:
-      - automated
-      - manual
-      items:
-        $ref: '#/components/schemas/Security_Endpoint_Management_API_Type'
-      maxLength: 2
-      minLength: 1
-      type: array
-    Security_Endpoint_Management_API_SortDirection:
-      description: Determines the sort order.
-      enum:
-      - asc
-      - desc
-      example: desc
-      type: string
-    Security_Endpoint_Management_API_KillProcess:
+    Security_Endpoint_Management_API_ExecuteRouteRequestBody:
       allOf:
-      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
       - type: object
         properties:
-          outputs:
-            additionalProperties:
-              type: object
-              properties:
-                content:
-                  oneOf:
-                  - type: object
-                    properties:
-                      code:
-                        type: string
-                      command:
-                        type: string
-                      pid:
-                        type: number
-                  - type: object
-                    properties:
-                      code:
-                        type: string
-                      command:
-                        type: string
-                      entity_id:
-                        type: string
-                  - type: object
-                    properties:
-                      code:
-                        type: string
-                      command:
-                        type: string
-                      process_name:
-                        type: string
-            type: object
+          agent_type:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
+          alert_ids:
+            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
+            example:
+            - alert-id-1
+            - alert-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          case_ids:
+            description: The IDs of cases where the action taken will be logged. Max of 50.
+            example:
+            - case-id-1
+            - case-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          comment:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
+          endpoint_ids:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
           parameters:
-            oneOf:
-            - type: object
-              properties:
-                pid:
-                  description: The process ID (PID) of the process to terminate.
-                  minimum: 1
-                  type: number
-            - type: object
-              properties:
-                entity_id:
-                  description: The entity ID of the process to terminate.
-                  minLength: 1
-                  type: string
-            - type: object
-              properties:
-                process_name:
-                  description: The name of the process to terminate. Valid for SentinelOne agent type only.
-                  type: string
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
+        required:
+        - endpoint_ids
+      - type: object
+        properties:
+          parameters:
+            type: object
+            properties:
+              command:
+                description: The shell command to execute on the endpoint.
+                minLength: 1
+                type: string
+              timeout:
+                description: The maximum timeout value in seconds before the command is terminated.
+                minimum: 1
+                type: integer
+            required:
+            - command
+        required:
+        - parameters
+    Security_Endpoint_Management_API_UploadRouteRequestBody:
+      allOf:
+      - type: object
+        properties:
+          agent_type:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
+          alert_ids:
+            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
+            example:
+            - alert-id-1
+            - alert-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          case_ids:
+            description: The IDs of cases where the action taken will be logged. Max of 50.
+            example:
+            - case-id-1
+            - case-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          comment:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
+          endpoint_ids:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
+          parameters:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
+        required:
+        - endpoint_ids
+      - type: object
+        properties:
+          file:
+            description: The binary content of the file.
+            example: RWxhc3RpYw==
+            format: binary
+            type: string
+          parameters:
+            type: object
+            properties:
+              overwrite:
+                default: false
+                description: Overwrite the file on the host if it already exists.
+                example: false
+                type: boolean
+        required:
+        - parameters
+        - file
+    Security_Endpoint_Management_API_EndpointIds:
+      description: List of endpoint IDs (cannot contain empty strings). Max of 250.
+      example:
+      - endpoint-id-1
+      - endpoint-id-2
+      items:
+        minLength: 1
+        type: string
+      maxItems: 250
+      minItems: 1
+      type: array
     Security_Endpoint_Management_API_MetadataListResponse:
       example:
         data:
@@ -1999,10 +1925,169 @@ components:
         total: 2
       type: object
       properties: {}
-    Security_Endpoint_Management_API_EndDate:
-      description: An end date in ISO format or Date Math format.
-      example: '2023-10-31T23:59:59.999Z'
+    Security_Endpoint_Management_API_Comment:
+      description: Optional comment
+      example: This is a comment
       type: string
+    Security_Endpoint_Management_API_PageSize:
+      default: 10
+      description: Number of items per page
+      example: 10
+      maximum: 100
+      minimum: 1
+      type: integer
+    Security_Endpoint_Management_API_SortDirection:
+      description: Determines the sort order.
+      enum:
+      - asc
+      - desc
+      example: desc
+      type: string
+    Security_Endpoint_Management_API_Page:
+      default: 1
+      description: Page number
+      example: 1
+      minimum: 1
+      type: integer
+    Security_Endpoint_Management_API_ResponseActionDetails:
+      type: object
+      properties:
+        agents:
+          description: The agent IDs for the hosts that the response action was sent to
+          items:
+            format: uuid
+            type: string
+          type: array
+        agentState:
+          additionalProperties:
+            format: uuid
+            type: object
+            properties:
+              completedAt:
+                description: The date and time the response action was completed for the agent ID
+                type: string
+              isCompleted:
+                description: Whether the response action is completed for the agent ID
+                type: boolean
+              wasSuccessful:
+                description: Whether the response action was successful for the agent ID
+                type: boolean
+          description: The state of the response action for each agent ID that it was sent to
+          type: object
+        agentType:
+          $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
+        command:
+          $ref: '#/components/schemas/Security_Endpoint_Management_API_Command'
+        completedAt:
+          description: The response action completion time
+          format: date-time
+          type: string
+        createdBy:
+          description: The user who created the response action
+          type: string
+        hosts:
+          additionalProperties:
+            format: uuid
+            type: object
+            properties:
+              name:
+                description: The host name
+                type: string
+          description: An object containing the host names associated with the agent IDs the response action was sent to
+          type: object
+        id:
+          description: The response action ID
+          format: uuid
+          type: string
+        isComplete:
+          description: Whether the response action is complete
+          type: boolean
+        isExpired:
+          description: Whether the response action is expired
+          type: boolean
+        outputs:
+          additionalProperties:
+            description: The agent id
+            format: uuid
+            properties:
+              content:
+                description: The response action output content for the agent ID. Exact format depends on the response action command.
+                oneOf:
+                - type: object
+                - type: string
+              type:
+                enum:
+                - json
+                - text
+                type: string
+            required:
+            - type
+            - content
+            title: Agent ID
+            type: object
+          description: 'The outputs of the response action for each agent ID that it was sent to. Content different depending on the
+
+            response action command and will only be present for agents that have responded to the response action
+
+            '
+          type: object
+        parameters:
+          description: The parameters of the response action. Content different depending on the response action command
+          type: object
+        startedAt:
+          description: The response action start time
+          format: date-time
+          type: string
+        status:
+          description: The response action status
+          type: string
+        wasSuccessful:
+          description: Whether the response action was successful
+          type: boolean
+      required:
+      - command
+    Security_Endpoint_Management_API_SuspendProcess:
+      allOf:
+      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
+      - type: object
+        properties:
+          outputs:
+            additionalProperties:
+              type: object
+              properties:
+                content:
+                  oneOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: string
+                      command:
+                        type: string
+                      pid:
+                        type: number
+                  - type: object
+                    properties:
+                      code:
+                        type: string
+                      command:
+                        type: string
+                      entity_id:
+                        type: string
+            type: object
+          parameters:
+            oneOf:
+            - type: object
+              properties:
+                pid:
+                  description: The process ID (PID) of the process to terminate.
+                  minimum: 1
+                  type: number
+            - type: object
+              properties:
+                entity_id:
+                  description: The entity ID of the process to terminate.
+                  minLength: 1
+                  type: string
     Security_Endpoint_Management_API_GetEndpointActionListResponse:
       example:
         data:
@@ -2106,409 +2191,11 @@ components:
           items:
             type: string
           type: array
-    Security_Endpoint_Management_API_UnisolateRouteResponse:
-      type: object
-      properties:
-        action:
-          description: The action ID (legacy field, same as `data.id`).
-          type: string
-        data:
-          $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
-    Security_Endpoint_Management_API_WithOutputs:
-      description: A list of action IDs that should include the complete output of the action. Max of 50.
-      example:
-      - action-id-1
-      - action-id-2
-      oneOf:
-      - items:
-          minLength: 1
-          type: string
-        maxItems: 50
-        minItems: 1
-        type: array
-      - minLength: 1
-        type: string
-    Security_Endpoint_Management_API_RunningProcessesOutputSentinelOne:
+    Security_Endpoint_Management_API_Unisolate:
       allOf:
-      - $ref: '#/components/schemas/Security_Endpoint_Management_API_DownloadUri'
-      - description: Processes output for `agentType` of `sentinel_one`
+      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
+      - description: Details of an unisolate action response.
         type: object
-        properties:
-          code:
-            type: string
-    Security_Endpoint_Management_API_UserIds:
-      description: A list of user IDs. Max of 50.
-      example:
-      - user-id-1
-      - user-id-2
-      oneOf:
-      - items:
-          minLength: 1
-          type: string
-        maxItems: 50
-        minItems: 1
-        type: array
-      - minLength: 1
-        type: string
-    Security_Endpoint_Management_API_ActionStatusSuccessResponse:
-      type: object
-      properties:
-        body:
-          type: object
-          properties:
-            data:
-              type: object
-              properties:
-                agent_id:
-                  $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentId'
-                pending_actions:
-                  $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionsSchema'
-              required:
-              - agent_id
-              - pending_actions
-          required:
-          - data
-      required:
-      - body
-    Security_Endpoint_Management_API_Cancel:
-      allOf:
-      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
-      - type: object
-        properties:
-          outputs:
-            additionalProperties:
-              type: object
-              properties:
-                content:
-                  type: object
-                  properties:
-                    code:
-                      type: string
-            type: object
-          parameters:
-            type: object
-            properties:
-              id:
-                format: uuid
-                type: string
-    Security_Endpoint_Management_API_RunningProcessesOutputEndpoint:
-      description: Processes output for `agentType` of `endpoint`
-      type: object
-      properties:
-        code:
-          type: string
-        entries:
-          items:
-            type: object
-            properties:
-              command:
-                type: string
-              entity_id:
-                type: string
-              pid:
-                type: number
-              user:
-                type: string
-          type: array
-    Security_Endpoint_Management_API_ResponseActionCreateSuccessResponse:
-      example:
-        data:
-          agents:
-          - ed518850-681a-4d60-bb98-e22640cae2a8
-          agentState:
-            ed518850-681a-4d60-bb98-e22640cae2a8:
-              isCompleted: false
-              wasSuccessful: false
-          agentType: __agent__type__here_
-          command: __command__name__here__
-          createdBy: elastic
-          hosts:
-            ed518850-681a-4d60-bb98-e22640cae2a8:
-              name: gke-node-1235412
-          id: 233db9ea-6733-4849-9226-5a7039c7161d
-          isCompleted: false
-          isExpired: false
-          outputs: {}
-          parameters: {}
-          startedAt: '2022-07-29T19:08:49.126Z'
-          status: pending
-          wasSuccessful: false
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
-    Security_Endpoint_Management_API_AgentTypes:
-      description: List of agent types to retrieve. Defaults to `endpoint`.
-      enum:
-      - endpoint
-      - sentinel_one
-      - crowdstrike
-      - microsoft_defender_endpoint
-      example: endpoint
-      type: string
-    Security_Endpoint_Management_API_SortField:
-      description: Determines which field is used to sort the results.
-      enum:
-      - enrolled_at
-      - metadata.host.hostname
-      - host_status
-      - metadata.Endpoint.policy.applied.name
-      - metadata.Endpoint.policy.applied.status
-      - metadata.host.os.name
-      - metadata.host.ip
-      - metadata.agent.version
-      - last_checkin
-      example: enrolled_at
-      type: string
-    Security_Endpoint_Management_API_Type:
-      description: Type of response action
-      enum:
-      - automated
-      - manual
-      type: string
-    Security_Endpoint_Management_API_CloudFileScriptParameters:
-      type: object
-      properties:
-        cloudFile:
-          description: Script name in cloud storage.
-          minLength: 1
-          type: string
-        commandLine:
-          description: Command line arguments.
-          minLength: 1
-          type: string
-        timeout:
-          description: Timeout in seconds.
-          minimum: 1
-          type: integer
-      required:
-      - cloudFile
-    Security_Endpoint_Management_API_Scan:
-      allOf:
-      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
-      - type: object
-        properties:
-          outputs:
-            additionalProperties:
-              type: object
-              properties:
-                content:
-                  type: object
-                  properties:
-                    code:
-                      type: string
-            type: object
-          parameters:
-            type: object
-            properties:
-              path:
-                type: string
-    Security_Endpoint_Management_API_GetFileRouteRequestBody:
-      allOf:
-      - type: object
-        properties:
-          agent_type:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
-          alert_ids:
-            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
-            example:
-            - alert-id-1
-            - alert-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          case_ids:
-            description: The IDs of cases where the action taken will be logged. Max of 50.
-            example:
-            - case-id-1
-            - case-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          comment:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
-          endpoint_ids:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
-          parameters:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
-        required:
-        - endpoint_ids
-      - type: object
-        properties:
-          parameters:
-            type: object
-            properties:
-              path:
-                description: The full file path to retrieve from the endpoint.
-                type: string
-            required:
-            - path
-        required:
-        - parameters
-    Security_Endpoint_Management_API_HostPathScriptParameters:
-      type: object
-      properties:
-        commandLine:
-          description: Command line arguments.
-          minLength: 1
-          type: string
-        hostPath:
-          description: Absolute or relative path of script on host machine.
-          minLength: 1
-          type: string
-        timeout:
-          description: Timeout in seconds.
-          minimum: 1
-          type: integer
-      required:
-      - hostPath
-    Security_Endpoint_Management_API_SuspendProcessRouteRequestBody:
-      allOf:
-      - type: object
-        properties:
-          agent_type:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
-          alert_ids:
-            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
-            example:
-            - alert-id-1
-            - alert-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          case_ids:
-            description: The IDs of cases where the action taken will be logged. Max of 50.
-            example:
-            - case-id-1
-            - case-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          comment:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
-          endpoint_ids:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
-          parameters:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
-        required:
-        - endpoint_ids
-      - type: object
-        properties:
-          parameters:
-            oneOf:
-            - type: object
-              properties:
-                pid:
-                  description: The process ID (PID) of the process to suspend.
-                  example: 123
-                  minimum: 1
-                  type: integer
-            - type: object
-              properties:
-                entity_id:
-                  description: The entity ID of the process to suspend.
-                  example: abc123
-                  minLength: 1
-                  type: string
-        required:
-        - parameters
-    Security_Endpoint_Management_API_AgentId:
-      description: Agent ID
-      type: string
-    Security_Endpoint_Management_API_PageSize:
-      default: 10
-      description: Number of items per page
-      example: 10
-      maximum: 100
-      minimum: 1
-      type: integer
-    Security_Endpoint_Management_API_MemoryDumpRouteRequestBody:
-      allOf:
-      - type: object
-        properties:
-          agent_type:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
-          alert_ids:
-            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
-            example:
-            - alert-id-1
-            - alert-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          case_ids:
-            description: The IDs of cases where the action taken will be logged. Max of 50.
-            example:
-            - case-id-1
-            - case-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          comment:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
-          endpoint_ids:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
-          parameters:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
-        required:
-        - endpoint_ids
-      - type: object
-        properties:
-          parameters:
-            oneOf:
-            - description: Dump the entire kernel memory.
-              type: object
-              properties:
-                type:
-                  enum:
-                  - kernel
-                  type: string
-              required:
-              - type
-            - description: Dump the entire memory of a process using the PID.
-              type: object
-              properties:
-                pid:
-                  type: number
-                type:
-                  enum:
-                  - process
-                  type: string
-              required:
-              - type
-              - pid
-            - description: Dump the entire memory of a process using the entity ID.
-              type: object
-              properties:
-                entity_id:
-                  type: string
-                type:
-                  enum:
-                  - process
-                  type: string
-              required:
-              - type
-              - entity_id
-        required:
-        - parameters
     Security_Endpoint_Management_API_Execute:
       allOf:
       - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
@@ -2551,411 +2238,42 @@ components:
                 type: string
               timeout:
                 type: number
-    Security_Endpoint_Management_API_Isolate:
-      allOf:
-      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
-      - description: Details of an isolate action response.
-        type: object
-    Security_Endpoint_Management_API_GetProcessesRouteRequestBody:
+    Security_Endpoint_Management_API_RunscriptParamsCrowdStrike:
       type: object
       properties:
-        agent_type:
-          $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
-        alert_ids:
-          description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
-          example:
-          - alert-id-1
-          - alert-id-2
-          items:
-            minLength: 1
-            type: string
-          maxItems: 50
-          minItems: 1
-          type: array
-        case_ids:
-          description: The IDs of cases where the action taken will be logged. Max of 50.
-          example:
-          - case-id-1
-          - case-id-2
-          items:
-            minLength: 1
-            type: string
-          maxItems: 50
-          minItems: 1
-          type: array
-        comment:
-          $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
-        endpoint_ids:
-          $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
-        parameters:
-          $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
-      required:
-      - endpoint_ids
-    Security_Endpoint_Management_API_ScanRouteRequestBody:
-      allOf:
-      - type: object
-        properties:
-          agent_type:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
-          alert_ids:
-            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
-            example:
-            - alert-id-1
-            - alert-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          case_ids:
-            description: The IDs of cases where the action taken will be logged. Max of 50.
-            example:
-            - case-id-1
-            - case-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          comment:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
-          endpoint_ids:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
-          parameters:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
-        required:
-        - endpoint_ids
-      - type: object
-        properties:
-          parameters:
-            type: object
-            properties:
-              path:
-                description: The folder or file's full path (including the file name).
-                example: /usr/my-file.txt
-                type: string
-            required:
-            - path
-        required:
-        - parameters
-    Security_Endpoint_Management_API_StartDate:
-      description: A start date in ISO 8601 format or Date Math format.
-      example: '2023-10-31T00:00:00.000Z'
-      type: string
-    Security_Endpoint_Management_API_AgentIds:
-      description: A list of agent IDs. Max of 250.
-      example:
-      - agent-id-1
-      - agent-id-2
-      minLength: 1
-      oneOf:
-      - items:
-          minLength: 1
+        cloudFile:
           type: string
-        maxItems: 250
-        minItems: 1
-        type: array
-      - minLength: 1
-        type: string
-    Security_Endpoint_Management_API_GetFile:
-      allOf:
-      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
-      - type: object
-        properties:
-          outputs:
-            additionalProperties:
+        commandLine:
+          type: string
+        hostPath:
+          type: string
+        raw:
+          type: string
+        timeout:
+          type: number
+    Security_Endpoint_Management_API_ActionStateSuccessResponse:
+      type: object
+      properties:
+        body:
+          type: object
+          properties:
+            data:
               type: object
               properties:
-                content:
-                  allOf:
-                  - $ref: '#/components/schemas/Security_Endpoint_Management_API_DownloadUri'
-                  - type: object
-                    properties:
-                      code:
-                        type: string
-                      contents:
-                        items:
-                          type: object
-                          properties:
-                            file_name:
-                              type: string
-                            path:
-                              type: string
-                            sha256:
-                              type: string
-                            size:
-                              type: number
-                            type:
-                              type: string
-                        type: array
-                      zip_size:
-                        type: number
-            type: object
-          parameters:
-            type: object
-            properties:
-              path:
-                type: string
-    Security_Endpoint_Management_API_UploadRouteRequestBody:
-      allOf:
-      - type: object
-        properties:
-          agent_type:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
-          alert_ids:
-            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
-            example:
-            - alert-id-1
-            - alert-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          case_ids:
-            description: The IDs of cases where the action taken will be logged. Max of 50.
-            example:
-            - case-id-1
-            - case-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          comment:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
-          endpoint_ids:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
-          parameters:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
-        required:
-        - endpoint_ids
-      - type: object
-        properties:
-          file:
-            description: The binary content of the file.
-            example: RWxhc3RpYw==
-            format: binary
-            type: string
-          parameters:
-            type: object
-            properties:
-              overwrite:
-                default: false
-                description: Overwrite the file on the host if it already exists.
-                example: false
-                type: boolean
-        required:
-        - parameters
-        - file
-    Security_Endpoint_Management_API_SentinelOneRunScriptParameters:
-      description: Parameters for Run Script response action against SentinelOne agent type.
-      example:
-        agent_type: sentinel_one
-        endpoint_ids:
-        - endpoint-id-1
-        parameters:
-          scriptId: 1111-2222-3333-4444-5555-6666-7777-8888
-          scriptInput: --delete --paths-to-delete /tmp/temp_file.txt,/tmp/random_file.txt
+                canEncrypt:
+                  description: Whether the Kibana instance has encryption enabled for response actions.
+                  type: boolean
+          required:
+          - data
+      required:
+      - body
+    Security_Endpoint_Management_API_RunscriptParamsSentinelOne:
+      type: object
       properties:
         scriptId:
-          description: The script ID from SentinelOne scripts library that will be executed.
-          minLength: 1
           type: string
         scriptInput:
-          description: The input parameter arguments for the script that was selected.
-          minLength: 1
           type: string
-      required:
-      - scriptId
-      title: SentinelOne Run Script Parameters
-      type: object
-    Security_Endpoint_Management_API_MemoryDump:
-      allOf:
-      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
-      - type: object
-        properties:
-          outputs:
-            additionalProperties:
-              type: object
-              properties:
-                content:
-                  properties:
-                    code:
-                      type: string
-                    disk_free_space:
-                      description: The free space on the host machine in bytes after the memory dump is written to disk
-                      type: number
-                    file_size:
-                      description: The size of the memory dump compressed file in bytes
-                      type: string
-                    path:
-                      description: The path to the memory dump compressed file on the host machine
-                      type: string
-                  title: Memory dump output
-                  type: object
-            type: object
-          parameters:
-            oneOf:
-            - properties:
-                type:
-                  description: Kernel-level memory dump
-                  enum:
-                  - kernel
-                  type: string
-              required:
-              - type
-              title: Kernel memory dump
-              type: object
-            - properties:
-                pid:
-                  description: The process ID (PID)
-                  type: number
-                type:
-                  description: Process-level memory dump using a process ID
-                  enum:
-                  - process
-                  type: string
-              required:
-              - type
-              - pid
-              title: Process memory dump with PID
-              type: object
-            - properties:
-                entity_id:
-                  description: The process entity ID
-                  type: string
-                type:
-                  description: Process-level memory dump using an entity ID
-                  enum:
-                  - process
-                  type: string
-              required:
-              - type
-              - entity_id
-              title: Process memory dump with entity ID
-              type: object
-        required:
-        - parameters
-    Security_Endpoint_Management_API_PendingActionDataType:
-      description: Number of pending actions of this type.
-      type: integer
-    Security_Endpoint_Management_API_Comment:
-      description: Optional comment
-      example: This is a comment
-      type: string
-    Security_Endpoint_Management_API_ResponseActionDetails:
-      type: object
-      properties:
-        agents:
-          description: The agent IDs for the hosts that the response action was sent to
-          items:
-            format: uuid
-            type: string
-          type: array
-        agentState:
-          additionalProperties:
-            format: uuid
-            type: object
-            properties:
-              completedAt:
-                description: The date and time the response action was completed for the agent ID
-                type: string
-              isCompleted:
-                description: Whether the response action is completed for the agent ID
-                type: boolean
-              wasSuccessful:
-                description: Whether the response action was successful for the agent ID
-                type: boolean
-          description: The state of the response action for each agent ID that it was sent to
-          type: object
-        agentType:
-          $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
-        command:
-          $ref: '#/components/schemas/Security_Endpoint_Management_API_Command'
-        completedAt:
-          description: The response action completion time
-          format: date-time
-          type: string
-        createdBy:
-          description: The user who created the response action
-          type: string
-        hosts:
-          additionalProperties:
-            format: uuid
-            type: object
-            properties:
-              name:
-                description: The host name
-                type: string
-          description: An object containing the host names associated with the agent IDs the response action was sent to
-          type: object
-        id:
-          description: The response action ID
-          format: uuid
-          type: string
-        isComplete:
-          description: Whether the response action is complete
-          type: boolean
-        isExpired:
-          description: Whether the response action is expired
-          type: boolean
-        outputs:
-          additionalProperties:
-            description: The agent id
-            format: uuid
-            properties:
-              content:
-                description: The response action output content for the agent ID. Exact format depends on the response action command.
-                oneOf:
-                - type: object
-                - type: string
-              type:
-                enum:
-                - json
-                - text
-                type: string
-            required:
-            - type
-            - content
-            title: Agent ID
-            type: object
-          description: 'The outputs of the response action for each agent ID that it was sent to. Content different depending on the
-
-            response action command and will only be present for agents that have responded to the response action
-
-            '
-          type: object
-        parameters:
-          description: The parameters of the response action. Content different depending on the response action command
-          type: object
-        startedAt:
-          description: The response action start time
-          format: date-time
-          type: string
-        status:
-          description: The response action status
-          type: string
-        wasSuccessful:
-          description: Whether the response action was successful
-          type: boolean
-      required:
-      - command
-    Security_Endpoint_Management_API_EndpointIds:
-      description: List of endpoint IDs (cannot contain empty strings). Max of 250.
-      example:
-      - endpoint-id-1
-      - endpoint-id-2
-      items:
-        minLength: 1
-        type: string
-      maxItems: 250
-      minItems: 1
-      type: array
     Security_Endpoint_Management_API_ActionDetailsResponse:
       discriminator:
         mapping:
@@ -2985,294 +2303,23 @@ components:
       - $ref: '#/components/schemas/Security_Endpoint_Management_API_SuspendProcess'
       - $ref: '#/components/schemas/Security_Endpoint_Management_API_RunningProcesses'
       - $ref: '#/components/schemas/Security_Endpoint_Management_API_MemoryDump'
-    Security_Endpoint_Management_API_Page:
-      default: 1
-      description: Page number
-      example: 1
-      minimum: 1
-      type: integer
-    Security_Endpoint_Management_API_RunScriptRouteRequestBody:
-      allOf:
-      - type: object
-        properties:
-          agent_type:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
-          alert_ids:
-            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
-            example:
-            - alert-id-1
-            - alert-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          case_ids:
-            description: The IDs of cases where the action taken will be logged. Max of 50.
-            example:
-            - case-id-1
-            - case-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          comment:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
-          endpoint_ids:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
-          parameters:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
-        required:
-        - endpoint_ids
-      - type: object
-        properties:
-          parameters:
-            description: 'One of the following set of parameters must be provided
-
-              '
-            oneOf:
-            - $ref: '#/components/schemas/Security_Endpoint_Management_API_RawScriptParameters'
-            - $ref: '#/components/schemas/Security_Endpoint_Management_API_HostPathScriptParameters'
-            - $ref: '#/components/schemas/Security_Endpoint_Management_API_CloudFileScriptParameters'
-            - $ref: '#/components/schemas/Security_Endpoint_Management_API_SentinelOneRunScriptParameters'
-            - $ref: '#/components/schemas/Security_Endpoint_Management_API_MDERunScriptParameters'
-        required:
-        - parameters
-    Security_Endpoint_Management_API_Unisolate:
-      allOf:
-      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
-      - description: Details of an unisolate action response.
-        type: object
-    Security_Endpoint_Management_API_Command:
-      description: The command for the response action
-      enum:
-      - isolate
-      - unisolate
-      - kill-process
-      - suspend-process
-      - running-processes
-      - get-file
-      - execute
-      - upload
-      - scan
-      - runscript
-      - cancel
-      - memory-dump
-      minLength: 1
-      type: string
-    Security_Endpoint_Management_API_SuccessResponse:
-      description: A generic successful response.
-      type: object
-    Security_Endpoint_Management_API_ProtectionUpdatesNoteResponse:
+    Security_Endpoint_Management_API_HostPathScriptParameters:
       type: object
       properties:
-        note:
-          description: A note associated with the protection updates for the given package policy.
+        commandLine:
+          description: Command line arguments.
+          minLength: 1
           type: string
-    Security_Endpoint_Management_API_IsolateRouteResponse:
-      type: object
-      properties:
-        action:
-          description: The action ID (legacy field, same as `data.id`).
+        hostPath:
+          description: Absolute or relative path of script on host machine.
+          minLength: 1
           type: string
-        data:
-          $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
-    Security_Endpoint_Management_API_Parameters:
-      description: Parameters object
-      type: object
-    Security_Endpoint_Management_API_DownloadUri:
-      type: object
-      properties:
-        downloadUri:
-          description: 'The server relative URI to download the file associated with the output of the response action.
-
-            URI does **not** include the space prefix
-
-            '
-          example: /api/endpoint/action/497f6eca-6276/file/35645-6276-4993/download
-          format: uri-reference
-          type: string
-    Security_Endpoint_Management_API_ExecuteRouteRequestBody:
-      allOf:
-      - type: object
-        properties:
-          agent_type:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
-          alert_ids:
-            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
-            example:
-            - alert-id-1
-            - alert-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          case_ids:
-            description: The IDs of cases where the action taken will be logged. Max of 50.
-            example:
-            - case-id-1
-            - case-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          comment:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
-          endpoint_ids:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
-          parameters:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
-        required:
-        - endpoint_ids
-      - type: object
-        properties:
-          parameters:
-            type: object
-            properties:
-              command:
-                description: The shell command to execute on the endpoint.
-                minLength: 1
-                type: string
-              timeout:
-                description: The maximum timeout value in seconds before the command is terminated.
-                minimum: 1
-                type: integer
-            required:
-            - command
-        required:
-        - parameters
-    Security_Endpoint_Management_API_PendingActionsSchema:
-      oneOf:
-      - type: object
-        properties:
-          execute:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
-            description: Number of pending execute actions.
-          get-file:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
-            description: Number of pending get-file actions.
-          isolate:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
-            description: Number of pending isolate actions.
-          kill-process:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
-            description: Number of pending kill-process actions.
-          running-processes:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
-            description: Number of pending running-processes (get processes) actions.
-          scan:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
-            description: Number of pending scan actions.
-          suspend-process:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
-            description: Number of pending suspend-process actions.
-          unisolate:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
-            description: Number of pending unisolate (release) actions.
-          upload:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
-            description: Number of pending upload actions.
-      - additionalProperties: true
-        type: object
-    Security_Endpoint_Management_API_CancelRouteRequestBody:
-      allOf:
-      - type: object
-        properties:
-          agent_type:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
-          alert_ids:
-            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
-            example:
-            - alert-id-1
-            - alert-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          case_ids:
-            description: The IDs of cases where the action taken will be logged. Max of 50.
-            example:
-            - case-id-1
-            - case-id-2
-            items:
-              minLength: 1
-              type: string
-            maxItems: 50
-            minItems: 1
-            type: array
-          comment:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
-          endpoint_ids:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
-          parameters:
-            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
-        required:
-        - endpoint_ids
-      - type: object
-        properties:
-          parameters:
-            type: object
-            properties:
-              id:
-                description: ID of the response action to cancel
-                example: 7f8c9b2a-4d3e-4f5a-8b1c-2e3f4a5b6c7d
-                minLength: 1
-                type: string
-            required:
-            - id
-        required:
-        - parameters
-    Security_Endpoint_Management_API_ActionStateSuccessResponse:
-      type: object
-      properties:
-        body:
-          type: object
-          properties:
-            data:
-              type: object
-              properties:
-                canEncrypt:
-                  description: Whether the Kibana instance has encryption enabled for response actions.
-                  type: boolean
-          required:
-          - data
+        timeout:
+          description: Timeout in seconds.
+          minimum: 1
+          type: integer
       required:
-      - body
-    Security_Endpoint_Management_API_Runscript:
-      allOf:
-      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
-      - type: object
-        properties:
-          outputs:
-            additionalProperties:
-              type: object
-              properties:
-                content:
-                  allOf:
-                  - $ref: '#/components/schemas/Security_Endpoint_Management_API_DownloadUri'
-                  - type: object
-                    properties:
-                      code:
-                        type: string
-                      stderr:
-                        type: string
-                      stdout:
-                        type: string
-            type: object
-          parameters:
-            oneOf:
-            - $ref: '#/components/schemas/Security_Endpoint_Management_API_RunscriptParamsCrowdStrike'
-            - $ref: '#/components/schemas/Security_Endpoint_Management_API_RunscriptParamsMicrosoft'
-            - $ref: '#/components/schemas/Security_Endpoint_Management_API_RunscriptParamsSentinelOne'
+      - hostPath
     Security_Endpoint_Management_API_EndpointMetadataResponse:
       example:
         host_status: healthy
@@ -3359,6 +2406,902 @@ components:
               revision: 2
       type: object
       properties: {}
+    Security_Endpoint_Management_API_GetFile:
+      allOf:
+      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
+      - type: object
+        properties:
+          outputs:
+            additionalProperties:
+              type: object
+              properties:
+                content:
+                  allOf:
+                  - $ref: '#/components/schemas/Security_Endpoint_Management_API_DownloadUri'
+                  - type: object
+                    properties:
+                      code:
+                        type: string
+                      contents:
+                        items:
+                          type: object
+                          properties:
+                            file_name:
+                              type: string
+                            path:
+                              type: string
+                            sha256:
+                              type: string
+                            size:
+                              type: number
+                            type:
+                              type: string
+                        type: array
+                      zip_size:
+                        type: number
+            type: object
+          parameters:
+            type: object
+            properties:
+              path:
+                type: string
+    Security_Endpoint_Management_API_CloudFileScriptParameters:
+      type: object
+      properties:
+        cloudFile:
+          description: Script name in cloud storage.
+          minLength: 1
+          type: string
+        commandLine:
+          description: Command line arguments.
+          minLength: 1
+          type: string
+        timeout:
+          description: Timeout in seconds.
+          minimum: 1
+          type: integer
+      required:
+      - cloudFile
+    Security_Endpoint_Management_API_Cancel:
+      allOf:
+      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
+      - type: object
+        properties:
+          outputs:
+            additionalProperties:
+              type: object
+              properties:
+                content:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+            type: object
+          parameters:
+            type: object
+            properties:
+              id:
+                format: uuid
+                type: string
+    Security_Endpoint_Management_API_RunningProcessesOutputSentinelOne:
+      allOf:
+      - $ref: '#/components/schemas/Security_Endpoint_Management_API_DownloadUri'
+      - description: Processes output for `agentType` of `sentinel_one`
+        type: object
+        properties:
+          code:
+            type: string
+    Security_Endpoint_Management_API_CancelRouteRequestBody:
+      allOf:
+      - type: object
+        properties:
+          agent_type:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
+          alert_ids:
+            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
+            example:
+            - alert-id-1
+            - alert-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          case_ids:
+            description: The IDs of cases where the action taken will be logged. Max of 50.
+            example:
+            - case-id-1
+            - case-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          comment:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
+          endpoint_ids:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
+          parameters:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
+        required:
+        - endpoint_ids
+      - type: object
+        properties:
+          parameters:
+            type: object
+            properties:
+              id:
+                description: ID of the response action to cancel
+                example: 7f8c9b2a-4d3e-4f5a-8b1c-2e3f4a5b6c7d
+                minLength: 1
+                type: string
+            required:
+            - id
+        required:
+        - parameters
+    Security_Endpoint_Management_API_KillProcess:
+      allOf:
+      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
+      - type: object
+        properties:
+          outputs:
+            additionalProperties:
+              type: object
+              properties:
+                content:
+                  oneOf:
+                  - type: object
+                    properties:
+                      code:
+                        type: string
+                      command:
+                        type: string
+                      pid:
+                        type: number
+                  - type: object
+                    properties:
+                      code:
+                        type: string
+                      command:
+                        type: string
+                      entity_id:
+                        type: string
+                  - type: object
+                    properties:
+                      code:
+                        type: string
+                      command:
+                        type: string
+                      process_name:
+                        type: string
+            type: object
+          parameters:
+            oneOf:
+            - type: object
+              properties:
+                pid:
+                  description: The process ID (PID) of the process to terminate.
+                  minimum: 1
+                  type: number
+            - type: object
+              properties:
+                entity_id:
+                  description: The entity ID of the process to terminate.
+                  minLength: 1
+                  type: string
+            - type: object
+              properties:
+                process_name:
+                  description: The name of the process to terminate. Valid for SentinelOne agent type only.
+                  type: string
+    Security_Endpoint_Management_API_UserIds:
+      description: A list of user IDs. Max of 50.
+      example:
+      - user-id-1
+      - user-id-2
+      oneOf:
+      - items:
+          minLength: 1
+          type: string
+        maxItems: 50
+        minItems: 1
+        type: array
+      - minLength: 1
+        type: string
+    Security_Endpoint_Management_API_Upload:
+      allOf:
+      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
+      - type: object
+        properties:
+          outputs:
+            additionalProperties:
+              type: object
+              properties:
+                content:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                    disk_free_space:
+                      type: number
+                    path:
+                      type: string
+            type: object
+          parameters:
+            description: 'The parameters for upload returned on the details are derived via the API from the file that
+
+              was uploaded at the time that the response action was submitted
+
+              '
+            type: object
+            properties:
+              file_id:
+                type: string
+              file_name:
+                type: string
+              file_sha256:
+                type: string
+              file_size:
+                type: number
+    Security_Endpoint_Management_API_PendingActionsSchema:
+      oneOf:
+      - type: object
+        properties:
+          execute:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
+            description: Number of pending execute actions.
+          get-file:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
+            description: Number of pending get-file actions.
+          isolate:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
+            description: Number of pending isolate actions.
+          kill-process:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
+            description: Number of pending kill-process actions.
+          running-processes:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
+            description: Number of pending running-processes (get processes) actions.
+          scan:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
+            description: Number of pending scan actions.
+          suspend-process:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
+            description: Number of pending suspend-process actions.
+          unisolate:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
+            description: Number of pending unisolate (release) actions.
+          upload:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_PendingActionDataType'
+            description: Number of pending upload actions.
+      - additionalProperties: true
+        type: object
+    Security_Endpoint_Management_API_ProtectionUpdatesNoteResponse:
+      type: object
+      properties:
+        note:
+          description: A note associated with the protection updates for the given package policy.
+          type: string
+    Security_Endpoint_Management_API_EndDate:
+      description: An end date in ISO format or Date Math format.
+      example: '2023-10-31T23:59:59.999Z'
+      type: string
+    Security_Endpoint_Management_API_SuccessResponse:
+      description: A generic successful response.
+      type: object
+    Security_Endpoint_Management_API_WithOutputs:
+      description: A list of action IDs that should include the complete output of the action. Max of 50.
+      example:
+      - action-id-1
+      - action-id-2
+      oneOf:
+      - items:
+          minLength: 1
+          type: string
+        maxItems: 50
+        minItems: 1
+        type: array
+      - minLength: 1
+        type: string
+    Security_Endpoint_Management_API_Scan:
+      allOf:
+      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
+      - type: object
+        properties:
+          outputs:
+            additionalProperties:
+              type: object
+              properties:
+                content:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+            type: object
+          parameters:
+            type: object
+            properties:
+              path:
+                type: string
+    Security_Endpoint_Management_API_MDERunScriptParameters:
+      description: Parameters for Run Script response action against Microsoft Defender Endpoint agent type.
+      example:
+        agent_type: microsoft_defender_endpoint
+        endpoint_ids:
+        - endpoint-id-1
+        parameters:
+          args: -param1 value1 -param2 value2
+          scriptName: my-script.ps1
+      properties:
+        args:
+          description: Optional command line arguments for the script.
+          minLength: 1
+          type: string
+        scriptName:
+          description: The name of the script to execute from the cloud storage.
+          minLength: 1
+          type: string
+      required:
+      - scriptName
+      title: Microsoft Defender Endpoint Run Script Parameters
+      type: object
+    Security_Endpoint_Management_API_IsolateRouteResponse:
+      type: object
+      properties:
+        action:
+          description: The action ID (legacy field, same as `data.id`).
+          type: string
+        data:
+          $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
+    Security_Endpoint_Management_API_Commands:
+      description: A list of response action command names.
+      example:
+      - isolate
+      - unisolate
+      items:
+        $ref: '#/components/schemas/Security_Endpoint_Management_API_Command'
+      maxItems: 50
+      type: array
+    Security_Endpoint_Management_API_MemoryDump:
+      allOf:
+      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
+      - type: object
+        properties:
+          outputs:
+            additionalProperties:
+              type: object
+              properties:
+                content:
+                  properties:
+                    code:
+                      type: string
+                    disk_free_space:
+                      description: The free space on the host machine in bytes after the memory dump is written to disk
+                      type: number
+                    file_size:
+                      description: The size of the memory dump compressed file in bytes
+                      type: string
+                    path:
+                      description: The path to the memory dump compressed file on the host machine
+                      type: string
+                  title: Memory dump output
+                  type: object
+            type: object
+          parameters:
+            oneOf:
+            - properties:
+                type:
+                  description: Kernel-level memory dump
+                  enum:
+                  - kernel
+                  type: string
+              required:
+              - type
+              title: Kernel memory dump
+              type: object
+            - properties:
+                pid:
+                  description: The process ID (PID)
+                  type: number
+                type:
+                  description: Process-level memory dump using a process ID
+                  enum:
+                  - process
+                  type: string
+              required:
+              - type
+              - pid
+              title: Process memory dump with PID
+              type: object
+            - properties:
+                entity_id:
+                  description: The process entity ID
+                  type: string
+                type:
+                  description: Process-level memory dump using an entity ID
+                  enum:
+                  - process
+                  type: string
+              required:
+              - type
+              - entity_id
+              title: Process memory dump with entity ID
+              type: object
+        required:
+        - parameters
+    Security_Endpoint_Management_API_Runscript:
+      allOf:
+      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
+      - type: object
+        properties:
+          outputs:
+            additionalProperties:
+              type: object
+              properties:
+                content:
+                  allOf:
+                  - $ref: '#/components/schemas/Security_Endpoint_Management_API_DownloadUri'
+                  - type: object
+                    properties:
+                      code:
+                        type: string
+                      stderr:
+                        type: string
+                      stdout:
+                        type: string
+            type: object
+          parameters:
+            oneOf:
+            - $ref: '#/components/schemas/Security_Endpoint_Management_API_RunscriptParamsCrowdStrike'
+            - $ref: '#/components/schemas/Security_Endpoint_Management_API_RunscriptParamsMicrosoft'
+            - $ref: '#/components/schemas/Security_Endpoint_Management_API_RunscriptParamsSentinelOne'
+    Security_Endpoint_Management_API_StartDate:
+      description: A start date in ISO 8601 format or Date Math format.
+      example: '2023-10-31T00:00:00.000Z'
+      type: string
+    Security_Endpoint_Management_API_RunscriptParamsMicrosoft:
+      type: object
+      properties:
+        args:
+          type: string
+        scriptName:
+          type: string
+    Security_Endpoint_Management_API_AgentIds:
+      description: A list of agent IDs. Max of 250.
+      example:
+      - agent-id-1
+      - agent-id-2
+      minLength: 1
+      oneOf:
+      - items:
+          minLength: 1
+          type: string
+        maxItems: 250
+        minItems: 1
+        type: array
+      - minLength: 1
+        type: string
+    Security_Endpoint_Management_API_Command:
+      description: The command for the response action
+      enum:
+      - isolate
+      - unisolate
+      - kill-process
+      - suspend-process
+      - running-processes
+      - get-file
+      - execute
+      - upload
+      - scan
+      - runscript
+      - cancel
+      - memory-dump
+      minLength: 1
+      type: string
+    Security_Endpoint_Management_API_Parameters:
+      description: Parameters object
+      type: object
+    Security_Endpoint_Management_API_GetProcessesRouteRequestBody:
+      type: object
+      properties:
+        agent_type:
+          $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
+        alert_ids:
+          description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
+          example:
+          - alert-id-1
+          - alert-id-2
+          items:
+            minLength: 1
+            type: string
+          maxItems: 50
+          minItems: 1
+          type: array
+        case_ids:
+          description: The IDs of cases where the action taken will be logged. Max of 50.
+          example:
+          - case-id-1
+          - case-id-2
+          items:
+            minLength: 1
+            type: string
+          maxItems: 50
+          minItems: 1
+          type: array
+        comment:
+          $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
+        endpoint_ids:
+          $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
+        parameters:
+          $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
+      required:
+      - endpoint_ids
+    Security_Endpoint_Management_API_SuspendProcessRouteRequestBody:
+      allOf:
+      - type: object
+        properties:
+          agent_type:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
+          alert_ids:
+            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
+            example:
+            - alert-id-1
+            - alert-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          case_ids:
+            description: The IDs of cases where the action taken will be logged. Max of 50.
+            example:
+            - case-id-1
+            - case-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          comment:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
+          endpoint_ids:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
+          parameters:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
+        required:
+        - endpoint_ids
+      - type: object
+        properties:
+          parameters:
+            oneOf:
+            - type: object
+              properties:
+                pid:
+                  description: The process ID (PID) of the process to suspend.
+                  example: 123
+                  minimum: 1
+                  type: integer
+            - type: object
+              properties:
+                entity_id:
+                  description: The entity ID of the process to suspend.
+                  example: abc123
+                  minLength: 1
+                  type: string
+        required:
+        - parameters
+    Security_Endpoint_Management_API_GetFileRouteRequestBody:
+      allOf:
+      - type: object
+        properties:
+          agent_type:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
+          alert_ids:
+            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
+            example:
+            - alert-id-1
+            - alert-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          case_ids:
+            description: The IDs of cases where the action taken will be logged. Max of 50.
+            example:
+            - case-id-1
+            - case-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          comment:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
+          endpoint_ids:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
+          parameters:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
+        required:
+        - endpoint_ids
+      - type: object
+        properties:
+          parameters:
+            type: object
+            properties:
+              path:
+                description: The full file path to retrieve from the endpoint.
+                type: string
+            required:
+            - path
+        required:
+        - parameters
+    Security_Endpoint_Management_API_RunningProcesses:
+      allOf:
+      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
+      - type: object
+        properties:
+          outputs:
+            additionalProperties:
+              type: object
+              properties:
+                content:
+                  oneOf:
+                  - $ref: '#/components/schemas/Security_Endpoint_Management_API_RunningProcessesOutputEndpoint'
+                  - $ref: '#/components/schemas/Security_Endpoint_Management_API_RunningProcessesOutputSentinelOne'
+            type: object
+    Security_Endpoint_Management_API_AgentId:
+      description: Agent ID
+      type: string
+    Security_Endpoint_Management_API_AgentTypes:
+      description: List of agent types to retrieve. Defaults to `endpoint`.
+      enum:
+      - endpoint
+      - sentinel_one
+      - crowdstrike
+      - microsoft_defender_endpoint
+      example: endpoint
+      type: string
+    Security_Endpoint_Management_API_ResponseActionCreateSuccessResponse:
+      example:
+        data:
+          agents:
+          - ed518850-681a-4d60-bb98-e22640cae2a8
+          agentState:
+            ed518850-681a-4d60-bb98-e22640cae2a8:
+              isCompleted: false
+              wasSuccessful: false
+          agentType: __agent__type__here_
+          command: __command__name__here__
+          createdBy: elastic
+          hosts:
+            ed518850-681a-4d60-bb98-e22640cae2a8:
+              name: gke-node-1235412
+          id: 233db9ea-6733-4849-9226-5a7039c7161d
+          isCompleted: false
+          isExpired: false
+          outputs: {}
+          parameters: {}
+          startedAt: '2022-07-29T19:08:49.126Z'
+          status: pending
+          wasSuccessful: false
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
+    Security_Endpoint_Management_API_MemoryDumpRouteRequestBody:
+      allOf:
+      - type: object
+        properties:
+          agent_type:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
+          alert_ids:
+            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
+            example:
+            - alert-id-1
+            - alert-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          case_ids:
+            description: The IDs of cases where the action taken will be logged. Max of 50.
+            example:
+            - case-id-1
+            - case-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          comment:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
+          endpoint_ids:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
+          parameters:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
+        required:
+        - endpoint_ids
+      - type: object
+        properties:
+          parameters:
+            oneOf:
+            - description: Dump the entire kernel memory.
+              type: object
+              properties:
+                type:
+                  enum:
+                  - kernel
+                  type: string
+              required:
+              - type
+            - description: Dump the entire memory of a process using the PID.
+              type: object
+              properties:
+                pid:
+                  type: number
+                type:
+                  enum:
+                  - process
+                  type: string
+              required:
+              - type
+              - pid
+            - description: Dump the entire memory of a process using the entity ID.
+              type: object
+              properties:
+                entity_id:
+                  type: string
+                type:
+                  enum:
+                  - process
+                  type: string
+              required:
+              - type
+              - entity_id
+        required:
+        - parameters
+    Security_Endpoint_Management_API_Isolate:
+      allOf:
+      - $ref: '#/components/schemas/Security_Endpoint_Management_API_ResponseActionDetails'
+      - description: Details of an isolate action response.
+        type: object
+    Security_Endpoint_Management_API_SortField:
+      description: Determines which field is used to sort the results.
+      enum:
+      - enrolled_at
+      - metadata.host.hostname
+      - host_status
+      - metadata.Endpoint.policy.applied.name
+      - metadata.Endpoint.policy.applied.status
+      - metadata.host.os.name
+      - metadata.host.ip
+      - metadata.agent.version
+      - last_checkin
+      example: enrolled_at
+      type: string
+    Security_Endpoint_Management_API_RunScriptRouteRequestBody:
+      allOf:
+      - type: object
+        properties:
+          agent_type:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
+          alert_ids:
+            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
+            example:
+            - alert-id-1
+            - alert-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          case_ids:
+            description: The IDs of cases where the action taken will be logged. Max of 50.
+            example:
+            - case-id-1
+            - case-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          comment:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
+          endpoint_ids:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
+          parameters:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
+        required:
+        - endpoint_ids
+      - type: object
+        properties:
+          parameters:
+            description: 'One of the following set of parameters must be provided
+
+              '
+            oneOf:
+            - $ref: '#/components/schemas/Security_Endpoint_Management_API_RawScriptParameters'
+            - $ref: '#/components/schemas/Security_Endpoint_Management_API_HostPathScriptParameters'
+            - $ref: '#/components/schemas/Security_Endpoint_Management_API_CloudFileScriptParameters'
+            - $ref: '#/components/schemas/Security_Endpoint_Management_API_SentinelOneRunScriptParameters'
+            - $ref: '#/components/schemas/Security_Endpoint_Management_API_MDERunScriptParameters'
+        required:
+        - parameters
+    Security_Endpoint_Management_API_KillProcessRouteRequestBody:
+      allOf:
+      - type: object
+        properties:
+          agent_type:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_AgentTypes'
+          alert_ids:
+            description: If this action is associated with any alerts, they can be specified here. The action will be logged in any cases associated with the specified alerts. Max of 50.
+            example:
+            - alert-id-1
+            - alert-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          case_ids:
+            description: The IDs of cases where the action taken will be logged. Max of 50.
+            example:
+            - case-id-1
+            - case-id-2
+            items:
+              minLength: 1
+              type: string
+            maxItems: 50
+            minItems: 1
+            type: array
+          comment:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Comment'
+          endpoint_ids:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_EndpointIds'
+          parameters:
+            $ref: '#/components/schemas/Security_Endpoint_Management_API_Parameters'
+        required:
+        - endpoint_ids
+      - type: object
+        properties:
+          parameters:
+            oneOf:
+            - type: object
+              properties:
+                pid:
+                  description: The process ID (PID) of the process to terminate.
+                  example: 123
+                  minimum: 1
+                  type: integer
+            - type: object
+              properties:
+                entity_id:
+                  description: The entity ID of the process to terminate.
+                  example: abc123
+                  minLength: 1
+                  type: string
+            - type: object
+              properties:
+                process_name:
+                  description: The name of the process to terminate. Valid for SentinelOne agent type only.
+                  example: Elastic
+                  minLength: 1
+                  type: string
+        required:
+        - parameters
   securitySchemes:
     apiKeyAuth:
       description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`

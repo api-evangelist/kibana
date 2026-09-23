@@ -2,62 +2,9 @@ openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
-  description: 'The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
-
-    The API calls are stateless.
-
-    Each request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the
-
-    request.
-
-    API requests return JSON output, which is a format that is machine-readable and works well for automation.
-
-
-    To interact with Kibana APIs, use the following operations:
-
-
-    - GET: Fetches the information.
-
-    - PATCH: Applies partial modifications to the existing information.
-
-    - POST: Adds new information.
-
-    - PUT: Updates the existing information.
-
-    - DELETE: Removes the information.
-
-
-    You can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.
-
-    For example:
-
-
-    ```
-
-    GET kbn:/api/data_views
-
-    ```
-
-
-    For more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).
-
-
-    NOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.
-
-
-    ## Documentation source and versions
-
-
-    This documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.
-
-    It is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).
-
-
-    This documentation contains work-in-progress information for future Elastic Stack releases.
-
-    '
-  title: Kibana APIs Actions Logstash API
-  version: '1.0'
+  description: The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
+  title: Kibana Logstash API
+  version: ''
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -77,9 +24,7 @@ tags:
 
     > warn
 
-    > Do not directly access the `.logstash` index. The structure of the `.logstash` index is subject to change, which could cause your integration to break. Instead, use the Logstash configuration management APIs.
-
-    '
+    > Do not directly access the `.logstash` index. The structure of the `.logstash` index is subject to change, which could cause your integration to break. Instead, use the Logstash configuration management APIs.'
   externalDocs:
     description: Centralized pipeline management
     url: https://www.elastic.co/docs/reference/logstash/logstash-centralized-pipeline-management
@@ -90,9 +35,7 @@ paths:
     delete:
       description: 'Delete a centrally-managed Logstash pipeline.
 
-        If your Elasticsearch cluster is protected with basic authentication, you must have either the `logstash_admin` built-in role or a customized Logstash writer role.
-
-        '
+        If your Elasticsearch cluster is protected with basic authentication, you must have either the `logstash_admin` built-in role or a customized Logstash writer role.'
       externalDocs:
         description: Secure your connection
         url: https://www.elastic.co/docs/reference/logstash/secure-connection
@@ -117,9 +60,7 @@ paths:
     get:
       description: 'Get information for a centrally-managed Logstash pipeline.
 
-        To use this API, you must have either the `logstash_admin` built-in role or a customized Logstash reader role.
-
-        '
+        To use this API, you must have either the `logstash_admin` built-in role or a customized Logstash reader role.'
       externalDocs:
         description: Secure your connection
         url: https://www.elastic.co/docs/reference/logstash/secure-connection
@@ -151,9 +92,7 @@ paths:
     put:
       description: 'Create a centrally-managed Logstash pipeline or update a pipeline.
 
-        To use this API, you must have either the `logstash_admin` built-in role or a customized Logstash writer role.
-
-        '
+        To use this API, you must have either the `logstash_admin` built-in role or a customized Logstash writer role.'
       externalDocs:
         description: Secure your connection
         url: https://www.elastic.co/docs/reference/logstash/secure-connection
@@ -228,9 +167,7 @@ paths:
         > Limit the number of pipelines to 10,000 or fewer. As the number of pipelines nears and surpasses 10,000, you may see performance issues on Kibana.
 
 
-        The `username` property appears in the response when security is enabled and depends on when the pipeline was created or last updated.
-
-        '
+        The `username` property appears in the response when security is enabled and depends on when the pipeline was created or last updated.'
       externalDocs:
         description: Secure your connection
         url: https://www.elastic.co/docs/reference/logstash/secure-connection

@@ -2,62 +2,9 @@ openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
-  description: 'The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
-
-    The API calls are stateless.
-
-    Each request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the
-
-    request.
-
-    API requests return JSON output, which is a format that is machine-readable and works well for automation.
-
-
-    To interact with Kibana APIs, use the following operations:
-
-
-    - GET: Fetches the information.
-
-    - PATCH: Applies partial modifications to the existing information.
-
-    - POST: Adds new information.
-
-    - PUT: Updates the existing information.
-
-    - DELETE: Removes the information.
-
-
-    You can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.
-
-    For example:
-
-
-    ```
-
-    GET kbn:/api/data_views
-
-    ```
-
-
-    For more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).
-
-
-    NOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.
-
-
-    ## Documentation source and versions
-
-
-    This documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.
-
-    It is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).
-
-
-    This documentation contains work-in-progress information for future Elastic Stack releases.
-
-    '
-  title: Kibana APIs Actions Maintenance Window API
-  version: '1.0'
+  description: The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
+  title: Kibana Maintenance Window API
+  version: ''
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -74,9 +21,7 @@ security:
 - basicAuth: []
 tags:
 - name: maintenance-window
-  description: 'You can schedule single or recurring maintenance windows to temporarily reduce rule notifications. For example, a maintenance window prevents false alarms during planned outages.
-
-    '
+  description: You can schedule single or recurring maintenance windows to temporarily reduce rule notifications. For example, a maintenance window prevents false alarms during planned outages.
   externalDocs:
     description: Maintenance window documentation
     url: https://www.elastic.co/docs/explore-analyze/alerts-cases/alerts/maintenance-windows
@@ -87,10 +32,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/maintenance_window</span></div>
+        post /s/{space_id}/api/maintenance_window
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         [Required authorization] Route required privileges: write-maintenance-window.'
@@ -380,7 +325,7 @@ paths:
           description: Indicates an invalid schema or parameters.
         '403':
           description: Indicates that this call is forbidden.
-      summary: Create a maintenance window.
+      summary: Create a maintenance window
       tags:
       - maintenance-window
       x-state: Generally available; added in 9.1.0
@@ -392,10 +337,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/maintenance_window/_find</span></div>
+        get /s/{space_id}/api/maintenance_window/_find
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         [Required authorization] Route required privileges: read-maintenance-window.'
@@ -650,7 +595,7 @@ paths:
           description: Indicates an invalid schema or parameters.
         '403':
           description: Indicates that this call is forbidden.
-      summary: Search for a maintenance window.
+      summary: Search for a maintenance window
       tags:
       - maintenance-window
       x-state: Generally available; added in 9.2.0
@@ -662,10 +607,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb delete">delete</span>&nbsp;<span class="operation-path">/s/{space_id}/api/maintenance_window/{id}</span></div>
+        delete /s/{space_id}/api/maintenance_window/{id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         [Required authorization] Route required privileges: write-maintenance-window.'
@@ -693,7 +638,7 @@ paths:
           description: Indicates that this call is forbidden.
         '404':
           description: Indicates a maintenance window with the given ID does not exist.
-      summary: Delete a maintenance window.
+      summary: Delete a maintenance window
       tags:
       - maintenance-window
       x-state: Generally available; added in 9.1.0
@@ -704,10 +649,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/maintenance_window/{id}</span></div>
+        get /s/{space_id}/api/maintenance_window/{id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         [Required authorization] Route required privileges: read-maintenance-window.'
@@ -879,7 +824,7 @@ paths:
           description: Indicates that this call is forbidden.
         '404':
           description: Indicates a maintenance window with the given ID does not exist.
-      summary: Get maintenance window details.
+      summary: Get maintenance window details
       tags:
       - maintenance-window
       x-state: Generally available; added in 9.1.0
@@ -890,10 +835,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb patch">patch</span>&nbsp;<span class="operation-path">/s/{space_id}/api/maintenance_window/{id}</span></div>
+        patch /s/{space_id}/api/maintenance_window/{id}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         [Required authorization] Route required privileges: write-maintenance-window.'
@@ -1188,7 +1133,7 @@ paths:
           description: Indicates a maintenance window with the given ID does not exist.
         '409':
           description: Indicates that the maintenance window has already been updated by another user.
-      summary: Update a maintenance window.
+      summary: Update a maintenance window
       tags:
       - maintenance-window
       x-state: Generally available; added in 9.1.0
@@ -1200,10 +1145,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/maintenance_window/{id}/_archive</span></div>
+        post /s/{space_id}/api/maintenance_window/{id}/_archive
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         [Required authorization] Route required privileges: write-maintenance-window.'
@@ -1382,7 +1327,7 @@ paths:
           description: Indicates that this call is forbidden.
         '404':
           description: Indicates a maintenance window with the given ID does not exist.
-      summary: Archive a maintenance window.
+      summary: Archive a maintenance window
       tags:
       - maintenance-window
       x-state: Generally available; added in 9.1.0
@@ -1394,10 +1339,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/maintenance_window/{id}/_unarchive</span></div>
+        post /s/{space_id}/api/maintenance_window/{id}/_unarchive
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         [Required authorization] Route required privileges: write-maintenance-window.'
@@ -1576,7 +1521,7 @@ paths:
           description: Indicates that this call is forbidden.
         '404':
           description: Indicates a maintenance window with the given ID does not exist.
-      summary: Unarchive a maintenance window.
+      summary: Unarchive a maintenance window
       tags:
       - maintenance-window
       x-state: Generally available; added in 9.1.0

@@ -2,62 +2,9 @@ openapi: 3.2.0
 info:
   contact:
     name: Kibana Team
-  description: 'The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
-
-    The API calls are stateless.
-
-    Each request that you make happens in isolation from other calls and must include all of the necessary information for Kibana to fulfill the
-
-    request.
-
-    API requests return JSON output, which is a format that is machine-readable and works well for automation.
-
-
-    To interact with Kibana APIs, use the following operations:
-
-
-    - GET: Fetches the information.
-
-    - PATCH: Applies partial modifications to the existing information.
-
-    - POST: Adds new information.
-
-    - PUT: Updates the existing information.
-
-    - DELETE: Removes the information.
-
-
-    You can prepend any Kibana API endpoint with `kbn:` and run the request in **Dev Tools → Console**.
-
-    For example:
-
-
-    ```
-
-    GET kbn:/api/data_views
-
-    ```
-
-
-    For more information about the console, refer to [Run API requests](https://www.elastic.co/docs/explore-analyze/query-filter/tools/console).
-
-
-    NOTE: Access to internal Kibana API endpoints will be restricted in Kibana version 9.0. Please move any integrations to publicly documented APIs.
-
-
-    ## Documentation source and versions
-
-
-    This documentation is derived from the `main` branch of the [kibana](https://github.com/elastic/kibana) repository.
-
-    It is provided under license [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/).
-
-
-    This documentation contains work-in-progress information for future Elastic Stack releases.
-
-    '
-  title: Kibana APIs Actions Fleet package policies API
-  version: '1.0'
+  description: The Kibana REST APIs enable you to manage resources such as connectors, data views, and saved objects.
+  title: Kibana Fleet package policies API
+  version: ''
   x-doc-license:
     name: Attribution-NonCommercial-NoDerivatives 4.0 International
     url: https://creativecommons.org/licenses/by-nc-nd/4.0/
@@ -74,9 +21,7 @@ security:
 - basicAuth: []
 tags:
 - name: Fleet package policies
-  description: 'Fleet package policies APIs enable you to manage Fleet package policies, including creating, updating, and deleting policies, performing bulk operations, and managing policy upgrades.
-
-    '
+  description: Fleet package policies APIs enable you to manage Fleet package policies, including creating, updating, and deleting policies, performing bulk operations, and managing policy upgrades.
   x-displayName: Fleet package policies
 paths:
   /api/fleet/package_policies:
@@ -84,10 +29,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/package_policies</span></div>
+        get /s/{space_id}/api/fleet/package_policies
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         List all package policies.'
@@ -755,10 +700,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/package_policies</span></div>
+        post /s/{space_id}/api/fleet/package_policies
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Create a new package policy and assign it to an agent policy.'
@@ -1995,10 +1940,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/package_policies/_bulk_get</span></div>
+        post /s/{space_id}/api/fleet/package_policies/_bulk_get
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Get multiple package policies by ID.'
@@ -2660,13 +2605,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb delete">delete</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/package_policies/{packagePolicyId}</span></div>
+        delete /s/{space_id}/api/fleet/package_policies/{packagePolicyId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Delete a package policy by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all AND integrations-all.'
+        Delete a package policy by ID.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-all AND integrations-all.'
       operationId: delete-fleet-package-policies-packagepolicyid
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -2744,10 +2692,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb get">get</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/package_policies/{packagePolicyId}</span></div>
+        get /s/{space_id}/api/fleet/package_policies/{packagePolicyId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Get a package policy by ID.'
@@ -3380,10 +3328,10 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb put">put</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/package_policies/{packagePolicyId}</span></div>
+        put /s/{space_id}/api/fleet/package_policies/{packagePolicyId}
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
         Update a package policy by ID.'
@@ -4619,13 +4567,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/package_policies/delete</span></div>
+        post /s/{space_id}/api/fleet/package_policies/delete
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Delete multiple package policies by ID.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all AND integrations-all.'
+        Delete multiple package policies by ID.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-all AND integrations-all.'
       operationId: post-fleet-package-policies-delete
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -4796,13 +4747,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/package_policies/upgrade</span></div>
+        post /s/{space_id}/api/fleet/package_policies/upgrade
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Upgrade a package policy to a newer package version.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-all AND integrations-all.'
+        Upgrade a package policy to a newer package version.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-all AND integrations-all.'
       operationId: post-fleet-package-policies-upgrade
       parameters:
       - description: A required header to protect against CSRF attacks
@@ -4909,13 +4863,16 @@ paths:
       description: '**Spaces method and path for this operation:**
 
 
-        <div><span class="operation-verb post">post</span>&nbsp;<span class="operation-path">/s/{space_id}/api/fleet/package_policies/upgrade/dryrun</span></div>
+        post /s/{space_id}/api/fleet/package_policies/upgrade/dryrun
 
 
-        Refer to [Spaces](https://www.elastic.co/docs/deploy-manage/manage-spaces) for more information.
+        Refer to Spaces for more information.
 
 
-        Preview the changes that would be applied by upgrading a package policy to a newer package version.<br/><br/>[Required authorization] Route required privileges: fleet-agent-policies-read AND integrations-read.'
+        Preview the changes that would be applied by upgrading a package policy to a newer package version.
+
+
+        [Required authorization] Route required privileges: fleet-agent-policies-read AND integrations-read.'
       operationId: post-fleet-package-policies-upgrade-dryrun
       parameters:
       - description: A required header to protect against CSRF attacks
