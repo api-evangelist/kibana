@@ -145,6 +145,27 @@ components:
       required:
       - '@timestamp'
       - message
+    Observability_AI_Assistant_API_MessageRoleEnum:
+      description: The role of the message sender.
+      enum:
+      - system
+      - assistant
+      - function
+      - user
+      - elastic
+      type: string
+    Observability_AI_Assistant_API_Function:
+      type: object
+      properties:
+        description:
+          description: The description of the function.
+          type: string
+        name:
+          description: The name of the function.
+          type: string
+        parameters:
+          description: The parameters of the function.
+          type: object
     Observability_AI_Assistant_API_FunctionCall:
       description: Details of the function call within the message.
       type: object
@@ -165,15 +186,6 @@ components:
       required:
       - name
       - trigger
-    Observability_AI_Assistant_API_MessageRoleEnum:
-      description: The role of the message sender.
-      enum:
-      - system
-      - assistant
-      - function
-      - user
-      - elastic
-      type: string
     Observability_AI_Assistant_API_Instruction:
       oneOf:
       - description: A simple instruction represented as a string.
@@ -190,18 +202,6 @@ components:
         required:
         - id
         - text
-    Observability_AI_Assistant_API_Function:
-      type: object
-      properties:
-        description:
-          description: The description of the function.
-          type: string
-        name:
-          description: The name of the function.
-          type: string
-        parameters:
-          description: The parameters of the function.
-          type: object
   examples:
     Observability_AI_Assistant_API_ChatCompleteRequestExample:
       summary: Example of completing a chat interaction

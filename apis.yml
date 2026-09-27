@@ -6,16 +6,21 @@ description: Kibana is an open-source data visualization and exploration tool us
   across spaces, exposing a comprehensive REST API for programmatic configuration and automation.
 type: Index
 deliveryModel:
-  model: saas
-  open_source: false
+  model: unknown
+  license_evidence:
+    repo: elastic/kibana
+    spdx: NOASSERTION
+    stars: 21301
+  open_source: unknown
   commercial: true
   callable_host: false
-  label: Hosted service · you call their endpoint
-  confidence: medium
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-unlicensed
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -84,7 +89,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-alerting-api
-  name: Kibana alerting API
+  name: Kibana Alerting API
   description: Alerting enables you to define rules, which detect complex conditions within your data.
     When a condition is met, the rule tracks it as an alert and runs the actions that are defined in the
     rule. Actions typically involve the use of connectors to interact with Kibana services or third party
@@ -180,7 +185,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-cases-api
-  name: Kibana cases API
+  name: Kibana Cases API
   description: Cases are used to open and track issues. You can add assignees and tags to your cases,
     set their severity and status, and add alerts, comments, and visualizations. You can also send cases
     to external incident management systems by configuring connectors.
@@ -198,7 +203,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-connectors-api
-  name: Kibana connectors API
+  name: Kibana Connectors API
   description: Connectors provide a central place to store connection information for services and integrations
     with Elastic or third party systems. Alerting rules can use connectors to run actions when rule conditions
     are met.
@@ -526,7 +531,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-logstash-api
-  name: Kibana logstash API
+  name: Kibana Logstash API
   description: 'Programmatically integrate with Logstash configuration management.
 
     > warn
@@ -546,7 +551,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-maintenance-window-api
-  name: Kibana maintenance-window API
+  name: Kibana Maintenance Window API
   description: You can schedule single or recurring maintenance windows to temporarily reduce rule notifications.
     For example, a maintenance window prevents false alarms during planned outages.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
@@ -575,14 +580,15 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-ml-api
-  name: Kibana ml API
+  name: Kibana Ml API
   description: Enables you to synchronize machine learning saved objects.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
-  - Machine-Learning
+  - Machine Learning
   tags_raw:
   - ml
+  - Machine-Learning
   properties:
   - type: OpenAPI
     url: openapi/kibana-ml-api-openapi.yml
@@ -591,7 +597,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-observability-ai-assistant-api
-  name: Kibana observability_ai_assistant API
+  name: Kibana Observability AI Assistant API
   description: Interact with the Observability AI Assistant resources.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
@@ -606,7 +612,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-roles-api
-  name: Kibana roles API
+  name: Kibana Roles API
   description: Manage the roles that grant Elasticsearch and Kibana privileges.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
@@ -938,7 +944,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-slo-api
-  name: Kibana slo API
+  name: Kibana Slo API
   description: SLO APIs enable you to define, manage and track service-level objectives
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
@@ -959,9 +965,11 @@ apis:
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
   tags:
+  - Spaces
   - Space
   tags_raw:
   - Spaces
+  - Space
   properties:
   - type: OpenAPI
     url: openapi/kibana-spaces-api-openapi.yml
@@ -970,7 +978,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-streams-api
-  name: Kibana streams API
+  name: Kibana Streams API
   description: "Streams provide a unified data management layer for ingestion, routing, and processing.\
     \ There are three stream types:\n* **Wired** streams are managed by Kibana. They route documents to\
     \ child streams based on\n  field conditions and support custom field mappings and processing steps.\n\
@@ -992,7 +1000,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-synthetics-api
-  name: Kibana synthetics API
+  name: Kibana Synthetics API
   description: Synthetics APIs enable you to check the status of your services and applications.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
@@ -1008,7 +1016,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-system-api
-  name: Kibana system API
+  name: Kibana System API
   description: Get information about the system status, resource usage, features, and installed plugins.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
@@ -1042,7 +1050,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-upgrade-api
-  name: Kibana upgrade API
+  name: Kibana Upgrade API
   description: 'The Kibana Upgrade Assistant API helps you prepare for the next major Elasticsearch release.
 
     > warn
@@ -1066,7 +1074,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-uptime-api
-  name: Kibana uptime API
+  name: Kibana Uptime API
   description: Uptime APIs enable you to view and update uptime monitoring settings.
   humanURL: https://www.elastic.co/guide/en/kibana/current/api.html
   baseURL: https://localhost:5601/api
@@ -1098,7 +1106,7 @@ apis:
   - type: Authentication
     url: https://www.elastic.co/guide/en/kibana/current/api-authentication.html
 - aid: kibana:kibana-workflows-api
-  name: Kibana workflows API
+  name: Kibana Workflows API
   description: 'Workflows enable you to automate multi-step processes directly in Kibana. Define sequences
     of steps in YAML to transform data insights into automated actions and outcomes, without needing external
     automation tools.

@@ -184,58 +184,6 @@ paths:
         name: product_name
 components:
   examples:
-    create_role_request4:
-      summary: Elasticsearch and Kibana feature privileges
-      description: Grant Elasticsearch and Kibana feature privileges.
-      value:
-        description: Grant all cluster privileges and full access to index1 and index2. Grant full access to remote_index1 and remote_index2, and the monitor_enrich cluster privilege on remote_cluster1. Grant all Kibana privileges in the default space.
-        metadata:
-          version: 1
-        elasticsearch:
-          cluster:
-          - all
-          indices:
-          - names:
-            - index1
-            - index2
-            privileges:
-            - all
-          remote_indices:
-          - clusters:
-            - remote_cluster1
-            names:
-            - remote_index1
-            - remote_index2
-            privileges:
-            - all
-          remote_cluster:
-          - clusters:
-            - remote_cluster1
-            privileges:
-            - monitor_enrich
-        kibana:
-        - base:
-          - all
-          feature: {}
-          spaces:
-          - default
-    create_role_request2:
-      summary: Dashboard privileges in a space
-      description: Grant access to dashboard features in a Marketing space.
-      value:
-        description: Grant dashboard access in the Marketing space.
-        metadata:
-          version: 1
-        elasticsearch:
-          cluster: []
-          indices: []
-        kibana:
-        - base: []
-          feature:
-            dashboard:
-            - read
-          spaces:
-          - marketing
     create_role_request1:
       summary: Feature privileges in multiple spaces
       description: Grant access to various features in some spaces.
@@ -260,6 +208,21 @@ components:
           spaces:
           - marketing
           - sales
+    create_role_request3:
+      summary: Feature privileges in a space
+      description: Grant full access to all features in the default space.
+      value:
+        metadata:
+          version: 1
+        elasticsearch:
+          cluster: []
+          indices: []
+        kibana:
+        - base:
+          - all
+          feature: {}
+          spaces:
+          - default
     get_roles_response1:
       summary: Get all role details
       value:
@@ -342,22 +305,104 @@ components:
           - default
         _transform_error: []
         _unrecognized_applications: []
-    create_role_request3:
-      summary: Feature privileges in a space
-      description: Grant full access to all features in the default space.
+    create_role_request4:
+      summary: Elasticsearch and Kibana feature privileges
+      description: Grant Elasticsearch and Kibana feature privileges.
       value:
+        description: Grant all cluster privileges and full access to index1 and index2. Grant full access to remote_index1 and remote_index2, and the monitor_enrich cluster privilege on remote_cluster1. Grant all Kibana privileges in the default space.
         metadata:
           version: 1
         elasticsearch:
-          cluster: []
-          indices: []
+          cluster:
+          - all
+          indices:
+          - names:
+            - index1
+            - index2
+            privileges:
+            - all
+          remote_indices:
+          - clusters:
+            - remote_cluster1
+            names:
+            - remote_index1
+            - remote_index2
+            privileges:
+            - all
+          remote_cluster:
+          - clusters:
+            - remote_cluster1
+            privileges:
+            - monitor_enrich
         kibana:
         - base:
           - all
           feature: {}
           spaces:
           - default
+    create_role_request2:
+      summary: Dashboard privileges in a space
+      description: Grant access to dashboard features in a Marketing space.
+      value:
+        description: Grant dashboard access in the Marketing space.
+        metadata:
+          version: 1
+        elasticsearch:
+          cluster: []
+          indices: []
+        kibana:
+        - base: []
+          feature:
+            dashboard:
+            - read
+          spaces:
+          - marketing
   schemas:
+    Kibana_HTTP_APIs_security_role_remote_indices_privileges:
+      additionalProperties: false
+      description: The remote indices privileges entry.
+      properties:
+        allow_restricted_indices:
+          description: Restricted indices are a special category of indices that are used internally to store configuration data and should not be directly accessed. Only internal system roles should normally grant privileges over the restricted indices. Toggling this flag is very strongly discouraged because it could effectively grant unrestricted operations on critical data, making the entire system unstable or leaking sensitive information. If for administrative purposes you need to create a role with privileges covering restricted indices, however, you can set this property to true. In that case, the names field will cover the restricted indices too.
+          type: boolean
+        clusters:
+          items:
+            description: A list of remote cluster aliases. It supports literal strings as well as wildcards and regular expressions.
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+        field_security:
+          additionalProperties:
+            items:
+              description: The document fields that the role members have read access to.
+              type: string
+            maxItems: 1000
+            type: array
+          type: object
+        names:
+          items:
+            description: A list of remote aliases, data streams, or indices to which the permissions apply. It supports wildcards (*).
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+        privileges:
+          items:
+            description: The index level privileges that role members have for the specified indices.
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+        query:
+          description: 'A search query that defines the documents the role members have read access to. A document within the specified data streams and indices must match this query in order for it to be accessible by the role members. '
+          type: string
+      required:
+      - clusters
+      - names
+      - privileges
+      title: security_role_remote_indices_privileges
+      type: object
     Kibana_HTTP_APIs_security_role_put_payload:
       additionalProperties: false
       description: The role definition to create or update.
@@ -379,17 +424,42 @@ components:
       - elasticsearch
       title: security_role_put_payload
       type: object
-    Kibana_HTTP_APIs_security_roles_bulk_create_or_update_payload:
+    Kibana_HTTP_APIs_security_role_indices_privileges:
       additionalProperties: false
-      description: The request body for bulk creating or updating roles.
+      description: The indices privileges entry.
       properties:
-        roles:
+        allow_restricted_indices:
+          description: Restricted indices are a special category of indices that are used internally to store configuration data and should not be directly accessed. Only internal system roles should normally grant privileges over the restricted indices. Toggling this flag is very strongly discouraged because it could effectively grant unrestricted operations on critical data, making the entire system unstable or leaking sensitive information. If for administrative purposes you need to create a role with privileges covering restricted indices, however, you can set this property to true. In that case, the names field covers the restricted indices too.
+          type: boolean
+        field_security:
           additionalProperties:
-            $ref: '#/components/schemas/Kibana_HTTP_APIs_security_role_put_payload'
+            items:
+              description: The document fields that the role members have read access to.
+              type: string
+            maxItems: 1000
+            type: array
           type: object
+        names:
+          items:
+            description: The data streams, indices, and aliases to which the permissions in this entry apply. It supports wildcards (*).
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+        privileges:
+          items:
+            description: The index level privileges that the role members have for the data streams and indices.
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+        query:
+          description: A search query that defines the documents the role members have read access to. A document within the specified data streams and indices must match this query in order for it to be accessible by the role members.
+          type: string
       required:
-      - roles
-      title: security_roles_bulk_create_or_update_payload
+      - names
+      - privileges
+      title: security_role_indices_privileges
       type: object
     Kibana_HTTP_APIs_security_role_kibana_privilege:
       additionalProperties: false
@@ -465,88 +535,6 @@ components:
       - clusters
       title: security_role_remote_cluster_privileges
       type: object
-    Kibana_HTTP_APIs_security_role_remote_indices_privileges:
-      additionalProperties: false
-      description: The remote indices privileges entry.
-      properties:
-        allow_restricted_indices:
-          description: Restricted indices are a special category of indices that are used internally to store configuration data and should not be directly accessed. Only internal system roles should normally grant privileges over the restricted indices. Toggling this flag is very strongly discouraged because it could effectively grant unrestricted operations on critical data, making the entire system unstable or leaking sensitive information. If for administrative purposes you need to create a role with privileges covering restricted indices, however, you can set this property to true. In that case, the names field will cover the restricted indices too.
-          type: boolean
-        clusters:
-          items:
-            description: A list of remote cluster aliases. It supports literal strings as well as wildcards and regular expressions.
-            type: string
-          maxItems: 100
-          minItems: 1
-          type: array
-        field_security:
-          additionalProperties:
-            items:
-              description: The document fields that the role members have read access to.
-              type: string
-            maxItems: 1000
-            type: array
-          type: object
-        names:
-          items:
-            description: A list of remote aliases, data streams, or indices to which the permissions apply. It supports wildcards (*).
-            type: string
-          maxItems: 100
-          minItems: 1
-          type: array
-        privileges:
-          items:
-            description: The index level privileges that role members have for the specified indices.
-            type: string
-          maxItems: 100
-          minItems: 1
-          type: array
-        query:
-          description: 'A search query that defines the documents the role members have read access to. A document within the specified data streams and indices must match this query in order for it to be accessible by the role members. '
-          type: string
-      required:
-      - clusters
-      - names
-      - privileges
-      title: security_role_remote_indices_privileges
-      type: object
-    Kibana_HTTP_APIs_security_role_indices_privileges:
-      additionalProperties: false
-      description: The indices privileges entry.
-      properties:
-        allow_restricted_indices:
-          description: Restricted indices are a special category of indices that are used internally to store configuration data and should not be directly accessed. Only internal system roles should normally grant privileges over the restricted indices. Toggling this flag is very strongly discouraged because it could effectively grant unrestricted operations on critical data, making the entire system unstable or leaking sensitive information. If for administrative purposes you need to create a role with privileges covering restricted indices, however, you can set this property to true. In that case, the names field covers the restricted indices too.
-          type: boolean
-        field_security:
-          additionalProperties:
-            items:
-              description: The document fields that the role members have read access to.
-              type: string
-            maxItems: 1000
-            type: array
-          type: object
-        names:
-          items:
-            description: The data streams, indices, and aliases to which the permissions in this entry apply. It supports wildcards (*).
-            type: string
-          maxItems: 100
-          minItems: 1
-          type: array
-        privileges:
-          items:
-            description: The index level privileges that the role members have for the data streams and indices.
-            type: string
-          maxItems: 100
-          minItems: 1
-          type: array
-        query:
-          description: A search query that defines the documents the role members have read access to. A document within the specified data streams and indices must match this query in order for it to be accessible by the role members.
-          type: string
-      required:
-      - names
-      - privileges
-      title: security_role_indices_privileges
-      type: object
     Kibana_HTTP_APIs_security_role_elasticsearch:
       additionalProperties: false
       description: The Elasticsearch cluster, index, and remote cluster security privileges for the role.
@@ -579,6 +567,18 @@ components:
           maxItems: 100
           type: array
       title: security_role_elasticsearch
+      type: object
+    Kibana_HTTP_APIs_security_roles_bulk_create_or_update_payload:
+      additionalProperties: false
+      description: The request body for bulk creating or updating roles.
+      properties:
+        roles:
+          additionalProperties:
+            $ref: '#/components/schemas/Kibana_HTTP_APIs_security_role_put_payload'
+          type: object
+      required:
+      - roles
+      title: security_roles_bulk_create_or_update_payload
       type: object
   securitySchemes:
     apiKeyAuth:

@@ -49,15 +49,6 @@ paths:
         name: product_name
 components:
   schemas:
-    Kibana_HTTP_APIs_security_query_roles_filters:
-      additionalProperties: false
-      description: The filter criteria for the query.
-      properties:
-        showReservedRoles:
-          type: boolean
-      title: security_query_roles_filters
-      type: object
-      x-oas-optional: true
     Kibana_HTTP_APIs_security_query_roles_body:
       additionalProperties: false
       description: The request body for querying roles.
@@ -75,6 +66,15 @@ components:
       title: security_query_roles_body
       type: object
       required: []
+    Kibana_HTTP_APIs_security_query_roles_filters:
+      additionalProperties: false
+      description: The filter criteria for the query.
+      properties:
+        showReservedRoles:
+          type: boolean
+      title: security_query_roles_filters
+      type: object
+      x-oas-optional: true
     Kibana_HTTP_APIs_security_query_roles_sort:
       additionalProperties: false
       description: The sort criteria for the query.
