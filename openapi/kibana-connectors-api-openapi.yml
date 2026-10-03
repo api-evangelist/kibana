@@ -851,355 +851,143 @@ paths:
 
         Refer to Spaces for more information.'
 components:
-  examples:
-    create_xmatters_connector_request:
-      summary: Create an xMatters connector with URL authentication.
-      value:
-        name: my-xmatters-connector
-        connector_type_id: .xmatters
-        config:
-          usesBasic: false
-        secrets:
-          secretsUrl: https://example.com?apiKey=xxxxx
-    get_connector_response:
-      summary: Get connector details.
-      value:
-        id: df770e30-8b8b-11ed-a780-3b746c987a81
-        name: my_server_log_connector
-        config: {}
-        connector_type_id: .server-log
-        is_preconfigured: false
-        is_deprecated: false
-        is_missing_secrets: false
-        is_system_action: false
-    create_email_connector_response:
-      summary: A new email connector.
-      value:
-        id: 90a82c60-478f-11ee-a343-f98a117c727f
-        connector_type_id: .email
-        name: email-connector-1
-        config:
-          from: tester@example.com
-          service: other
-          host: https://example.com
-          port: 1025
-          secure: false
-          hasAuth: true
-          tenantId: null
-          clientId: null
-          oauthTokenUrl: null
-        is_preconfigured: false
-        is_deprecated: false
-        is_missing_secrets: false
-        is_system_action: false
-    run_index_connector_response:
-      summary: Response from running an index connector.
-      value:
-        connector_id: fd38c600-96a5-11ed-bb79-353b74189cba
-        data:
-          errors: false
-          items:
-          - create:
-              _id: 4JtvwYUBrcyxt2NnfW3y
-              _index: my-index
-              _primary_term: 1
-              _seq_no: 0
-              _shards:
-                failed: 0
-                successful: 1
-                total: 2
-              _version: 1
-              result: created
-              status: 201
-          took: 135
-        status: ok
-    run_jira_connector_response:
-      summary: Response from retrieving the list of issue types for a Jira connector.
-      value:
-        connector_id: b3aad810-edbe-11ec-82d1-11348ecbf4a6
-        data:
-        - id: 10024
-          name: Improvement
-        - id: 10006
-          name: Task
-        - id: 10007
-          name: Sub-task
-        - id: 10025
-          name: New Feature
-        - id: 10023
-          name: Bug
-        - id: 10000
-          name: Epic
-        status: ok
-    update_index_connector_request:
-      summary: Update an index connector.
-      value:
-        name: updated-connector
-        config:
-          index: updated-index
-    run_slack_api_connector_response:
-      summary: Response from posting a message with a Slack connector.
-      value:
-        status: ok
-        data:
-          ok: true
-          channel: C123ABC456
-          ts: '1234567890.123456'
-          message:
-            bot_id: B12BCDEFGHI
-            type: message
-            text: A test message
-            user: U12A345BC6D
-            ts: '1234567890.123456'
-            app_id: A01BC2D34EF
-            blocks:
-            - type: rich_text
-              block_id: /NXe
-              elements:
-              - type: rich_text_section
-                elements:
-                - type: text
-                  text: A test message.
-            team: T01ABCDE2F
-            bot_profile:
-              id: B12BCDEFGHI
-              app_id: A01BC2D34EF
-              name: test
-              icons:
-                image_36: https://a.slack-edge.com/80588/img/plugins/app/bot_36.png
-              deleted: false
-              updated: 1672169705
-              team_id: T01ABCDE2F
-        connector_id: .slack_api
-    create_webhook_connector_request:
-      summary: Create a webhook connector with SSL authentication.
-      value:
-        name: my-webhook-connector
-        connector_type_id: .webhook
-        config:
-          method: post
-          url: https://example.com
-          authType: webhook-authentication-ssl
-          certType: ssl-crt-key
-        secrets:
-          crt: QmFnIEF0dH...
-          key: LS0tLS1CRUdJ...
-          password: my-passphrase
-    get_connector_types_generativeai_response:
-      summary: A list of connector types for the `generativeAI` feature.
-      value:
-      - id: .gen-ai
-        name: OpenAI
-        enabled: true
-        enabled_in_config: true
-        enabled_in_license: true
-        minimum_license_required: enterprise
-        supported_feature_ids:
-        - generativeAIForSecurity
-        - generativeAIForObservability
-        - generativeAIForSearchPlayground
-        is_system_action_type: false
-      - id: .bedrock
-        name: AWS Bedrock
-        enabled: true
-        enabled_in_config: true
-        enabled_in_license: true
-        minimum_license_required: enterprise
-        supported_feature_ids:
-        - generativeAIForSecurity
-        - generativeAIForObservability
-        - generativeAIForSearchPlayground
-        is_system_action_type: false
-      - id: .gemini
-        name: Google Gemini
-        enabled: true
-        enabled_in_config: true
-        enabled_in_license: true
-        minimum_license_required: enterprise
-        supported_feature_ids:
-        - generativeAIForSecurity
-        is_system_action_type: false
-    run_swimlane_connector_request:
-      summary: Run a Swimlane connector to create an incident.
-      value:
-        params:
-          subAction: pushToService
-          subActionParams:
-            comments:
-            - commentId: 1
-              comment: A comment about the incident.
-            incident:
-              caseId: '1000'
-              caseName: Case name
-              description: Description of the incident.
-    run_servicenow_itom_connector_response:
-      summary: Response from retrieving the list of choices for a ServiceNow ITOM connector.
-      value:
-        connector_id: 9d9be270-2fd2-11ed-b0e0-87533c532698
-        data:
-        - dependent_value: ''
-          element: severity
-          label: Critical
-          value: 1
-        - dependent_value: ''
-          element: severity
-          label: Major
-          value: 2
-        - dependent_value: ''
-          element: severity
-          label: Minor
-          value: 3
-        - dependent_value: ''
-          element: severity
-          label: Warning
-          value: 4
-        - dependent_value: ''
-          element: severity
-          label: OK
-          value: 5
-        - dependent_value: ''
-          element: severity
-          label: Clear
-          value: 0
-        - dependent_value: ''
-          element: urgency
-          label: 1 - High
-          value: 1
-        - dependent_value: ''
-          element: urgency
-          label: 2 - Medium
-          value: 2
-        - dependent_value: ''
-          element: urgency
-          label: 3 - Low
-          value: 3
-        status: ok
-    run_server_log_connector_response:
-      summary: Response from running a server log connector.
-      value:
-        connector_id: 7fc7b9a0-ecc9-11ec-8736-e7d63118c907
-        status: ok
-    create_email_connector_request:
-      summary: Create an email connector.
-      value:
-        name: email-connector-1
-        connector_type_id: .email
-        config:
-          from: tester@example.com
-          hasAuth: true
-          host: https://example.com
-          port: 1025
-          secure: false
-          service: other
-        secrets:
-          user: username
-          password: password
-    run_servicenow_itom_connector_request:
-      summary: Run a ServiceNow ITOM connector to retrieve the list of choices.
-      value:
-        params:
-          subAction: getChoices
-          subActionParams:
-            fields:
-            - severity
-            - urgency
-    run_swimlane_connector_response:
-      summary: Response from creating a Swimlane incident.
-      value:
-        connector_id: a4746470-2f94-11ed-b0e0-87533c532698
-        data:
-          id: aKPmBHWzmdRQtx6Mx
-          title: TEST-457
-          url: https://elastic.swimlane.url.us/record/aNcL2xniGHGpa2AHb/aKPmBHWzmdRQtx6Mx
-          pushedDate: '2022-09-08T16:52:27.866Z'
-          comments:
-          - commentId: 1
-            pushedDate: '2022-09-08T16:52:27.865Z'
-        status: ok
-    run_index_connector_request:
-      summary: Run an index connector.
-      value:
-        params:
-          documents:
-          - id: my_doc_id
-            name: my_doc_name
-            message: hello, world
-    create_index_connector_response:
-      summary: A new index connector.
-      value:
-        id: c55b6eb0-6bad-11eb-9f3b-611eebc6c3ad
-        connector_type_id: .index
-        name: my-connector
-        config:
-          index: test-index
-          refresh: false
-          executionTimeField: null
-        is_preconfigured: false
-        is_deprecated: false
-        is_missing_secrets: false
-        is_system_action: false
-    get_connectors_response:
-      summary: A list of connectors
-      value:
-      - id: preconfigured-email-connector
-        name: my-preconfigured-email-notification
-        connector_type_id: .email
-        is_preconfigured: true
-        is_deprecated: false
-        referenced_by_count: 0
-        is_system_action: false
-      - id: e07d0c80-8b8b-11ed-a780-3b746c987a81
-        name: my-index-connector
-        config:
-          index: test-index
-          refresh: false
-          executionTimeField: null
-        connector_type_id: .index
-        is_preconfigured: false
-        is_deprecated: false
-        referenced_by_count: 2
-        is_missing_secrets: false
-        is_system_action: false
-    create_webhook_connector_response:
-      summary: A new webhook connector.
-      value:
-        id: 900eb010-3b9d-11ee-a642-8ffbb94e38bd
-        name: my-webhook-connector
-        config:
-          method: post
-          url: https://example.com
-          authType: webhook-authentication-ssl
-          certType: ssl-crt-key
-          verificationMode: full
-          headers: null
-          hasAuth: true
-        connector_type_id: .webhook
-        is_preconfigured: false
-        is_deprecated: false
-        is_missing_secrets: false
-        is_system_action: false
-    run_jira_connector_request:
-      summary: Run a Jira connector to retrieve the list of issue types.
-      value:
-        params:
-          subAction: issueTypes
-    create_index_connector_request:
-      summary: Create an index connector.
-      value:
-        name: my-connector
-        connector_type_id: .index
-        config:
-          index: test-index
-    run_slack_api_connector_request:
-      summary: Run a Slack connector that uses the web API method to post a message on a channel.
-      value:
-        params:
-          subAction: postMessage
-          subActionParams:
-            channelIds:
-            - C123ABC456
-            text: A test message.
   schemas:
+    run_issues:
+      title: The issues subaction
+      type: object
+      required:
+      - subAction
+      - subActionParams
+      description: The `issues` subaction for Jira connectors.
+      properties:
+        subAction:
+          type: string
+          description: The action to test.
+          enum:
+          - issues
+        subActionParams:
+          type: object
+          required:
+          - title
+          properties:
+            title:
+              type: string
+              description: The title of the Jira issue.
+    run_message_slack:
+      title: Slack connector parameters
+      description: 'Test an action that sends a message to Slack. It is applicable only when the connector type is `.slack`.
+
+        '
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: The Slack message text, which cannot contain Markdown, images, or other advanced formatting.
+    swimlane_secrets:
+      title: Connector secrets properties for a Swimlane connector
+      description: Defines secrets for connectors when type is `.swimlane`.
+      type: object
+      properties:
+        apiToken:
+          description: Swimlane API authentication token.
+          type: string
+    has_auth:
+      title: Has authentication
+      type: boolean
+      description: If true, a username and password for login type authentication must be provided.
+      default: true
+    ca:
+      title: Certificate authority
+      type: string
+      description: 'A base64 encoded version of the certificate authority file that the connector can trust to sign and validate certificates. This option is available for all authentication types.
+
+        '
+    run_fieldsbyissuetype:
+      title: The fieldsByIssueType subaction
+      type: object
+      required:
+      - subAction
+      - subActionParams
+      description: The `fieldsByIssueType` subaction for Jira connectors.
+      properties:
+        subAction:
+          type: string
+          description: The action to test.
+          enum:
+          - fieldsByIssueType
+        subActionParams:
+          type: object
+          required:
+          - id
+          properties:
+            id:
+              type: string
+              description: The Jira issue type identifier.
+              example: 10024
+    resilient_secrets:
+      title: Connector secrets properties for IBM Resilient connector
+      required:
+      - apiKeyId
+      - apiKeySecret
+      description: Defines secrets for connectors when type is `.resilient`.
+      type: object
+      properties:
+        apiKeyId:
+          type: string
+          description: The authentication key ID for HTTP Basic authentication.
+        apiKeySecret:
+          type: string
+          description: The authentication key secret for HTTP Basic authentication.
+    teams_secrets:
+      title: Connector secrets properties for a Microsoft Teams connector
+      description: Defines secrets for connectors when type is `.teams`.
+      type: object
+      required:
+      - webhookUrl
+      properties:
+        webhookUrl:
+          type: string
+          description: 'The URL of the incoming webhook. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
+
+            '
+    xmatters_config:
+      title: Connector request properties for an xMatters connector
+      description: Defines properties for connectors when type is `.xmatters`.
+      type: object
+      properties:
+        configUrl:
+          description: 'The request URL for the Elastic Alerts trigger in xMatters. It is applicable only when `usesBasic` is `true`.
+
+            '
+          type:
+          - string
+          - 'null'
+        usesBasic:
+          description: Specifies whether the connector uses HTTP basic authentication (`true`) or URL authentication (`false`).
+          type: boolean
+          default: true
+    cases_webhook_secrets:
+      title: Connector secrets properties for Webhook - Case Management connector
+      type: object
+      properties:
+        crt:
+          $ref: '#/components/schemas/crt'
+        key:
+          $ref: '#/components/schemas/key'
+        pfx:
+          $ref: '#/components/schemas/pfx'
+        password:
+          type: string
+          description: 'The password for HTTP basic authentication. If `hasAuth` is set to `true` and and `authType` is `webhook-authentication-basic`, this property is required.
+
+            '
+        user:
+          type: string
+          description: 'The username for HTTP basic authentication. If `hasAuth` is set to `true` and `authType` is `webhook-authentication-basic`, this property is required.
+
+            '
     webhook_config:
       title: Connector request properties for a Webhook connector
       description: Defines properties for connectors when type is `.webhook`.
@@ -1234,6 +1022,609 @@ components:
             '
         verificationMode:
           $ref: '#/components/schemas/verification_mode'
+    jira_secrets:
+      title: Connector secrets properties for a Jira connector
+      required:
+      - apiToken
+      - email
+      description: Defines secrets for connectors when type is `.jira`.
+      type: object
+      properties:
+        apiToken:
+          description: The Jira API authentication token for HTTP basic authentication.
+          type: string
+        email:
+          description: The account email for HTTP Basic authentication.
+          type: string
+    defender_config:
+      title: Connector request properties for a Microsoft Defender for Endpoint connector
+      required:
+      - apiUrl
+      - projectKey
+      description: Defines properties for connectors when type is `.microsoft_defender_endpoint`.
+      type: object
+      properties:
+        apiUrl:
+          type: string
+          description: 'The URL of the Microsoft Defender for Endpoint API. If you are using the `xpack.actions.allowedHosts` setting, make sure the hostname is added to the allowed hosts.
+
+            '
+        clientId:
+          type: string
+          description: The application (client) identifier for your app in the Azure portal.
+        oAuthScope:
+          type: string
+          description: The OAuth scopes or permission sets for the Microsoft Defender for Endpoint API.
+        oAuthServerUrl:
+          type: string
+          description: The OAuth server URL where authentication is sent and received for the Microsoft Defender for Endpoint API.
+        tenantId:
+          description: The tenant identifier for your app in the Azure portal.
+          type: string
+    xmatters_secrets:
+      title: Connector secrets properties for an xMatters connector
+      description: Defines secrets for connectors when type is `.xmatters`.
+      type: object
+      properties:
+        password:
+          description: 'A user name for HTTP basic authentication. It is applicable only when `usesBasic` is `true`.
+
+            '
+          type: string
+        secretsUrl:
+          description: 'The request URL for the Elastic Alerts trigger in xMatters with the API key included in the URL. It is applicable only when `usesBasic` is `false`.
+
+            '
+          type: string
+        user:
+          description: 'A password for HTTP basic authentication. It is applicable only when `usesBasic` is `true`.
+
+            '
+          type: string
+    d3security_secrets:
+      title: Connector secrets properties for a D3 Security connector
+      description: Defines secrets for connectors when type is `.d3security`.
+      required:
+      - token
+      type: object
+      properties:
+        token:
+          type: string
+          description: The D3 Security token.
+    crowdstrike_config:
+      title: Connector request config properties for a Crowdstrike connector
+      required:
+      - url
+      description: Defines config properties for connectors when type is `.crowdstrike`.
+      type: object
+      properties:
+        url:
+          description: 'The CrowdStrike tenant URL. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
+
+            '
+          type: string
+    run_trigger_pagerduty:
+      title: PagerDuty connector parameters
+      description: Test an action that triggers a PagerDuty alert.
+      type: object
+      required:
+      - eventAction
+      properties:
+        class:
+          description: The class or type of the event.
+          type: string
+          example: cpu load
+        component:
+          description: The component of the source machine that is responsible for the event.
+          type: string
+          example: eth0
+        customDetails:
+          description: Additional details to add to the event.
+          type: object
+        dedupKey:
+          description: 'All actions sharing this key will be associated with the same PagerDuty alert. This value is used to correlate trigger and resolution.
+
+            '
+          type: string
+          maxLength: 255
+        eventAction:
+          description: The type of event.
+          type: string
+          enum:
+          - trigger
+        group:
+          description: The logical grouping of components of a service.
+          type: string
+          example: app-stack
+        links:
+          description: A list of links to add to the event.
+          type: array
+          items:
+            type: object
+            properties:
+              href:
+                description: The URL for the link.
+                type: string
+              text:
+                description: A plain text description of the purpose of the link.
+                type: string
+        severity:
+          description: The severity of the event on the affected system.
+          type: string
+          enum:
+          - critical
+          - error
+          - info
+          - warning
+          default: info
+        source:
+          description: 'The affected system, such as a hostname or fully qualified domain name. Defaults to the Kibana saved object id of the action.
+
+            '
+          type: string
+        summary:
+          description: A summery of the event.
+          type: string
+          maxLength: 1024
+        timestamp:
+          description: An ISO-8601 timestamp that indicates when the event was detected or generated.
+          type: string
+          format: date-time
+    genai_openai_other_config:
+      title: Connector request properties for an OpenAI connector with Other provider
+      description: 'Defines properties for connectors when type is `.gen-ai` and the API provider is `Other` (OpenAI-compatible service), including optional PKI authentication.
+
+        '
+      type: object
+      required:
+      - apiProvider
+      - apiUrl
+      - defaultModel
+      properties:
+        apiProvider:
+          type: string
+          description: The OpenAI API provider.
+          enum:
+          - Other
+        apiUrl:
+          type: string
+          description: The OpenAI-compatible API endpoint.
+        defaultModel:
+          type: string
+          description: The default model to use for requests.
+        certificateData:
+          type: string
+          description: PEM-encoded certificate content.
+          minLength: 1
+        privateKeyData:
+          type: string
+          description: PEM-encoded private key content.
+          minLength: 1
+        caData:
+          type: string
+          description: PEM-encoded CA certificate content.
+          minLength: 1
+        verificationMode:
+          type: string
+          description: SSL verification mode for PKI authentication.
+          enum:
+          - full
+          - certificate
+          - none
+          default: full
+        headers:
+          type: object
+          description: Custom headers to include in requests.
+          additionalProperties:
+            type: string
+    cert_type:
+      title: Certificate type
+      type: string
+      description: 'If the `authType` is `webhook-authentication-ssl`, specifies whether the certificate authentication data is in a CRT and key file format or a PFX file format.
+
+        '
+      enum:
+      - ssl-crt-key
+      - ssl-pfx
+    gemini_config:
+      title: Connector request properties for an Google Gemini connector
+      description: Defines properties for connectors when type is `.gemini`.
+      type: object
+      required:
+      - apiUrl
+      - gcpRegion
+      - gcpProjectID
+      properties:
+        apiUrl:
+          type: string
+          description: The Google Gemini request URL.
+        defaultModel:
+          type: string
+          description: The generative artificial intelligence model for Google Gemini to use.
+          default: gemini-2.5-pro
+        gcpRegion:
+          type: string
+          description: The GCP region where the Vertex AI endpoint enabled.
+        gcpProjectID:
+          type: string
+          description: The Google ProjectID that has Vertex AI endpoint enabled.
+    pagerduty_config:
+      title: Connector request properties for a PagerDuty connector
+      description: Defines properties for connectors when type is `.pagerduty`.
+      type: object
+      properties:
+        apiUrl:
+          description: The PagerDuty event URL.
+          type:
+          - string
+          - 'null'
+          example: https://events.pagerduty.com/v2/enqueue
+    run_postmessage:
+      title: The postMessage subaction
+      type: object
+      description: 'Test an action that sends a message to Slack. It is applicable only when the connector type is `.slack_api`.
+
+        '
+      required:
+      - subAction
+      - subActionParams
+      properties:
+        subAction:
+          type: string
+          description: The action to test.
+          enum:
+          - postMessage
+        subActionParams:
+          type: object
+          description: The set of configuration properties for the action.
+          properties:
+            channelIds:
+              type: array
+              maxItems: 1
+              description: 'The Slack channel identifier, which must be one of the `allowedChannels` in the connector configuration.
+
+                '
+              items:
+                type: string
+            channels:
+              type: array
+              deprecated: true
+              description: 'The name of a channel that your Slack app has access to.
+
+                '
+              maxItems: 1
+              items:
+                type: string
+            text:
+              type: string
+              description: 'The Slack message text. If it is a Slack webhook connector, the text cannot contain Markdown, images, or other advanced formatting. If it is a Slack web API connector, it can contain either plain text or block kit messages.
+
+                '
+              minLength: 1
+    auth_type:
+      title: Authentication type
+      type:
+      - string
+      - 'null'
+      enum:
+      - webhook-authentication-basic
+      - webhook-authentication-ssl
+      description: 'The type of authentication to use: basic, SSL, or none.
+
+        '
+    sentinelone_config:
+      title: Connector request properties for a SentinelOne connector
+      required:
+      - url
+      description: Defines properties for connectors when type is `.sentinelone`.
+      type: object
+      properties:
+        url:
+          description: 'The SentinelOne tenant URL. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
+
+            '
+          type: string
+    jira_config:
+      title: Connector request properties for a Jira connector
+      required:
+      - apiUrl
+      - projectKey
+      description: Defines properties for connectors when type is `.jira`.
+      type: object
+      properties:
+        apiUrl:
+          description: The Jira instance URL.
+          type: string
+        projectKey:
+          description: The Jira project key.
+          type: string
+    run_getagentdetails:
+      title: The getAgentDetails subaction
+      type: object
+      required:
+      - subAction
+      - subActionParams
+      description: The `getAgentDetails` subaction for CrowdStrike connectors.
+      properties:
+        subAction:
+          type: string
+          description: The action to test.
+          enum:
+          - getAgentDetails
+        subActionParams:
+          type: object
+          description: The set of configuration properties for the action.
+          required:
+          - ids
+          properties:
+            ids:
+              type: array
+              description: An array of CrowdStrike agent identifiers.
+              items:
+                type: string
+    run_closealert:
+      title: The closeAlert subaction
+      type: object
+      required:
+      - subAction
+      - subActionParams
+      description: The `closeAlert` subaction for Opsgenie connectors.
+      properties:
+        subAction:
+          type: string
+          description: The action to test.
+          enum:
+          - closeAlert
+        subActionParams:
+          type: object
+          required:
+          - alias
+          properties:
+            alias:
+              type: string
+              description: The unique identifier used for alert deduplication in Opsgenie. The alias must match the value used when creating the alert.
+            note:
+              type: string
+              description: Additional information for the alert.
+            source:
+              type: string
+              description: The display name for the source of the alert.
+            user:
+              type: string
+              description: The display name for the owner.
+    slack_api_secrets:
+      title: Connector secrets properties for a Web API Slack connector
+      description: Defines secrets for connectors when type is `.slack`.
+      required:
+      - token
+      type: object
+      properties:
+        token:
+          type: string
+          description: Slack bot user OAuth token.
+    servicenow_secrets:
+      title: Connector secrets properties for ServiceNow ITOM, ServiceNow ITSM, and ServiceNow SecOps connectors
+      description: Defines secrets for connectors when type is `.servicenow`, `.servicenow-sir`, or `.servicenow-itom`.
+      type: object
+      properties:
+        clientSecret:
+          type: string
+          description: The client secret assigned to your OAuth application. This property is required when `isOAuth` is `true`.
+        password:
+          type: string
+          description: The password for HTTP basic authentication. This property is required when `isOAuth` is `false`.
+        privateKey:
+          type: string
+          description: The RSA private key that you created for use in ServiceNow. This property is required when `isOAuth` is `true`.
+        privateKeyPassword:
+          type: string
+          description: The password for the RSA private key. This property is required when `isOAuth` is `true` and you set a password on your private key.
+        username:
+          type: string
+          description: The username for HTTP basic authentication. This property is required when `isOAuth` is `false`.
+    run_issue:
+      title: The issue subaction
+      type: object
+      required:
+      - subAction
+      description: The `issue` subaction for Jira connectors.
+      properties:
+        subAction:
+          type: string
+          description: The action to test.
+          enum:
+          - issue
+        subActionParams:
+          type: object
+          required:
+          - id
+          properties:
+            id:
+              type: string
+              description: The Jira issue identifier.
+              example: 71778
+    run_closeincident:
+      title: The closeIncident subaction
+      type: object
+      required:
+      - subAction
+      - subActionParams
+      description: The `closeIncident` subaction for ServiceNow ITSM connectors.
+      properties:
+        subAction:
+          type: string
+          description: The action to test.
+          enum:
+          - closeIncident
+        subActionParams:
+          type: object
+          required:
+          - incident
+          properties:
+            incident:
+              type: object
+              anyOf:
+              - required:
+                - correlation_id
+              - required:
+                - externalId
+              properties:
+                correlation_id:
+                  type:
+                  - string
+                  - 'null'
+                  description: 'An identifier that is assigned to the incident when it is created by the connector. NOTE: If you use the default value and the rule generates multiple alerts that use the same alert IDs, the latest open incident for this correlation ID is closed unless you specify the external ID.
+
+                    '
+                  maxLength: 100
+                  default: '{{rule.id}}:{{alert.id}}'
+                externalId:
+                  type:
+                  - string
+                  - 'null'
+                  description: The unique identifier (`incidentId`) for the incident in ServiceNow.
+    defender_secrets:
+      title: Connector secrets properties for a Microsoft Defender for Endpoint connector
+      required:
+      - clientSecret
+      description: Defines secrets for connectors when type is `..microsoft_defender_endpoint`.
+      type: object
+      properties:
+        clientSecret:
+          description: The client secret for your app in the Azure portal.
+          type: string
+    run_getincident:
+      title: The getIncident subaction
+      type: object
+      description: The `getIncident` subaction for Jira, ServiceNow ITSM, and ServiceNow SecOps connectors.
+      required:
+      - subAction
+      - subActionParams
+      properties:
+        subAction:
+          type: string
+          description: The action to test.
+          enum:
+          - getIncident
+        subActionParams:
+          type: object
+          required:
+          - externalId
+          properties:
+            externalId:
+              type: string
+              description: The Jira, ServiceNow ITSM, or ServiceNow SecOps issue identifier.
+              example: 71778
+    run_message_serverlog:
+      title: Server log connector parameters
+      description: Test an action that writes an entry to the Kibana server log.
+      type: object
+      required:
+      - message
+      properties:
+        level:
+          type: string
+          description: The log level of the message for server log connectors.
+          enum:
+          - debug
+          - error
+          - fatal
+          - info
+          - trace
+          - warn
+          default: info
+        message:
+          type: string
+          description: The message for server log connectors.
+    crowdstrike_secrets:
+      title: Connector secrets properties for a Crowdstrike connector
+      description: Defines secrets for connectors when type is `.crowdstrike`.
+      type: object
+      required:
+      - clientId
+      - clientSecret
+      properties:
+        clientId:
+          description: The CrowdStrike API client identifier.
+          type: string
+        clientSecret:
+          description: The CrowdStrike API client secret to authenticate the `clientId`.
+          type: string
+    email_config:
+      title: Connector request properties for an email connector
+      description: Defines properties for connectors when type is `.email`.
+      required:
+      - from
+      type: object
+      properties:
+        clientId:
+          description: 'The client identifier, which is a part of OAuth 2.0 client credentials authentication, in GUID format. If `service` is `exchange_server`, this property is required.
+
+            '
+          type:
+          - string
+          - 'null'
+        from:
+          description: 'The from address for all emails sent by the connector. It must be specified in `user@host-name` format.
+
+            '
+          type: string
+        hasAuth:
+          description: 'Specifies whether a user and password are required inside the secrets configuration.
+
+            '
+          default: true
+          type: boolean
+        host:
+          description: 'The host name of the service provider. If the `service` is `elastic_cloud` (for Elastic Cloud notifications) or one of Nodemailer''s well-known email service providers, this property is ignored. If `service` is `other`, this property must be defined.
+
+            '
+          type: string
+        oauthTokenUrl:
+          type:
+          - string
+          - 'null'
+        port:
+          description: 'The port to connect to on the service provider. If the `service` is `elastic_cloud` (for Elastic Cloud notifications) or one of Nodemailer''s well-known email service providers, this property is ignored. If `service` is `other`, this property must be defined.
+
+            '
+          type: integer
+        secure:
+          description: 'Specifies whether the connection to the service provider will use TLS. If the `service` is `elastic_cloud` (for Elastic Cloud notifications) or one of Nodemailer''s well-known email service providers, this property is ignored.
+
+            '
+          type: boolean
+        service:
+          description: 'The name of the email service.
+
+            '
+          type: string
+          enum:
+          - elastic_cloud
+          - exchange_server
+          - gmail
+          - other
+          - outlook365
+          - ses
+        tenantId:
+          description: 'The tenant identifier, which is part of OAuth 2.0 client credentials authentication, in GUID format. If `service` is `exchange_server`, this property is required.
+
+            '
+          type:
+          - string
+          - 'null'
+    opsgenie_config:
+      title: Connector request properties for an Opsgenie connector
+      required:
+      - apiUrl
+      description: Defines properties for connectors when type is `.opsgenie`.
+      type: object
+      properties:
+        apiUrl:
+          description: 'The Opsgenie URL. For example, `https://api.opsgenie.com` or `https://api.eu.opsgenie.com`. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
+
+            '
+          type: string
     run_createalert:
       title: The createAlert subaction
       type: object
@@ -1371,52 +1762,242 @@ components:
                   username:
                     type: string
                     description: The user name. This property is required only when the `type` is `user`.
-    run_postmessage:
-      title: The postMessage subaction
+    run_getagents:
+      title: The getAgents subaction
       type: object
-      description: 'Test an action that sends a message to Slack. It is applicable only when the connector type is `.slack_api`.
-
-        '
       required:
       - subAction
-      - subActionParams
+      description: The `getAgents` subaction for SentinelOne connectors.
       properties:
         subAction:
           type: string
           description: The action to test.
           enum:
-          - postMessage
-        subActionParams:
-          type: object
-          description: The set of configuration properties for the action.
-          properties:
-            channelIds:
-              type: array
-              maxItems: 1
-              description: 'The Slack channel identifier, which must be one of the `allowedChannels` in the connector configuration.
-
-                '
-              items:
-                type: string
-            channels:
-              type: array
-              deprecated: true
-              description: 'The name of a channel that your Slack app has access to.
-
-                '
-              maxItems: 1
-              items:
-                type: string
-            text:
-              type: string
-              description: 'The Slack message text. If it is a Slack webhook connector, the text cannot contain Markdown, images, or other advanced formatting. If it is a Slack web API connector, it can contain either plain text or block kit messages.
-
-                '
-              minLength: 1
+          - getAgents
     pfx:
       title: Personal information exchange
       type: string
       description: If `authType` is `webhook-authentication-ssl` and `certType` is `ssl-pfx`, it is a base64 encoded version of the PFX or P12 file.
+    thehive_config:
+      title: Connector request properties for a TheHive connector
+      description: Defines configuration properties for connectors when type is `.thehive`.
+      type: object
+      required:
+      - url
+      properties:
+        organisation:
+          type: string
+          description: 'The organisation in TheHive that will contain the alerts or cases. By default, the connector uses the default organisation of the user account that created the API key.
+
+            '
+        url:
+          type: string
+          description: 'The instance URL in TheHive. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
+
+            '
+    webhook_secrets:
+      title: Connector secrets properties for a Webhook connector
+      description: Defines secrets for connectors when type is `.webhook`.
+      type: object
+      properties:
+        crt:
+          $ref: '#/components/schemas/crt'
+        key:
+          $ref: '#/components/schemas/key'
+        pfx:
+          $ref: '#/components/schemas/pfx'
+        password:
+          type: string
+          description: 'The password for HTTP basic authentication or the passphrase for the SSL certificate files. If `hasAuth` is set to `true` and `authType` is `webhook-authentication-basic`, this property is required.
+
+            '
+        user:
+          type: string
+          description: 'The username for HTTP basic authentication. If `hasAuth` is set to `true`  and `authType` is `webhook-authentication-basic`, this property is required.
+
+            '
+    run_acknowledge_resolve_pagerduty:
+      title: PagerDuty connector parameters
+      description: Test an action that acknowledges or resolves a PagerDuty alert.
+      type: object
+      required:
+      - dedupKey
+      - eventAction
+      properties:
+        dedupKey:
+          description: The deduplication key for the PagerDuty alert.
+          type: string
+          maxLength: 255
+        eventAction:
+          description: The type of event.
+          type: string
+          enum:
+          - acknowledge
+          - resolve
+    run_addevent:
+      title: The addEvent subaction
+      type: object
+      required:
+      - subAction
+      description: The `addEvent` subaction for ServiceNow ITOM connectors.
+      properties:
+        subAction:
+          type: string
+          description: The action to test.
+          enum:
+          - addEvent
+        subActionParams:
+          type: object
+          description: The set of configuration properties for the action.
+          properties:
+            additional_info:
+              type: string
+              description: Additional information about the event.
+            description:
+              type: string
+              description: The details about the event.
+            event_class:
+              type: string
+              description: A specific instance of the source.
+            message_key:
+              type: string
+              description: All actions sharing this key are associated with the same ServiceNow alert. The default value is `<rule ID>:<alert instance ID>`.
+            metric_name:
+              type: string
+              description: The name of the metric.
+            node:
+              type: string
+              description: The host that the event was triggered for.
+            resource:
+              type: string
+              description: The name of the resource.
+            severity:
+              type: string
+              description: The severity of the event.
+            source:
+              type: string
+              description: The name of the event source type.
+            time_of_event:
+              type: string
+              description: The time of the event.
+            type:
+              type: string
+              description: The type of event.
+    run_getchoices:
+      title: The getChoices subaction
+      type: object
+      required:
+      - subAction
+      - subActionParams
+      description: The `getChoices` subaction for ServiceNow ITOM, ServiceNow ITSM, and ServiceNow SecOps connectors.
+      properties:
+        subAction:
+          type: string
+          description: The action to test.
+          enum:
+          - getChoices
+        subActionParams:
+          type: object
+          description: The set of configuration properties for the action.
+          required:
+          - fields
+          properties:
+            fields:
+              type: array
+              description: An array of fields.
+              items:
+                type: string
+    torq_config:
+      title: Connector request properties for a Torq connector
+      description: Defines properties for connectors when type is `.torq`.
+      type: object
+      required:
+      - webhookIntegrationUrl
+      properties:
+        webhookIntegrationUrl:
+          description: The endpoint URL of the Elastic Security integration in Torq.
+          type: string
+    sentinelone_secrets:
+      title: Connector secrets properties for a SentinelOne connector
+      description: Defines secrets for connectors when type is `.sentinelone`.
+      type: object
+      required:
+      - token
+      properties:
+        token:
+          description: The A SentinelOne API token.
+          type: string
+    servicenow_config:
+      title: Connector request properties for a ServiceNow ITSM connector
+      required:
+      - apiUrl
+      description: Defines properties for connectors when type is `.servicenow`.
+      type: object
+      properties:
+        apiUrl:
+          type: string
+          description: The ServiceNow instance URL.
+        clientId:
+          description: 'The client ID assigned to your OAuth application. This property is required when `isOAuth` is `true`.
+
+            '
+          type: string
+        isOAuth:
+          description: 'The type of authentication to use. The default value is false, which means basic authentication is used instead of open authorization (OAuth).
+
+            '
+          default: false
+          type: boolean
+        jwtKeyId:
+          description: 'The key identifier assigned to the JWT verifier map of your OAuth application. This property is required when `isOAuth` is `true`.
+
+            '
+          type: string
+        userIdentifierValue:
+          description: 'The identifier to use for OAuth authentication. This identifier should be the user field you selected when you created an OAuth JWT API endpoint for external clients in your ServiceNow instance. For example, if the selected user field is `Email`, the user identifier should be the user''s email address. This property is required when `isOAuth` is `true`.
+
+            '
+          type: string
+        usesTableApi:
+          description: 'Determines whether the connector uses the Table API or the Import Set API. This property is supported only for ServiceNow ITSM and ServiceNow SecOps connectors.  NOTE: If this property is set to `false`, the Elastic application should be installed in ServiceNow.
+
+            '
+          default: true
+          type: boolean
+    d3security_config:
+      title: Connector request properties for a D3 Security connector
+      description: Defines properties for connectors when type is `.d3security`.
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          description: 'The D3 Security API request URL. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
+
+            '
+    key:
+      title: Certificate key
+      type: string
+      description: If `authType` is `webhook-authentication-ssl` and `certType` is `ssl-crt-key`, it is a base64 encoded version of the KEY file.
+    genai_azure_config:
+      title: Connector request properties for an OpenAI connector that uses Azure OpenAI
+      description: 'Defines properties for connectors when type is `.gen-ai` and the API provider is `Azure OpenAI`.
+
+        '
+      type: object
+      required:
+      - apiProvider
+      - apiUrl
+      properties:
+        apiProvider:
+          type: string
+          description: The OpenAI API provider.
+          enum:
+          - Azure OpenAI
+        apiUrl:
+          type: string
+          description: The OpenAI API endpoint.
     swimlane_config:
       title: Connector request properties for a Swimlane connector
       required:
@@ -1598,99 +2179,224 @@ components:
                 name:
                   type: string
                   description: The name of the field in Swimlane.
-    run_closealert:
-      title: The closeAlert subaction
+    tines_config:
+      title: Connector request properties for a Tines connector
+      description: Defines properties for connectors when type is `.tines`.
       type: object
       required:
-      - subAction
-      - subActionParams
-      description: The `closeAlert` subaction for Opsgenie connectors.
+      - url
       properties:
-        subAction:
+        url:
+          description: 'The Tines tenant URL. If you are using the `xpack.actions.allowedHosts` setting, make sure this hostname is added to the allowed hosts.
+
+            '
           type: string
-          description: The action to test.
-          enum:
-          - closeAlert
-        subActionParams:
-          type: object
-          required:
-          - alias
-          properties:
-            alias:
-              type: string
-              description: The unique identifier used for alert deduplication in Opsgenie. The alias must match the value used when creating the alert.
-            note:
-              type: string
-              description: Additional information for the alert.
-            source:
-              type: string
-              description: The display name for the source of the alert.
-            user:
-              type: string
-              description: The display name for the owner.
-    run_getincident:
-      title: The getIncident subaction
-      type: object
-      description: The `getIncident` subaction for Jira, ServiceNow ITSM, and ServiceNow SecOps connectors.
-      required:
-      - subAction
-      - subActionParams
-      properties:
-        subAction:
-          type: string
-          description: The action to test.
-          enum:
-          - getIncident
-        subActionParams:
-          type: object
-          required:
-          - externalId
-          properties:
-            externalId:
-              type: string
-              description: The Jira, ServiceNow ITSM, or ServiceNow SecOps issue identifier.
-              example: 71778
-    verification_mode:
-      title: Verification mode
+    crt:
+      title: Certificate
       type: string
-      enum:
-      - certificate
-      - full
-      - none
-      default: full
-      description: 'Controls the verification of certificates. Use `full` to validate that the certificate has an issue date within the `not_before` and `not_after` dates, chains to a trusted certificate authority (CA), and has a hostname or IP address that matches the names within the certificate. Use `certificate` to validate the certificate and verify that it is signed by a trusted authority; this option does not check the certificate hostname. Use `none` to skip certificate validation.
+      description: If `authType` is `webhook-authentication-ssl` and `certType` is `ssl-crt-key`, it is a base64 encoded version of the CRT or CERT file.
+    run_message_email:
+      title: Email connector parameters
+      description: 'Test an action that sends an email message. There must be at least one recipient in `to`, `cc`, or `bcc`.
 
         '
-    genai_secrets:
-      title: Connector secrets properties for an OpenAI connector
-      description: 'Defines secrets for connectors when type is `.gen-ai`. Supports both API key authentication (OpenAI, Azure OpenAI, and `Other`) and PKI authentication (`Other` provider only). PKI fields must be base64-encoded PEM content.
+      type: object
+      required:
+      - message
+      - subject
+      properties:
+        bcc:
+          type: array
+          items:
+            type: string
+          description: 'A list of "blind carbon copy" email addresses. Addresses can be specified in `user@host-name` format or in name `<user@host-name>` format
 
-        '
+            '
+        cc:
+          type: array
+          items:
+            type: string
+          description: "A list of \"carbon copy\" email addresses. Addresses can be specified in `user@host-name` format or in name `<user@host-name>` format \n"
+        message:
+          type: string
+          description: The email message text. Markdown format is supported.
+        subject:
+          type: string
+          description: The subject line of the email.
+        to:
+          type: array
+          description: 'A list of email addresses. Addresses can be specified in `user@host-name` format or in name `<user@host-name>` format.
+
+            '
+          items:
+            type: string
+    bedrock_config:
+      title: Connector request properties for an Amazon Bedrock connector
+      description: Defines properties for connectors when type is `.bedrock`.
+      type: object
+      required:
+      - apiUrl
+      properties:
+        apiUrl:
+          type: string
+          description: The Amazon Bedrock request URL.
+        region:
+          type: string
+          description: 'Optional AWS region for request signing. Required when using a custom endpoint URL that does not include the region in the hostname (for example, `us-west-1`).
+
+            '
+        defaultModel:
+          type: string
+          description: 'The generative artificial intelligence model for Amazon Bedrock to use. Current support is for the Anthropic Claude models.
+
+            '
+          default: us.anthropic.claude-sonnet-4-5-20250929-v1:0
+    opsgenie_secrets:
+      title: Connector secrets properties for an Opsgenie connector
+      required:
+      - apiKey
+      description: Defines secrets for connectors when type is `.opsgenie`.
       type: object
       properties:
         apiKey:
+          description: The Opsgenie API authentication key for HTTP Basic authentication.
           type: string
-          description: 'The API key for authentication. For OpenAI and Azure OpenAI providers, it is required. For the `Other` provider, it is required if you do not use PKI authentication. With PKI, you can also optionally include an API key if the OpenAI-compatible service supports or requires one.
+    run_issuetypes:
+      title: The issueTypes subaction
+      type: object
+      required:
+      - subAction
+      description: The `issueTypes` subaction for Jira connectors.
+      properties:
+        subAction:
+          type: string
+          description: The action to test.
+          enum:
+          - issueTypes
+    pagerduty_secrets:
+      title: Connector secrets properties for a PagerDuty connector
+      description: Defines secrets for connectors when type is `.pagerduty`.
+      type: object
+      required:
+      - routingKey
+      properties:
+        routingKey:
+          description: 'A 32 character PagerDuty Integration Key for an integration on a service.
 
             '
-        certificateData:
           type: string
-          description: 'Base64-encoded PEM certificate content for PKI authentication (Other provider only). Required for PKI.
+    cases_webhook_config:
+      title: Connector request properties for Webhook - Case Management connector
+      required:
+      - createIncidentJson
+      - createIncidentResponseKey
+      - createIncidentUrl
+      - getIncidentResponseExternalTitleKey
+      - getIncidentUrl
+      - updateIncidentJson
+      - updateIncidentUrl
+      - viewIncidentUrl
+      description: Defines properties for connectors when type is `.cases-webhook`.
+      type: object
+      properties:
+        authType:
+          $ref: '#/components/schemas/auth_type'
+        ca:
+          $ref: '#/components/schemas/ca'
+        certType:
+          $ref: '#/components/schemas/cert_type'
+        createCommentJson:
+          type: string
+          description: 'A JSON payload sent to the create comment URL to create a case comment. You can use variables to add Kibana Cases data to the payload. The required variable is `case.comment`. Due to Mustache template variables (the text enclosed in triple braces, for example, `{{{case.title}}}`), the JSON is not validated when you create the connector. The JSON is validated once the Mustache variables have been placed when the REST method runs. Manually ensure that the JSON is valid, disregarding the Mustache variables, so the later validation will pass.
 
             '
-          minLength: 1
-        privateKeyData:
+          example: '{"body": {{{case.comment}}}}'
+        createCommentMethod:
           type: string
-          description: 'Base64-encoded PEM private key content for PKI authentication (Other provider only). Required for PKI.
+          description: 'The REST API HTTP request method to create a case comment in the third-party system. Valid values are `patch`, `post`, and `put`.
 
             '
-          minLength: 1
-        caData:
+          default: put
+          enum:
+          - patch
+          - post
+          - put
+        createCommentUrl:
           type: string
-          description: 'Base64-encoded PEM CA certificate content for PKI authentication (Other provider only). Optional.
+          description: 'The REST API URL to create a case comment by ID in the third-party system. You can use a variable to add the external system ID to the URL. If you are using the `xpack.actions.allowedHosts setting`, add the hostname to the allowed hosts.
 
             '
-          minLength: 1
+          example: https://example.com/issue/{{{external.system.id}}}/comment
+        createIncidentJson:
+          type: string
+          description: 'A JSON payload sent to the create case URL to create a case. You can use variables to add case data to the payload. Required variables are `case.title` and `case.description`. Due to Mustache template variables (which is the text enclosed in triple braces, for example, `{{{case.title}}}`), the JSON is not validated when you create the connector. The JSON is validated after the Mustache variables have been placed when REST method runs. Manually ensure that the JSON is valid to avoid future validation errors; disregard Mustache variables during your review.
+
+            '
+          example: '{"fields": {"summary": {{{case.title}}},"description": {{{case.description}}},"labels": {{{case.tags}}}}}'
+        createIncidentMethod:
+          type: string
+          description: 'The REST API HTTP request method to create a case in the third-party system. Valid values are `patch`, `post`, and `put`.
+
+            '
+          enum:
+          - patch
+          - post
+          - put
+          default: post
+        createIncidentResponseKey:
+          type: string
+          description: The JSON key in the create external case response that contains the case ID.
+        createIncidentUrl:
+          type: string
+          description: 'The REST API URL to create a case in the third-party system. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
+
+            '
+        getIncidentResponseExternalTitleKey:
+          type: string
+          description: The JSON key in get external case response that contains the case title.
+        getIncidentUrl:
+          type: string
+          description: 'The REST API URL to get the case by ID from the third-party system. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts. You can use a variable to add the external system ID to the URL. Due to Mustache template variables (the text enclosed in triple braces, for example, `{{{case.title}}}`), the JSON is not validated when you create the connector. The JSON is validated after the Mustache variables have been placed when REST method runs. Manually ensure that the JSON is valid, disregarding the Mustache variables, so the later validation will pass.
+
+            '
+          example: https://example.com/issue/{{{external.system.id}}}
+        hasAuth:
+          $ref: '#/components/schemas/has_auth'
+        headers:
+          type: string
+          description: 'A set of key-value pairs sent as headers with the request URLs for the create case, update case, get case, and create comment methods.
+
+            '
+        updateIncidentJson:
+          type: string
+          description: 'The JSON payload sent to the update case URL to update the case. You can use variables to add Kibana Cases data to the payload. Required variables are `case.title` and `case.description`. Due to Mustache template variables (which is the text enclosed in triple braces, for example, `{{{case.title}}}`), the JSON is not validated when you create the connector. The JSON is validated after the Mustache variables have been placed when REST method runs. Manually ensure that the JSON is valid to avoid future validation errors; disregard Mustache variables during your review.
+
+            '
+          example: '{"fields": {"summary": {{{case.title}}},"description": {{{case.description}}},"labels": {{{case.tags}}}}}'
+        updateIncidentMethod:
+          type: string
+          description: 'The REST API HTTP request method to update the case in the third-party system. Valid values are `patch`, `post`, and `put`.
+
+            '
+          default: put
+          enum:
+          - patch
+          - post
+          - put
+        updateIncidentUrl:
+          type: string
+          description: 'The REST API URL to update the case by ID in the third-party system. You can use a variable to add the external system ID to the URL. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
+
+            '
+          example: https://example.com/issue/{{{external.system.ID}}}
+        verificationMode:
+          $ref: '#/components/schemas/verification_mode'
+        viewIncidentUrl:
+          type: string
+          description: 'The URL to view the case in the external system. You can use variables to add the external system ID or external system title to the URL.
+
+            '
+          example: https://testing-jira.atlassian.net/browse/{{{external.system.title}}}
     thehive_secrets:
       title: Connector secrets properties for a TheHive connector
       description: Defines secrets for connectors when type is `.thehive`.
@@ -1701,202 +2407,53 @@ components:
         apiKey:
           type: string
           description: The API key for authentication in TheHive.
-    pagerduty_config:
-      title: Connector request properties for a PagerDuty connector
-      description: Defines properties for connectors when type is `.pagerduty`.
+    email_secrets:
+      title: Connector secrets properties for an email connector
+      description: Defines secrets for connectors when type is `.email`.
+      type: object
+      properties:
+        clientSecret:
+          type: string
+          description: 'The Microsoft Exchange Client secret for OAuth 2.0 client credentials authentication. It must be URL-encoded. If `service` is `exchange_server`, this property is required.
+
+            '
+        password:
+          type: string
+          description: 'The password for HTTP basic authentication. If `hasAuth` is set to `true`, this property is required.
+
+            '
+        user:
+          type: string
+          description: 'The username for HTTP basic authentication. If `hasAuth` is set to `true`, this property is required.
+
+            '
+    resilient_config:
+      title: Connector request properties for a IBM Resilient connector
+      required:
+      - apiUrl
+      - orgId
+      description: Defines properties for connectors when type is `.resilient`.
       type: object
       properties:
         apiUrl:
-          description: The PagerDuty event URL.
-          type:
-          - string
-          - 'null'
-          example: https://events.pagerduty.com/v2/enqueue
-    run_message_serverlog:
-      title: Server log connector parameters
-      description: Test an action that writes an entry to the Kibana server log.
+          description: The IBM Resilient instance URL.
+          type: string
+        orgId:
+          description: The IBM Resilient organization ID.
+          type: string
+    run_documents:
+      title: Index connector parameters
+      description: Test an action that indexes a document into Elasticsearch.
       type: object
       required:
-      - message
+      - documents
       properties:
-        level:
-          type: string
-          description: The log level of the message for server log connectors.
-          enum:
-          - debug
-          - error
-          - fatal
-          - info
-          - trace
-          - warn
-          default: info
-        message:
-          type: string
-          description: The message for server log connectors.
-    run_getagents:
-      title: The getAgents subaction
-      type: object
-      required:
-      - subAction
-      description: The `getAgents` subaction for SentinelOne connectors.
-      properties:
-        subAction:
-          type: string
-          description: The action to test.
-          enum:
-          - getAgents
-    crowdstrike_config:
-      title: Connector request config properties for a Crowdstrike connector
-      required:
-      - url
-      description: Defines config properties for connectors when type is `.crowdstrike`.
-      type: object
-      properties:
-        url:
-          description: 'The CrowdStrike tenant URL. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
-
-            '
-          type: string
-    gemini_secrets:
-      title: Connector secrets properties for a Google Gemini connector
-      description: Defines secrets for connectors when type is `.gemini`.
-      type: object
-      required:
-      - credentialsJson
-      properties:
-        credentialsJson:
-          type: string
-          description: The service account credentials JSON file. The service account should have Vertex AI user IAM role assigned to it.
-    run_fieldsbyissuetype:
-      title: The fieldsByIssueType subaction
-      type: object
-      required:
-      - subAction
-      - subActionParams
-      description: The `fieldsByIssueType` subaction for Jira connectors.
-      properties:
-        subAction:
-          type: string
-          description: The action to test.
-          enum:
-          - fieldsByIssueType
-        subActionParams:
-          type: object
-          required:
-          - id
-          properties:
-            id:
-              type: string
-              description: The Jira issue type identifier.
-              example: 10024
-    run_getchoices:
-      title: The getChoices subaction
-      type: object
-      required:
-      - subAction
-      - subActionParams
-      description: The `getChoices` subaction for ServiceNow ITOM, ServiceNow ITSM, and ServiceNow SecOps connectors.
-      properties:
-        subAction:
-          type: string
-          description: The action to test.
-          enum:
-          - getChoices
-        subActionParams:
-          type: object
-          description: The set of configuration properties for the action.
-          required:
-          - fields
-          properties:
-            fields:
-              type: array
-              description: An array of fields.
-              items:
-                type: string
-    email_config:
-      title: Connector request properties for an email connector
-      description: Defines properties for connectors when type is `.email`.
-      required:
-      - from
-      type: object
-      properties:
-        clientId:
-          description: 'The client identifier, which is a part of OAuth 2.0 client credentials authentication, in GUID format. If `service` is `exchange_server`, this property is required.
-
-            '
-          type:
-          - string
-          - 'null'
-        from:
-          description: 'The from address for all emails sent by the connector. It must be specified in `user@host-name` format.
-
-            '
-          type: string
-        hasAuth:
-          description: 'Specifies whether a user and password are required inside the secrets configuration.
-
-            '
-          default: true
-          type: boolean
-        host:
-          description: 'The host name of the service provider. If the `service` is `elastic_cloud` (for Elastic Cloud notifications) or one of Nodemailer''s well-known email service providers, this property is ignored. If `service` is `other`, this property must be defined.
-
-            '
-          type: string
-        oauthTokenUrl:
-          type:
-          - string
-          - 'null'
-        port:
-          description: 'The port to connect to on the service provider. If the `service` is `elastic_cloud` (for Elastic Cloud notifications) or one of Nodemailer''s well-known email service providers, this property is ignored. If `service` is `other`, this property must be defined.
-
-            '
-          type: integer
-        secure:
-          description: 'Specifies whether the connection to the service provider will use TLS. If the `service` is `elastic_cloud` (for Elastic Cloud notifications) or one of Nodemailer''s well-known email service providers, this property is ignored.
-
-            '
-          type: boolean
-        service:
-          description: 'The name of the email service.
-
-            '
-          type: string
-          enum:
-          - elastic_cloud
-          - exchange_server
-          - gmail
-          - other
-          - outlook365
-          - ses
-        tenantId:
-          description: 'The tenant identifier, which is part of OAuth 2.0 client credentials authentication, in GUID format. If `service` is `exchange_server`, this property is required.
-
-            '
-          type:
-          - string
-          - 'null'
-    run_issue:
-      title: The issue subaction
-      type: object
-      required:
-      - subAction
-      description: The `issue` subaction for Jira connectors.
-      properties:
-        subAction:
-          type: string
-          description: The action to test.
-          enum:
-          - issue
-        subActionParams:
-          type: object
-          required:
-          - id
-          properties:
-            id:
-              type: string
-              description: The Jira issue identifier.
-              example: 71778
+        documents:
+          type: array
+          description: The documents in JSON format for index connectors.
+          items:
+            type: object
+            additionalProperties: true
     run_pushtoservice:
       title: The pushToService subaction
       type: object
@@ -2069,119 +2626,6 @@ components:
                 urgency:
                   type: string
                   description: The urgency of the incident for ServiceNow ITSM connectors.
-    run_addevent:
-      title: The addEvent subaction
-      type: object
-      required:
-      - subAction
-      description: The `addEvent` subaction for ServiceNow ITOM connectors.
-      properties:
-        subAction:
-          type: string
-          description: The action to test.
-          enum:
-          - addEvent
-        subActionParams:
-          type: object
-          description: The set of configuration properties for the action.
-          properties:
-            additional_info:
-              type: string
-              description: Additional information about the event.
-            description:
-              type: string
-              description: The details about the event.
-            event_class:
-              type: string
-              description: A specific instance of the source.
-            message_key:
-              type: string
-              description: All actions sharing this key are associated with the same ServiceNow alert. The default value is `<rule ID>:<alert instance ID>`.
-            metric_name:
-              type: string
-              description: The name of the metric.
-            node:
-              type: string
-              description: The host that the event was triggered for.
-            resource:
-              type: string
-              description: The name of the resource.
-            severity:
-              type: string
-              description: The severity of the event.
-            source:
-              type: string
-              description: The name of the event source type.
-            time_of_event:
-              type: string
-              description: The time of the event.
-            type:
-              type: string
-              description: The type of event.
-    pagerduty_secrets:
-      title: Connector secrets properties for a PagerDuty connector
-      description: Defines secrets for connectors when type is `.pagerduty`.
-      type: object
-      required:
-      - routingKey
-      properties:
-        routingKey:
-          description: 'A 32 character PagerDuty Integration Key for an integration on a service.
-
-            '
-          type: string
-    cases_webhook_secrets:
-      title: Connector secrets properties for Webhook - Case Management connector
-      type: object
-      properties:
-        crt:
-          $ref: '#/components/schemas/crt'
-        key:
-          $ref: '#/components/schemas/key'
-        pfx:
-          $ref: '#/components/schemas/pfx'
-        password:
-          type: string
-          description: 'The password for HTTP basic authentication. If `hasAuth` is set to `true` and and `authType` is `webhook-authentication-basic`, this property is required.
-
-            '
-        user:
-          type: string
-          description: 'The username for HTTP basic authentication. If `hasAuth` is set to `true` and `authType` is `webhook-authentication-basic`, this property is required.
-
-            '
-    auth_type:
-      title: Authentication type
-      type:
-      - string
-      - 'null'
-      enum:
-      - webhook-authentication-basic
-      - webhook-authentication-ssl
-      description: 'The type of authentication to use: basic, SSL, or none.
-
-        '
-    run_issues:
-      title: The issues subaction
-      type: object
-      required:
-      - subAction
-      - subActionParams
-      description: The `issues` subaction for Jira connectors.
-      properties:
-        subAction:
-          type: string
-          description: The action to test.
-          enum:
-          - issues
-        subActionParams:
-          type: object
-          required:
-          - title
-          properties:
-            title:
-              type: string
-              description: The title of the Jira issue.
     run_validchannelid:
       title: The validChannelId subaction
       type: object
@@ -2206,222 +2650,20 @@ components:
               type: string
               description: The Slack channel identifier.
               example: C123ABC456
-    run_documents:
-      title: Index connector parameters
-      description: Test an action that indexes a document into Elasticsearch.
+    tines_secrets:
+      title: Connector secrets properties for a Tines connector
+      description: Defines secrets for connectors when type is `.tines`.
       type: object
       required:
-      - documents
-      properties:
-        documents:
-          type: array
-          description: The documents in JSON format for index connectors.
-          items:
-            type: object
-            additionalProperties: true
-    resilient_secrets:
-      title: Connector secrets properties for IBM Resilient connector
-      required:
-      - apiKeyId
-      - apiKeySecret
-      description: Defines secrets for connectors when type is `.resilient`.
-      type: object
-      properties:
-        apiKeyId:
-          type: string
-          description: The authentication key ID for HTTP Basic authentication.
-        apiKeySecret:
-          type: string
-          description: The authentication key secret for HTTP Basic authentication.
-    cases_webhook_config:
-      title: Connector request properties for Webhook - Case Management connector
-      required:
-      - createIncidentJson
-      - createIncidentResponseKey
-      - createIncidentUrl
-      - getIncidentResponseExternalTitleKey
-      - getIncidentUrl
-      - updateIncidentJson
-      - updateIncidentUrl
-      - viewIncidentUrl
-      description: Defines properties for connectors when type is `.cases-webhook`.
-      type: object
-      properties:
-        authType:
-          $ref: '#/components/schemas/auth_type'
-        ca:
-          $ref: '#/components/schemas/ca'
-        certType:
-          $ref: '#/components/schemas/cert_type'
-        createCommentJson:
-          type: string
-          description: 'A JSON payload sent to the create comment URL to create a case comment. You can use variables to add Kibana Cases data to the payload. The required variable is `case.comment`. Due to Mustache template variables (the text enclosed in triple braces, for example, `{{{case.title}}}`), the JSON is not validated when you create the connector. The JSON is validated once the Mustache variables have been placed when the REST method runs. Manually ensure that the JSON is valid, disregarding the Mustache variables, so the later validation will pass.
-
-            '
-          example: '{"body": {{{case.comment}}}}'
-        createCommentMethod:
-          type: string
-          description: 'The REST API HTTP request method to create a case comment in the third-party system. Valid values are `patch`, `post`, and `put`.
-
-            '
-          default: put
-          enum:
-          - patch
-          - post
-          - put
-        createCommentUrl:
-          type: string
-          description: 'The REST API URL to create a case comment by ID in the third-party system. You can use a variable to add the external system ID to the URL. If you are using the `xpack.actions.allowedHosts setting`, add the hostname to the allowed hosts.
-
-            '
-          example: https://example.com/issue/{{{external.system.id}}}/comment
-        createIncidentJson:
-          type: string
-          description: 'A JSON payload sent to the create case URL to create a case. You can use variables to add case data to the payload. Required variables are `case.title` and `case.description`. Due to Mustache template variables (which is the text enclosed in triple braces, for example, `{{{case.title}}}`), the JSON is not validated when you create the connector. The JSON is validated after the Mustache variables have been placed when REST method runs. Manually ensure that the JSON is valid to avoid future validation errors; disregard Mustache variables during your review.
-
-            '
-          example: '{"fields": {"summary": {{{case.title}}},"description": {{{case.description}}},"labels": {{{case.tags}}}}}'
-        createIncidentMethod:
-          type: string
-          description: 'The REST API HTTP request method to create a case in the third-party system. Valid values are `patch`, `post`, and `put`.
-
-            '
-          enum:
-          - patch
-          - post
-          - put
-          default: post
-        createIncidentResponseKey:
-          type: string
-          description: The JSON key in the create external case response that contains the case ID.
-        createIncidentUrl:
-          type: string
-          description: 'The REST API URL to create a case in the third-party system. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
-
-            '
-        getIncidentResponseExternalTitleKey:
-          type: string
-          description: The JSON key in get external case response that contains the case title.
-        getIncidentUrl:
-          type: string
-          description: 'The REST API URL to get the case by ID from the third-party system. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts. You can use a variable to add the external system ID to the URL. Due to Mustache template variables (the text enclosed in triple braces, for example, `{{{case.title}}}`), the JSON is not validated when you create the connector. The JSON is validated after the Mustache variables have been placed when REST method runs. Manually ensure that the JSON is valid, disregarding the Mustache variables, so the later validation will pass.
-
-            '
-          example: https://example.com/issue/{{{external.system.id}}}
-        hasAuth:
-          $ref: '#/components/schemas/has_auth'
-        headers:
-          type: string
-          description: 'A set of key-value pairs sent as headers with the request URLs for the create case, update case, get case, and create comment methods.
-
-            '
-        updateIncidentJson:
-          type: string
-          description: 'The JSON payload sent to the update case URL to update the case. You can use variables to add Kibana Cases data to the payload. Required variables are `case.title` and `case.description`. Due to Mustache template variables (which is the text enclosed in triple braces, for example, `{{{case.title}}}`), the JSON is not validated when you create the connector. The JSON is validated after the Mustache variables have been placed when REST method runs. Manually ensure that the JSON is valid to avoid future validation errors; disregard Mustache variables during your review.
-
-            '
-          example: '{"fields": {"summary": {{{case.title}}},"description": {{{case.description}}},"labels": {{{case.tags}}}}}'
-        updateIncidentMethod:
-          type: string
-          description: 'The REST API HTTP request method to update the case in the third-party system. Valid values are `patch`, `post`, and `put`.
-
-            '
-          default: put
-          enum:
-          - patch
-          - post
-          - put
-        updateIncidentUrl:
-          type: string
-          description: 'The REST API URL to update the case by ID in the third-party system. You can use a variable to add the external system ID to the URL. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
-
-            '
-          example: https://example.com/issue/{{{external.system.ID}}}
-        verificationMode:
-          $ref: '#/components/schemas/verification_mode'
-        viewIncidentUrl:
-          type: string
-          description: 'The URL to view the case in the external system. You can use variables to add the external system ID or external system title to the URL.
-
-            '
-          example: https://testing-jira.atlassian.net/browse/{{{external.system.title}}}
-    jira_config:
-      title: Connector request properties for a Jira connector
-      required:
-      - apiUrl
-      - projectKey
-      description: Defines properties for connectors when type is `.jira`.
-      type: object
-      properties:
-        apiUrl:
-          description: The Jira instance URL.
-          type: string
-        projectKey:
-          description: The Jira project key.
-          type: string
-    slack_api_secrets:
-      title: Connector secrets properties for a Web API Slack connector
-      description: Defines secrets for connectors when type is `.slack`.
-      required:
-      - token
-      type: object
-      properties:
-        token:
-          type: string
-          description: Slack bot user OAuth token.
-    genai_azure_config:
-      title: Connector request properties for an OpenAI connector that uses Azure OpenAI
-      description: 'Defines properties for connectors when type is `.gen-ai` and the API provider is `Azure OpenAI`.
-
-        '
-      type: object
-      required:
-      - apiProvider
-      - apiUrl
-      properties:
-        apiProvider:
-          type: string
-          description: The OpenAI API provider.
-          enum:
-          - Azure OpenAI
-        apiUrl:
-          type: string
-          description: The OpenAI API endpoint.
-    sentinelone_secrets:
-      title: Connector secrets properties for a SentinelOne connector
-      description: Defines secrets for connectors when type is `.sentinelone`.
-      type: object
-      required:
+      - email
       - token
       properties:
+        email:
+          description: The email used to sign in to Tines.
+          type: string
         token:
-          description: The A SentinelOne API token.
+          description: The Tines API token.
           type: string
-    cert_type:
-      title: Certificate type
-      type: string
-      description: 'If the `authType` is `webhook-authentication-ssl`, specifies whether the certificate authentication data is in a CRT and key file format or a PFX file format.
-
-        '
-      enum:
-      - ssl-crt-key
-      - ssl-pfx
-    key:
-      title: Certificate key
-      type: string
-      description: If `authType` is `webhook-authentication-ssl` and `certType` is `ssl-crt-key`, it is a base64 encoded version of the KEY file.
-    run_issuetypes:
-      title: The issueTypes subaction
-      type: object
-      required:
-      - subAction
-      description: The `issueTypes` subaction for Jira connectors.
-      properties:
-        subAction:
-          type: string
-          description: The action to test.
-          enum:
-          - issueTypes
     bedrock_secrets:
       title: Connector secrets properties for an Amazon Bedrock connector
       description: Defines secrets for connectors when type is `.bedrock`.
@@ -2436,144 +2678,6 @@ components:
         secret:
           type: string
           description: The AWS secret for authentication.
-    genai_openai_config:
-      title: Connector request properties for an OpenAI connector
-      description: 'Defines properties for connectors when type is `.gen-ai` and the API provider is `OpenAI`.
-
-        '
-      type: object
-      required:
-      - apiProvider
-      - apiUrl
-      properties:
-        apiProvider:
-          type: string
-          description: The OpenAI API provider.
-          enum:
-          - OpenAI
-        apiUrl:
-          type: string
-          description: The OpenAI API endpoint.
-        defaultModel:
-          type: string
-          description: The default model to use for requests.
-    run_message_slack:
-      title: Slack connector parameters
-      description: 'Test an action that sends a message to Slack. It is applicable only when the connector type is `.slack`.
-
-        '
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: The Slack message text, which cannot contain Markdown, images, or other advanced formatting.
-    d3security_secrets:
-      title: Connector secrets properties for a D3 Security connector
-      description: Defines secrets for connectors when type is `.d3security`.
-      required:
-      - token
-      type: object
-      properties:
-        token:
-          type: string
-          description: The D3 Security token.
-    genai_openai_other_config:
-      title: Connector request properties for an OpenAI connector with Other provider
-      description: 'Defines properties for connectors when type is `.gen-ai` and the API provider is `Other` (OpenAI-compatible service), including optional PKI authentication.
-
-        '
-      type: object
-      required:
-      - apiProvider
-      - apiUrl
-      - defaultModel
-      properties:
-        apiProvider:
-          type: string
-          description: The OpenAI API provider.
-          enum:
-          - Other
-        apiUrl:
-          type: string
-          description: The OpenAI-compatible API endpoint.
-        defaultModel:
-          type: string
-          description: The default model to use for requests.
-        certificateData:
-          type: string
-          description: PEM-encoded certificate content.
-          minLength: 1
-        privateKeyData:
-          type: string
-          description: PEM-encoded private key content.
-          minLength: 1
-        caData:
-          type: string
-          description: PEM-encoded CA certificate content.
-          minLength: 1
-        verificationMode:
-          type: string
-          description: SSL verification mode for PKI authentication.
-          enum:
-          - full
-          - certificate
-          - none
-          default: full
-        headers:
-          type: object
-          description: Custom headers to include in requests.
-          additionalProperties:
-            type: string
-    crt:
-      title: Certificate
-      type: string
-      description: If `authType` is `webhook-authentication-ssl` and `certType` is `ssl-crt-key`, it is a base64 encoded version of the CRT or CERT file.
-    gemini_config:
-      title: Connector request properties for an Google Gemini connector
-      description: Defines properties for connectors when type is `.gemini`.
-      type: object
-      required:
-      - apiUrl
-      - gcpRegion
-      - gcpProjectID
-      properties:
-        apiUrl:
-          type: string
-          description: The Google Gemini request URL.
-        defaultModel:
-          type: string
-          description: The generative artificial intelligence model for Google Gemini to use.
-          default: gemini-2.5-pro
-        gcpRegion:
-          type: string
-          description: The GCP region where the Vertex AI endpoint enabled.
-        gcpProjectID:
-          type: string
-          description: The Google ProjectID that has Vertex AI endpoint enabled.
-    run_getfields:
-      title: The getFields subaction
-      type: object
-      required:
-      - subAction
-      description: The `getFields` subaction for Jira, ServiceNow ITSM, and ServiceNow SecOps connectors.
-      properties:
-        subAction:
-          type: string
-          description: The action to test.
-          enum:
-          - getFields
-    opsgenie_secrets:
-      title: Connector secrets properties for an Opsgenie connector
-      required:
-      - apiKey
-      description: Defines secrets for connectors when type is `.opsgenie`.
-      type: object
-      properties:
-        apiKey:
-          description: The Opsgenie API authentication key for HTTP Basic authentication.
-          type: string
     index_config:
       title: Connector request properties for an index connector
       required:
@@ -2596,27 +2700,70 @@ components:
             '
           default: false
           type: boolean
-    webhook_secrets:
-      title: Connector secrets properties for a Webhook connector
-      description: Defines secrets for connectors when type is `.webhook`.
+    slack_api_config:
+      title: Connector request properties for a Slack connector
+      description: Defines properties for connectors when type is `.slack_api`.
       type: object
       properties:
-        crt:
-          $ref: '#/components/schemas/crt'
-        key:
-          $ref: '#/components/schemas/key'
-        pfx:
-          $ref: '#/components/schemas/pfx'
-        password:
+        allowedChannels:
+          type: array
+          description: A list of valid Slack channels.
+          items:
+            type: object
+            required:
+            - id
+            - name
+            maxItems: 25
+            properties:
+              id:
+                type: string
+                description: The Slack channel ID.
+                example: C123ABC456
+                minLength: 1
+              name:
+                type: string
+                description: The Slack channel name.
+                minLength: 1
+    genai_secrets:
+      title: Connector secrets properties for an OpenAI connector
+      description: 'Defines secrets for connectors when type is `.gen-ai`. Supports both API key authentication (OpenAI, Azure OpenAI, and `Other`) and PKI authentication (`Other` provider only). PKI fields must be base64-encoded PEM content.
+
+        '
+      type: object
+      properties:
+        apiKey:
           type: string
-          description: 'The password for HTTP basic authentication or the passphrase for the SSL certificate files. If `hasAuth` is set to `true` and `authType` is `webhook-authentication-basic`, this property is required.
+          description: 'The API key for authentication. For OpenAI and Azure OpenAI providers, it is required. For the `Other` provider, it is required if you do not use PKI authentication. With PKI, you can also optionally include an API key if the OpenAI-compatible service supports or requires one.
 
             '
-        user:
+        certificateData:
           type: string
-          description: 'The username for HTTP basic authentication. If `hasAuth` is set to `true`  and `authType` is `webhook-authentication-basic`, this property is required.
+          description: 'Base64-encoded PEM certificate content for PKI authentication (Other provider only). Required for PKI.
 
             '
+          minLength: 1
+        privateKeyData:
+          type: string
+          description: 'Base64-encoded PEM private key content for PKI authentication (Other provider only). Required for PKI.
+
+            '
+          minLength: 1
+        caData:
+          type: string
+          description: 'Base64-encoded PEM CA certificate content for PKI authentication (Other provider only). Optional.
+
+            '
+          minLength: 1
+    torq_secrets:
+      title: Connector secrets properties for a Torq connector
+      description: Defines secrets for connectors when type is `.torq`.
+      type: object
+      required:
+      - token
+      properties:
+        token:
+          description: The secret of the webhook authentication header.
+          type: string
     servicenow_itom_config:
       title: Connector request properties for a ServiceNow ITOM connector
       required:
@@ -2648,555 +2795,408 @@ components:
 
             '
           type: string
-    resilient_config:
-      title: Connector request properties for a IBM Resilient connector
-      required:
-      - apiUrl
-      - orgId
-      description: Defines properties for connectors when type is `.resilient`.
-      type: object
-      properties:
-        apiUrl:
-          description: The IBM Resilient instance URL.
-          type: string
-        orgId:
-          description: The IBM Resilient organization ID.
-          type: string
-    torq_config:
-      title: Connector request properties for a Torq connector
-      description: Defines properties for connectors when type is `.torq`.
+    gemini_secrets:
+      title: Connector secrets properties for a Google Gemini connector
+      description: Defines secrets for connectors when type is `.gemini`.
       type: object
       required:
-      - webhookIntegrationUrl
+      - credentialsJson
       properties:
-        webhookIntegrationUrl:
-          description: The endpoint URL of the Elastic Security integration in Torq.
+        credentialsJson:
           type: string
-    teams_secrets:
-      title: Connector secrets properties for a Microsoft Teams connector
-      description: Defines secrets for connectors when type is `.teams`.
-      type: object
-      required:
-      - webhookUrl
-      properties:
-        webhookUrl:
-          type: string
-          description: 'The URL of the incoming webhook. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
-
-            '
-    jira_secrets:
-      title: Connector secrets properties for a Jira connector
-      required:
-      - apiToken
-      - email
-      description: Defines secrets for connectors when type is `.jira`.
-      type: object
-      properties:
-        apiToken:
-          description: The Jira API authentication token for HTTP basic authentication.
-          type: string
-        email:
-          description: The account email for HTTP Basic authentication.
-          type: string
-    run_getagentdetails:
-      title: The getAgentDetails subaction
-      type: object
-      required:
-      - subAction
-      - subActionParams
-      description: The `getAgentDetails` subaction for CrowdStrike connectors.
-      properties:
-        subAction:
-          type: string
-          description: The action to test.
-          enum:
-          - getAgentDetails
-        subActionParams:
-          type: object
-          description: The set of configuration properties for the action.
-          required:
-          - ids
-          properties:
-            ids:
-              type: array
-              description: An array of CrowdStrike agent identifiers.
-              items:
-                type: string
-    run_acknowledge_resolve_pagerduty:
-      title: PagerDuty connector parameters
-      description: Test an action that acknowledges or resolves a PagerDuty alert.
-      type: object
-      required:
-      - dedupKey
-      - eventAction
-      properties:
-        dedupKey:
-          description: The deduplication key for the PagerDuty alert.
-          type: string
-          maxLength: 255
-        eventAction:
-          description: The type of event.
-          type: string
-          enum:
-          - acknowledge
-          - resolve
-    thehive_config:
-      title: Connector request properties for a TheHive connector
-      description: Defines configuration properties for connectors when type is `.thehive`.
-      type: object
-      required:
-      - url
-      properties:
-        organisation:
-          type: string
-          description: 'The organisation in TheHive that will contain the alerts or cases. By default, the connector uses the default organisation of the user account that created the API key.
-
-            '
-        url:
-          type: string
-          description: 'The instance URL in TheHive. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
-
-            '
-    xmatters_config:
-      title: Connector request properties for an xMatters connector
-      description: Defines properties for connectors when type is `.xmatters`.
-      type: object
-      properties:
-        configUrl:
-          description: 'The request URL for the Elastic Alerts trigger in xMatters. It is applicable only when `usesBasic` is `true`.
-
-            '
-          type:
-          - string
-          - 'null'
-        usesBasic:
-          description: Specifies whether the connector uses HTTP basic authentication (`true`) or URL authentication (`false`).
-          type: boolean
-          default: true
-    tines_config:
-      title: Connector request properties for a Tines connector
-      description: Defines properties for connectors when type is `.tines`.
-      type: object
-      required:
-      - url
-      properties:
-        url:
-          description: 'The Tines tenant URL. If you are using the `xpack.actions.allowedHosts` setting, make sure this hostname is added to the allowed hosts.
-
-            '
-          type: string
-    tines_secrets:
-      title: Connector secrets properties for a Tines connector
-      description: Defines secrets for connectors when type is `.tines`.
-      type: object
-      required:
-      - email
-      - token
-      properties:
-        email:
-          description: The email used to sign in to Tines.
-          type: string
-        token:
-          description: The Tines API token.
-          type: string
-    defender_config:
-      title: Connector request properties for a Microsoft Defender for Endpoint connector
-      required:
-      - apiUrl
-      - projectKey
-      description: Defines properties for connectors when type is `.microsoft_defender_endpoint`.
-      type: object
-      properties:
-        apiUrl:
-          type: string
-          description: 'The URL of the Microsoft Defender for Endpoint API. If you are using the `xpack.actions.allowedHosts` setting, make sure the hostname is added to the allowed hosts.
-
-            '
-        clientId:
-          type: string
-          description: The application (client) identifier for your app in the Azure portal.
-        oAuthScope:
-          type: string
-          description: The OAuth scopes or permission sets for the Microsoft Defender for Endpoint API.
-        oAuthServerUrl:
-          type: string
-          description: The OAuth server URL where authentication is sent and received for the Microsoft Defender for Endpoint API.
-        tenantId:
-          description: The tenant identifier for your app in the Azure portal.
-          type: string
-    servicenow_config:
-      title: Connector request properties for a ServiceNow ITSM connector
-      required:
-      - apiUrl
-      description: Defines properties for connectors when type is `.servicenow`.
-      type: object
-      properties:
-        apiUrl:
-          type: string
-          description: The ServiceNow instance URL.
-        clientId:
-          description: 'The client ID assigned to your OAuth application. This property is required when `isOAuth` is `true`.
-
-            '
-          type: string
-        isOAuth:
-          description: 'The type of authentication to use. The default value is false, which means basic authentication is used instead of open authorization (OAuth).
-
-            '
-          default: false
-          type: boolean
-        jwtKeyId:
-          description: 'The key identifier assigned to the JWT verifier map of your OAuth application. This property is required when `isOAuth` is `true`.
-
-            '
-          type: string
-        userIdentifierValue:
-          description: 'The identifier to use for OAuth authentication. This identifier should be the user field you selected when you created an OAuth JWT API endpoint for external clients in your ServiceNow instance. For example, if the selected user field is `Email`, the user identifier should be the user''s email address. This property is required when `isOAuth` is `true`.
-
-            '
-          type: string
-        usesTableApi:
-          description: 'Determines whether the connector uses the Table API or the Import Set API. This property is supported only for ServiceNow ITSM and ServiceNow SecOps connectors.  NOTE: If this property is set to `false`, the Elastic application should be installed in ServiceNow.
-
-            '
-          default: true
-          type: boolean
-    slack_api_config:
-      title: Connector request properties for a Slack connector
-      description: Defines properties for connectors when type is `.slack_api`.
-      type: object
-      properties:
-        allowedChannels:
-          type: array
-          description: A list of valid Slack channels.
-          items:
-            type: object
-            required:
-            - id
-            - name
-            maxItems: 25
-            properties:
-              id:
-                type: string
-                description: The Slack channel ID.
-                example: C123ABC456
-                minLength: 1
-              name:
-                type: string
-                description: The Slack channel name.
-                minLength: 1
-    has_auth:
-      title: Has authentication
-      type: boolean
-      description: If true, a username and password for login type authentication must be provided.
-      default: true
-    ca:
-      title: Certificate authority
-      type: string
-      description: 'A base64 encoded version of the certificate authority file that the connector can trust to sign and validate certificates. This option is available for all authentication types.
-
-        '
-    run_message_email:
-      title: Email connector parameters
-      description: 'Test an action that sends an email message. There must be at least one recipient in `to`, `cc`, or `bcc`.
+          description: The service account credentials JSON file. The service account should have Vertex AI user IAM role assigned to it.
+    genai_openai_config:
+      title: Connector request properties for an OpenAI connector
+      description: 'Defines properties for connectors when type is `.gen-ai` and the API provider is `OpenAI`.
 
         '
       type: object
       required:
-      - message
-      - subject
-      properties:
-        bcc:
-          type: array
-          items:
-            type: string
-          description: 'A list of "blind carbon copy" email addresses. Addresses can be specified in `user@host-name` format or in name `<user@host-name>` format
-
-            '
-        cc:
-          type: array
-          items:
-            type: string
-          description: "A list of \"carbon copy\" email addresses. Addresses can be specified in `user@host-name` format or in name `<user@host-name>` format \n"
-        message:
-          type: string
-          description: The email message text. Markdown format is supported.
-        subject:
-          type: string
-          description: The subject line of the email.
-        to:
-          type: array
-          description: 'A list of email addresses. Addresses can be specified in `user@host-name` format or in name `<user@host-name>` format.
-
-            '
-          items:
-            type: string
-    run_trigger_pagerduty:
-      title: PagerDuty connector parameters
-      description: Test an action that triggers a PagerDuty alert.
-      type: object
-      required:
-      - eventAction
-      properties:
-        class:
-          description: The class or type of the event.
-          type: string
-          example: cpu load
-        component:
-          description: The component of the source machine that is responsible for the event.
-          type: string
-          example: eth0
-        customDetails:
-          description: Additional details to add to the event.
-          type: object
-        dedupKey:
-          description: 'All actions sharing this key will be associated with the same PagerDuty alert. This value is used to correlate trigger and resolution.
-
-            '
-          type: string
-          maxLength: 255
-        eventAction:
-          description: The type of event.
-          type: string
-          enum:
-          - trigger
-        group:
-          description: The logical grouping of components of a service.
-          type: string
-          example: app-stack
-        links:
-          description: A list of links to add to the event.
-          type: array
-          items:
-            type: object
-            properties:
-              href:
-                description: The URL for the link.
-                type: string
-              text:
-                description: A plain text description of the purpose of the link.
-                type: string
-        severity:
-          description: The severity of the event on the affected system.
-          type: string
-          enum:
-          - critical
-          - error
-          - info
-          - warning
-          default: info
-        source:
-          description: 'The affected system, such as a hostname or fully qualified domain name. Defaults to the Kibana saved object id of the action.
-
-            '
-          type: string
-        summary:
-          description: A summery of the event.
-          type: string
-          maxLength: 1024
-        timestamp:
-          description: An ISO-8601 timestamp that indicates when the event was detected or generated.
-          type: string
-          format: date-time
-    bedrock_config:
-      title: Connector request properties for an Amazon Bedrock connector
-      description: Defines properties for connectors when type is `.bedrock`.
-      type: object
-      required:
+      - apiProvider
       - apiUrl
       properties:
+        apiProvider:
+          type: string
+          description: The OpenAI API provider.
+          enum:
+          - OpenAI
         apiUrl:
           type: string
-          description: The Amazon Bedrock request URL.
-        region:
-          type: string
-          description: 'Optional AWS region for request signing. Required when using a custom endpoint URL that does not include the region in the hostname (for example, `us-west-1`).
-
-            '
+          description: The OpenAI API endpoint.
         defaultModel:
           type: string
-          description: 'The generative artificial intelligence model for Amazon Bedrock to use. Current support is for the Anthropic Claude models.
-
-            '
-          default: us.anthropic.claude-sonnet-4-5-20250929-v1:0
-    xmatters_secrets:
-      title: Connector secrets properties for an xMatters connector
-      description: Defines secrets for connectors when type is `.xmatters`.
-      type: object
-      properties:
-        password:
-          description: 'A user name for HTTP basic authentication. It is applicable only when `usesBasic` is `true`.
-
-            '
-          type: string
-        secretsUrl:
-          description: 'The request URL for the Elastic Alerts trigger in xMatters with the API key included in the URL. It is applicable only when `usesBasic` is `false`.
-
-            '
-          type: string
-        user:
-          description: 'A password for HTTP basic authentication. It is applicable only when `usesBasic` is `true`.
-
-            '
-          type: string
-    opsgenie_config:
-      title: Connector request properties for an Opsgenie connector
-      required:
-      - apiUrl
-      description: Defines properties for connectors when type is `.opsgenie`.
-      type: object
-      properties:
-        apiUrl:
-          description: 'The Opsgenie URL. For example, `https://api.opsgenie.com` or `https://api.eu.opsgenie.com`. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
-
-            '
-          type: string
-    sentinelone_config:
-      title: Connector request properties for a SentinelOne connector
-      required:
-      - url
-      description: Defines properties for connectors when type is `.sentinelone`.
-      type: object
-      properties:
-        url:
-          description: 'The SentinelOne tenant URL. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
-
-            '
-          type: string
-    servicenow_secrets:
-      title: Connector secrets properties for ServiceNow ITOM, ServiceNow ITSM, and ServiceNow SecOps connectors
-      description: Defines secrets for connectors when type is `.servicenow`, `.servicenow-sir`, or `.servicenow-itom`.
-      type: object
-      properties:
-        clientSecret:
-          type: string
-          description: The client secret assigned to your OAuth application. This property is required when `isOAuth` is `true`.
-        password:
-          type: string
-          description: The password for HTTP basic authentication. This property is required when `isOAuth` is `false`.
-        privateKey:
-          type: string
-          description: The RSA private key that you created for use in ServiceNow. This property is required when `isOAuth` is `true`.
-        privateKeyPassword:
-          type: string
-          description: The password for the RSA private key. This property is required when `isOAuth` is `true` and you set a password on your private key.
-        username:
-          type: string
-          description: The username for HTTP basic authentication. This property is required when `isOAuth` is `false`.
-    d3security_config:
-      title: Connector request properties for a D3 Security connector
-      description: Defines properties for connectors when type is `.d3security`.
-      type: object
-      required:
-      - url
-      properties:
-        url:
-          type: string
-          description: 'The D3 Security API request URL. If you are using the `xpack.actions.allowedHosts` setting, add the hostname to the allowed hosts.
-
-            '
-    defender_secrets:
-      title: Connector secrets properties for a Microsoft Defender for Endpoint connector
-      required:
-      - clientSecret
-      description: Defines secrets for connectors when type is `..microsoft_defender_endpoint`.
-      type: object
-      properties:
-        clientSecret:
-          description: The client secret for your app in the Azure portal.
-          type: string
-    run_closeincident:
-      title: The closeIncident subaction
+          description: The default model to use for requests.
+    run_getfields:
+      title: The getFields subaction
       type: object
       required:
       - subAction
-      - subActionParams
-      description: The `closeIncident` subaction for ServiceNow ITSM connectors.
+      description: The `getFields` subaction for Jira, ServiceNow ITSM, and ServiceNow SecOps connectors.
       properties:
         subAction:
           type: string
           description: The action to test.
           enum:
-          - closeIncident
-        subActionParams:
-          type: object
-          required:
-          - incident
-          properties:
+          - getFields
+    verification_mode:
+      title: Verification mode
+      type: string
+      enum:
+      - certificate
+      - full
+      - none
+      default: full
+      description: 'Controls the verification of certificates. Use `full` to validate that the certificate has an issue date within the `not_before` and `not_after` dates, chains to a trusted certificate authority (CA), and has a hostname or IP address that matches the names within the certificate. Use `certificate` to validate the certificate and verify that it is signed by a trusted authority; this option does not check the certificate hostname. Use `none` to skip certificate validation.
+
+        '
+  examples:
+    run_jira_connector_request:
+      summary: Run a Jira connector to retrieve the list of issue types.
+      value:
+        params:
+          subAction: issueTypes
+    create_email_connector_request:
+      summary: Create an email connector.
+      value:
+        name: email-connector-1
+        connector_type_id: .email
+        config:
+          from: tester@example.com
+          hasAuth: true
+          host: https://example.com
+          port: 1025
+          secure: false
+          service: other
+        secrets:
+          user: username
+          password: password
+    create_index_connector_response:
+      summary: A new index connector.
+      value:
+        id: c55b6eb0-6bad-11eb-9f3b-611eebc6c3ad
+        connector_type_id: .index
+        name: my-connector
+        config:
+          index: test-index
+          refresh: false
+          executionTimeField: null
+        is_preconfigured: false
+        is_deprecated: false
+        is_missing_secrets: false
+        is_system_action: false
+    update_index_connector_request:
+      summary: Update an index connector.
+      value:
+        name: updated-connector
+        config:
+          index: updated-index
+    run_swimlane_connector_response:
+      summary: Response from creating a Swimlane incident.
+      value:
+        connector_id: a4746470-2f94-11ed-b0e0-87533c532698
+        data:
+          id: aKPmBHWzmdRQtx6Mx
+          title: TEST-457
+          url: https://elastic.swimlane.url.us/record/aNcL2xniGHGpa2AHb/aKPmBHWzmdRQtx6Mx
+          pushedDate: '2022-09-08T16:52:27.866Z'
+          comments:
+          - commentId: 1
+            pushedDate: '2022-09-08T16:52:27.865Z'
+        status: ok
+    run_jira_connector_response:
+      summary: Response from retrieving the list of issue types for a Jira connector.
+      value:
+        connector_id: b3aad810-edbe-11ec-82d1-11348ecbf4a6
+        data:
+        - id: 10024
+          name: Improvement
+        - id: 10006
+          name: Task
+        - id: 10007
+          name: Sub-task
+        - id: 10025
+          name: New Feature
+        - id: 10023
+          name: Bug
+        - id: 10000
+          name: Epic
+        status: ok
+    run_slack_api_connector_response:
+      summary: Response from posting a message with a Slack connector.
+      value:
+        status: ok
+        data:
+          ok: true
+          channel: C123ABC456
+          ts: '1234567890.123456'
+          message:
+            bot_id: B12BCDEFGHI
+            type: message
+            text: A test message
+            user: U12A345BC6D
+            ts: '1234567890.123456'
+            app_id: A01BC2D34EF
+            blocks:
+            - type: rich_text
+              block_id: /NXe
+              elements:
+              - type: rich_text_section
+                elements:
+                - type: text
+                  text: A test message.
+            team: T01ABCDE2F
+            bot_profile:
+              id: B12BCDEFGHI
+              app_id: A01BC2D34EF
+              name: test
+              icons:
+                image_36: https://a.slack-edge.com/80588/img/plugins/app/bot_36.png
+              deleted: false
+              updated: 1672169705
+              team_id: T01ABCDE2F
+        connector_id: .slack_api
+    run_server_log_connector_response:
+      summary: Response from running a server log connector.
+      value:
+        connector_id: 7fc7b9a0-ecc9-11ec-8736-e7d63118c907
+        status: ok
+    create_webhook_connector_request:
+      summary: Create a webhook connector with SSL authentication.
+      value:
+        name: my-webhook-connector
+        connector_type_id: .webhook
+        config:
+          method: post
+          url: https://example.com
+          authType: webhook-authentication-ssl
+          certType: ssl-crt-key
+        secrets:
+          crt: QmFnIEF0dH...
+          key: LS0tLS1CRUdJ...
+          password: my-passphrase
+    run_servicenow_itom_connector_request:
+      summary: Run a ServiceNow ITOM connector to retrieve the list of choices.
+      value:
+        params:
+          subAction: getChoices
+          subActionParams:
+            fields:
+            - severity
+            - urgency
+    create_xmatters_connector_request:
+      summary: Create an xMatters connector with URL authentication.
+      value:
+        name: my-xmatters-connector
+        connector_type_id: .xmatters
+        config:
+          usesBasic: false
+        secrets:
+          secretsUrl: https://example.com?apiKey=xxxxx
+    run_index_connector_request:
+      summary: Run an index connector.
+      value:
+        params:
+          documents:
+          - id: my_doc_id
+            name: my_doc_name
+            message: hello, world
+    get_connector_response:
+      summary: Get connector details.
+      value:
+        id: df770e30-8b8b-11ed-a780-3b746c987a81
+        name: my_server_log_connector
+        config: {}
+        connector_type_id: .server-log
+        is_preconfigured: false
+        is_deprecated: false
+        is_missing_secrets: false
+        is_system_action: false
+    run_slack_api_connector_request:
+      summary: Run a Slack connector that uses the web API method to post a message on a channel.
+      value:
+        params:
+          subAction: postMessage
+          subActionParams:
+            channelIds:
+            - C123ABC456
+            text: A test message.
+    create_email_connector_response:
+      summary: A new email connector.
+      value:
+        id: 90a82c60-478f-11ee-a343-f98a117c727f
+        connector_type_id: .email
+        name: email-connector-1
+        config:
+          from: tester@example.com
+          service: other
+          host: https://example.com
+          port: 1025
+          secure: false
+          hasAuth: true
+          tenantId: null
+          clientId: null
+          oauthTokenUrl: null
+        is_preconfigured: false
+        is_deprecated: false
+        is_missing_secrets: false
+        is_system_action: false
+    get_connector_types_generativeai_response:
+      summary: A list of connector types for the `generativeAI` feature.
+      value:
+      - id: .gen-ai
+        name: OpenAI
+        enabled: true
+        enabled_in_config: true
+        enabled_in_license: true
+        minimum_license_required: enterprise
+        supported_feature_ids:
+        - generativeAIForSecurity
+        - generativeAIForObservability
+        - generativeAIForSearchPlayground
+        is_system_action_type: false
+      - id: .bedrock
+        name: AWS Bedrock
+        enabled: true
+        enabled_in_config: true
+        enabled_in_license: true
+        minimum_license_required: enterprise
+        supported_feature_ids:
+        - generativeAIForSecurity
+        - generativeAIForObservability
+        - generativeAIForSearchPlayground
+        is_system_action_type: false
+      - id: .gemini
+        name: Google Gemini
+        enabled: true
+        enabled_in_config: true
+        enabled_in_license: true
+        minimum_license_required: enterprise
+        supported_feature_ids:
+        - generativeAIForSecurity
+        is_system_action_type: false
+    run_swimlane_connector_request:
+      summary: Run a Swimlane connector to create an incident.
+      value:
+        params:
+          subAction: pushToService
+          subActionParams:
+            comments:
+            - commentId: 1
+              comment: A comment about the incident.
             incident:
-              type: object
-              anyOf:
-              - required:
-                - correlation_id
-              - required:
-                - externalId
-              properties:
-                correlation_id:
-                  type:
-                  - string
-                  - 'null'
-                  description: 'An identifier that is assigned to the incident when it is created by the connector. NOTE: If you use the default value and the rule generates multiple alerts that use the same alert IDs, the latest open incident for this correlation ID is closed unless you specify the external ID.
-
-                    '
-                  maxLength: 100
-                  default: '{{rule.id}}:{{alert.id}}'
-                externalId:
-                  type:
-                  - string
-                  - 'null'
-                  description: The unique identifier (`incidentId`) for the incident in ServiceNow.
-    torq_secrets:
-      title: Connector secrets properties for a Torq connector
-      description: Defines secrets for connectors when type is `.torq`.
-      type: object
-      required:
-      - token
-      properties:
-        token:
-          description: The secret of the webhook authentication header.
-          type: string
-    swimlane_secrets:
-      title: Connector secrets properties for a Swimlane connector
-      description: Defines secrets for connectors when type is `.swimlane`.
-      type: object
-      properties:
-        apiToken:
-          description: Swimlane API authentication token.
-          type: string
-    crowdstrike_secrets:
-      title: Connector secrets properties for a Crowdstrike connector
-      description: Defines secrets for connectors when type is `.crowdstrike`.
-      type: object
-      required:
-      - clientId
-      - clientSecret
-      properties:
-        clientId:
-          description: The CrowdStrike API client identifier.
-          type: string
-        clientSecret:
-          description: The CrowdStrike API client secret to authenticate the `clientId`.
-          type: string
-    email_secrets:
-      title: Connector secrets properties for an email connector
-      description: Defines secrets for connectors when type is `.email`.
-      type: object
-      properties:
-        clientSecret:
-          type: string
-          description: 'The Microsoft Exchange Client secret for OAuth 2.0 client credentials authentication. It must be URL-encoded. If `service` is `exchange_server`, this property is required.
-
-            '
-        password:
-          type: string
-          description: 'The password for HTTP basic authentication. If `hasAuth` is set to `true`, this property is required.
-
-            '
-        user:
-          type: string
-          description: 'The username for HTTP basic authentication. If `hasAuth` is set to `true`, this property is required.
-
-            '
+              caseId: '1000'
+              caseName: Case name
+              description: Description of the incident.
+    get_connectors_response:
+      summary: A list of connectors
+      value:
+      - id: preconfigured-email-connector
+        name: my-preconfigured-email-notification
+        connector_type_id: .email
+        is_preconfigured: true
+        is_deprecated: false
+        referenced_by_count: 0
+        is_system_action: false
+      - id: e07d0c80-8b8b-11ed-a780-3b746c987a81
+        name: my-index-connector
+        config:
+          index: test-index
+          refresh: false
+          executionTimeField: null
+        connector_type_id: .index
+        is_preconfigured: false
+        is_deprecated: false
+        referenced_by_count: 2
+        is_missing_secrets: false
+        is_system_action: false
+    create_webhook_connector_response:
+      summary: A new webhook connector.
+      value:
+        id: 900eb010-3b9d-11ee-a642-8ffbb94e38bd
+        name: my-webhook-connector
+        config:
+          method: post
+          url: https://example.com
+          authType: webhook-authentication-ssl
+          certType: ssl-crt-key
+          verificationMode: full
+          headers: null
+          hasAuth: true
+        connector_type_id: .webhook
+        is_preconfigured: false
+        is_deprecated: false
+        is_missing_secrets: false
+        is_system_action: false
+    run_servicenow_itom_connector_response:
+      summary: Response from retrieving the list of choices for a ServiceNow ITOM connector.
+      value:
+        connector_id: 9d9be270-2fd2-11ed-b0e0-87533c532698
+        data:
+        - dependent_value: ''
+          element: severity
+          label: Critical
+          value: 1
+        - dependent_value: ''
+          element: severity
+          label: Major
+          value: 2
+        - dependent_value: ''
+          element: severity
+          label: Minor
+          value: 3
+        - dependent_value: ''
+          element: severity
+          label: Warning
+          value: 4
+        - dependent_value: ''
+          element: severity
+          label: OK
+          value: 5
+        - dependent_value: ''
+          element: severity
+          label: Clear
+          value: 0
+        - dependent_value: ''
+          element: urgency
+          label: 1 - High
+          value: 1
+        - dependent_value: ''
+          element: urgency
+          label: 2 - Medium
+          value: 2
+        - dependent_value: ''
+          element: urgency
+          label: 3 - Low
+          value: 3
+        status: ok
+    run_index_connector_response:
+      summary: Response from running an index connector.
+      value:
+        connector_id: fd38c600-96a5-11ed-bb79-353b74189cba
+        data:
+          errors: false
+          items:
+          - create:
+              _id: 4JtvwYUBrcyxt2NnfW3y
+              _index: my-index
+              _primary_term: 1
+              _seq_no: 0
+              _shards:
+                failed: 0
+                successful: 1
+                total: 2
+              _version: 1
+              result: created
+              status: 201
+          took: 135
+        status: ok
+    create_index_connector_request:
+      summary: Create an index connector.
+      value:
+        name: my-connector
+        connector_type_id: .index
+        config:
+          index: test-index
   securitySchemes:
     apiKeyAuth:
       description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`

@@ -49,6 +49,23 @@ paths:
         name: product_name
 components:
   schemas:
+    Kibana_HTTP_APIs_security_query_roles_sort:
+      additionalProperties: false
+      description: The sort criteria for the query.
+      properties:
+        direction:
+          enum:
+          - asc
+          - desc
+          type: string
+        field:
+          type: string
+      required:
+      - field
+      - direction
+      title: security_query_roles_sort
+      type: object
+      x-oas-optional: true
     Kibana_HTTP_APIs_security_query_roles_body:
       additionalProperties: false
       description: The request body for querying roles.
@@ -73,23 +90,6 @@ components:
         showReservedRoles:
           type: boolean
       title: security_query_roles_filters
-      type: object
-      x-oas-optional: true
-    Kibana_HTTP_APIs_security_query_roles_sort:
-      additionalProperties: false
-      description: The sort criteria for the query.
-      properties:
-        direction:
-          enum:
-          - asc
-          - desc
-          type: string
-        field:
-          type: string
-      required:
-      - field
-      - direction
-      title: security_query_roles_sort
       type: object
       x-oas-optional: true
   securitySchemes:

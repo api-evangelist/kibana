@@ -174,50 +174,6 @@ components:
       schema:
         type: boolean
   schemas:
-    Machine_learning_APIs_mlSync4xxResponse:
-      properties:
-        error:
-          example: Unauthorized
-          type: string
-        message:
-          type: string
-        statusCode:
-          example: 401
-          type: integer
-      title: Unsuccessful sync API response
-      type: object
-    Machine_learning_APIs_mlSync200Response:
-      properties:
-        datafeedsAdded:
-          additionalProperties:
-            $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseDatafeeds'
-          description: If a saved object for an anomaly detection job is missing a datafeed identifier, it is added when you run the sync machine learning saved objects API.
-          type: object
-        datafeedsRemoved:
-          additionalProperties:
-            $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseDatafeeds'
-          description: If a saved object for an anomaly detection job references a datafeed that no longer exists, it is deleted when you run the sync machine learning saved objects API.
-          type: object
-        savedObjectsCreated:
-          $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSavedObjectsCreated'
-        savedObjectsDeleted:
-          $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSavedObjectsDeleted'
-      title: Successful sync API response
-      type: object
-    Machine_learning_APIs_mlSyncResponseTrainedModels:
-      description: The sync machine learning saved objects API response contains this object when there are trained models affected by the synchronization. There is an object for each relevant trained model, which contains the synchronization status.
-      properties:
-        success:
-          $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSuccess'
-      title: Sync API response for trained models
-      type: object
-    Machine_learning_APIs_mlSyncResponseAnomalyDetectors:
-      description: The sync machine learning saved objects API response contains this object when there are anomaly detection jobs affected by the synchronization. There is an object for each relevant job, which contains the synchronization status.
-      properties:
-        success:
-          $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSuccess'
-      title: Sync API response for anomaly detection jobs
-      type: object
     Machine_learning_APIs_mlSyncResponseSavedObjectsDeleted:
       description: If saved objects exist for machine learning jobs or trained models that no longer exist, they are deleted when you run the sync machine learning saved objects API.
       properties:
@@ -238,12 +194,41 @@ components:
           type: object
       title: Sync API response for deleted saved objects
       type: object
+    Machine_learning_APIs_mlSyncResponseAnomalyDetectors:
+      description: The sync machine learning saved objects API response contains this object when there are anomaly detection jobs affected by the synchronization. There is an object for each relevant job, which contains the synchronization status.
+      properties:
+        success:
+          $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSuccess'
+      title: Sync API response for anomaly detection jobs
+      type: object
     Machine_learning_APIs_mlSyncResponseDatafeeds:
       description: The sync machine learning saved objects API response contains this object when there are datafeeds affected by the synchronization. There is an object for each relevant datafeed, which contains the synchronization status.
       properties:
         success:
           $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSuccess'
       title: Sync API response for datafeeds
+      type: object
+    Machine_learning_APIs_mlSync4xxResponse:
+      properties:
+        error:
+          example: Unauthorized
+          type: string
+        message:
+          type: string
+        statusCode:
+          example: 401
+          type: integer
+      title: Unsuccessful sync API response
+      type: object
+    Machine_learning_APIs_mlSyncResponseSuccess:
+      description: The success or failure of the synchronization.
+      type: boolean
+    Machine_learning_APIs_mlSyncResponseTrainedModels:
+      description: The sync machine learning saved objects API response contains this object when there are trained models affected by the synchronization. There is an object for each relevant trained model, which contains the synchronization status.
+      properties:
+        success:
+          $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSuccess'
+      title: Sync API response for trained models
       type: object
     Machine_learning_APIs_mlSyncResponseSavedObjectsCreated:
       description: If saved objects are missing for machine learning jobs or trained models, they are created when you run the sync machine learning saved objects API.
@@ -272,9 +257,24 @@ components:
           $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSuccess'
       title: Sync API response for data frame analytics jobs
       type: object
-    Machine_learning_APIs_mlSyncResponseSuccess:
-      description: The success or failure of the synchronization.
-      type: boolean
+    Machine_learning_APIs_mlSync200Response:
+      properties:
+        datafeedsAdded:
+          additionalProperties:
+            $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseDatafeeds'
+          description: If a saved object for an anomaly detection job is missing a datafeed identifier, it is added when you run the sync machine learning saved objects API.
+          type: object
+        datafeedsRemoved:
+          additionalProperties:
+            $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseDatafeeds'
+          description: If a saved object for an anomaly detection job references a datafeed that no longer exists, it is deleted when you run the sync machine learning saved objects API.
+          type: object
+        savedObjectsCreated:
+          $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSavedObjectsCreated'
+        savedObjectsDeleted:
+          $ref: '#/components/schemas/Machine_learning_APIs_mlSyncResponseSavedObjectsDeleted'
+      title: Successful sync API response
+      type: object
   examples:
     Machine_learning_APIs_mlSync401Example:
       summary: Two anomaly detection jobs required synchronization in this example.
