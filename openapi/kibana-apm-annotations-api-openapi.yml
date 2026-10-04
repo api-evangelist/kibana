@@ -172,26 +172,91 @@ paths:
       - content: Kibana
         name: product_name
 components:
-  parameters:
-    APM_UI_elastic_api_version:
-      description: The version of the API to use
-      in: header
-      name: elastic-api-version
-      required: true
-      schema:
-        default: '2023-10-31'
-        enum:
-        - '2023-10-31'
-        type: string
-    APM_UI_kbn_xsrf:
-      description: A required header to protect against CSRF attacks
-      in: header
-      name: kbn-xsrf
-      required: true
-      schema:
-        example: 'true'
-        type: string
+  examples:
+    APM_UI_annotation_object_post_request1:
+      description: Run `POST /api/apm/services/{serviceName}/annotation` to create a deployment annotation for a service.
+      value:
+        '@timestamp': '2024-01-15T12:00:00.000Z'
+        message: Deployment 1.2.0
+        service:
+          environment: production
+          version: 1.2.0
+        tags:
+        - apm
+        - deployment
+    APM_UI_annotation_object_post_200_response1:
+      description: An example of a successful response from `POST /api/apm/services/opbeans-java/annotation`, which creates an annotation for a service named `opbeans-java`.
+      value:
+        _id: Lc9I93EBh6DbmkeV7nFX
+        _index: observability-annotations
+        _primary_term: 1
+        _seq_no: 12
+        _source:
+          '@timestamp': '2020-05-08T10:31:30.452Z'
+          annotation:
+            type: deployment
+          event:
+            created: '2020-05-09T02:34:43.937Z'
+          message: Deployment 1.2
+          service:
+            name: opbeans-java
+            version: '1.2'
+          tags:
+          - apm
+          - elastic.co
+          - customer
+        _version: 1
+        found: true
   schemas:
+    APM_UI_annotation_search_response:
+      type: object
+      properties:
+        annotations:
+          description: Annotations
+          items:
+            type: object
+            properties:
+              '@timestamp':
+                type: number
+              id:
+                type: string
+              text:
+                type: string
+              type:
+                enum:
+                - version
+                type: string
+          type: array
+    APM_UI_404_response:
+      type: object
+      properties:
+        error:
+          description: Error type
+          example: Not Found
+          type: string
+        message:
+          description: Error message
+          example: Not Found
+          type: string
+        statusCode:
+          description: Error status code
+          example: 404
+          type: number
+    APM_UI_400_response:
+      type: object
+      properties:
+        error:
+          description: Error type
+          example: Not Found
+          type: string
+        message:
+          description: Error message
+          example: Not Found
+          type: string
+        statusCode:
+          description: Error status code
+          example: 400
+          type: number
     APM_UI_create_annotation_response:
       type: object
       properties:
@@ -234,25 +299,6 @@ components:
               items:
                 type: string
               type: array
-    APM_UI_annotation_search_response:
-      type: object
-      properties:
-        annotations:
-          description: Annotations
-          items:
-            type: object
-            properties:
-              '@timestamp':
-                type: number
-              id:
-                type: string
-              text:
-                type: string
-              type:
-                enum:
-                - version
-                type: string
-          type: array
     APM_UI_403_response:
       type: object
       properties:
@@ -266,6 +312,34 @@ components:
         statusCode:
           description: Error status code
           example: 403
+          type: number
+    APM_UI_500_response:
+      type: object
+      properties:
+        error:
+          description: Error type
+          example: Internal Server Error
+          type: string
+        message:
+          description: Error message
+          type: string
+        statusCode:
+          description: Error status code
+          example: 500
+          type: number
+    APM_UI_401_response:
+      type: object
+      properties:
+        error:
+          description: Error type
+          example: Unauthorized
+          type: string
+        message:
+          description: Error message
+          type: string
+        statusCode:
+          description: Error status code
+          example: 401
           type: number
     APM_UI_create_annotation_object:
       type: object
@@ -298,99 +372,25 @@ components:
       required:
       - '@timestamp'
       - service
-    APM_UI_401_response:
-      type: object
-      properties:
-        error:
-          description: Error type
-          example: Unauthorized
-          type: string
-        message:
-          description: Error message
-          type: string
-        statusCode:
-          description: Error status code
-          example: 401
-          type: number
-    APM_UI_500_response:
-      type: object
-      properties:
-        error:
-          description: Error type
-          example: Internal Server Error
-          type: string
-        message:
-          description: Error message
-          type: string
-        statusCode:
-          description: Error status code
-          example: 500
-          type: number
-    APM_UI_404_response:
-      type: object
-      properties:
-        error:
-          description: Error type
-          example: Not Found
-          type: string
-        message:
-          description: Error message
-          example: Not Found
-          type: string
-        statusCode:
-          description: Error status code
-          example: 404
-          type: number
-    APM_UI_400_response:
-      type: object
-      properties:
-        error:
-          description: Error type
-          example: Not Found
-          type: string
-        message:
-          description: Error message
-          example: Not Found
-          type: string
-        statusCode:
-          description: Error status code
-          example: 400
-          type: number
-  examples:
-    APM_UI_annotation_object_post_request1:
-      description: Run `POST /api/apm/services/{serviceName}/annotation` to create a deployment annotation for a service.
-      value:
-        '@timestamp': '2024-01-15T12:00:00.000Z'
-        message: Deployment 1.2.0
-        service:
-          environment: production
-          version: 1.2.0
-        tags:
-        - apm
-        - deployment
-    APM_UI_annotation_object_post_200_response1:
-      description: An example of a successful response from `POST /api/apm/services/opbeans-java/annotation`, which creates an annotation for a service named `opbeans-java`.
-      value:
-        _id: Lc9I93EBh6DbmkeV7nFX
-        _index: observability-annotations
-        _primary_term: 1
-        _seq_no: 12
-        _source:
-          '@timestamp': '2020-05-08T10:31:30.452Z'
-          annotation:
-            type: deployment
-          event:
-            created: '2020-05-09T02:34:43.937Z'
-          message: Deployment 1.2
-          service:
-            name: opbeans-java
-            version: '1.2'
-          tags:
-          - apm
-          - elastic.co
-          - customer
-        _version: 1
-        found: true
+  parameters:
+    APM_UI_kbn_xsrf:
+      description: A required header to protect against CSRF attacks
+      in: header
+      name: kbn-xsrf
+      required: true
+      schema:
+        example: 'true'
+        type: string
+    APM_UI_elastic_api_version:
+      description: The version of the API to use
+      in: header
+      name: elastic-api-version
+      required: true
+      schema:
+        default: '2023-10-31'
+        enum:
+        - '2023-10-31'
+        type: string
   securitySchemes:
     apiKeyAuth:
       description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`
