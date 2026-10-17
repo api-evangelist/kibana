@@ -49,6 +49,23 @@ paths:
         name: product_name
 components:
   schemas:
+    Kibana_HTTP_APIs_security_query_roles_body:
+      additionalProperties: false
+      description: The request body for querying roles.
+      properties:
+        filters:
+          $ref: '#/components/schemas/Kibana_HTTP_APIs_security_query_roles_filters'
+        from:
+          type: number
+        query:
+          type: string
+        size:
+          type: number
+        sort:
+          $ref: '#/components/schemas/Kibana_HTTP_APIs_security_query_roles_sort'
+      title: security_query_roles_body
+      type: object
+      required: []
     Kibana_HTTP_APIs_security_query_roles_sort:
       additionalProperties: false
       description: The sort criteria for the query.
@@ -75,23 +92,6 @@ components:
       title: security_query_roles_filters
       type: object
       x-oas-optional: true
-    Kibana_HTTP_APIs_security_query_roles_body:
-      additionalProperties: false
-      description: The request body for querying roles.
-      properties:
-        filters:
-          $ref: '#/components/schemas/Kibana_HTTP_APIs_security_query_roles_filters'
-        from:
-          type: number
-        query:
-          type: string
-        size:
-          type: number
-        sort:
-          $ref: '#/components/schemas/Kibana_HTTP_APIs_security_query_roles_sort'
-      title: security_query_roles_body
-      type: object
-      required: []
   securitySchemes:
     apiKeyAuth:
       description: 'These APIs use key-based authentication. You must create an API key and use the encoded value in the request header. For example: `Authorization: ApiKey base64AccessApiKey`
